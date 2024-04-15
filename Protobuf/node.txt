@@ -1,0 +1,19 @@
+
+# tren PC WINDOW run command sau trên Git Bash 
+# Nhắc lại là run trên Git Bash
+#./protoc.v21.exe -I=. --java_out=. *.proto
+cd compile-proto
+#npm run build-proto-3
+#mv compiled* ../../Client/fishshooter/assets/Common/Scripts/proto/
+
+#docker run -it --rm --entrypoint sh -v $PWD:/proto debian:stable-slim
+.\protoc.exe -I="." --java_out="." *.proto
+#cp -rf  my ../Server/src/main/java/
+#rm -rf my 
+copy folder my vào thư mục trong project server
+
+build cho Client
+cd compile-proto
+npm install
+npm run build-proto-3
+copy  ghi đè lại file cũ trong client
