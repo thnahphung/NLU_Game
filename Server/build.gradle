@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+group 'vn.edu.nlu.fit.nlugame'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+    api 'jakarta.websocket:jakarta.websocket-api:2.0.0'
+    api 'mysql:mysql-connector-java:8.0.32'
+    api 'com.google.protobuf:protobuf-java:3.22.3'
+    api 'redis.clients:jedis:4.4.5'
+    api 'org.redisson:redisson:3.22.0'
+    api 'com.zaxxer:HikariCP:5.0.1'
+    api 'org.jdbi:jdbi3-core:3.37.1'
+    api 'org.projectlombok:lombok:1.18.22'
+    api 'at.favre.lib:bcrypt:0.10.2'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
