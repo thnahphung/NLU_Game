@@ -146,5 +146,8 @@
       "version": ""
     },
     "flags": {}
+  },
+  "macroConfig": {
+    "ENABLE_ANTIALIAS_FXAA": false
   }
 }
