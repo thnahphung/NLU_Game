@@ -15,8 +15,18 @@ public class AuthHandler implements Subscriber {
     }
 
     @Override
-    public void onMessage(Session session, Proto.PacketWrapper message) {
-
+    public void onMessage(Session session, Proto.PacketWrapper packetWrapper) {
+        packetWrapper.getPacketList().forEach(packet -> {
+            //to check user đang login trong hệ thống
+            switch (packet.getDataCase()) {
+                case REQLOGIN:
+                    authService.checkLogin(session, packet.getReqLogin());
+                    break;
+                case REQREGISTER:
+                    authService.register(session, packet.getReqRegister());
+                    break;
+            }
+        });
     }
 
     @Override

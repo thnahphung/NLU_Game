@@ -10,7 +10,7 @@ public class SocketInitialization implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        System.out.println("=================================================================");
+        System.out.println("SocketInitialization.contextInitialized");
         ServerEndpoint.init();
     }
 

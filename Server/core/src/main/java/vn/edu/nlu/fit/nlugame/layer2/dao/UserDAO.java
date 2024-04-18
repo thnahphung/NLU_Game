@@ -34,30 +34,23 @@ public class UserDAO extends BaseDAO {
         return users.size() > 0 ? 400 : 200;
     }
 
-    public static int insertRegisterUser(String username, String hashPass, int sponsor, String phone, String OTP) {
+    public static int insertRegisterUser(String username, String pass) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             return 402;
         }
         try {
             Integer count = jdbi.withHandle(h -> h.createUpdate(
-
-                            "insert into " + TABLE_NAME + " (username, password, sponsor, gender,player_name,active,phone,phone_otp,phone_otp_time,is_phone_verified) " +
-                                    "values (:username, :password, :sponsor, 2,:playerName,1,:phone,:phoneOTP,:phoneOTPTime,0)")
+                            "insert into " + TABLE_NAME + " (username, password) " +
+                                    "values (:username, :password)")
                     .bind("username", username)
-                    .bind("password", hashPass)
-                    .bind("sponsor", sponsor)
-                    .bind("playerName", username)
-                    .bind("phone", phone)
-                    .bind("phoneOTP", OTP)
-                    .bind("phoneOTPTime", (OTP != null && !"".equals(OTP)) ? System.currentTimeMillis() : "0")
-                    .execute());
+                    .bind("password", pass)
+                  .execute());
             return count == 1 ? 200 : 400;
         } catch (Exception e) {
             return 500;
         }
     }
-
     public static UserBean selectUser(int userId) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
@@ -75,6 +68,17 @@ public class UserDAO extends BaseDAO {
                 .bind("username", username)
                 .mapToBean(UserBean.class).stream().findFirst().orElse(null));
     }
-
+    public static UserBean getUser(String username) {
+        if (username.equals("") || username.isEmpty()) {
+            return null;
+        }
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(h -> h.createQuery("select id,username,password,player_name,gender,sponsor,email,phone,active,tree,relogin_token,agency_level,isBot from " + TABLE_NAME + " where username = :username")
+                .bind("username", username)
+                .mapToBean(UserBean.class).stream().findFirst().orElse(null));
+    }
 
 }
