@@ -5,6 +5,10 @@ import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer2.dao.UserDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.UserBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
+import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
+import vn.edu.nlu.fit.nlugame.layer2.redis.cache.SessionCache;
+import vn.edu.nlu.fit.nlugame.layer2.redis.cache.UserCache;
+import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
 public class AuthService {
 
@@ -19,39 +23,48 @@ public class AuthService {
         return instance;
     }
 
-    public void processRegister(Session session, Proto.ReqRegister packet) {
-        if (packet.getPassword() == null || "".equals(packet.getPassword())) {
-            sendMsgRegister(session, 401);
-        }
-
-        int status = UserDAO.checkUserRegister(packet.getUsername());
-        if (status != 200) {
-            sendMsgRegister(session, status);
-        }
-
-        UserBean sponsorUser = UserDAO.selectUser(packet.getSponsor());
-        if (packet.getSponsor() != null && !packet.getSponsor().isEmpty() && sponsorUser == null) {
-            sendMsgRegister(session, 402);
+    public void register(Session session, Proto.ReqRegister reqRegister) {
+        //Check require field username, password
+        if(reqRegister.getUsername().trim().equals("") || reqRegister.getPassword().trim().equals("")){
+            sendResponse(session, Proto.Packet.newBuilder().setResRegister(Proto.ResRegister.newBuilder().setStatus(401)).build());
             return;
         }
-
-        if (defaultSponsor == null) {
-            sendMsgRegister(session, 403);
+        //Check username da ton tai chua
+        if(UserDAO.getUser(reqRegister.getUsername()) != null){
+            System.out.println(UserDAO.getUser(reqRegister.getUsername()));
+            sendResponse(session, Proto.Packet.newBuilder().setResRegister(Proto.ResRegister.newBuilder().setStatus(400)).build());
             return;
         }
-
-        int sponsorId = sponsorUser != null ? sponsorUser.getId() : defaultSponsorId;
-        status = UserDAO.insertRegisterUser(packet.getUsername(),
-                BCrypt.withDefaults().hashToString(12, packet.getPassword().toCharArray()),
-                sponsorId == -2 ? defaultSponsorId : sponsorId, packet.getPhone(), "");
-
-        sendMsgRegister(session, status);
+        //Insert user
+        int statusInsertUser =  UserDAO.insertRegisterUser(reqRegister.getUsername(), reqRegister.getPassword());
+        sendResponse(session, Proto.Packet.newBuilder().setResRegister(Proto.ResRegister.newBuilder().setStatus(statusInsertUser)).build());
     }
 
-    public void checkLogin(Session session, Proto.ReqLogin packet) {
-        System.out.println("Login");
+    public void checkLogin(Session session, Proto.ReqLogin reqLogin) {
+        Proto.Packet.Builder packetBuilder = Proto.Packet.newBuilder();
+        Proto.ResLogin.Builder resLoginBuilder = Proto.ResLogin.newBuilder();
+        UserBean userLoginBean = UserDAO.getUserLogin(reqLogin.getUsername());
+        // Check userLogin exists
+        if(userLoginBean == null){
+            resLoginBuilder.setStatus(400);
+            packetBuilder.setResLogin(resLoginBuilder.build());
+            System.out.println(packetBuilder.toString());
+            sendResponse(session, packetBuilder.build());
+            return;
+        }
+        // Check username and password
+        if (!reqLogin.getUsername().equals(userLoginBean.getUsername()) || !reqLogin.getPassword().equals(userLoginBean.getPassword())) {
+            sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(400)).build());
+            return;
+        }
+        sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(200)).build());
     }
 
+    public void logout(Session session, Proto.ReqLogout reqLogout){
+        //TODO: Remove user in cache
+
+        //TODO: Remove user in redis
+    }
     public void checkReLogin(Session session, Proto.ReqRelogin packet) {
         System.out.println("ReLogin");
     }
