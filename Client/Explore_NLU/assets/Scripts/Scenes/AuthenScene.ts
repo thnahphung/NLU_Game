@@ -1,5 +1,6 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component, EditBox, instantiate, Label, Node, Prefab } from 'cc';
 import AbsScene from './AbsScene';
+import { WS } from '../Socket/WS';
 const { ccclass, property } = _decorator;
 
 @ccclass('AuthenScene')
@@ -13,8 +14,6 @@ export class AuthenScene extends AbsScene {
 
     @property(Node)
     private popupSignUp: Node = null;
-
-
 
     start() {
 
@@ -44,9 +43,6 @@ export class AuthenScene extends AbsScene {
         this.popupSignIn.active = false;
         this.popupSignUp.active = false;
     }
-
-
-
 }
 
 

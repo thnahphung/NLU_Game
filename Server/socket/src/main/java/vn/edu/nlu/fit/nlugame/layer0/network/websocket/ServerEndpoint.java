@@ -5,7 +5,6 @@ import vn.edu.nlu.fit.nlugame.layer0.handler.AuthHandler;
 import vn.edu.nlu.fit.nlugame.layer0.handler.NotificationHandler;
 import vn.edu.nlu.fit.nlugame.layer0.handler.SessionHandler;
 import vn.edu.nlu.fit.nlugame.layer0.handler.Subscriber;
-import vn.edu.nlu.fit.nlugame.layer1.SessionService;
 import vn.edu.nlu.fit.nlugame.layer2.ThreadManage;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.RedisClusterHelper;
@@ -31,26 +30,25 @@ public class ServerEndpoint {
     @OnOpen
     public void onOpen(Session session) {
         session.setMaxIdleTimeout(60000);
-//        subscribers.forEach(s -> ThreadManage.me().execute(() -> s.onOpen(session)));
-        subscribers.forEach(s -> s.onOpen(session));
+        subscribers.forEach(s -> ThreadManage.me().execute(() -> s.onOpen(session)));
     }
 
     @OnMessage
-    public void onMessage(Session session, Proto.PacketWrapper packetWrapper) throws IOException {
-
+    public void onMessage(Session session, Proto.PacketWrapper packetWrapper) {
+        subscribers.forEach(s -> ThreadManage.me().execute(() -> s.onMessage(session, packetWrapper)));
     }
 
     @OnClose
     public void onClose(Session session) {
-//        subscribers.forEach(s -> ThreadManage.me().execute(() -> s.onClose(session)));
+        subscribers.forEach(s -> ThreadManage.me().execute(() -> s.onClose(session)));
     }
 
     @OnError
-    public void onError(Session session, Throwable throwable) throws IOException {
-//        subscribers.forEach(s -> ThreadManage.me().execute(() -> s.onError(session, throwable)));
+    public void onError(Session session, Throwable throwable) {
+        subscribers.forEach(s -> ThreadManage.me().execute(() -> s.onError(session, throwable)));
     }
+
 //    private static void initLoadingData() {
-//
 //        String masterEndpoint = ServerStatusCache.me().getMasterEndpoint();
 //        if (!SessionManage.me().getEndPointID().equals(masterEndpoint)) return;
 //        LoadingSettingService.me().syncDancingShowSetting();
