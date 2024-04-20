@@ -1,0 +1,91 @@
+import {
+  _decorator,
+  AudioClip,
+  AudioSource,
+  Component,
+  director,
+  Node,
+  resources,
+} from "cc";
+import { LocalStorage } from "./LocalStorage";
+import { SETTINGS } from "./Const";
+const { ccclass, property } = _decorator;
+
+@ccclass("AudioManger")
+export class AudioManger {
+  private static _instance: AudioManger;
+  public static me(): AudioManger {
+    if (this._instance == null) {
+      this._instance = new AudioManger();
+    }
+    return this._instance;
+  }
+
+  private _audioSource: AudioSource;
+  private MUSIC_VOLUME_RATE: number = 0.5;
+
+  constructor() {
+    let audioManager = new Node();
+    audioManager.name = "__audioManager__";
+
+    //them node vao scene
+    director.getScene().addChild(audioManager);
+
+    //giu cho node khong bi destroy khi chuyen scene
+    director.addPersistRootNode(audioManager);
+
+    this._audioSource = audioManager.addComponent(AudioSource);
+  }
+
+  public get audioSource() {
+    return this._audioSource;
+  }
+
+  //phat am thanh 1 lan cho cac am thanh ngan
+  //vi du: click, pop up, ...
+  playOneShot(sound: string) {
+    const musicVolume =
+      parseFloat(LocalStorage.me().getItem("MUSIC")) || SETTINGS.DEFAULT_EFFECT;
+    resources.load(sound, (err, clip: AudioClip) => {
+      if (err) {
+        console.log(err);
+      } else {
+        this._audioSource.playOneShot(
+          clip,
+          musicVolume * this.MUSIC_VOLUME_RATE
+        );
+      }
+    });
+  }
+
+  //phat am thanh co the lap lai, am thanh dai
+  //vi du: nhac nen, am thanh game, ...
+  play(sound: string, loop: boolean = false) {
+    const musicVolume =
+      parseFloat(LocalStorage.me().getItem("MUSIC")) || SETTINGS.DEFAULT_MUSIC;
+    console.debug("musicVolume", musicVolume);
+    resources.load(sound, (err, clip: AudioClip) => {
+      if (err) {
+        console.log(err);
+      } else {
+        this._audioSource.stop();
+        this._audioSource.clip = clip;
+        this._audioSource.play();
+        this.audioSource.volume = musicVolume * this.MUSIC_VOLUME_RATE;
+        this.audioSource.loop = loop;
+      }
+    });
+  }
+
+  stop() {
+    this._audioSource.stop();
+  }
+
+  pause() {
+    this._audioSource.pause();
+  }
+
+  resume() {
+    this._audioSource.play();
+  }
+}
