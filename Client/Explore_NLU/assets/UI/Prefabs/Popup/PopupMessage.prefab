@@ -1662,7 +1662,7 @@
   {
     "__type__": "cc.Node",
     "_name": "lable",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 72
     },

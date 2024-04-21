@@ -1,6 +1,7 @@
 import { _decorator, Component, EditBox, Node, Prefab } from 'cc';
 import { WS } from '../../Socket/WS';
 import AbsScene from '../../Scenes/AbsScene';
+import DataSender from '../../Utils/DataSender';
 const { ccclass, property } = _decorator;
 
 @ccclass('PopupSignUp')
@@ -23,7 +24,7 @@ export class PopupSignUp extends AbsScene {
 
     }
 
-    onMessage(packetWrapper: proto.IPacketWrapper) {
+    onMessageHandler(packetWrapper: proto.IPacketWrapper) {
         packetWrapper.packet.forEach((packet) => {
             let resRegister = packet.resRegister;
             if(resRegister){
@@ -54,13 +55,7 @@ export class PopupSignUp extends AbsScene {
             confirm("Mật khẩu không trùng khớp!");
             return;
         }
-
-        let reqRegister = new proto.ReqRegister();
-        reqRegister.username = this.usernameRegister.string;
-        reqRegister.password = this.passwordRegister.string;
-        let packet = new proto.Packet();
-        packet.reqRegister = reqRegister;
-        WS.send(packet);
+        DataSender.sendReqSignUp(this.usernameRegister.string, this.passwordRegister.string);
     }
 }
 
