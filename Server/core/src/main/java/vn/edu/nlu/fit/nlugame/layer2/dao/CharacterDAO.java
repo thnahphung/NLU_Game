@@ -1,0 +1,20 @@
+package vn.edu.nlu.fit.nlugame.layer2.dao;
+
+import org.jdbi.v3.core.Jdbi;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.CharacterBean;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class CharacterDAO extends BaseDAO{
+    private static final String TABLE_NAME = "characters";
+    public static List<CharacterBean> loadAllCharacter() {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(handle -> handle.createQuery("select id, name, description from " + TABLE_NAME)
+                .mapToBean(CharacterBean.class).stream().collect(Collectors.toList())
+        );
+    }
+}
