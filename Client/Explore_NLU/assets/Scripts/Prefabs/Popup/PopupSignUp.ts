@@ -1,5 +1,4 @@
-import { _decorator, Component, EditBox, Node, Prefab } from 'cc';
-import { WS } from '../../Socket/WS';
+import { _decorator, EditBox, Node, Prefab } from 'cc';
 import AbsScene from '../../Scenes/AbsScene';
 import DataSender from '../../Utils/DataSender';
 const { ccclass, property } = _decorator;
@@ -22,25 +21,6 @@ export class PopupSignUp extends AbsScene {
 
     start() {
 
-    }
-
-    onMessageHandler(packetWrapper: proto.IPacketWrapper) {
-        packetWrapper.packet.forEach((packet) => {
-            let resRegister = packet.resRegister;
-            if(resRegister){
-                if (resRegister.status === 400) {
-                    confirm("Tên đăng nhập đã tồn tại!");
-                }else if(resRegister.status === 401){
-                    confirm("Tên đăng nhập hoặc mật khẩu không được để trống!");
-                }else if(resRegister.status === 402){
-                    confirm("Mật khẩu không trùng khớp!");
-                }else if(resRegister.status === 500){
-                    confirm("Lỗi server!");
-                }else if(resRegister.status === 200){
-                    confirm("Đăng ký thành công!");
-                }
-            }
-        });
     }
 
     onClickRegisterReq(){
