@@ -99,7 +99,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 480,
+      "x": 480.00000000000006,
       "y": 320.00000000000006,
       "z": 0
     },
@@ -183,7 +183,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 329.3617021276596,
+    "_orthoHeight": 320,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -6594,7 +6594,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 230.56,
+      "x": 150.66,
       "y": 0,
       "z": 0
     },
@@ -6632,7 +6632,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 361.12,
+      "width": 201.32,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -6661,7 +6661,7 @@
       "b": 108,
       "a": 255
     },
-    "_string": "Bạn đồng ý với chính sách của chúng tôi",
+    "_string": "Tự động đăng nhập lại",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
     "_actualFontSize": 20,
@@ -6691,7 +6691,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 411.12,
+      "width": 251.32,
       "height": 36.9
     },
     "_anchorPoint": {
@@ -7419,8 +7419,8 @@
     "__prefab": null,
     "_alignFlags": 45,
     "_target": null,
-    "_left": 0,
-    "_right": 0,
+    "_left": 5.684341886080802e-14,
+    "_right": 5.684341886080802e-14,
     "_top": 5.684341886080802e-14,
     "_bottom": 5.684341886080802e-14,
     "_horizontalCenter": 0,
@@ -7455,6 +7455,13 @@
     "popupSignUp": {
       "__id__": 39
     },
+    "rememberMe": {
+      "__id__": 175
+    },
+    "transitScreen": {
+      "__uuid__": "63d99430-c7a5-4da3-a530-be4b57721953",
+      "__expectedType__": "cc.Prefab"
+    },
     "_id": "0eGKL4Z5ZHUJgYSKU8J6Gv"
   },
   {
@@ -7466,6 +7473,10 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "transitionScreen": {
+      "__uuid__": "63d99430-c7a5-4da3-a530-be4b57721953",
+      "__expectedType__": "cc.Prefab"
+    },
     "_id": "8aD5g3VM1DErUiF9DmJVuX"
   },
   {

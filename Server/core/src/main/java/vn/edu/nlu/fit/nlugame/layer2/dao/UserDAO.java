@@ -80,5 +80,14 @@ public class UserDAO extends BaseDAO {
                 .bind("username", username)
                 .mapToBean(UserBean.class).stream().findFirst().orElse(null));
     }
-
+    public static void updateReloginToken(int userId, String token) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return;
+        }
+        jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set relogin_token = :token where id = :id")
+                .bind("id", userId)
+                .bind("token", token)
+                .execute());
+    }
 }
