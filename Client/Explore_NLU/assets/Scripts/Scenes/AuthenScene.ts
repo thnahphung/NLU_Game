@@ -28,6 +28,9 @@ export class AuthenScene extends AbsScene {
   // Khai bao transitScreen
   @property(Prefab)
   public transitScreen: Prefab = null;
+  // Khai bao setting 
+  @property(Prefab)
+  public popupSetting: Prefab = null;
 
   start() {}
   protected onLoad(): void {
@@ -97,6 +100,8 @@ export class AuthenScene extends AbsScene {
   }
 
   onClickSetting() {
+    let setting = instantiate(this.popupSetting);
+    this.node.addChild(setting);
     // this.popupGeneral.active = false;
     // this.popupSignIn.active = true;
   }
