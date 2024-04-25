@@ -14,6 +14,8 @@ public class CharacterBean {
     private int id;
     @ColumnName("name")
     private String name;
+    @ColumnName("code")
+    private String code;
     @ColumnName("description")
     private String description;
 }

@@ -1,0 +1,44 @@
+
+const win = window as any;
+
+export const languages = {
+    // Data
+    "label_text": {
+        //authen
+        "authen_signin": "ĐĂNG NHẬP",
+        "authen_signup": "ĐĂNG KÝ",
+        "authen_username": "Tài khoản",
+        "authen_password": "Mật khẩu",
+        "authen_forgot_password": "Quên mật khẩu?",
+        "authen_remember_me": "Tự động đăng nhập lại",
+        "authen_email": "Email",
+        "authen_confirm_password": "Nhập lại mật khẩu",
+        "authen_policy": "Bạn đồng ý với chính sách của chúng tôi!",
+        //setting
+        "setting_title": "CÀI ĐẶT",
+        "setting_music": "Nhạc nền",
+        "setting_sound": "Âm thanh",
+        "setting_notify": "Thông báo",
+        "setting_language": "Ngôn ngữ",
+        "setting_language_current": "Tiếng Việt",
+        "setting_language_vietnamese": "Tiếng Việt",
+        "setting_language_english": "Tiếng Anh",
+        //pick character
+        "pick_character_title": "Chọn nhân vật",
+        "pick_character_select": "CHỌN",
+        //character
+        "character_title": "Nhân vật",
+        "character_name_mechanical": "Kỹ sư cơ khí",
+        "character_name_veterinarian": "Bác sĩ thú y",
+        "character_name_agricultural": "Kỹ sư nông nghiệp",
+        "character_name_animal_husbandry":"Kỹ sư chăn nuôi",
+        //loading
+        "loading": "Đang tải..."
+    }
+};
+
+if (!win.languages) {
+    win.languages = {};
+}
+
+win.languages.vi = languages;

@@ -1724,6 +1724,9 @@ export namespace proto {
         /** Character name */
         name?: (string|null);
 
+        /** Character code */
+        code?: (string|null);
+
         /** Character description */
         description?: (string|null);
     }
@@ -1742,6 +1745,9 @@ export namespace proto {
 
         /** Character name. */
         public name: string;
+
+        /** Character code. */
+        public code: string;
 
         /** Character description. */
         public description: string;

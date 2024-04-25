@@ -4098,6 +4098,7 @@
              * @interface ICharacter
              * @property {number|null} [id] Character id
              * @property {string|null} [name] Character name
+             * @property {string|null} [code] Character code
              * @property {string|null} [description] Character description
              */
     
@@ -4131,6 +4132,14 @@
              * @instance
              */
             Character.prototype.name = "";
+    
+            /**
+             * Character code.
+             * @member {string} code
+             * @memberof proto.Character
+             * @instance
+             */
+            Character.prototype.code = "";
     
             /**
              * Character description.
@@ -4168,8 +4177,10 @@
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
                 if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+                if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.code);
                 if (message.description != null && Object.hasOwnProperty.call(message, "description"))
-                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.description);
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.description);
                 return writer;
             };
     
@@ -4213,6 +4224,10 @@
                             break;
                         }
                     case 3: {
+                            message.code = reader.string();
+                            break;
+                        }
+                    case 4: {
                             message.description = reader.string();
                             break;
                         }
@@ -4257,6 +4272,9 @@
                 if (message.name != null && message.hasOwnProperty("name"))
                     if (!$util.isString(message.name))
                         return "name: string expected";
+                if (message.code != null && message.hasOwnProperty("code"))
+                    if (!$util.isString(message.code))
+                        return "code: string expected";
                 if (message.description != null && message.hasOwnProperty("description"))
                     if (!$util.isString(message.description))
                         return "description: string expected";
@@ -4279,6 +4297,8 @@
                     message.id = object.id | 0;
                 if (object.name != null)
                     message.name = String(object.name);
+                if (object.code != null)
+                    message.code = String(object.code);
                 if (object.description != null)
                     message.description = String(object.description);
                 return message;
@@ -4300,12 +4320,15 @@
                 if (options.defaults) {
                     object.id = 0;
                     object.name = "";
+                    object.code = "";
                     object.description = "";
                 }
                 if (message.id != null && message.hasOwnProperty("id"))
                     object.id = message.id;
                 if (message.name != null && message.hasOwnProperty("name"))
                     object.name = message.name;
+                if (message.code != null && message.hasOwnProperty("code"))
+                    object.code = message.code;
                 if (message.description != null && message.hasOwnProperty("description"))
                     object.description = message.description;
                 return object;

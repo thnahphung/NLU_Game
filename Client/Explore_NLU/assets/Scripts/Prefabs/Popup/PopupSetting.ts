@@ -1,16 +1,16 @@
-import { _decorator, Button, instantiate, Label, Node, Prefab, ProgressBar } from 'cc';
+import { _decorator, instantiate, Label, Node, Prefab, ProgressBar } from 'cc';
 import { TransitionScenePrefab } from '../../Others/TransitionScenePrefab';
 import AbsScene from '../../Scenes/AbsScene';
 import { LocalStorage } from '../../Utils/LocalStorage';
 import { POPUP_MESSAGE } from '../../Utils/Const';
 import DataSender from '../../Utils/DataSender';
+import { init } from '../../../../extensions/i18n/assets/LanguageData';
+import { updateSceneRenderers } from '../../../../extensions/i18n/assets/LanguageData';
+import { t } from '../../../../extensions/i18n/assets/LanguageData';
 const { ccclass, property } = _decorator;
 
 @ccclass('PopupSetting')
 export class PopupSetting extends AbsScene {
-    // Khai bao transitScreen
-    @property(Prefab)
-    public transitionScreen: Prefab = null;
     // Khai bao setting music
     @property(ProgressBar)
     public progressBarMusic: ProgressBar = null;
@@ -22,12 +22,17 @@ export class PopupSetting extends AbsScene {
     public dropdownLanguage: Node = null;
     @property(Label)
     public lableLanguage: Label = null;
-
+    // Khai bao transitScreen
+    @property(Prefab)
+    public transitScreen: Prefab = null;
+    start() {}
     protected onLoad(): void {
+        this.lableLanguage.string = t('label_text.setting_language_english');
         this.dropdownLanguage.active = false;
     }
 
     onMessageHandler(packetWrapper: proto.IPacketWrapper): void {
+        let transitScreen = instantiate(this.transitScreen) ;
         packetWrapper.packet.forEach((packet) => {
            if(packet.resLogout){
                switch(packet.resLogout.status){
@@ -36,10 +41,8 @@ export class PopupSetting extends AbsScene {
                         LocalStorage.me().deleteItem("AUTO_LOGIN");
                         LocalStorage.me().deleteItem("TOKEN");  
                           //Chuyển scene
-                        console.log("check 2",this.transitionScreen)
-                        let transitScreenAuthen = this.transitionScreen!= null ? instantiate(this.transitionScreen) : null;
-                        transitScreenAuthen.getComponent(TransitionScenePrefab).setSceneName("AuthenScene");
-                        this.node.addChild(transitScreenAuthen);
+                        transitScreen.getComponent(TransitionScenePrefab).setSceneName("AuthenScene");
+                        this.node.addChild(transitScreen);
                         break;
                     case 400:
                         confirm(POPUP_MESSAGE.LOGOUT_FAILED_400);
@@ -67,14 +70,19 @@ export class PopupSetting extends AbsScene {
 
     onClickLanguage(event){
         let language = event.target.name;
-        console.log("language", language);
         switch(language){
             case "ButtonEN":
-                this.lableLanguage.string = "Tiếng Anh";
+                init('en');
+                updateSceneRenderers()
+                let nameLanguageEN = t('label_text.setting_language_english');
+                this.lableLanguage.string = nameLanguageEN;
                 this.dropdownLanguage.active = !this.dropdownLanguage.active;
                 break;
             case "ButtonVI":
-                this.lableLanguage.string = "Tiếng Việt";
+                init('vi');
+                updateSceneRenderers()
+                let nameLanguageVI = t('label_text.setting_language_vietnamese');
+                this.lableLanguage.string = nameLanguageVI;
                 this.dropdownLanguage.active = !this.dropdownLanguage.active;
                 break;
         }

@@ -2,6 +2,7 @@ import { Label, Node, Prefab, Sprite, _decorator, find, instantiate, resources }
 import AbsScene from './AbsScene';
 import { WS } from '../Socket/WS';
 import DataSender from '../Utils/DataSender';
+import { t } from '../../../extensions/i18n/assets/LanguageData';
 const { ccclass, property } = _decorator;
 
 @ccclass('PickCharacterScene')
@@ -30,8 +31,24 @@ export class PickCharacterScene extends AbsScene {
                 resLoadCharacters.character.forEach((character) => {
                     console.log(character);
                     let characterID = "" + character.id;
+                    let code = character.code;
                     const characterPrefab = instantiate(this.characterPrefab);
-                    characterPrefab.getChildByName("nameLable").getComponent(Label).string = character.name;
+                    switch (code) {
+                        case "KSNN":
+                            characterPrefab.getChildByName("nameLable").getComponent(Label).string = t("label_text.character_name_agricultural");
+                            break;
+                        case "KSCN":
+                            characterPrefab.getChildByName("nameLable").getComponent(Label).string = t("label_text.character_name_animal_husbandry");
+                            break;
+                        case "KSCK":
+                            characterPrefab.getChildByName("nameLable").getComponent(Label).string = t("label_text.character_name_mechanical");
+                            break;
+                        case "BSTY":
+                            characterPrefab.getChildByName("nameLable").getComponent(Label).string = t("label_text.character_name_veterinarian");
+                            break;
+                        default:
+                                characterPrefab.getChildByName("nameLable").getComponent(Label).string = "Loading...";
+                    }
                     characterPrefab.getChildByName("code").getComponent(Label).string = characterID;
                     characterPrefab.on(Node.EventType.MOUSE_DOWN, () => {
                         this.onClickPickCharacter(characterID);

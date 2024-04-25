@@ -54,13 +54,21 @@ export class AuthenScene extends AbsScene {
             if (resLogin) {
                 if(resLogin.status === 400){
                     confirm("Tên đăng nhập hoặc mật khẩu không đúng!");
-                }else if(resLogin.status === 402){
+                    return;
+                } 
+                if(resLogin.status === 402){
                     confirm("Tài khoản đã bị khóa!");
-                }else if(resLogin.status === 403){
+                    return;
+                } 
+                if(resLogin.status === 403){
                     confirm("Tài khoản đang đăng nhập ở thiết bị khác!");
-                }else if(resLogin.status === 500){
+                    return;
+                } 
+                if(resLogin.status === 500){
                     confirm("Lỗi server!");
-                }else if(resLogin.status === 200) {
+                    return;
+                } 
+                if(resLogin.status === 200) {
                     console.log("Đăng nhập thành công!");
                     //RememberLogin
                     LocalStorage.me().saveItem("USERNAME", packet.resLogin.user.username);
@@ -101,6 +109,8 @@ export class AuthenScene extends AbsScene {
 
   onClickSetting() {
     let setting = instantiate(this.popupSetting);
+    let btnLogout = setting.getChildByName("OtherSetting").getChildByName("ButtonLogout");
+    btnLogout.destroy();
     this.node.addChild(setting);
     // this.popupGeneral.active = false;
     // this.popupSignIn.active = true;
