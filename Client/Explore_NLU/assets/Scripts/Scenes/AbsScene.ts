@@ -8,6 +8,7 @@ export default class AbsScene extends Component {
     }
 
     onMessageHandler(packets: proto.IPacketWrapper) {
+        //TODO: xử lý chung như thông báo...
     }
 }
 

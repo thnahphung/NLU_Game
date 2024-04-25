@@ -1,5 +1,6 @@
 package vn.edu.nlu.fit.nlugame.layer0.handler;
 
+import jakarta.websocket.CloseReason;
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer1.AuthService;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
@@ -25,12 +26,18 @@ public class AuthHandler implements Subscriber {
                 case REQREGISTER:
                     authService.register(session, packet.getReqRegister());
                     break;
+                case REQLOGOUT:
+                    authService.logout(session, packet.getReqLogout());
+                    break;
+                case REQRELOGIN:
+                    authService.checkReLogin(session, packet.getReqRelogin());
+                    break;
             }
         });
     }
 
     @Override
-    public void onClose(Session session) {
+    public void onClose(Session session, CloseReason closeReason) {
 
     }
 

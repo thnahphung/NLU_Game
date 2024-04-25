@@ -1,7 +1,6 @@
 syntax = "proto3";
 package proto;
 
-// option java_package = "com.example.core.layer2.proto";
 option java_package = "vn.edu.nlu.fit.nlugame.layer2.proto";
 
 message PacketWrapper {
@@ -19,6 +18,8 @@ message Packet {
     ReqRegister reqRegister = 8;
     ResRegister resRegister = 9;
     ReqUpdateUserInfo reqUpdateUserInfo = 10;
+    ReqLoadCharacters reqLoadCharacters = 11;
+    ResLoadCharacters resLoadCharacters = 12;
   }
 }
 
@@ -81,4 +82,16 @@ message User {
   int64 gold = 8;
   int64 diamond = 9;
   int32 agencyLevel = 10;
+}
+message ReqLoadCharacters {
+}
+
+message ResLoadCharacters {
+  repeated Character character = 1;
+}
+
+message Character {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
 }

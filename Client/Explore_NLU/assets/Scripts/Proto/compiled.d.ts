@@ -133,6 +133,12 @@ export namespace proto {
 
         /** Packet reqUpdateUserInfo */
         reqUpdateUserInfo?: (proto.IReqUpdateUserInfo|null);
+
+        /** Packet reqLoadCharacters */
+        reqLoadCharacters?: (proto.IReqLoadCharacters|null);
+
+        /** Packet resLoadCharacters */
+        resLoadCharacters?: (proto.IResLoadCharacters|null);
     }
 
     /** Represents a Packet. */
@@ -174,8 +180,14 @@ export namespace proto {
         /** Packet reqUpdateUserInfo. */
         public reqUpdateUserInfo?: (proto.IReqUpdateUserInfo|null);
 
+        /** Packet reqLoadCharacters. */
+        public reqLoadCharacters?: (proto.IReqLoadCharacters|null);
+
+        /** Packet resLoadCharacters. */
+        public resLoadCharacters?: (proto.IResLoadCharacters|null);
+
         /** Packet data. */
-        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo");
+        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters");
 
         /**
          * Creates a new Packet instance using the specified properties.
@@ -1509,6 +1521,303 @@ export namespace proto {
 
         /**
          * Gets the default type url for User
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ReqLoadCharacters. */
+    interface IReqLoadCharacters {
+    }
+
+    /** Represents a ReqLoadCharacters. */
+    class ReqLoadCharacters implements IReqLoadCharacters {
+
+        /**
+         * Constructs a new ReqLoadCharacters.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IReqLoadCharacters);
+
+        /**
+         * Creates a new ReqLoadCharacters instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReqLoadCharacters instance
+         */
+        public static create(properties?: proto.IReqLoadCharacters): proto.ReqLoadCharacters;
+
+        /**
+         * Encodes the specified ReqLoadCharacters message. Does not implicitly {@link proto.ReqLoadCharacters.verify|verify} messages.
+         * @param message ReqLoadCharacters message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IReqLoadCharacters, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReqLoadCharacters message, length delimited. Does not implicitly {@link proto.ReqLoadCharacters.verify|verify} messages.
+         * @param message ReqLoadCharacters message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IReqLoadCharacters, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReqLoadCharacters message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReqLoadCharacters
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ReqLoadCharacters;
+
+        /**
+         * Decodes a ReqLoadCharacters message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReqLoadCharacters
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ReqLoadCharacters;
+
+        /**
+         * Verifies a ReqLoadCharacters message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReqLoadCharacters message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReqLoadCharacters
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ReqLoadCharacters;
+
+        /**
+         * Creates a plain object from a ReqLoadCharacters message. Also converts values to other types if specified.
+         * @param message ReqLoadCharacters
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ReqLoadCharacters, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReqLoadCharacters to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReqLoadCharacters
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ResLoadCharacters. */
+    interface IResLoadCharacters {
+
+        /** ResLoadCharacters character */
+        character?: (proto.ICharacter[]|null);
+    }
+
+    /** Represents a ResLoadCharacters. */
+    class ResLoadCharacters implements IResLoadCharacters {
+
+        /**
+         * Constructs a new ResLoadCharacters.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IResLoadCharacters);
+
+        /** ResLoadCharacters character. */
+        public character: proto.ICharacter[];
+
+        /**
+         * Creates a new ResLoadCharacters instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ResLoadCharacters instance
+         */
+        public static create(properties?: proto.IResLoadCharacters): proto.ResLoadCharacters;
+
+        /**
+         * Encodes the specified ResLoadCharacters message. Does not implicitly {@link proto.ResLoadCharacters.verify|verify} messages.
+         * @param message ResLoadCharacters message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IResLoadCharacters, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ResLoadCharacters message, length delimited. Does not implicitly {@link proto.ResLoadCharacters.verify|verify} messages.
+         * @param message ResLoadCharacters message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IResLoadCharacters, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ResLoadCharacters message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ResLoadCharacters
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResLoadCharacters;
+
+        /**
+         * Decodes a ResLoadCharacters message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ResLoadCharacters
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResLoadCharacters;
+
+        /**
+         * Verifies a ResLoadCharacters message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ResLoadCharacters message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ResLoadCharacters
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ResLoadCharacters;
+
+        /**
+         * Creates a plain object from a ResLoadCharacters message. Also converts values to other types if specified.
+         * @param message ResLoadCharacters
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ResLoadCharacters, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ResLoadCharacters to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ResLoadCharacters
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a Character. */
+    interface ICharacter {
+
+        /** Character id */
+        id?: (number|null);
+
+        /** Character name */
+        name?: (string|null);
+
+        /** Character description */
+        description?: (string|null);
+    }
+
+    /** Represents a Character. */
+    class Character implements ICharacter {
+
+        /**
+         * Constructs a new Character.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.ICharacter);
+
+        /** Character id. */
+        public id: number;
+
+        /** Character name. */
+        public name: string;
+
+        /** Character description. */
+        public description: string;
+
+        /**
+         * Creates a new Character instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Character instance
+         */
+        public static create(properties?: proto.ICharacter): proto.Character;
+
+        /**
+         * Encodes the specified Character message. Does not implicitly {@link proto.Character.verify|verify} messages.
+         * @param message Character message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.ICharacter, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Character message, length delimited. Does not implicitly {@link proto.Character.verify|verify} messages.
+         * @param message Character message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.ICharacter, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Character message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Character
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.Character;
+
+        /**
+         * Decodes a Character message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Character
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.Character;
+
+        /**
+         * Verifies a Character message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Character message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Character
+         */
+        public static fromObject(object: { [k: string]: any }): proto.Character;
+
+        /**
+         * Creates a plain object from a Character message. Also converts values to other types if specified.
+         * @param message Character
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.Character, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Character to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Character
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */

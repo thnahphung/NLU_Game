@@ -1,15 +1,10 @@
 package vn.edu.nlu.fit.nlugame.layer0.network.websocket;
 
 import jakarta.websocket.*;
-import vn.edu.nlu.fit.nlugame.layer0.handler.AuthHandler;
-import vn.edu.nlu.fit.nlugame.layer0.handler.NotificationHandler;
-import vn.edu.nlu.fit.nlugame.layer0.handler.SessionHandler;
-import vn.edu.nlu.fit.nlugame.layer0.handler.Subscriber;
+import vn.edu.nlu.fit.nlugame.layer0.handler.*;
 import vn.edu.nlu.fit.nlugame.layer2.ThreadManage;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.RedisClusterHelper;
-
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,6 +16,7 @@ public class ServerEndpoint {
         ServerEndpoint.subscribe(new SessionHandler());
         ServerEndpoint.subscribe(new AuthHandler());
         ServerEndpoint.subscribe(new NotificationHandler());
+        ServerEndpoint.subscribe(new CharacterHandler());
     }
 
     public static void subscribe(Subscriber sub) {
@@ -29,7 +25,7 @@ public class ServerEndpoint {
 
     @OnOpen
     public void onOpen(Session session) {
-        session.setMaxIdleTimeout(60000);
+        session.setMaxIdleTimeout(100000);
         subscribers.forEach(s -> ThreadManage.me().execute(() -> s.onOpen(session)));
     }
 
@@ -39,8 +35,8 @@ public class ServerEndpoint {
     }
 
     @OnClose
-    public void onClose(Session session) {
-        subscribers.forEach(s -> ThreadManage.me().execute(() -> s.onClose(session)));
+    public void onClose(Session session, CloseReason closeReason) {
+        subscribers.forEach(s -> ThreadManage.me().execute(() -> s.onClose(session, closeReason)));
     }
 
     @OnError

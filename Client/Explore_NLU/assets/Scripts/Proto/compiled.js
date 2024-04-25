@@ -257,6 +257,8 @@
              * @property {proto.IReqRegister|null} [reqRegister] Packet reqRegister
              * @property {proto.IResRegister|null} [resRegister] Packet resRegister
              * @property {proto.IReqUpdateUserInfo|null} [reqUpdateUserInfo] Packet reqUpdateUserInfo
+             * @property {proto.IReqLoadCharacters|null} [reqLoadCharacters] Packet reqLoadCharacters
+             * @property {proto.IResLoadCharacters|null} [resLoadCharacters] Packet resLoadCharacters
              */
     
             /**
@@ -354,17 +356,33 @@
              */
             Packet.prototype.reqUpdateUserInfo = null;
     
+            /**
+             * Packet reqLoadCharacters.
+             * @member {proto.IReqLoadCharacters|null|undefined} reqLoadCharacters
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqLoadCharacters = null;
+    
+            /**
+             * Packet resLoadCharacters.
+             * @member {proto.IResLoadCharacters|null|undefined} resLoadCharacters
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resLoadCharacters = null;
+    
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
     
             /**
              * Packet data.
-             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|undefined} data
+             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|undefined} data
              * @memberof proto.Packet
              * @instance
              */
             Object.defineProperty(Packet.prototype, "data", {
-                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo"]),
+                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
     
@@ -412,6 +430,10 @@
                     $root.proto.ResRegister.encode(message.resRegister, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
                 if (message.reqUpdateUserInfo != null && Object.hasOwnProperty.call(message, "reqUpdateUserInfo"))
                     $root.proto.ReqUpdateUserInfo.encode(message.reqUpdateUserInfo, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
+                if (message.reqLoadCharacters != null && Object.hasOwnProperty.call(message, "reqLoadCharacters"))
+                    $root.proto.ReqLoadCharacters.encode(message.reqLoadCharacters, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+                if (message.resLoadCharacters != null && Object.hasOwnProperty.call(message, "resLoadCharacters"))
+                    $root.proto.ResLoadCharacters.encode(message.resLoadCharacters, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
                 return writer;
             };
     
@@ -484,6 +506,14 @@
                         }
                     case 10: {
                             message.reqUpdateUserInfo = $root.proto.ReqUpdateUserInfo.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 11: {
+                            message.reqLoadCharacters = $root.proto.ReqLoadCharacters.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 12: {
+                            message.resLoadCharacters = $root.proto.ResLoadCharacters.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -620,6 +650,26 @@
                             return "reqUpdateUserInfo." + error;
                     }
                 }
+                if (message.reqLoadCharacters != null && message.hasOwnProperty("reqLoadCharacters")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqLoadCharacters.verify(message.reqLoadCharacters);
+                        if (error)
+                            return "reqLoadCharacters." + error;
+                    }
+                }
+                if (message.resLoadCharacters != null && message.hasOwnProperty("resLoadCharacters")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResLoadCharacters.verify(message.resLoadCharacters);
+                        if (error)
+                            return "resLoadCharacters." + error;
+                    }
+                }
                 return null;
             };
     
@@ -684,6 +734,16 @@
                     if (typeof object.reqUpdateUserInfo !== "object")
                         throw TypeError(".proto.Packet.reqUpdateUserInfo: object expected");
                     message.reqUpdateUserInfo = $root.proto.ReqUpdateUserInfo.fromObject(object.reqUpdateUserInfo);
+                }
+                if (object.reqLoadCharacters != null) {
+                    if (typeof object.reqLoadCharacters !== "object")
+                        throw TypeError(".proto.Packet.reqLoadCharacters: object expected");
+                    message.reqLoadCharacters = $root.proto.ReqLoadCharacters.fromObject(object.reqLoadCharacters);
+                }
+                if (object.resLoadCharacters != null) {
+                    if (typeof object.resLoadCharacters !== "object")
+                        throw TypeError(".proto.Packet.resLoadCharacters: object expected");
+                    message.resLoadCharacters = $root.proto.ResLoadCharacters.fromObject(object.resLoadCharacters);
                 }
                 return message;
             };
@@ -750,6 +810,16 @@
                     object.reqUpdateUserInfo = $root.proto.ReqUpdateUserInfo.toObject(message.reqUpdateUserInfo, options);
                     if (options.oneofs)
                         object.data = "reqUpdateUserInfo";
+                }
+                if (message.reqLoadCharacters != null && message.hasOwnProperty("reqLoadCharacters")) {
+                    object.reqLoadCharacters = $root.proto.ReqLoadCharacters.toObject(message.reqLoadCharacters, options);
+                    if (options.oneofs)
+                        object.data = "reqLoadCharacters";
+                }
+                if (message.resLoadCharacters != null && message.hasOwnProperty("resLoadCharacters")) {
+                    object.resLoadCharacters = $root.proto.ResLoadCharacters.toObject(message.resLoadCharacters, options);
+                    if (options.oneofs)
+                        object.data = "resLoadCharacters";
                 }
                 return object;
             };
@@ -3619,6 +3689,655 @@
             };
     
             return User;
+        })();
+    
+        proto.ReqLoadCharacters = (function() {
+    
+            /**
+             * Properties of a ReqLoadCharacters.
+             * @memberof proto
+             * @interface IReqLoadCharacters
+             */
+    
+            /**
+             * Constructs a new ReqLoadCharacters.
+             * @memberof proto
+             * @classdesc Represents a ReqLoadCharacters.
+             * @implements IReqLoadCharacters
+             * @constructor
+             * @param {proto.IReqLoadCharacters=} [properties] Properties to set
+             */
+            function ReqLoadCharacters(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * Creates a new ReqLoadCharacters instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqLoadCharacters
+             * @static
+             * @param {proto.IReqLoadCharacters=} [properties] Properties to set
+             * @returns {proto.ReqLoadCharacters} ReqLoadCharacters instance
+             */
+            ReqLoadCharacters.create = function create(properties) {
+                return new ReqLoadCharacters(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqLoadCharacters message. Does not implicitly {@link proto.ReqLoadCharacters.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqLoadCharacters
+             * @static
+             * @param {proto.IReqLoadCharacters} message ReqLoadCharacters message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqLoadCharacters.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqLoadCharacters message, length delimited. Does not implicitly {@link proto.ReqLoadCharacters.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqLoadCharacters
+             * @static
+             * @param {proto.IReqLoadCharacters} message ReqLoadCharacters message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqLoadCharacters.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqLoadCharacters message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqLoadCharacters
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqLoadCharacters} ReqLoadCharacters
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqLoadCharacters.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqLoadCharacters();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqLoadCharacters message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqLoadCharacters
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqLoadCharacters} ReqLoadCharacters
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqLoadCharacters.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqLoadCharacters message.
+             * @function verify
+             * @memberof proto.ReqLoadCharacters
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqLoadCharacters.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ReqLoadCharacters message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqLoadCharacters
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqLoadCharacters} ReqLoadCharacters
+             */
+            ReqLoadCharacters.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqLoadCharacters)
+                    return object;
+                return new $root.proto.ReqLoadCharacters();
+            };
+    
+            /**
+             * Creates a plain object from a ReqLoadCharacters message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqLoadCharacters
+             * @static
+             * @param {proto.ReqLoadCharacters} message ReqLoadCharacters
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqLoadCharacters.toObject = function toObject() {
+                return {};
+            };
+    
+            /**
+             * Converts this ReqLoadCharacters to JSON.
+             * @function toJSON
+             * @memberof proto.ReqLoadCharacters
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqLoadCharacters.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqLoadCharacters
+             * @function getTypeUrl
+             * @memberof proto.ReqLoadCharacters
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqLoadCharacters.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqLoadCharacters";
+            };
+    
+            return ReqLoadCharacters;
+        })();
+    
+        proto.ResLoadCharacters = (function() {
+    
+            /**
+             * Properties of a ResLoadCharacters.
+             * @memberof proto
+             * @interface IResLoadCharacters
+             * @property {Array.<proto.ICharacter>|null} [character] ResLoadCharacters character
+             */
+    
+            /**
+             * Constructs a new ResLoadCharacters.
+             * @memberof proto
+             * @classdesc Represents a ResLoadCharacters.
+             * @implements IResLoadCharacters
+             * @constructor
+             * @param {proto.IResLoadCharacters=} [properties] Properties to set
+             */
+            function ResLoadCharacters(properties) {
+                this.character = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResLoadCharacters character.
+             * @member {Array.<proto.ICharacter>} character
+             * @memberof proto.ResLoadCharacters
+             * @instance
+             */
+            ResLoadCharacters.prototype.character = $util.emptyArray;
+    
+            /**
+             * Creates a new ResLoadCharacters instance using the specified properties.
+             * @function create
+             * @memberof proto.ResLoadCharacters
+             * @static
+             * @param {proto.IResLoadCharacters=} [properties] Properties to set
+             * @returns {proto.ResLoadCharacters} ResLoadCharacters instance
+             */
+            ResLoadCharacters.create = function create(properties) {
+                return new ResLoadCharacters(properties);
+            };
+    
+            /**
+             * Encodes the specified ResLoadCharacters message. Does not implicitly {@link proto.ResLoadCharacters.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResLoadCharacters
+             * @static
+             * @param {proto.IResLoadCharacters} message ResLoadCharacters message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResLoadCharacters.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.character != null && message.character.length)
+                    for (var i = 0; i < message.character.length; ++i)
+                        $root.proto.Character.encode(message.character[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResLoadCharacters message, length delimited. Does not implicitly {@link proto.ResLoadCharacters.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResLoadCharacters
+             * @static
+             * @param {proto.IResLoadCharacters} message ResLoadCharacters message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResLoadCharacters.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResLoadCharacters message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResLoadCharacters
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResLoadCharacters} ResLoadCharacters
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResLoadCharacters.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResLoadCharacters();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            if (!(message.character && message.character.length))
+                                message.character = [];
+                            message.character.push($root.proto.Character.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResLoadCharacters message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResLoadCharacters
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResLoadCharacters} ResLoadCharacters
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResLoadCharacters.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResLoadCharacters message.
+             * @function verify
+             * @memberof proto.ResLoadCharacters
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResLoadCharacters.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.character != null && message.hasOwnProperty("character")) {
+                    if (!Array.isArray(message.character))
+                        return "character: array expected";
+                    for (var i = 0; i < message.character.length; ++i) {
+                        var error = $root.proto.Character.verify(message.character[i]);
+                        if (error)
+                            return "character." + error;
+                    }
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a ResLoadCharacters message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResLoadCharacters
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResLoadCharacters} ResLoadCharacters
+             */
+            ResLoadCharacters.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResLoadCharacters)
+                    return object;
+                var message = new $root.proto.ResLoadCharacters();
+                if (object.character) {
+                    if (!Array.isArray(object.character))
+                        throw TypeError(".proto.ResLoadCharacters.character: array expected");
+                    message.character = [];
+                    for (var i = 0; i < object.character.length; ++i) {
+                        if (typeof object.character[i] !== "object")
+                            throw TypeError(".proto.ResLoadCharacters.character: object expected");
+                        message.character[i] = $root.proto.Character.fromObject(object.character[i]);
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResLoadCharacters message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResLoadCharacters
+             * @static
+             * @param {proto.ResLoadCharacters} message ResLoadCharacters
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResLoadCharacters.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.character = [];
+                if (message.character && message.character.length) {
+                    object.character = [];
+                    for (var j = 0; j < message.character.length; ++j)
+                        object.character[j] = $root.proto.Character.toObject(message.character[j], options);
+                }
+                return object;
+            };
+    
+            /**
+             * Converts this ResLoadCharacters to JSON.
+             * @function toJSON
+             * @memberof proto.ResLoadCharacters
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResLoadCharacters.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResLoadCharacters
+             * @function getTypeUrl
+             * @memberof proto.ResLoadCharacters
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResLoadCharacters.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResLoadCharacters";
+            };
+    
+            return ResLoadCharacters;
+        })();
+    
+        proto.Character = (function() {
+    
+            /**
+             * Properties of a Character.
+             * @memberof proto
+             * @interface ICharacter
+             * @property {number|null} [id] Character id
+             * @property {string|null} [name] Character name
+             * @property {string|null} [description] Character description
+             */
+    
+            /**
+             * Constructs a new Character.
+             * @memberof proto
+             * @classdesc Represents a Character.
+             * @implements ICharacter
+             * @constructor
+             * @param {proto.ICharacter=} [properties] Properties to set
+             */
+            function Character(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * Character id.
+             * @member {number} id
+             * @memberof proto.Character
+             * @instance
+             */
+            Character.prototype.id = 0;
+    
+            /**
+             * Character name.
+             * @member {string} name
+             * @memberof proto.Character
+             * @instance
+             */
+            Character.prototype.name = "";
+    
+            /**
+             * Character description.
+             * @member {string} description
+             * @memberof proto.Character
+             * @instance
+             */
+            Character.prototype.description = "";
+    
+            /**
+             * Creates a new Character instance using the specified properties.
+             * @function create
+             * @memberof proto.Character
+             * @static
+             * @param {proto.ICharacter=} [properties] Properties to set
+             * @returns {proto.Character} Character instance
+             */
+            Character.create = function create(properties) {
+                return new Character(properties);
+            };
+    
+            /**
+             * Encodes the specified Character message. Does not implicitly {@link proto.Character.verify|verify} messages.
+             * @function encode
+             * @memberof proto.Character
+             * @static
+             * @param {proto.ICharacter} message Character message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Character.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+                if (message.description != null && Object.hasOwnProperty.call(message, "description"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.description);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified Character message, length delimited. Does not implicitly {@link proto.Character.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.Character
+             * @static
+             * @param {proto.ICharacter} message Character message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Character.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a Character message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.Character
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.Character} Character
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Character.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Character();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.id = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.description = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a Character message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.Character
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.Character} Character
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Character.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a Character message.
+             * @function verify
+             * @memberof proto.Character
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Character.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                if (message.name != null && message.hasOwnProperty("name"))
+                    if (!$util.isString(message.name))
+                        return "name: string expected";
+                if (message.description != null && message.hasOwnProperty("description"))
+                    if (!$util.isString(message.description))
+                        return "description: string expected";
+                return null;
+            };
+    
+            /**
+             * Creates a Character message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.Character
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.Character} Character
+             */
+            Character.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.Character)
+                    return object;
+                var message = new $root.proto.Character();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                if (object.name != null)
+                    message.name = String(object.name);
+                if (object.description != null)
+                    message.description = String(object.description);
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a Character message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.Character
+             * @static
+             * @param {proto.Character} message Character
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Character.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.id = 0;
+                    object.name = "";
+                    object.description = "";
+                }
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                if (message.name != null && message.hasOwnProperty("name"))
+                    object.name = message.name;
+                if (message.description != null && message.hasOwnProperty("description"))
+                    object.description = message.description;
+                return object;
+            };
+    
+            /**
+             * Converts this Character to JSON.
+             * @function toJSON
+             * @memberof proto.Character
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Character.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for Character
+             * @function getTypeUrl
+             * @memberof proto.Character
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            Character.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.Character";
+            };
+    
+            return Character;
         })();
     
         return proto;

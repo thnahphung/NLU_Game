@@ -22,7 +22,7 @@ export class SceneManage {
 
     onMessage(packets: proto.IPacketWrapper) {
         this.getSceneComponents()
-            .forEach((component: any) => component.onMessage ? component.onMessage(packets) : null);  
+            .forEach((component: any) => component.onMessageHandler ? component.onMessageHandler(packets) : null);  
     }
 
     onClose(event: any) {
