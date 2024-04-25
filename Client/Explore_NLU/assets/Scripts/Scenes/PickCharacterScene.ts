@@ -2,7 +2,6 @@ import { Label, Node, Prefab, Sprite, _decorator, find, instantiate, resources }
 import AbsScene from './AbsScene';
 import { WS } from '../Socket/WS';
 import DataSender from '../Utils/DataSender';
-import { LoadPrefabUtil } from '../Utils/LoadPrefabUtil';
 const { ccclass, property } = _decorator;
 
 @ccclass('PickCharacterScene')
@@ -16,18 +15,20 @@ export class PickCharacterScene extends AbsScene {
     }
 
     protected onLoad(): void {
-        this.loadCharacters() 
+        this.loadCharacters()
     }
 
     onMessageHandler(packetWrapper: proto.IPacketWrapper): void {
+        //confirm('PickCharacterScene.onMessageHandler');
         super.onMessageHandler(packetWrapper);
         packetWrapper.packet.forEach((packet) => {
             let resLoadCharacters = packet.resLoadCharacters;
             if (resLoadCharacters) {
                 if(resLoadCharacters.character == null || resLoadCharacters.character.length == 0){
-                    console.log('Không có nhân vật');
+                    confirm('Không có nhân vật');
                 }
                 resLoadCharacters.character.forEach((character) => {
+                    console.log(character);
                     let characterID = "" + character.id;
                     const characterPrefab = instantiate(this.characterPrefab);
                     characterPrefab.getChildByName("nameLable").getComponent(Label).string = character.name;
@@ -40,6 +41,8 @@ export class PickCharacterScene extends AbsScene {
                     });
                     this.characterPanel.addChild(characterPrefab);
                 });
+            }else{
+                confirm('Không có resLoadCharacters');
             }
         });
     }

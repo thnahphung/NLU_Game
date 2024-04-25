@@ -24,17 +24,7 @@ public class SessionID {
         return SessionID.builder().endPointID(ownerEndPointID).sessionID(session.getId()).build();
     }
 
-    //    parse UUID
-    public static SessionID parseUUID(String sessionId) {
-        String[] sessionIdDetail = sessionId.split(":");
-        if (sessionIdDetail.length != 2) {
-            return null;
-        }
-        return SessionID.builder().endPointID(sessionIdDetail[0]).sessionID(sessionIdDetail[1]).build();
-    }
-
     public String getSessionId() {
         return this.endPointID + ":" + this.sessionID;
     }
-
 }

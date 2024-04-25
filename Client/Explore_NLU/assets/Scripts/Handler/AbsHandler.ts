@@ -3,12 +3,14 @@ const { ccclass, property } = _decorator;
 
 @ccclass('AbsHandler')
 export class AbsHandler extends Component {
-    start() {
-
+    onMessageHandler(packets: proto.IPacketWrapper) {
+        //to do
     }
-
-    update(deltaTime: number) {
-        
+    onError() {
+        //to do 
+    }
+    onClosed() {
+        //to do
     }
 }
 
