@@ -21,6 +21,7 @@ public class UserBean {
     private int gender;
     @ColumnName("sponsor")
     private int sponsor;
+
     @ColumnName("email")
     private String email ;
     @ColumnName("phone")

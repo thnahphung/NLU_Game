@@ -25,7 +25,7 @@ public class ServerEndpoint {
 
     @OnOpen
     public void onOpen(Session session) {
-        session.setMaxIdleTimeout(60000);
+        session.setMaxIdleTimeout(100000);
         subscribers.forEach(s -> ThreadManage.me().execute(() -> s.onOpen(session)));
     }
 
@@ -35,8 +35,8 @@ public class ServerEndpoint {
     }
 
     @OnClose
-    public void onClose(Session session) {
-        subscribers.forEach(s -> ThreadManage.me().execute(() -> s.onClose(session)));
+    public void onClose(Session session, CloseReason closeReason) {
+        subscribers.forEach(s -> ThreadManage.me().execute(() -> s.onClose(session, closeReason)));
     }
 
     @OnError

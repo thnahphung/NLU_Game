@@ -1,14 +1,31 @@
 import { _decorator, Component, Node } from 'cc';
-const { ccclass, property } = _decorator;
-
-@ccclass('HandlerManage')
-export class HandlerManage extends Component {
-    start() {
-
+import { AbsHandler } from '../Handler/AbsHandler';
+import { OtherHandler } from '../Handler/OtherHandler';
+export class HandlerManage {
+    private static _instance: HandlerManage = new HandlerManage();
+    private handles : AbsHandler[];
+    public static me(): HandlerManage {
+        return this._instance;
+    }
+    constructor() {
+        this.handles = [];
+        this.handles.push(new OtherHandler());
     }
 
-    update(deltaTime: number) {
-        
+    onMessage(packets: proto.IPacketWrapper) {
+        this.handles?.forEach(handle => {
+            handle.onMessageHandler(packets);
+        });
+    }
+    onError() {
+        this.handles?.forEach(handle => {
+            handle.onError();
+        });
+    }
+    onClosed() {
+        this.handles?.forEach(handle => {
+            handle.onClosed();
+        });
     }
 }
 

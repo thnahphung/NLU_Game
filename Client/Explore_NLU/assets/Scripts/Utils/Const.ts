@@ -9,6 +9,7 @@ export const POPUP_MESSAGE = {
   REGISTER_FAILED_401: `Tên đăng nhập hoặc mật khẩu không thể trống!`,
   REGISTER_FAILED_402: `Đăng ký thất bại!`,
   REGISTER_FAILED_500: `Lỗi hệ thống, hiện tại không thể đăng ký!`,
+  LOGOUT_FAILED_400: `Lỗi không thể đăng xuất!`,
 };
 
 export const SETTINGS = {

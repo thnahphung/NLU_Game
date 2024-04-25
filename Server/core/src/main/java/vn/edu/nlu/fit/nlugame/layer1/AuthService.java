@@ -10,6 +10,8 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.cache.SessionCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.UserCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
+import java.util.UUID;
+
 public class AuthService {
 
     public static final AuthService instance = new AuthService();
@@ -57,16 +59,53 @@ public class AuthService {
             sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(400)).build());
             return;
         }
-        sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(200)).build());
+        //Check userLogin is logging in on another device
+        Proto.User userProto = Proto.User.newBuilder().setUserId(userLoginBean.getId()).setUsername(userLoginBean.getUsername()).build();
+        if(checkLoginOtherDevice(userProto)){
+            sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(403)).build());
+        }
+
+        //When login success
+        loginSuscess(session, userProto);
+    }
+    private void loginSuscess(Session session, Proto.User user){
+        //Save user in cache redis
+        SessionCache.me().addUserSession(SessionID.of(session), user);
+        UserCache.me().addUserOnline(user, SessionID.of(session).getSessionId());
+        //Token
+        String reloginToken = UUID.randomUUID().toString();
+        UserDAO.updateReloginToken(user.getGender(), reloginToken);
+        //Send response
+        sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setUser(user).setToken(reloginToken).setStatus(200)).build());
     }
 
+    public void checkReLogin(Session session, Proto.ReqRelogin reqRelogin) {
+        UserBean userBean = UserDAO.getUser(reqRelogin.getUsername());
+        //Check null param
+        if(userBean == null || reqRelogin.getToken() == null || reqRelogin.equals(userBean.getReLoginToken())){
+            sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(403).build()).build());
+            return;
+        }
+        //Check login other device
+        Proto.User userProto = Proto.User.newBuilder().setUserId(userBean.getId()).setUsername(userBean.getUsername()).build();
+        if(checkLoginOtherDevice(userProto)){
+            sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(403).build()).build());
+            return;
+        }
+        loginSuscess(session, userProto);
+    }
+
+    private boolean checkLoginOtherDevice(Proto.User user){
+        return UserCache.me().getUserOnline(user.getUserId()) != null;
+    }
     public void logout(Session session, Proto.ReqLogout reqLogout){
-        //TODO: Remove user in cache
-
-        //TODO: Remove user in redis
-    }
-    public void checkReLogin(Session session, Proto.ReqRelogin packet) {
-        System.out.println("ReLogin");
+        int userID = SessionCache.me().getUserID(SessionID.of(session));
+        if (userID == -1) {
+            sendResponse(session, Proto.Packet.newBuilder().setResLogout(Proto.ResLogout.newBuilder().setStatus(400)).build());
+            return;
+        }
+        UserCache.me().logoutUser(userID);
+        sendResponse(session, Proto.Packet.newBuilder().setResLogout(Proto.ResLogout.newBuilder().setStatus(200)).build());
     }
 
     private void sendMsgRegister(Session session, int i) {
