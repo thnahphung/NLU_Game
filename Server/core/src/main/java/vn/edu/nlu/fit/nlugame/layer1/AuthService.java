@@ -50,7 +50,6 @@ public class AuthService {
         if(userLoginBean == null){
             resLoginBuilder.setStatus(400);
             packetBuilder.setResLogin(resLoginBuilder.build());
-            System.out.println(packetBuilder.toString());
             sendResponse(session, packetBuilder.build());
             return;
         }
@@ -63,6 +62,7 @@ public class AuthService {
         Proto.User userProto = Proto.User.newBuilder().setUserId(userLoginBean.getId()).setUsername(userLoginBean.getUsername()).build();
         if(checkLoginOtherDevice(userProto)){
             sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(403)).build());
+            return;
         }
 
         //When login success

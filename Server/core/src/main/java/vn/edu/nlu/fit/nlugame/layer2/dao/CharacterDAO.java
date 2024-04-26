@@ -13,7 +13,7 @@ public class CharacterDAO extends BaseDAO{
         if (jdbi == null) {
             return null;
         }
-        return jdbi.withHandle(handle -> handle.createQuery("select id, name, description from " + TABLE_NAME)
+        return jdbi.withHandle(handle -> handle.createQuery("select id, name, code, description from " + TABLE_NAME)
                 .mapToBean(CharacterBean.class).stream().collect(Collectors.toList())
         );
     }

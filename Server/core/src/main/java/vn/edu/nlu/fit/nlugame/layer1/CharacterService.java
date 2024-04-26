@@ -26,6 +26,7 @@ public class CharacterService {
                      Proto.Character.newBuilder()
                     .setId(character.getId())
                     .setName(character.getName())
+                    .setCode(character.getCode())
                     .setDescription(character.getDescription() == null ? "" : character.getDescription())
                     .build()
             );
