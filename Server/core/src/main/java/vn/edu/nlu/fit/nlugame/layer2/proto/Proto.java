@@ -12897,12 +12897,24 @@ public final class Proto {
         getNameBytes();
 
     /**
-     * <code>string description = 3;</code>
+     * <code>string code = 3;</code>
+     * @return The code.
+     */
+    java.lang.String getCode();
+    /**
+     * <code>string code = 3;</code>
+     * @return The bytes for code.
+     */
+    com.google.protobuf.ByteString
+        getCodeBytes();
+
+    /**
+     * <code>string description = 4;</code>
      * @return The description.
      */
     java.lang.String getDescription();
     /**
-     * <code>string description = 3;</code>
+     * <code>string description = 4;</code>
      * @return The bytes for description.
      */
     com.google.protobuf.ByteString
@@ -12922,6 +12934,7 @@ public final class Proto {
     }
     private Character() {
       name_ = "";
+      code_ = "";
       description_ = "";
     }
 
@@ -12995,11 +13008,50 @@ public final class Proto {
       }
     }
 
-    public static final int DESCRIPTION_FIELD_NUMBER = 3;
+    public static final int CODE_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object code_ = "";
+    /**
+     * <code>string code = 3;</code>
+     * @return The code.
+     */
+    @java.lang.Override
+    public java.lang.String getCode() {
+      java.lang.Object ref = code_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        code_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string code = 3;</code>
+     * @return The bytes for code.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getCodeBytes() {
+      java.lang.Object ref = code_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        code_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DESCRIPTION_FIELD_NUMBER = 4;
     @SuppressWarnings("serial")
     private volatile java.lang.Object description_ = "";
     /**
-     * <code>string description = 3;</code>
+     * <code>string description = 4;</code>
      * @return The description.
      */
     @java.lang.Override
@@ -13016,7 +13068,7 @@ public final class Proto {
       }
     }
     /**
-     * <code>string description = 3;</code>
+     * <code>string description = 4;</code>
      * @return The bytes for description.
      */
     @java.lang.Override
@@ -13054,8 +13106,11 @@ public final class Proto {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(code_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, code_);
+      }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, description_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, description_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -13073,8 +13128,11 @@ public final class Proto {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(code_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, code_);
+      }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, description_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, description_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -13095,6 +13153,8 @@ public final class Proto {
           != other.getId()) return false;
       if (!getName()
           .equals(other.getName())) return false;
+      if (!getCode()
+          .equals(other.getCode())) return false;
       if (!getDescription()
           .equals(other.getDescription())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
@@ -13112,6 +13172,8 @@ public final class Proto {
       hash = (53 * hash) + getId();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getCode().hashCode();
       hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
       hash = (53 * hash) + getDescription().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
@@ -13245,6 +13307,7 @@ public final class Proto {
         bitField0_ = 0;
         id_ = 0;
         name_ = "";
+        code_ = "";
         description_ = "";
         return this;
       }
@@ -13286,6 +13349,9 @@ public final class Proto {
           result.name_ = name_;
         }
         if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.code_ = code_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
           result.description_ = description_;
         }
       }
@@ -13310,9 +13376,14 @@ public final class Proto {
           bitField0_ |= 0x00000002;
           onChanged();
         }
+        if (!other.getCode().isEmpty()) {
+          code_ = other.code_;
+          bitField0_ |= 0x00000004;
+          onChanged();
+        }
         if (!other.getDescription().isEmpty()) {
           description_ = other.description_;
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000008;
           onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -13352,10 +13423,15 @@ public final class Proto {
                 break;
               } // case 18
               case 26: {
-                description_ = input.readStringRequireUtf8();
+                code_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000004;
                 break;
               } // case 26
+              case 34: {
+                description_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -13477,9 +13553,81 @@ public final class Proto {
         return this;
       }
 
+      private java.lang.Object code_ = "";
+      /**
+       * <code>string code = 3;</code>
+       * @return The code.
+       */
+      public java.lang.String getCode() {
+        java.lang.Object ref = code_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          code_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string code = 3;</code>
+       * @return The bytes for code.
+       */
+      public com.google.protobuf.ByteString
+          getCodeBytes() {
+        java.lang.Object ref = code_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          code_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string code = 3;</code>
+       * @param value The code to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCode(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        code_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string code = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCode() {
+        code_ = getDefaultInstance().getCode();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string code = 3;</code>
+       * @param value The bytes for code to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCodeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        code_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object description_ = "";
       /**
-       * <code>string description = 3;</code>
+       * <code>string description = 4;</code>
        * @return The description.
        */
       public java.lang.String getDescription() {
@@ -13495,7 +13643,7 @@ public final class Proto {
         }
       }
       /**
-       * <code>string description = 3;</code>
+       * <code>string description = 4;</code>
        * @return The bytes for description.
        */
       public com.google.protobuf.ByteString
@@ -13512,7 +13660,7 @@ public final class Proto {
         }
       }
       /**
-       * <code>string description = 3;</code>
+       * <code>string description = 4;</code>
        * @param value The description to set.
        * @return This builder for chaining.
        */
@@ -13520,22 +13668,22 @@ public final class Proto {
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         description_ = value;
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
-       * <code>string description = 3;</code>
+       * <code>string description = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearDescription() {
         description_ = getDefaultInstance().getDescription();
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
       /**
-       * <code>string description = 3;</code>
+       * <code>string description = 4;</code>
        * @param value The bytes for description to set.
        * @return This builder for chaining.
        */
@@ -13544,7 +13692,7 @@ public final class Proto {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
         description_ = value;
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
@@ -13740,10 +13888,10 @@ public final class Proto {
       "hone\030\007 \001(\t\022\014\n\004gold\030\010 \001(\003\022\017\n\007diamond\030\t \001(" +
       "\003\022\023\n\013agencyLevel\030\n \001(\005\"\023\n\021ReqLoadCharact" +
       "ers\"8\n\021ResLoadCharacters\022#\n\tcharacter\030\001 " +
-      "\003(\0132\020.proto.Character\":\n\tCharacter\022\n\n\002id" +
-      "\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\023\n\013description\030\003 \001(" +
-      "\tB%\n#vn.edu.nlu.fit.nlugame.layer2.proto" +
-      "b\006proto3"
+      "\003(\0132\020.proto.Character\"H\n\tCharacter\022\n\n\002id" +
+      "\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\023\n\013de" +
+      "scription\030\004 \001(\tB%\n#vn.edu.nlu.fit.nlugam" +
+      "e.layer2.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -13850,7 +13998,7 @@ public final class Proto {
     internal_static_proto_Character_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Character_descriptor,
-        new java.lang.String[] { "Id", "Name", "Description", });
+        new java.lang.String[] { "Id", "Name", "Code", "Description", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

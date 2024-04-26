@@ -1,4 +1,4 @@
-import { _decorator, assetManager, Component, director, find, instantiate, Label, loader, Node, Prefab, ProgressBar } from 'cc';
+import { _decorator, Component, director, Label, Node, ProgressBar } from 'cc';
 const { ccclass, property } = _decorator;
 @ccclass('ComponentLoading')
 export class TransitionScenePrefab extends Component{
