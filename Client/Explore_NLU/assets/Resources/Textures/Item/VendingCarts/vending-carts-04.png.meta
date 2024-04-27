@@ -1,0 +1,134 @@
+{
+  "ver": "1.0.25",
+  "importer": "image",
+  "imported": true,
+  "uuid": "e8bef68f-1ee7-432b-9ef6-c06c24b6adeb",
+  "files": [
+    ".json",
+    ".png"
+  ],
+  "subMetas": {
+    "6c48a": {
+      "importer": "texture",
+      "uuid": "e8bef68f-1ee7-432b-9ef6-c06c24b6adeb@6c48a",
+      "displayName": "vending-carts-04",
+      "id": "6c48a",
+      "name": "texture",
+      "userData": {
+        "wrapModeS": "clamp-to-edge",
+        "wrapModeT": "clamp-to-edge",
+        "imageUuidOrDatabaseUri": "e8bef68f-1ee7-432b-9ef6-c06c24b6adeb",
+        "isUuid": true,
+        "visible": false,
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "e8bef68f-1ee7-432b-9ef6-c06c24b6adeb@f9941",
+      "displayName": "vending-carts-04",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 3,
+        "offsetY": 10,
+        "trimX": 10,
+        "trimY": 2,
+        "width": 92,
+        "height": 96,
+        "rawWidth": 106,
+        "rawHeight": 120,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [
+            -46,
+            -48,
+            0,
+            46,
+            -48,
+            0,
+            -46,
+            48,
+            0,
+            46,
+            48,
+            0
+          ],
+          "indexes": [
+            0,
+            1,
+            2,
+            2,
+            1,
+            3
+          ],
+          "uv": [
+            10,
+            118,
+            102,
+            118,
+            10,
+            22,
+            102,
+            22
+          ],
+          "nuv": [
+            0.09433962264150944,
+            0.18333333333333332,
+            0.9622641509433962,
+            0.18333333333333332,
+            0.09433962264150944,
+            0.9833333333333333,
+            0.9622641509433962,
+            0.9833333333333333
+          ],
+          "minPos": [
+            -46,
+            -48,
+            0
+          ],
+          "maxPos": [
+            46,
+            48,
+            0
+          ]
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "e8bef68f-1ee7-432b-9ef6-c06c24b6adeb@6c48a",
+        "atlasUuid": ""
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "type": "sprite-frame",
+    "fixAlphaTransparencyArtifacts": true,
+    "hasAlpha": true,
+    "redirect": "e8bef68f-1ee7-432b-9ef6-c06c24b6adeb@f9941"
+  }
+}
