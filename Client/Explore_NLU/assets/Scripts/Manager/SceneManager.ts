@@ -1,20 +1,27 @@
-import { _decorator, Component, find, Node } from 'cc';
+import {find} from 'cc';
 import AbsScene from '../Scenes/AbsScene';
-const { ccclass, property } = _decorator;
 
-export class SceneManage {
+export class SceneManager {
 
-    private static _instance: SceneManage = new SceneManage();
+    private static _instance: SceneManager;
 
     public currScene: AbsScene;
 
-    public static me(): SceneManage {
+    public static me(): SceneManager {
+        if(!this._instance){
+            this._instance = new SceneManager();
+        }
         return this._instance;
     }
 
     constructor() {
     }
-    
+    get currentScene(): AbsScene {
+        return this.currScene;
+    }
+    set currentScene(scene: AbsScene) {
+        this.currScene = scene;
+    }
     onOpen(packets: proto.IPacketWrapper) {
         this.getSceneComponents()
             .forEach((c: any) => c.onOpen ? c.onOpen(packets) : null);
