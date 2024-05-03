@@ -1,5 +1,5 @@
 import { wsConfig } from "../Config/Config";
-import { HandlerManage } from "../Manager/HandlerManage";
+import { HandlerManager } from "../Manager/HandlerManager";
 import { SceneManager } from "../Manager/SceneManager";
 export class WS {
     private static _instance: WS;
@@ -47,7 +47,7 @@ export class WS {
         let data = new Uint8Array(event.data);
         let msg = proto.PacketWrapper.decode(data);
         SceneManager.me()?.onMessage(msg);
-        HandlerManage.me()?.onMessage(msg);
+        HandlerManager.me()?.onMessage(msg);
     }
 
     onClose = (event: any) => {
