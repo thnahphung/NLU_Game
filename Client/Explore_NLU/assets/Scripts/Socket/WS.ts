@@ -1,6 +1,6 @@
 import { wsConfig } from "../Config/Config";
-import { HandlerManage } from "../Manage/HandlerManage";
-import { SceneManage } from "../Manage/SceneManage";
+import { HandlerManager } from "../Manager/HandlerManager";
+import { SceneManager } from "../Manager/SceneManager";
 export class WS {
     private static _instance: WS;
     private _ws: WebSocket;
@@ -39,25 +39,25 @@ export class WS {
 
     onOpen = (event: any) => {
         console.debug('WS connected',event.data);
-        SceneManage.me()?.onOpen(event.data);
+        SceneManager.me()?.onOpen(event.data);
     }
 
     onMessage = (event: any) => {
         console.debug('WS message',event.data);
         let data = new Uint8Array(event.data);
         let msg = proto.PacketWrapper.decode(data);
-        SceneManage.me()?.onMessage(msg);
-        HandlerManage.me()?.onMessage(msg);
+        SceneManager.me()?.onMessage(msg);
+        HandlerManager.me()?.onMessage(msg);
     }
 
     onClose = (event: any) => {
         console.debug('WS close',event.data);
-        SceneManage.me()?.onClose(event.data);
+        SceneManager.me()?.onClose(event.data);
     }
 
     onError = (event: any) => {
         console.debug('WS error', event.data);
-        SceneManage.me()?.onError(event.data);
+        SceneManager.me()?.onError(event.data);
     }
 
     connect() {

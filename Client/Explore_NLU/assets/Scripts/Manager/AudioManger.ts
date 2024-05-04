@@ -2,13 +2,13 @@ import {
   _decorator,
   AudioClip,
   AudioSource,
-  Component,
   director,
   Node,
   resources,
 } from "cc";
-import { LocalStorage } from "./LocalStorage";
-import { SETTINGS } from "./Const";
+
+import { SETTINGS } from "../Utils/Const";
+import { StorageManager } from "./StorageManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("AudioManger")
@@ -45,7 +45,8 @@ export class AudioManger {
   //vi du: click, pop up, ...
   playOneShot(sound: string) {
     const musicVolume =
-      parseFloat(LocalStorage.me().getItem("MUSIC")) || SETTINGS.DEFAULT_EFFECT;
+      parseFloat(StorageManager.me().getItem("MUSIC")) ||
+      SETTINGS.DEFAULT_EFFECT;
     resources.load(sound, (err, clip: AudioClip) => {
       if (err) {
         console.log(err);
@@ -62,7 +63,8 @@ export class AudioManger {
   //vi du: nhac nen, am thanh game, ...
   play(sound: string, loop: boolean = false) {
     const musicVolume =
-      parseFloat(LocalStorage.me().getItem("MUSIC")) || SETTINGS.DEFAULT_MUSIC;
+      parseFloat(StorageManager.me().getItem("MUSIC")) ||
+      SETTINGS.DEFAULT_MUSIC;
     console.debug("musicVolume", musicVolume);
     resources.load(sound, (err, clip: AudioClip) => {
       if (err) {
