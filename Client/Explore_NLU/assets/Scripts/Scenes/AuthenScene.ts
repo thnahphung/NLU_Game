@@ -30,18 +30,19 @@ export class AuthenScene extends AbsScene {
   public popupSetting: Prefab = null;
   public popupLoadingNode: Node = null;
   start() {
-    this.popupLoadingNode = instantiate(this.popupLoading)
-    this.popupLoadingNode.active = false;
-    this.node.addChild(this.popupLoadingNode);
   }
   protected onLoad(): void {
+    this.popupLoadingNode = instantiate(this.popupLoading)
+    this.popupLoadingNode.active = true;
+    this.node.addChild(this.popupLoadingNode);
     let username = StorageManager.me().getItem("USERNAME");
     let token = StorageManager.me().getItem("TOKEN");
     let autoLogin = StorageManager.me().getItem("AUTO_LOGIN");
     if (autoLogin == "true" && username && token) {
-      console.log("Relogin ...::", username, token);
+      this.popupGeneral.active = false;
       DataSender.sendReqRelogin(username, token);
     }
+    this.popupLoadingNode.active = false;
   }
 
   onMessageHandler(packets: proto.IPacketWrapper): void {
@@ -55,6 +56,11 @@ export class AuthenScene extends AbsScene {
           confirm("Tên đăng nhập hoặc mật khẩu không đúng!");
           return;
         }
+        if (resLogin.status === 401) {
+          console.log("Fail relogin!");
+          this.popupGeneral.active = true;
+          return;
+        }        
         if (resLogin.status === 402) {
           confirm("Tài khoản đã bị khóa!");
           return;

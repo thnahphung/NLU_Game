@@ -59,16 +59,19 @@ public class AuthService {
             return;
         }
         //Check userLogin is logging in on another device
-        Proto.User userProto = Proto.User.newBuilder().setUserId(userLoginBean.getId()).setUsername(userLoginBean.getUsername()).build();
+        Proto.User userProto = Proto.User.newBuilder()
+                .setUserId(userLoginBean.getId())
+                .setUsername(userLoginBean.getUsername())
+                .setHasCharacter(userLoginBean.getHasCharacter())
+                .build();
         if(checkLoginOtherDevice(userProto)){
             sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(403)).build());
             return;
         }
-
         //When login success
-        loginSuscess(session, userProto);
+        loginSuccess(session, userProto);
     }
-    private void loginSuscess(Session session, Proto.User user){
+    private void loginSuccess(Session session, Proto.User user){
         //Save user in cache redis
         SessionCache.me().addUserSession(SessionID.of(session), user);
         UserCache.me().addUserOnline(user, SessionID.of(session).getSessionId());
@@ -80,15 +83,14 @@ public class AuthService {
     }
 
     public void checkReLogin(Session session, Proto.ReqRelogin reqRelogin) {
+        boolean result = true;
         UserBean userBean = UserDAO.getUser(reqRelogin.getUsername());
         //Check null param
         if(userBean == null || reqRelogin.getToken() == null){
-            return;
+            result = false;
         }
         if(!reqRelogin.getToken().equals(userBean.getReLoginToken())){
-            System.out.println("Token: "+ userBean.getReLoginToken() + ", " + reqRelogin.getToken());
-            return;
-            //sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(500).build()).build());
+            result = false;
         }
         //Check login other device
         Proto.User userProto = Proto.User.newBuilder()
@@ -97,10 +99,14 @@ public class AuthService {
                 .setHasCharacter(userBean.getHasCharacter())
                 .build();
         if(checkLoginOtherDevice(userProto)){
-            sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(403).build()).build());
+            result = false;
+        }
+        if(!result) {
+            sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(401).build()).build());
             return;
         }
-        loginSuscess(session, userProto);
+        System.out.println("Relogin success: " + result);
+        loginSuccess(session, userProto);
     }
 
     private boolean checkLoginOtherDevice(Proto.User user){
