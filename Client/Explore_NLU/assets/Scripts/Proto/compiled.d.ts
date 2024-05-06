@@ -139,6 +139,12 @@ export namespace proto {
 
         /** Packet resLoadCharacters */
         resLoadCharacters?: (proto.IResLoadCharacters|null);
+
+        /** Packet reqPickCharacter */
+        reqPickCharacter?: (proto.IReqPickCharacter|null);
+
+        /** Packet resPickCharacter */
+        resPickCharacter?: (proto.IResPickCharacter|null);
     }
 
     /** Represents a Packet. */
@@ -186,8 +192,14 @@ export namespace proto {
         /** Packet resLoadCharacters. */
         public resLoadCharacters?: (proto.IResLoadCharacters|null);
 
+        /** Packet reqPickCharacter. */
+        public reqPickCharacter?: (proto.IReqPickCharacter|null);
+
+        /** Packet resPickCharacter. */
+        public resPickCharacter?: (proto.IResPickCharacter|null);
+
         /** Packet data. */
-        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters");
+        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter");
 
         /**
          * Creates a new Packet instance using the specified properties.
@@ -1075,6 +1087,9 @@ export namespace proto {
 
         /** ReqRegister phone */
         phone?: (string|null);
+
+        /** ReqRegister email */
+        email?: (string|null);
     }
 
     /** Represents a ReqRegister. */
@@ -1097,6 +1112,9 @@ export namespace proto {
 
         /** ReqRegister phone. */
         public phone: string;
+
+        /** ReqRegister email. */
+        public email: string;
 
         /**
          * Creates a new ReqRegister instance using the specified properties.
@@ -1408,6 +1426,9 @@ export namespace proto {
 
         /** User agencyLevel */
         agencyLevel?: (number|null);
+
+        /** User hasCharacter */
+        hasCharacter?: (number|null);
     }
 
     /** Represents a User. */
@@ -1448,6 +1469,9 @@ export namespace proto {
 
         /** User agencyLevel. */
         public agencyLevel: number;
+
+        /** User hasCharacter. */
+        public hasCharacter: number;
 
         /**
          * Creates a new User instance using the specified properties.
@@ -1824,6 +1848,206 @@ export namespace proto {
 
         /**
          * Gets the default type url for Character
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ReqPickCharacter. */
+    interface IReqPickCharacter {
+
+        /** ReqPickCharacter characterId */
+        characterId?: (number|null);
+
+        /** ReqPickCharacter playerName */
+        playerName?: (string|null);
+    }
+
+    /** Represents a ReqPickCharacter. */
+    class ReqPickCharacter implements IReqPickCharacter {
+
+        /**
+         * Constructs a new ReqPickCharacter.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IReqPickCharacter);
+
+        /** ReqPickCharacter characterId. */
+        public characterId: number;
+
+        /** ReqPickCharacter playerName. */
+        public playerName: string;
+
+        /**
+         * Creates a new ReqPickCharacter instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReqPickCharacter instance
+         */
+        public static create(properties?: proto.IReqPickCharacter): proto.ReqPickCharacter;
+
+        /**
+         * Encodes the specified ReqPickCharacter message. Does not implicitly {@link proto.ReqPickCharacter.verify|verify} messages.
+         * @param message ReqPickCharacter message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IReqPickCharacter, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReqPickCharacter message, length delimited. Does not implicitly {@link proto.ReqPickCharacter.verify|verify} messages.
+         * @param message ReqPickCharacter message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IReqPickCharacter, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReqPickCharacter message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReqPickCharacter
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ReqPickCharacter;
+
+        /**
+         * Decodes a ReqPickCharacter message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReqPickCharacter
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ReqPickCharacter;
+
+        /**
+         * Verifies a ReqPickCharacter message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReqPickCharacter message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReqPickCharacter
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ReqPickCharacter;
+
+        /**
+         * Creates a plain object from a ReqPickCharacter message. Also converts values to other types if specified.
+         * @param message ReqPickCharacter
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ReqPickCharacter, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReqPickCharacter to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReqPickCharacter
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ResPickCharacter. */
+    interface IResPickCharacter {
+
+        /** ResPickCharacter status */
+        status?: (number|null);
+    }
+
+    /** Represents a ResPickCharacter. */
+    class ResPickCharacter implements IResPickCharacter {
+
+        /**
+         * Constructs a new ResPickCharacter.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IResPickCharacter);
+
+        /** ResPickCharacter status. */
+        public status: number;
+
+        /**
+         * Creates a new ResPickCharacter instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ResPickCharacter instance
+         */
+        public static create(properties?: proto.IResPickCharacter): proto.ResPickCharacter;
+
+        /**
+         * Encodes the specified ResPickCharacter message. Does not implicitly {@link proto.ResPickCharacter.verify|verify} messages.
+         * @param message ResPickCharacter message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IResPickCharacter, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ResPickCharacter message, length delimited. Does not implicitly {@link proto.ResPickCharacter.verify|verify} messages.
+         * @param message ResPickCharacter message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IResPickCharacter, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ResPickCharacter message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ResPickCharacter
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResPickCharacter;
+
+        /**
+         * Decodes a ResPickCharacter message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ResPickCharacter
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResPickCharacter;
+
+        /**
+         * Verifies a ResPickCharacter message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ResPickCharacter message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ResPickCharacter
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ResPickCharacter;
+
+        /**
+         * Creates a plain object from a ResPickCharacter message. Also converts values to other types if specified.
+         * @param message ResPickCharacter
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ResPickCharacter, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ResPickCharacter to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ResPickCharacter
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */

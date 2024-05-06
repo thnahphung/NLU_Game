@@ -1,5 +1,5 @@
 import { _decorator, instantiate, Label, Node, Prefab, ProgressBar } from "cc";
-import { TransitionScenePrefab } from "../../Others/TransitionScenePrefab";
+import { TransitionScenePrefab } from "../../Prefabs/TransitionScene/TransitionScenePrefab";
 import AbsScene from "../../Scenes/AbsScene";
 
 import { POPUP_MESSAGE } from "../../Utils/Const";
@@ -28,7 +28,7 @@ export class PopupSetting extends AbsScene {
   public transitScreen: Prefab = null;
   start() {}
   protected onLoad(): void {
-    this.lableLanguage.string = t("label_text.setting_language_english");
+    this.lableLanguage.string = t("label_text.setting_language_current");
     this.dropdownLanguage.active = false;
   }
 
@@ -57,13 +57,11 @@ export class PopupSetting extends AbsScene {
 
   onChangeMusic(event) {
     let progress = event.progress;
-    console.log("progress", progress);
     this.progressBarMusic.progress = progress;
   }
 
   onChangeSound(event) {
     let progress = event.progress;
-    console.log("progress", progress);
     this.progressBarSound.progress = progress;
   }
 

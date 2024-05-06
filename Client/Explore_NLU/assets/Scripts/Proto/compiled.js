@@ -259,6 +259,8 @@
              * @property {proto.IReqUpdateUserInfo|null} [reqUpdateUserInfo] Packet reqUpdateUserInfo
              * @property {proto.IReqLoadCharacters|null} [reqLoadCharacters] Packet reqLoadCharacters
              * @property {proto.IResLoadCharacters|null} [resLoadCharacters] Packet resLoadCharacters
+             * @property {proto.IReqPickCharacter|null} [reqPickCharacter] Packet reqPickCharacter
+             * @property {proto.IResPickCharacter|null} [resPickCharacter] Packet resPickCharacter
              */
     
             /**
@@ -372,17 +374,33 @@
              */
             Packet.prototype.resLoadCharacters = null;
     
+            /**
+             * Packet reqPickCharacter.
+             * @member {proto.IReqPickCharacter|null|undefined} reqPickCharacter
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqPickCharacter = null;
+    
+            /**
+             * Packet resPickCharacter.
+             * @member {proto.IResPickCharacter|null|undefined} resPickCharacter
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resPickCharacter = null;
+    
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
     
             /**
              * Packet data.
-             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|undefined} data
+             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|undefined} data
              * @memberof proto.Packet
              * @instance
              */
             Object.defineProperty(Packet.prototype, "data", {
-                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters"]),
+                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
     
@@ -434,6 +452,10 @@
                     $root.proto.ReqLoadCharacters.encode(message.reqLoadCharacters, writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
                 if (message.resLoadCharacters != null && Object.hasOwnProperty.call(message, "resLoadCharacters"))
                     $root.proto.ResLoadCharacters.encode(message.resLoadCharacters, writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
+                if (message.reqPickCharacter != null && Object.hasOwnProperty.call(message, "reqPickCharacter"))
+                    $root.proto.ReqPickCharacter.encode(message.reqPickCharacter, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
+                if (message.resPickCharacter != null && Object.hasOwnProperty.call(message, "resPickCharacter"))
+                    $root.proto.ResPickCharacter.encode(message.resPickCharacter, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
                 return writer;
             };
     
@@ -514,6 +536,14 @@
                         }
                     case 12: {
                             message.resLoadCharacters = $root.proto.ResLoadCharacters.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 13: {
+                            message.reqPickCharacter = $root.proto.ReqPickCharacter.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 14: {
+                            message.resPickCharacter = $root.proto.ResPickCharacter.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -670,6 +700,26 @@
                             return "resLoadCharacters." + error;
                     }
                 }
+                if (message.reqPickCharacter != null && message.hasOwnProperty("reqPickCharacter")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqPickCharacter.verify(message.reqPickCharacter);
+                        if (error)
+                            return "reqPickCharacter." + error;
+                    }
+                }
+                if (message.resPickCharacter != null && message.hasOwnProperty("resPickCharacter")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResPickCharacter.verify(message.resPickCharacter);
+                        if (error)
+                            return "resPickCharacter." + error;
+                    }
+                }
                 return null;
             };
     
@@ -744,6 +794,16 @@
                     if (typeof object.resLoadCharacters !== "object")
                         throw TypeError(".proto.Packet.resLoadCharacters: object expected");
                     message.resLoadCharacters = $root.proto.ResLoadCharacters.fromObject(object.resLoadCharacters);
+                }
+                if (object.reqPickCharacter != null) {
+                    if (typeof object.reqPickCharacter !== "object")
+                        throw TypeError(".proto.Packet.reqPickCharacter: object expected");
+                    message.reqPickCharacter = $root.proto.ReqPickCharacter.fromObject(object.reqPickCharacter);
+                }
+                if (object.resPickCharacter != null) {
+                    if (typeof object.resPickCharacter !== "object")
+                        throw TypeError(".proto.Packet.resPickCharacter: object expected");
+                    message.resPickCharacter = $root.proto.ResPickCharacter.fromObject(object.resPickCharacter);
                 }
                 return message;
             };
@@ -820,6 +880,16 @@
                     object.resLoadCharacters = $root.proto.ResLoadCharacters.toObject(message.resLoadCharacters, options);
                     if (options.oneofs)
                         object.data = "resLoadCharacters";
+                }
+                if (message.reqPickCharacter != null && message.hasOwnProperty("reqPickCharacter")) {
+                    object.reqPickCharacter = $root.proto.ReqPickCharacter.toObject(message.reqPickCharacter, options);
+                    if (options.oneofs)
+                        object.data = "reqPickCharacter";
+                }
+                if (message.resPickCharacter != null && message.hasOwnProperty("resPickCharacter")) {
+                    object.resPickCharacter = $root.proto.ResPickCharacter.toObject(message.resPickCharacter, options);
+                    if (options.oneofs)
+                        object.data = "resPickCharacter";
                 }
                 return object;
             };
@@ -2559,6 +2629,7 @@
              * @property {string|null} [password] ReqRegister password
              * @property {string|null} [sponsor] ReqRegister sponsor
              * @property {string|null} [phone] ReqRegister phone
+             * @property {string|null} [email] ReqRegister email
              */
     
             /**
@@ -2609,6 +2680,14 @@
             ReqRegister.prototype.phone = "";
     
             /**
+             * ReqRegister email.
+             * @member {string} email
+             * @memberof proto.ReqRegister
+             * @instance
+             */
+            ReqRegister.prototype.email = "";
+    
+            /**
              * Creates a new ReqRegister instance using the specified properties.
              * @function create
              * @memberof proto.ReqRegister
@@ -2640,6 +2719,8 @@
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.sponsor);
                 if (message.phone != null && Object.hasOwnProperty.call(message, "phone"))
                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.phone);
+                if (message.email != null && Object.hasOwnProperty.call(message, "email"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.email);
                 return writer;
             };
     
@@ -2690,6 +2771,10 @@
                             message.phone = reader.string();
                             break;
                         }
+                    case 5: {
+                            message.email = reader.string();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -2737,6 +2822,9 @@
                 if (message.phone != null && message.hasOwnProperty("phone"))
                     if (!$util.isString(message.phone))
                         return "phone: string expected";
+                if (message.email != null && message.hasOwnProperty("email"))
+                    if (!$util.isString(message.email))
+                        return "email: string expected";
                 return null;
             };
     
@@ -2760,6 +2848,8 @@
                     message.sponsor = String(object.sponsor);
                 if (object.phone != null)
                     message.phone = String(object.phone);
+                if (object.email != null)
+                    message.email = String(object.email);
                 return message;
             };
     
@@ -2781,6 +2871,7 @@
                     object.password = "";
                     object.sponsor = "";
                     object.phone = "";
+                    object.email = "";
                 }
                 if (message.username != null && message.hasOwnProperty("username"))
                     object.username = message.username;
@@ -2790,6 +2881,8 @@
                     object.sponsor = message.sponsor;
                 if (message.phone != null && message.hasOwnProperty("phone"))
                     object.phone = message.phone;
+                if (message.email != null && message.hasOwnProperty("email"))
+                    object.email = message.email;
                 return object;
             };
     
@@ -3268,6 +3361,7 @@
              * @property {number|Long|null} [gold] User gold
              * @property {number|Long|null} [diamond] User diamond
              * @property {number|null} [agencyLevel] User agencyLevel
+             * @property {number|null} [hasCharacter] User hasCharacter
              */
     
             /**
@@ -3366,6 +3460,14 @@
             User.prototype.agencyLevel = 0;
     
             /**
+             * User hasCharacter.
+             * @member {number} hasCharacter
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.hasCharacter = 0;
+    
+            /**
              * Creates a new User instance using the specified properties.
              * @function create
              * @memberof proto.User
@@ -3409,6 +3511,8 @@
                     writer.uint32(/* id 9, wireType 0 =*/72).int64(message.diamond);
                 if (message.agencyLevel != null && Object.hasOwnProperty.call(message, "agencyLevel"))
                     writer.uint32(/* id 10, wireType 0 =*/80).int32(message.agencyLevel);
+                if (message.hasCharacter != null && Object.hasOwnProperty.call(message, "hasCharacter"))
+                    writer.uint32(/* id 11, wireType 0 =*/88).int32(message.hasCharacter);
                 return writer;
             };
     
@@ -3483,6 +3587,10 @@
                             message.agencyLevel = reader.int32();
                             break;
                         }
+                    case 11: {
+                            message.hasCharacter = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -3548,6 +3656,9 @@
                 if (message.agencyLevel != null && message.hasOwnProperty("agencyLevel"))
                     if (!$util.isInteger(message.agencyLevel))
                         return "agencyLevel: integer expected";
+                if (message.hasCharacter != null && message.hasOwnProperty("hasCharacter"))
+                    if (!$util.isInteger(message.hasCharacter))
+                        return "hasCharacter: integer expected";
                 return null;
             };
     
@@ -3597,6 +3708,8 @@
                         message.diamond = new $util.LongBits(object.diamond.low >>> 0, object.diamond.high >>> 0).toNumber();
                 if (object.agencyLevel != null)
                     message.agencyLevel = object.agencyLevel | 0;
+                if (object.hasCharacter != null)
+                    message.hasCharacter = object.hasCharacter | 0;
                 return message;
             };
     
@@ -3632,6 +3745,7 @@
                     } else
                         object.diamond = options.longs === String ? "0" : 0;
                     object.agencyLevel = 0;
+                    object.hasCharacter = 0;
                 }
                 if (message.userId != null && message.hasOwnProperty("userId"))
                     object.userId = message.userId;
@@ -3659,6 +3773,8 @@
                         object.diamond = options.longs === String ? $util.Long.prototype.toString.call(message.diamond) : options.longs === Number ? new $util.LongBits(message.diamond.low >>> 0, message.diamond.high >>> 0).toNumber() : message.diamond;
                 if (message.agencyLevel != null && message.hasOwnProperty("agencyLevel"))
                     object.agencyLevel = message.agencyLevel;
+                if (message.hasCharacter != null && message.hasOwnProperty("hasCharacter"))
+                    object.hasCharacter = message.hasCharacter;
                 return object;
             };
     
@@ -4361,6 +4477,436 @@
             };
     
             return Character;
+        })();
+    
+        proto.ReqPickCharacter = (function() {
+    
+            /**
+             * Properties of a ReqPickCharacter.
+             * @memberof proto
+             * @interface IReqPickCharacter
+             * @property {number|null} [characterId] ReqPickCharacter characterId
+             * @property {string|null} [playerName] ReqPickCharacter playerName
+             */
+    
+            /**
+             * Constructs a new ReqPickCharacter.
+             * @memberof proto
+             * @classdesc Represents a ReqPickCharacter.
+             * @implements IReqPickCharacter
+             * @constructor
+             * @param {proto.IReqPickCharacter=} [properties] Properties to set
+             */
+            function ReqPickCharacter(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ReqPickCharacter characterId.
+             * @member {number} characterId
+             * @memberof proto.ReqPickCharacter
+             * @instance
+             */
+            ReqPickCharacter.prototype.characterId = 0;
+    
+            /**
+             * ReqPickCharacter playerName.
+             * @member {string} playerName
+             * @memberof proto.ReqPickCharacter
+             * @instance
+             */
+            ReqPickCharacter.prototype.playerName = "";
+    
+            /**
+             * Creates a new ReqPickCharacter instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqPickCharacter
+             * @static
+             * @param {proto.IReqPickCharacter=} [properties] Properties to set
+             * @returns {proto.ReqPickCharacter} ReqPickCharacter instance
+             */
+            ReqPickCharacter.create = function create(properties) {
+                return new ReqPickCharacter(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqPickCharacter message. Does not implicitly {@link proto.ReqPickCharacter.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqPickCharacter
+             * @static
+             * @param {proto.IReqPickCharacter} message ReqPickCharacter message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqPickCharacter.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.characterId != null && Object.hasOwnProperty.call(message, "characterId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.characterId);
+                if (message.playerName != null && Object.hasOwnProperty.call(message, "playerName"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.playerName);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqPickCharacter message, length delimited. Does not implicitly {@link proto.ReqPickCharacter.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqPickCharacter
+             * @static
+             * @param {proto.IReqPickCharacter} message ReqPickCharacter message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqPickCharacter.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqPickCharacter message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqPickCharacter
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqPickCharacter} ReqPickCharacter
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqPickCharacter.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqPickCharacter();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.characterId = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.playerName = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqPickCharacter message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqPickCharacter
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqPickCharacter} ReqPickCharacter
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqPickCharacter.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqPickCharacter message.
+             * @function verify
+             * @memberof proto.ReqPickCharacter
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqPickCharacter.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.characterId != null && message.hasOwnProperty("characterId"))
+                    if (!$util.isInteger(message.characterId))
+                        return "characterId: integer expected";
+                if (message.playerName != null && message.hasOwnProperty("playerName"))
+                    if (!$util.isString(message.playerName))
+                        return "playerName: string expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ReqPickCharacter message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqPickCharacter
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqPickCharacter} ReqPickCharacter
+             */
+            ReqPickCharacter.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqPickCharacter)
+                    return object;
+                var message = new $root.proto.ReqPickCharacter();
+                if (object.characterId != null)
+                    message.characterId = object.characterId | 0;
+                if (object.playerName != null)
+                    message.playerName = String(object.playerName);
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ReqPickCharacter message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqPickCharacter
+             * @static
+             * @param {proto.ReqPickCharacter} message ReqPickCharacter
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqPickCharacter.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.characterId = 0;
+                    object.playerName = "";
+                }
+                if (message.characterId != null && message.hasOwnProperty("characterId"))
+                    object.characterId = message.characterId;
+                if (message.playerName != null && message.hasOwnProperty("playerName"))
+                    object.playerName = message.playerName;
+                return object;
+            };
+    
+            /**
+             * Converts this ReqPickCharacter to JSON.
+             * @function toJSON
+             * @memberof proto.ReqPickCharacter
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqPickCharacter.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqPickCharacter
+             * @function getTypeUrl
+             * @memberof proto.ReqPickCharacter
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqPickCharacter.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqPickCharacter";
+            };
+    
+            return ReqPickCharacter;
+        })();
+    
+        proto.ResPickCharacter = (function() {
+    
+            /**
+             * Properties of a ResPickCharacter.
+             * @memberof proto
+             * @interface IResPickCharacter
+             * @property {number|null} [status] ResPickCharacter status
+             */
+    
+            /**
+             * Constructs a new ResPickCharacter.
+             * @memberof proto
+             * @classdesc Represents a ResPickCharacter.
+             * @implements IResPickCharacter
+             * @constructor
+             * @param {proto.IResPickCharacter=} [properties] Properties to set
+             */
+            function ResPickCharacter(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResPickCharacter status.
+             * @member {number} status
+             * @memberof proto.ResPickCharacter
+             * @instance
+             */
+            ResPickCharacter.prototype.status = 0;
+    
+            /**
+             * Creates a new ResPickCharacter instance using the specified properties.
+             * @function create
+             * @memberof proto.ResPickCharacter
+             * @static
+             * @param {proto.IResPickCharacter=} [properties] Properties to set
+             * @returns {proto.ResPickCharacter} ResPickCharacter instance
+             */
+            ResPickCharacter.create = function create(properties) {
+                return new ResPickCharacter(properties);
+            };
+    
+            /**
+             * Encodes the specified ResPickCharacter message. Does not implicitly {@link proto.ResPickCharacter.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResPickCharacter
+             * @static
+             * @param {proto.IResPickCharacter} message ResPickCharacter message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResPickCharacter.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResPickCharacter message, length delimited. Does not implicitly {@link proto.ResPickCharacter.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResPickCharacter
+             * @static
+             * @param {proto.IResPickCharacter} message ResPickCharacter message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResPickCharacter.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResPickCharacter message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResPickCharacter
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResPickCharacter} ResPickCharacter
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResPickCharacter.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResPickCharacter();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.status = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResPickCharacter message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResPickCharacter
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResPickCharacter} ResPickCharacter
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResPickCharacter.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResPickCharacter message.
+             * @function verify
+             * @memberof proto.ResPickCharacter
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResPickCharacter.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ResPickCharacter message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResPickCharacter
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResPickCharacter} ResPickCharacter
+             */
+            ResPickCharacter.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResPickCharacter)
+                    return object;
+                var message = new $root.proto.ResPickCharacter();
+                if (object.status != null)
+                    message.status = object.status | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResPickCharacter message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResPickCharacter
+             * @static
+             * @param {proto.ResPickCharacter} message ResPickCharacter
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResPickCharacter.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.status = 0;
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                return object;
+            };
+    
+            /**
+             * Converts this ResPickCharacter to JSON.
+             * @function toJSON
+             * @memberof proto.ResPickCharacter
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResPickCharacter.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResPickCharacter
+             * @function getTypeUrl
+             * @memberof proto.ResPickCharacter
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResPickCharacter.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResPickCharacter";
+            };
+    
+            return ResPickCharacter;
         })();
     
         return proto;

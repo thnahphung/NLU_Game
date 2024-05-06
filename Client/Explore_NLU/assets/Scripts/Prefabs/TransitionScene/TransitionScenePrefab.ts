@@ -31,9 +31,7 @@ export class TransitionScenePrefab extends Component{
     }
     private onProgress(completedCount: number, totalCount: number, item: any) {
       let progress = completedCount / totalCount;
-      console.log(progress, completedCount, totalCount, item)
       this.updateProgress(progress);
-
     }
     private updateProgress (progress: number) {
       this.progressBar.getComponent(ProgressBar).progress = progress;

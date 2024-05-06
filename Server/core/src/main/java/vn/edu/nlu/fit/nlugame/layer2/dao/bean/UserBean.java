@@ -21,35 +21,20 @@ public class UserBean {
     private int gender;
     @ColumnName("sponsor")
     private int sponsor;
-
     @ColumnName("email")
-    private String email ;
+    private String email;
     @ColumnName("phone")
-    private String phone ;
+    private String phone;
     @ColumnName("active")
     private int active;
-    @ColumnName("passwordRecoveryKey")
-    private String passwordRecoveryKey ;
-    @ColumnName("passwordRecoveryTime")
-    private long passwordRecoveryTime;
-    @ColumnName("tree")
-    private String tree ;
     @ColumnName("re_login_token")
     private String reLoginToken ;
-    @ColumnName("agency_level")
-    private int agencyLevel;
-    @ColumnName("phone_otp")
-    private String phoneOtp ;
-    @ColumnName("phone_otp_time")
-    private long phoneOtpTime;
-    @ColumnName("is_phone_verified")
-    private int isPhoneVerified;
     @ColumnName("email_code")
     private String emailCode ;
     @ColumnName("email_code_time")
     private long emailCodeTime;
     @ColumnName("is_email_verified")
     private int isEmailVerified;
-    @ColumnName("isBot")
-    private int isBot;
+    @ColumnName("has_character")
+    private int hasCharacter;
 }

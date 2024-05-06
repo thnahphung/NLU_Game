@@ -1,4 +1,4 @@
-import { _decorator, EditBox, Prefab } from 'cc';
+import { _decorator, EditBox, find, instantiate, Prefab } from 'cc';
 import AbsScene from '../../Scenes/AbsScene';
 import DataSender from '../../Utils/DataSender';
 const { ccclass, property } = _decorator;
@@ -26,6 +26,10 @@ export class PopupSignIn extends AbsScene {
            return;
         }
        //Xử lý khi click login
+       var popupLoadingNode = find("Canvas/LoadingPrefab");
+       if(popupLoadingNode){
+            popupLoadingNode.active = true;
+       }
        DataSender.sendReqSignIn(this.usernameLogin.string, this.passwordLogin.string);
    }
 

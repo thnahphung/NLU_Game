@@ -1,8 +1,9 @@
-import { Label, Node, Prefab, Sprite, _decorator, find, instantiate, resources } from 'cc';
+import { EditBox, Label, Node, Prefab, Sprite, _decorator, find, instantiate, resources } from 'cc';
 import AbsScene from './AbsScene';
 import { WS } from '../Socket/WS';
 import DataSender from '../Utils/DataSender';
 import { t } from '../../../extensions/i18n/assets/LanguageData';
+import { TransitionScenePrefab } from '../Prefabs/TransitionScene/TransitionScenePrefab';
 const { ccclass, property } = _decorator;
 
 @ccclass('PickCharacterScene')
@@ -11,7 +12,15 @@ export class PickCharacterScene extends AbsScene {
     public characterPrefab: Prefab = null!;
     @property(Node)
     public characterPanel: Node = null!;
-    private characterPick: string = '';
+    @property(Node)
+    public namePlayerPanel: Node = null!;
+    @property(EditBox)
+    public editboxNamePlayer: EditBox = null!;
+    // Khai bao transitScreen
+    @property(Prefab)
+    public transitScreen: Prefab = null;
+
+    private characterPicked: string = '';
     start() {
     }
 
@@ -27,6 +36,7 @@ export class PickCharacterScene extends AbsScene {
             if (resLoadCharacters) {
                 if(resLoadCharacters.character == null || resLoadCharacters.character.length == 0){
                     confirm('Không có nhân vật');
+                    return;
                 }
                 resLoadCharacters.character.forEach((character) => {
                     console.log(character);
@@ -51,15 +61,26 @@ export class PickCharacterScene extends AbsScene {
                     }
                     characterPrefab.getChildByName("code").getComponent(Label).string = characterID;
                     characterPrefab.on(Node.EventType.MOUSE_DOWN, () => {
-                        this.onClickPickCharacter(characterID);
+                        this.onClickCharacter(characterID);
                     });
                     characterPrefab.on(Node.EventType.TOUCH_END, () => {
-                        this.onClickPickCharacter(characterID);
+                        this.onClickCharacter(characterID);
                     });
                     this.characterPanel.addChild(characterPrefab);
                 });
-            }else{
-                confirm('Không có resLoadCharacters');
+            }
+
+            if (packet.resPickCharacter) {
+                if (packet.resPickCharacter.status == 500) {
+                    confirm('Chọn nhân vật thất bại, vui lòng thử lại!');
+                } 
+                if(packet.resPickCharacter.status == 200) {
+                    let transitScreenNode = instantiate(this.transitScreen);
+                    transitScreenNode
+                    .getComponent(TransitionScenePrefab)
+                    .setSceneName("KiotScene");
+                    this.node.addChild(transitScreenNode);
+                }
             }
         });
     }
@@ -68,10 +89,29 @@ export class PickCharacterScene extends AbsScene {
         DataSender.sendReqLoadCharacters();
     }
 
-    onClickPickCharacter(characterId: string) {
+    onClickPickCharacter() {
+        if (this.characterPicked == '') {
+            confirm('Chưa chọn nhân vật');
+            return;
+        }
+        this.namePlayerPanel.active = true;
+    }
+
+    onClickCancelPickCharacter() {
+        this.namePlayerPanel.active = false;
+    }
+
+    onClickConfirmPickCharacter() {
+        if(this.editboxNamePlayer.string == '') return;
+        DataSender.sendReqPickCharacter(Number.parseInt(this.characterPicked), this.editboxNamePlayer.string);
+        console.log('onClickConfirmPickCharacter: ', this.characterPicked);
+        console.log('editboxNamePlayer: ', this.editboxNamePlayer.string);
+    }
+
+    onClickCharacter(characterId: string) {
         let nodeCharacterPanel = find("Canvas/PickCharacter/CharacterPanel");
         if (nodeCharacterPanel) {
-            this.characterPick = characterId;
+            this.characterPicked = characterId;
             this.resetGrayscale(nodeCharacterPanel);
             nodeCharacterPanel.children.forEach((node) => {
                 if (node.getChildByName("code").getComponent(Label).string != characterId) {

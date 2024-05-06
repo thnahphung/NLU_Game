@@ -1,4 +1,4 @@
-import { _decorator, EditBox, Node, Prefab } from 'cc';
+import { _decorator, EditBox, find, Node, Prefab } from 'cc';
 import AbsScene from '../../Scenes/AbsScene';
 import DataSender from '../../Utils/DataSender';
 const { ccclass, property } = _decorator;
@@ -15,6 +15,8 @@ export class PopupSignUp extends AbsScene {
     @property(EditBox)
     public rePasswordRegister: EditBox = null!;
 
+    @property(EditBox)
+    public emailRegister: EditBox = null!;
     // Khai bao popupNotify
     @property(Prefab)
     public popupNotifySimple: Prefab = null!;
@@ -35,8 +37,27 @@ export class PopupSignUp extends AbsScene {
             confirm("Mật khẩu không trùng khớp!");
             return;
         }
-        DataSender.sendReqSignUp(this.usernameRegister.string, this.passwordRegister.string);
+
+        //Check verify email
+        if(!this.isEmail(this.emailRegister.string)){
+            confirm("Email không hợp lệ!");
+            return;
+        }
+
+        var popupLoadingNode = find("Canvas/LoadingPrefab");
+        if(popupLoadingNode){
+             popupLoadingNode.active = true;
+        }
+        DataSender.sendReqSignUp(this.usernameRegister.string, this.passwordRegister.string, this.emailRegister.string);
     }
+
+    isEmail(search:string): boolean {
+        var serchfind:boolean;
+        var regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+        serchfind = regexp.test(search);
+        return serchfind
+    }
+
 }
 
 
