@@ -1,6 +1,6 @@
 import { _decorator, Component, director, find, instantiate, Node, Prefab } from 'cc';
 import { WS } from '../Socket/WS';
-import { TransitionScenePrefab } from '../Others/TransitionScenePrefab';
+import { TransitionScenePrefab } from '../Prefabs/TransitionScene/TransitionScenePrefab';
 import AbsScene from '../Scenes/AbsScene';
 const { ccclass, property } = _decorator;
 

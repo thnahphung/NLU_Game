@@ -21,7 +21,7 @@ export const languages = {
     setting_language: "Ngôn ngữ",
     setting_language_current: "Tiếng Việt",
     setting_language_vietnamese: "Tiếng Việt",
-    setting_language_english: "Tiếng Anh",
+    setting_language_english: "English",
     //pick character
     pick_character_title: "Chọn nhân vật",
     pick_character_select: "CHỌN",

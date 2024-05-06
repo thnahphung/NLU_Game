@@ -946,6 +946,36 @@ public final class Proto {
      */
     vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadCharactersOrBuilder getResLoadCharactersOrBuilder();
 
+    /**
+     * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+     * @return Whether the reqPickCharacter field is set.
+     */
+    boolean hasReqPickCharacter();
+    /**
+     * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+     * @return The reqPickCharacter.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter getReqPickCharacter();
+    /**
+     * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacterOrBuilder getReqPickCharacterOrBuilder();
+
+    /**
+     * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+     * @return Whether the resPickCharacter field is set.
+     */
+    boolean hasResPickCharacter();
+    /**
+     * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+     * @return The resPickCharacter.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter getResPickCharacter();
+    /**
+     * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacterOrBuilder getResPickCharacterOrBuilder();
+
     vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Packet.DataCase getDataCase();
   }
   /**
@@ -1001,6 +1031,8 @@ public final class Proto {
       REQUPDATEUSERINFO(10),
       REQLOADCHARACTERS(11),
       RESLOADCHARACTERS(12),
+      REQPICKCHARACTER(13),
+      RESPICKCHARACTER(14),
       DATA_NOT_SET(0);
       private final int value;
       private DataCase(int value) {
@@ -1030,6 +1062,8 @@ public final class Proto {
           case 10: return REQUPDATEUSERINFO;
           case 11: return REQLOADCHARACTERS;
           case 12: return RESLOADCHARACTERS;
+          case 13: return REQPICKCHARACTER;
+          case 14: return RESPICKCHARACTER;
           case 0: return DATA_NOT_SET;
           default: return null;
         }
@@ -1417,6 +1451,68 @@ public final class Proto {
       return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadCharacters.getDefaultInstance();
     }
 
+    public static final int REQPICKCHARACTER_FIELD_NUMBER = 13;
+    /**
+     * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+     * @return Whether the reqPickCharacter field is set.
+     */
+    @java.lang.Override
+    public boolean hasReqPickCharacter() {
+      return dataCase_ == 13;
+    }
+    /**
+     * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+     * @return The reqPickCharacter.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter getReqPickCharacter() {
+      if (dataCase_ == 13) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacterOrBuilder getReqPickCharacterOrBuilder() {
+      if (dataCase_ == 13) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.getDefaultInstance();
+    }
+
+    public static final int RESPICKCHARACTER_FIELD_NUMBER = 14;
+    /**
+     * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+     * @return Whether the resPickCharacter field is set.
+     */
+    @java.lang.Override
+    public boolean hasResPickCharacter() {
+      return dataCase_ == 14;
+    }
+    /**
+     * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+     * @return The resPickCharacter.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter getResPickCharacter() {
+      if (dataCase_ == 14) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacterOrBuilder getResPickCharacterOrBuilder() {
+      if (dataCase_ == 14) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.getDefaultInstance();
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1466,6 +1562,12 @@ public final class Proto {
       }
       if (dataCase_ == 12) {
         output.writeMessage(12, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadCharacters) data_);
+      }
+      if (dataCase_ == 13) {
+        output.writeMessage(13, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter) data_);
+      }
+      if (dataCase_ == 14) {
+        output.writeMessage(14, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter) data_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1523,6 +1625,14 @@ public final class Proto {
       if (dataCase_ == 12) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(12, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadCharacters) data_);
+      }
+      if (dataCase_ == 13) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(13, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter) data_);
+      }
+      if (dataCase_ == 14) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter) data_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -1589,6 +1699,14 @@ public final class Proto {
           if (!getResLoadCharacters()
               .equals(other.getResLoadCharacters())) return false;
           break;
+        case 13:
+          if (!getReqPickCharacter()
+              .equals(other.getReqPickCharacter())) return false;
+          break;
+        case 14:
+          if (!getResPickCharacter()
+              .equals(other.getResPickCharacter())) return false;
+          break;
         case 0:
         default:
       }
@@ -1651,6 +1769,14 @@ public final class Proto {
         case 12:
           hash = (37 * hash) + RESLOADCHARACTERS_FIELD_NUMBER;
           hash = (53 * hash) + getResLoadCharacters().hashCode();
+          break;
+        case 13:
+          hash = (37 * hash) + REQPICKCHARACTER_FIELD_NUMBER;
+          hash = (53 * hash) + getReqPickCharacter().hashCode();
+          break;
+        case 14:
+          hash = (37 * hash) + RESPICKCHARACTER_FIELD_NUMBER;
+          hash = (53 * hash) + getResPickCharacter().hashCode();
           break;
         case 0:
         default:
@@ -1820,6 +1946,12 @@ public final class Proto {
         if (resLoadCharactersBuilder_ != null) {
           resLoadCharactersBuilder_.clear();
         }
+        if (reqPickCharacterBuilder_ != null) {
+          reqPickCharacterBuilder_.clear();
+        }
+        if (resPickCharacterBuilder_ != null) {
+          resPickCharacterBuilder_.clear();
+        }
         dataCase_ = 0;
         data_ = null;
         return this;
@@ -1909,6 +2041,14 @@ public final class Proto {
             resLoadCharactersBuilder_ != null) {
           result.data_ = resLoadCharactersBuilder_.build();
         }
+        if (dataCase_ == 13 &&
+            reqPickCharacterBuilder_ != null) {
+          result.data_ = reqPickCharacterBuilder_.build();
+        }
+        if (dataCase_ == 14 &&
+            resPickCharacterBuilder_ != null) {
+          result.data_ = resPickCharacterBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -1970,6 +2110,14 @@ public final class Proto {
           }
           case RESLOADCHARACTERS: {
             mergeResLoadCharacters(other.getResLoadCharacters());
+            break;
+          }
+          case REQPICKCHARACTER: {
+            mergeReqPickCharacter(other.getReqPickCharacter());
+            break;
+          }
+          case RESPICKCHARACTER: {
+            mergeResPickCharacter(other.getResPickCharacter());
             break;
           }
           case DATA_NOT_SET: {
@@ -2086,6 +2234,20 @@ public final class Proto {
                 dataCase_ = 12;
                 break;
               } // case 98
+              case 106: {
+                input.readMessage(
+                    getReqPickCharacterFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 13;
+                break;
+              } // case 106
+              case 114: {
+                input.readMessage(
+                    getResPickCharacterFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 14;
+                break;
+              } // case 114
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -3820,6 +3982,290 @@ public final class Proto {
         dataCase_ = 12;
         onChanged();
         return resLoadCharactersBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacterOrBuilder> reqPickCharacterBuilder_;
+      /**
+       * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+       * @return Whether the reqPickCharacter field is set.
+       */
+      @java.lang.Override
+      public boolean hasReqPickCharacter() {
+        return dataCase_ == 13;
+      }
+      /**
+       * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+       * @return The reqPickCharacter.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter getReqPickCharacter() {
+        if (reqPickCharacterBuilder_ == null) {
+          if (dataCase_ == 13) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.getDefaultInstance();
+        } else {
+          if (dataCase_ == 13) {
+            return reqPickCharacterBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+       */
+      public Builder setReqPickCharacter(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter value) {
+        if (reqPickCharacterBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          reqPickCharacterBuilder_.setMessage(value);
+        }
+        dataCase_ = 13;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+       */
+      public Builder setReqPickCharacter(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.Builder builderForValue) {
+        if (reqPickCharacterBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          reqPickCharacterBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 13;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+       */
+      public Builder mergeReqPickCharacter(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter value) {
+        if (reqPickCharacterBuilder_ == null) {
+          if (dataCase_ == 13 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 13) {
+            reqPickCharacterBuilder_.mergeFrom(value);
+          } else {
+            reqPickCharacterBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 13;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+       */
+      public Builder clearReqPickCharacter() {
+        if (reqPickCharacterBuilder_ == null) {
+          if (dataCase_ == 13) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 13) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          reqPickCharacterBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.Builder getReqPickCharacterBuilder() {
+        return getReqPickCharacterFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacterOrBuilder getReqPickCharacterOrBuilder() {
+        if ((dataCase_ == 13) && (reqPickCharacterBuilder_ != null)) {
+          return reqPickCharacterBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 13) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqPickCharacter reqPickCharacter = 13;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacterOrBuilder> 
+          getReqPickCharacterFieldBuilder() {
+        if (reqPickCharacterBuilder_ == null) {
+          if (!(dataCase_ == 13)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.getDefaultInstance();
+          }
+          reqPickCharacterBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacterOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 13;
+        onChanged();
+        return reqPickCharacterBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacterOrBuilder> resPickCharacterBuilder_;
+      /**
+       * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+       * @return Whether the resPickCharacter field is set.
+       */
+      @java.lang.Override
+      public boolean hasResPickCharacter() {
+        return dataCase_ == 14;
+      }
+      /**
+       * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+       * @return The resPickCharacter.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter getResPickCharacter() {
+        if (resPickCharacterBuilder_ == null) {
+          if (dataCase_ == 14) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.getDefaultInstance();
+        } else {
+          if (dataCase_ == 14) {
+            return resPickCharacterBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+       */
+      public Builder setResPickCharacter(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter value) {
+        if (resPickCharacterBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          resPickCharacterBuilder_.setMessage(value);
+        }
+        dataCase_ = 14;
+        return this;
+      }
+      /**
+       * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+       */
+      public Builder setResPickCharacter(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.Builder builderForValue) {
+        if (resPickCharacterBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          resPickCharacterBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 14;
+        return this;
+      }
+      /**
+       * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+       */
+      public Builder mergeResPickCharacter(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter value) {
+        if (resPickCharacterBuilder_ == null) {
+          if (dataCase_ == 14 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 14) {
+            resPickCharacterBuilder_.mergeFrom(value);
+          } else {
+            resPickCharacterBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 14;
+        return this;
+      }
+      /**
+       * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+       */
+      public Builder clearResPickCharacter() {
+        if (resPickCharacterBuilder_ == null) {
+          if (dataCase_ == 14) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 14) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          resPickCharacterBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.Builder getResPickCharacterBuilder() {
+        return getResPickCharacterFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacterOrBuilder getResPickCharacterOrBuilder() {
+        if ((dataCase_ == 14) && (resPickCharacterBuilder_ != null)) {
+          return resPickCharacterBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 14) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResPickCharacter resPickCharacter = 14;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacterOrBuilder> 
+          getResPickCharacterFieldBuilder() {
+        if (resPickCharacterBuilder_ == null) {
+          if (!(dataCase_ == 14)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.getDefaultInstance();
+          }
+          resPickCharacterBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacterOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 14;
+        onChanged();
+        return resPickCharacterBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -8384,6 +8830,18 @@ public final class Proto {
      */
     com.google.protobuf.ByteString
         getPhoneBytes();
+
+    /**
+     * <code>string email = 5;</code>
+     * @return The email.
+     */
+    java.lang.String getEmail();
+    /**
+     * <code>string email = 5;</code>
+     * @return The bytes for email.
+     */
+    com.google.protobuf.ByteString
+        getEmailBytes();
   }
   /**
    * Protobuf type {@code proto.ReqRegister}
@@ -8402,6 +8860,7 @@ public final class Proto {
       password_ = "";
       sponsor_ = "";
       phone_ = "";
+      email_ = "";
     }
 
     @java.lang.Override
@@ -8580,6 +9039,45 @@ public final class Proto {
       }
     }
 
+    public static final int EMAIL_FIELD_NUMBER = 5;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object email_ = "";
+    /**
+     * <code>string email = 5;</code>
+     * @return The email.
+     */
+    @java.lang.Override
+    public java.lang.String getEmail() {
+      java.lang.Object ref = email_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        email_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string email = 5;</code>
+     * @return The bytes for email.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getEmailBytes() {
+      java.lang.Object ref = email_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        email_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -8606,6 +9104,9 @@ public final class Proto {
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(phone_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, phone_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(email_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, email_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -8626,6 +9127,9 @@ public final class Proto {
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(phone_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, phone_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(email_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, email_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -8650,6 +9154,8 @@ public final class Proto {
           .equals(other.getSponsor())) return false;
       if (!getPhone()
           .equals(other.getPhone())) return false;
+      if (!getEmail()
+          .equals(other.getEmail())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -8669,6 +9175,8 @@ public final class Proto {
       hash = (53 * hash) + getSponsor().hashCode();
       hash = (37 * hash) + PHONE_FIELD_NUMBER;
       hash = (53 * hash) + getPhone().hashCode();
+      hash = (37 * hash) + EMAIL_FIELD_NUMBER;
+      hash = (53 * hash) + getEmail().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -8802,6 +9310,7 @@ public final class Proto {
         password_ = "";
         sponsor_ = "";
         phone_ = "";
+        email_ = "";
         return this;
       }
 
@@ -8847,6 +9356,9 @@ public final class Proto {
         if (((from_bitField0_ & 0x00000008) != 0)) {
           result.phone_ = phone_;
         }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.email_ = email_;
+        }
       }
 
       @java.lang.Override
@@ -8879,6 +9391,11 @@ public final class Proto {
         if (!other.getPhone().isEmpty()) {
           phone_ = other.phone_;
           bitField0_ |= 0x00000008;
+          onChanged();
+        }
+        if (!other.getEmail().isEmpty()) {
+          email_ = other.email_;
+          bitField0_ |= 0x00000010;
           onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
@@ -8927,6 +9444,11 @@ public final class Proto {
                 bitField0_ |= 0x00000008;
                 break;
               } // case 34
+              case 42: {
+                email_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -9228,6 +9750,78 @@ public final class Proto {
         checkByteStringIsUtf8(value);
         phone_ = value;
         bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object email_ = "";
+      /**
+       * <code>string email = 5;</code>
+       * @return The email.
+       */
+      public java.lang.String getEmail() {
+        java.lang.Object ref = email_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          email_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string email = 5;</code>
+       * @return The bytes for email.
+       */
+      public com.google.protobuf.ByteString
+          getEmailBytes() {
+        java.lang.Object ref = email_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          email_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string email = 5;</code>
+       * @param value The email to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEmail(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        email_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string email = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearEmail() {
+        email_ = getDefaultInstance().getEmail();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string email = 5;</code>
+       * @param value The bytes for email to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEmailBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        email_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -10454,6 +11048,12 @@ public final class Proto {
      * @return The agencyLevel.
      */
     int getAgencyLevel();
+
+    /**
+     * <code>int32 hasCharacter = 11;</code>
+     * @return The hasCharacter.
+     */
+    int getHasCharacter();
   }
   /**
    * Protobuf type {@code proto.User}
@@ -10716,6 +11316,17 @@ public final class Proto {
       return agencyLevel_;
     }
 
+    public static final int HASCHARACTER_FIELD_NUMBER = 11;
+    private int hasCharacter_ = 0;
+    /**
+     * <code>int32 hasCharacter = 11;</code>
+     * @return The hasCharacter.
+     */
+    @java.lang.Override
+    public int getHasCharacter() {
+      return hasCharacter_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -10759,6 +11370,9 @@ public final class Proto {
       }
       if (agencyLevel_ != 0) {
         output.writeInt32(10, agencyLevel_);
+      }
+      if (hasCharacter_ != 0) {
+        output.writeInt32(11, hasCharacter_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -10805,6 +11419,10 @@ public final class Proto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(10, agencyLevel_);
       }
+      if (hasCharacter_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(11, hasCharacter_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -10840,6 +11458,8 @@ public final class Proto {
           != other.getDiamond()) return false;
       if (getAgencyLevel()
           != other.getAgencyLevel()) return false;
+      if (getHasCharacter()
+          != other.getHasCharacter()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -10873,6 +11493,8 @@ public final class Proto {
           getDiamond());
       hash = (37 * hash) + AGENCYLEVEL_FIELD_NUMBER;
       hash = (53 * hash) + getAgencyLevel();
+      hash = (37 * hash) + HASCHARACTER_FIELD_NUMBER;
+      hash = (53 * hash) + getHasCharacter();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -11012,6 +11634,7 @@ public final class Proto {
         gold_ = 0L;
         diamond_ = 0L;
         agencyLevel_ = 0;
+        hasCharacter_ = 0;
         return this;
       }
 
@@ -11075,6 +11698,9 @@ public final class Proto {
         if (((from_bitField0_ & 0x00000200) != 0)) {
           result.agencyLevel_ = agencyLevel_;
         }
+        if (((from_bitField0_ & 0x00000400) != 0)) {
+          result.hasCharacter_ = hasCharacter_;
+        }
       }
 
       @java.lang.Override
@@ -11126,6 +11752,9 @@ public final class Proto {
         }
         if (other.getAgencyLevel() != 0) {
           setAgencyLevel(other.getAgencyLevel());
+        }
+        if (other.getHasCharacter() != 0) {
+          setHasCharacter(other.getHasCharacter());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -11203,6 +11832,11 @@ public final class Proto {
                 bitField0_ |= 0x00000200;
                 break;
               } // case 80
+              case 88: {
+                hasCharacter_ = input.readInt32();
+                bitField0_ |= 0x00000400;
+                break;
+              } // case 88
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -11696,6 +12330,38 @@ public final class Proto {
       public Builder clearAgencyLevel() {
         bitField0_ = (bitField0_ & ~0x00000200);
         agencyLevel_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int hasCharacter_ ;
+      /**
+       * <code>int32 hasCharacter = 11;</code>
+       * @return The hasCharacter.
+       */
+      @java.lang.Override
+      public int getHasCharacter() {
+        return hasCharacter_;
+      }
+      /**
+       * <code>int32 hasCharacter = 11;</code>
+       * @param value The hasCharacter to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHasCharacter(int value) {
+
+        hasCharacter_ = value;
+        bitField0_ |= 0x00000400;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 hasCharacter = 11;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHasCharacter() {
+        bitField0_ = (bitField0_ & ~0x00000400);
+        hasCharacter_ = 0;
         onChanged();
         return this;
       }
@@ -13760,6 +14426,1038 @@ public final class Proto {
 
   }
 
+  public interface ReqPickCharacterOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ReqPickCharacter)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 characterId = 1;</code>
+     * @return The characterId.
+     */
+    int getCharacterId();
+
+    /**
+     * <code>string playerName = 2;</code>
+     * @return The playerName.
+     */
+    java.lang.String getPlayerName();
+    /**
+     * <code>string playerName = 2;</code>
+     * @return The bytes for playerName.
+     */
+    com.google.protobuf.ByteString
+        getPlayerNameBytes();
+  }
+  /**
+   * Protobuf type {@code proto.ReqPickCharacter}
+   */
+  public static final class ReqPickCharacter extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ReqPickCharacter)
+      ReqPickCharacterOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReqPickCharacter.newBuilder() to construct.
+    private ReqPickCharacter(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReqPickCharacter() {
+      playerName_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReqPickCharacter();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqPickCharacter_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqPickCharacter_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.Builder.class);
+    }
+
+    public static final int CHARACTERID_FIELD_NUMBER = 1;
+    private int characterId_ = 0;
+    /**
+     * <code>int32 characterId = 1;</code>
+     * @return The characterId.
+     */
+    @java.lang.Override
+    public int getCharacterId() {
+      return characterId_;
+    }
+
+    public static final int PLAYERNAME_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object playerName_ = "";
+    /**
+     * <code>string playerName = 2;</code>
+     * @return The playerName.
+     */
+    @java.lang.Override
+    public java.lang.String getPlayerName() {
+      java.lang.Object ref = playerName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        playerName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string playerName = 2;</code>
+     * @return The bytes for playerName.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPlayerNameBytes() {
+      java.lang.Object ref = playerName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        playerName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (characterId_ != 0) {
+        output.writeInt32(1, characterId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(playerName_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, playerName_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (characterId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, characterId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(playerName_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, playerName_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter) obj;
+
+      if (getCharacterId()
+          != other.getCharacterId()) return false;
+      if (!getPlayerName()
+          .equals(other.getPlayerName())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CHARACTERID_FIELD_NUMBER;
+      hash = (53 * hash) + getCharacterId();
+      hash = (37 * hash) + PLAYERNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getPlayerName().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ReqPickCharacter}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ReqPickCharacter)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacterOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqPickCharacter_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqPickCharacter_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        characterId_ = 0;
+        playerName_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqPickCharacter_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.characterId_ = characterId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.playerName_ = playerName_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter.getDefaultInstance()) return this;
+        if (other.getCharacterId() != 0) {
+          setCharacterId(other.getCharacterId());
+        }
+        if (!other.getPlayerName().isEmpty()) {
+          playerName_ = other.playerName_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                characterId_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                playerName_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int characterId_ ;
+      /**
+       * <code>int32 characterId = 1;</code>
+       * @return The characterId.
+       */
+      @java.lang.Override
+      public int getCharacterId() {
+        return characterId_;
+      }
+      /**
+       * <code>int32 characterId = 1;</code>
+       * @param value The characterId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCharacterId(int value) {
+
+        characterId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 characterId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCharacterId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        characterId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object playerName_ = "";
+      /**
+       * <code>string playerName = 2;</code>
+       * @return The playerName.
+       */
+      public java.lang.String getPlayerName() {
+        java.lang.Object ref = playerName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          playerName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string playerName = 2;</code>
+       * @return The bytes for playerName.
+       */
+      public com.google.protobuf.ByteString
+          getPlayerNameBytes() {
+        java.lang.Object ref = playerName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          playerName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string playerName = 2;</code>
+       * @param value The playerName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPlayerName(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        playerName_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string playerName = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPlayerName() {
+        playerName_ = getDefaultInstance().getPlayerName();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string playerName = 2;</code>
+       * @param value The bytes for playerName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPlayerNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        playerName_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ReqPickCharacter)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ReqPickCharacter)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReqPickCharacter>
+        PARSER = new com.google.protobuf.AbstractParser<ReqPickCharacter>() {
+      @java.lang.Override
+      public ReqPickCharacter parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReqPickCharacter> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReqPickCharacter> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqPickCharacter getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ResPickCharacterOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ResPickCharacter)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 status = 1;</code>
+     * @return The status.
+     */
+    int getStatus();
+  }
+  /**
+   * Protobuf type {@code proto.ResPickCharacter}
+   */
+  public static final class ResPickCharacter extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ResPickCharacter)
+      ResPickCharacterOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ResPickCharacter.newBuilder() to construct.
+    private ResPickCharacter(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ResPickCharacter() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ResPickCharacter();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResPickCharacter_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResPickCharacter_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.Builder.class);
+    }
+
+    public static final int STATUS_FIELD_NUMBER = 1;
+    private int status_ = 0;
+    /**
+     * <code>int32 status = 1;</code>
+     * @return The status.
+     */
+    @java.lang.Override
+    public int getStatus() {
+      return status_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (status_ != 0) {
+        output.writeInt32(1, status_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (status_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, status_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter) obj;
+
+      if (getStatus()
+          != other.getStatus()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ResPickCharacter}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ResPickCharacter)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacterOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResPickCharacter_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResPickCharacter_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        status_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResPickCharacter_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.status_ = status_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter.getDefaultInstance()) return this;
+        if (other.getStatus() != 0) {
+          setStatus(other.getStatus());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                status_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int status_ ;
+      /**
+       * <code>int32 status = 1;</code>
+       * @return The status.
+       */
+      @java.lang.Override
+      public int getStatus() {
+        return status_;
+      }
+      /**
+       * <code>int32 status = 1;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatus(int value) {
+
+        status_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 status = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        status_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ResPickCharacter)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ResPickCharacter)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ResPickCharacter>
+        PARSER = new com.google.protobuf.AbstractParser<ResPickCharacter>() {
+      @java.lang.Override
+      public ResPickCharacter parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ResPickCharacter> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ResPickCharacter> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResPickCharacter getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_PacketWrapper_descriptor;
   private static final 
@@ -13845,6 +15543,16 @@ public final class Proto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_proto_Character_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ReqPickCharacter_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ReqPickCharacter_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ResPickCharacter_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ResPickCharacter_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -13855,7 +15563,7 @@ public final class Proto {
   static {
     java.lang.String[] descriptorData = {
       "\n\013Proto.proto\022\005proto\".\n\rPacketWrapper\022\035\n" +
-      "\006packet\030\001 \003(\0132\r.proto.Packet\"\272\004\n\006Packet\022" +
+      "\006packet\030\001 \003(\0132\r.proto.Packet\"\244\005\n\006Packet\022" +
       "#\n\010reqLogin\030\001 \001(\0132\017.proto.ReqLoginH\000\022\'\n\n" +
       "reqRelogin\030\002 \001(\0132\021.proto.ReqReloginH\000\022#\n" +
       "\010resLogin\030\003 \001(\0132\017.proto.ResLoginH\000\022%\n\tre" +
@@ -13869,28 +15577,34 @@ public final class Proto {
       "eUserInfo\030\n \001(\0132\030.proto.ReqUpdateUserInf" +
       "oH\000\0225\n\021reqLoadCharacters\030\013 \001(\0132\030.proto.R" +
       "eqLoadCharactersH\000\0225\n\021resLoadCharacters\030" +
-      "\014 \001(\0132\030.proto.ResLoadCharactersH\000B\006\n\004dat" +
-      "a\".\n\010ReqLogin\022\020\n\010username\030\001 \001(\t\022\020\n\010passw" +
-      "ord\030\002 \001(\t\"-\n\nReqRelogin\022\020\n\010username\030\001 \001(" +
-      "\t\022\r\n\005token\030\002 \001(\t\"D\n\010ResLogin\022\016\n\006status\030\001" +
-      " \001(\005\022\r\n\005token\030\002 \001(\t\022\031\n\004user\030\003 \001(\0132\013.prot" +
-      "o.User\"\036\n\014ResUserAlert\022\016\n\006status\030\001 \001(\005\"\013" +
-      "\n\tReqLogout\"\033\n\tResLogout\022\016\n\006status\030\001 \001(\005" +
-      "\"\"\n\021ReqForgotPassword\022\r\n\005email\030\001 \001(\t\"#\n\021" +
-      "ResForgotPassword\022\016\n\006status\030\001 \001(\005\"Q\n\013Req" +
-      "Register\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002" +
-      " \001(\t\022\017\n\007sponsor\030\003 \001(\t\022\r\n\005phone\030\004 \001(\t\"\035\n\013" +
-      "ResRegister\022\016\n\006status\030\001 \001(\005\"7\n\021ReqUpdate" +
-      "UserInfo\022\022\n\nplayerName\030\001 \001(\t\022\016\n\006gender\030\002" +
-      " \001(\005\"\257\001\n\004User\022\016\n\006userId\030\001 \001(\005\022\020\n\010usernam" +
-      "e\030\002 \001(\t\022\022\n\nplayerName\030\003 \001(\t\022\016\n\006gender\030\004 " +
-      "\001(\005\022\017\n\007sponsor\030\005 \001(\005\022\r\n\005email\030\006 \001(\t\022\r\n\005p" +
-      "hone\030\007 \001(\t\022\014\n\004gold\030\010 \001(\003\022\017\n\007diamond\030\t \001(" +
-      "\003\022\023\n\013agencyLevel\030\n \001(\005\"\023\n\021ReqLoadCharact" +
-      "ers\"8\n\021ResLoadCharacters\022#\n\tcharacter\030\001 " +
-      "\003(\0132\020.proto.Character\"H\n\tCharacter\022\n\n\002id" +
-      "\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\023\n\013de" +
-      "scription\030\004 \001(\tB%\n#vn.edu.nlu.fit.nlugam" +
+      "\014 \001(\0132\030.proto.ResLoadCharactersH\000\0223\n\020req" +
+      "PickCharacter\030\r \001(\0132\027.proto.ReqPickChara" +
+      "cterH\000\0223\n\020resPickCharacter\030\016 \001(\0132\027.proto" +
+      ".ResPickCharacterH\000B\006\n\004data\".\n\010ReqLogin\022" +
+      "\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"-\n\nR" +
+      "eqRelogin\022\020\n\010username\030\001 \001(\t\022\r\n\005token\030\002 \001" +
+      "(\t\"D\n\010ResLogin\022\016\n\006status\030\001 \001(\005\022\r\n\005token\030" +
+      "\002 \001(\t\022\031\n\004user\030\003 \001(\0132\013.proto.User\"\036\n\014ResU" +
+      "serAlert\022\016\n\006status\030\001 \001(\005\"\013\n\tReqLogout\"\033\n" +
+      "\tResLogout\022\016\n\006status\030\001 \001(\005\"\"\n\021ReqForgotP" +
+      "assword\022\r\n\005email\030\001 \001(\t\"#\n\021ResForgotPassw" +
+      "ord\022\016\n\006status\030\001 \001(\005\"`\n\013ReqRegister\022\020\n\010us" +
+      "ername\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\017\n\007sponso" +
+      "r\030\003 \001(\t\022\r\n\005phone\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\"\035\n" +
+      "\013ResRegister\022\016\n\006status\030\001 \001(\005\"7\n\021ReqUpdat" +
+      "eUserInfo\022\022\n\nplayerName\030\001 \001(\t\022\016\n\006gender\030" +
+      "\002 \001(\005\"\305\001\n\004User\022\016\n\006userId\030\001 \001(\005\022\020\n\010userna" +
+      "me\030\002 \001(\t\022\022\n\nplayerName\030\003 \001(\t\022\016\n\006gender\030\004" +
+      " \001(\005\022\017\n\007sponsor\030\005 \001(\005\022\r\n\005email\030\006 \001(\t\022\r\n\005" +
+      "phone\030\007 \001(\t\022\014\n\004gold\030\010 \001(\003\022\017\n\007diamond\030\t \001" +
+      "(\003\022\023\n\013agencyLevel\030\n \001(\005\022\024\n\014hasCharacter\030" +
+      "\013 \001(\005\"\023\n\021ReqLoadCharacters\"8\n\021ResLoadCha" +
+      "racters\022#\n\tcharacter\030\001 \003(\0132\020.proto.Chara" +
+      "cter\"H\n\tCharacter\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 " +
+      "\001(\t\022\014\n\004code\030\003 \001(\t\022\023\n\013description\030\004 \001(\t\";" +
+      "\n\020ReqPickCharacter\022\023\n\013characterId\030\001 \001(\005\022" +
+      "\022\n\nplayerName\030\002 \001(\t\"\"\n\020ResPickCharacter\022" +
+      "\016\n\006status\030\001 \001(\005B%\n#vn.edu.nlu.fit.nlugam" +
       "e.layer2.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
@@ -13908,7 +15622,7 @@ public final class Proto {
     internal_static_proto_Packet_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Packet_descriptor,
-        new java.lang.String[] { "ReqLogin", "ReqRelogin", "ResLogin", "ReqLogout", "ResLogout", "ReqForgotPassword", "ResForgotPassword", "ReqRegister", "ResRegister", "ReqUpdateUserInfo", "ReqLoadCharacters", "ResLoadCharacters", "Data", });
+        new java.lang.String[] { "ReqLogin", "ReqRelogin", "ResLogin", "ReqLogout", "ResLogout", "ReqForgotPassword", "ResForgotPassword", "ReqRegister", "ResRegister", "ReqUpdateUserInfo", "ReqLoadCharacters", "ResLoadCharacters", "ReqPickCharacter", "ResPickCharacter", "Data", });
     internal_static_proto_ReqLogin_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_proto_ReqLogin_fieldAccessorTable = new
@@ -13962,7 +15676,7 @@ public final class Proto {
     internal_static_proto_ReqRegister_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_ReqRegister_descriptor,
-        new java.lang.String[] { "Username", "Password", "Sponsor", "Phone", });
+        new java.lang.String[] { "Username", "Password", "Sponsor", "Phone", "Email", });
     internal_static_proto_ResRegister_descriptor =
       getDescriptor().getMessageTypes().get(11);
     internal_static_proto_ResRegister_fieldAccessorTable = new
@@ -13980,7 +15694,7 @@ public final class Proto {
     internal_static_proto_User_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_User_descriptor,
-        new java.lang.String[] { "UserId", "Username", "PlayerName", "Gender", "Sponsor", "Email", "Phone", "Gold", "Diamond", "AgencyLevel", });
+        new java.lang.String[] { "UserId", "Username", "PlayerName", "Gender", "Sponsor", "Email", "Phone", "Gold", "Diamond", "AgencyLevel", "HasCharacter", });
     internal_static_proto_ReqLoadCharacters_descriptor =
       getDescriptor().getMessageTypes().get(14);
     internal_static_proto_ReqLoadCharacters_fieldAccessorTable = new
@@ -13999,6 +15713,18 @@ public final class Proto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Character_descriptor,
         new java.lang.String[] { "Id", "Name", "Code", "Description", });
+    internal_static_proto_ReqPickCharacter_descriptor =
+      getDescriptor().getMessageTypes().get(17);
+    internal_static_proto_ReqPickCharacter_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ReqPickCharacter_descriptor,
+        new java.lang.String[] { "CharacterId", "PlayerName", });
+    internal_static_proto_ResPickCharacter_descriptor =
+      getDescriptor().getMessageTypes().get(18);
+    internal_static_proto_ResPickCharacter_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ResPickCharacter_descriptor,
+        new java.lang.String[] { "Status", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

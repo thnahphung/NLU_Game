@@ -11,10 +11,11 @@ export default class DataSender {
         WS.send(packet);
     }
 
-    public static sendReqSignUp(username: string, pass: string) {
+    public static sendReqSignUp(username: string, pass: string, email: string) {
         let reqRegister = new proto.ReqRegister();
         reqRegister.username = username;
         reqRegister.password = pass;
+        reqRegister.email = email;
         let packet = new proto.Packet();
         packet.reqRegister = reqRegister;
         WS.send(packet);
@@ -38,6 +39,14 @@ export default class DataSender {
         reqRelogin.token = token;
         let packet = new proto.Packet();
         packet.reqRelogin = reqRelogin;
+        WS.send(packet);
+    }
+    public static sendReqPickCharacter(characterPicked: number, playerName: string) {
+        let reqPickCharacter = new proto.ReqPickCharacter();
+        reqPickCharacter.characterId = characterPicked;
+        reqPickCharacter.playerName = playerName;
+        let packet = new proto.Packet();
+        packet.reqPickCharacter = reqPickCharacter;
         WS.send(packet);
     }
     public static send(data: any) {

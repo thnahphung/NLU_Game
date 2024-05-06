@@ -20,7 +20,7 @@ export const languages = {
     setting_notify: "Notification",
     setting_language: "Language",
     setting_language_current: "English",
-    setting_language_vietnamese: "Vietnamese",
+    setting_language_vietnamese: "Tiếng Việt",
     setting_language_english: "English",
     //pick character
     pick_character_title: "Pick character",
