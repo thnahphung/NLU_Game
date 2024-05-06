@@ -14,6 +14,9 @@ const { ccclass, property } = _decorator;
 @ccclass("AudioManger")
 export class AudioManger {
   private static _instance: AudioManger;
+  private _audioSource: AudioSource;
+  private MUSIC_VOLUME_RATE: number = 0.5;
+
   public static me(): AudioManger {
     if (this._instance == null) {
       this._instance = new AudioManger();
@@ -21,12 +24,9 @@ export class AudioManger {
     return this._instance;
   }
 
-  private _audioSource: AudioSource;
-  private MUSIC_VOLUME_RATE: number = 0.5;
-
   constructor() {
     let audioManager = new Node();
-    audioManager.name = "__audioManager__";
+    audioManager.name = "__AudioManager__";
 
     //them node vao scene
     director.getScene().addChild(audioManager);

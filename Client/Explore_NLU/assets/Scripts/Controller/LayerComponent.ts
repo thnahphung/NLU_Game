@@ -4,7 +4,7 @@ const { ccclass, property } = _decorator;
 @ccclass("LayerComponent")
 export class LayerComponent extends Component {
   @property
-  public isDynamic: boolean = false;
+  private isDynamic: boolean = false;
   start() {
     this.node.getComponent(UITransform).priority = -this.node.position.y;
   }
