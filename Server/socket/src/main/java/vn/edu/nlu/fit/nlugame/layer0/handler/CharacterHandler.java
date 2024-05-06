@@ -15,8 +15,13 @@ public class CharacterHandler implements Subscriber{
     @Override
     public void onMessage(Session session, Proto.PacketWrapper packetWrapper) {
         packetWrapper.getPacketList().forEach(packet -> {
-            if (packet.hasReqLoadCharacters()) {
-                CharacterService.me().loadCharactes(session, packet.getReqLogin());
+            switch (packet.getDataCase()) {
+                case REQLOADCHARACTERS:
+                    CharacterService.me().loadCharactes(session);
+                    break;
+                case REQPICKCHARACTER:
+                    CharacterService.me().pickCharacter(session, packet.getReqPickCharacter());
+                    break;
             }
         });
     }

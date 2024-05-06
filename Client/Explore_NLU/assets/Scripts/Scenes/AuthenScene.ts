@@ -2,7 +2,7 @@ import { _decorator, instantiate, Node, Prefab, Toggle } from "cc";
 import AbsScene from "./AbsScene";
 import { PopupComponent } from "../Controller/PopupComponent";
 import DataSender from "../Utils/DataSender";
-import { TransitionScenePrefab } from "../Others/TransitionScenePrefab";
+import { TransitionScenePrefab } from "../Prefabs/TransitionScene/TransitionScenePrefab";
 import { StorageManager } from "../Manager/StorageManger";
 const { ccclass, property } = _decorator;
 
@@ -22,11 +22,18 @@ export class AuthenScene extends AbsScene {
   // Khai bao transitScreen
   @property(Prefab)
   public transitScreen: Prefab = null;
+  // Khai bao transitScreen
+  @property(Prefab)
+  public popupLoading: Prefab = null;
   // Khai bao setting
   @property(Prefab)
   public popupSetting: Prefab = null;
-
-  start() {}
+  public popupLoadingNode: Node = null;
+  start() {
+    this.popupLoadingNode = instantiate(this.popupLoading)
+    this.popupLoadingNode.active = false;
+    this.node.addChild(this.popupLoadingNode);
+  }
   protected onLoad(): void {
     let username = StorageManager.me().getItem("USERNAME");
     let token = StorageManager.me().getItem("TOKEN");
@@ -34,14 +41,12 @@ export class AuthenScene extends AbsScene {
     if (autoLogin == "true" && username && token) {
       console.log("Relogin ...::", username, token);
       DataSender.sendReqRelogin(username, token);
-    } else {
-      console.log("No auto login", username, token, autoLogin);
     }
-    console.log("AuthenScene", this.transitScreen);
   }
 
   onMessageHandler(packets: proto.IPacketWrapper): void {
     let transitScreenNode = instantiate(this.transitScreen);
+    this.popupLoadingNode.active = false;
     super.onMessageHandler(packets);
     packets.packet.forEach((packet) => {
       let resLogin = packet.resLogin;
@@ -72,10 +77,19 @@ export class AuthenScene extends AbsScene {
           StorageManager.me().saveItem("AUTO_LOGIN", this.rememberMe.isChecked);
           StorageManager.me().saveItem("TOKEN", resLogin.token);
           //Chuyển scene
-          transitScreenNode
+          var hasCharacter = packet.resLogin.user.hasCharacter;
+          console.log("hasCharacter", hasCharacter);
+          if (hasCharacter == 0) {
+            transitScreenNode
+              .getComponent(TransitionScenePrefab)
+              .setSceneName("PickCharacterScene");
+              this.node.addChild(transitScreenNode);
+          } else {
+            transitScreenNode
             .getComponent(TransitionScenePrefab)
-            .setSceneName("scene-2d-test");
-          this.node.addChild(transitScreenNode);
+            .setSceneName("KiotScene");
+            this.node.addChild(transitScreenNode);
+          }
         }
       }
       let resRegister = packet.resRegister;
@@ -83,7 +97,9 @@ export class AuthenScene extends AbsScene {
         if (resRegister.status === 400) {
           confirm("Tên đăng nhập đã tồn tại!");
         } else if (resRegister.status === 401) {
-          confirm("Tên đăng nhập hoặc mật khẩu không được để trống!");
+          confirm("Tên đăng nhập hoặc mật khẩu không thể để trống!");
+        } else if (resRegister.status === 403) {
+          confirm("Email này đã được sử dụng!");
         } else if (resRegister.status === 402) {
           confirm("Mật khẩu không trùng khớp!");
         } else if (resRegister.status === 500) {

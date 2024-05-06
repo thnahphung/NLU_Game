@@ -31,14 +31,14 @@ public class AuthService {
             sendResponse(session, Proto.Packet.newBuilder().setResRegister(Proto.ResRegister.newBuilder().setStatus(401)).build());
             return;
         }
-        //Check username da ton tai chua
-        if(UserDAO.getUser(reqRegister.getUsername()) != null){
-            System.out.println(UserDAO.getUser(reqRegister.getUsername()));
-            sendResponse(session, Proto.Packet.newBuilder().setResRegister(Proto.ResRegister.newBuilder().setStatus(400)).build());
+        //Check username va email da ton tai chua
+        int checkResult = UserDAO.checkUserRegister(reqRegister.getUsername(), reqRegister.getEmail());
+        if(checkResult != 200){
+            sendResponse(session, Proto.Packet.newBuilder().setResRegister(Proto.ResRegister.newBuilder().setStatus(checkResult)).build());
             return;
         }
         //Insert user
-        int statusInsertUser =  UserDAO.insertRegisterUser(reqRegister.getUsername(), reqRegister.getPassword());
+        int statusInsertUser =  UserDAO.insertRegisterUser(reqRegister.getUsername(), reqRegister.getPassword(), reqRegister.getEmail());
         sendResponse(session, Proto.Packet.newBuilder().setResRegister(Proto.ResRegister.newBuilder().setStatus(statusInsertUser)).build());
     }
 
@@ -74,7 +74,7 @@ public class AuthService {
         UserCache.me().addUserOnline(user, SessionID.of(session).getSessionId());
         //Token
         String reloginToken = UUID.randomUUID().toString();
-        UserDAO.updateReloginToken(user.getGender(), reloginToken);
+        UserDAO.updateReloginToken(user.getUserId(), reloginToken);
         //Send response
         sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setUser(user).setToken(reloginToken).setStatus(200)).build());
     }
@@ -82,12 +82,20 @@ public class AuthService {
     public void checkReLogin(Session session, Proto.ReqRelogin reqRelogin) {
         UserBean userBean = UserDAO.getUser(reqRelogin.getUsername());
         //Check null param
-        if(userBean == null || reqRelogin.getToken() == null || reqRelogin.equals(userBean.getReLoginToken())){
-            sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(403).build()).build());
+        if(userBean == null || reqRelogin.getToken() == null){
             return;
         }
+        if(!reqRelogin.getToken().equals(userBean.getReLoginToken())){
+            System.out.println("Token: "+ userBean.getReLoginToken() + ", " + reqRelogin.getToken());
+            return;
+            //sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(500).build()).build());
+        }
         //Check login other device
-        Proto.User userProto = Proto.User.newBuilder().setUserId(userBean.getId()).setUsername(userBean.getUsername()).build();
+        Proto.User userProto = Proto.User.newBuilder()
+                .setUserId(userBean.getId())
+                .setUsername(userBean.getUsername())
+                .setHasCharacter(userBean.getHasCharacter())
+                .build();
         if(checkLoginOtherDevice(userProto)){
             sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(403).build()).build());
             return;
@@ -105,6 +113,7 @@ public class AuthService {
             return;
         }
         UserCache.me().logoutUser(userID);
+        UserDAO.updateReloginToken(userID, null);
         sendResponse(session, Proto.Packet.newBuilder().setResLogout(Proto.ResLogout.newBuilder().setStatus(200)).build());
     }
 
