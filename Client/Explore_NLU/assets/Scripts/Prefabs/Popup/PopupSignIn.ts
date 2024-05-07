@@ -1,6 +1,7 @@
 import { _decorator, EditBox, find, instantiate, Prefab } from 'cc';
 import AbsScene from '../../Scenes/AbsScene';
 import DataSender from '../../Utils/DataSender';
+import { PopupManager } from '../../Manager/PopupManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('PopupSignIn')
@@ -22,7 +23,7 @@ export class PopupSignIn extends AbsScene {
     onClickLoginReq(){
         //Check không để trống username hoặc password
         if(this.usernameLogin.string === '' || this.passwordLogin.string === ''){
-           confirm("Tên đăng nhập hoặc mật khẩu không thể trống!");
+           PopupManager.me().showPopupMessage("Tên đăng nhập hoặc mật khẩu không thể trống!");
            return;
         }
        //Xử lý khi click login
