@@ -1,6 +1,7 @@
 import { _decorator, EditBox, find, Node, Prefab } from 'cc';
 import AbsScene from '../../Scenes/AbsScene';
 import DataSender from '../../Utils/DataSender';
+import { PopupManager } from '../../Manager/PopupManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('PopupSignUp')
@@ -27,20 +28,30 @@ export class PopupSignUp extends AbsScene {
 
     onClickRegisterReq(){
         //Check không để trống username hoặc password
-        if(this.usernameRegister.string === '' || this.passwordRegister.string === '' || this.rePasswordRegister.string === ''){
-            confirm("Tên đăng nhập hoặc mật khẩu không được để trống!");
+        var username = this.usernameRegister.string.trim();
+        var password = this.passwordRegister.string;
+        var rePassword = this.rePasswordRegister.string;
+        var email = this.emailRegister.string;
+        if(username === '' || password === '' || this.rePasswordRegister.string === ''){
+            PopupManager.me().showPopupMessage("Tên đăng nhập hoặc mật khẩu không được để trống!");
+            return;
+        }
+        
+        //Check valid username
+        if(this.hasSpace(username)){
+            PopupManager.me().showPopupMessage("Tên đăng nhập không được chưa khoảng trắng!");
             return;
         }
 
         //Check không trùng khớp mật khẩu
-        if(this.passwordRegister.string !== this.rePasswordRegister.string){
-            confirm("Mật khẩu không trùng khớp!");
+        if(password !== rePassword){
+            PopupManager.me().showPopupMessage("Mật khẩu không trùng khớp!");
             return;
         }
 
         //Check verify email
-        if(!this.isEmail(this.emailRegister.string)){
-            confirm("Email không hợp lệ!");
+        if(!this.isEmail(email)){
+            PopupManager.me().showPopupMessage("Email không hợp lệ!");
             return;
         }
 
@@ -48,7 +59,7 @@ export class PopupSignUp extends AbsScene {
         if(popupLoadingNode){
              popupLoadingNode.active = true;
         }
-        DataSender.sendReqSignUp(this.usernameRegister.string, this.passwordRegister.string, this.emailRegister.string);
+        DataSender.sendReqSignUp(username, password, email);
     }
 
     isEmail(search:string): boolean {
@@ -58,6 +69,9 @@ export class PopupSignUp extends AbsScene {
         return serchfind
     }
 
+    hasSpace(str: string): boolean {
+        return /\s/.test(str);
+    }
 }
 
 

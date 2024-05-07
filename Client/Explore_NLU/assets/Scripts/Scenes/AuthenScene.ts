@@ -4,6 +4,7 @@ import { PopupComponent } from "../Controller/PopupComponent";
 import DataSender from "../Utils/DataSender";
 import { TransitionScenePrefab } from "../Prefabs/TransitionScene/TransitionScenePrefab";
 import { StorageManager } from "../Manager/StorageManger";
+import { PopupManager } from "../Manager/PopupManager";
 const { ccclass, property } = _decorator;
 
 @ccclass("AuthenScene")
@@ -33,7 +34,7 @@ export class AuthenScene extends AbsScene {
   }
   protected onLoad(): void {
     this.popupLoadingNode = instantiate(this.popupLoading)
-    this.popupLoadingNode.active = true;
+    this.popupLoadingNode.active = false;
     this.node.addChild(this.popupLoadingNode);
     let username = StorageManager.me().getItem("USERNAME");
     let token = StorageManager.me().getItem("TOKEN");
@@ -41,8 +42,8 @@ export class AuthenScene extends AbsScene {
     if (autoLogin == "true" && username && token) {
       this.popupGeneral.active = false;
       DataSender.sendReqRelogin(username, token);
+      this.popupLoadingNode.active = true;
     }
-    this.popupLoadingNode.active = false;
   }
 
   onMessageHandler(packets: proto.IPacketWrapper): void {
@@ -53,7 +54,7 @@ export class AuthenScene extends AbsScene {
       let resLogin = packet.resLogin;
       if (resLogin) {
         if (resLogin.status === 400) {
-          confirm("Tên đăng nhập hoặc mật khẩu không đúng!");
+          PopupManager.me().showPopupMessage("Tên đăng nhập hoặc mật khẩu không đúng!");
           return;
         }
         if (resLogin.status === 401) {
@@ -62,19 +63,18 @@ export class AuthenScene extends AbsScene {
           return;
         }        
         if (resLogin.status === 402) {
-          confirm("Tài khoản đã bị khóa!");
+          PopupManager.me().showPopupMessage("Tài khoản đã bị khóa!");
           return;
         }
         if (resLogin.status === 403) {
-          confirm("Tài khoản đang đăng nhập ở thiết bị khác!");
+          PopupManager.me().showPopupMessage("Tài khoản đang đăng nhập ở thiết bị khác!");
           return;
         }
         if (resLogin.status === 500) {
-          confirm("Lỗi server!");
+          PopupManager.me().showPopupMessage("Lỗi server!");
           return;
         }
         if (resLogin.status === 200) {
-          console.log("Đăng nhập thành công!");
           //RememberLogin
           StorageManager.me().saveItem(
             "USERNAME",
@@ -101,17 +101,17 @@ export class AuthenScene extends AbsScene {
       let resRegister = packet.resRegister;
       if (resRegister) {
         if (resRegister.status === 400) {
-          confirm("Tên đăng nhập đã tồn tại!");
+          PopupManager.me().showPopupMessage("Tên đăng nhập đã tồn tại!");
         } else if (resRegister.status === 401) {
-          confirm("Tên đăng nhập hoặc mật khẩu không thể để trống!");
+          PopupManager.me().showPopupMessage("Tên đăng nhập hoặc mật khẩu không thể để trống!");
         } else if (resRegister.status === 403) {
-          confirm("Email này đã được sử dụng!");
+          PopupManager.me().showPopupMessage("Email này đã được sử dụng!");
         } else if (resRegister.status === 402) {
-          confirm("Mật khẩu không trùng khớp!");
+          PopupManager.me().showPopupMessage("Mật khẩu không trùng khớp!");
         } else if (resRegister.status === 500) {
-          confirm("Lỗi server!");
+          PopupManager.me().showPopupMessage("Lỗi server!");
         } else if (resRegister.status === 200) {
-          confirm("Đăng ký thành công!");
+          PopupManager.me().showPopupMessage("Đăng ký thành công!");
         }
       }
     });
