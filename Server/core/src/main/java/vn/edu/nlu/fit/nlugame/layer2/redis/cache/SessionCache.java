@@ -10,7 +10,7 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class SessionCache extends RedisClusterHelper implements ICache<SessionContext> {
+public class SessionCache extends RedisClusterHelper implements ICache<SessionContext,String> {
     private static final String SESSION_KEY = "sessions";
     private static final SessionCache instance = new SessionCache();
 
@@ -21,25 +21,52 @@ public class SessionCache extends RedisClusterHelper implements ICache<SessionCo
         return instance;
     }
 
-    @Override
-    public void add(Object key, SessionContext value) {
 
+    @Override
+    public boolean add(String key, SessionContext value) {
+        return false;
     }
 
     @Override
-    public SessionContext get(Object key) {
+    public boolean add(SessionContext value) {
+        return false;
+    }
 
+    @Override
+    public SessionContext get(String key) {
         return null;
     }
+
     @Override
     public List<SessionContext> getAll() {
         return null;
     }
 
     @Override
-    public void remove(Object sessionID) {
+    public Set<String> getKeys() {
+        return null;
+    }
+
+    @Override
+    public SessionContext remove(String key) {
+        return null;
+    }
+
+    @Override
+    public boolean containsKey(String key) {
+        return false;
+    }
+
+    @Override
+    public void clear() {
 
     }
+
+    @Override
+    public String getKey(SessionContext value) {
+        return null;
+    }
+
     public void addSession(SessionID sessionID){
         if (sessionID == null) return;
         getConnection().hset(SESSION_KEY.getBytes(), sessionID.getSessionId().getBytes(), CompressUtils.compress(SessionContext.builder().build()));
@@ -64,4 +91,5 @@ public class SessionCache extends RedisClusterHelper implements ICache<SessionCo
         SessionContext sessionContext = SessionContext.builder().build();
         System.out.println(SessionCache.me().getUserID(SessionID.of("1")));
     }
+
 }

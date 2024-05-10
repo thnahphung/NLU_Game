@@ -17,9 +17,11 @@ export class PopupManager extends Component {
   }
 
   protected onLoad(): void {
-    console.log("PopupManager loaded");
-    if (PopupManager._instance != null)
+    if (PopupManager._instance != null) {
       console.log("Only 1 PopupManager allow to exist");
+      this.node.destroy();
+      return;
+    }
     PopupManager._instance = this;
     director.addPersistRootNode(this.node);
   }
