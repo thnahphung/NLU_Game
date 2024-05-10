@@ -261,6 +261,9 @@
              * @property {proto.IResLoadCharacters|null} [resLoadCharacters] Packet resLoadCharacters
              * @property {proto.IReqPickCharacter|null} [reqPickCharacter] Packet reqPickCharacter
              * @property {proto.IResPickCharacter|null} [resPickCharacter] Packet resPickCharacter
+             * @property {proto.IReqPlayerJoinArea|null} [reqPlayerJoinArea] Packet reqPlayerJoinArea
+             * @property {proto.IResPlayerJoinArea|null} [resPlayerJoinArea] Packet resPlayerJoinArea
+             * @property {proto.IResOtherPlayerJoinArea|null} [resOtherPlayerJoinArea] Packet resOtherPlayerJoinArea
              */
     
             /**
@@ -390,17 +393,41 @@
              */
             Packet.prototype.resPickCharacter = null;
     
+            /**
+             * Packet reqPlayerJoinArea.
+             * @member {proto.IReqPlayerJoinArea|null|undefined} reqPlayerJoinArea
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqPlayerJoinArea = null;
+    
+            /**
+             * Packet resPlayerJoinArea.
+             * @member {proto.IResPlayerJoinArea|null|undefined} resPlayerJoinArea
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resPlayerJoinArea = null;
+    
+            /**
+             * Packet resOtherPlayerJoinArea.
+             * @member {proto.IResOtherPlayerJoinArea|null|undefined} resOtherPlayerJoinArea
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resOtherPlayerJoinArea = null;
+    
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
     
             /**
              * Packet data.
-             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|undefined} data
+             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|undefined} data
              * @memberof proto.Packet
              * @instance
              */
             Object.defineProperty(Packet.prototype, "data", {
-                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter"]),
+                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter", "reqPlayerJoinArea", "resPlayerJoinArea", "resOtherPlayerJoinArea"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
     
@@ -456,6 +483,12 @@
                     $root.proto.ReqPickCharacter.encode(message.reqPickCharacter, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
                 if (message.resPickCharacter != null && Object.hasOwnProperty.call(message, "resPickCharacter"))
                     $root.proto.ResPickCharacter.encode(message.resPickCharacter, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
+                if (message.reqPlayerJoinArea != null && Object.hasOwnProperty.call(message, "reqPlayerJoinArea"))
+                    $root.proto.ReqPlayerJoinArea.encode(message.reqPlayerJoinArea, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
+                if (message.resPlayerJoinArea != null && Object.hasOwnProperty.call(message, "resPlayerJoinArea"))
+                    $root.proto.ResPlayerJoinArea.encode(message.resPlayerJoinArea, writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
+                if (message.resOtherPlayerJoinArea != null && Object.hasOwnProperty.call(message, "resOtherPlayerJoinArea"))
+                    $root.proto.ResOtherPlayerJoinArea.encode(message.resOtherPlayerJoinArea, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
                 return writer;
             };
     
@@ -544,6 +577,18 @@
                         }
                     case 14: {
                             message.resPickCharacter = $root.proto.ResPickCharacter.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 15: {
+                            message.reqPlayerJoinArea = $root.proto.ReqPlayerJoinArea.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 16: {
+                            message.resPlayerJoinArea = $root.proto.ResPlayerJoinArea.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 17: {
+                            message.resOtherPlayerJoinArea = $root.proto.ResOtherPlayerJoinArea.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -720,6 +765,36 @@
                             return "resPickCharacter." + error;
                     }
                 }
+                if (message.reqPlayerJoinArea != null && message.hasOwnProperty("reqPlayerJoinArea")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqPlayerJoinArea.verify(message.reqPlayerJoinArea);
+                        if (error)
+                            return "reqPlayerJoinArea." + error;
+                    }
+                }
+                if (message.resPlayerJoinArea != null && message.hasOwnProperty("resPlayerJoinArea")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResPlayerJoinArea.verify(message.resPlayerJoinArea);
+                        if (error)
+                            return "resPlayerJoinArea." + error;
+                    }
+                }
+                if (message.resOtherPlayerJoinArea != null && message.hasOwnProperty("resOtherPlayerJoinArea")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResOtherPlayerJoinArea.verify(message.resOtherPlayerJoinArea);
+                        if (error)
+                            return "resOtherPlayerJoinArea." + error;
+                    }
+                }
                 return null;
             };
     
@@ -804,6 +879,21 @@
                     if (typeof object.resPickCharacter !== "object")
                         throw TypeError(".proto.Packet.resPickCharacter: object expected");
                     message.resPickCharacter = $root.proto.ResPickCharacter.fromObject(object.resPickCharacter);
+                }
+                if (object.reqPlayerJoinArea != null) {
+                    if (typeof object.reqPlayerJoinArea !== "object")
+                        throw TypeError(".proto.Packet.reqPlayerJoinArea: object expected");
+                    message.reqPlayerJoinArea = $root.proto.ReqPlayerJoinArea.fromObject(object.reqPlayerJoinArea);
+                }
+                if (object.resPlayerJoinArea != null) {
+                    if (typeof object.resPlayerJoinArea !== "object")
+                        throw TypeError(".proto.Packet.resPlayerJoinArea: object expected");
+                    message.resPlayerJoinArea = $root.proto.ResPlayerJoinArea.fromObject(object.resPlayerJoinArea);
+                }
+                if (object.resOtherPlayerJoinArea != null) {
+                    if (typeof object.resOtherPlayerJoinArea !== "object")
+                        throw TypeError(".proto.Packet.resOtherPlayerJoinArea: object expected");
+                    message.resOtherPlayerJoinArea = $root.proto.ResOtherPlayerJoinArea.fromObject(object.resOtherPlayerJoinArea);
                 }
                 return message;
             };
@@ -891,6 +981,21 @@
                     if (options.oneofs)
                         object.data = "resPickCharacter";
                 }
+                if (message.reqPlayerJoinArea != null && message.hasOwnProperty("reqPlayerJoinArea")) {
+                    object.reqPlayerJoinArea = $root.proto.ReqPlayerJoinArea.toObject(message.reqPlayerJoinArea, options);
+                    if (options.oneofs)
+                        object.data = "reqPlayerJoinArea";
+                }
+                if (message.resPlayerJoinArea != null && message.hasOwnProperty("resPlayerJoinArea")) {
+                    object.resPlayerJoinArea = $root.proto.ResPlayerJoinArea.toObject(message.resPlayerJoinArea, options);
+                    if (options.oneofs)
+                        object.data = "resPlayerJoinArea";
+                }
+                if (message.resOtherPlayerJoinArea != null && message.hasOwnProperty("resOtherPlayerJoinArea")) {
+                    object.resOtherPlayerJoinArea = $root.proto.ResOtherPlayerJoinArea.toObject(message.resOtherPlayerJoinArea, options);
+                    if (options.oneofs)
+                        object.data = "resOtherPlayerJoinArea";
+                }
                 return object;
             };
     
@@ -921,6 +1026,1060 @@
             };
     
             return Packet;
+        })();
+    
+        proto.User = (function() {
+    
+            /**
+             * Properties of a User.
+             * @memberof proto
+             * @interface IUser
+             * @property {number|null} [userId] User userId
+             * @property {string|null} [username] User username
+             * @property {string|null} [playerName] User playerName
+             * @property {number|null} [gender] User gender
+             * @property {number|null} [sponsor] User sponsor
+             * @property {string|null} [email] User email
+             * @property {string|null} [phone] User phone
+             * @property {number|Long|null} [gold] User gold
+             * @property {number|Long|null} [diamond] User diamond
+             * @property {number|null} [agencyLevel] User agencyLevel
+             * @property {number|null} [hasCharacter] User hasCharacter
+             */
+    
+            /**
+             * Constructs a new User.
+             * @memberof proto
+             * @classdesc Represents a User.
+             * @implements IUser
+             * @constructor
+             * @param {proto.IUser=} [properties] Properties to set
+             */
+            function User(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * User userId.
+             * @member {number} userId
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.userId = 0;
+    
+            /**
+             * User username.
+             * @member {string} username
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.username = "";
+    
+            /**
+             * User playerName.
+             * @member {string} playerName
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.playerName = "";
+    
+            /**
+             * User gender.
+             * @member {number} gender
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.gender = 0;
+    
+            /**
+             * User sponsor.
+             * @member {number} sponsor
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.sponsor = 0;
+    
+            /**
+             * User email.
+             * @member {string} email
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.email = "";
+    
+            /**
+             * User phone.
+             * @member {string} phone
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.phone = "";
+    
+            /**
+             * User gold.
+             * @member {number|Long} gold
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.gold = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+            /**
+             * User diamond.
+             * @member {number|Long} diamond
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.diamond = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+            /**
+             * User agencyLevel.
+             * @member {number} agencyLevel
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.agencyLevel = 0;
+    
+            /**
+             * User hasCharacter.
+             * @member {number} hasCharacter
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.hasCharacter = 0;
+    
+            /**
+             * Creates a new User instance using the specified properties.
+             * @function create
+             * @memberof proto.User
+             * @static
+             * @param {proto.IUser=} [properties] Properties to set
+             * @returns {proto.User} User instance
+             */
+            User.create = function create(properties) {
+                return new User(properties);
+            };
+    
+            /**
+             * Encodes the specified User message. Does not implicitly {@link proto.User.verify|verify} messages.
+             * @function encode
+             * @memberof proto.User
+             * @static
+             * @param {proto.IUser} message User message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            User.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.userId);
+                if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.username);
+                if (message.playerName != null && Object.hasOwnProperty.call(message, "playerName"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.playerName);
+                if (message.gender != null && Object.hasOwnProperty.call(message, "gender"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).int32(message.gender);
+                if (message.sponsor != null && Object.hasOwnProperty.call(message, "sponsor"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.sponsor);
+                if (message.email != null && Object.hasOwnProperty.call(message, "email"))
+                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.email);
+                if (message.phone != null && Object.hasOwnProperty.call(message, "phone"))
+                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.phone);
+                if (message.gold != null && Object.hasOwnProperty.call(message, "gold"))
+                    writer.uint32(/* id 8, wireType 0 =*/64).int64(message.gold);
+                if (message.diamond != null && Object.hasOwnProperty.call(message, "diamond"))
+                    writer.uint32(/* id 9, wireType 0 =*/72).int64(message.diamond);
+                if (message.agencyLevel != null && Object.hasOwnProperty.call(message, "agencyLevel"))
+                    writer.uint32(/* id 10, wireType 0 =*/80).int32(message.agencyLevel);
+                if (message.hasCharacter != null && Object.hasOwnProperty.call(message, "hasCharacter"))
+                    writer.uint32(/* id 11, wireType 0 =*/88).int32(message.hasCharacter);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified User message, length delimited. Does not implicitly {@link proto.User.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.User
+             * @static
+             * @param {proto.IUser} message User message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            User.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a User message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.User
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.User} User
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            User.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.User();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.userId = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.username = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.playerName = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            message.gender = reader.int32();
+                            break;
+                        }
+                    case 5: {
+                            message.sponsor = reader.int32();
+                            break;
+                        }
+                    case 6: {
+                            message.email = reader.string();
+                            break;
+                        }
+                    case 7: {
+                            message.phone = reader.string();
+                            break;
+                        }
+                    case 8: {
+                            message.gold = reader.int64();
+                            break;
+                        }
+                    case 9: {
+                            message.diamond = reader.int64();
+                            break;
+                        }
+                    case 10: {
+                            message.agencyLevel = reader.int32();
+                            break;
+                        }
+                    case 11: {
+                            message.hasCharacter = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a User message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.User
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.User} User
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            User.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a User message.
+             * @function verify
+             * @memberof proto.User
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            User.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.userId != null && message.hasOwnProperty("userId"))
+                    if (!$util.isInteger(message.userId))
+                        return "userId: integer expected";
+                if (message.username != null && message.hasOwnProperty("username"))
+                    if (!$util.isString(message.username))
+                        return "username: string expected";
+                if (message.playerName != null && message.hasOwnProperty("playerName"))
+                    if (!$util.isString(message.playerName))
+                        return "playerName: string expected";
+                if (message.gender != null && message.hasOwnProperty("gender"))
+                    if (!$util.isInteger(message.gender))
+                        return "gender: integer expected";
+                if (message.sponsor != null && message.hasOwnProperty("sponsor"))
+                    if (!$util.isInteger(message.sponsor))
+                        return "sponsor: integer expected";
+                if (message.email != null && message.hasOwnProperty("email"))
+                    if (!$util.isString(message.email))
+                        return "email: string expected";
+                if (message.phone != null && message.hasOwnProperty("phone"))
+                    if (!$util.isString(message.phone))
+                        return "phone: string expected";
+                if (message.gold != null && message.hasOwnProperty("gold"))
+                    if (!$util.isInteger(message.gold) && !(message.gold && $util.isInteger(message.gold.low) && $util.isInteger(message.gold.high)))
+                        return "gold: integer|Long expected";
+                if (message.diamond != null && message.hasOwnProperty("diamond"))
+                    if (!$util.isInteger(message.diamond) && !(message.diamond && $util.isInteger(message.diamond.low) && $util.isInteger(message.diamond.high)))
+                        return "diamond: integer|Long expected";
+                if (message.agencyLevel != null && message.hasOwnProperty("agencyLevel"))
+                    if (!$util.isInteger(message.agencyLevel))
+                        return "agencyLevel: integer expected";
+                if (message.hasCharacter != null && message.hasOwnProperty("hasCharacter"))
+                    if (!$util.isInteger(message.hasCharacter))
+                        return "hasCharacter: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a User message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.User
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.User} User
+             */
+            User.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.User)
+                    return object;
+                var message = new $root.proto.User();
+                if (object.userId != null)
+                    message.userId = object.userId | 0;
+                if (object.username != null)
+                    message.username = String(object.username);
+                if (object.playerName != null)
+                    message.playerName = String(object.playerName);
+                if (object.gender != null)
+                    message.gender = object.gender | 0;
+                if (object.sponsor != null)
+                    message.sponsor = object.sponsor | 0;
+                if (object.email != null)
+                    message.email = String(object.email);
+                if (object.phone != null)
+                    message.phone = String(object.phone);
+                if (object.gold != null)
+                    if ($util.Long)
+                        (message.gold = $util.Long.fromValue(object.gold)).unsigned = false;
+                    else if (typeof object.gold === "string")
+                        message.gold = parseInt(object.gold, 10);
+                    else if (typeof object.gold === "number")
+                        message.gold = object.gold;
+                    else if (typeof object.gold === "object")
+                        message.gold = new $util.LongBits(object.gold.low >>> 0, object.gold.high >>> 0).toNumber();
+                if (object.diamond != null)
+                    if ($util.Long)
+                        (message.diamond = $util.Long.fromValue(object.diamond)).unsigned = false;
+                    else if (typeof object.diamond === "string")
+                        message.diamond = parseInt(object.diamond, 10);
+                    else if (typeof object.diamond === "number")
+                        message.diamond = object.diamond;
+                    else if (typeof object.diamond === "object")
+                        message.diamond = new $util.LongBits(object.diamond.low >>> 0, object.diamond.high >>> 0).toNumber();
+                if (object.agencyLevel != null)
+                    message.agencyLevel = object.agencyLevel | 0;
+                if (object.hasCharacter != null)
+                    message.hasCharacter = object.hasCharacter | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a User message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.User
+             * @static
+             * @param {proto.User} message User
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            User.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.userId = 0;
+                    object.username = "";
+                    object.playerName = "";
+                    object.gender = 0;
+                    object.sponsor = 0;
+                    object.email = "";
+                    object.phone = "";
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.gold = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.gold = options.longs === String ? "0" : 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.diamond = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.diamond = options.longs === String ? "0" : 0;
+                    object.agencyLevel = 0;
+                    object.hasCharacter = 0;
+                }
+                if (message.userId != null && message.hasOwnProperty("userId"))
+                    object.userId = message.userId;
+                if (message.username != null && message.hasOwnProperty("username"))
+                    object.username = message.username;
+                if (message.playerName != null && message.hasOwnProperty("playerName"))
+                    object.playerName = message.playerName;
+                if (message.gender != null && message.hasOwnProperty("gender"))
+                    object.gender = message.gender;
+                if (message.sponsor != null && message.hasOwnProperty("sponsor"))
+                    object.sponsor = message.sponsor;
+                if (message.email != null && message.hasOwnProperty("email"))
+                    object.email = message.email;
+                if (message.phone != null && message.hasOwnProperty("phone"))
+                    object.phone = message.phone;
+                if (message.gold != null && message.hasOwnProperty("gold"))
+                    if (typeof message.gold === "number")
+                        object.gold = options.longs === String ? String(message.gold) : message.gold;
+                    else
+                        object.gold = options.longs === String ? $util.Long.prototype.toString.call(message.gold) : options.longs === Number ? new $util.LongBits(message.gold.low >>> 0, message.gold.high >>> 0).toNumber() : message.gold;
+                if (message.diamond != null && message.hasOwnProperty("diamond"))
+                    if (typeof message.diamond === "number")
+                        object.diamond = options.longs === String ? String(message.diamond) : message.diamond;
+                    else
+                        object.diamond = options.longs === String ? $util.Long.prototype.toString.call(message.diamond) : options.longs === Number ? new $util.LongBits(message.diamond.low >>> 0, message.diamond.high >>> 0).toNumber() : message.diamond;
+                if (message.agencyLevel != null && message.hasOwnProperty("agencyLevel"))
+                    object.agencyLevel = message.agencyLevel;
+                if (message.hasCharacter != null && message.hasOwnProperty("hasCharacter"))
+                    object.hasCharacter = message.hasCharacter;
+                return object;
+            };
+    
+            /**
+             * Converts this User to JSON.
+             * @function toJSON
+             * @memberof proto.User
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            User.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for User
+             * @function getTypeUrl
+             * @memberof proto.User
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            User.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.User";
+            };
+    
+            return User;
+        })();
+    
+        proto.Player = (function() {
+    
+            /**
+             * Properties of a Player.
+             * @memberof proto
+             * @interface IPlayer
+             * @property {number|null} [playerId] Player playerId
+             * @property {string|null} [playerName] Player playerName
+             * @property {number|null} [characterId] Player characterId
+             * @property {number|null} [level] Player level
+             * @property {number|null} [userId] Player userId
+             * @property {number|null} [areaId] Player areaId
+             */
+    
+            /**
+             * Constructs a new Player.
+             * @memberof proto
+             * @classdesc Represents a Player.
+             * @implements IPlayer
+             * @constructor
+             * @param {proto.IPlayer=} [properties] Properties to set
+             */
+            function Player(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * Player playerId.
+             * @member {number} playerId
+             * @memberof proto.Player
+             * @instance
+             */
+            Player.prototype.playerId = 0;
+    
+            /**
+             * Player playerName.
+             * @member {string} playerName
+             * @memberof proto.Player
+             * @instance
+             */
+            Player.prototype.playerName = "";
+    
+            /**
+             * Player characterId.
+             * @member {number} characterId
+             * @memberof proto.Player
+             * @instance
+             */
+            Player.prototype.characterId = 0;
+    
+            /**
+             * Player level.
+             * @member {number} level
+             * @memberof proto.Player
+             * @instance
+             */
+            Player.prototype.level = 0;
+    
+            /**
+             * Player userId.
+             * @member {number} userId
+             * @memberof proto.Player
+             * @instance
+             */
+            Player.prototype.userId = 0;
+    
+            /**
+             * Player areaId.
+             * @member {number} areaId
+             * @memberof proto.Player
+             * @instance
+             */
+            Player.prototype.areaId = 0;
+    
+            /**
+             * Creates a new Player instance using the specified properties.
+             * @function create
+             * @memberof proto.Player
+             * @static
+             * @param {proto.IPlayer=} [properties] Properties to set
+             * @returns {proto.Player} Player instance
+             */
+            Player.create = function create(properties) {
+                return new Player(properties);
+            };
+    
+            /**
+             * Encodes the specified Player message. Does not implicitly {@link proto.Player.verify|verify} messages.
+             * @function encode
+             * @memberof proto.Player
+             * @static
+             * @param {proto.IPlayer} message Player message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Player.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.playerId != null && Object.hasOwnProperty.call(message, "playerId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.playerId);
+                if (message.playerName != null && Object.hasOwnProperty.call(message, "playerName"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.playerName);
+                if (message.characterId != null && Object.hasOwnProperty.call(message, "characterId"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.characterId);
+                if (message.level != null && Object.hasOwnProperty.call(message, "level"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).int32(message.level);
+                if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.userId);
+                if (message.areaId != null && Object.hasOwnProperty.call(message, "areaId"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).int32(message.areaId);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified Player message, length delimited. Does not implicitly {@link proto.Player.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.Player
+             * @static
+             * @param {proto.IPlayer} message Player message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Player.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a Player message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.Player
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.Player} Player
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Player.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Player();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.playerId = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.playerName = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.characterId = reader.int32();
+                            break;
+                        }
+                    case 4: {
+                            message.level = reader.int32();
+                            break;
+                        }
+                    case 5: {
+                            message.userId = reader.int32();
+                            break;
+                        }
+                    case 6: {
+                            message.areaId = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a Player message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.Player
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.Player} Player
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Player.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a Player message.
+             * @function verify
+             * @memberof proto.Player
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Player.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.playerId != null && message.hasOwnProperty("playerId"))
+                    if (!$util.isInteger(message.playerId))
+                        return "playerId: integer expected";
+                if (message.playerName != null && message.hasOwnProperty("playerName"))
+                    if (!$util.isString(message.playerName))
+                        return "playerName: string expected";
+                if (message.characterId != null && message.hasOwnProperty("characterId"))
+                    if (!$util.isInteger(message.characterId))
+                        return "characterId: integer expected";
+                if (message.level != null && message.hasOwnProperty("level"))
+                    if (!$util.isInteger(message.level))
+                        return "level: integer expected";
+                if (message.userId != null && message.hasOwnProperty("userId"))
+                    if (!$util.isInteger(message.userId))
+                        return "userId: integer expected";
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    if (!$util.isInteger(message.areaId))
+                        return "areaId: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a Player message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.Player
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.Player} Player
+             */
+            Player.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.Player)
+                    return object;
+                var message = new $root.proto.Player();
+                if (object.playerId != null)
+                    message.playerId = object.playerId | 0;
+                if (object.playerName != null)
+                    message.playerName = String(object.playerName);
+                if (object.characterId != null)
+                    message.characterId = object.characterId | 0;
+                if (object.level != null)
+                    message.level = object.level | 0;
+                if (object.userId != null)
+                    message.userId = object.userId | 0;
+                if (object.areaId != null)
+                    message.areaId = object.areaId | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a Player message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.Player
+             * @static
+             * @param {proto.Player} message Player
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Player.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.playerId = 0;
+                    object.playerName = "";
+                    object.characterId = 0;
+                    object.level = 0;
+                    object.userId = 0;
+                    object.areaId = 0;
+                }
+                if (message.playerId != null && message.hasOwnProperty("playerId"))
+                    object.playerId = message.playerId;
+                if (message.playerName != null && message.hasOwnProperty("playerName"))
+                    object.playerName = message.playerName;
+                if (message.characterId != null && message.hasOwnProperty("characterId"))
+                    object.characterId = message.characterId;
+                if (message.level != null && message.hasOwnProperty("level"))
+                    object.level = message.level;
+                if (message.userId != null && message.hasOwnProperty("userId"))
+                    object.userId = message.userId;
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    object.areaId = message.areaId;
+                return object;
+            };
+    
+            /**
+             * Converts this Player to JSON.
+             * @function toJSON
+             * @memberof proto.Player
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Player.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for Player
+             * @function getTypeUrl
+             * @memberof proto.Player
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            Player.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.Player";
+            };
+    
+            return Player;
+        })();
+    
+        proto.Character = (function() {
+    
+            /**
+             * Properties of a Character.
+             * @memberof proto
+             * @interface ICharacter
+             * @property {number|null} [id] Character id
+             * @property {string|null} [name] Character name
+             * @property {string|null} [code] Character code
+             * @property {string|null} [description] Character description
+             */
+    
+            /**
+             * Constructs a new Character.
+             * @memberof proto
+             * @classdesc Represents a Character.
+             * @implements ICharacter
+             * @constructor
+             * @param {proto.ICharacter=} [properties] Properties to set
+             */
+            function Character(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * Character id.
+             * @member {number} id
+             * @memberof proto.Character
+             * @instance
+             */
+            Character.prototype.id = 0;
+    
+            /**
+             * Character name.
+             * @member {string} name
+             * @memberof proto.Character
+             * @instance
+             */
+            Character.prototype.name = "";
+    
+            /**
+             * Character code.
+             * @member {string} code
+             * @memberof proto.Character
+             * @instance
+             */
+            Character.prototype.code = "";
+    
+            /**
+             * Character description.
+             * @member {string} description
+             * @memberof proto.Character
+             * @instance
+             */
+            Character.prototype.description = "";
+    
+            /**
+             * Creates a new Character instance using the specified properties.
+             * @function create
+             * @memberof proto.Character
+             * @static
+             * @param {proto.ICharacter=} [properties] Properties to set
+             * @returns {proto.Character} Character instance
+             */
+            Character.create = function create(properties) {
+                return new Character(properties);
+            };
+    
+            /**
+             * Encodes the specified Character message. Does not implicitly {@link proto.Character.verify|verify} messages.
+             * @function encode
+             * @memberof proto.Character
+             * @static
+             * @param {proto.ICharacter} message Character message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Character.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+                if (message.code != null && Object.hasOwnProperty.call(message, "code"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.code);
+                if (message.description != null && Object.hasOwnProperty.call(message, "description"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.description);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified Character message, length delimited. Does not implicitly {@link proto.Character.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.Character
+             * @static
+             * @param {proto.ICharacter} message Character message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Character.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a Character message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.Character
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.Character} Character
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Character.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Character();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.id = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.code = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            message.description = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a Character message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.Character
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.Character} Character
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Character.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a Character message.
+             * @function verify
+             * @memberof proto.Character
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Character.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                if (message.name != null && message.hasOwnProperty("name"))
+                    if (!$util.isString(message.name))
+                        return "name: string expected";
+                if (message.code != null && message.hasOwnProperty("code"))
+                    if (!$util.isString(message.code))
+                        return "code: string expected";
+                if (message.description != null && message.hasOwnProperty("description"))
+                    if (!$util.isString(message.description))
+                        return "description: string expected";
+                return null;
+            };
+    
+            /**
+             * Creates a Character message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.Character
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.Character} Character
+             */
+            Character.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.Character)
+                    return object;
+                var message = new $root.proto.Character();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                if (object.name != null)
+                    message.name = String(object.name);
+                if (object.code != null)
+                    message.code = String(object.code);
+                if (object.description != null)
+                    message.description = String(object.description);
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a Character message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.Character
+             * @static
+             * @param {proto.Character} message Character
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Character.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.id = 0;
+                    object.name = "";
+                    object.code = "";
+                    object.description = "";
+                }
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                if (message.name != null && message.hasOwnProperty("name"))
+                    object.name = message.name;
+                if (message.code != null && message.hasOwnProperty("code"))
+                    object.code = message.code;
+                if (message.description != null && message.hasOwnProperty("description"))
+                    object.description = message.description;
+                return object;
+            };
+    
+            /**
+             * Converts this Character to JSON.
+             * @function toJSON
+             * @memberof proto.Character
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Character.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for Character
+             * @function getTypeUrl
+             * @memberof proto.Character
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            Character.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.Character";
+            };
+    
+            return Character;
         })();
     
         proto.ReqLogin = (function() {
@@ -1386,6 +2545,7 @@
              * @property {number|null} [status] ResLogin status
              * @property {string|null} [token] ResLogin token
              * @property {proto.IUser|null} [user] ResLogin user
+             * @property {proto.IPlayer|null} [player] ResLogin player
              */
     
             /**
@@ -1428,6 +2588,14 @@
             ResLogin.prototype.user = null;
     
             /**
+             * ResLogin player.
+             * @member {proto.IPlayer|null|undefined} player
+             * @memberof proto.ResLogin
+             * @instance
+             */
+            ResLogin.prototype.player = null;
+    
+            /**
              * Creates a new ResLogin instance using the specified properties.
              * @function create
              * @memberof proto.ResLogin
@@ -1457,6 +2625,8 @@
                     writer.uint32(/* id 2, wireType 2 =*/18).string(message.token);
                 if (message.user != null && Object.hasOwnProperty.call(message, "user"))
                     $root.proto.User.encode(message.user, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                if (message.player != null && Object.hasOwnProperty.call(message, "player"))
+                    $root.proto.Player.encode(message.player, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                 return writer;
             };
     
@@ -1501,6 +2671,10 @@
                         }
                     case 3: {
                             message.user = $root.proto.User.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 4: {
+                            message.player = $root.proto.Player.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -1549,6 +2723,11 @@
                     if (error)
                         return "user." + error;
                 }
+                if (message.player != null && message.hasOwnProperty("player")) {
+                    var error = $root.proto.Player.verify(message.player);
+                    if (error)
+                        return "player." + error;
+                }
                 return null;
             };
     
@@ -1573,6 +2752,11 @@
                         throw TypeError(".proto.ResLogin.user: object expected");
                     message.user = $root.proto.User.fromObject(object.user);
                 }
+                if (object.player != null) {
+                    if (typeof object.player !== "object")
+                        throw TypeError(".proto.ResLogin.player: object expected");
+                    message.player = $root.proto.Player.fromObject(object.player);
+                }
                 return message;
             };
     
@@ -1593,6 +2777,7 @@
                     object.status = 0;
                     object.token = "";
                     object.user = null;
+                    object.player = null;
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = message.status;
@@ -1600,6 +2785,8 @@
                     object.token = message.token;
                 if (message.user != null && message.hasOwnProperty("user"))
                     object.user = $root.proto.User.toObject(message.user, options);
+                if (message.player != null && message.hasOwnProperty("player"))
+                    object.player = $root.proto.Player.toObject(message.player, options);
                 return object;
             };
     
@@ -3345,468 +4532,6 @@
             return ReqUpdateUserInfo;
         })();
     
-        proto.User = (function() {
-    
-            /**
-             * Properties of a User.
-             * @memberof proto
-             * @interface IUser
-             * @property {number|null} [userId] User userId
-             * @property {string|null} [username] User username
-             * @property {string|null} [playerName] User playerName
-             * @property {number|null} [gender] User gender
-             * @property {number|null} [sponsor] User sponsor
-             * @property {string|null} [email] User email
-             * @property {string|null} [phone] User phone
-             * @property {number|Long|null} [gold] User gold
-             * @property {number|Long|null} [diamond] User diamond
-             * @property {number|null} [agencyLevel] User agencyLevel
-             * @property {number|null} [hasCharacter] User hasCharacter
-             */
-    
-            /**
-             * Constructs a new User.
-             * @memberof proto
-             * @classdesc Represents a User.
-             * @implements IUser
-             * @constructor
-             * @param {proto.IUser=} [properties] Properties to set
-             */
-            function User(properties) {
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-    
-            /**
-             * User userId.
-             * @member {number} userId
-             * @memberof proto.User
-             * @instance
-             */
-            User.prototype.userId = 0;
-    
-            /**
-             * User username.
-             * @member {string} username
-             * @memberof proto.User
-             * @instance
-             */
-            User.prototype.username = "";
-    
-            /**
-             * User playerName.
-             * @member {string} playerName
-             * @memberof proto.User
-             * @instance
-             */
-            User.prototype.playerName = "";
-    
-            /**
-             * User gender.
-             * @member {number} gender
-             * @memberof proto.User
-             * @instance
-             */
-            User.prototype.gender = 0;
-    
-            /**
-             * User sponsor.
-             * @member {number} sponsor
-             * @memberof proto.User
-             * @instance
-             */
-            User.prototype.sponsor = 0;
-    
-            /**
-             * User email.
-             * @member {string} email
-             * @memberof proto.User
-             * @instance
-             */
-            User.prototype.email = "";
-    
-            /**
-             * User phone.
-             * @member {string} phone
-             * @memberof proto.User
-             * @instance
-             */
-            User.prototype.phone = "";
-    
-            /**
-             * User gold.
-             * @member {number|Long} gold
-             * @memberof proto.User
-             * @instance
-             */
-            User.prototype.gold = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-    
-            /**
-             * User diamond.
-             * @member {number|Long} diamond
-             * @memberof proto.User
-             * @instance
-             */
-            User.prototype.diamond = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-    
-            /**
-             * User agencyLevel.
-             * @member {number} agencyLevel
-             * @memberof proto.User
-             * @instance
-             */
-            User.prototype.agencyLevel = 0;
-    
-            /**
-             * User hasCharacter.
-             * @member {number} hasCharacter
-             * @memberof proto.User
-             * @instance
-             */
-            User.prototype.hasCharacter = 0;
-    
-            /**
-             * Creates a new User instance using the specified properties.
-             * @function create
-             * @memberof proto.User
-             * @static
-             * @param {proto.IUser=} [properties] Properties to set
-             * @returns {proto.User} User instance
-             */
-            User.create = function create(properties) {
-                return new User(properties);
-            };
-    
-            /**
-             * Encodes the specified User message. Does not implicitly {@link proto.User.verify|verify} messages.
-             * @function encode
-             * @memberof proto.User
-             * @static
-             * @param {proto.IUser} message User message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            User.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
-                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.userId);
-                if (message.username != null && Object.hasOwnProperty.call(message, "username"))
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.username);
-                if (message.playerName != null && Object.hasOwnProperty.call(message, "playerName"))
-                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.playerName);
-                if (message.gender != null && Object.hasOwnProperty.call(message, "gender"))
-                    writer.uint32(/* id 4, wireType 0 =*/32).int32(message.gender);
-                if (message.sponsor != null && Object.hasOwnProperty.call(message, "sponsor"))
-                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.sponsor);
-                if (message.email != null && Object.hasOwnProperty.call(message, "email"))
-                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.email);
-                if (message.phone != null && Object.hasOwnProperty.call(message, "phone"))
-                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.phone);
-                if (message.gold != null && Object.hasOwnProperty.call(message, "gold"))
-                    writer.uint32(/* id 8, wireType 0 =*/64).int64(message.gold);
-                if (message.diamond != null && Object.hasOwnProperty.call(message, "diamond"))
-                    writer.uint32(/* id 9, wireType 0 =*/72).int64(message.diamond);
-                if (message.agencyLevel != null && Object.hasOwnProperty.call(message, "agencyLevel"))
-                    writer.uint32(/* id 10, wireType 0 =*/80).int32(message.agencyLevel);
-                if (message.hasCharacter != null && Object.hasOwnProperty.call(message, "hasCharacter"))
-                    writer.uint32(/* id 11, wireType 0 =*/88).int32(message.hasCharacter);
-                return writer;
-            };
-    
-            /**
-             * Encodes the specified User message, length delimited. Does not implicitly {@link proto.User.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof proto.User
-             * @static
-             * @param {proto.IUser} message User message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            User.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-    
-            /**
-             * Decodes a User message from the specified reader or buffer.
-             * @function decode
-             * @memberof proto.User
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {proto.User} User
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            User.decode = function decode(reader, length) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.User();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    switch (tag >>> 3) {
-                    case 1: {
-                            message.userId = reader.int32();
-                            break;
-                        }
-                    case 2: {
-                            message.username = reader.string();
-                            break;
-                        }
-                    case 3: {
-                            message.playerName = reader.string();
-                            break;
-                        }
-                    case 4: {
-                            message.gender = reader.int32();
-                            break;
-                        }
-                    case 5: {
-                            message.sponsor = reader.int32();
-                            break;
-                        }
-                    case 6: {
-                            message.email = reader.string();
-                            break;
-                        }
-                    case 7: {
-                            message.phone = reader.string();
-                            break;
-                        }
-                    case 8: {
-                            message.gold = reader.int64();
-                            break;
-                        }
-                    case 9: {
-                            message.diamond = reader.int64();
-                            break;
-                        }
-                    case 10: {
-                            message.agencyLevel = reader.int32();
-                            break;
-                        }
-                    case 11: {
-                            message.hasCharacter = reader.int32();
-                            break;
-                        }
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-    
-            /**
-             * Decodes a User message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof proto.User
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {proto.User} User
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            User.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-    
-            /**
-             * Verifies a User message.
-             * @function verify
-             * @memberof proto.User
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            User.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (message.userId != null && message.hasOwnProperty("userId"))
-                    if (!$util.isInteger(message.userId))
-                        return "userId: integer expected";
-                if (message.username != null && message.hasOwnProperty("username"))
-                    if (!$util.isString(message.username))
-                        return "username: string expected";
-                if (message.playerName != null && message.hasOwnProperty("playerName"))
-                    if (!$util.isString(message.playerName))
-                        return "playerName: string expected";
-                if (message.gender != null && message.hasOwnProperty("gender"))
-                    if (!$util.isInteger(message.gender))
-                        return "gender: integer expected";
-                if (message.sponsor != null && message.hasOwnProperty("sponsor"))
-                    if (!$util.isInteger(message.sponsor))
-                        return "sponsor: integer expected";
-                if (message.email != null && message.hasOwnProperty("email"))
-                    if (!$util.isString(message.email))
-                        return "email: string expected";
-                if (message.phone != null && message.hasOwnProperty("phone"))
-                    if (!$util.isString(message.phone))
-                        return "phone: string expected";
-                if (message.gold != null && message.hasOwnProperty("gold"))
-                    if (!$util.isInteger(message.gold) && !(message.gold && $util.isInteger(message.gold.low) && $util.isInteger(message.gold.high)))
-                        return "gold: integer|Long expected";
-                if (message.diamond != null && message.hasOwnProperty("diamond"))
-                    if (!$util.isInteger(message.diamond) && !(message.diamond && $util.isInteger(message.diamond.low) && $util.isInteger(message.diamond.high)))
-                        return "diamond: integer|Long expected";
-                if (message.agencyLevel != null && message.hasOwnProperty("agencyLevel"))
-                    if (!$util.isInteger(message.agencyLevel))
-                        return "agencyLevel: integer expected";
-                if (message.hasCharacter != null && message.hasOwnProperty("hasCharacter"))
-                    if (!$util.isInteger(message.hasCharacter))
-                        return "hasCharacter: integer expected";
-                return null;
-            };
-    
-            /**
-             * Creates a User message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof proto.User
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {proto.User} User
-             */
-            User.fromObject = function fromObject(object) {
-                if (object instanceof $root.proto.User)
-                    return object;
-                var message = new $root.proto.User();
-                if (object.userId != null)
-                    message.userId = object.userId | 0;
-                if (object.username != null)
-                    message.username = String(object.username);
-                if (object.playerName != null)
-                    message.playerName = String(object.playerName);
-                if (object.gender != null)
-                    message.gender = object.gender | 0;
-                if (object.sponsor != null)
-                    message.sponsor = object.sponsor | 0;
-                if (object.email != null)
-                    message.email = String(object.email);
-                if (object.phone != null)
-                    message.phone = String(object.phone);
-                if (object.gold != null)
-                    if ($util.Long)
-                        (message.gold = $util.Long.fromValue(object.gold)).unsigned = false;
-                    else if (typeof object.gold === "string")
-                        message.gold = parseInt(object.gold, 10);
-                    else if (typeof object.gold === "number")
-                        message.gold = object.gold;
-                    else if (typeof object.gold === "object")
-                        message.gold = new $util.LongBits(object.gold.low >>> 0, object.gold.high >>> 0).toNumber();
-                if (object.diamond != null)
-                    if ($util.Long)
-                        (message.diamond = $util.Long.fromValue(object.diamond)).unsigned = false;
-                    else if (typeof object.diamond === "string")
-                        message.diamond = parseInt(object.diamond, 10);
-                    else if (typeof object.diamond === "number")
-                        message.diamond = object.diamond;
-                    else if (typeof object.diamond === "object")
-                        message.diamond = new $util.LongBits(object.diamond.low >>> 0, object.diamond.high >>> 0).toNumber();
-                if (object.agencyLevel != null)
-                    message.agencyLevel = object.agencyLevel | 0;
-                if (object.hasCharacter != null)
-                    message.hasCharacter = object.hasCharacter | 0;
-                return message;
-            };
-    
-            /**
-             * Creates a plain object from a User message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof proto.User
-             * @static
-             * @param {proto.User} message User
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            User.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.defaults) {
-                    object.userId = 0;
-                    object.username = "";
-                    object.playerName = "";
-                    object.gender = 0;
-                    object.sponsor = 0;
-                    object.email = "";
-                    object.phone = "";
-                    if ($util.Long) {
-                        var long = new $util.Long(0, 0, false);
-                        object.gold = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                    } else
-                        object.gold = options.longs === String ? "0" : 0;
-                    if ($util.Long) {
-                        var long = new $util.Long(0, 0, false);
-                        object.diamond = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                    } else
-                        object.diamond = options.longs === String ? "0" : 0;
-                    object.agencyLevel = 0;
-                    object.hasCharacter = 0;
-                }
-                if (message.userId != null && message.hasOwnProperty("userId"))
-                    object.userId = message.userId;
-                if (message.username != null && message.hasOwnProperty("username"))
-                    object.username = message.username;
-                if (message.playerName != null && message.hasOwnProperty("playerName"))
-                    object.playerName = message.playerName;
-                if (message.gender != null && message.hasOwnProperty("gender"))
-                    object.gender = message.gender;
-                if (message.sponsor != null && message.hasOwnProperty("sponsor"))
-                    object.sponsor = message.sponsor;
-                if (message.email != null && message.hasOwnProperty("email"))
-                    object.email = message.email;
-                if (message.phone != null && message.hasOwnProperty("phone"))
-                    object.phone = message.phone;
-                if (message.gold != null && message.hasOwnProperty("gold"))
-                    if (typeof message.gold === "number")
-                        object.gold = options.longs === String ? String(message.gold) : message.gold;
-                    else
-                        object.gold = options.longs === String ? $util.Long.prototype.toString.call(message.gold) : options.longs === Number ? new $util.LongBits(message.gold.low >>> 0, message.gold.high >>> 0).toNumber() : message.gold;
-                if (message.diamond != null && message.hasOwnProperty("diamond"))
-                    if (typeof message.diamond === "number")
-                        object.diamond = options.longs === String ? String(message.diamond) : message.diamond;
-                    else
-                        object.diamond = options.longs === String ? $util.Long.prototype.toString.call(message.diamond) : options.longs === Number ? new $util.LongBits(message.diamond.low >>> 0, message.diamond.high >>> 0).toNumber() : message.diamond;
-                if (message.agencyLevel != null && message.hasOwnProperty("agencyLevel"))
-                    object.agencyLevel = message.agencyLevel;
-                if (message.hasCharacter != null && message.hasOwnProperty("hasCharacter"))
-                    object.hasCharacter = message.hasCharacter;
-                return object;
-            };
-    
-            /**
-             * Converts this User to JSON.
-             * @function toJSON
-             * @memberof proto.User
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            User.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-    
-            /**
-             * Gets the default type url for User
-             * @function getTypeUrl
-             * @memberof proto.User
-             * @static
-             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns {string} The default type url
-             */
-            User.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                if (typeUrlPrefix === undefined) {
-                    typeUrlPrefix = "type.googleapis.com";
-                }
-                return typeUrlPrefix + "/proto.User";
-            };
-    
-            return User;
-        })();
-    
         proto.ReqLoadCharacters = (function() {
     
             /**
@@ -4204,279 +4929,6 @@
             };
     
             return ResLoadCharacters;
-        })();
-    
-        proto.Character = (function() {
-    
-            /**
-             * Properties of a Character.
-             * @memberof proto
-             * @interface ICharacter
-             * @property {number|null} [id] Character id
-             * @property {string|null} [name] Character name
-             * @property {string|null} [code] Character code
-             * @property {string|null} [description] Character description
-             */
-    
-            /**
-             * Constructs a new Character.
-             * @memberof proto
-             * @classdesc Represents a Character.
-             * @implements ICharacter
-             * @constructor
-             * @param {proto.ICharacter=} [properties] Properties to set
-             */
-            function Character(properties) {
-                if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                        if (properties[keys[i]] != null)
-                            this[keys[i]] = properties[keys[i]];
-            }
-    
-            /**
-             * Character id.
-             * @member {number} id
-             * @memberof proto.Character
-             * @instance
-             */
-            Character.prototype.id = 0;
-    
-            /**
-             * Character name.
-             * @member {string} name
-             * @memberof proto.Character
-             * @instance
-             */
-            Character.prototype.name = "";
-    
-            /**
-             * Character code.
-             * @member {string} code
-             * @memberof proto.Character
-             * @instance
-             */
-            Character.prototype.code = "";
-    
-            /**
-             * Character description.
-             * @member {string} description
-             * @memberof proto.Character
-             * @instance
-             */
-            Character.prototype.description = "";
-    
-            /**
-             * Creates a new Character instance using the specified properties.
-             * @function create
-             * @memberof proto.Character
-             * @static
-             * @param {proto.ICharacter=} [properties] Properties to set
-             * @returns {proto.Character} Character instance
-             */
-            Character.create = function create(properties) {
-                return new Character(properties);
-            };
-    
-            /**
-             * Encodes the specified Character message. Does not implicitly {@link proto.Character.verify|verify} messages.
-             * @function encode
-             * @memberof proto.Character
-             * @static
-             * @param {proto.ICharacter} message Character message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            Character.encode = function encode(message, writer) {
-                if (!writer)
-                    writer = $Writer.create();
-                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
-                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
-                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
-                if (message.code != null && Object.hasOwnProperty.call(message, "code"))
-                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.code);
-                if (message.description != null && Object.hasOwnProperty.call(message, "description"))
-                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.description);
-                return writer;
-            };
-    
-            /**
-             * Encodes the specified Character message, length delimited. Does not implicitly {@link proto.Character.verify|verify} messages.
-             * @function encodeDelimited
-             * @memberof proto.Character
-             * @static
-             * @param {proto.ICharacter} message Character message or plain object to encode
-             * @param {$protobuf.Writer} [writer] Writer to encode to
-             * @returns {$protobuf.Writer} Writer
-             */
-            Character.encodeDelimited = function encodeDelimited(message, writer) {
-                return this.encode(message, writer).ldelim();
-            };
-    
-            /**
-             * Decodes a Character message from the specified reader or buffer.
-             * @function decode
-             * @memberof proto.Character
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @param {number} [length] Message length if known beforehand
-             * @returns {proto.Character} Character
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            Character.decode = function decode(reader, length) {
-                if (!(reader instanceof $Reader))
-                    reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Character();
-                while (reader.pos < end) {
-                    var tag = reader.uint32();
-                    switch (tag >>> 3) {
-                    case 1: {
-                            message.id = reader.int32();
-                            break;
-                        }
-                    case 2: {
-                            message.name = reader.string();
-                            break;
-                        }
-                    case 3: {
-                            message.code = reader.string();
-                            break;
-                        }
-                    case 4: {
-                            message.description = reader.string();
-                            break;
-                        }
-                    default:
-                        reader.skipType(tag & 7);
-                        break;
-                    }
-                }
-                return message;
-            };
-    
-            /**
-             * Decodes a Character message from the specified reader or buffer, length delimited.
-             * @function decodeDelimited
-             * @memberof proto.Character
-             * @static
-             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-             * @returns {proto.Character} Character
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            Character.decodeDelimited = function decodeDelimited(reader) {
-                if (!(reader instanceof $Reader))
-                    reader = new $Reader(reader);
-                return this.decode(reader, reader.uint32());
-            };
-    
-            /**
-             * Verifies a Character message.
-             * @function verify
-             * @memberof proto.Character
-             * @static
-             * @param {Object.<string,*>} message Plain object to verify
-             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-             */
-            Character.verify = function verify(message) {
-                if (typeof message !== "object" || message === null)
-                    return "object expected";
-                if (message.id != null && message.hasOwnProperty("id"))
-                    if (!$util.isInteger(message.id))
-                        return "id: integer expected";
-                if (message.name != null && message.hasOwnProperty("name"))
-                    if (!$util.isString(message.name))
-                        return "name: string expected";
-                if (message.code != null && message.hasOwnProperty("code"))
-                    if (!$util.isString(message.code))
-                        return "code: string expected";
-                if (message.description != null && message.hasOwnProperty("description"))
-                    if (!$util.isString(message.description))
-                        return "description: string expected";
-                return null;
-            };
-    
-            /**
-             * Creates a Character message from a plain object. Also converts values to their respective internal types.
-             * @function fromObject
-             * @memberof proto.Character
-             * @static
-             * @param {Object.<string,*>} object Plain object
-             * @returns {proto.Character} Character
-             */
-            Character.fromObject = function fromObject(object) {
-                if (object instanceof $root.proto.Character)
-                    return object;
-                var message = new $root.proto.Character();
-                if (object.id != null)
-                    message.id = object.id | 0;
-                if (object.name != null)
-                    message.name = String(object.name);
-                if (object.code != null)
-                    message.code = String(object.code);
-                if (object.description != null)
-                    message.description = String(object.description);
-                return message;
-            };
-    
-            /**
-             * Creates a plain object from a Character message. Also converts values to other types if specified.
-             * @function toObject
-             * @memberof proto.Character
-             * @static
-             * @param {proto.Character} message Character
-             * @param {$protobuf.IConversionOptions} [options] Conversion options
-             * @returns {Object.<string,*>} Plain object
-             */
-            Character.toObject = function toObject(message, options) {
-                if (!options)
-                    options = {};
-                var object = {};
-                if (options.defaults) {
-                    object.id = 0;
-                    object.name = "";
-                    object.code = "";
-                    object.description = "";
-                }
-                if (message.id != null && message.hasOwnProperty("id"))
-                    object.id = message.id;
-                if (message.name != null && message.hasOwnProperty("name"))
-                    object.name = message.name;
-                if (message.code != null && message.hasOwnProperty("code"))
-                    object.code = message.code;
-                if (message.description != null && message.hasOwnProperty("description"))
-                    object.description = message.description;
-                return object;
-            };
-    
-            /**
-             * Converts this Character to JSON.
-             * @function toJSON
-             * @memberof proto.Character
-             * @instance
-             * @returns {Object.<string,*>} JSON object
-             */
-            Character.prototype.toJSON = function toJSON() {
-                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-            };
-    
-            /**
-             * Gets the default type url for Character
-             * @function getTypeUrl
-             * @memberof proto.Character
-             * @static
-             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-             * @returns {string} The default type url
-             */
-            Character.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-                if (typeUrlPrefix === undefined) {
-                    typeUrlPrefix = "type.googleapis.com";
-                }
-                return typeUrlPrefix + "/proto.Character";
-            };
-    
-            return Character;
         })();
     
         proto.ReqPickCharacter = (function() {
@@ -4907,6 +5359,879 @@
             };
     
             return ResPickCharacter;
+        })();
+    
+        proto.ReqPlayerJoinArea = (function() {
+    
+            /**
+             * Properties of a ReqPlayerJoinArea.
+             * @memberof proto
+             * @interface IReqPlayerJoinArea
+             * @property {string|null} [area] ReqPlayerJoinArea area
+             * @property {number|null} [idArea] ReqPlayerJoinArea idArea
+             */
+    
+            /**
+             * Constructs a new ReqPlayerJoinArea.
+             * @memberof proto
+             * @classdesc Represents a ReqPlayerJoinArea.
+             * @implements IReqPlayerJoinArea
+             * @constructor
+             * @param {proto.IReqPlayerJoinArea=} [properties] Properties to set
+             */
+            function ReqPlayerJoinArea(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ReqPlayerJoinArea area.
+             * @member {string} area
+             * @memberof proto.ReqPlayerJoinArea
+             * @instance
+             */
+            ReqPlayerJoinArea.prototype.area = "";
+    
+            /**
+             * ReqPlayerJoinArea idArea.
+             * @member {number} idArea
+             * @memberof proto.ReqPlayerJoinArea
+             * @instance
+             */
+            ReqPlayerJoinArea.prototype.idArea = 0;
+    
+            /**
+             * Creates a new ReqPlayerJoinArea instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqPlayerJoinArea
+             * @static
+             * @param {proto.IReqPlayerJoinArea=} [properties] Properties to set
+             * @returns {proto.ReqPlayerJoinArea} ReqPlayerJoinArea instance
+             */
+            ReqPlayerJoinArea.create = function create(properties) {
+                return new ReqPlayerJoinArea(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqPlayerJoinArea message. Does not implicitly {@link proto.ReqPlayerJoinArea.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqPlayerJoinArea
+             * @static
+             * @param {proto.IReqPlayerJoinArea} message ReqPlayerJoinArea message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqPlayerJoinArea.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.area != null && Object.hasOwnProperty.call(message, "area"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.area);
+                if (message.idArea != null && Object.hasOwnProperty.call(message, "idArea"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.idArea);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqPlayerJoinArea message, length delimited. Does not implicitly {@link proto.ReqPlayerJoinArea.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqPlayerJoinArea
+             * @static
+             * @param {proto.IReqPlayerJoinArea} message ReqPlayerJoinArea message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqPlayerJoinArea.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqPlayerJoinArea message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqPlayerJoinArea
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqPlayerJoinArea} ReqPlayerJoinArea
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqPlayerJoinArea.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqPlayerJoinArea();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.area = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.idArea = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqPlayerJoinArea message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqPlayerJoinArea
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqPlayerJoinArea} ReqPlayerJoinArea
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqPlayerJoinArea.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqPlayerJoinArea message.
+             * @function verify
+             * @memberof proto.ReqPlayerJoinArea
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqPlayerJoinArea.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.area != null && message.hasOwnProperty("area"))
+                    if (!$util.isString(message.area))
+                        return "area: string expected";
+                if (message.idArea != null && message.hasOwnProperty("idArea"))
+                    if (!$util.isInteger(message.idArea))
+                        return "idArea: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ReqPlayerJoinArea message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqPlayerJoinArea
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqPlayerJoinArea} ReqPlayerJoinArea
+             */
+            ReqPlayerJoinArea.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqPlayerJoinArea)
+                    return object;
+                var message = new $root.proto.ReqPlayerJoinArea();
+                if (object.area != null)
+                    message.area = String(object.area);
+                if (object.idArea != null)
+                    message.idArea = object.idArea | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ReqPlayerJoinArea message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqPlayerJoinArea
+             * @static
+             * @param {proto.ReqPlayerJoinArea} message ReqPlayerJoinArea
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqPlayerJoinArea.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.area = "";
+                    object.idArea = 0;
+                }
+                if (message.area != null && message.hasOwnProperty("area"))
+                    object.area = message.area;
+                if (message.idArea != null && message.hasOwnProperty("idArea"))
+                    object.idArea = message.idArea;
+                return object;
+            };
+    
+            /**
+             * Converts this ReqPlayerJoinArea to JSON.
+             * @function toJSON
+             * @memberof proto.ReqPlayerJoinArea
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqPlayerJoinArea.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqPlayerJoinArea
+             * @function getTypeUrl
+             * @memberof proto.ReqPlayerJoinArea
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqPlayerJoinArea.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqPlayerJoinArea";
+            };
+    
+            return ReqPlayerJoinArea;
+        })();
+    
+        proto.ResPlayerJoinArea = (function() {
+    
+            /**
+             * Properties of a ResPlayerJoinArea.
+             * @memberof proto
+             * @interface IResPlayerJoinArea
+             * @property {number|null} [areaId] ResPlayerJoinArea areaId
+             * @property {string|null} [area] ResPlayerJoinArea area
+             * @property {Array.<proto.IPlayer>|null} [player] ResPlayerJoinArea player
+             * @property {Array.<proto.IUser>|null} [user] ResPlayerJoinArea user
+             * @property {number|null} [status] ResPlayerJoinArea status
+             * @property {number|null} [areaState] ResPlayerJoinArea areaState
+             */
+    
+            /**
+             * Constructs a new ResPlayerJoinArea.
+             * @memberof proto
+             * @classdesc Represents a ResPlayerJoinArea.
+             * @implements IResPlayerJoinArea
+             * @constructor
+             * @param {proto.IResPlayerJoinArea=} [properties] Properties to set
+             */
+            function ResPlayerJoinArea(properties) {
+                this.player = [];
+                this.user = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResPlayerJoinArea areaId.
+             * @member {number} areaId
+             * @memberof proto.ResPlayerJoinArea
+             * @instance
+             */
+            ResPlayerJoinArea.prototype.areaId = 0;
+    
+            /**
+             * ResPlayerJoinArea area.
+             * @member {string} area
+             * @memberof proto.ResPlayerJoinArea
+             * @instance
+             */
+            ResPlayerJoinArea.prototype.area = "";
+    
+            /**
+             * ResPlayerJoinArea player.
+             * @member {Array.<proto.IPlayer>} player
+             * @memberof proto.ResPlayerJoinArea
+             * @instance
+             */
+            ResPlayerJoinArea.prototype.player = $util.emptyArray;
+    
+            /**
+             * ResPlayerJoinArea user.
+             * @member {Array.<proto.IUser>} user
+             * @memberof proto.ResPlayerJoinArea
+             * @instance
+             */
+            ResPlayerJoinArea.prototype.user = $util.emptyArray;
+    
+            /**
+             * ResPlayerJoinArea status.
+             * @member {number} status
+             * @memberof proto.ResPlayerJoinArea
+             * @instance
+             */
+            ResPlayerJoinArea.prototype.status = 0;
+    
+            /**
+             * ResPlayerJoinArea areaState.
+             * @member {number} areaState
+             * @memberof proto.ResPlayerJoinArea
+             * @instance
+             */
+            ResPlayerJoinArea.prototype.areaState = 0;
+    
+            /**
+             * Creates a new ResPlayerJoinArea instance using the specified properties.
+             * @function create
+             * @memberof proto.ResPlayerJoinArea
+             * @static
+             * @param {proto.IResPlayerJoinArea=} [properties] Properties to set
+             * @returns {proto.ResPlayerJoinArea} ResPlayerJoinArea instance
+             */
+            ResPlayerJoinArea.create = function create(properties) {
+                return new ResPlayerJoinArea(properties);
+            };
+    
+            /**
+             * Encodes the specified ResPlayerJoinArea message. Does not implicitly {@link proto.ResPlayerJoinArea.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResPlayerJoinArea
+             * @static
+             * @param {proto.IResPlayerJoinArea} message ResPlayerJoinArea message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResPlayerJoinArea.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.areaId != null && Object.hasOwnProperty.call(message, "areaId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.areaId);
+                if (message.area != null && Object.hasOwnProperty.call(message, "area"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.area);
+                if (message.player != null && message.player.length)
+                    for (var i = 0; i < message.player.length; ++i)
+                        $root.proto.Player.encode(message.player[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                if (message.user != null && message.user.length)
+                    for (var i = 0; i < message.user.length; ++i)
+                        $root.proto.User.encode(message.user[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.status);
+                if (message.areaState != null && Object.hasOwnProperty.call(message, "areaState"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).int32(message.areaState);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResPlayerJoinArea message, length delimited. Does not implicitly {@link proto.ResPlayerJoinArea.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResPlayerJoinArea
+             * @static
+             * @param {proto.IResPlayerJoinArea} message ResPlayerJoinArea message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResPlayerJoinArea.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResPlayerJoinArea message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResPlayerJoinArea
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResPlayerJoinArea} ResPlayerJoinArea
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResPlayerJoinArea.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResPlayerJoinArea();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.areaId = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.area = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            if (!(message.player && message.player.length))
+                                message.player = [];
+                            message.player.push($root.proto.Player.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 4: {
+                            if (!(message.user && message.user.length))
+                                message.user = [];
+                            message.user.push($root.proto.User.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 5: {
+                            message.status = reader.int32();
+                            break;
+                        }
+                    case 6: {
+                            message.areaState = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResPlayerJoinArea message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResPlayerJoinArea
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResPlayerJoinArea} ResPlayerJoinArea
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResPlayerJoinArea.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResPlayerJoinArea message.
+             * @function verify
+             * @memberof proto.ResPlayerJoinArea
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResPlayerJoinArea.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    if (!$util.isInteger(message.areaId))
+                        return "areaId: integer expected";
+                if (message.area != null && message.hasOwnProperty("area"))
+                    if (!$util.isString(message.area))
+                        return "area: string expected";
+                if (message.player != null && message.hasOwnProperty("player")) {
+                    if (!Array.isArray(message.player))
+                        return "player: array expected";
+                    for (var i = 0; i < message.player.length; ++i) {
+                        var error = $root.proto.Player.verify(message.player[i]);
+                        if (error)
+                            return "player." + error;
+                    }
+                }
+                if (message.user != null && message.hasOwnProperty("user")) {
+                    if (!Array.isArray(message.user))
+                        return "user: array expected";
+                    for (var i = 0; i < message.user.length; ++i) {
+                        var error = $root.proto.User.verify(message.user[i]);
+                        if (error)
+                            return "user." + error;
+                    }
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                if (message.areaState != null && message.hasOwnProperty("areaState"))
+                    if (!$util.isInteger(message.areaState))
+                        return "areaState: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ResPlayerJoinArea message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResPlayerJoinArea
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResPlayerJoinArea} ResPlayerJoinArea
+             */
+            ResPlayerJoinArea.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResPlayerJoinArea)
+                    return object;
+                var message = new $root.proto.ResPlayerJoinArea();
+                if (object.areaId != null)
+                    message.areaId = object.areaId | 0;
+                if (object.area != null)
+                    message.area = String(object.area);
+                if (object.player) {
+                    if (!Array.isArray(object.player))
+                        throw TypeError(".proto.ResPlayerJoinArea.player: array expected");
+                    message.player = [];
+                    for (var i = 0; i < object.player.length; ++i) {
+                        if (typeof object.player[i] !== "object")
+                            throw TypeError(".proto.ResPlayerJoinArea.player: object expected");
+                        message.player[i] = $root.proto.Player.fromObject(object.player[i]);
+                    }
+                }
+                if (object.user) {
+                    if (!Array.isArray(object.user))
+                        throw TypeError(".proto.ResPlayerJoinArea.user: array expected");
+                    message.user = [];
+                    for (var i = 0; i < object.user.length; ++i) {
+                        if (typeof object.user[i] !== "object")
+                            throw TypeError(".proto.ResPlayerJoinArea.user: object expected");
+                        message.user[i] = $root.proto.User.fromObject(object.user[i]);
+                    }
+                }
+                if (object.status != null)
+                    message.status = object.status | 0;
+                if (object.areaState != null)
+                    message.areaState = object.areaState | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResPlayerJoinArea message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResPlayerJoinArea
+             * @static
+             * @param {proto.ResPlayerJoinArea} message ResPlayerJoinArea
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResPlayerJoinArea.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults) {
+                    object.player = [];
+                    object.user = [];
+                }
+                if (options.defaults) {
+                    object.areaId = 0;
+                    object.area = "";
+                    object.status = 0;
+                    object.areaState = 0;
+                }
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    object.areaId = message.areaId;
+                if (message.area != null && message.hasOwnProperty("area"))
+                    object.area = message.area;
+                if (message.player && message.player.length) {
+                    object.player = [];
+                    for (var j = 0; j < message.player.length; ++j)
+                        object.player[j] = $root.proto.Player.toObject(message.player[j], options);
+                }
+                if (message.user && message.user.length) {
+                    object.user = [];
+                    for (var j = 0; j < message.user.length; ++j)
+                        object.user[j] = $root.proto.User.toObject(message.user[j], options);
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                if (message.areaState != null && message.hasOwnProperty("areaState"))
+                    object.areaState = message.areaState;
+                return object;
+            };
+    
+            /**
+             * Converts this ResPlayerJoinArea to JSON.
+             * @function toJSON
+             * @memberof proto.ResPlayerJoinArea
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResPlayerJoinArea.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResPlayerJoinArea
+             * @function getTypeUrl
+             * @memberof proto.ResPlayerJoinArea
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResPlayerJoinArea.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResPlayerJoinArea";
+            };
+    
+            return ResPlayerJoinArea;
+        })();
+    
+        proto.ResOtherPlayerJoinArea = (function() {
+    
+            /**
+             * Properties of a ResOtherPlayerJoinArea.
+             * @memberof proto
+             * @interface IResOtherPlayerJoinArea
+             * @property {number|null} [areaId] ResOtherPlayerJoinArea areaId
+             * @property {string|null} [area] ResOtherPlayerJoinArea area
+             * @property {proto.IPlayer|null} [player] ResOtherPlayerJoinArea player
+             * @property {proto.IUser|null} [user] ResOtherPlayerJoinArea user
+             */
+    
+            /**
+             * Constructs a new ResOtherPlayerJoinArea.
+             * @memberof proto
+             * @classdesc Represents a ResOtherPlayerJoinArea.
+             * @implements IResOtherPlayerJoinArea
+             * @constructor
+             * @param {proto.IResOtherPlayerJoinArea=} [properties] Properties to set
+             */
+            function ResOtherPlayerJoinArea(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResOtherPlayerJoinArea areaId.
+             * @member {number} areaId
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @instance
+             */
+            ResOtherPlayerJoinArea.prototype.areaId = 0;
+    
+            /**
+             * ResOtherPlayerJoinArea area.
+             * @member {string} area
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @instance
+             */
+            ResOtherPlayerJoinArea.prototype.area = "";
+    
+            /**
+             * ResOtherPlayerJoinArea player.
+             * @member {proto.IPlayer|null|undefined} player
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @instance
+             */
+            ResOtherPlayerJoinArea.prototype.player = null;
+    
+            /**
+             * ResOtherPlayerJoinArea user.
+             * @member {proto.IUser|null|undefined} user
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @instance
+             */
+            ResOtherPlayerJoinArea.prototype.user = null;
+    
+            /**
+             * Creates a new ResOtherPlayerJoinArea instance using the specified properties.
+             * @function create
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @static
+             * @param {proto.IResOtherPlayerJoinArea=} [properties] Properties to set
+             * @returns {proto.ResOtherPlayerJoinArea} ResOtherPlayerJoinArea instance
+             */
+            ResOtherPlayerJoinArea.create = function create(properties) {
+                return new ResOtherPlayerJoinArea(properties);
+            };
+    
+            /**
+             * Encodes the specified ResOtherPlayerJoinArea message. Does not implicitly {@link proto.ResOtherPlayerJoinArea.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @static
+             * @param {proto.IResOtherPlayerJoinArea} message ResOtherPlayerJoinArea message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResOtherPlayerJoinArea.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.areaId != null && Object.hasOwnProperty.call(message, "areaId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.areaId);
+                if (message.area != null && Object.hasOwnProperty.call(message, "area"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.area);
+                if (message.player != null && Object.hasOwnProperty.call(message, "player"))
+                    $root.proto.Player.encode(message.player, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                if (message.user != null && Object.hasOwnProperty.call(message, "user"))
+                    $root.proto.User.encode(message.user, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResOtherPlayerJoinArea message, length delimited. Does not implicitly {@link proto.ResOtherPlayerJoinArea.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @static
+             * @param {proto.IResOtherPlayerJoinArea} message ResOtherPlayerJoinArea message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResOtherPlayerJoinArea.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResOtherPlayerJoinArea message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResOtherPlayerJoinArea} ResOtherPlayerJoinArea
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResOtherPlayerJoinArea.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResOtherPlayerJoinArea();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.areaId = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.area = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.player = $root.proto.Player.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 4: {
+                            message.user = $root.proto.User.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResOtherPlayerJoinArea message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResOtherPlayerJoinArea} ResOtherPlayerJoinArea
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResOtherPlayerJoinArea.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResOtherPlayerJoinArea message.
+             * @function verify
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResOtherPlayerJoinArea.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    if (!$util.isInteger(message.areaId))
+                        return "areaId: integer expected";
+                if (message.area != null && message.hasOwnProperty("area"))
+                    if (!$util.isString(message.area))
+                        return "area: string expected";
+                if (message.player != null && message.hasOwnProperty("player")) {
+                    var error = $root.proto.Player.verify(message.player);
+                    if (error)
+                        return "player." + error;
+                }
+                if (message.user != null && message.hasOwnProperty("user")) {
+                    var error = $root.proto.User.verify(message.user);
+                    if (error)
+                        return "user." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a ResOtherPlayerJoinArea message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResOtherPlayerJoinArea} ResOtherPlayerJoinArea
+             */
+            ResOtherPlayerJoinArea.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResOtherPlayerJoinArea)
+                    return object;
+                var message = new $root.proto.ResOtherPlayerJoinArea();
+                if (object.areaId != null)
+                    message.areaId = object.areaId | 0;
+                if (object.area != null)
+                    message.area = String(object.area);
+                if (object.player != null) {
+                    if (typeof object.player !== "object")
+                        throw TypeError(".proto.ResOtherPlayerJoinArea.player: object expected");
+                    message.player = $root.proto.Player.fromObject(object.player);
+                }
+                if (object.user != null) {
+                    if (typeof object.user !== "object")
+                        throw TypeError(".proto.ResOtherPlayerJoinArea.user: object expected");
+                    message.user = $root.proto.User.fromObject(object.user);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResOtherPlayerJoinArea message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @static
+             * @param {proto.ResOtherPlayerJoinArea} message ResOtherPlayerJoinArea
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResOtherPlayerJoinArea.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.areaId = 0;
+                    object.area = "";
+                    object.player = null;
+                    object.user = null;
+                }
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    object.areaId = message.areaId;
+                if (message.area != null && message.hasOwnProperty("area"))
+                    object.area = message.area;
+                if (message.player != null && message.hasOwnProperty("player"))
+                    object.player = $root.proto.Player.toObject(message.player, options);
+                if (message.user != null && message.hasOwnProperty("user"))
+                    object.user = $root.proto.User.toObject(message.user, options);
+                return object;
+            };
+    
+            /**
+             * Converts this ResOtherPlayerJoinArea to JSON.
+             * @function toJSON
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResOtherPlayerJoinArea.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResOtherPlayerJoinArea
+             * @function getTypeUrl
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResOtherPlayerJoinArea.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResOtherPlayerJoinArea";
+            };
+    
+            return ResOtherPlayerJoinArea;
         })();
     
         return proto;

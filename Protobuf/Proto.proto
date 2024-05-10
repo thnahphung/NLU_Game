@@ -6,6 +6,7 @@ option java_package = "vn.edu.nlu.fit.nlugame.layer2.proto";
 message PacketWrapper {
   repeated Packet packet = 1;
 }
+
 message Packet {
   oneof data {
     ReqLogin reqLogin = 1;
@@ -22,58 +23,13 @@ message Packet {
     ResLoadCharacters resLoadCharacters = 12;
     ReqPickCharacter reqPickCharacter = 13;
     ResPickCharacter resPickCharacter = 14;
+    ReqPlayerJoinArea reqPlayerJoinArea = 15;
+    ResPlayerJoinArea resPlayerJoinArea = 16;
+    ResOtherPlayerJoinArea resOtherPlayerJoinArea = 17;
   }
 }
 
-message ReqLogin {
-  string username = 1;
-  string password = 2;
-}
-message ReqRelogin {
-  string username = 1;
-  string token = 2;
-}
-message ResLogin {
-  int32 status = 1;  // 200:login thanh cong; 201 login thành công nhưng phải
-                     // cập nhật player_name, gender;
-  // 400: login không thành công,  sai username or pass, 401: tài khoản bị khóa,
-  // 402: tài khoản chưa kích hoạt. 403: user không thể relogin : 404 User login
-  // in other device
-  string token = 2;
-  User user = 3;
-}
-message ResUserAlert {
-  int32 status = 1;  // 404 User login in other device
-}
-
-message ReqLogout {}
-message ResLogout {
-  int32 status = 1;  // từ từ định nghĩa
-}
-message ReqForgotPassword {
-  string email = 1;
-}
-message ResForgotPassword {
-  int32 status = 1;
-}
-message ReqRegister {
-  string username = 1;
-  string password = 2;
-  string sponsor = 3;
-  string phone = 4;
-  string email = 5;
-}
-message ResRegister {
-  int32 status = 1;  // 200 đăng ký thành công; 
-                      // 400 trùng username hoac ; 401 email da ton tai, 
-                      // 402 sponsor không tồn tại, 403 default sponsor.
-                      // 404 số điện thoại không hợp lệ
-                      // 500: hệ thống lỗi, thống báo user không thể đăng ký
-}
-message ReqUpdateUserInfo {
-  string playerName = 1;
-  int32 gender = 2;  // 0 nữ; 1 nam
-}
+// Bean start =================================================
 message User {
   int32 userId = 1;
   string username = 2;
@@ -87,11 +43,14 @@ message User {
   int32 agencyLevel = 10;
   int32 hasCharacter = 11;
 }
-message ReqLoadCharacters {
-}
 
-message ResLoadCharacters {
-  repeated Character character = 1;
+message Player{
+  int32 playerId = 1;
+  string playerName = 2;
+  int32 characterId = 3;
+  int32 level = 4;
+  int32 userId = 5;
+  int32 areaId = 6;
 }
 
 message Character {
@@ -99,6 +58,74 @@ message Character {
   string name = 2;
   string code = 3;
   string description = 4;
+}
+// Bean end ====================================================
+
+message ReqLogin {
+  string username = 1;
+  string password = 2;
+}
+
+message ReqRelogin {
+  string username = 1;
+  string token = 2;
+}
+
+message ResLogin {
+  int32 status = 1;  // 200:login thanh cong; 201 login thành công nhưng phải
+                     // cập nhật player_name, gender;
+  // 400: login không thành công,  sai username or pass, 401: tài khoản bị khóa,
+  // 402: tài khoản chưa kích hoạt. 403: user không thể relogin : 404 User login
+  // in other device
+  string token = 2;
+  User user = 3;
+  Player player = 4;
+}
+
+message ResUserAlert {
+  int32 status = 1;  // 404 User login in other device
+}
+
+message ReqLogout {}
+
+message ResLogout {
+  int32 status = 1;  // từ từ định nghĩa
+}
+
+message ReqForgotPassword {
+  string email = 1;
+}
+
+message ResForgotPassword {
+  int32 status = 1;
+}
+
+message ReqRegister {
+  string username = 1;
+  string password = 2;
+  string sponsor = 3;
+  string phone = 4;
+  string email = 5;
+}
+
+message ResRegister {
+  int32 status = 1;  // 200 đăng ký thành công; 
+                      // 400 trùng username hoac ; 401 email da ton tai, 
+                      // 402 sponsor không tồn tại, 403 default sponsor.
+                      // 404 số điện thoại không hợp lệ
+                      // 500: hệ thống lỗi, thống báo user không thể đăng ký
+}
+
+message ReqUpdateUserInfo {
+  string playerName = 1;
+  int32 gender = 2;  // 0 nữ; 1 nam
+}
+
+message ReqLoadCharacters {
+}
+
+message ResLoadCharacters {
+  repeated Character character = 1;
 }
 
 message ReqPickCharacter {
@@ -109,3 +136,25 @@ message ReqPickCharacter {
 message ResPickCharacter {
   int32 status = 1; 
 }
+
+message ReqPlayerJoinArea{
+  string area = 1;
+  int32 idArea = 2; // Nếu join các vùng chung thì idArea = -1
+}
+
+message ResPlayerJoinArea{
+  int32 areaId =1;
+  string area = 2;
+  repeated Player player = 3;
+  repeated User user = 4;
+  int32 status = 5; // 200: join thành công; 400: join không thành công
+  int32 areaState = 6;
+}
+
+message ResOtherPlayerJoinArea{
+  int32 areaId = 1;
+  string area = 2;
+  Player player = 3;
+  User user = 4;
+}
+

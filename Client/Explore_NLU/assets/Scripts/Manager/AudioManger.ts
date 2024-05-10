@@ -2,6 +2,7 @@ import {
   _decorator,
   AudioClip,
   AudioSource,
+  Component,
   director,
   Node,
   resources,
@@ -12,8 +13,8 @@ import { StorageManager } from "./StorageManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("AudioManger")
-export class AudioManger {
-  private static _instance: AudioManger;
+export class AudioManger extends Component {
+  protected static _instance: AudioManger;
   private _audioSource: AudioSource;
   private MUSIC_VOLUME_RATE: number = 0.5;
 
@@ -24,17 +25,24 @@ export class AudioManger {
     return this._instance;
   }
 
-  constructor() {
-    let audioManager = new Node();
-    audioManager.name = "__AudioManager__";
+  // constructor() {
+  //   let audioManager = new Node();
+  //   audioManager.name = "__AudioManager__";
 
-    //them node vao scene
-    director.getScene().addChild(audioManager);
+  //   //them node vao scene
+  //   director.getScene().addChild(audioManager);
 
-    //giu cho node khong bi destroy khi chuyen scene
-    director.addPersistRootNode(audioManager);
+  //   //giu cho node khong bi destroy khi chuyen scene
+  //   director.addPersistRootNode(audioManager);
 
-    this._audioSource = audioManager.addComponent(AudioSource);
+  //   this._audioSource = audioManager.addComponent(AudioSource);
+  // }
+
+  protected onLoad(): void {
+    if (AudioManger._instance != null)
+      console.log("Only 1 InputManager allow to exist");
+    AudioManger._instance = this;
+    director.addPersistRootNode(this.node);
   }
 
   public get audioSource() {
