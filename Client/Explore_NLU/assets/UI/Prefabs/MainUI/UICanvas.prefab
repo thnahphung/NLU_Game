@@ -144,7 +144,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 323.1243576567318,
+    "_orthoHeight": 390.0744416873449,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -275,8 +275,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 195.838,
-      "y": -70,
+      "x": 195,
+      "y": -60,
       "z": 0
     },
     "_lrot": {
@@ -1710,8 +1710,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 200,
-      "y": -188.29,
+      "x": 177.928,
+      "y": -154,
       "z": 0
     },
     "_lrot": {
@@ -4579,7 +4579,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": -140,
-      "y": -40,
+      "y": -34,
       "z": 0
     },
     "_lrot": {
@@ -4717,7 +4717,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 200,
-      "height": 48
+      "height": 40
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -4809,7 +4809,7 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -107.8,
+      "x": -100,
       "y": 0,
       "z": 0
     },
@@ -4849,8 +4849,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 64,
-      "height": 64
+      "width": 50,
+      "height": 50
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -4890,7 +4890,7 @@
     },
     "_type": 0,
     "_fillType": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -4995,8 +4995,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 159.6,
-      "height": 50.4
+      "width": 153.92,
+      "height": 35.28
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -5030,13 +5030,13 @@
       "b": 56,
       "a": 255
     },
-    "_string": "99,999,999",
+    "_string": "999,999,999",
     "_horizontalAlign": 2,
     "_verticalAlign": 1,
-    "_actualFontSize": 30,
-    "_fontSize": 30,
+    "_actualFontSize": 26,
+    "_fontSize": 26,
     "_fontFamily": "Arial",
-    "_lineHeight": 40,
+    "_lineHeight": 28,
     "_overflow": 0,
     "_enableWrapText": true,
     "_font": {
@@ -5239,8 +5239,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -84.412,
-      "y": 134.376,
+      "x": -70,
+      "y": 180,
       "z": 0
     },
     "_lrot": {
@@ -6775,8 +6775,6 @@
       "__id__": 0
     },
     "fileId": "747aK9telEXqWkm0AXLlqR",
-    "instance": null,
-    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
@@ -7006,6 +7004,7 @@
     "joystick": {
       "__id__": 177
     },
+    "addToRootNode": true,
     "_id": ""
   },
   {

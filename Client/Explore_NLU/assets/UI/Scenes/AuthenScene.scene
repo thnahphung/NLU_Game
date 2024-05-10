@@ -21,13 +21,13 @@
         "__id__": 217
       },
       {
-        "__id__": 224
+        "__id__": 225
       }
     ],
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 232
+      "__id__": 233
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -58,7 +58,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 233
+      "__id__": 234
     },
     "_id": "a24bee10-29c7-47aa-b5d6-b3a30780750c"
   },
@@ -191,7 +191,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 617.4874371859296,
+    "_orthoHeight": 390.0744416873449,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -7680,7 +7680,7 @@
   {
     "__type__": "cc.Node",
     "_name": "UICanvas",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "__editorExtras__": {},
     "_parent": {
       "__id__": 1
@@ -7703,6 +7703,9 @@
       },
       {
         "__id__": 223
+      },
+      {
+        "__id__": 224
       }
     ],
     "_prefab": null,
@@ -7738,7 +7741,7 @@
   {
     "__type__": "cc.Node",
     "_name": "Camera",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 217
     },
@@ -7792,7 +7795,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 617.4874371859296,
+    "_orthoHeight": 390.0744416873449,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -7825,7 +7828,7 @@
   {
     "__type__": "cc.Node",
     "_name": "PopupLayer",
-    "_objFlags": 0,
+    "_objFlags": 512,
     "_parent": {
       "__id__": 217
     },
@@ -7928,20 +7931,33 @@
     "_id": "77js+4m3hPW4eSI0bgpaoG"
   },
   {
+    "__type__": "82312WaBSxOyKHUectK/OMK",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 217
+    },
+    "_enabled": true,
+    "__prefab": null,
+    "joystick": null,
+    "addToRootNode": false,
+    "_id": "adVFzWEsVNZ5VEjfhy0O66"
+  },
+  {
     "__type__": "cc.Node",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
     },
     "_prefab": {
-      "__id__": 225
+      "__id__": 226
     },
     "__editorExtras__": {}
   },
   {
     "__type__": "cc.PrefabInfo",
     "root": {
-      "__id__": 224
+      "__id__": 225
     },
     "asset": {
       "__uuid__": "d2288ecc-8ca5-471b-826e-edd715d20f59",
@@ -7949,7 +7965,7 @@
     },
     "fileId": "e2tEMEh/FFsJrds9x1ED4L",
     "instance": {
-      "__id__": 226
+      "__id__": 227
     },
     "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
@@ -7962,16 +7978,16 @@
     "mountedComponents": [],
     "propertyOverrides": [
       {
-        "__id__": 227
-      },
-      {
-        "__id__": 229
+        "__id__": 228
       },
       {
         "__id__": 230
       },
       {
         "__id__": 231
+      },
+      {
+        "__id__": 232
       }
     ],
     "removedComponents": []
@@ -7979,7 +7995,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 228
+      "__id__": 229
     },
     "propertyPath": [
       "_name"
@@ -7995,7 +8011,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 228
+      "__id__": 229
     },
     "propertyPath": [
       "_lpos"
@@ -8010,7 +8026,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 228
+      "__id__": 229
     },
     "propertyPath": [
       "_lrot"
@@ -8026,7 +8042,7 @@
   {
     "__type__": "CCPropertyOverrideInfo",
     "targetInfo": {
-      "__id__": 228
+      "__id__": 229
     },
     "propertyPath": [
       "_euler"
@@ -8047,29 +8063,29 @@
     "targetOverrides": null,
     "nestedPrefabInstanceRoots": [
       {
-        "__id__": 224
+        "__id__": 225
       }
     ]
   },
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 234
-    },
-    "shadows": {
       "__id__": 235
     },
-    "_skybox": {
+    "shadows": {
       "__id__": 236
     },
-    "fog": {
+    "_skybox": {
       "__id__": 237
     },
-    "octree": {
+    "fog": {
       "__id__": 238
     },
-    "lightProbeInfo": {
+    "octree": {
       "__id__": 239
+    },
+    "lightProbeInfo": {
+      "__id__": 240
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false
