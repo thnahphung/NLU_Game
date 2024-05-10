@@ -7,7 +7,7 @@ import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 public interface Subscriber {
     void onOpen(Session session, String... params);
 
-    void onMessage(Session session, Proto.PacketWrapper message);
+    void onMessage(Session session, Proto.PacketWrapper packetWrapper);
 
     void onClose(Session session, CloseReason closeReason);
 

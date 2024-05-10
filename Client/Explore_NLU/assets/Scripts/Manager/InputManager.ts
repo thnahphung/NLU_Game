@@ -8,13 +8,15 @@ import {
   EventKeyboard,
   KeyCode,
   find,
+  director,
 } from "cc";
 import { Joystick } from "../Prefabs/Joystick/Joystick";
+import GlobalData from "../Utils/GlobalData";
 const { ccclass, property } = _decorator;
 
 @ccclass("InputManager")
 export class InputManager extends Component {
-  @property(Joystick) private joystick: Joystick = null;
+  private joystick: Joystick = null;
   protected static _instance: InputManager;
   private _direction: Vec2 = new Vec2(0, 0);
 
@@ -31,13 +33,17 @@ export class InputManager extends Component {
   }
 
   protected onLoad(): void {
-    if (InputManager._instance != null)
+    if (InputManager._instance != null) {
       console.log("Only 1 InputManager allow to exist");
+      this.node.destroy();
+      return;
+    }
     InputManager._instance = this;
+    director.addPersistRootNode(this.node);
   }
 
   start() {
-    if (sys.isMobile || sys.isNative) {
+    if (GlobalData.me().isMobileDevice()) {
       this.joystick = find("UICanvas/BotLeft/Joystick")?.getComponent(Joystick);
       return;
     }
@@ -112,7 +118,7 @@ export class InputManager extends Component {
   }
 
   private setDirection() {
-    if (sys.isMobile || sys.isNative) {
+    if (GlobalData.me().isMobileDevice()) {
       this._direction = this.joystick.getRotation();
       return;
     } else {

@@ -1,6 +1,7 @@
 package vn.edu.nlu.fit.nlugame.layer2.dao;
 
 import org.jdbi.v3.core.Jdbi;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.PlayerBean;
 
 public class PlayerDAO extends BaseDAO{
     private static final String TABLE_NAME = "players";
@@ -24,5 +25,23 @@ public class PlayerDAO extends BaseDAO{
             System.out.println("Error: Insert player failed: " + e);
             return 500;
         }
+    }
+
+    public static PlayerBean getPlayerByUserId(int userId) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        try {
+            return jdbi.withHandle(h -> h.createQuery("select id, player_name, character_id, user_id, `level`, area_id from " + TABLE_NAME + " where user_id = :user_id")
+                    .bind("user_id", userId)
+                    .mapToBean(PlayerBean.class)
+                    .findFirst()
+                    .orElse(null));
+        } catch (Exception e) {
+            System.out.println("Error: Get player by user id failed: " + e);
+            return null;
+        }
+
     }
 }

@@ -20,4 +20,8 @@ public class PlayerBean {
     private int characterId;
     @ColumnName("level")
     private int level;
+    @ColumnName("area_id")
+    private int areaId;
+
+    AreaBean area;
 }
