@@ -9,6 +9,21 @@
   "custom_joint_texture_layouts": [],
   "layer": [],
   "physics": {
-    "fixedTimeStep": 0.016667
+    "fixedTimeStep": 0.016667,
+    "collisionGroups": [
+      {
+        "index": 1,
+        "name": "TilledLand"
+      },
+      {
+        "index": 2,
+        "name": "Tool"
+      }
+    ],
+    "collisionMatrix": {
+      "0": 1,
+      "1": 4,
+      "2": 2
+    }
   }
 }
