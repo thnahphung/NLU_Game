@@ -9,7 +9,7 @@ export const POPUP_MESSAGE = {
   REGISTER_SUCCESS_200: `Đăng ký thành công!`,
   REGISTER_FAILED_400: `Tên đăng nhập đã tồn tại!`,
   REGISTER_FAILED_401: `Tên đăng nhập hoặc mật khẩu không thể trống!`,
-  REGISTER_FAILED_402: `Đăng ký thất bại!`,
+  REGISTER_FAILED_402: `Mật khẩu không trùng khớp!`,
   REGISTER_FAILED_403: `Email này đã được sử dụng!`,
   REGISTER_FAILED_500: `Lỗi hệ thống, hiện tại không thể đăng ký!`,
   LOGOUT_FAILED_400: `Lỗi không thể đăng xuất!`,
@@ -47,3 +47,19 @@ export enum SCENES {
   MECHANICAL = "MechanicalScene",
   PICK_CHARACTER = "PickCharacterScene",
 }
+
+export const LOCAL_STORAGE = {
+  USERNAME: "USERNAME",
+  AUTO_LOGIN: "AUTO_LOGIN",
+  TOKEN: "TOKEN",
+};
+
+export enum POPUP {
+  POPUP_OPTION = "POPUP_OPTION",
+  POPUP_SETTING = "POPUP_SETTING",
+};
+
+export enum CUSTOM_EVENT {
+  LISTEN_CANCEL = "LISTEN_CANCEL",
+  LISTEN_COMPLETE = "LISTEN_COMPLETE",
+};

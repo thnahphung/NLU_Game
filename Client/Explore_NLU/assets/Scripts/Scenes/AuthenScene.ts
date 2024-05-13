@@ -6,7 +6,8 @@ import { TransitionScenePrefab } from "../Prefabs/TransitionScene/TransitionScen
 import { StorageManager } from "../Manager/StorageManger";
 import { PopupManager } from "../Manager/PopupManager";
 import GlobalData from "../Utils/GlobalData";
-import { CHARACTERS, SCENES } from "../Utils/Const";
+import { CHARACTERS, LOCAL_STORAGE, POPUP_MESSAGE, SCENES } from "../Utils/Const";
+import { UICanvas } from "../Prefabs/MainUI/UICanvas";
 const { ccclass, property } = _decorator;
 
 @ccclass("AuthenScene")
@@ -65,48 +66,38 @@ export class AuthenScene extends AbsScene {
   onLoginMsgHandler(resLogin: proto.IResLogin) {
     let transitScreenNode = instantiate(this.transitScreen);
     if (resLogin.status === 400) {
-      PopupManager.me().showPopupMessage(
-        "Tên đăng nhập hoặc mật khẩu không đúng!"
-      );
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_400);
       return;
     }
     if (resLogin.status === 401) {
-      console.log("Fail relogin!");
       this.popupGeneral.active = true;
       return;
     }
     if (resLogin.status === 402) {
-      PopupManager.me().showPopupMessage("Tài khoản đã bị khóa!");
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_402);
       return;
     }
     if (resLogin.status === 403) {
-      PopupManager.me().showPopupMessage(
-        "Tài khoản đang đăng nhập ở thiết bị khác!"
-      );
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_403);
       return;
     }
     if (resLogin.status === 500) {
-      PopupManager.me().showPopupMessage("Lỗi server!");
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_500);
       return;
     }
     if (resLogin.status === 200) {
       //RememberLogin
-      StorageManager.me().saveItem("USERNAME", resLogin.user.username);
-      StorageManager.me().saveItem("AUTO_LOGIN", this.rememberMe.isChecked);
-      StorageManager.me().saveItem("TOKEN", resLogin.token);
+      StorageManager.me().saveItem(LOCAL_STORAGE.USERNAME, resLogin.user.username);
+      StorageManager.me().saveItem(LOCAL_STORAGE.AUTO_LOGIN, this.rememberMe.isChecked);
+      StorageManager.me().saveItem(LOCAL_STORAGE.TOKEN, resLogin.token);
       //Chuyển scene
       var hasCharacter = resLogin.user.hasCharacter;
-      console.log("hasCharacter", hasCharacter);
       if (hasCharacter == 0) {
         transitScreenNode
           .getComponent(TransitionScenePrefab)
-          .setSceneName("PickCharacterScene");
+          .setSceneName(SCENES.PICK_CHARACTER);
         this.node.addChild(transitScreenNode);
       } else {
-        console.log(
-          "Transition to scene by character",
-          resLogin.player.characterId
-        );
         this.transitionSceneByCharacter(resLogin.player.characterId);
       }
     }
@@ -114,19 +105,17 @@ export class AuthenScene extends AbsScene {
 
   onRegisterMsgHandler(resRegister: proto.IResRegister) {
     if (resRegister.status === 400) {
-      PopupManager.me().showPopupMessage("Tên đăng nhập đã tồn tại!");
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_400);
     } else if (resRegister.status === 401) {
-      PopupManager.me().showPopupMessage(
-        "Tên đăng nhập hoặc mật khẩu không thể để trống!"
-      );
-    } else if (resRegister.status === 403) {
-      PopupManager.me().showPopupMessage("Email này đã được sử dụng!");
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_401);
     } else if (resRegister.status === 402) {
-      PopupManager.me().showPopupMessage("Mật khẩu không trùng khớp!");
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_402);
+    } else if (resRegister.status === 403) {
+      UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_403);
     } else if (resRegister.status === 500) {
-      PopupManager.me().showPopupMessage("Lỗi server!");
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_500);
     } else if (resRegister.status === 200) {
-      PopupManager.me().showPopupMessage("Đăng ký thành công!");
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_SUCCESS_200);
     }
   }
 
