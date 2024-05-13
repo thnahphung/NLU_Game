@@ -101,5 +101,8 @@ export class UICanvas extends Component {
       default: return;
     }
   }
-  
+
+  onTouchSetting(): void {
+    this.showPopup(POPUP.POPUP_SETTING);
+  }
 }
