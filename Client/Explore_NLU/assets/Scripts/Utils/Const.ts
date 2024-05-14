@@ -63,3 +63,17 @@ export enum CUSTOM_EVENT {
   LISTEN_CANCEL = "LISTEN_CANCEL",
   LISTEN_COMPLETE = "LISTEN_COMPLETE",
 };
+
+export enum COATING {
+  MOVE = "MOVE",
+  TILL = "TILL",
+  SEED = "SEED",
+};
+
+export enum SEED_BAG {
+  RICE = "Rice",
+  CABBAGE = "Cabbage",
+  CARROT = "Carrot",
+  CUCUMBER = "Cucumber",
+  PUMPKIN = "Pumpkin",
+};

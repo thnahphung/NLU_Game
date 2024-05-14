@@ -1,8 +1,9 @@
 import { _decorator, Component, EventTouch, find, instantiate, Node, Prefab, UITransform, Vec3 } from 'cc';
 import { UICanvas } from '../Prefabs/MainUI/UICanvas';
-import { CUSTOM_EVENT, POPUP } from '../Utils/Const';
+import { COATING, CUSTOM_EVENT, POPUP } from '../Utils/Const';
 import { off } from 'process';
 import GlobalData from '../Utils/GlobalData';
+import { CoatingComponent } from './CoatingComponent';
 const { ccclass, property } = _decorator;
 
 @ccclass('MovementBuildingComponent')
@@ -12,13 +13,10 @@ export class MovementBuildingComponent extends Component {
     private effectMove: Node = null;
     private resizeValue : number = 1.4;
     private originPosition: Vec3 = null;
-    private coatingNode: Node = null;
     @property(Prefab) 
     public menuToolBuildingPrefab: Prefab = null;
     @property(Prefab)
     public effectMovePrefab: Prefab = null;
-    @property(Prefab)
-    public coatingPrefab: Prefab = null;
 
     protected onLoad(): void {
         this.originPosition = this.node.getPosition();
@@ -137,11 +135,6 @@ export class MovementBuildingComponent extends Component {
         }
     }
 
-    private handleDestroyMenuToolBuilding(): void {
-        if(this.buttonMove) this.buttonMove.off(Node.EventType.TOUCH_END, this.onClickMoveLand, this);
-        if(this.menuToolBuilding) this.menuToolBuilding.destroy();
-    }
-
     private hideTool(): void {
         var menuTool = this.getMenuToolNode();
         if(menuTool) menuTool.active = false;
@@ -158,30 +151,27 @@ export class MovementBuildingComponent extends Component {
 
     private handleTouchCoating(): void {
         if(this.menuToolBuilding) this.menuToolBuilding.active = false;
-        this.hideMenuToolBuilding();
-        this.hideTool();
-        this.hideCoatingNode();
-    }
-
-    private hideMenuToolBuilding(): void {
-        
+        CoatingComponent.me().getCoating(COATING.MOVE).off(Node.EventType.TOUCH_START, this.handleTouchCoating, this);
+        CoatingComponent.me().off(COATING.MOVE);
+        CoatingComponent.me().off(COATING.TILL);
     }
 
     private hideCoatingNode(): void {
-        this.coatingNode.off(Node.EventType.TOUCH_START, this.handleTouchCoating, this);
-        this.coatingNode.active = false;
+        CoatingComponent.me().getCoating(COATING.MOVE).off(Node.EventType.TOUCH_START, this.handleTouchCoating, this);
+        CoatingComponent.me().getCoating(COATING.MOVE).active = false;
     }
 
     private showCoatingNode(): void {
-        if(this.coatingNode) {
-            this.coatingNode.active = true;
-            this.coatingNode.on(Node.EventType.TOUCH_START, this.handleTouchCoating, this);
+        let coatingNode = CoatingComponent.me().getCoating(COATING.MOVE);
+        if(coatingNode) {
+            coatingNode.active = true;
+            coatingNode.on(Node.EventType.TOUCH_START, this.handleTouchCoating, this);
             return;
         }
-        var parentNode = this.node.parent;
-        this.coatingNode = instantiate(this.coatingPrefab);
-        parentNode.addChild(this.coatingNode);
-        this.coatingNode.on(Node.EventType.TOUCH_START, this.handleTouchCoating, this);
+        CoatingComponent.me().setCoating(COATING.MOVE, this.node.parent, this.menuToolBuilding);
+        CoatingComponent.me().showCoating(COATING.MOVE);
+        var coating = CoatingComponent.me().getCoating(COATING.MOVE);
+        coating.on(Node.EventType.TOUCH_START, this.handleTouchCoating, this);
     }
 }
 
