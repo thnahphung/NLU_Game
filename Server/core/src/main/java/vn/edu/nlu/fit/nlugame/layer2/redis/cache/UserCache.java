@@ -8,7 +8,7 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
 import java.util.*;
 
-public class UserCache extends RedisClusterHelper implements ICache<UserContext, Integer> {
+public class UserCache extends RedisClusterHelper implements ICache<UserContext, String> {
     private static final UserCache instance = new UserCache();
     private static final String USER_KEY = "users";
 
@@ -21,7 +21,7 @@ public class UserCache extends RedisClusterHelper implements ICache<UserContext,
 
 
     @Override
-    public boolean add(Integer key, UserContext value) {
+    public boolean add(String key, UserContext value) {
         return false;
     }
 
@@ -31,7 +31,7 @@ public class UserCache extends RedisClusterHelper implements ICache<UserContext,
     }
 
     @Override
-    public UserContext get(Integer key) {
+    public UserContext get(String key) {
         return null;
     }
 
@@ -41,17 +41,17 @@ public class UserCache extends RedisClusterHelper implements ICache<UserContext,
     }
 
     @Override
-    public Set<Integer> getKeys() {
+    public Set<String> getKeys() {
         return null;
     }
 
     @Override
-    public UserContext remove(Integer key) {
+    public UserContext remove(String key) {
         return null;
     }
 
     @Override
-    public boolean containsKey(Integer key) {
+    public boolean containsKey(String key) {
         return false;
     }
 
@@ -61,7 +61,7 @@ public class UserCache extends RedisClusterHelper implements ICache<UserContext,
     }
 
     @Override
-    public Integer getKey(UserContext value) {
+    public String getKey(UserContext value) {
         return null;
     }
 
@@ -80,7 +80,7 @@ public class UserCache extends RedisClusterHelper implements ICache<UserContext,
         try {
             byte[] userByte = getConnection().hget(USER_KEY.getBytes(), String.valueOf(userID).getBytes());
             if (userByte == null) return null;
-            return ((UserContext) CompressUtils.decompress(userByte, UserContext.class)).getUser();
+            return (CompressUtils.decompress(userByte, UserContext.class)).getUser();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -89,25 +89,53 @@ public class UserCache extends RedisClusterHelper implements ICache<UserContext,
 
     public void logoutUser(Proto.User user) {
         getConnection().hdel(USER_KEY.getBytes(), String.valueOf(user.getUserId()).getBytes());
-        PlayerCache.me().removeByUserId(user.getUserId());
     }
 
     public void logoutUser(int userID) {
         getConnection().hdel(USER_KEY.getBytes(), String.valueOf(userID).getBytes());
-        Proto.Player playerRemoved = PlayerCache.me().removeByUserId(userID);
-        if (playerRemoved != null) {
-            PlayerCache.me().removePlayer(playerRemoved.getPlayerId());
-        }
     }
 
     public Map<String, UserContext> getAllUserOnline() {
         Map<byte[], byte[]> userMap = getConnection().hgetAll(USER_KEY.getBytes());
         Map<String, UserContext> result = new HashMap<>();
         userMap.forEach((k, v) -> {
-            UserContext userContext = (UserContext) CompressUtils.decompress(v, UserContext.class);
+            UserContext userContext = CompressUtils.decompress(v, UserContext.class);
             System.out.println(userContext.getUser().getUserId());
         });
         return result;
+    }
+
+    public ArrayList<Proto.User> getListUser(ArrayList<String> userIds) {
+        ArrayList<Proto.User> users = new ArrayList<>();
+        for (String userId : userIds) {
+            byte[] data = getConnection().hget(USER_KEY.getBytes(), userId.getBytes());
+            if (data == null) continue;
+            UserContext userContext = CompressUtils.decompress(data, UserContext.class);
+            users.add(userContext.getUser());
+        }
+        return users;
+    }
+
+    public ArrayList<UserContext> getListUserContext(ArrayList<String> userIds) {
+        ArrayList<UserContext> userContexts = new ArrayList<>();
+        for (String userId : userIds) {
+            byte[] data = getConnection().hget(USER_KEY.getBytes(), userId.getBytes());
+            if (data == null) continue;
+            UserContext userContext = CompressUtils.decompress(data, UserContext.class);
+            userContexts.add(userContext);
+        }
+        return userContexts;
+    }
+
+    public ArrayList<String> getListSessionId(ArrayList<String> userIds) {
+        ArrayList<String> sessionIds = new ArrayList<>();
+        for (String userId : userIds) {
+            byte[] data = getConnection().hget(USER_KEY.getBytes(), userId.getBytes());
+            if (data == null) continue;
+            UserContext userContext = CompressUtils.decompress(data, UserContext.class);
+            sessionIds.add(userContext.getSessionID());
+        }
+        return sessionIds;
     }
 
 }

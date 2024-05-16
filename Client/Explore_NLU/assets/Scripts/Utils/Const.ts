@@ -26,16 +26,27 @@ export const AUDIOS = {
   CLICK: "Audios/click",
   BACKGROUND: "Audios/Bg/tungtung",
 };
+
+//Spawn position start
 export const KIOT_AREA = {
   SPAWN_POS: new Vec3(-2800, -250, 0),
   SPAWN_POS_NONG_HOC: new Vec3(3234, 180, 0),
 };
 
+export const VETERINARIAN_AREA = {
+  SPAWN_POS: new Vec3(-407, -86, 0),
+};
+
+export const ANIMAL_HUSBANDRY_AREA = {
+  SPAWN_POS: new Vec3(-40, -390, 0),
+};
+//Spawn position end
+
 export enum CHARACTERS {
-  KSNN = 1,
-  KSCN = 2,
-  KSCK = 3,
-  BSTY = 4,
+  KSNN = "KSNN",
+  KSCN = "KSCN",
+  KSCK = "KSCK",
+  BSTY = "BSTY",
 }
 
 export enum SCENES {

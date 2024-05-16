@@ -261,9 +261,14 @@
              * @property {proto.IResLoadCharacters|null} [resLoadCharacters] Packet resLoadCharacters
              * @property {proto.IReqPickCharacter|null} [reqPickCharacter] Packet reqPickCharacter
              * @property {proto.IResPickCharacter|null} [resPickCharacter] Packet resPickCharacter
+             * @property {proto.IReqPlayerJoinAreaCommon|null} [reqPlayerJoinAreaCommon] Packet reqPlayerJoinAreaCommon
+             * @property {proto.IResPlayerJoinAreaCommon|null} [resPlayerJoinAreaCommon] Packet resPlayerJoinAreaCommon
              * @property {proto.IReqPlayerJoinArea|null} [reqPlayerJoinArea] Packet reqPlayerJoinArea
              * @property {proto.IResPlayerJoinArea|null} [resPlayerJoinArea] Packet resPlayerJoinArea
              * @property {proto.IResOtherPlayerJoinArea|null} [resOtherPlayerJoinArea] Packet resOtherPlayerJoinArea
+             * @property {proto.IReqMoving|null} [reqMoving] Packet reqMoving
+             * @property {proto.IResMoving|null} [resMoving] Packet resMoving
+             * @property {proto.IResOtherPlayerLeaveArea|null} [resOtherPlayerLeaveArea] Packet resOtherPlayerLeaveArea
              */
     
             /**
@@ -394,6 +399,22 @@
             Packet.prototype.resPickCharacter = null;
     
             /**
+             * Packet reqPlayerJoinAreaCommon.
+             * @member {proto.IReqPlayerJoinAreaCommon|null|undefined} reqPlayerJoinAreaCommon
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqPlayerJoinAreaCommon = null;
+    
+            /**
+             * Packet resPlayerJoinAreaCommon.
+             * @member {proto.IResPlayerJoinAreaCommon|null|undefined} resPlayerJoinAreaCommon
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resPlayerJoinAreaCommon = null;
+    
+            /**
              * Packet reqPlayerJoinArea.
              * @member {proto.IReqPlayerJoinArea|null|undefined} reqPlayerJoinArea
              * @memberof proto.Packet
@@ -417,17 +438,41 @@
              */
             Packet.prototype.resOtherPlayerJoinArea = null;
     
+            /**
+             * Packet reqMoving.
+             * @member {proto.IReqMoving|null|undefined} reqMoving
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqMoving = null;
+    
+            /**
+             * Packet resMoving.
+             * @member {proto.IResMoving|null|undefined} resMoving
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resMoving = null;
+    
+            /**
+             * Packet resOtherPlayerLeaveArea.
+             * @member {proto.IResOtherPlayerLeaveArea|null|undefined} resOtherPlayerLeaveArea
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resOtherPlayerLeaveArea = null;
+    
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
     
             /**
              * Packet data.
-             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|undefined} data
+             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|undefined} data
              * @memberof proto.Packet
              * @instance
              */
             Object.defineProperty(Packet.prototype, "data", {
-                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter", "reqPlayerJoinArea", "resPlayerJoinArea", "resOtherPlayerJoinArea"]),
+                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter", "reqPlayerJoinAreaCommon", "resPlayerJoinAreaCommon", "reqPlayerJoinArea", "resPlayerJoinArea", "resOtherPlayerJoinArea", "reqMoving", "resMoving", "resOtherPlayerLeaveArea"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
     
@@ -483,12 +528,22 @@
                     $root.proto.ReqPickCharacter.encode(message.reqPickCharacter, writer.uint32(/* id 13, wireType 2 =*/106).fork()).ldelim();
                 if (message.resPickCharacter != null && Object.hasOwnProperty.call(message, "resPickCharacter"))
                     $root.proto.ResPickCharacter.encode(message.resPickCharacter, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
+                if (message.reqPlayerJoinAreaCommon != null && Object.hasOwnProperty.call(message, "reqPlayerJoinAreaCommon"))
+                    $root.proto.ReqPlayerJoinAreaCommon.encode(message.reqPlayerJoinAreaCommon, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
+                if (message.resPlayerJoinAreaCommon != null && Object.hasOwnProperty.call(message, "resPlayerJoinAreaCommon"))
+                    $root.proto.ResPlayerJoinAreaCommon.encode(message.resPlayerJoinAreaCommon, writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
                 if (message.reqPlayerJoinArea != null && Object.hasOwnProperty.call(message, "reqPlayerJoinArea"))
-                    $root.proto.ReqPlayerJoinArea.encode(message.reqPlayerJoinArea, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
+                    $root.proto.ReqPlayerJoinArea.encode(message.reqPlayerJoinArea, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
                 if (message.resPlayerJoinArea != null && Object.hasOwnProperty.call(message, "resPlayerJoinArea"))
-                    $root.proto.ResPlayerJoinArea.encode(message.resPlayerJoinArea, writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
+                    $root.proto.ResPlayerJoinArea.encode(message.resPlayerJoinArea, writer.uint32(/* id 18, wireType 2 =*/146).fork()).ldelim();
                 if (message.resOtherPlayerJoinArea != null && Object.hasOwnProperty.call(message, "resOtherPlayerJoinArea"))
-                    $root.proto.ResOtherPlayerJoinArea.encode(message.resOtherPlayerJoinArea, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
+                    $root.proto.ResOtherPlayerJoinArea.encode(message.resOtherPlayerJoinArea, writer.uint32(/* id 19, wireType 2 =*/154).fork()).ldelim();
+                if (message.reqMoving != null && Object.hasOwnProperty.call(message, "reqMoving"))
+                    $root.proto.ReqMoving.encode(message.reqMoving, writer.uint32(/* id 20, wireType 2 =*/162).fork()).ldelim();
+                if (message.resMoving != null && Object.hasOwnProperty.call(message, "resMoving"))
+                    $root.proto.ResMoving.encode(message.resMoving, writer.uint32(/* id 21, wireType 2 =*/170).fork()).ldelim();
+                if (message.resOtherPlayerLeaveArea != null && Object.hasOwnProperty.call(message, "resOtherPlayerLeaveArea"))
+                    $root.proto.ResOtherPlayerLeaveArea.encode(message.resOtherPlayerLeaveArea, writer.uint32(/* id 22, wireType 2 =*/178).fork()).ldelim();
                 return writer;
             };
     
@@ -580,15 +635,35 @@
                             break;
                         }
                     case 15: {
-                            message.reqPlayerJoinArea = $root.proto.ReqPlayerJoinArea.decode(reader, reader.uint32());
+                            message.reqPlayerJoinAreaCommon = $root.proto.ReqPlayerJoinAreaCommon.decode(reader, reader.uint32());
                             break;
                         }
                     case 16: {
-                            message.resPlayerJoinArea = $root.proto.ResPlayerJoinArea.decode(reader, reader.uint32());
+                            message.resPlayerJoinAreaCommon = $root.proto.ResPlayerJoinAreaCommon.decode(reader, reader.uint32());
                             break;
                         }
                     case 17: {
+                            message.reqPlayerJoinArea = $root.proto.ReqPlayerJoinArea.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 18: {
+                            message.resPlayerJoinArea = $root.proto.ResPlayerJoinArea.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 19: {
                             message.resOtherPlayerJoinArea = $root.proto.ResOtherPlayerJoinArea.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 20: {
+                            message.reqMoving = $root.proto.ReqMoving.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 21: {
+                            message.resMoving = $root.proto.ResMoving.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 22: {
+                            message.resOtherPlayerLeaveArea = $root.proto.ResOtherPlayerLeaveArea.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -765,6 +840,26 @@
                             return "resPickCharacter." + error;
                     }
                 }
+                if (message.reqPlayerJoinAreaCommon != null && message.hasOwnProperty("reqPlayerJoinAreaCommon")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqPlayerJoinAreaCommon.verify(message.reqPlayerJoinAreaCommon);
+                        if (error)
+                            return "reqPlayerJoinAreaCommon." + error;
+                    }
+                }
+                if (message.resPlayerJoinAreaCommon != null && message.hasOwnProperty("resPlayerJoinAreaCommon")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResPlayerJoinAreaCommon.verify(message.resPlayerJoinAreaCommon);
+                        if (error)
+                            return "resPlayerJoinAreaCommon." + error;
+                    }
+                }
                 if (message.reqPlayerJoinArea != null && message.hasOwnProperty("reqPlayerJoinArea")) {
                     if (properties.data === 1)
                         return "data: multiple values";
@@ -793,6 +888,36 @@
                         var error = $root.proto.ResOtherPlayerJoinArea.verify(message.resOtherPlayerJoinArea);
                         if (error)
                             return "resOtherPlayerJoinArea." + error;
+                    }
+                }
+                if (message.reqMoving != null && message.hasOwnProperty("reqMoving")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqMoving.verify(message.reqMoving);
+                        if (error)
+                            return "reqMoving." + error;
+                    }
+                }
+                if (message.resMoving != null && message.hasOwnProperty("resMoving")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResMoving.verify(message.resMoving);
+                        if (error)
+                            return "resMoving." + error;
+                    }
+                }
+                if (message.resOtherPlayerLeaveArea != null && message.hasOwnProperty("resOtherPlayerLeaveArea")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResOtherPlayerLeaveArea.verify(message.resOtherPlayerLeaveArea);
+                        if (error)
+                            return "resOtherPlayerLeaveArea." + error;
                     }
                 }
                 return null;
@@ -880,6 +1005,16 @@
                         throw TypeError(".proto.Packet.resPickCharacter: object expected");
                     message.resPickCharacter = $root.proto.ResPickCharacter.fromObject(object.resPickCharacter);
                 }
+                if (object.reqPlayerJoinAreaCommon != null) {
+                    if (typeof object.reqPlayerJoinAreaCommon !== "object")
+                        throw TypeError(".proto.Packet.reqPlayerJoinAreaCommon: object expected");
+                    message.reqPlayerJoinAreaCommon = $root.proto.ReqPlayerJoinAreaCommon.fromObject(object.reqPlayerJoinAreaCommon);
+                }
+                if (object.resPlayerJoinAreaCommon != null) {
+                    if (typeof object.resPlayerJoinAreaCommon !== "object")
+                        throw TypeError(".proto.Packet.resPlayerJoinAreaCommon: object expected");
+                    message.resPlayerJoinAreaCommon = $root.proto.ResPlayerJoinAreaCommon.fromObject(object.resPlayerJoinAreaCommon);
+                }
                 if (object.reqPlayerJoinArea != null) {
                     if (typeof object.reqPlayerJoinArea !== "object")
                         throw TypeError(".proto.Packet.reqPlayerJoinArea: object expected");
@@ -894,6 +1029,21 @@
                     if (typeof object.resOtherPlayerJoinArea !== "object")
                         throw TypeError(".proto.Packet.resOtherPlayerJoinArea: object expected");
                     message.resOtherPlayerJoinArea = $root.proto.ResOtherPlayerJoinArea.fromObject(object.resOtherPlayerJoinArea);
+                }
+                if (object.reqMoving != null) {
+                    if (typeof object.reqMoving !== "object")
+                        throw TypeError(".proto.Packet.reqMoving: object expected");
+                    message.reqMoving = $root.proto.ReqMoving.fromObject(object.reqMoving);
+                }
+                if (object.resMoving != null) {
+                    if (typeof object.resMoving !== "object")
+                        throw TypeError(".proto.Packet.resMoving: object expected");
+                    message.resMoving = $root.proto.ResMoving.fromObject(object.resMoving);
+                }
+                if (object.resOtherPlayerLeaveArea != null) {
+                    if (typeof object.resOtherPlayerLeaveArea !== "object")
+                        throw TypeError(".proto.Packet.resOtherPlayerLeaveArea: object expected");
+                    message.resOtherPlayerLeaveArea = $root.proto.ResOtherPlayerLeaveArea.fromObject(object.resOtherPlayerLeaveArea);
                 }
                 return message;
             };
@@ -981,6 +1131,16 @@
                     if (options.oneofs)
                         object.data = "resPickCharacter";
                 }
+                if (message.reqPlayerJoinAreaCommon != null && message.hasOwnProperty("reqPlayerJoinAreaCommon")) {
+                    object.reqPlayerJoinAreaCommon = $root.proto.ReqPlayerJoinAreaCommon.toObject(message.reqPlayerJoinAreaCommon, options);
+                    if (options.oneofs)
+                        object.data = "reqPlayerJoinAreaCommon";
+                }
+                if (message.resPlayerJoinAreaCommon != null && message.hasOwnProperty("resPlayerJoinAreaCommon")) {
+                    object.resPlayerJoinAreaCommon = $root.proto.ResPlayerJoinAreaCommon.toObject(message.resPlayerJoinAreaCommon, options);
+                    if (options.oneofs)
+                        object.data = "resPlayerJoinAreaCommon";
+                }
                 if (message.reqPlayerJoinArea != null && message.hasOwnProperty("reqPlayerJoinArea")) {
                     object.reqPlayerJoinArea = $root.proto.ReqPlayerJoinArea.toObject(message.reqPlayerJoinArea, options);
                     if (options.oneofs)
@@ -995,6 +1155,21 @@
                     object.resOtherPlayerJoinArea = $root.proto.ResOtherPlayerJoinArea.toObject(message.resOtherPlayerJoinArea, options);
                     if (options.oneofs)
                         object.data = "resOtherPlayerJoinArea";
+                }
+                if (message.reqMoving != null && message.hasOwnProperty("reqMoving")) {
+                    object.reqMoving = $root.proto.ReqMoving.toObject(message.reqMoving, options);
+                    if (options.oneofs)
+                        object.data = "reqMoving";
+                }
+                if (message.resMoving != null && message.hasOwnProperty("resMoving")) {
+                    object.resMoving = $root.proto.ResMoving.toObject(message.resMoving, options);
+                    if (options.oneofs)
+                        object.data = "resMoving";
+                }
+                if (message.resOtherPlayerLeaveArea != null && message.hasOwnProperty("resOtherPlayerLeaveArea")) {
+                    object.resOtherPlayerLeaveArea = $root.proto.ResOtherPlayerLeaveArea.toObject(message.resOtherPlayerLeaveArea, options);
+                    if (options.oneofs)
+                        object.data = "resOtherPlayerLeaveArea";
                 }
                 return object;
             };
@@ -2080,6 +2255,534 @@
             };
     
             return Character;
+        })();
+    
+        proto.Area = (function() {
+    
+            /**
+             * Properties of an Area.
+             * @memberof proto
+             * @interface IArea
+             * @property {number|null} [areaId] Area areaId
+             * @property {number|null} [playerId] Area playerId
+             * @property {string|null} [typeArea] Area typeArea
+             * @property {proto.IPosition|null} [position] Area position
+             * @property {number|null} [status] Area status
+             */
+    
+            /**
+             * Constructs a new Area.
+             * @memberof proto
+             * @classdesc Represents an Area.
+             * @implements IArea
+             * @constructor
+             * @param {proto.IArea=} [properties] Properties to set
+             */
+            function Area(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * Area areaId.
+             * @member {number} areaId
+             * @memberof proto.Area
+             * @instance
+             */
+            Area.prototype.areaId = 0;
+    
+            /**
+             * Area playerId.
+             * @member {number} playerId
+             * @memberof proto.Area
+             * @instance
+             */
+            Area.prototype.playerId = 0;
+    
+            /**
+             * Area typeArea.
+             * @member {string} typeArea
+             * @memberof proto.Area
+             * @instance
+             */
+            Area.prototype.typeArea = "";
+    
+            /**
+             * Area position.
+             * @member {proto.IPosition|null|undefined} position
+             * @memberof proto.Area
+             * @instance
+             */
+            Area.prototype.position = null;
+    
+            /**
+             * Area status.
+             * @member {number} status
+             * @memberof proto.Area
+             * @instance
+             */
+            Area.prototype.status = 0;
+    
+            /**
+             * Creates a new Area instance using the specified properties.
+             * @function create
+             * @memberof proto.Area
+             * @static
+             * @param {proto.IArea=} [properties] Properties to set
+             * @returns {proto.Area} Area instance
+             */
+            Area.create = function create(properties) {
+                return new Area(properties);
+            };
+    
+            /**
+             * Encodes the specified Area message. Does not implicitly {@link proto.Area.verify|verify} messages.
+             * @function encode
+             * @memberof proto.Area
+             * @static
+             * @param {proto.IArea} message Area message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Area.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.areaId != null && Object.hasOwnProperty.call(message, "areaId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.areaId);
+                if (message.playerId != null && Object.hasOwnProperty.call(message, "playerId"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.playerId);
+                if (message.typeArea != null && Object.hasOwnProperty.call(message, "typeArea"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.typeArea);
+                if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                    $root.proto.Position.encode(message.position, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.status);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified Area message, length delimited. Does not implicitly {@link proto.Area.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.Area
+             * @static
+             * @param {proto.IArea} message Area message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Area.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes an Area message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.Area
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.Area} Area
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Area.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Area();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.areaId = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.playerId = reader.int32();
+                            break;
+                        }
+                    case 3: {
+                            message.typeArea = reader.string();
+                            break;
+                        }
+                    case 4: {
+                            message.position = $root.proto.Position.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 5: {
+                            message.status = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes an Area message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.Area
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.Area} Area
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Area.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies an Area message.
+             * @function verify
+             * @memberof proto.Area
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Area.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    if (!$util.isInteger(message.areaId))
+                        return "areaId: integer expected";
+                if (message.playerId != null && message.hasOwnProperty("playerId"))
+                    if (!$util.isInteger(message.playerId))
+                        return "playerId: integer expected";
+                if (message.typeArea != null && message.hasOwnProperty("typeArea"))
+                    if (!$util.isString(message.typeArea))
+                        return "typeArea: string expected";
+                if (message.position != null && message.hasOwnProperty("position")) {
+                    var error = $root.proto.Position.verify(message.position);
+                    if (error)
+                        return "position." + error;
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates an Area message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.Area
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.Area} Area
+             */
+            Area.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.Area)
+                    return object;
+                var message = new $root.proto.Area();
+                if (object.areaId != null)
+                    message.areaId = object.areaId | 0;
+                if (object.playerId != null)
+                    message.playerId = object.playerId | 0;
+                if (object.typeArea != null)
+                    message.typeArea = String(object.typeArea);
+                if (object.position != null) {
+                    if (typeof object.position !== "object")
+                        throw TypeError(".proto.Area.position: object expected");
+                    message.position = $root.proto.Position.fromObject(object.position);
+                }
+                if (object.status != null)
+                    message.status = object.status | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from an Area message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.Area
+             * @static
+             * @param {proto.Area} message Area
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Area.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.areaId = 0;
+                    object.playerId = 0;
+                    object.typeArea = "";
+                    object.position = null;
+                    object.status = 0;
+                }
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    object.areaId = message.areaId;
+                if (message.playerId != null && message.hasOwnProperty("playerId"))
+                    object.playerId = message.playerId;
+                if (message.typeArea != null && message.hasOwnProperty("typeArea"))
+                    object.typeArea = message.typeArea;
+                if (message.position != null && message.hasOwnProperty("position"))
+                    object.position = $root.proto.Position.toObject(message.position, options);
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                return object;
+            };
+    
+            /**
+             * Converts this Area to JSON.
+             * @function toJSON
+             * @memberof proto.Area
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Area.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for Area
+             * @function getTypeUrl
+             * @memberof proto.Area
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            Area.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.Area";
+            };
+    
+            return Area;
+        })();
+    
+        proto.Position = (function() {
+    
+            /**
+             * Properties of a Position.
+             * @memberof proto
+             * @interface IPosition
+             * @property {number|null} [x] Position x
+             * @property {number|null} [y] Position y
+             */
+    
+            /**
+             * Constructs a new Position.
+             * @memberof proto
+             * @classdesc Represents a Position.
+             * @implements IPosition
+             * @constructor
+             * @param {proto.IPosition=} [properties] Properties to set
+             */
+            function Position(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * Position x.
+             * @member {number} x
+             * @memberof proto.Position
+             * @instance
+             */
+            Position.prototype.x = 0;
+    
+            /**
+             * Position y.
+             * @member {number} y
+             * @memberof proto.Position
+             * @instance
+             */
+            Position.prototype.y = 0;
+    
+            /**
+             * Creates a new Position instance using the specified properties.
+             * @function create
+             * @memberof proto.Position
+             * @static
+             * @param {proto.IPosition=} [properties] Properties to set
+             * @returns {proto.Position} Position instance
+             */
+            Position.create = function create(properties) {
+                return new Position(properties);
+            };
+    
+            /**
+             * Encodes the specified Position message. Does not implicitly {@link proto.Position.verify|verify} messages.
+             * @function encode
+             * @memberof proto.Position
+             * @static
+             * @param {proto.IPosition} message Position message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Position.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.x != null && Object.hasOwnProperty.call(message, "x"))
+                    writer.uint32(/* id 1, wireType 5 =*/13).float(message.x);
+                if (message.y != null && Object.hasOwnProperty.call(message, "y"))
+                    writer.uint32(/* id 2, wireType 5 =*/21).float(message.y);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified Position message, length delimited. Does not implicitly {@link proto.Position.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.Position
+             * @static
+             * @param {proto.IPosition} message Position message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Position.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a Position message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.Position
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.Position} Position
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Position.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Position();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.x = reader.float();
+                            break;
+                        }
+                    case 2: {
+                            message.y = reader.float();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a Position message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.Position
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.Position} Position
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Position.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a Position message.
+             * @function verify
+             * @memberof proto.Position
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Position.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.x != null && message.hasOwnProperty("x"))
+                    if (typeof message.x !== "number")
+                        return "x: number expected";
+                if (message.y != null && message.hasOwnProperty("y"))
+                    if (typeof message.y !== "number")
+                        return "y: number expected";
+                return null;
+            };
+    
+            /**
+             * Creates a Position message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.Position
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.Position} Position
+             */
+            Position.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.Position)
+                    return object;
+                var message = new $root.proto.Position();
+                if (object.x != null)
+                    message.x = Number(object.x);
+                if (object.y != null)
+                    message.y = Number(object.y);
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a Position message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.Position
+             * @static
+             * @param {proto.Position} message Position
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Position.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.x = 0;
+                    object.y = 0;
+                }
+                if (message.x != null && message.hasOwnProperty("x"))
+                    object.x = options.json && !isFinite(message.x) ? String(message.x) : message.x;
+                if (message.y != null && message.hasOwnProperty("y"))
+                    object.y = options.json && !isFinite(message.y) ? String(message.y) : message.y;
+                return object;
+            };
+    
+            /**
+             * Converts this Position to JSON.
+             * @function toJSON
+             * @memberof proto.Position
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Position.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for Position
+             * @function getTypeUrl
+             * @memberof proto.Position
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            Position.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.Position";
+            };
+    
+            return Position;
         })();
     
         proto.ReqLogin = (function() {
@@ -5361,14 +6064,641 @@
             return ResPickCharacter;
         })();
     
+        proto.ReqPlayerJoinAreaCommon = (function() {
+    
+            /**
+             * Properties of a ReqPlayerJoinAreaCommon.
+             * @memberof proto
+             * @interface IReqPlayerJoinAreaCommon
+             * @property {number|null} [areaCommonId] ReqPlayerJoinAreaCommon areaCommonId
+             * @property {proto.IPosition|null} [position] ReqPlayerJoinAreaCommon position
+             */
+    
+            /**
+             * Constructs a new ReqPlayerJoinAreaCommon.
+             * @memberof proto
+             * @classdesc Represents a ReqPlayerJoinAreaCommon.
+             * @implements IReqPlayerJoinAreaCommon
+             * @constructor
+             * @param {proto.IReqPlayerJoinAreaCommon=} [properties] Properties to set
+             */
+            function ReqPlayerJoinAreaCommon(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ReqPlayerJoinAreaCommon areaCommonId.
+             * @member {number} areaCommonId
+             * @memberof proto.ReqPlayerJoinAreaCommon
+             * @instance
+             */
+            ReqPlayerJoinAreaCommon.prototype.areaCommonId = 0;
+    
+            /**
+             * ReqPlayerJoinAreaCommon position.
+             * @member {proto.IPosition|null|undefined} position
+             * @memberof proto.ReqPlayerJoinAreaCommon
+             * @instance
+             */
+            ReqPlayerJoinAreaCommon.prototype.position = null;
+    
+            /**
+             * Creates a new ReqPlayerJoinAreaCommon instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqPlayerJoinAreaCommon
+             * @static
+             * @param {proto.IReqPlayerJoinAreaCommon=} [properties] Properties to set
+             * @returns {proto.ReqPlayerJoinAreaCommon} ReqPlayerJoinAreaCommon instance
+             */
+            ReqPlayerJoinAreaCommon.create = function create(properties) {
+                return new ReqPlayerJoinAreaCommon(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqPlayerJoinAreaCommon message. Does not implicitly {@link proto.ReqPlayerJoinAreaCommon.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqPlayerJoinAreaCommon
+             * @static
+             * @param {proto.IReqPlayerJoinAreaCommon} message ReqPlayerJoinAreaCommon message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqPlayerJoinAreaCommon.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.areaCommonId != null && Object.hasOwnProperty.call(message, "areaCommonId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.areaCommonId);
+                if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                    $root.proto.Position.encode(message.position, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqPlayerJoinAreaCommon message, length delimited. Does not implicitly {@link proto.ReqPlayerJoinAreaCommon.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqPlayerJoinAreaCommon
+             * @static
+             * @param {proto.IReqPlayerJoinAreaCommon} message ReqPlayerJoinAreaCommon message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqPlayerJoinAreaCommon.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqPlayerJoinAreaCommon message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqPlayerJoinAreaCommon
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqPlayerJoinAreaCommon} ReqPlayerJoinAreaCommon
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqPlayerJoinAreaCommon.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqPlayerJoinAreaCommon();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.areaCommonId = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.position = $root.proto.Position.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqPlayerJoinAreaCommon message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqPlayerJoinAreaCommon
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqPlayerJoinAreaCommon} ReqPlayerJoinAreaCommon
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqPlayerJoinAreaCommon.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqPlayerJoinAreaCommon message.
+             * @function verify
+             * @memberof proto.ReqPlayerJoinAreaCommon
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqPlayerJoinAreaCommon.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.areaCommonId != null && message.hasOwnProperty("areaCommonId"))
+                    if (!$util.isInteger(message.areaCommonId))
+                        return "areaCommonId: integer expected";
+                if (message.position != null && message.hasOwnProperty("position")) {
+                    var error = $root.proto.Position.verify(message.position);
+                    if (error)
+                        return "position." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a ReqPlayerJoinAreaCommon message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqPlayerJoinAreaCommon
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqPlayerJoinAreaCommon} ReqPlayerJoinAreaCommon
+             */
+            ReqPlayerJoinAreaCommon.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqPlayerJoinAreaCommon)
+                    return object;
+                var message = new $root.proto.ReqPlayerJoinAreaCommon();
+                if (object.areaCommonId != null)
+                    message.areaCommonId = object.areaCommonId | 0;
+                if (object.position != null) {
+                    if (typeof object.position !== "object")
+                        throw TypeError(".proto.ReqPlayerJoinAreaCommon.position: object expected");
+                    message.position = $root.proto.Position.fromObject(object.position);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ReqPlayerJoinAreaCommon message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqPlayerJoinAreaCommon
+             * @static
+             * @param {proto.ReqPlayerJoinAreaCommon} message ReqPlayerJoinAreaCommon
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqPlayerJoinAreaCommon.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.areaCommonId = 0;
+                    object.position = null;
+                }
+                if (message.areaCommonId != null && message.hasOwnProperty("areaCommonId"))
+                    object.areaCommonId = message.areaCommonId;
+                if (message.position != null && message.hasOwnProperty("position"))
+                    object.position = $root.proto.Position.toObject(message.position, options);
+                return object;
+            };
+    
+            /**
+             * Converts this ReqPlayerJoinAreaCommon to JSON.
+             * @function toJSON
+             * @memberof proto.ReqPlayerJoinAreaCommon
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqPlayerJoinAreaCommon.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqPlayerJoinAreaCommon
+             * @function getTypeUrl
+             * @memberof proto.ReqPlayerJoinAreaCommon
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqPlayerJoinAreaCommon.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqPlayerJoinAreaCommon";
+            };
+    
+            return ReqPlayerJoinAreaCommon;
+        })();
+    
+        proto.ResPlayerJoinAreaCommon = (function() {
+    
+            /**
+             * Properties of a ResPlayerJoinAreaCommon.
+             * @memberof proto
+             * @interface IResPlayerJoinAreaCommon
+             * @property {number|null} [areaCommonId] ResPlayerJoinAreaCommon areaCommonId
+             * @property {proto.IArea|null} [area] ResPlayerJoinAreaCommon area
+             * @property {Array.<proto.IPlayer>|null} [players] ResPlayerJoinAreaCommon players
+             * @property {Array.<proto.IUser>|null} [users] ResPlayerJoinAreaCommon users
+             * @property {number|null} [status] ResPlayerJoinAreaCommon status
+             * @property {number|null} [areaState] ResPlayerJoinAreaCommon areaState
+             * @property {proto.IPosition|null} [position] ResPlayerJoinAreaCommon position
+             */
+    
+            /**
+             * Constructs a new ResPlayerJoinAreaCommon.
+             * @memberof proto
+             * @classdesc Represents a ResPlayerJoinAreaCommon.
+             * @implements IResPlayerJoinAreaCommon
+             * @constructor
+             * @param {proto.IResPlayerJoinAreaCommon=} [properties] Properties to set
+             */
+            function ResPlayerJoinAreaCommon(properties) {
+                this.players = [];
+                this.users = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResPlayerJoinAreaCommon areaCommonId.
+             * @member {number} areaCommonId
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             */
+            ResPlayerJoinAreaCommon.prototype.areaCommonId = 0;
+    
+            /**
+             * ResPlayerJoinAreaCommon area.
+             * @member {proto.IArea|null|undefined} area
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             */
+            ResPlayerJoinAreaCommon.prototype.area = null;
+    
+            /**
+             * ResPlayerJoinAreaCommon players.
+             * @member {Array.<proto.IPlayer>} players
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             */
+            ResPlayerJoinAreaCommon.prototype.players = $util.emptyArray;
+    
+            /**
+             * ResPlayerJoinAreaCommon users.
+             * @member {Array.<proto.IUser>} users
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             */
+            ResPlayerJoinAreaCommon.prototype.users = $util.emptyArray;
+    
+            /**
+             * ResPlayerJoinAreaCommon status.
+             * @member {number} status
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             */
+            ResPlayerJoinAreaCommon.prototype.status = 0;
+    
+            /**
+             * ResPlayerJoinAreaCommon areaState.
+             * @member {number} areaState
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             */
+            ResPlayerJoinAreaCommon.prototype.areaState = 0;
+    
+            /**
+             * ResPlayerJoinAreaCommon position.
+             * @member {proto.IPosition|null|undefined} position
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             */
+            ResPlayerJoinAreaCommon.prototype.position = null;
+    
+            /**
+             * Creates a new ResPlayerJoinAreaCommon instance using the specified properties.
+             * @function create
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {proto.IResPlayerJoinAreaCommon=} [properties] Properties to set
+             * @returns {proto.ResPlayerJoinAreaCommon} ResPlayerJoinAreaCommon instance
+             */
+            ResPlayerJoinAreaCommon.create = function create(properties) {
+                return new ResPlayerJoinAreaCommon(properties);
+            };
+    
+            /**
+             * Encodes the specified ResPlayerJoinAreaCommon message. Does not implicitly {@link proto.ResPlayerJoinAreaCommon.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {proto.IResPlayerJoinAreaCommon} message ResPlayerJoinAreaCommon message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResPlayerJoinAreaCommon.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.areaCommonId != null && Object.hasOwnProperty.call(message, "areaCommonId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.areaCommonId);
+                if (message.area != null && Object.hasOwnProperty.call(message, "area"))
+                    $root.proto.Area.encode(message.area, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.players != null && message.players.length)
+                    for (var i = 0; i < message.players.length; ++i)
+                        $root.proto.Player.encode(message.players[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                if (message.users != null && message.users.length)
+                    for (var i = 0; i < message.users.length; ++i)
+                        $root.proto.User.encode(message.users[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.status);
+                if (message.areaState != null && Object.hasOwnProperty.call(message, "areaState"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).int32(message.areaState);
+                if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                    $root.proto.Position.encode(message.position, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResPlayerJoinAreaCommon message, length delimited. Does not implicitly {@link proto.ResPlayerJoinAreaCommon.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {proto.IResPlayerJoinAreaCommon} message ResPlayerJoinAreaCommon message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResPlayerJoinAreaCommon.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResPlayerJoinAreaCommon message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResPlayerJoinAreaCommon} ResPlayerJoinAreaCommon
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResPlayerJoinAreaCommon.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResPlayerJoinAreaCommon();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.areaCommonId = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.area = $root.proto.Area.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 3: {
+                            if (!(message.players && message.players.length))
+                                message.players = [];
+                            message.players.push($root.proto.Player.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 4: {
+                            if (!(message.users && message.users.length))
+                                message.users = [];
+                            message.users.push($root.proto.User.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 5: {
+                            message.status = reader.int32();
+                            break;
+                        }
+                    case 6: {
+                            message.areaState = reader.int32();
+                            break;
+                        }
+                    case 7: {
+                            message.position = $root.proto.Position.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResPlayerJoinAreaCommon message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResPlayerJoinAreaCommon} ResPlayerJoinAreaCommon
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResPlayerJoinAreaCommon.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResPlayerJoinAreaCommon message.
+             * @function verify
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResPlayerJoinAreaCommon.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.areaCommonId != null && message.hasOwnProperty("areaCommonId"))
+                    if (!$util.isInteger(message.areaCommonId))
+                        return "areaCommonId: integer expected";
+                if (message.area != null && message.hasOwnProperty("area")) {
+                    var error = $root.proto.Area.verify(message.area);
+                    if (error)
+                        return "area." + error;
+                }
+                if (message.players != null && message.hasOwnProperty("players")) {
+                    if (!Array.isArray(message.players))
+                        return "players: array expected";
+                    for (var i = 0; i < message.players.length; ++i) {
+                        var error = $root.proto.Player.verify(message.players[i]);
+                        if (error)
+                            return "players." + error;
+                    }
+                }
+                if (message.users != null && message.hasOwnProperty("users")) {
+                    if (!Array.isArray(message.users))
+                        return "users: array expected";
+                    for (var i = 0; i < message.users.length; ++i) {
+                        var error = $root.proto.User.verify(message.users[i]);
+                        if (error)
+                            return "users." + error;
+                    }
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                if (message.areaState != null && message.hasOwnProperty("areaState"))
+                    if (!$util.isInteger(message.areaState))
+                        return "areaState: integer expected";
+                if (message.position != null && message.hasOwnProperty("position")) {
+                    var error = $root.proto.Position.verify(message.position);
+                    if (error)
+                        return "position." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a ResPlayerJoinAreaCommon message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResPlayerJoinAreaCommon} ResPlayerJoinAreaCommon
+             */
+            ResPlayerJoinAreaCommon.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResPlayerJoinAreaCommon)
+                    return object;
+                var message = new $root.proto.ResPlayerJoinAreaCommon();
+                if (object.areaCommonId != null)
+                    message.areaCommonId = object.areaCommonId | 0;
+                if (object.area != null) {
+                    if (typeof object.area !== "object")
+                        throw TypeError(".proto.ResPlayerJoinAreaCommon.area: object expected");
+                    message.area = $root.proto.Area.fromObject(object.area);
+                }
+                if (object.players) {
+                    if (!Array.isArray(object.players))
+                        throw TypeError(".proto.ResPlayerJoinAreaCommon.players: array expected");
+                    message.players = [];
+                    for (var i = 0; i < object.players.length; ++i) {
+                        if (typeof object.players[i] !== "object")
+                            throw TypeError(".proto.ResPlayerJoinAreaCommon.players: object expected");
+                        message.players[i] = $root.proto.Player.fromObject(object.players[i]);
+                    }
+                }
+                if (object.users) {
+                    if (!Array.isArray(object.users))
+                        throw TypeError(".proto.ResPlayerJoinAreaCommon.users: array expected");
+                    message.users = [];
+                    for (var i = 0; i < object.users.length; ++i) {
+                        if (typeof object.users[i] !== "object")
+                            throw TypeError(".proto.ResPlayerJoinAreaCommon.users: object expected");
+                        message.users[i] = $root.proto.User.fromObject(object.users[i]);
+                    }
+                }
+                if (object.status != null)
+                    message.status = object.status | 0;
+                if (object.areaState != null)
+                    message.areaState = object.areaState | 0;
+                if (object.position != null) {
+                    if (typeof object.position !== "object")
+                        throw TypeError(".proto.ResPlayerJoinAreaCommon.position: object expected");
+                    message.position = $root.proto.Position.fromObject(object.position);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResPlayerJoinAreaCommon message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {proto.ResPlayerJoinAreaCommon} message ResPlayerJoinAreaCommon
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResPlayerJoinAreaCommon.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults) {
+                    object.players = [];
+                    object.users = [];
+                }
+                if (options.defaults) {
+                    object.areaCommonId = 0;
+                    object.area = null;
+                    object.status = 0;
+                    object.areaState = 0;
+                    object.position = null;
+                }
+                if (message.areaCommonId != null && message.hasOwnProperty("areaCommonId"))
+                    object.areaCommonId = message.areaCommonId;
+                if (message.area != null && message.hasOwnProperty("area"))
+                    object.area = $root.proto.Area.toObject(message.area, options);
+                if (message.players && message.players.length) {
+                    object.players = [];
+                    for (var j = 0; j < message.players.length; ++j)
+                        object.players[j] = $root.proto.Player.toObject(message.players[j], options);
+                }
+                if (message.users && message.users.length) {
+                    object.users = [];
+                    for (var j = 0; j < message.users.length; ++j)
+                        object.users[j] = $root.proto.User.toObject(message.users[j], options);
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                if (message.areaState != null && message.hasOwnProperty("areaState"))
+                    object.areaState = message.areaState;
+                if (message.position != null && message.hasOwnProperty("position"))
+                    object.position = $root.proto.Position.toObject(message.position, options);
+                return object;
+            };
+    
+            /**
+             * Converts this ResPlayerJoinAreaCommon to JSON.
+             * @function toJSON
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResPlayerJoinAreaCommon.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResPlayerJoinAreaCommon
+             * @function getTypeUrl
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResPlayerJoinAreaCommon.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResPlayerJoinAreaCommon";
+            };
+    
+            return ResPlayerJoinAreaCommon;
+        })();
+    
         proto.ReqPlayerJoinArea = (function() {
     
             /**
              * Properties of a ReqPlayerJoinArea.
              * @memberof proto
              * @interface IReqPlayerJoinArea
-             * @property {string|null} [area] ReqPlayerJoinArea area
-             * @property {number|null} [idArea] ReqPlayerJoinArea idArea
+             * @property {number|null} [userTargetId] ReqPlayerJoinArea userTargetId
              */
     
             /**
@@ -5387,20 +6717,12 @@
             }
     
             /**
-             * ReqPlayerJoinArea area.
-             * @member {string} area
+             * ReqPlayerJoinArea userTargetId.
+             * @member {number} userTargetId
              * @memberof proto.ReqPlayerJoinArea
              * @instance
              */
-            ReqPlayerJoinArea.prototype.area = "";
-    
-            /**
-             * ReqPlayerJoinArea idArea.
-             * @member {number} idArea
-             * @memberof proto.ReqPlayerJoinArea
-             * @instance
-             */
-            ReqPlayerJoinArea.prototype.idArea = 0;
+            ReqPlayerJoinArea.prototype.userTargetId = 0;
     
             /**
              * Creates a new ReqPlayerJoinArea instance using the specified properties.
@@ -5426,10 +6748,8 @@
             ReqPlayerJoinArea.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.area != null && Object.hasOwnProperty.call(message, "area"))
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.area);
-                if (message.idArea != null && Object.hasOwnProperty.call(message, "idArea"))
-                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.idArea);
+                if (message.userTargetId != null && Object.hasOwnProperty.call(message, "userTargetId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.userTargetId);
                 return writer;
             };
     
@@ -5465,11 +6785,7 @@
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1: {
-                            message.area = reader.string();
-                            break;
-                        }
-                    case 2: {
-                            message.idArea = reader.int32();
+                            message.userTargetId = reader.int32();
                             break;
                         }
                     default:
@@ -5507,12 +6823,9 @@
             ReqPlayerJoinArea.verify = function verify(message) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
-                if (message.area != null && message.hasOwnProperty("area"))
-                    if (!$util.isString(message.area))
-                        return "area: string expected";
-                if (message.idArea != null && message.hasOwnProperty("idArea"))
-                    if (!$util.isInteger(message.idArea))
-                        return "idArea: integer expected";
+                if (message.userTargetId != null && message.hasOwnProperty("userTargetId"))
+                    if (!$util.isInteger(message.userTargetId))
+                        return "userTargetId: integer expected";
                 return null;
             };
     
@@ -5528,10 +6841,8 @@
                 if (object instanceof $root.proto.ReqPlayerJoinArea)
                     return object;
                 var message = new $root.proto.ReqPlayerJoinArea();
-                if (object.area != null)
-                    message.area = String(object.area);
-                if (object.idArea != null)
-                    message.idArea = object.idArea | 0;
+                if (object.userTargetId != null)
+                    message.userTargetId = object.userTargetId | 0;
                 return message;
             };
     
@@ -5548,14 +6859,10 @@
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.defaults) {
-                    object.area = "";
-                    object.idArea = 0;
-                }
-                if (message.area != null && message.hasOwnProperty("area"))
-                    object.area = message.area;
-                if (message.idArea != null && message.hasOwnProperty("idArea"))
-                    object.idArea = message.idArea;
+                if (options.defaults)
+                    object.userTargetId = 0;
+                if (message.userTargetId != null && message.hasOwnProperty("userTargetId"))
+                    object.userTargetId = message.userTargetId;
                 return object;
             };
     
@@ -5594,12 +6901,11 @@
              * Properties of a ResPlayerJoinArea.
              * @memberof proto
              * @interface IResPlayerJoinArea
-             * @property {number|null} [areaId] ResPlayerJoinArea areaId
-             * @property {string|null} [area] ResPlayerJoinArea area
-             * @property {Array.<proto.IPlayer>|null} [player] ResPlayerJoinArea player
-             * @property {Array.<proto.IUser>|null} [user] ResPlayerJoinArea user
+             * @property {proto.IArea|null} [area] ResPlayerJoinArea area
+             * @property {Array.<proto.IPlayer>|null} [players] ResPlayerJoinArea players
+             * @property {Array.<proto.IUser>|null} [users] ResPlayerJoinArea users
              * @property {number|null} [status] ResPlayerJoinArea status
-             * @property {number|null} [areaState] ResPlayerJoinArea areaState
+             * @property {proto.IPosition|null} [position] ResPlayerJoinArea position
              */
     
             /**
@@ -5611,8 +6917,8 @@
              * @param {proto.IResPlayerJoinArea=} [properties] Properties to set
              */
             function ResPlayerJoinArea(properties) {
-                this.player = [];
-                this.user = [];
+                this.players = [];
+                this.users = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -5620,36 +6926,28 @@
             }
     
             /**
-             * ResPlayerJoinArea areaId.
-             * @member {number} areaId
-             * @memberof proto.ResPlayerJoinArea
-             * @instance
-             */
-            ResPlayerJoinArea.prototype.areaId = 0;
-    
-            /**
              * ResPlayerJoinArea area.
-             * @member {string} area
+             * @member {proto.IArea|null|undefined} area
              * @memberof proto.ResPlayerJoinArea
              * @instance
              */
-            ResPlayerJoinArea.prototype.area = "";
+            ResPlayerJoinArea.prototype.area = null;
     
             /**
-             * ResPlayerJoinArea player.
-             * @member {Array.<proto.IPlayer>} player
+             * ResPlayerJoinArea players.
+             * @member {Array.<proto.IPlayer>} players
              * @memberof proto.ResPlayerJoinArea
              * @instance
              */
-            ResPlayerJoinArea.prototype.player = $util.emptyArray;
+            ResPlayerJoinArea.prototype.players = $util.emptyArray;
     
             /**
-             * ResPlayerJoinArea user.
-             * @member {Array.<proto.IUser>} user
+             * ResPlayerJoinArea users.
+             * @member {Array.<proto.IUser>} users
              * @memberof proto.ResPlayerJoinArea
              * @instance
              */
-            ResPlayerJoinArea.prototype.user = $util.emptyArray;
+            ResPlayerJoinArea.prototype.users = $util.emptyArray;
     
             /**
              * ResPlayerJoinArea status.
@@ -5660,12 +6958,12 @@
             ResPlayerJoinArea.prototype.status = 0;
     
             /**
-             * ResPlayerJoinArea areaState.
-             * @member {number} areaState
+             * ResPlayerJoinArea position.
+             * @member {proto.IPosition|null|undefined} position
              * @memberof proto.ResPlayerJoinArea
              * @instance
              */
-            ResPlayerJoinArea.prototype.areaState = 0;
+            ResPlayerJoinArea.prototype.position = null;
     
             /**
              * Creates a new ResPlayerJoinArea instance using the specified properties.
@@ -5691,20 +6989,18 @@
             ResPlayerJoinArea.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.areaId != null && Object.hasOwnProperty.call(message, "areaId"))
-                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.areaId);
                 if (message.area != null && Object.hasOwnProperty.call(message, "area"))
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.area);
-                if (message.player != null && message.player.length)
-                    for (var i = 0; i < message.player.length; ++i)
-                        $root.proto.Player.encode(message.player[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
-                if (message.user != null && message.user.length)
-                    for (var i = 0; i < message.user.length; ++i)
-                        $root.proto.User.encode(message.user[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                    $root.proto.Area.encode(message.area, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.players != null && message.players.length)
+                    for (var i = 0; i < message.players.length; ++i)
+                        $root.proto.Player.encode(message.players[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.users != null && message.users.length)
+                    for (var i = 0; i < message.users.length; ++i)
+                        $root.proto.User.encode(message.users[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                 if (message.status != null && Object.hasOwnProperty.call(message, "status"))
-                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.status);
-                if (message.areaState != null && Object.hasOwnProperty.call(message, "areaState"))
-                    writer.uint32(/* id 6, wireType 0 =*/48).int32(message.areaState);
+                    writer.uint32(/* id 4, wireType 0 =*/32).int32(message.status);
+                if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                    $root.proto.Position.encode(message.position, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                 return writer;
             };
     
@@ -5740,31 +7036,27 @@
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1: {
-                            message.areaId = reader.int32();
+                            message.area = $root.proto.Area.decode(reader, reader.uint32());
                             break;
                         }
                     case 2: {
-                            message.area = reader.string();
+                            if (!(message.players && message.players.length))
+                                message.players = [];
+                            message.players.push($root.proto.Player.decode(reader, reader.uint32()));
                             break;
                         }
                     case 3: {
-                            if (!(message.player && message.player.length))
-                                message.player = [];
-                            message.player.push($root.proto.Player.decode(reader, reader.uint32()));
+                            if (!(message.users && message.users.length))
+                                message.users = [];
+                            message.users.push($root.proto.User.decode(reader, reader.uint32()));
                             break;
                         }
                     case 4: {
-                            if (!(message.user && message.user.length))
-                                message.user = [];
-                            message.user.push($root.proto.User.decode(reader, reader.uint32()));
-                            break;
-                        }
-                    case 5: {
                             message.status = reader.int32();
                             break;
                         }
-                    case 6: {
-                            message.areaState = reader.int32();
+                    case 5: {
+                            message.position = $root.proto.Position.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -5802,36 +7094,37 @@
             ResPlayerJoinArea.verify = function verify(message) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
-                if (message.areaId != null && message.hasOwnProperty("areaId"))
-                    if (!$util.isInteger(message.areaId))
-                        return "areaId: integer expected";
-                if (message.area != null && message.hasOwnProperty("area"))
-                    if (!$util.isString(message.area))
-                        return "area: string expected";
-                if (message.player != null && message.hasOwnProperty("player")) {
-                    if (!Array.isArray(message.player))
-                        return "player: array expected";
-                    for (var i = 0; i < message.player.length; ++i) {
-                        var error = $root.proto.Player.verify(message.player[i]);
+                if (message.area != null && message.hasOwnProperty("area")) {
+                    var error = $root.proto.Area.verify(message.area);
+                    if (error)
+                        return "area." + error;
+                }
+                if (message.players != null && message.hasOwnProperty("players")) {
+                    if (!Array.isArray(message.players))
+                        return "players: array expected";
+                    for (var i = 0; i < message.players.length; ++i) {
+                        var error = $root.proto.Player.verify(message.players[i]);
                         if (error)
-                            return "player." + error;
+                            return "players." + error;
                     }
                 }
-                if (message.user != null && message.hasOwnProperty("user")) {
-                    if (!Array.isArray(message.user))
-                        return "user: array expected";
-                    for (var i = 0; i < message.user.length; ++i) {
-                        var error = $root.proto.User.verify(message.user[i]);
+                if (message.users != null && message.hasOwnProperty("users")) {
+                    if (!Array.isArray(message.users))
+                        return "users: array expected";
+                    for (var i = 0; i < message.users.length; ++i) {
+                        var error = $root.proto.User.verify(message.users[i]);
                         if (error)
-                            return "user." + error;
+                            return "users." + error;
                     }
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
                     if (!$util.isInteger(message.status))
                         return "status: integer expected";
-                if (message.areaState != null && message.hasOwnProperty("areaState"))
-                    if (!$util.isInteger(message.areaState))
-                        return "areaState: integer expected";
+                if (message.position != null && message.hasOwnProperty("position")) {
+                    var error = $root.proto.Position.verify(message.position);
+                    if (error)
+                        return "position." + error;
+                }
                 return null;
             };
     
@@ -5847,34 +7140,38 @@
                 if (object instanceof $root.proto.ResPlayerJoinArea)
                     return object;
                 var message = new $root.proto.ResPlayerJoinArea();
-                if (object.areaId != null)
-                    message.areaId = object.areaId | 0;
-                if (object.area != null)
-                    message.area = String(object.area);
-                if (object.player) {
-                    if (!Array.isArray(object.player))
-                        throw TypeError(".proto.ResPlayerJoinArea.player: array expected");
-                    message.player = [];
-                    for (var i = 0; i < object.player.length; ++i) {
-                        if (typeof object.player[i] !== "object")
-                            throw TypeError(".proto.ResPlayerJoinArea.player: object expected");
-                        message.player[i] = $root.proto.Player.fromObject(object.player[i]);
+                if (object.area != null) {
+                    if (typeof object.area !== "object")
+                        throw TypeError(".proto.ResPlayerJoinArea.area: object expected");
+                    message.area = $root.proto.Area.fromObject(object.area);
+                }
+                if (object.players) {
+                    if (!Array.isArray(object.players))
+                        throw TypeError(".proto.ResPlayerJoinArea.players: array expected");
+                    message.players = [];
+                    for (var i = 0; i < object.players.length; ++i) {
+                        if (typeof object.players[i] !== "object")
+                            throw TypeError(".proto.ResPlayerJoinArea.players: object expected");
+                        message.players[i] = $root.proto.Player.fromObject(object.players[i]);
                     }
                 }
-                if (object.user) {
-                    if (!Array.isArray(object.user))
-                        throw TypeError(".proto.ResPlayerJoinArea.user: array expected");
-                    message.user = [];
-                    for (var i = 0; i < object.user.length; ++i) {
-                        if (typeof object.user[i] !== "object")
-                            throw TypeError(".proto.ResPlayerJoinArea.user: object expected");
-                        message.user[i] = $root.proto.User.fromObject(object.user[i]);
+                if (object.users) {
+                    if (!Array.isArray(object.users))
+                        throw TypeError(".proto.ResPlayerJoinArea.users: array expected");
+                    message.users = [];
+                    for (var i = 0; i < object.users.length; ++i) {
+                        if (typeof object.users[i] !== "object")
+                            throw TypeError(".proto.ResPlayerJoinArea.users: object expected");
+                        message.users[i] = $root.proto.User.fromObject(object.users[i]);
                     }
                 }
                 if (object.status != null)
                     message.status = object.status | 0;
-                if (object.areaState != null)
-                    message.areaState = object.areaState | 0;
+                if (object.position != null) {
+                    if (typeof object.position !== "object")
+                        throw TypeError(".proto.ResPlayerJoinArea.position: object expected");
+                    message.position = $root.proto.Position.fromObject(object.position);
+                }
                 return message;
             };
     
@@ -5892,33 +7189,30 @@
                     options = {};
                 var object = {};
                 if (options.arrays || options.defaults) {
-                    object.player = [];
-                    object.user = [];
+                    object.players = [];
+                    object.users = [];
                 }
                 if (options.defaults) {
-                    object.areaId = 0;
-                    object.area = "";
+                    object.area = null;
                     object.status = 0;
-                    object.areaState = 0;
+                    object.position = null;
                 }
-                if (message.areaId != null && message.hasOwnProperty("areaId"))
-                    object.areaId = message.areaId;
                 if (message.area != null && message.hasOwnProperty("area"))
-                    object.area = message.area;
-                if (message.player && message.player.length) {
-                    object.player = [];
-                    for (var j = 0; j < message.player.length; ++j)
-                        object.player[j] = $root.proto.Player.toObject(message.player[j], options);
+                    object.area = $root.proto.Area.toObject(message.area, options);
+                if (message.players && message.players.length) {
+                    object.players = [];
+                    for (var j = 0; j < message.players.length; ++j)
+                        object.players[j] = $root.proto.Player.toObject(message.players[j], options);
                 }
-                if (message.user && message.user.length) {
-                    object.user = [];
-                    for (var j = 0; j < message.user.length; ++j)
-                        object.user[j] = $root.proto.User.toObject(message.user[j], options);
+                if (message.users && message.users.length) {
+                    object.users = [];
+                    for (var j = 0; j < message.users.length; ++j)
+                        object.users[j] = $root.proto.User.toObject(message.users[j], options);
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = message.status;
-                if (message.areaState != null && message.hasOwnProperty("areaState"))
-                    object.areaState = message.areaState;
+                if (message.position != null && message.hasOwnProperty("position"))
+                    object.position = $root.proto.Position.toObject(message.position, options);
                 return object;
             };
     
@@ -5957,10 +7251,9 @@
              * Properties of a ResOtherPlayerJoinArea.
              * @memberof proto
              * @interface IResOtherPlayerJoinArea
-             * @property {number|null} [areaId] ResOtherPlayerJoinArea areaId
-             * @property {string|null} [area] ResOtherPlayerJoinArea area
              * @property {proto.IPlayer|null} [player] ResOtherPlayerJoinArea player
              * @property {proto.IUser|null} [user] ResOtherPlayerJoinArea user
+             * @property {proto.IPosition|null} [position] ResOtherPlayerJoinArea position
              */
     
             /**
@@ -5979,22 +7272,6 @@
             }
     
             /**
-             * ResOtherPlayerJoinArea areaId.
-             * @member {number} areaId
-             * @memberof proto.ResOtherPlayerJoinArea
-             * @instance
-             */
-            ResOtherPlayerJoinArea.prototype.areaId = 0;
-    
-            /**
-             * ResOtherPlayerJoinArea area.
-             * @member {string} area
-             * @memberof proto.ResOtherPlayerJoinArea
-             * @instance
-             */
-            ResOtherPlayerJoinArea.prototype.area = "";
-    
-            /**
              * ResOtherPlayerJoinArea player.
              * @member {proto.IPlayer|null|undefined} player
              * @memberof proto.ResOtherPlayerJoinArea
@@ -6009,6 +7286,14 @@
              * @instance
              */
             ResOtherPlayerJoinArea.prototype.user = null;
+    
+            /**
+             * ResOtherPlayerJoinArea position.
+             * @member {proto.IPosition|null|undefined} position
+             * @memberof proto.ResOtherPlayerJoinArea
+             * @instance
+             */
+            ResOtherPlayerJoinArea.prototype.position = null;
     
             /**
              * Creates a new ResOtherPlayerJoinArea instance using the specified properties.
@@ -6034,14 +7319,12 @@
             ResOtherPlayerJoinArea.encode = function encode(message, writer) {
                 if (!writer)
                     writer = $Writer.create();
-                if (message.areaId != null && Object.hasOwnProperty.call(message, "areaId"))
-                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.areaId);
-                if (message.area != null && Object.hasOwnProperty.call(message, "area"))
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.area);
                 if (message.player != null && Object.hasOwnProperty.call(message, "player"))
-                    $root.proto.Player.encode(message.player, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                    $root.proto.Player.encode(message.player, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                 if (message.user != null && Object.hasOwnProperty.call(message, "user"))
-                    $root.proto.User.encode(message.user, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                    $root.proto.User.encode(message.user, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                    $root.proto.Position.encode(message.position, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                 return writer;
             };
     
@@ -6077,19 +7360,15 @@
                     var tag = reader.uint32();
                     switch (tag >>> 3) {
                     case 1: {
-                            message.areaId = reader.int32();
-                            break;
-                        }
-                    case 2: {
-                            message.area = reader.string();
-                            break;
-                        }
-                    case 3: {
                             message.player = $root.proto.Player.decode(reader, reader.uint32());
                             break;
                         }
-                    case 4: {
+                    case 2: {
                             message.user = $root.proto.User.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 3: {
+                            message.position = $root.proto.Position.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -6127,12 +7406,6 @@
             ResOtherPlayerJoinArea.verify = function verify(message) {
                 if (typeof message !== "object" || message === null)
                     return "object expected";
-                if (message.areaId != null && message.hasOwnProperty("areaId"))
-                    if (!$util.isInteger(message.areaId))
-                        return "areaId: integer expected";
-                if (message.area != null && message.hasOwnProperty("area"))
-                    if (!$util.isString(message.area))
-                        return "area: string expected";
                 if (message.player != null && message.hasOwnProperty("player")) {
                     var error = $root.proto.Player.verify(message.player);
                     if (error)
@@ -6142,6 +7415,11 @@
                     var error = $root.proto.User.verify(message.user);
                     if (error)
                         return "user." + error;
+                }
+                if (message.position != null && message.hasOwnProperty("position")) {
+                    var error = $root.proto.Position.verify(message.position);
+                    if (error)
+                        return "position." + error;
                 }
                 return null;
             };
@@ -6158,10 +7436,6 @@
                 if (object instanceof $root.proto.ResOtherPlayerJoinArea)
                     return object;
                 var message = new $root.proto.ResOtherPlayerJoinArea();
-                if (object.areaId != null)
-                    message.areaId = object.areaId | 0;
-                if (object.area != null)
-                    message.area = String(object.area);
                 if (object.player != null) {
                     if (typeof object.player !== "object")
                         throw TypeError(".proto.ResOtherPlayerJoinArea.player: object expected");
@@ -6171,6 +7445,11 @@
                     if (typeof object.user !== "object")
                         throw TypeError(".proto.ResOtherPlayerJoinArea.user: object expected");
                     message.user = $root.proto.User.fromObject(object.user);
+                }
+                if (object.position != null) {
+                    if (typeof object.position !== "object")
+                        throw TypeError(".proto.ResOtherPlayerJoinArea.position: object expected");
+                    message.position = $root.proto.Position.fromObject(object.position);
                 }
                 return message;
             };
@@ -6189,19 +7468,16 @@
                     options = {};
                 var object = {};
                 if (options.defaults) {
-                    object.areaId = 0;
-                    object.area = "";
                     object.player = null;
                     object.user = null;
+                    object.position = null;
                 }
-                if (message.areaId != null && message.hasOwnProperty("areaId"))
-                    object.areaId = message.areaId;
-                if (message.area != null && message.hasOwnProperty("area"))
-                    object.area = message.area;
                 if (message.player != null && message.hasOwnProperty("player"))
                     object.player = $root.proto.Player.toObject(message.player, options);
                 if (message.user != null && message.hasOwnProperty("user"))
                     object.user = $root.proto.User.toObject(message.user, options);
+                if (message.position != null && message.hasOwnProperty("position"))
+                    object.position = $root.proto.Position.toObject(message.position, options);
                 return object;
             };
     
@@ -6232,6 +7508,696 @@
             };
     
             return ResOtherPlayerJoinArea;
+        })();
+    
+        proto.ResOtherPlayerLeaveArea = (function() {
+    
+            /**
+             * Properties of a ResOtherPlayerLeaveArea.
+             * @memberof proto
+             * @interface IResOtherPlayerLeaveArea
+             * @property {number|null} [userId] ResOtherPlayerLeaveArea userId
+             */
+    
+            /**
+             * Constructs a new ResOtherPlayerLeaveArea.
+             * @memberof proto
+             * @classdesc Represents a ResOtherPlayerLeaveArea.
+             * @implements IResOtherPlayerLeaveArea
+             * @constructor
+             * @param {proto.IResOtherPlayerLeaveArea=} [properties] Properties to set
+             */
+            function ResOtherPlayerLeaveArea(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResOtherPlayerLeaveArea userId.
+             * @member {number} userId
+             * @memberof proto.ResOtherPlayerLeaveArea
+             * @instance
+             */
+            ResOtherPlayerLeaveArea.prototype.userId = 0;
+    
+            /**
+             * Creates a new ResOtherPlayerLeaveArea instance using the specified properties.
+             * @function create
+             * @memberof proto.ResOtherPlayerLeaveArea
+             * @static
+             * @param {proto.IResOtherPlayerLeaveArea=} [properties] Properties to set
+             * @returns {proto.ResOtherPlayerLeaveArea} ResOtherPlayerLeaveArea instance
+             */
+            ResOtherPlayerLeaveArea.create = function create(properties) {
+                return new ResOtherPlayerLeaveArea(properties);
+            };
+    
+            /**
+             * Encodes the specified ResOtherPlayerLeaveArea message. Does not implicitly {@link proto.ResOtherPlayerLeaveArea.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResOtherPlayerLeaveArea
+             * @static
+             * @param {proto.IResOtherPlayerLeaveArea} message ResOtherPlayerLeaveArea message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResOtherPlayerLeaveArea.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.userId);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResOtherPlayerLeaveArea message, length delimited. Does not implicitly {@link proto.ResOtherPlayerLeaveArea.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResOtherPlayerLeaveArea
+             * @static
+             * @param {proto.IResOtherPlayerLeaveArea} message ResOtherPlayerLeaveArea message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResOtherPlayerLeaveArea.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResOtherPlayerLeaveArea message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResOtherPlayerLeaveArea
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResOtherPlayerLeaveArea} ResOtherPlayerLeaveArea
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResOtherPlayerLeaveArea.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResOtherPlayerLeaveArea();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.userId = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResOtherPlayerLeaveArea message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResOtherPlayerLeaveArea
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResOtherPlayerLeaveArea} ResOtherPlayerLeaveArea
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResOtherPlayerLeaveArea.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResOtherPlayerLeaveArea message.
+             * @function verify
+             * @memberof proto.ResOtherPlayerLeaveArea
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResOtherPlayerLeaveArea.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.userId != null && message.hasOwnProperty("userId"))
+                    if (!$util.isInteger(message.userId))
+                        return "userId: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ResOtherPlayerLeaveArea message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResOtherPlayerLeaveArea
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResOtherPlayerLeaveArea} ResOtherPlayerLeaveArea
+             */
+            ResOtherPlayerLeaveArea.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResOtherPlayerLeaveArea)
+                    return object;
+                var message = new $root.proto.ResOtherPlayerLeaveArea();
+                if (object.userId != null)
+                    message.userId = object.userId | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResOtherPlayerLeaveArea message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResOtherPlayerLeaveArea
+             * @static
+             * @param {proto.ResOtherPlayerLeaveArea} message ResOtherPlayerLeaveArea
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResOtherPlayerLeaveArea.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.userId = 0;
+                if (message.userId != null && message.hasOwnProperty("userId"))
+                    object.userId = message.userId;
+                return object;
+            };
+    
+            /**
+             * Converts this ResOtherPlayerLeaveArea to JSON.
+             * @function toJSON
+             * @memberof proto.ResOtherPlayerLeaveArea
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResOtherPlayerLeaveArea.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResOtherPlayerLeaveArea
+             * @function getTypeUrl
+             * @memberof proto.ResOtherPlayerLeaveArea
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResOtherPlayerLeaveArea.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResOtherPlayerLeaveArea";
+            };
+    
+            return ResOtherPlayerLeaveArea;
+        })();
+    
+        proto.ReqMoving = (function() {
+    
+            /**
+             * Properties of a ReqMoving.
+             * @memberof proto
+             * @interface IReqMoving
+             * @property {number|null} [areaId] ReqMoving areaId
+             * @property {proto.IPosition|null} [position] ReqMoving position
+             */
+    
+            /**
+             * Constructs a new ReqMoving.
+             * @memberof proto
+             * @classdesc Represents a ReqMoving.
+             * @implements IReqMoving
+             * @constructor
+             * @param {proto.IReqMoving=} [properties] Properties to set
+             */
+            function ReqMoving(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ReqMoving areaId.
+             * @member {number} areaId
+             * @memberof proto.ReqMoving
+             * @instance
+             */
+            ReqMoving.prototype.areaId = 0;
+    
+            /**
+             * ReqMoving position.
+             * @member {proto.IPosition|null|undefined} position
+             * @memberof proto.ReqMoving
+             * @instance
+             */
+            ReqMoving.prototype.position = null;
+    
+            /**
+             * Creates a new ReqMoving instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqMoving
+             * @static
+             * @param {proto.IReqMoving=} [properties] Properties to set
+             * @returns {proto.ReqMoving} ReqMoving instance
+             */
+            ReqMoving.create = function create(properties) {
+                return new ReqMoving(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqMoving message. Does not implicitly {@link proto.ReqMoving.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqMoving
+             * @static
+             * @param {proto.IReqMoving} message ReqMoving message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqMoving.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.areaId != null && Object.hasOwnProperty.call(message, "areaId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.areaId);
+                if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                    $root.proto.Position.encode(message.position, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqMoving message, length delimited. Does not implicitly {@link proto.ReqMoving.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqMoving
+             * @static
+             * @param {proto.IReqMoving} message ReqMoving message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqMoving.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqMoving message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqMoving
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqMoving} ReqMoving
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqMoving.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqMoving();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.areaId = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.position = $root.proto.Position.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqMoving message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqMoving
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqMoving} ReqMoving
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqMoving.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqMoving message.
+             * @function verify
+             * @memberof proto.ReqMoving
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqMoving.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    if (!$util.isInteger(message.areaId))
+                        return "areaId: integer expected";
+                if (message.position != null && message.hasOwnProperty("position")) {
+                    var error = $root.proto.Position.verify(message.position);
+                    if (error)
+                        return "position." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a ReqMoving message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqMoving
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqMoving} ReqMoving
+             */
+            ReqMoving.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqMoving)
+                    return object;
+                var message = new $root.proto.ReqMoving();
+                if (object.areaId != null)
+                    message.areaId = object.areaId | 0;
+                if (object.position != null) {
+                    if (typeof object.position !== "object")
+                        throw TypeError(".proto.ReqMoving.position: object expected");
+                    message.position = $root.proto.Position.fromObject(object.position);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ReqMoving message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqMoving
+             * @static
+             * @param {proto.ReqMoving} message ReqMoving
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqMoving.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.areaId = 0;
+                    object.position = null;
+                }
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    object.areaId = message.areaId;
+                if (message.position != null && message.hasOwnProperty("position"))
+                    object.position = $root.proto.Position.toObject(message.position, options);
+                return object;
+            };
+    
+            /**
+             * Converts this ReqMoving to JSON.
+             * @function toJSON
+             * @memberof proto.ReqMoving
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqMoving.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqMoving
+             * @function getTypeUrl
+             * @memberof proto.ReqMoving
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqMoving.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqMoving";
+            };
+    
+            return ReqMoving;
+        })();
+    
+        proto.ResMoving = (function() {
+    
+            /**
+             * Properties of a ResMoving.
+             * @memberof proto
+             * @interface IResMoving
+             * @property {number|null} [userId] ResMoving userId
+             * @property {number|null} [playerId] ResMoving playerId
+             * @property {proto.IPosition|null} [position] ResMoving position
+             */
+    
+            /**
+             * Constructs a new ResMoving.
+             * @memberof proto
+             * @classdesc Represents a ResMoving.
+             * @implements IResMoving
+             * @constructor
+             * @param {proto.IResMoving=} [properties] Properties to set
+             */
+            function ResMoving(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResMoving userId.
+             * @member {number} userId
+             * @memberof proto.ResMoving
+             * @instance
+             */
+            ResMoving.prototype.userId = 0;
+    
+            /**
+             * ResMoving playerId.
+             * @member {number} playerId
+             * @memberof proto.ResMoving
+             * @instance
+             */
+            ResMoving.prototype.playerId = 0;
+    
+            /**
+             * ResMoving position.
+             * @member {proto.IPosition|null|undefined} position
+             * @memberof proto.ResMoving
+             * @instance
+             */
+            ResMoving.prototype.position = null;
+    
+            /**
+             * Creates a new ResMoving instance using the specified properties.
+             * @function create
+             * @memberof proto.ResMoving
+             * @static
+             * @param {proto.IResMoving=} [properties] Properties to set
+             * @returns {proto.ResMoving} ResMoving instance
+             */
+            ResMoving.create = function create(properties) {
+                return new ResMoving(properties);
+            };
+    
+            /**
+             * Encodes the specified ResMoving message. Does not implicitly {@link proto.ResMoving.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResMoving
+             * @static
+             * @param {proto.IResMoving} message ResMoving message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResMoving.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.userId);
+                if (message.playerId != null && Object.hasOwnProperty.call(message, "playerId"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.playerId);
+                if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                    $root.proto.Position.encode(message.position, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResMoving message, length delimited. Does not implicitly {@link proto.ResMoving.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResMoving
+             * @static
+             * @param {proto.IResMoving} message ResMoving message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResMoving.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResMoving message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResMoving
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResMoving} ResMoving
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResMoving.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResMoving();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.userId = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.playerId = reader.int32();
+                            break;
+                        }
+                    case 3: {
+                            message.position = $root.proto.Position.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResMoving message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResMoving
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResMoving} ResMoving
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResMoving.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResMoving message.
+             * @function verify
+             * @memberof proto.ResMoving
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResMoving.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.userId != null && message.hasOwnProperty("userId"))
+                    if (!$util.isInteger(message.userId))
+                        return "userId: integer expected";
+                if (message.playerId != null && message.hasOwnProperty("playerId"))
+                    if (!$util.isInteger(message.playerId))
+                        return "playerId: integer expected";
+                if (message.position != null && message.hasOwnProperty("position")) {
+                    var error = $root.proto.Position.verify(message.position);
+                    if (error)
+                        return "position." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a ResMoving message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResMoving
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResMoving} ResMoving
+             */
+            ResMoving.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResMoving)
+                    return object;
+                var message = new $root.proto.ResMoving();
+                if (object.userId != null)
+                    message.userId = object.userId | 0;
+                if (object.playerId != null)
+                    message.playerId = object.playerId | 0;
+                if (object.position != null) {
+                    if (typeof object.position !== "object")
+                        throw TypeError(".proto.ResMoving.position: object expected");
+                    message.position = $root.proto.Position.fromObject(object.position);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResMoving message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResMoving
+             * @static
+             * @param {proto.ResMoving} message ResMoving
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResMoving.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.userId = 0;
+                    object.playerId = 0;
+                    object.position = null;
+                }
+                if (message.userId != null && message.hasOwnProperty("userId"))
+                    object.userId = message.userId;
+                if (message.playerId != null && message.hasOwnProperty("playerId"))
+                    object.playerId = message.playerId;
+                if (message.position != null && message.hasOwnProperty("position"))
+                    object.position = $root.proto.Position.toObject(message.position, options);
+                return object;
+            };
+    
+            /**
+             * Converts this ResMoving to JSON.
+             * @function toJSON
+             * @memberof proto.ResMoving
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResMoving.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResMoving
+             * @function getTypeUrl
+             * @memberof proto.ResMoving
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResMoving.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResMoving";
+            };
+    
+            return ResMoving;
         })();
     
         return proto;
