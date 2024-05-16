@@ -13,6 +13,10 @@ export default class GlobalData {
 
   private user: proto.IUser = null;
   private isMobile: boolean = false;
+  private isMoveBuilding: boolean = false;
+  private isTill: boolean = false;
+  private isTilled: boolean = false;
+  private isSow: boolean = false;
 
   /* USER */
   public setUser(user: proto.IUser) {
@@ -41,4 +45,41 @@ export default class GlobalData {
   public isMobileDevice() {
     return this.isMobile;
   }
+
+  /* Agricultural engineer */
+  public setTillStatus(isTill: boolean) {
+    this.isTill = isTill;
+  }
+
+  public getTillStatus() {
+    return this.isTill;
+  }
+
+  public setTilledStatus(isTilled: boolean) {
+    this.isTilled = isTilled;
+  }
+
+  public getTilledStatus() {
+    return this.isTilled;
+  }
+
+  public setSowStatus(isSow: boolean) {
+    this.isSow = isSow;
+  }
+
+  public getSowStatus() {
+    return this.isSow;
+  }
+  /* END Agricultural engineer */
+
+
+  /* Building */
+  public setMoveBuildingStatus(isMoveBuilding: boolean) {
+    this.isMoveBuilding = isMoveBuilding;
+  }
+
+  public getMoveBuildingStatus() {
+    return this.isMoveBuilding;
+  }
+  /* END Building */
 }

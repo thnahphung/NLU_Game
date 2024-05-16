@@ -8,6 +8,7 @@ import { init } from "../../../../extensions/i18n/assets/LanguageData";
 import { updateSceneRenderers } from "../../../../extensions/i18n/assets/LanguageData";
 import { t } from "../../../../extensions/i18n/assets/LanguageData";
 import { StorageManager } from "../../Manager/StorageManger";
+import { PopupComponent } from "../../Controller/PopupComponent";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupSetting")
@@ -90,7 +91,11 @@ export class PopupSetting extends AbsScene {
   }
 
   onClickExitSetting() {
-    this.node.destroy();
+    this.node.getComponent(PopupComponent).hide();
+    let timeoutDestroy = setTimeout(() => {
+      this.node.destroy();
+      clearTimeout(timeoutDestroy);
+    }, 300);      
   }
 
   onLogout() {
