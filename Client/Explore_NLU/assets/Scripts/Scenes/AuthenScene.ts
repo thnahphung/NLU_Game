@@ -54,6 +54,7 @@ export class AuthenScene extends AbsScene {
     super.onMessageHandler(packets);
     packets.packet.forEach((packet) => {
       if (packet.resLogin) {
+        console.debug("resLogin", packet.resLogin);
         this.onLoginMsgHandler(packet.resLogin);
       }
       if (packet.resRegister) {
@@ -63,7 +64,6 @@ export class AuthenScene extends AbsScene {
   }
 
   onLoginMsgHandler(resLogin: proto.IResLogin) {
-    let transitScreenNode = instantiate(this.transitScreen);
     if (resLogin.status === 400) {
       PopupManager.me().showPopupMessage(
         "Tên đăng nhập hoặc mật khẩu không đúng!"
@@ -94,21 +94,7 @@ export class AuthenScene extends AbsScene {
       StorageManager.me().saveItem("USERNAME", resLogin.user.username);
       StorageManager.me().saveItem("AUTO_LOGIN", this.rememberMe.isChecked);
       StorageManager.me().saveItem("TOKEN", resLogin.token);
-      //Chuyển scene
-      var hasCharacter = resLogin.user.hasCharacter;
-      console.log("hasCharacter", hasCharacter);
-      if (hasCharacter == 0) {
-        transitScreenNode
-          .getComponent(TransitionScenePrefab)
-          .setSceneName("PickCharacterScene");
-        this.node.addChild(transitScreenNode);
-      } else {
-        console.log(
-          "Transition to scene by character",
-          resLogin.player.characterId
-        );
-        this.transitionSceneByCharacter(resLogin.player.characterId);
-      }
+      GlobalData.me().setMainUser(resLogin.user);
     }
   }
 
@@ -155,36 +141,5 @@ export class AuthenScene extends AbsScene {
     this.popupSignIn.getComponent(PopupComponent).hide();
     this.popupSignUp.getComponent(PopupComponent).hide();
     this.popupGeneral.active = true;
-  }
-
-  transitionSceneByCharacter(typeCharacter: number) {
-    let transitScreenNode = instantiate(this.transitScreen);
-    switch (typeCharacter) {
-      case CHARACTERS.KSNN:
-        transitScreenNode
-          .getComponent(TransitionScenePrefab)
-          .setSceneName(SCENES.FARM);
-        break;
-      case CHARACTERS.KSCN:
-        transitScreenNode
-          .getComponent(TransitionScenePrefab)
-          .setSceneName(SCENES.VETERINARIAN);
-        break;
-      case CHARACTERS.KSCK:
-        transitScreenNode
-          .getComponent(TransitionScenePrefab)
-          .setSceneName(SCENES.MECHANICAL);
-        break;
-      case CHARACTERS.BSTY:
-        transitScreenNode
-          .getComponent(TransitionScenePrefab)
-          .setSceneName(SCENES.ANIMAL_HUSBANDRY);
-        break;
-      default:
-        transitScreenNode
-          .getComponent(TransitionScenePrefab)
-          .setSceneName(SCENES.KIOT);
-    }
-    this.node.addChild(transitScreenNode);
   }
 }

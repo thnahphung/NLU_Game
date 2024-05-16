@@ -2,13 +2,15 @@ package vn.edu.nlu.fit.nlugame.layer0.handler;
 
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.Session;
+import vn.edu.nlu.fit.nlugame.layer1.AreaService;
 import vn.edu.nlu.fit.nlugame.layer1.AuthService;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.UserBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 public class AuthHandler implements Subscriber {
 
     private final AuthService authService = AuthService.me();
-
+    private final AreaService areaService = AreaService.me();
 
     @Override
     public void onOpen(Session session, String... params) {
@@ -21,7 +23,9 @@ public class AuthHandler implements Subscriber {
             //to check user đang login trong hệ thống
             switch (packet.getDataCase()) {
                 case REQLOGIN:
-                    authService.checkLogin(session, packet.getReqLogin());
+                    UserBean userLoginBean = authService.checkLogin(session, packet.getReqLogin());
+                    if (userLoginBean == null) return;
+                    areaService.joinAreaLogin(userLoginBean.getId(), session);
                     break;
                 case REQREGISTER:
                     authService.register(session, packet.getReqRegister());
@@ -30,7 +34,9 @@ public class AuthHandler implements Subscriber {
                     authService.logout(session, packet.getReqLogout());
                     break;
                 case REQRELOGIN:
-                    authService.checkReLogin(session, packet.getReqRelogin());
+                    UserBean userRelogin = authService.checkReLogin(session, packet.getReqRelogin());
+                    if (userRelogin == null) return;
+                    areaService.joinAreaLogin(userRelogin.getId(), session);
                     break;
             }
         });

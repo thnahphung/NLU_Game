@@ -146,6 +146,12 @@ export namespace proto {
         /** Packet resPickCharacter */
         resPickCharacter?: (proto.IResPickCharacter|null);
 
+        /** Packet reqPlayerJoinAreaCommon */
+        reqPlayerJoinAreaCommon?: (proto.IReqPlayerJoinAreaCommon|null);
+
+        /** Packet resPlayerJoinAreaCommon */
+        resPlayerJoinAreaCommon?: (proto.IResPlayerJoinAreaCommon|null);
+
         /** Packet reqPlayerJoinArea */
         reqPlayerJoinArea?: (proto.IReqPlayerJoinArea|null);
 
@@ -154,6 +160,15 @@ export namespace proto {
 
         /** Packet resOtherPlayerJoinArea */
         resOtherPlayerJoinArea?: (proto.IResOtherPlayerJoinArea|null);
+
+        /** Packet reqMoving */
+        reqMoving?: (proto.IReqMoving|null);
+
+        /** Packet resMoving */
+        resMoving?: (proto.IResMoving|null);
+
+        /** Packet resOtherPlayerLeaveArea */
+        resOtherPlayerLeaveArea?: (proto.IResOtherPlayerLeaveArea|null);
     }
 
     /** Represents a Packet. */
@@ -207,6 +222,12 @@ export namespace proto {
         /** Packet resPickCharacter. */
         public resPickCharacter?: (proto.IResPickCharacter|null);
 
+        /** Packet reqPlayerJoinAreaCommon. */
+        public reqPlayerJoinAreaCommon?: (proto.IReqPlayerJoinAreaCommon|null);
+
+        /** Packet resPlayerJoinAreaCommon. */
+        public resPlayerJoinAreaCommon?: (proto.IResPlayerJoinAreaCommon|null);
+
         /** Packet reqPlayerJoinArea. */
         public reqPlayerJoinArea?: (proto.IReqPlayerJoinArea|null);
 
@@ -216,8 +237,17 @@ export namespace proto {
         /** Packet resOtherPlayerJoinArea. */
         public resOtherPlayerJoinArea?: (proto.IResOtherPlayerJoinArea|null);
 
+        /** Packet reqMoving. */
+        public reqMoving?: (proto.IReqMoving|null);
+
+        /** Packet resMoving. */
+        public resMoving?: (proto.IResMoving|null);
+
+        /** Packet resOtherPlayerLeaveArea. */
+        public resOtherPlayerLeaveArea?: (proto.IResOtherPlayerLeaveArea|null);
+
         /** Packet data. */
-        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea");
+        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea");
 
         /**
          * Creates a new Packet instance using the specified properties.
@@ -690,6 +720,230 @@ export namespace proto {
 
         /**
          * Gets the default type url for Character
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of an Area. */
+    interface IArea {
+
+        /** Area areaId */
+        areaId?: (number|null);
+
+        /** Area playerId */
+        playerId?: (number|null);
+
+        /** Area typeArea */
+        typeArea?: (string|null);
+
+        /** Area position */
+        position?: (proto.IPosition|null);
+
+        /** Area status */
+        status?: (number|null);
+    }
+
+    /** Represents an Area. */
+    class Area implements IArea {
+
+        /**
+         * Constructs a new Area.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IArea);
+
+        /** Area areaId. */
+        public areaId: number;
+
+        /** Area playerId. */
+        public playerId: number;
+
+        /** Area typeArea. */
+        public typeArea: string;
+
+        /** Area position. */
+        public position?: (proto.IPosition|null);
+
+        /** Area status. */
+        public status: number;
+
+        /**
+         * Creates a new Area instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Area instance
+         */
+        public static create(properties?: proto.IArea): proto.Area;
+
+        /**
+         * Encodes the specified Area message. Does not implicitly {@link proto.Area.verify|verify} messages.
+         * @param message Area message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IArea, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Area message, length delimited. Does not implicitly {@link proto.Area.verify|verify} messages.
+         * @param message Area message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IArea, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an Area message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Area
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.Area;
+
+        /**
+         * Decodes an Area message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Area
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.Area;
+
+        /**
+         * Verifies an Area message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates an Area message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Area
+         */
+        public static fromObject(object: { [k: string]: any }): proto.Area;
+
+        /**
+         * Creates a plain object from an Area message. Also converts values to other types if specified.
+         * @param message Area
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.Area, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Area to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Area
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a Position. */
+    interface IPosition {
+
+        /** Position x */
+        x?: (number|null);
+
+        /** Position y */
+        y?: (number|null);
+    }
+
+    /** Represents a Position. */
+    class Position implements IPosition {
+
+        /**
+         * Constructs a new Position.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IPosition);
+
+        /** Position x. */
+        public x: number;
+
+        /** Position y. */
+        public y: number;
+
+        /**
+         * Creates a new Position instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Position instance
+         */
+        public static create(properties?: proto.IPosition): proto.Position;
+
+        /**
+         * Encodes the specified Position message. Does not implicitly {@link proto.Position.verify|verify} messages.
+         * @param message Position message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IPosition, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Position message, length delimited. Does not implicitly {@link proto.Position.verify|verify} messages.
+         * @param message Position message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IPosition, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Position message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Position
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.Position;
+
+        /**
+         * Decodes a Position message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Position
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.Position;
+
+        /**
+         * Verifies a Position message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Position message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Position
+         */
+        public static fromObject(object: { [k: string]: any }): proto.Position;
+
+        /**
+         * Creates a plain object from a Position message. Also converts values to other types if specified.
+         * @param message Position
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.Position, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Position to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Position
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -2205,14 +2459,247 @@ export namespace proto {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
+    /** Properties of a ReqPlayerJoinAreaCommon. */
+    interface IReqPlayerJoinAreaCommon {
+
+        /** ReqPlayerJoinAreaCommon areaCommonId */
+        areaCommonId?: (number|null);
+
+        /** ReqPlayerJoinAreaCommon position */
+        position?: (proto.IPosition|null);
+    }
+
+    /** Represents a ReqPlayerJoinAreaCommon. */
+    class ReqPlayerJoinAreaCommon implements IReqPlayerJoinAreaCommon {
+
+        /**
+         * Constructs a new ReqPlayerJoinAreaCommon.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IReqPlayerJoinAreaCommon);
+
+        /** ReqPlayerJoinAreaCommon areaCommonId. */
+        public areaCommonId: number;
+
+        /** ReqPlayerJoinAreaCommon position. */
+        public position?: (proto.IPosition|null);
+
+        /**
+         * Creates a new ReqPlayerJoinAreaCommon instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReqPlayerJoinAreaCommon instance
+         */
+        public static create(properties?: proto.IReqPlayerJoinAreaCommon): proto.ReqPlayerJoinAreaCommon;
+
+        /**
+         * Encodes the specified ReqPlayerJoinAreaCommon message. Does not implicitly {@link proto.ReqPlayerJoinAreaCommon.verify|verify} messages.
+         * @param message ReqPlayerJoinAreaCommon message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IReqPlayerJoinAreaCommon, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReqPlayerJoinAreaCommon message, length delimited. Does not implicitly {@link proto.ReqPlayerJoinAreaCommon.verify|verify} messages.
+         * @param message ReqPlayerJoinAreaCommon message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IReqPlayerJoinAreaCommon, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReqPlayerJoinAreaCommon message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReqPlayerJoinAreaCommon
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ReqPlayerJoinAreaCommon;
+
+        /**
+         * Decodes a ReqPlayerJoinAreaCommon message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReqPlayerJoinAreaCommon
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ReqPlayerJoinAreaCommon;
+
+        /**
+         * Verifies a ReqPlayerJoinAreaCommon message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReqPlayerJoinAreaCommon message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReqPlayerJoinAreaCommon
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ReqPlayerJoinAreaCommon;
+
+        /**
+         * Creates a plain object from a ReqPlayerJoinAreaCommon message. Also converts values to other types if specified.
+         * @param message ReqPlayerJoinAreaCommon
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ReqPlayerJoinAreaCommon, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReqPlayerJoinAreaCommon to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReqPlayerJoinAreaCommon
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ResPlayerJoinAreaCommon. */
+    interface IResPlayerJoinAreaCommon {
+
+        /** ResPlayerJoinAreaCommon areaCommonId */
+        areaCommonId?: (number|null);
+
+        /** ResPlayerJoinAreaCommon area */
+        area?: (proto.IArea|null);
+
+        /** ResPlayerJoinAreaCommon players */
+        players?: (proto.IPlayer[]|null);
+
+        /** ResPlayerJoinAreaCommon users */
+        users?: (proto.IUser[]|null);
+
+        /** ResPlayerJoinAreaCommon status */
+        status?: (number|null);
+
+        /** ResPlayerJoinAreaCommon areaState */
+        areaState?: (number|null);
+
+        /** ResPlayerJoinAreaCommon position */
+        position?: (proto.IPosition|null);
+    }
+
+    /** Represents a ResPlayerJoinAreaCommon. */
+    class ResPlayerJoinAreaCommon implements IResPlayerJoinAreaCommon {
+
+        /**
+         * Constructs a new ResPlayerJoinAreaCommon.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IResPlayerJoinAreaCommon);
+
+        /** ResPlayerJoinAreaCommon areaCommonId. */
+        public areaCommonId: number;
+
+        /** ResPlayerJoinAreaCommon area. */
+        public area?: (proto.IArea|null);
+
+        /** ResPlayerJoinAreaCommon players. */
+        public players: proto.IPlayer[];
+
+        /** ResPlayerJoinAreaCommon users. */
+        public users: proto.IUser[];
+
+        /** ResPlayerJoinAreaCommon status. */
+        public status: number;
+
+        /** ResPlayerJoinAreaCommon areaState. */
+        public areaState: number;
+
+        /** ResPlayerJoinAreaCommon position. */
+        public position?: (proto.IPosition|null);
+
+        /**
+         * Creates a new ResPlayerJoinAreaCommon instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ResPlayerJoinAreaCommon instance
+         */
+        public static create(properties?: proto.IResPlayerJoinAreaCommon): proto.ResPlayerJoinAreaCommon;
+
+        /**
+         * Encodes the specified ResPlayerJoinAreaCommon message. Does not implicitly {@link proto.ResPlayerJoinAreaCommon.verify|verify} messages.
+         * @param message ResPlayerJoinAreaCommon message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IResPlayerJoinAreaCommon, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ResPlayerJoinAreaCommon message, length delimited. Does not implicitly {@link proto.ResPlayerJoinAreaCommon.verify|verify} messages.
+         * @param message ResPlayerJoinAreaCommon message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IResPlayerJoinAreaCommon, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ResPlayerJoinAreaCommon message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ResPlayerJoinAreaCommon
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResPlayerJoinAreaCommon;
+
+        /**
+         * Decodes a ResPlayerJoinAreaCommon message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ResPlayerJoinAreaCommon
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResPlayerJoinAreaCommon;
+
+        /**
+         * Verifies a ResPlayerJoinAreaCommon message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ResPlayerJoinAreaCommon message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ResPlayerJoinAreaCommon
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ResPlayerJoinAreaCommon;
+
+        /**
+         * Creates a plain object from a ResPlayerJoinAreaCommon message. Also converts values to other types if specified.
+         * @param message ResPlayerJoinAreaCommon
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ResPlayerJoinAreaCommon, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ResPlayerJoinAreaCommon to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ResPlayerJoinAreaCommon
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
     /** Properties of a ReqPlayerJoinArea. */
     interface IReqPlayerJoinArea {
 
-        /** ReqPlayerJoinArea area */
-        area?: (string|null);
-
-        /** ReqPlayerJoinArea idArea */
-        idArea?: (number|null);
+        /** ReqPlayerJoinArea userTargetId */
+        userTargetId?: (number|null);
     }
 
     /** Represents a ReqPlayerJoinArea. */
@@ -2224,11 +2711,8 @@ export namespace proto {
          */
         constructor(properties?: proto.IReqPlayerJoinArea);
 
-        /** ReqPlayerJoinArea area. */
-        public area: string;
-
-        /** ReqPlayerJoinArea idArea. */
-        public idArea: number;
+        /** ReqPlayerJoinArea userTargetId. */
+        public userTargetId: number;
 
         /**
          * Creates a new ReqPlayerJoinArea instance using the specified properties.
@@ -2311,23 +2795,20 @@ export namespace proto {
     /** Properties of a ResPlayerJoinArea. */
     interface IResPlayerJoinArea {
 
-        /** ResPlayerJoinArea areaId */
-        areaId?: (number|null);
-
         /** ResPlayerJoinArea area */
-        area?: (string|null);
+        area?: (proto.IArea|null);
 
-        /** ResPlayerJoinArea player */
-        player?: (proto.IPlayer[]|null);
+        /** ResPlayerJoinArea players */
+        players?: (proto.IPlayer[]|null);
 
-        /** ResPlayerJoinArea user */
-        user?: (proto.IUser[]|null);
+        /** ResPlayerJoinArea users */
+        users?: (proto.IUser[]|null);
 
         /** ResPlayerJoinArea status */
         status?: (number|null);
 
-        /** ResPlayerJoinArea areaState */
-        areaState?: (number|null);
+        /** ResPlayerJoinArea position */
+        position?: (proto.IPosition|null);
     }
 
     /** Represents a ResPlayerJoinArea. */
@@ -2339,23 +2820,20 @@ export namespace proto {
          */
         constructor(properties?: proto.IResPlayerJoinArea);
 
-        /** ResPlayerJoinArea areaId. */
-        public areaId: number;
-
         /** ResPlayerJoinArea area. */
-        public area: string;
+        public area?: (proto.IArea|null);
 
-        /** ResPlayerJoinArea player. */
-        public player: proto.IPlayer[];
+        /** ResPlayerJoinArea players. */
+        public players: proto.IPlayer[];
 
-        /** ResPlayerJoinArea user. */
-        public user: proto.IUser[];
+        /** ResPlayerJoinArea users. */
+        public users: proto.IUser[];
 
         /** ResPlayerJoinArea status. */
         public status: number;
 
-        /** ResPlayerJoinArea areaState. */
-        public areaState: number;
+        /** ResPlayerJoinArea position. */
+        public position?: (proto.IPosition|null);
 
         /**
          * Creates a new ResPlayerJoinArea instance using the specified properties.
@@ -2438,17 +2916,14 @@ export namespace proto {
     /** Properties of a ResOtherPlayerJoinArea. */
     interface IResOtherPlayerJoinArea {
 
-        /** ResOtherPlayerJoinArea areaId */
-        areaId?: (number|null);
-
-        /** ResOtherPlayerJoinArea area */
-        area?: (string|null);
-
         /** ResOtherPlayerJoinArea player */
         player?: (proto.IPlayer|null);
 
         /** ResOtherPlayerJoinArea user */
         user?: (proto.IUser|null);
+
+        /** ResOtherPlayerJoinArea position */
+        position?: (proto.IPosition|null);
     }
 
     /** Represents a ResOtherPlayerJoinArea. */
@@ -2460,17 +2935,14 @@ export namespace proto {
          */
         constructor(properties?: proto.IResOtherPlayerJoinArea);
 
-        /** ResOtherPlayerJoinArea areaId. */
-        public areaId: number;
-
-        /** ResOtherPlayerJoinArea area. */
-        public area: string;
-
         /** ResOtherPlayerJoinArea player. */
         public player?: (proto.IPlayer|null);
 
         /** ResOtherPlayerJoinArea user. */
         public user?: (proto.IUser|null);
+
+        /** ResOtherPlayerJoinArea position. */
+        public position?: (proto.IPosition|null);
 
         /**
          * Creates a new ResOtherPlayerJoinArea instance using the specified properties.
@@ -2544,6 +3016,315 @@ export namespace proto {
 
         /**
          * Gets the default type url for ResOtherPlayerJoinArea
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ResOtherPlayerLeaveArea. */
+    interface IResOtherPlayerLeaveArea {
+
+        /** ResOtherPlayerLeaveArea userId */
+        userId?: (number|null);
+    }
+
+    /** Represents a ResOtherPlayerLeaveArea. */
+    class ResOtherPlayerLeaveArea implements IResOtherPlayerLeaveArea {
+
+        /**
+         * Constructs a new ResOtherPlayerLeaveArea.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IResOtherPlayerLeaveArea);
+
+        /** ResOtherPlayerLeaveArea userId. */
+        public userId: number;
+
+        /**
+         * Creates a new ResOtherPlayerLeaveArea instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ResOtherPlayerLeaveArea instance
+         */
+        public static create(properties?: proto.IResOtherPlayerLeaveArea): proto.ResOtherPlayerLeaveArea;
+
+        /**
+         * Encodes the specified ResOtherPlayerLeaveArea message. Does not implicitly {@link proto.ResOtherPlayerLeaveArea.verify|verify} messages.
+         * @param message ResOtherPlayerLeaveArea message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IResOtherPlayerLeaveArea, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ResOtherPlayerLeaveArea message, length delimited. Does not implicitly {@link proto.ResOtherPlayerLeaveArea.verify|verify} messages.
+         * @param message ResOtherPlayerLeaveArea message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IResOtherPlayerLeaveArea, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ResOtherPlayerLeaveArea message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ResOtherPlayerLeaveArea
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResOtherPlayerLeaveArea;
+
+        /**
+         * Decodes a ResOtherPlayerLeaveArea message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ResOtherPlayerLeaveArea
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResOtherPlayerLeaveArea;
+
+        /**
+         * Verifies a ResOtherPlayerLeaveArea message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ResOtherPlayerLeaveArea message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ResOtherPlayerLeaveArea
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ResOtherPlayerLeaveArea;
+
+        /**
+         * Creates a plain object from a ResOtherPlayerLeaveArea message. Also converts values to other types if specified.
+         * @param message ResOtherPlayerLeaveArea
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ResOtherPlayerLeaveArea, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ResOtherPlayerLeaveArea to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ResOtherPlayerLeaveArea
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ReqMoving. */
+    interface IReqMoving {
+
+        /** ReqMoving areaId */
+        areaId?: (number|null);
+
+        /** ReqMoving position */
+        position?: (proto.IPosition|null);
+    }
+
+    /** Represents a ReqMoving. */
+    class ReqMoving implements IReqMoving {
+
+        /**
+         * Constructs a new ReqMoving.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IReqMoving);
+
+        /** ReqMoving areaId. */
+        public areaId: number;
+
+        /** ReqMoving position. */
+        public position?: (proto.IPosition|null);
+
+        /**
+         * Creates a new ReqMoving instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReqMoving instance
+         */
+        public static create(properties?: proto.IReqMoving): proto.ReqMoving;
+
+        /**
+         * Encodes the specified ReqMoving message. Does not implicitly {@link proto.ReqMoving.verify|verify} messages.
+         * @param message ReqMoving message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IReqMoving, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReqMoving message, length delimited. Does not implicitly {@link proto.ReqMoving.verify|verify} messages.
+         * @param message ReqMoving message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IReqMoving, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReqMoving message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReqMoving
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ReqMoving;
+
+        /**
+         * Decodes a ReqMoving message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReqMoving
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ReqMoving;
+
+        /**
+         * Verifies a ReqMoving message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReqMoving message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReqMoving
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ReqMoving;
+
+        /**
+         * Creates a plain object from a ReqMoving message. Also converts values to other types if specified.
+         * @param message ReqMoving
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ReqMoving, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReqMoving to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReqMoving
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ResMoving. */
+    interface IResMoving {
+
+        /** ResMoving userId */
+        userId?: (number|null);
+
+        /** ResMoving playerId */
+        playerId?: (number|null);
+
+        /** ResMoving position */
+        position?: (proto.IPosition|null);
+    }
+
+    /** Represents a ResMoving. */
+    class ResMoving implements IResMoving {
+
+        /**
+         * Constructs a new ResMoving.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IResMoving);
+
+        /** ResMoving userId. */
+        public userId: number;
+
+        /** ResMoving playerId. */
+        public playerId: number;
+
+        /** ResMoving position. */
+        public position?: (proto.IPosition|null);
+
+        /**
+         * Creates a new ResMoving instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ResMoving instance
+         */
+        public static create(properties?: proto.IResMoving): proto.ResMoving;
+
+        /**
+         * Encodes the specified ResMoving message. Does not implicitly {@link proto.ResMoving.verify|verify} messages.
+         * @param message ResMoving message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IResMoving, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ResMoving message, length delimited. Does not implicitly {@link proto.ResMoving.verify|verify} messages.
+         * @param message ResMoving message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IResMoving, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ResMoving message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ResMoving
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResMoving;
+
+        /**
+         * Decodes a ResMoving message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ResMoving
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResMoving;
+
+        /**
+         * Verifies a ResMoving message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ResMoving message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ResMoving
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ResMoving;
+
+        /**
+         * Creates a plain object from a ResMoving message. Also converts values to other types if specified.
+         * @param message ResMoving
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ResMoving, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ResMoving to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ResMoving
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */

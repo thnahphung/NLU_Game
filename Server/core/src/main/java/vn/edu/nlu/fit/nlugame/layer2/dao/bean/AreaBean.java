@@ -12,8 +12,16 @@ public class AreaBean {
     @ColumnName("id")
     private int id;
     @ColumnName("user_id")
-    private String uerId;
+    private int userId;
+    @ColumnName("player_id")
+    private int playerId;
     @ColumnName("type_area")
     private String typeArea;
+    @ColumnName("spawn_pos_x")
+    private int spawnPosX;
+    @ColumnName("spawn_pos_y")
+    private int spawnPosY;
+    @ColumnName("status")
+    private int status;
 
 }

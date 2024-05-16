@@ -17,6 +17,7 @@ public class ServerEndpoint {
         ServerEndpoint.subscribe(new AuthHandler());
         ServerEndpoint.subscribe(new NotificationHandler());
         ServerEndpoint.subscribe(new CharacterHandler());
+        ServerEndpoint.subscribe(new AreaHandler());
     }
 
     public static void subscribe(Subscriber sub) {
