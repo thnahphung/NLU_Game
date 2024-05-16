@@ -23,9 +23,14 @@ message Packet {
     ResLoadCharacters resLoadCharacters = 12;
     ReqPickCharacter reqPickCharacter = 13;
     ResPickCharacter resPickCharacter = 14;
-    ReqPlayerJoinArea reqPlayerJoinArea = 15;
-    ResPlayerJoinArea resPlayerJoinArea = 16;
-    ResOtherPlayerJoinArea resOtherPlayerJoinArea = 17;
+    ReqPlayerJoinAreaCommon reqPlayerJoinAreaCommon = 15;
+    ResPlayerJoinAreaCommon resPlayerJoinAreaCommon = 16;
+    ReqPlayerJoinArea reqPlayerJoinArea = 17;
+    ResPlayerJoinArea resPlayerJoinArea = 18;
+    ResOtherPlayerJoinArea resOtherPlayerJoinArea = 19;
+    ReqMoving reqMoving = 20;
+    ResMoving resMoving = 21;
+    ResOtherPlayerLeaveArea resOtherPlayerLeaveArea = 22;
   }
 }
 
@@ -58,6 +63,19 @@ message Character {
   string name = 2;
   string code = 3;
   string description = 4;
+}
+
+message Area{
+  int32 areaId = 1;
+  int32 playerId = 2;
+  string typeArea = 3;
+  Position position = 4;
+  int32 status = 5;
+}
+
+message Position{
+  float x = 1;
+  float y = 2;
 }
 // Bean end ====================================================
 
@@ -137,24 +155,50 @@ message ResPickCharacter {
   int32 status = 1; 
 }
 
+message ReqPlayerJoinAreaCommon{
+  int32 areaCommonId = 1;
+  Position position = 2;
+}
+
+message ResPlayerJoinAreaCommon{
+  int32 areaCommonId = 1;
+  Area area = 2;
+  repeated Player players = 3;
+  repeated User users = 4;
+  int32 status = 5; // 200: join thành công; 400: join không thành công
+  int32 areaState = 6;
+  Position position = 7;
+}
+
 message ReqPlayerJoinArea{
-  string area = 1;
-  int32 idArea = 2; // Nếu join các vùng chung thì idArea = -1
+  int32 userTargetId = 1; //id của player muốn join
 }
 
 message ResPlayerJoinArea{
-  int32 areaId =1;
-  string area = 2;
-  repeated Player player = 3;
-  repeated User user = 4;
-  int32 status = 5; // 200: join thành công; 400: join không thành công
-  int32 areaState = 6;
+  Area area = 1;
+  repeated Player players = 2;
+  repeated User users = 3;
+  int32 status = 4; // 200: join thành công; 400: join không thành công
+  Position position = 5;
 }
 
 message ResOtherPlayerJoinArea{
-  int32 areaId = 1;
-  string area = 2;
-  Player player = 3;
-  User user = 4;
+  Player player = 1;
+  User user = 2;
+  Position position = 3;
 }
 
+message ResOtherPlayerLeaveArea{
+  int32 userId = 1;
+}
+
+message ReqMoving{
+  int32 areaId = 1;
+  Position position = 2;
+}
+
+message ResMoving{
+  int32 userId = 1;
+  int32 playerId = 2;
+  Position position = 3;
+}

@@ -1,6 +1,8 @@
 import { _decorator, Component, game, RigidBody2D, Vec2 } from "cc";
 // import { InputManager } from "../../../Test/Scripts/InputManager";
 import { InputManager } from "../../Manager/InputManager";
+import DataSender from "../../Utils/DataSender";
+import GlobalData from "../../Utils/GlobalData";
 
 const { ccclass, property } = _decorator;
 
@@ -21,11 +23,17 @@ export class CharacterMovement extends Component {
   update(deltaTime: number) {
     this.setDirection();
     this.setVelocity();
+    DataSender.sendReqMoving(
+      GlobalData.me().getArea().areaId,
+      this.node.position.x,
+      this.node.position.y
+    );
   }
 
   private setDirection() {
     this.direction = InputManager.me().getDirection();
   }
+
   private setVelocity() {
     this._rb.linearVelocity = new Vec2(
       this.direction.x * this.speed * game.deltaTime,

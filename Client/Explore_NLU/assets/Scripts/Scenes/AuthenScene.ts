@@ -6,8 +6,7 @@ import { TransitionScenePrefab } from "../Prefabs/TransitionScene/TransitionScen
 import { StorageManager } from "../Manager/StorageManger";
 import { PopupManager } from "../Manager/PopupManager";
 import GlobalData from "../Utils/GlobalData";
-import { CHARACTERS, LOCAL_STORAGE, POPUP_MESSAGE, SCENES } from "../Utils/Const";
-import { UICanvas } from "../Prefabs/MainUI/UICanvas";
+import { CHARACTERS, SCENES } from "../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("AuthenScene")
@@ -55,6 +54,7 @@ export class AuthenScene extends AbsScene {
     super.onMessageHandler(packets);
     packets.packet.forEach((packet) => {
       if (packet.resLogin) {
+        console.debug("resLogin", packet.resLogin);
         this.onLoginMsgHandler(packet.resLogin);
       }
       if (packet.resRegister) {
@@ -64,58 +64,55 @@ export class AuthenScene extends AbsScene {
   }
 
   onLoginMsgHandler(resLogin: proto.IResLogin) {
-    let transitScreenNode = instantiate(this.transitScreen);
     if (resLogin.status === 400) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_400);
+      PopupManager.me().showPopupMessage(
+        "Tên đăng nhập hoặc mật khẩu không đúng!"
+      );
       return;
     }
     if (resLogin.status === 401) {
+      console.log("Fail relogin!");
       this.popupGeneral.active = true;
       return;
     }
     if (resLogin.status === 402) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_402);
+      PopupManager.me().showPopupMessage("Tài khoản đã bị khóa!");
       return;
     }
     if (resLogin.status === 403) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_403);
+      PopupManager.me().showPopupMessage(
+        "Tài khoản đang đăng nhập ở thiết bị khác!"
+      );
       return;
     }
     if (resLogin.status === 500) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_500);
+      PopupManager.me().showPopupMessage("Lỗi server!");
       return;
     }
     if (resLogin.status === 200) {
       //RememberLogin
-      StorageManager.me().saveItem(LOCAL_STORAGE.USERNAME, resLogin.user.username);
-      StorageManager.me().saveItem(LOCAL_STORAGE.AUTO_LOGIN, this.rememberMe.isChecked);
-      StorageManager.me().saveItem(LOCAL_STORAGE.TOKEN, resLogin.token);
-      //Chuyển scene
-      var hasCharacter = resLogin.user.hasCharacter;
-      if (hasCharacter == 0) {
-        transitScreenNode
-          .getComponent(TransitionScenePrefab)
-          .setSceneName(SCENES.PICK_CHARACTER);
-        this.node.addChild(transitScreenNode);
-      } else {
-        this.transitionSceneByCharacter(resLogin.player.characterId);
-      }
+      StorageManager.me().saveItem("USERNAME", resLogin.user.username);
+      StorageManager.me().saveItem("AUTO_LOGIN", this.rememberMe.isChecked);
+      StorageManager.me().saveItem("TOKEN", resLogin.token);
+      GlobalData.me().setMainUser(resLogin.user);
     }
   }
 
   onRegisterMsgHandler(resRegister: proto.IResRegister) {
     if (resRegister.status === 400) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_400);
+      PopupManager.me().showPopupMessage("Tên đăng nhập đã tồn tại!");
     } else if (resRegister.status === 401) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_401);
-    } else if (resRegister.status === 402) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_402);
+      PopupManager.me().showPopupMessage(
+        "Tên đăng nhập hoặc mật khẩu không thể để trống!"
+      );
     } else if (resRegister.status === 403) {
-      UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_403);
+      PopupManager.me().showPopupMessage("Email này đã được sử dụng!");
+    } else if (resRegister.status === 402) {
+      PopupManager.me().showPopupMessage("Mật khẩu không trùng khớp!");
     } else if (resRegister.status === 500) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_500);
+      PopupManager.me().showPopupMessage("Lỗi server!");
     } else if (resRegister.status === 200) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_SUCCESS_200);
+      PopupManager.me().showPopupMessage("Đăng ký thành công!");
     }
   }
 
@@ -144,36 +141,5 @@ export class AuthenScene extends AbsScene {
     this.popupSignIn.getComponent(PopupComponent).hide();
     this.popupSignUp.getComponent(PopupComponent).hide();
     this.popupGeneral.active = true;
-  }
-
-  transitionSceneByCharacter(typeCharacter: number) {
-    let transitScreenNode = instantiate(this.transitScreen);
-    switch (typeCharacter) {
-      case CHARACTERS.KSNN:
-        transitScreenNode
-          .getComponent(TransitionScenePrefab)
-          .setSceneName(SCENES.FARM);
-        break;
-      case CHARACTERS.KSCN:
-        transitScreenNode
-          .getComponent(TransitionScenePrefab)
-          .setSceneName(SCENES.VETERINARIAN);
-        break;
-      case CHARACTERS.KSCK:
-        transitScreenNode
-          .getComponent(TransitionScenePrefab)
-          .setSceneName(SCENES.MECHANICAL);
-        break;
-      case CHARACTERS.BSTY:
-        transitScreenNode
-          .getComponent(TransitionScenePrefab)
-          .setSceneName(SCENES.ANIMAL_HUSBANDRY);
-        break;
-      default:
-        transitScreenNode
-          .getComponent(TransitionScenePrefab)
-          .setSceneName(SCENES.KIOT);
-    }
-    this.node.addChild(transitScreenNode);
   }
 }

@@ -12,6 +12,7 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.cache.UserCache;
 public class SessionService implements IService {
 
     private static final SessionService instance = new SessionService();
+
     private SessionService() {
     }
 
@@ -38,6 +39,10 @@ public class SessionService implements IService {
         //Logout user in cache
         int userID = SessionCache.me().getUserID(SessionID.of(session));
         UserCache.me().logoutUser(userID);
+        //Logout player in cache
+        Proto.Player playerRemoved = PlayerCache.me().remove(String.valueOf(userID));
+        PlayerCache.me().removePlayer(userID);
+
         //Remove session in cache
         SessionCache.me().removeSession(SessionID.of(session));
         //Remove session in tomcat

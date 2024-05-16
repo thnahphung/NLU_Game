@@ -2,12 +2,11 @@ package vn.edu.nlu.fit.nlugame.layer0.handler;
 
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.Session;
-import vn.edu.nlu.fit.nlugame.layer1.CharacterService;
-import vn.edu.nlu.fit.nlugame.layer1.JoinAreaService;
+import vn.edu.nlu.fit.nlugame.layer1.AreaService;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
-public class JoinAreaHandler implements Subscriber {
-    JoinAreaService joinAreaService = JoinAreaService.me();
+public class AreaHandler implements Subscriber {
+    AreaService areaService = AreaService.me();
 
     @Override
     public void onOpen(Session session, String... params) {
@@ -19,7 +18,10 @@ public class JoinAreaHandler implements Subscriber {
         packetWrapper.getPacketList().forEach(packet -> {
             switch (packet.getDataCase()) {
                 case REQPLAYERJOINAREA:
-                    joinAreaService.joinArea(session, packet.getReqPlayerJoinArea());
+                    areaService.joinArea(session, packet.getReqPlayerJoinArea());
+                    break;
+                case REQMOVING:
+                    areaService.moving(session, packet.getReqMoving());
                     break;
             }
         });
@@ -27,7 +29,7 @@ public class JoinAreaHandler implements Subscriber {
 
     @Override
     public void onClose(Session session, CloseReason closeReason) {
-
+        areaService.leaveRoom(session);
     }
 
     @Override

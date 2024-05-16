@@ -12,11 +12,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class AreaCache extends RedisClusterHelper{
+public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area, Integer> {
     private static final AreaCache instance = new AreaCache();
-    private static final Cache<Integer, AreaContext> areaContextMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.MINUTES).build();
-    private static final String AREAS_KEY = "areas";
-    private static final String AREA_KEY = "area:";
+    private static final Cache<Integer, Proto.Area> areaMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.MINUTES).build();
+    private static final Cache<Integer, Proto.Area> areaPlayersMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.MINUTES).build();
+    private static final String PLAYERS_AREA_KEY = "area:";
+    private static final String AREA_KEY = "areas";
 
     private AreaCache() {
     }
@@ -25,11 +26,105 @@ public class AreaCache extends RedisClusterHelper{
         return instance;
     }
 
-    public void addArea(Integer key, AreaContext areaContext) {
-        getConnection().hset(AREA_KEY.getBytes(), String.valueOf(key).getBytes(), CompressUtils.compress(areaContext));
+    @Override
+    public boolean add(Integer key, Proto.Area value) {
+        areaMap.put(key, value);
+        return true;
     }
 
-    public void addPlayerToArea(Integer areaId, Proto.Player player) {
-        getConnection().hset((AREA_KEY + areaId).getBytes(), String.valueOf(player.getPlayerId()).getBytes(), String.valueOf(player).getBytes());
+    @Override
+    public boolean add(Proto.Area value) {
+        return false;
+    }
+
+    @Override
+    public Proto.Area get(Integer key) {
+        return null;
+    }
+
+    @Override
+    public List<Proto.Area> getAll() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public Set<Integer> getKeys() {
+        return null;
+    }
+
+    @Override
+    public Proto.Area remove(Integer key) {
+        return null;
+    }
+
+    @Override
+    public boolean containsKey(Integer key) {
+        return false;
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public Integer getKey(Proto.Area value) {
+        return null;
+    }
+
+
+    public void addArea(int key, Proto.Area area) {
+        getConnection().hset(AREA_KEY.getBytes(), String.valueOf(key).getBytes(), CompressUtils.compress(area));
+    }
+
+    public Proto.Area getArea(int key) {
+        byte[] area = getConnection().hget(AREA_KEY.getBytes(), String.valueOf(key).getBytes());
+        return CompressUtils.decompress(area, Proto.Area.class);
+    }
+
+    public ArrayList<Proto.Area> getAllArea() {
+        List<byte[]> areas = getConnection().hvals(AREA_KEY.getBytes());
+        ArrayList<Proto.Area> result = new ArrayList<>();
+        if (areas == null) {
+            return result;
+        }
+        for (byte[] area : areas) {
+            result.add(CompressUtils.decompress(area, Proto.Area.class));
+        }
+        return result;
+    }
+
+    public void addPlayerToArea(int areaId, int userId, int playerId) {
+        getConnection().hset((PLAYERS_AREA_KEY + areaId).getBytes(), String.valueOf(userId).getBytes(), String.valueOf(playerId).getBytes());
+    }
+
+    public long removePlayerFromArea(int areaId, int userId) {
+        return getConnection().hdel((PLAYERS_AREA_KEY + areaId).getBytes(), String.valueOf(userId).getBytes());
+    }
+
+    public ArrayList<String> getListUserIdInArea(int areaId) {
+        Set<byte[]> usersIdBytes = getConnection().hkeys((PLAYERS_AREA_KEY + areaId).getBytes());
+        ArrayList<String> result = new ArrayList<>();
+        if (usersIdBytes == null || usersIdBytes.isEmpty()) {
+            return result;
+        }
+
+        for (byte[] userIdByte : usersIdBytes) {
+            String userId = new String(userIdByte);
+            result.add(userId);
+        }
+        return result;
+    }
+
+    public ArrayList<String> getListPlayerIdInArea(int areaId) {
+        List<byte[]> area = getConnection().hvals((PLAYERS_AREA_KEY + areaId).getBytes());
+        ArrayList<String> result = new ArrayList<>();
+        if (area == null) {
+            return result;
+        }
+        for (byte[] playerId : area) {
+            result.add(new String(playerId));
+        }
+        return result;
     }
 }
