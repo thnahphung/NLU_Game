@@ -12,6 +12,7 @@ import { PopupMessage } from "../Popup/PopupMessage";
 import { PopupComponent } from "../../Controller/PopupComponent";
 import { POPUP } from "../../Utils/Const";
 import { PopupOption } from "../Popup/PopupOption";
+import { TransitionScenePrefab } from "../TransitionScene/TransitionScenePrefab";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -21,6 +22,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupMessage: Prefab;
   @property(Prefab) private prefabPopupOption: Prefab;
   @property(Prefab) private prefabPopupSetting: Prefab;
+  @property(Prefab) private prefabTransitionScene: Prefab;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -112,5 +114,13 @@ export class UICanvas extends Component {
 
   onTouchSetting(): void {
     this.showPopup(POPUP.POPUP_SETTING);
+  }
+
+  transitScene(sceneName: string) {
+    let transitScreenNode = instantiate(this.prefabTransitionScene);
+    transitScreenNode
+      .getComponent(TransitionScenePrefab)
+      .setSceneName(sceneName);
+    this.node.getChildByName("PopupLayer").addChild(transitScreenNode);
   }
 }

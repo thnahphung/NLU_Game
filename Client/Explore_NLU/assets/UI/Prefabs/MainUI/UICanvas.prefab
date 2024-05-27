@@ -147,7 +147,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 338.25159914712157,
+    "_orthoHeight": 320,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -7158,6 +7158,10 @@
     },
     "prefabPopupSetting": {
       "__uuid__": "dc417768-6312-42a4-81df-6d1cb50197da",
+      "__expectedType__": "cc.Prefab"
+    },
+    "prefabTransitionScene": {
+      "__uuid__": "63d99430-c7a5-4da3-a530-be4b57721953",
       "__expectedType__": "cc.Prefab"
     },
     "_id": ""

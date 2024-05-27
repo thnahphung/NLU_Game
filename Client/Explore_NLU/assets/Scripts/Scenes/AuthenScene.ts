@@ -2,11 +2,9 @@ import { _decorator, instantiate, Node, Prefab, sys, Toggle } from "cc";
 import AbsScene from "./AbsScene";
 import { PopupComponent } from "../Controller/PopupComponent";
 import DataSender from "../Utils/DataSender";
-import { TransitionScenePrefab } from "../Prefabs/TransitionScene/TransitionScenePrefab";
 import { StorageManager } from "../Manager/StorageManger";
 import { PopupManager } from "../Manager/PopupManager";
 import GlobalData from "../Utils/GlobalData";
-import { CHARACTERS, SCENES } from "../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("AuthenScene")

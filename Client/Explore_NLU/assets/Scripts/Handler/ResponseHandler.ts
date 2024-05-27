@@ -1,7 +1,6 @@
 import { _decorator, Component, director, instantiate, Node, Prefab } from "cc";
 import { AbsHandler } from "./AbsHandler";
 import GlobalData from "../Utils/GlobalData";
-import { TransitionScenePrefab } from "../Prefabs/TransitionScene/TransitionScenePrefab";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
 import { HandlerManager } from "../Manager/HandlerManager";
 import { Util } from "../Utils/Util";
@@ -14,8 +13,6 @@ const { ccclass, property } = _decorator;
 @ccclass("ResponseHandler")
 export class ResponseHandler extends AbsHandler {
   protected static _instance: ResponseHandler;
-
-  @property(Prefab) transitScreen: Prefab = null;
 
   protected onLoad(): void {
     if (ResponseHandler._instance != null) {
@@ -47,7 +44,6 @@ export class ResponseHandler extends AbsHandler {
   }
 
   onJoinAreaHandler(packet: proto.IPacket) {
-    let transitScreenNode = instantiate(this.transitScreen);
     if (GlobalData.me().getMainUser() == null) return;
 
     if (packet.resPlayerJoinArea.position == null) {
@@ -70,10 +66,7 @@ export class ResponseHandler extends AbsHandler {
     GlobalData.me().setUsers(packet.resPlayerJoinArea.users);
     GlobalData.me().clearPlayersNode();
 
-    transitScreenNode
-      .getComponent(TransitionScenePrefab)
-      .setSceneName(packet.resPlayerJoinArea.area.typeArea);
-    UICanvas.me().node.getChildByName("PopupLayer").addChild(transitScreenNode);
+    UICanvas.me().transitScene(packet.resPlayerJoinArea.area.typeArea);
   }
 
   onMovingHandler(packet: proto.IPacket) {
