@@ -43,6 +43,15 @@ export class ResponseHandler extends AbsHandler {
     });
   }
 
+  onClosed(): void {
+    super.onClosed();
+    let loginScene = director.getScene().name;
+    if (loginScene == "AuthenScene") {
+      return;
+    }
+    UICanvas.me().transitScene("AuthenScene");
+  }
+
   onJoinAreaHandler(packet: proto.IPacket) {
     if (GlobalData.me().getMainUser() == null) return;
 

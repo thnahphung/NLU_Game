@@ -21,7 +21,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 72
+      "__id__": 71
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -52,7 +52,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 73
+      "__id__": 72
     },
     "_id": "bc8102fe-d207-4f2b-ab71-588228dbf0bd"
   },
@@ -87,9 +87,6 @@
       },
       {
         "__id__": 70
-      },
-      {
-        "__id__": 71
       }
     ],
     "_prefab": null,
@@ -179,7 +176,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 390.0744416873449,
+    "_orthoHeight": 320,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -2476,6 +2473,7 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "playerLayer": null,
     "characterPrefab": {
       "__uuid__": "280a3b29-9a83-4d8a-9269-0276defd1348",
       "__expectedType__": "cc.Prefab"
@@ -2496,21 +2494,6 @@
     "_id": "ec1lbZXpJAYL3w9yBeRuox"
   },
   {
-    "__type__": "0f554QZ4vNAQ5B5wGiMFr++",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 2
-    },
-    "_enabled": true,
-    "__prefab": null,
-    "transitionScreen": {
-      "__uuid__": "63d99430-c7a5-4da3-a530-be4b57721953",
-      "__expectedType__": "cc.Prefab"
-    },
-    "_id": "7aC0p9Y3dCgr/1eONwyKx2"
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": null,
     "asset": null,
@@ -2521,22 +2504,22 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 74
+      "__id__": 73
     },
     "shadows": {
-      "__id__": 75
+      "__id__": 74
     },
     "_skybox": {
-      "__id__": 76
+      "__id__": 75
     },
     "fog": {
-      "__id__": 77
+      "__id__": 76
     },
     "octree": {
-      "__id__": 78
+      "__id__": 77
     },
     "lightProbeInfo": {
-      "__id__": 79
+      "__id__": 78
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false
