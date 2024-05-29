@@ -4,6 +4,7 @@ import { COATING, CUSTOM_EVENT, POPUP } from '../Utils/Const';
 import { off } from 'process';
 import GlobalData from '../Utils/GlobalData';
 import { CoatingComponent } from './CoatingComponent';
+import { Util } from '../Utils/Util';
 const { ccclass, property } = _decorator;
 
 @ccclass('MovementBuildingComponent')
@@ -17,6 +18,8 @@ export class MovementBuildingComponent extends Component {
     public menuToolBuildingPrefab: Prefab = null;
     @property(Prefab)
     public effectMovePrefab: Prefab = null;
+    @property(Node) 
+    public shadowNode: Node = null;
 
     protected onLoad(): void {
         this.originPosition = this.node.getPosition();
@@ -41,6 +44,7 @@ export class MovementBuildingComponent extends Component {
 
     private onClickMoveLand(): void {
         this.node.off(Node.EventType.TOUCH_END, this.handleOpenMenuToolBuilding, this);
+        if(this.shadowNode) this.shadowNode.active = true;
         if(GlobalData.me().getMoveBuildingStatus()) return; 
         GlobalData.me().setMoveBuildingStatus(true);
         this.hideTool();
@@ -101,8 +105,8 @@ export class MovementBuildingComponent extends Component {
     }
 
     private handleMoveLand(event: EventTouch): void {
-        const delta = event.getDelta();
-        this.node.setPosition(this.node.getPosition().add3f(delta.x, delta.y, 0));
+        var newLocation = this.node.parent.getComponent(UITransform).convertToNodeSpaceAR(Util.toVec3(event.touch.getUILocation()));
+        this.node.setPosition(newLocation);
     }
 
     private handleClickCancel(event: CustomEvent): void {
@@ -112,12 +116,13 @@ export class MovementBuildingComponent extends Component {
     }
 
     private handleClickComplete(event: CustomEvent): void {
-        //Todo: 
+        //Todo: Database
         this.handleStopMoveLand();
         this.hidePopupOption();
     }
 
     private handleStopMoveLand(): void {
+        if(this.shadowNode) this.shadowNode.active = false;
         GlobalData.me().setMoveBuildingStatus(false);
         this.handleDestroyEffectMove();
         this.node.off(Node.EventType.TOUCH_MOVE, this.handleMoveLand, this);
@@ -152,13 +157,12 @@ export class MovementBuildingComponent extends Component {
     private handleTouchCoating(): void {
         if(this.menuToolBuilding) this.menuToolBuilding.active = false;
         CoatingComponent.me().getCoating(COATING.MOVE).off(Node.EventType.TOUCH_START, this.handleTouchCoating, this);
-        CoatingComponent.me().off(COATING.MOVE);
-        CoatingComponent.me().off(COATING.TILL);
+        CoatingComponent.me().offAllCoating();
     }
 
     private hideCoatingNode(): void {
         CoatingComponent.me().getCoating(COATING.MOVE).off(Node.EventType.TOUCH_START, this.handleTouchCoating, this);
-        CoatingComponent.me().getCoating(COATING.MOVE).active = false;
+        CoatingComponent.me().offAllCoating();
     }
 
     private showCoatingNode(): void {
