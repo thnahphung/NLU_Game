@@ -81,6 +81,10 @@ export enum POPUP {
   POPUP_SETTING = "POPUP_SETTING",
 }
 
+export enum BUTTON {
+  UI_BUTTON_BUILDING = "BUILDING",
+}
+
 export enum CUSTOM_EVENT {
   LISTEN_CANCEL = "LISTEN_CANCEL",
   LISTEN_COMPLETE = "LISTEN_COMPLETE",
@@ -98,4 +102,9 @@ export enum SEED_BAG {
   CARROT = "Carrot",
   CUCUMBER = "Cucumber",
   PUMPKIN = "Pumpkin",
+}
+
+export enum PLANTING_LAND {
+  WIDTH = 172,
+  HEIGHT = 178,
 }

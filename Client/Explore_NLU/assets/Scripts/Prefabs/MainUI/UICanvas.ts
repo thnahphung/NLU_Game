@@ -1,5 +1,6 @@
 import {
   _decorator,
+  Button,
   Component,
   director,
   instantiate,
@@ -10,7 +11,7 @@ import {
 import GlobalData from "../../Utils/GlobalData";
 import { PopupMessage } from "../Popup/PopupMessage";
 import { PopupComponent } from "../../Controller/PopupComponent";
-import { POPUP } from "../../Utils/Const";
+import { BUTTON, POPUP } from "../../Utils/Const";
 import { PopupOption } from "../Popup/PopupOption";
 import { TransitionScenePrefab } from "../TransitionScene/TransitionScenePrefab";
 const { ccclass, property } = _decorator;
@@ -23,11 +24,13 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupOption: Prefab;
   @property(Prefab) private prefabPopupSetting: Prefab;
   @property(Prefab) private prefabTransitionScene: Prefab;
+  @property(Prefab) private buttonBuilding: Prefab = null;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
   private _popupOption: PopupOption;
   private _popup: Node;
+  private _buttonBuilding: Node;
 
   public static me(): UICanvas {
     return UICanvas._instance;
@@ -88,6 +91,37 @@ export class UICanvas extends Component {
         return;
     }
     this._popup.getComponent(PopupComponent).show();
+  }
+
+  showButton(buttonName: BUTTON) {
+    switch (buttonName) {
+      case BUTTON.UI_BUTTON_BUILDING:
+        this._buttonBuilding = instantiate(this.buttonBuilding);
+        this.node.getChildByName("BotRight").addChild(this._buttonBuilding);
+        break;
+      default:
+        return;
+    }
+    this._buttonBuilding.getComponent(PopupComponent).show();
+  }
+
+  getButton(buttonName: BUTTON): Node {
+    switch (buttonName) {
+      case BUTTON.UI_BUTTON_BUILDING:
+        return this._buttonBuilding;
+      default:
+        return;
+    }
+  }
+
+  hideButton(buttonName: BUTTON) {
+    switch (buttonName) {
+      case BUTTON.UI_BUTTON_BUILDING:
+        this._buttonBuilding.destroy();
+        break;
+      default:
+        return;
+    }
   }
 
   closePopupMessage() {

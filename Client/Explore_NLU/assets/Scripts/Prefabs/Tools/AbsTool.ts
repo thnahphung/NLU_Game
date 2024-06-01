@@ -1,5 +1,6 @@
 import { _decorator, Component, EventMouse, EventTouch, find, Node, sys, UITransform, Vec2, Vec3 } from 'cc';
 import { Util } from '../../../Scripts/Utils/Util';
+import { UI } from '../../../../extensions/i18n/@types/editor/ui-kit';
 const { ccclass, property } = _decorator;
 
 @ccclass('AbsTool')
@@ -40,7 +41,7 @@ export default class AbsTool extends Component {
 
     handleOnTouchMove(event: EventTouch) {
         if (this.isMove) {
-            this.moveNode(event.touch.getDelta())
+            this.moveNode(event.touch.getUILocation());
         }
     }
 
@@ -66,9 +67,9 @@ export default class AbsTool extends Component {
         this.isMove = false;
     }
 
-    private moveNode(delta: Vec2) {
-        var movePosition = this.node.position.add3f(delta.x, delta.y, 0);
-        this.setPositionNode(movePosition);
+    private moveNode(uiLocation: Vec2) {
+        var newLocation = this.node.parent.getComponent(UITransform).convertToNodeSpaceAR(Util.toVec3(uiLocation));
+        this.node.setPosition(newLocation);
     }
 
     protected onDestroy(): void {
