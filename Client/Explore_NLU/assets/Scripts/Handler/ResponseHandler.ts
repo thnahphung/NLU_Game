@@ -70,16 +70,21 @@ export class ResponseHandler extends AbsHandler {
       GlobalData.me().getMainPlayerNode().destroy();
     }
 
+    const otherPlayers = packet.resPlayerJoinArea.players.filter(
+      (player) => player.userId != GlobalData.me().getMainUser().userId
+    );
+    GlobalData.me().setListOtherPlayer(otherPlayers);
     GlobalData.me().setArea(packet.resPlayerJoinArea.area);
-    GlobalData.me().setPlayers(packet.resPlayerJoinArea.players);
-    GlobalData.me().setUsers(packet.resPlayerJoinArea.users);
-    GlobalData.me().clearPlayersNode();
+    GlobalData.me().setListOtherUsers(packet.resPlayerJoinArea.users);
+    GlobalData.me().clearOtherPlayersNode();
 
     UICanvas.me().transitScene(packet.resPlayerJoinArea.area.typeArea);
   }
 
   onMovingHandler(packet: proto.IPacket) {
-    const playerNode = GlobalData.me().getPlayerNode(packet.resMoving.userId);
+    const playerNode = GlobalData.me().getOtherPlayerNode(
+      packet.resMoving.userId
+    );
     if (playerNode == null || playerNode == undefined) return;
     if (!playerNode.active) playerNode.active = true;
     playerNode.setPosition(
@@ -101,20 +106,24 @@ export class ResponseHandler extends AbsHandler {
       packet.resOtherPlayerJoinArea.position.y,
       0
     );
-    GlobalData.me().addUser(packet.resOtherPlayerJoinArea.user);
-    GlobalData.me().addPlayer(packet.resOtherPlayerJoinArea.player);
-    GlobalData.me().addPlayerNode(playerNode);
+    playerNode.getComponent(Character).setPlayerName("Other Player");
+    playerNode.getComponent(Character).setIsMainPlayer(false);
+    GlobalData.me().addOtherUser(packet.resOtherPlayerJoinArea.user);
+    GlobalData.me().addOtherPlayer(packet.resOtherPlayerJoinArea.player);
+    GlobalData.me().addOtherPlayerNode(playerNode);
     canvas.getComponent(AbsScene).addPlayerToScene(playerNode);
   }
 
   onOtherPlayerLeaveAreaHandler(packet: proto.IPacket) {
-    const playerNode = GlobalData.me().getPlayerNode(
+    const playerNode = GlobalData.me().getOtherPlayerNode(
       packet.resOtherPlayerLeaveArea.userId
     );
     if (playerNode == null || playerNode == undefined) return;
-    GlobalData.me().removeUser(packet.resOtherPlayerLeaveArea.userId);
-    GlobalData.me().removePlayer(packet.resOtherPlayerLeaveArea.userId);
-    GlobalData.me().removePlayerNode(packet.resOtherPlayerLeaveArea.userId);
+    GlobalData.me().removeOtherUser(packet.resOtherPlayerLeaveArea.userId);
+    GlobalData.me().removeOtherPlayer(packet.resOtherPlayerLeaveArea.userId);
+    GlobalData.me().removeOtherPlayerNode(
+      packet.resOtherPlayerLeaveArea.userId
+    );
     // playerNode.destroy();
   }
 }

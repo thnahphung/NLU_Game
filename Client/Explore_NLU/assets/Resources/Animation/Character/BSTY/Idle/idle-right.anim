@@ -66,27 +66,27 @@
     ],
     "_values": [
       {
-        "__uuid__": "9c84b0cb-99a7-4300-942c-89299d8705d3@f9941",
+        "__uuid__": "71174c39-aca3-4b7c-bfc4-94893dd764ff@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "86f27287-2a84-40f2-96bd-a50b048e2f4f@f9941",
+        "__uuid__": "a42742ec-ee9c-4cd1-8cea-3fdaca425658@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "f3df27a4-637f-458e-b827-7d89d8941988@f9941",
+        "__uuid__": "7f3b64dc-e165-4e64-8428-bbdfbac653de@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "a831d85b-aeb1-4fc0-99cf-36e6d1331e92@f9941",
+        "__uuid__": "0ef31305-e765-4780-b62e-de57a2e98c66@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "363cda10-cc76-4f29-a9d3-90958bd2c6de@f9941",
+        "__uuid__": "9c170edc-993c-460a-ac7a-70da3e750b9c@f9941",
         "__expectedType__": "cc.SpriteFrame"
       },
       {
-        "__uuid__": "56961dd7-f714-4969-a6f6-8e33c3e4d46d@f9941",
+        "__uuid__": "f3d68c17-8598-4078-91a4-fbc6ddf009e1@f9941",
         "__expectedType__": "cc.SpriteFrame"
       }
     ]

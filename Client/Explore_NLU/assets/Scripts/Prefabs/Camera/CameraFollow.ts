@@ -12,7 +12,6 @@ export class CameraFollow extends Component {
 
   protected start(): void {
     this.target = GlobalData.me().getMainPlayerNode();
-    console.debug(this.target);
   }
 
   protected lateUpdate(dt: number): void {

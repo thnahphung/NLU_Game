@@ -17828,35 +17828,19 @@
     "__prefab": null,
     "playerPrefab": [
       {
-        "__uuid__": "e06567d0-c3a2-4a37-abfb-2b8c65973627",
+        "__uuid__": "ffa3b4f5-b7a4-48af-827f-4e0c29d39791",
         "__expectedType__": "cc.Prefab"
       },
       {
-        "__uuid__": "86930d01-3c70-4b66-a18e-17f2fda5e53a",
+        "__uuid__": "58f82bb1-195d-47fb-9ea1-6637151c05ae",
         "__expectedType__": "cc.Prefab"
       },
       {
-        "__uuid__": "29d2aa8c-2db5-4fc4-a2e0-297087ecad8d",
+        "__uuid__": "693a458c-809c-4cab-bb3a-e061419249d5",
         "__expectedType__": "cc.Prefab"
       },
       {
-        "__uuid__": "56719794-fff5-48ea-93c2-d2f0c9cd4e58",
-        "__expectedType__": "cc.Prefab"
-      },
-      {
-        "__uuid__": "2b773467-2211-463f-b267-907c7337bcf8",
-        "__expectedType__": "cc.Prefab"
-      },
-      {
-        "__uuid__": "37c7d458-b2ea-48d4-aa7e-918edd9f9336",
-        "__expectedType__": "cc.Prefab"
-      },
-      {
-        "__uuid__": "a30998a4-27a0-4529-adac-daa5c2cbc37f",
-        "__expectedType__": "cc.Prefab"
-      },
-      {
-        "__uuid__": "f7982dab-9b21-4a09-baa1-fc9b5f7feb7a",
+        "__uuid__": "6e99b976-c1e5-433c-aacb-c1a48fddbb7c",
         "__expectedType__": "cc.Prefab"
       }
     ],

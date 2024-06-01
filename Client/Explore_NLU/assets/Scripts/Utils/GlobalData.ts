@@ -28,9 +28,9 @@ export default class GlobalData {
   private area: proto.IArea = null;
 
   /*OTHER USER */
-  private users: proto.IUser[] = [];
-  private players: proto.IPlayer[] = [];
-  private playersNode: Node[] = [];
+  private otherUsers: proto.IUser[] = [];
+  private otherPlayers: proto.IPlayer[] = [];
+  private otherPlayersNode: Node[] = [];
   /*END OTHER USER */
 
   public setMobileDevice(isMobile: boolean) {
@@ -49,20 +49,20 @@ export default class GlobalData {
     return this.mainUser;
   }
 
-  public getUsers() {
-    return this.users;
+  public getListOtherUser() {
+    return this.otherUsers;
   }
 
-  public setUsers(users: proto.IUser[]) {
-    this.users = users;
+  public setListOtherUsers(users: proto.IUser[]) {
+    this.otherUsers = users;
   }
 
-  public addUser(user: proto.IUser) {
-    this.users.push(user);
+  public addOtherUser(user: proto.IUser) {
+    this.otherUsers.push(user);
   }
 
-  public removeUser(userId: number) {
-    this.users = this.users.filter((item) => item.userId != userId);
+  public removeOtherUser(userId: number) {
+    this.otherUsers = this.otherUsers.filter((item) => item.userId != userId);
   }
   /* END USER */
 
@@ -101,55 +101,52 @@ export default class GlobalData {
   /* END MAIN PLAYER */
 
   /* PLAYERS */
-  public addPlayer(player: proto.IPlayer) {
-    this.players.push(player);
+  public addOtherPlayer(player: proto.IPlayer) {
+    this.otherPlayers.push(player);
   }
 
-  public getPlayer(userId: number) {
-    return this.players.find((player) => player.userId == userId);
+  public getOtherPlayer(userId: number) {
+    return this.otherPlayers.find((player) => player.userId == userId);
   }
 
-  public removePlayer(userId: number) {
-    this.players = this.players.filter((player) => player.userId != userId);
+  public removeOtherPlayer(userId: number) {
+    this.otherPlayers = this.otherPlayers.filter(
+      (player) => player.userId != userId
+    );
   }
 
-  public getPlayers() {
-    return this.players;
+  public getListOtherPlayer() {
+    return this.otherPlayers;
   }
 
-  public setPlayers(players: proto.IPlayer[]) {
-    this.players = players;
+  public setListOtherPlayer(players: proto.IPlayer[]) {
+    this.otherPlayers = players;
   }
 
-  public addPlayerNode(player: Node) {
-    this.playersNode.push(player);
+  public addOtherPlayerNode(player: Node) {
+    this.otherPlayersNode.push(player);
   }
 
-  public getPlayerNode(userId: number): Node {
-    return this.playersNode.find(
+  public getOtherPlayerNode(userId: number): Node {
+    return this.otherPlayersNode.find(
       (playerNode) => playerNode.getComponent(Character).getUserId() == userId
     );
   }
 
-  public removePlayerNode(userId: number) {
-    // this.playersNode.forEach((playerNode) => {
-    //   if (playerNode.getComponent(Character).getUserId() == userId) {
-    //     playerNode.destroy();
-    //   }
-    // });
-    const index = this.playersNode.findIndex(
+  public removeOtherPlayerNode(userId: number) {
+    const index = this.otherPlayersNode.findIndex(
       (playerNode) => playerNode.getComponent(Character).getUserId() == userId
     );
-    const playerNodeRemoved = this.playersNode.splice(index, 1);
+    const playerNodeRemoved = this.otherPlayersNode.splice(index, 1);
     playerNodeRemoved[0].destroy();
   }
 
-  public getListPlayerNode() {
-    return this.playersNode;
+  public getListOtherPlayerNode() {
+    return this.otherPlayersNode;
   }
 
-  public clearPlayersNode() {
-    this.playersNode = [];
+  public clearOtherPlayersNode() {
+    this.otherPlayersNode = [];
   }
   /* END PLAYERS */
   /* Agricultural engineer */
