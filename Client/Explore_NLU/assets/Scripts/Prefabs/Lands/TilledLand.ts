@@ -2,7 +2,6 @@ import { _decorator, BlockInputEvents, Collider2D, Component, Contact2DType, Eve
 import GlobalData from '../../Utils/GlobalData';
 import { CoatingComponent } from '../../Controller/CoatingComponent';
 import { COATING, SEED_BAG } from '../../Utils/Const';
-import { Util } from '../../Utils/Util';
 const { ccclass, property } = _decorator;
 
 @ccclass('TilledLand')
@@ -102,11 +101,10 @@ export class TilledLand extends Component {
             return;
         }
         GlobalData.me().setSowStatus(true);
-        console.log("Sow...",  GlobalData.me().getSowStatus());
         var TilledLandPanel = this.node.getParent();
         var plantingLandPanel = TilledLandPanel.getParent();
         var menuSeedNode = this.getMenuSeedNode();
-        menuSeedNode.setPosition(plantingLandPanel.getPosition().x, plantingLandPanel.getPosition().y + 185, 0);
+        menuSeedNode.setPosition(plantingLandPanel.getPosition().x, plantingLandPanel.getPosition().y + 145, 0);
         menuSeedNode.active = true;
 
         CoatingComponent.me().setCoating(COATING.SEED, plantingLandPanel.parent, menuSeedNode);
