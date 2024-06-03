@@ -12,6 +12,7 @@ export class Character extends Component {
 
   private playerName: string = "player name 123";
   private userId: number;
+  @property
   private isMainPlayer: boolean = false;
 
   private currentState: CharacterState = CharacterState.IDLE_DOWN;
