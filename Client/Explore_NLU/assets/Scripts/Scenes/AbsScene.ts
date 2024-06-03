@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from "cc";
+import { _decorator, Component, Node, sys } from "cc";
 import GlobalData from "../Utils/GlobalData";
 import { PlayerManager } from "../Manager/PlayerManager";
 import { CHARACTERS } from "../Utils/Const";
@@ -8,6 +8,12 @@ const { ccclass, property } = _decorator;
 @ccclass("AbsScene")
 export default class AbsScene extends Component {
   @property(Node) private playerLayer: Node = null;
+
+  protected onLoad(): void {
+    if (sys.isMobile === true || sys.isNative === true) {
+      GlobalData.me().setMobileDevice(true);
+    }
+  }
 
   protected start(): void {
     if (GlobalData.me().getMainUser() != null) {

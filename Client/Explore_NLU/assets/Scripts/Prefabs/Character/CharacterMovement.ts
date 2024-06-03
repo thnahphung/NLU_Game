@@ -37,13 +37,30 @@ export class CharacterMovement extends Component {
   }
 
   changeState() {
-    if (this.direction.x > 0) {
+    console.log(this.direction.x, "-------", this.direction.y);
+    if (
+      this.direction.x > 0 &&
+      this.direction.y <= 0.8 &&
+      this.direction.y >= -0.8
+    ) {
       this.characterInfo.setCurrentState(CharacterState.WALK_RIGHT);
-    } else if (this.direction.x < 0) {
+    } else if (
+      this.direction.x < 0 &&
+      this.direction.y <= 0.8 &&
+      this.direction.y >= -0.8
+    ) {
       this.characterInfo.setCurrentState(CharacterState.WALK_LEFT);
-    } else if (this.direction.y > 0) {
+    } else if (
+      this.direction.y > 0 &&
+      this.direction.x < 0.2 &&
+      this.direction.x > -0.2
+    ) {
       this.characterInfo.setCurrentState(CharacterState.WALK_UP);
-    } else if (this.direction.y < 0) {
+    } else if (
+      this.direction.y < 0 &&
+      this.direction.x < 0.2 &&
+      this.direction.x > -0.2
+    ) {
       this.characterInfo.setCurrentState(CharacterState.WALK_DOWN);
     } else if (this.direction.x === 0 && this.direction.y === 0) {
       if (this.characterInfo.getCurrentState() === CharacterState.WALK_DOWN) {
@@ -64,6 +81,7 @@ export class CharacterMovement extends Component {
     }
   }
   private sendReqMoving() {
+    if (GlobalData.me().getArea() == null) return;
     DataSender.sendReqMoving(
       GlobalData.me().getArea().areaId,
       this.node.position.x,

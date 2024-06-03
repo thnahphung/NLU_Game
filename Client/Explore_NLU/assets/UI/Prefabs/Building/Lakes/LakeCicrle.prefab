@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "MenuBoard01",
+    "_name": "LakeCicrle",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "MenuBoard01",
+    "_name": "LakeCicrle",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -77,19 +77,19 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
-      "height": 38
+      "width": 128,
+      "height": 128
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.2
+      "y": 0.5
     },
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "031H48RAdG4al4myEscAxH"
+    "fileId": "1b9fLE52RKYoQcyOckF+CR"
   },
   {
     "__type__": "cc.Sprite",
@@ -113,7 +113,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "c2f0e8a8-9143-4488-9ee8-6abbcf860b61@f9941",
+      "__uuid__": "d8491045-e7df-4d39-b601-5d6c296ee2c7@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -133,10 +133,10 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "9dDtW/ldFJBa+i6elL+8DK"
+    "fileId": "3bP+aWd/9F+57oTzWwi3Q4"
   },
   {
-    "__type__": "cc.BoxCollider2D",
+    "__type__": "cc.CircleCollider2D",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -155,18 +155,14 @@
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
-      "y": -3.7
+      "y": 0
     },
-    "_size": {
-      "__type__": "cc.Size",
-      "width": 30,
-      "height": 7.5
-    },
+    "_radius": 47.5,
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "edt2WKqUJPU7u8Wk/dWBG1"
+    "fileId": "05wSyu8dxLNLhSG5LlP/D1"
   },
   {
     "__type__": "d911cGyhzFHgbxnLOTekAYf",
@@ -184,7 +180,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "13gTKT7J9HWaa9221iznsZ"
+    "fileId": "55JdiZ4qBLm4TWhwxWp4Hx"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -194,7 +190,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "d3LNQAzRdC1p2EPgo/GDfO",
+    "fileId": "52T/uzYKhBe6MJx1QmQ2uB",
     "instance": null,
     "targetOverrides": null
   }

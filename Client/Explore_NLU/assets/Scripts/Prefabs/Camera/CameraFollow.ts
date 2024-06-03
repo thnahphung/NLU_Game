@@ -11,7 +11,7 @@ export class CameraFollow extends Component {
   public moveSpeed: number = 50;
 
   protected start(): void {
-    this.target = GlobalData.me().getMainPlayerNode();
+    if (this.target == null) this.target = GlobalData.me().getMainPlayerNode();
   }
 
   protected lateUpdate(dt: number): void {
