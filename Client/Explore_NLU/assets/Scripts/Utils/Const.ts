@@ -49,6 +49,17 @@ export enum CHARACTERS {
   BSTY = "BSTY",
 }
 
+export enum CharacterState {
+  IDLE_UP = "idle-up",
+  IDLE_DOWN = "idle-down",
+  IDLE_LEFT = "idle-left",
+  IDLE_RIGHT = "idle-right",
+  WALK_UP = "walk-up",
+  WALK_DOWN = "walk-down",
+  WALK_LEFT = "walk-left",
+  WALK_RIGHT = "walk-right",
+}
+
 export enum SCENES {
   AUTHEN = "AuthenScene",
   ANIMAL_HUSBANDRY = "AnimalHusbandryScene",
@@ -68,22 +79,22 @@ export const LOCAL_STORAGE = {
 export enum POPUP {
   POPUP_OPTION = "POPUP_OPTION",
   POPUP_SETTING = "POPUP_SETTING",
-};
+}
 
 export enum BUTTON {
   UI_BUTTON_BUILDING = "BUILDING",
-};
+}
 
 export enum CUSTOM_EVENT {
   LISTEN_CANCEL = "LISTEN_CANCEL",
   LISTEN_COMPLETE = "LISTEN_COMPLETE",
-};
+}
 
 export enum COATING {
   MOVE = "MOVE",
   TILL = "TILL",
   SEED = "SEED",
-};
+}
 
 export enum SEED_BAG {
   RICE = "Rice",
@@ -91,9 +102,9 @@ export enum SEED_BAG {
   CARROT = "Carrot",
   CUCUMBER = "Cucumber",
   PUMPKIN = "Pumpkin",
-};
+}
 
 export enum PLANTING_LAND {
   WIDTH = 172,
   HEIGHT = 178,
-};
+}

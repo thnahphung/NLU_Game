@@ -1,5 +1,6 @@
 import { _decorator, Component, director, instantiate, Node, Prefab } from "cc";
 import { CHARACTERS } from "../Utils/Const";
+import { Character } from "../Prefabs/Character/Character";
 import GlobalData from "../Utils/GlobalData";
 const { ccclass, property } = _decorator;
 
@@ -30,7 +31,7 @@ export class PlayerManager extends Component {
   createOtherPlayer(character: CHARACTERS): Node {
     let characterNode: Node = null;
     this.playerPrefab.forEach((element) => {
-      if (element.name == "Character" + character + "Other") {
+      if (element.name == "Character" + character) {
         characterNode = instantiate(element);
       }
     });

@@ -26,6 +26,11 @@ export default class AbsScene extends Component {
       GlobalData.me().getMainPlayerPosition().x,
       GlobalData.me().getMainPlayerPosition().y
     );
+    mainPlayer
+      .getComponent(Character)
+      .setUserId(GlobalData.me().getMainUser().userId);
+    mainPlayer.getComponent(Character).setPlayerName("Main Player");
+    mainPlayer.getComponent(Character).setIsMainPlayer(true);
     this.playerLayer.addChild(mainPlayer);
     GlobalData.me().setMainPlayerNode(mainPlayer);
   }
@@ -35,13 +40,15 @@ export default class AbsScene extends Component {
   }
 
   createOtherPlayer() {
-    let players = GlobalData.me().getPlayers();
+    let players = GlobalData.me().getListOtherPlayer();
     if (players == null || players.length == 0) return;
     players.forEach((player) => {
       let playerNode = PlayerManager.me().createOtherPlayer(CHARACTERS.BSTY);
       playerNode.getComponent(Character).setUserId(player.userId);
+      playerNode.getComponent(Character).setPlayerName("Other Player");
+      playerNode.getComponent(Character).setIsMainPlayer(false);
       playerNode.active = false;
-      GlobalData.me().addPlayerNode(playerNode);
+      GlobalData.me().addOtherPlayerNode(playerNode);
       this.playerLayer.addChild(playerNode);
     });
   }
