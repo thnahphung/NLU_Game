@@ -12,6 +12,7 @@ import {
 } from "cc";
 import { Joystick } from "../Prefabs/Joystick/Joystick";
 import GlobalData from "../Utils/GlobalData";
+import { UICanvas } from "../Prefabs/MainUI/UICanvas";
 const { ccclass, property } = _decorator;
 
 @ccclass("InputManager")
@@ -44,7 +45,7 @@ export class InputManager extends Component {
 
   start() {
     if (GlobalData.me().isMobileDevice()) {
-      this.joystick = find("UICanvas/BotLeft/Joystick")?.getComponent(Joystick);
+      this.joystick = UICanvas.me().getJoyStick();
       return;
     }
 

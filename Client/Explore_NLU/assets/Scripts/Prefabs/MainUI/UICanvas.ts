@@ -14,6 +14,7 @@ import { PopupComponent } from "../../Controller/PopupComponent";
 import { BUTTON, POPUP } from "../../Utils/Const";
 import { PopupOption } from "../Popup/PopupOption";
 import { TransitionScenePrefab } from "../TransitionScene/TransitionScenePrefab";
+import { Joystick } from "../Joystick/Joystick";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -65,6 +66,10 @@ export class UICanvas extends Component {
     this._popupMessage.getComponent(PopupMessage).setMessage(message);
     this.node.getChildByName("PopupLayer").addChild(this._popupMessage);
     this._popupMessage.getComponent(PopupComponent).show();
+  }
+
+  public getJoyStick(): Joystick {
+    return this.joystick.getComponent(Joystick);
   }
 
   showPopup(popupName: POPUP, nodeMove?: Node) {
