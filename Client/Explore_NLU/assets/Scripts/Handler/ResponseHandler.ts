@@ -1,7 +1,6 @@
 import { _decorator, Component, director, instantiate, Node, Prefab } from "cc";
 import { AbsHandler } from "./AbsHandler";
 import GlobalData from "../Utils/GlobalData";
-import { TransitionScenePrefab } from "../Prefabs/TransitionScene/TransitionScenePrefab";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
 import { HandlerManager } from "../Manager/HandlerManager";
 import { Util } from "../Utils/Util";
@@ -14,8 +13,6 @@ const { ccclass, property } = _decorator;
 @ccclass("ResponseHandler")
 export class ResponseHandler extends AbsHandler {
   protected static _instance: ResponseHandler;
-
-  @property(Prefab) transitScreen: Prefab = null;
 
   protected onLoad(): void {
     if (ResponseHandler._instance != null) {
@@ -46,8 +43,16 @@ export class ResponseHandler extends AbsHandler {
     });
   }
 
+  onClosed(): void {
+    super.onClosed();
+    let loginScene = director.getScene().name;
+    if (loginScene == "AuthenScene") {
+      return;
+    }
+    UICanvas.me().transitScene("AuthenScene");
+  }
+
   onJoinAreaHandler(packet: proto.IPacket) {
-    let transitScreenNode = instantiate(this.transitScreen);
     if (GlobalData.me().getMainUser() == null) return;
 
     if (packet.resPlayerJoinArea.position == null) {
@@ -65,19 +70,21 @@ export class ResponseHandler extends AbsHandler {
       GlobalData.me().getMainPlayerNode().destroy();
     }
 
+    const otherPlayers = packet.resPlayerJoinArea.players.filter(
+      (player) => player.userId != GlobalData.me().getMainUser().userId
+    );
+    GlobalData.me().setListOtherPlayer(otherPlayers);
     GlobalData.me().setArea(packet.resPlayerJoinArea.area);
-    GlobalData.me().setPlayers(packet.resPlayerJoinArea.players);
-    GlobalData.me().setUsers(packet.resPlayerJoinArea.users);
-    GlobalData.me().clearPlayersNode();
+    GlobalData.me().setListOtherUsers(packet.resPlayerJoinArea.users);
+    GlobalData.me().clearOtherPlayersNode();
 
-    transitScreenNode
-      .getComponent(TransitionScenePrefab)
-      .setSceneName(packet.resPlayerJoinArea.area.typeArea);
-    UICanvas.me().node.getChildByName("PopupLayer").addChild(transitScreenNode);
+    UICanvas.me().transitScene(packet.resPlayerJoinArea.area.typeArea);
   }
 
   onMovingHandler(packet: proto.IPacket) {
-    const playerNode = GlobalData.me().getPlayerNode(packet.resMoving.userId);
+    const playerNode = GlobalData.me().getOtherPlayerNode(
+      packet.resMoving.userId
+    );
     if (playerNode == null || playerNode == undefined) return;
     if (!playerNode.active) playerNode.active = true;
     playerNode.setPosition(
@@ -99,20 +106,24 @@ export class ResponseHandler extends AbsHandler {
       packet.resOtherPlayerJoinArea.position.y,
       0
     );
-    GlobalData.me().addUser(packet.resOtherPlayerJoinArea.user);
-    GlobalData.me().addPlayer(packet.resOtherPlayerJoinArea.player);
-    GlobalData.me().addPlayerNode(playerNode);
+    playerNode.getComponent(Character).setPlayerName("Other Player");
+    playerNode.getComponent(Character).setIsMainPlayer(false);
+    GlobalData.me().addOtherUser(packet.resOtherPlayerJoinArea.user);
+    GlobalData.me().addOtherPlayer(packet.resOtherPlayerJoinArea.player);
+    GlobalData.me().addOtherPlayerNode(playerNode);
     canvas.getComponent(AbsScene).addPlayerToScene(playerNode);
   }
 
   onOtherPlayerLeaveAreaHandler(packet: proto.IPacket) {
-    const playerNode = GlobalData.me().getPlayerNode(
+    const playerNode = GlobalData.me().getOtherPlayerNode(
       packet.resOtherPlayerLeaveArea.userId
     );
     if (playerNode == null || playerNode == undefined) return;
-    GlobalData.me().removeUser(packet.resOtherPlayerLeaveArea.userId);
-    GlobalData.me().removePlayer(packet.resOtherPlayerLeaveArea.userId);
-    GlobalData.me().removePlayerNode(packet.resOtherPlayerLeaveArea.userId);
+    GlobalData.me().removeOtherUser(packet.resOtherPlayerLeaveArea.userId);
+    GlobalData.me().removeOtherPlayer(packet.resOtherPlayerLeaveArea.userId);
+    GlobalData.me().removeOtherPlayerNode(
+      packet.resOtherPlayerLeaveArea.userId
+    );
     // playerNode.destroy();
   }
 }
