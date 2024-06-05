@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Vec2, Vec3 } from "cc";
+import { _decorator, Component, math, Node, Vec2, Vec3 } from "cc";
 import { ANIMAL_HUSBANDRY_AREA, SCENES, VETERINARIAN_AREA } from "./Const";
 const { ccclass, property } = _decorator;
 
@@ -37,5 +37,9 @@ export class Util {
     pos.y = cocosPos.y;
     console.debug("convertCocosPosToProtoPos", pos);
     return pos;
+  }
+
+  public static randomInRange(min: number, max: number): number {
+    return math.random() * (max - min + 1) + min;
   }
 }

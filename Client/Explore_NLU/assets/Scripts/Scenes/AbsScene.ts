@@ -58,4 +58,8 @@ export default class AbsScene extends Component {
       this.playerLayer.addChild(playerNode);
     });
   }
+
+  getPlayerLayer() {
+    return this.playerLayer;
+  }
 }

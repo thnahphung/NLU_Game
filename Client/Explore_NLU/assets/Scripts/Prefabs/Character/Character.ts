@@ -2,7 +2,7 @@ import { _decorator, Component, Animation, RigidBody2D, Vec2, Label } from "cc";
 
 import { CharacterMovement } from "./CharacterMovement";
 import { CharacterAnimation } from "./CharacterAnimation";
-import { CharacterState } from "../../Utils/Const";
+import { CHARACTER_STATE } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("Character")
@@ -15,7 +15,7 @@ export class Character extends Component {
   @property
   private isMainPlayer: boolean = false;
 
-  private currentState: CharacterState = CharacterState.IDLE_DOWN;
+  private currentState: CHARACTER_STATE = CHARACTER_STATE.IDLE_DOWN;
 
   private animation: Animation;
   private rigidBody: RigidBody2D;
@@ -38,7 +38,7 @@ export class Character extends Component {
     this.labelName.string = this.playerName;
   }
 
-  public setCurrentState(newState: CharacterState) {
+  public setCurrentState(newState: CHARACTER_STATE) {
     this.currentState = newState;
   }
   public getCurrentState() {
