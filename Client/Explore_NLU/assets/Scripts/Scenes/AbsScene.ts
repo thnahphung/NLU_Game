@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, sys } from "cc";
+import { _decorator, Component, Node, sys, screen, director } from "cc";
 import GlobalData from "../Utils/GlobalData";
 import { PlayerManager } from "../Manager/PlayerManager";
 import { CHARACTERS } from "../Utils/Const";
@@ -12,6 +12,7 @@ export default class AbsScene extends Component {
   protected onLoad(): void {
     if (sys.isMobile === true || sys.isNative === true) {
       GlobalData.me().setMobileDevice(true);
+      screen.requestFullScreen();
     }
   }
 

@@ -3,6 +3,7 @@ import {
   Animation,
   Collider2D,
   Component,
+  find,
   Node,
   UITransform,
   Vec2,
@@ -18,6 +19,7 @@ export class Animal extends Component {
   @property private currentState: ANIMAL_STATE = ANIMAL_STATE.IDLE_RIGHT;
   @property private speed: number = 100;
   @property private isHungry: boolean = false;
+  @property private isPregnant: boolean = false;
 
   @property maxMovingDistanceX: Vec2 = new Vec2(0, 0);
   @property maxMovingDistanceY: Vec2 = new Vec2(0, 0);
@@ -25,7 +27,9 @@ export class Animal extends Component {
   private animalAnimation: AnimalAnimation;
   private animalMovement: AnimalMovement;
   private animation: Animation;
+  private emoteAnimation: Animation;
   private collider: Collider2D;
+  private emoteLayer: Node;
 
   protected onLoad(): void {
     this.init();
@@ -35,6 +39,11 @@ export class Animal extends Component {
     this.animalAnimation = this.node.getComponent(AnimalAnimation);
     this.animalMovement = this.node.getComponent(AnimalMovement);
     this.animation = this.node.getComponent(Animation);
+    this.emoteAnimation = this.node
+      .getChildByName("Emote")
+      .getComponent(Animation);
+    this.emoteLayer = find("Canvas/PopupGameLayer/OtherLayer");
+    this.emoteLayer.addChild(this.emoteAnimation.node);
     this.collider = this.node.getComponent(Collider2D);
     this.createMaxMovingDistance();
   }
@@ -85,5 +94,14 @@ export class Animal extends Component {
   }
   public getType() {
     return this.type;
+  }
+  public getEmoteAnimation() {
+    return this.emoteAnimation;
+  }
+  public isPregnantAnimal() {
+    return this.isPregnant;
+  }
+  public getEmoteLayer() {
+    return this.emoteLayer;
   }
 }
