@@ -8,7 +8,7 @@ export class Cage extends Component {
   private isMenuOpen: boolean = false;
   private menuNode: Node;
   start() {
-    this.menuNode = find("Canvas/PopupGameLayer/MenuAnimalFood");
+    this.menuNode = find("Canvas/PopupGameLayer/MenuLayer/MenuAnimalFood");
     this.node.on(Node.EventType.TOUCH_START, this.handleGetMenu, this);
   }
 
