@@ -1,11 +1,13 @@
 import {
   _decorator,
   Component,
+  director,
   misc,
   Node,
   screen,
   UITransform,
   Vec3,
+  view,
 } from "cc";
 import GlobalData from "../../Utils/GlobalData";
 const { ccclass, property } = _decorator;
@@ -22,8 +24,19 @@ export class CameraFollow extends Component {
 
   protected start(): void {
     if (this.target == null) this.target = GlobalData.me().getMainPlayerNode();
-    this.canvasWidth = this.node.getParent().getComponent(UITransform).width;
-    this.canvasHeight = this.node.getParent().getComponent(UITransform).height;
+    const ratioWindow = screen.windowSize.width / screen.windowSize.height;
+    const ratioDesign =
+      view.getDesignResolutionSize().width /
+      view.getDesignResolutionSize().height;
+    this.canvasHeight =
+      view.getDesignResolutionSize().height +
+      ((ratioDesign - ratioWindow) / 2) * view.getDesignResolutionSize().height;
+    director
+      .getScene()
+      .getChildByName("UICanvas")
+      .getComponent(UITransform)
+      .setContentSize(view.getDesignResolutionSize().width, this.canvasHeight);
+    this.canvasWidth = view.getDesignResolutionSize().width;
   }
 
   protected lateUpdate(dt: number): void {
