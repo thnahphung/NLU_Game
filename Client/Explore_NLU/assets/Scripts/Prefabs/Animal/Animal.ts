@@ -11,6 +11,7 @@ import {
 import { AnimalAnimation } from "./AnimalAnimation";
 import { AnimalMovement } from "./AnimalMovement";
 import { ANIMAL, ANIMAL_STATE } from "../../Utils/Const";
+import { PopupInformationAnimal } from "../Popup/PopupInformationAnimal";
 const { ccclass, property } = _decorator;
 
 @ccclass("Animal")
@@ -20,6 +21,9 @@ export class Animal extends Component {
   @property private speed: number = 100;
   @property private isHungry: boolean = false;
   @property private isPregnant: boolean = false;
+  @property private isDisease: boolean = false;
+  @property private daysOld: number = 0;
+  @property private animalName: string = "";
 
   @property maxMovingDistanceX: Vec2 = new Vec2(0, 0);
   @property maxMovingDistanceY: Vec2 = new Vec2(0, 0);
@@ -29,7 +33,12 @@ export class Animal extends Component {
   private animation: Animation;
   private emoteAnimation: Animation;
   private collider: Collider2D;
+
+  private popupInformationAnimal: Node;
+  private blockInputPanel: Node;
+
   private emoteLayer: Node;
+  private animalInformationLayer: Node;
 
   protected onLoad(): void {
     this.init();
@@ -42,9 +51,13 @@ export class Animal extends Component {
     this.emoteAnimation = this.node
       .getChildByName("Emote")
       .getComponent(Animation);
-    this.emoteLayer = find("Canvas/PopupGameLayer/OtherLayer");
-    this.emoteLayer.addChild(this.emoteAnimation.node);
     this.collider = this.node.getComponent(Collider2D);
+    this.popupInformationAnimal = this.node.getChildByName(
+      "PopupInformationAnimal"
+    );
+    this.blockInputPanel = this.node.getChildByName("BlockInputPanel");
+
+    this.addPopupToLayer();
     this.createMaxMovingDistance();
   }
 
@@ -57,6 +70,15 @@ export class Animal extends Component {
       -this.node.getParent().getComponent(UITransform).contentSize.height / 2;
     this.maxMovingDistanceY.y =
       this.node.getParent().getComponent(UITransform).contentSize.height / 2;
+  }
+
+  private addPopupToLayer() {
+    this.emoteLayer = find("Canvas/PopupGameLayer/EmoteLayer");
+    this.emoteLayer.addChild(this.emoteAnimation.node);
+    this.animalInformationLayer = find(
+      "Canvas/PopupGameLayer/AnimalInformationLayer"
+    );
+    this.animalInformationLayer.addChild(this.popupInformationAnimal);
   }
 
   public getSpeed() {
@@ -103,5 +125,23 @@ export class Animal extends Component {
   }
   public getEmoteLayer() {
     return this.emoteLayer;
+  }
+  public getPopupInformationAnimal() {
+    return this.popupInformationAnimal;
+  }
+  public getBlockInputPanel() {
+    return this.blockInputPanel;
+  }
+  public getAnimalInformationLayer() {
+    return this.animalInformationLayer;
+  }
+  public isDiseaseAnimal() {
+    return this.isDisease;
+  }
+  public getDaysOld() {
+    return this.daysOld;
+  }
+  public getAnimalName() {
+    return this.animalName;
   }
 }

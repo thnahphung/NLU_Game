@@ -33,12 +33,22 @@ export const languages = {
     character_name_animal_husbandry: "Kỹ sư chăn nuôi",
     //loading
     loading: "Đang tải...",
-    //button
+    //UI
     btn_setting: "Cài đặt",
     btn_leader_board: "Xếp hạng",
     btn_mail: "Hộp thư",
     btn_event: "Sự kiện",
     btn_quest: "Nhiệm vụ",
+    //UI Animal
+    animal_type: "Giống:",
+    animal_age: "Tuổi:",
+    animal_health: "Sức khỏe:",
+    animal_pregnant: "Mang thai:",
+    animal_age_day: "ngày",
+    animal_health_good: "Tốt",
+    animal_health_disease: "Bệnh",
+    animal_pregnant_yes: "Có",
+    animal_pregnant_no: "Không",
   },
 };
 
