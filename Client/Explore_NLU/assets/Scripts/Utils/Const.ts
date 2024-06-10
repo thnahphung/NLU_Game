@@ -49,7 +49,7 @@ export enum CHARACTERS {
   BSTY = "BSTY",
 }
 
-export enum CharacterState {
+export enum CHARACTER_STATE {
   IDLE_UP = "idle-up",
   IDLE_DOWN = "idle-down",
   IDLE_LEFT = "idle-left",
@@ -58,6 +58,15 @@ export enum CharacterState {
   WALK_DOWN = "walk-down",
   WALK_LEFT = "walk-left",
   WALK_RIGHT = "walk-right",
+}
+
+export enum ANIMAL_STATE {
+  IDLE_LEFT = "idle-left",
+  IDLE_RIGHT = "idle-right",
+  WALK_LEFT = "walk-left",
+  WALK_RIGHT = "walk-right",
+  EAT_LEFT = "eat-left",
+  EAT_RIGHT = "eat-right",
 }
 
 export enum SCENES {
@@ -94,6 +103,7 @@ export enum COATING {
   MOVE = "MOVE",
   TILL = "TILL",
   SEED = "SEED",
+  FEED = "FEED",
 }
 
 export enum SEED_BAG {
@@ -107,4 +117,14 @@ export enum SEED_BAG {
 export enum PLANTING_LAND {
   WIDTH = 172,
   HEIGHT = 178,
+}
+
+export enum ANIMAL {
+  COW = "Cow",
+  CHICKEN = "Chicken",
+}
+
+export enum ANIMAL_FOOD {
+  HAY = "Hay",
+  PADDY_GRAIN = "PaddyGrain",
 }

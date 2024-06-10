@@ -1,6 +1,6 @@
 import { _decorator, Component } from "cc";
 import { Character } from "./Character";
-import { CharacterState } from "../../Utils/Const";
+import { CHARACTER_STATE } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("CharacterAnimation")
@@ -16,7 +16,7 @@ export class CharacterAnimation extends Component {
     this.changeAnimation(this.characterInfo.getCurrentState());
   }
 
-  changeAnimation(state: CharacterState) {
+  changeAnimation(state: CHARACTER_STATE) {
     if (this.oldAnimation === state) return;
     this.oldAnimation = state;
     this.characterInfo.getAnimation().play(state);

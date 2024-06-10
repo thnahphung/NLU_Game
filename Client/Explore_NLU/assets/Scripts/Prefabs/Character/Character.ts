@@ -1,26 +1,33 @@
-import { _decorator, Component, Animation, RigidBody2D, Vec2, Label } from "cc";
+import {
+  _decorator,
+  Component,
+  Animation,
+  RigidBody2D,
+  Vec2,
+  Label,
+  find,
+  Node,
+} from "cc";
 
 import { CharacterMovement } from "./CharacterMovement";
 import { CharacterAnimation } from "./CharacterAnimation";
-import { CharacterState } from "../../Utils/Const";
+import { CHARACTER_STATE } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("Character")
 export class Character extends Component {
-  @property
-  private speed: number = 500;
+  @property private speed: number = 500;
 
   private playerName: string = "player name 123";
   private userId: number;
-  @property
-  private isMainPlayer: boolean = false;
+  @property private isMainPlayer: boolean = false;
 
-  private currentState: CharacterState = CharacterState.IDLE_DOWN;
+  private currentState: CHARACTER_STATE = CHARACTER_STATE.IDLE_DOWN;
 
   private animation: Animation;
   private rigidBody: RigidBody2D;
-  @property(Label)
   private labelName: Label;
+  private playerNameLayer: Node;
 
   private characterMovement: CharacterMovement;
   private characterAnimation: CharacterAnimation;
@@ -35,10 +42,23 @@ export class Character extends Component {
 
     this.characterMovement = this.getComponent(CharacterMovement);
     this.characterAnimation = this.getComponent(CharacterAnimation);
-    this.labelName.string = this.playerName;
+    this.labelName = this.node.getChildByName("Name").getComponent(Label);
   }
 
-  public setCurrentState(newState: CharacterState) {
+  protected start(): void {
+    this.playerNameLayer = find("Canvas/PopupGameLayer/PlayerNameLayer");
+    this.labelName.string = this.playerName;
+    this.labelName.node.parent = this.playerNameLayer;
+  }
+
+  protected update(dt: number): void {
+    this.labelName.node.setPosition(
+      this.node.position.x,
+      this.node.position.y + 54
+    );
+  }
+
+  public setCurrentState(newState: CHARACTER_STATE) {
     this.currentState = newState;
   }
   public getCurrentState() {
