@@ -1,7 +1,7 @@
 import { _decorator, Component, game, Vec2 } from "cc";
 import { Character } from "./Character";
 import { InputManager } from "../../Manager/InputManager";
-import { CharacterState } from "../../Utils/Const";
+import { CHARACTER_STATE } from "../../Utils/Const";
 import DataSender from "../../Utils/DataSender";
 import GlobalData from "../../Utils/GlobalData";
 
@@ -37,46 +37,45 @@ export class CharacterMovement extends Component {
   }
 
   changeState() {
-    console.log(this.direction.x, "-------", this.direction.y);
     if (
       this.direction.x > 0 &&
       this.direction.y <= 0.8 &&
       this.direction.y >= -0.8
     ) {
-      this.characterInfo.setCurrentState(CharacterState.WALK_RIGHT);
+      this.characterInfo.setCurrentState(CHARACTER_STATE.WALK_RIGHT);
     } else if (
       this.direction.x < 0 &&
       this.direction.y <= 0.8 &&
       this.direction.y >= -0.8
     ) {
-      this.characterInfo.setCurrentState(CharacterState.WALK_LEFT);
+      this.characterInfo.setCurrentState(CHARACTER_STATE.WALK_LEFT);
     } else if (
       this.direction.y > 0 &&
       this.direction.x < 0.2 &&
       this.direction.x > -0.2
     ) {
-      this.characterInfo.setCurrentState(CharacterState.WALK_UP);
+      this.characterInfo.setCurrentState(CHARACTER_STATE.WALK_UP);
     } else if (
       this.direction.y < 0 &&
       this.direction.x < 0.2 &&
       this.direction.x > -0.2
     ) {
-      this.characterInfo.setCurrentState(CharacterState.WALK_DOWN);
+      this.characterInfo.setCurrentState(CHARACTER_STATE.WALK_DOWN);
     } else if (this.direction.x === 0 && this.direction.y === 0) {
-      if (this.characterInfo.getCurrentState() === CharacterState.WALK_DOWN) {
-        this.characterInfo.setCurrentState(CharacterState.IDLE_DOWN);
+      if (this.characterInfo.getCurrentState() === CHARACTER_STATE.WALK_DOWN) {
+        this.characterInfo.setCurrentState(CHARACTER_STATE.IDLE_DOWN);
       } else if (
-        this.characterInfo.getCurrentState() === CharacterState.WALK_UP
+        this.characterInfo.getCurrentState() === CHARACTER_STATE.WALK_UP
       ) {
-        this.characterInfo.setCurrentState(CharacterState.IDLE_UP);
+        this.characterInfo.setCurrentState(CHARACTER_STATE.IDLE_UP);
       } else if (
-        this.characterInfo.getCurrentState() === CharacterState.WALK_LEFT
+        this.characterInfo.getCurrentState() === CHARACTER_STATE.WALK_LEFT
       ) {
-        this.characterInfo.setCurrentState(CharacterState.IDLE_LEFT);
+        this.characterInfo.setCurrentState(CHARACTER_STATE.IDLE_LEFT);
       } else if (
-        this.characterInfo.getCurrentState() === CharacterState.WALK_RIGHT
+        this.characterInfo.getCurrentState() === CHARACTER_STATE.WALK_RIGHT
       ) {
-        this.characterInfo.setCurrentState(CharacterState.IDLE_RIGHT);
+        this.characterInfo.setCurrentState(CHARACTER_STATE.IDLE_RIGHT);
       }
     }
   }

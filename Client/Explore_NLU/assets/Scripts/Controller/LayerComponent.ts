@@ -6,12 +6,16 @@ export class LayerComponent extends Component {
   @property
   private isDynamic: boolean = false;
   start() {
-    this.node.getComponent(UITransform).priority = -this.node.position.y;
+    this.node.setSiblingIndex(this.node.position.y);
   }
 
   update(deltaTime: number) {
     if (this.isDynamic) {
-      this.node.getComponent(UITransform).priority = -this.node.position.y;
+      const nodes = this.node.parent.children.slice();
+      nodes.sort((a, b) => b.position.y - a.position.y);
+      for (let i = 0, len = nodes.length; i < len; ++i) {
+        nodes[i].setSiblingIndex(i);
+      }
     }
   }
 }

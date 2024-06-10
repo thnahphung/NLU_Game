@@ -39,6 +39,16 @@ export const languages = {
     btn_mail: "Mail",
     btn_event: "Event",
     btn_quest: "Quest",
+    //UI Animal
+    animal_type: "Type:",
+    animal_age: "Age:",
+    animal_health: "Health:",
+    animal_pregnant: "Pregnant:",
+    animal_age_day: "day",
+    animal_health_good: "Good",
+    animal_health_disease: "Disease",
+    animal_pregnant_yes: "Yes",
+    animal_pregnant_no: "No",
   },
 };
 
