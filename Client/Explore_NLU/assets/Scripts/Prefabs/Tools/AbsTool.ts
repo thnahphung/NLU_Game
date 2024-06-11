@@ -1,6 +1,4 @@
-import { _decorator, Component, EventMouse, EventTouch, find, Node, sys, UITransform, Vec2, Vec3 } from 'cc';
-import { Util } from '../../../Scripts/Utils/Util';
-import { UI } from '../../../../extensions/i18n/@types/editor/ui-kit';
+import { _decorator, Camera, Component, EventMouse, EventTouch, find, Node, sys, UITransform, Vec2, Vec3 } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('AbsTool')
@@ -41,7 +39,7 @@ export default class AbsTool extends Component {
 
     handleOnTouchMove(event: EventTouch) {
         if (this.isMove) {
-            this.moveNode(event.touch.getUILocation());
+            this.moveNode(event.touch.getLocation());
         }
     }
 
@@ -67,8 +65,10 @@ export default class AbsTool extends Component {
         this.isMove = false;
     }
 
-    private moveNode(uiLocation: Vec2) {
-        var newLocation = this.node.parent.getComponent(UITransform).convertToNodeSpaceAR(Util.toVec3(uiLocation));
+    private moveNode(location: Vec2) {
+        const camera = find('Canvas/Camera').getComponent(Camera);
+        const worldPos = camera.screenToWorld(new Vec3(location.x, location.y, 0));
+        const newLocation = this.node.parent.getComponent(UITransform).convertToNodeSpaceAR(worldPos);
         this.node.setPosition(newLocation);
     }
 
