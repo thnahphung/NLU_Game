@@ -128,3 +128,18 @@ export enum ANIMAL_FOOD {
   HAY = "Hay",
   PADDY_GRAIN = "PaddyGrain",
 }
+
+
+export enum TYPE_ITEM {
+  ANIMAL = "ANIMAL",
+  TREE = "TREE",
+  STONE = "STONE",
+  HOUSE = "HOUSE",
+  ROOT = "ROOT",
+  PLANTING_LAND = "PLANTING_LAND",
+}
+
+export enum WEATHER {
+  RAIN = "RAIN",
+  SUNNY = "SUNNY",
+}

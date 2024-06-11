@@ -75,4 +75,11 @@ export default class DataSender {
     packet.reqPlayerJoinArea = reqPlayerJoinArea;
     WS.send(packet);
   }
+
+  public static sendReqLoadItemsOfFarm() {
+    let reqLoadBaseItems = new proto.ReqLoadItemsOfFarm();
+    let packet = new proto.Packet();
+    packet.reqLoadItemsOfFarm = reqLoadBaseItems;
+    WS.send(packet);
+  }
 }

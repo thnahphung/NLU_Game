@@ -31,6 +31,8 @@ message Packet {
     ReqMoving reqMoving = 20;
     ResMoving resMoving = 21;
     ResOtherPlayerLeaveArea resOtherPlayerLeaveArea = 22;
+    ReqLoadItemsOfFarm reqLoadItemsOfFarm= 23;
+    ResLoadItemsOfFarm resLoadItemsOfFarm = 24;
   }
 }
 
@@ -45,8 +47,11 @@ message User {
   string phone = 7;
   int64 gold = 8;
   int64 diamond = 9;
-  int32 agencyLevel = 10;
+  int32 level = 10;
   int32 hasCharacter = 11;
+  int32 characterId = 12;
+  int32 areaId = 13;
+  int32 isNewAccount = 14;
 }
 
 message Player{
@@ -202,3 +207,60 @@ message ResMoving{
   int32 playerId = 2;
   Position position = 3;
 }
+
+message ReqLoadItemsOfFarm {
+
+}
+
+message BuildingBase {
+  int32 id = 1;
+  string name = 2;
+  int64 price = 3;
+  string description = 4;
+  string type = 5;
+  int32 maxLevel = 6;
+}
+
+message PropertyBuilding {
+  int32 id = 1;
+  int64 positionX = 2;
+  int64 positionY = 3;
+  int32 upgradeId = 4;
+  int32 areaId = 5;
+  int32 commonBuildingId = 6;
+  int32 currentLevel = 7;
+}
+
+message TillLand {
+  int32 id = 1;
+  int32 index = 2;
+  bool statusTilled = 3;
+}
+
+message FarmBuilding {
+  BuildingBase base = 1;
+  PropertyBuilding propertyBuilding = 2;
+}
+
+message PlantingLandBuilding {
+  BuildingBase base = 1;
+  PropertyBuilding propertyBuilding = 2;
+  repeated TillLand tillLand = 3;
+}
+
+message Building {
+  oneof data {
+     FarmBuilding farmBuilding = 1;
+     PlantingLandBuilding plantingLandBuilding = 2;
+  }
+}
+
+message BuildingItems {
+  repeated Building building = 1;
+}
+
+message ResLoadItemsOfFarm {
+  BuildingItems buildingItems = 1;
+}
+
+

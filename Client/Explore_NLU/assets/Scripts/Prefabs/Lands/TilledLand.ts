@@ -74,7 +74,7 @@ export class TilledLand extends Component {
             break;
         }
         let plantingLand = this.node.getParent().getParent();
-        this.seedNode.setPosition(this.node.position.x + plantingLand.position.x, this.node.position.y + plantingLand.position.y, 0);
+        this.seedNode.setPosition(this.node.position.x + plantingLand.position.x, this.node.position.y + plantingLand.position.y - 5, 0);
         this.getMidLayer()?.addChild(this.seedNode);
     }
 
@@ -113,7 +113,7 @@ export class TilledLand extends Component {
     }
 
     private getMenuSeedNode(): Node {
-        return find('Canvas/ObjectLayers/TopLayer/MenuSeedPanel');
+        return find('Canvas/PopupGameLayer/MenuSeedPanel');
     }
 
     private getMidLayer(): Node {

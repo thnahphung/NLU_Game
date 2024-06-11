@@ -21,7 +21,7 @@ export class PlantingLand extends Component {
     }
 
     private getMenuToolNode(): Node {
-        return find('Canvas/ObjectLayers/TopLayer/MenuToolPanel');
+        return find('Canvas/PopupGameLayer/MenuToolPanel');
     }
 
 }

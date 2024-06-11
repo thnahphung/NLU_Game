@@ -269,6 +269,8 @@
              * @property {proto.IReqMoving|null} [reqMoving] Packet reqMoving
              * @property {proto.IResMoving|null} [resMoving] Packet resMoving
              * @property {proto.IResOtherPlayerLeaveArea|null} [resOtherPlayerLeaveArea] Packet resOtherPlayerLeaveArea
+             * @property {proto.IReqLoadItemsOfFarm|null} [reqLoadItemsOfFarm] Packet reqLoadItemsOfFarm
+             * @property {proto.IResLoadItemsOfFarm|null} [resLoadItemsOfFarm] Packet resLoadItemsOfFarm
              */
     
             /**
@@ -462,17 +464,33 @@
              */
             Packet.prototype.resOtherPlayerLeaveArea = null;
     
+            /**
+             * Packet reqLoadItemsOfFarm.
+             * @member {proto.IReqLoadItemsOfFarm|null|undefined} reqLoadItemsOfFarm
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqLoadItemsOfFarm = null;
+    
+            /**
+             * Packet resLoadItemsOfFarm.
+             * @member {proto.IResLoadItemsOfFarm|null|undefined} resLoadItemsOfFarm
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resLoadItemsOfFarm = null;
+    
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
     
             /**
              * Packet data.
-             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|undefined} data
+             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|undefined} data
              * @memberof proto.Packet
              * @instance
              */
             Object.defineProperty(Packet.prototype, "data", {
-                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter", "reqPlayerJoinAreaCommon", "resPlayerJoinAreaCommon", "reqPlayerJoinArea", "resPlayerJoinArea", "resOtherPlayerJoinArea", "reqMoving", "resMoving", "resOtherPlayerLeaveArea"]),
+                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter", "reqPlayerJoinAreaCommon", "resPlayerJoinAreaCommon", "reqPlayerJoinArea", "resPlayerJoinArea", "resOtherPlayerJoinArea", "reqMoving", "resMoving", "resOtherPlayerLeaveArea", "reqLoadItemsOfFarm", "resLoadItemsOfFarm"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
     
@@ -544,6 +562,10 @@
                     $root.proto.ResMoving.encode(message.resMoving, writer.uint32(/* id 21, wireType 2 =*/170).fork()).ldelim();
                 if (message.resOtherPlayerLeaveArea != null && Object.hasOwnProperty.call(message, "resOtherPlayerLeaveArea"))
                     $root.proto.ResOtherPlayerLeaveArea.encode(message.resOtherPlayerLeaveArea, writer.uint32(/* id 22, wireType 2 =*/178).fork()).ldelim();
+                if (message.reqLoadItemsOfFarm != null && Object.hasOwnProperty.call(message, "reqLoadItemsOfFarm"))
+                    $root.proto.ReqLoadItemsOfFarm.encode(message.reqLoadItemsOfFarm, writer.uint32(/* id 23, wireType 2 =*/186).fork()).ldelim();
+                if (message.resLoadItemsOfFarm != null && Object.hasOwnProperty.call(message, "resLoadItemsOfFarm"))
+                    $root.proto.ResLoadItemsOfFarm.encode(message.resLoadItemsOfFarm, writer.uint32(/* id 24, wireType 2 =*/194).fork()).ldelim();
                 return writer;
             };
     
@@ -664,6 +686,14 @@
                         }
                     case 22: {
                             message.resOtherPlayerLeaveArea = $root.proto.ResOtherPlayerLeaveArea.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 23: {
+                            message.reqLoadItemsOfFarm = $root.proto.ReqLoadItemsOfFarm.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 24: {
+                            message.resLoadItemsOfFarm = $root.proto.ResLoadItemsOfFarm.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -920,6 +950,26 @@
                             return "resOtherPlayerLeaveArea." + error;
                     }
                 }
+                if (message.reqLoadItemsOfFarm != null && message.hasOwnProperty("reqLoadItemsOfFarm")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqLoadItemsOfFarm.verify(message.reqLoadItemsOfFarm);
+                        if (error)
+                            return "reqLoadItemsOfFarm." + error;
+                    }
+                }
+                if (message.resLoadItemsOfFarm != null && message.hasOwnProperty("resLoadItemsOfFarm")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResLoadItemsOfFarm.verify(message.resLoadItemsOfFarm);
+                        if (error)
+                            return "resLoadItemsOfFarm." + error;
+                    }
+                }
                 return null;
             };
     
@@ -1044,6 +1094,16 @@
                     if (typeof object.resOtherPlayerLeaveArea !== "object")
                         throw TypeError(".proto.Packet.resOtherPlayerLeaveArea: object expected");
                     message.resOtherPlayerLeaveArea = $root.proto.ResOtherPlayerLeaveArea.fromObject(object.resOtherPlayerLeaveArea);
+                }
+                if (object.reqLoadItemsOfFarm != null) {
+                    if (typeof object.reqLoadItemsOfFarm !== "object")
+                        throw TypeError(".proto.Packet.reqLoadItemsOfFarm: object expected");
+                    message.reqLoadItemsOfFarm = $root.proto.ReqLoadItemsOfFarm.fromObject(object.reqLoadItemsOfFarm);
+                }
+                if (object.resLoadItemsOfFarm != null) {
+                    if (typeof object.resLoadItemsOfFarm !== "object")
+                        throw TypeError(".proto.Packet.resLoadItemsOfFarm: object expected");
+                    message.resLoadItemsOfFarm = $root.proto.ResLoadItemsOfFarm.fromObject(object.resLoadItemsOfFarm);
                 }
                 return message;
             };
@@ -1171,6 +1231,16 @@
                     if (options.oneofs)
                         object.data = "resOtherPlayerLeaveArea";
                 }
+                if (message.reqLoadItemsOfFarm != null && message.hasOwnProperty("reqLoadItemsOfFarm")) {
+                    object.reqLoadItemsOfFarm = $root.proto.ReqLoadItemsOfFarm.toObject(message.reqLoadItemsOfFarm, options);
+                    if (options.oneofs)
+                        object.data = "reqLoadItemsOfFarm";
+                }
+                if (message.resLoadItemsOfFarm != null && message.hasOwnProperty("resLoadItemsOfFarm")) {
+                    object.resLoadItemsOfFarm = $root.proto.ResLoadItemsOfFarm.toObject(message.resLoadItemsOfFarm, options);
+                    if (options.oneofs)
+                        object.data = "resLoadItemsOfFarm";
+                }
                 return object;
             };
     
@@ -1218,8 +1288,11 @@
              * @property {string|null} [phone] User phone
              * @property {number|Long|null} [gold] User gold
              * @property {number|Long|null} [diamond] User diamond
-             * @property {number|null} [agencyLevel] User agencyLevel
+             * @property {number|null} [level] User level
              * @property {number|null} [hasCharacter] User hasCharacter
+             * @property {number|null} [characterId] User characterId
+             * @property {number|null} [areaId] User areaId
+             * @property {number|null} [isNewAccount] User isNewAccount
              */
     
             /**
@@ -1310,12 +1383,12 @@
             User.prototype.diamond = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
     
             /**
-             * User agencyLevel.
-             * @member {number} agencyLevel
+             * User level.
+             * @member {number} level
              * @memberof proto.User
              * @instance
              */
-            User.prototype.agencyLevel = 0;
+            User.prototype.level = 0;
     
             /**
              * User hasCharacter.
@@ -1324,6 +1397,30 @@
              * @instance
              */
             User.prototype.hasCharacter = 0;
+    
+            /**
+             * User characterId.
+             * @member {number} characterId
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.characterId = 0;
+    
+            /**
+             * User areaId.
+             * @member {number} areaId
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.areaId = 0;
+    
+            /**
+             * User isNewAccount.
+             * @member {number} isNewAccount
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.isNewAccount = 0;
     
             /**
              * Creates a new User instance using the specified properties.
@@ -1367,10 +1464,16 @@
                     writer.uint32(/* id 8, wireType 0 =*/64).int64(message.gold);
                 if (message.diamond != null && Object.hasOwnProperty.call(message, "diamond"))
                     writer.uint32(/* id 9, wireType 0 =*/72).int64(message.diamond);
-                if (message.agencyLevel != null && Object.hasOwnProperty.call(message, "agencyLevel"))
-                    writer.uint32(/* id 10, wireType 0 =*/80).int32(message.agencyLevel);
+                if (message.level != null && Object.hasOwnProperty.call(message, "level"))
+                    writer.uint32(/* id 10, wireType 0 =*/80).int32(message.level);
                 if (message.hasCharacter != null && Object.hasOwnProperty.call(message, "hasCharacter"))
                     writer.uint32(/* id 11, wireType 0 =*/88).int32(message.hasCharacter);
+                if (message.characterId != null && Object.hasOwnProperty.call(message, "characterId"))
+                    writer.uint32(/* id 12, wireType 0 =*/96).int32(message.characterId);
+                if (message.areaId != null && Object.hasOwnProperty.call(message, "areaId"))
+                    writer.uint32(/* id 13, wireType 0 =*/104).int32(message.areaId);
+                if (message.isNewAccount != null && Object.hasOwnProperty.call(message, "isNewAccount"))
+                    writer.uint32(/* id 14, wireType 0 =*/112).int32(message.isNewAccount);
                 return writer;
             };
     
@@ -1442,11 +1545,23 @@
                             break;
                         }
                     case 10: {
-                            message.agencyLevel = reader.int32();
+                            message.level = reader.int32();
                             break;
                         }
                     case 11: {
                             message.hasCharacter = reader.int32();
+                            break;
+                        }
+                    case 12: {
+                            message.characterId = reader.int32();
+                            break;
+                        }
+                    case 13: {
+                            message.areaId = reader.int32();
+                            break;
+                        }
+                    case 14: {
+                            message.isNewAccount = reader.int32();
                             break;
                         }
                     default:
@@ -1511,12 +1626,21 @@
                 if (message.diamond != null && message.hasOwnProperty("diamond"))
                     if (!$util.isInteger(message.diamond) && !(message.diamond && $util.isInteger(message.diamond.low) && $util.isInteger(message.diamond.high)))
                         return "diamond: integer|Long expected";
-                if (message.agencyLevel != null && message.hasOwnProperty("agencyLevel"))
-                    if (!$util.isInteger(message.agencyLevel))
-                        return "agencyLevel: integer expected";
+                if (message.level != null && message.hasOwnProperty("level"))
+                    if (!$util.isInteger(message.level))
+                        return "level: integer expected";
                 if (message.hasCharacter != null && message.hasOwnProperty("hasCharacter"))
                     if (!$util.isInteger(message.hasCharacter))
                         return "hasCharacter: integer expected";
+                if (message.characterId != null && message.hasOwnProperty("characterId"))
+                    if (!$util.isInteger(message.characterId))
+                        return "characterId: integer expected";
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    if (!$util.isInteger(message.areaId))
+                        return "areaId: integer expected";
+                if (message.isNewAccount != null && message.hasOwnProperty("isNewAccount"))
+                    if (!$util.isInteger(message.isNewAccount))
+                        return "isNewAccount: integer expected";
                 return null;
             };
     
@@ -1564,10 +1688,16 @@
                         message.diamond = object.diamond;
                     else if (typeof object.diamond === "object")
                         message.diamond = new $util.LongBits(object.diamond.low >>> 0, object.diamond.high >>> 0).toNumber();
-                if (object.agencyLevel != null)
-                    message.agencyLevel = object.agencyLevel | 0;
+                if (object.level != null)
+                    message.level = object.level | 0;
                 if (object.hasCharacter != null)
                     message.hasCharacter = object.hasCharacter | 0;
+                if (object.characterId != null)
+                    message.characterId = object.characterId | 0;
+                if (object.areaId != null)
+                    message.areaId = object.areaId | 0;
+                if (object.isNewAccount != null)
+                    message.isNewAccount = object.isNewAccount | 0;
                 return message;
             };
     
@@ -1602,8 +1732,11 @@
                         object.diamond = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                     } else
                         object.diamond = options.longs === String ? "0" : 0;
-                    object.agencyLevel = 0;
+                    object.level = 0;
                     object.hasCharacter = 0;
+                    object.characterId = 0;
+                    object.areaId = 0;
+                    object.isNewAccount = 0;
                 }
                 if (message.userId != null && message.hasOwnProperty("userId"))
                     object.userId = message.userId;
@@ -1629,10 +1762,16 @@
                         object.diamond = options.longs === String ? String(message.diamond) : message.diamond;
                     else
                         object.diamond = options.longs === String ? $util.Long.prototype.toString.call(message.diamond) : options.longs === Number ? new $util.LongBits(message.diamond.low >>> 0, message.diamond.high >>> 0).toNumber() : message.diamond;
-                if (message.agencyLevel != null && message.hasOwnProperty("agencyLevel"))
-                    object.agencyLevel = message.agencyLevel;
+                if (message.level != null && message.hasOwnProperty("level"))
+                    object.level = message.level;
                 if (message.hasCharacter != null && message.hasOwnProperty("hasCharacter"))
                     object.hasCharacter = message.hasCharacter;
+                if (message.characterId != null && message.hasOwnProperty("characterId"))
+                    object.characterId = message.characterId;
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    object.areaId = message.areaId;
+                if (message.isNewAccount != null && message.hasOwnProperty("isNewAccount"))
+                    object.isNewAccount = message.isNewAccount;
                 return object;
             };
     
@@ -8198,6 +8337,2347 @@
             };
     
             return ResMoving;
+        })();
+    
+        proto.ReqLoadItemsOfFarm = (function() {
+    
+            /**
+             * Properties of a ReqLoadItemsOfFarm.
+             * @memberof proto
+             * @interface IReqLoadItemsOfFarm
+             */
+    
+            /**
+             * Constructs a new ReqLoadItemsOfFarm.
+             * @memberof proto
+             * @classdesc Represents a ReqLoadItemsOfFarm.
+             * @implements IReqLoadItemsOfFarm
+             * @constructor
+             * @param {proto.IReqLoadItemsOfFarm=} [properties] Properties to set
+             */
+            function ReqLoadItemsOfFarm(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * Creates a new ReqLoadItemsOfFarm instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqLoadItemsOfFarm
+             * @static
+             * @param {proto.IReqLoadItemsOfFarm=} [properties] Properties to set
+             * @returns {proto.ReqLoadItemsOfFarm} ReqLoadItemsOfFarm instance
+             */
+            ReqLoadItemsOfFarm.create = function create(properties) {
+                return new ReqLoadItemsOfFarm(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqLoadItemsOfFarm message. Does not implicitly {@link proto.ReqLoadItemsOfFarm.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqLoadItemsOfFarm
+             * @static
+             * @param {proto.IReqLoadItemsOfFarm} message ReqLoadItemsOfFarm message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqLoadItemsOfFarm.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqLoadItemsOfFarm message, length delimited. Does not implicitly {@link proto.ReqLoadItemsOfFarm.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqLoadItemsOfFarm
+             * @static
+             * @param {proto.IReqLoadItemsOfFarm} message ReqLoadItemsOfFarm message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqLoadItemsOfFarm.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqLoadItemsOfFarm message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqLoadItemsOfFarm
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqLoadItemsOfFarm} ReqLoadItemsOfFarm
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqLoadItemsOfFarm.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqLoadItemsOfFarm();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqLoadItemsOfFarm message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqLoadItemsOfFarm
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqLoadItemsOfFarm} ReqLoadItemsOfFarm
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqLoadItemsOfFarm.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqLoadItemsOfFarm message.
+             * @function verify
+             * @memberof proto.ReqLoadItemsOfFarm
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqLoadItemsOfFarm.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ReqLoadItemsOfFarm message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqLoadItemsOfFarm
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqLoadItemsOfFarm} ReqLoadItemsOfFarm
+             */
+            ReqLoadItemsOfFarm.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqLoadItemsOfFarm)
+                    return object;
+                return new $root.proto.ReqLoadItemsOfFarm();
+            };
+    
+            /**
+             * Creates a plain object from a ReqLoadItemsOfFarm message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqLoadItemsOfFarm
+             * @static
+             * @param {proto.ReqLoadItemsOfFarm} message ReqLoadItemsOfFarm
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqLoadItemsOfFarm.toObject = function toObject() {
+                return {};
+            };
+    
+            /**
+             * Converts this ReqLoadItemsOfFarm to JSON.
+             * @function toJSON
+             * @memberof proto.ReqLoadItemsOfFarm
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqLoadItemsOfFarm.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqLoadItemsOfFarm
+             * @function getTypeUrl
+             * @memberof proto.ReqLoadItemsOfFarm
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqLoadItemsOfFarm.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqLoadItemsOfFarm";
+            };
+    
+            return ReqLoadItemsOfFarm;
+        })();
+    
+        proto.BuildingBase = (function() {
+    
+            /**
+             * Properties of a BuildingBase.
+             * @memberof proto
+             * @interface IBuildingBase
+             * @property {number|null} [id] BuildingBase id
+             * @property {string|null} [name] BuildingBase name
+             * @property {number|Long|null} [price] BuildingBase price
+             * @property {string|null} [description] BuildingBase description
+             * @property {string|null} [type] BuildingBase type
+             * @property {number|null} [maxLevel] BuildingBase maxLevel
+             */
+    
+            /**
+             * Constructs a new BuildingBase.
+             * @memberof proto
+             * @classdesc Represents a BuildingBase.
+             * @implements IBuildingBase
+             * @constructor
+             * @param {proto.IBuildingBase=} [properties] Properties to set
+             */
+            function BuildingBase(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * BuildingBase id.
+             * @member {number} id
+             * @memberof proto.BuildingBase
+             * @instance
+             */
+            BuildingBase.prototype.id = 0;
+    
+            /**
+             * BuildingBase name.
+             * @member {string} name
+             * @memberof proto.BuildingBase
+             * @instance
+             */
+            BuildingBase.prototype.name = "";
+    
+            /**
+             * BuildingBase price.
+             * @member {number|Long} price
+             * @memberof proto.BuildingBase
+             * @instance
+             */
+            BuildingBase.prototype.price = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+            /**
+             * BuildingBase description.
+             * @member {string} description
+             * @memberof proto.BuildingBase
+             * @instance
+             */
+            BuildingBase.prototype.description = "";
+    
+            /**
+             * BuildingBase type.
+             * @member {string} type
+             * @memberof proto.BuildingBase
+             * @instance
+             */
+            BuildingBase.prototype.type = "";
+    
+            /**
+             * BuildingBase maxLevel.
+             * @member {number} maxLevel
+             * @memberof proto.BuildingBase
+             * @instance
+             */
+            BuildingBase.prototype.maxLevel = 0;
+    
+            /**
+             * Creates a new BuildingBase instance using the specified properties.
+             * @function create
+             * @memberof proto.BuildingBase
+             * @static
+             * @param {proto.IBuildingBase=} [properties] Properties to set
+             * @returns {proto.BuildingBase} BuildingBase instance
+             */
+            BuildingBase.create = function create(properties) {
+                return new BuildingBase(properties);
+            };
+    
+            /**
+             * Encodes the specified BuildingBase message. Does not implicitly {@link proto.BuildingBase.verify|verify} messages.
+             * @function encode
+             * @memberof proto.BuildingBase
+             * @static
+             * @param {proto.IBuildingBase} message BuildingBase message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BuildingBase.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+                if (message.price != null && Object.hasOwnProperty.call(message, "price"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int64(message.price);
+                if (message.description != null && Object.hasOwnProperty.call(message, "description"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.description);
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.type);
+                if (message.maxLevel != null && Object.hasOwnProperty.call(message, "maxLevel"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).int32(message.maxLevel);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified BuildingBase message, length delimited. Does not implicitly {@link proto.BuildingBase.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.BuildingBase
+             * @static
+             * @param {proto.IBuildingBase} message BuildingBase message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BuildingBase.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a BuildingBase message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.BuildingBase
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.BuildingBase} BuildingBase
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BuildingBase.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.BuildingBase();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.id = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.price = reader.int64();
+                            break;
+                        }
+                    case 4: {
+                            message.description = reader.string();
+                            break;
+                        }
+                    case 5: {
+                            message.type = reader.string();
+                            break;
+                        }
+                    case 6: {
+                            message.maxLevel = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a BuildingBase message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.BuildingBase
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.BuildingBase} BuildingBase
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BuildingBase.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a BuildingBase message.
+             * @function verify
+             * @memberof proto.BuildingBase
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            BuildingBase.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                if (message.name != null && message.hasOwnProperty("name"))
+                    if (!$util.isString(message.name))
+                        return "name: string expected";
+                if (message.price != null && message.hasOwnProperty("price"))
+                    if (!$util.isInteger(message.price) && !(message.price && $util.isInteger(message.price.low) && $util.isInteger(message.price.high)))
+                        return "price: integer|Long expected";
+                if (message.description != null && message.hasOwnProperty("description"))
+                    if (!$util.isString(message.description))
+                        return "description: string expected";
+                if (message.type != null && message.hasOwnProperty("type"))
+                    if (!$util.isString(message.type))
+                        return "type: string expected";
+                if (message.maxLevel != null && message.hasOwnProperty("maxLevel"))
+                    if (!$util.isInteger(message.maxLevel))
+                        return "maxLevel: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a BuildingBase message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.BuildingBase
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.BuildingBase} BuildingBase
+             */
+            BuildingBase.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.BuildingBase)
+                    return object;
+                var message = new $root.proto.BuildingBase();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                if (object.name != null)
+                    message.name = String(object.name);
+                if (object.price != null)
+                    if ($util.Long)
+                        (message.price = $util.Long.fromValue(object.price)).unsigned = false;
+                    else if (typeof object.price === "string")
+                        message.price = parseInt(object.price, 10);
+                    else if (typeof object.price === "number")
+                        message.price = object.price;
+                    else if (typeof object.price === "object")
+                        message.price = new $util.LongBits(object.price.low >>> 0, object.price.high >>> 0).toNumber();
+                if (object.description != null)
+                    message.description = String(object.description);
+                if (object.type != null)
+                    message.type = String(object.type);
+                if (object.maxLevel != null)
+                    message.maxLevel = object.maxLevel | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a BuildingBase message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.BuildingBase
+             * @static
+             * @param {proto.BuildingBase} message BuildingBase
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            BuildingBase.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.id = 0;
+                    object.name = "";
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.price = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.price = options.longs === String ? "0" : 0;
+                    object.description = "";
+                    object.type = "";
+                    object.maxLevel = 0;
+                }
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                if (message.name != null && message.hasOwnProperty("name"))
+                    object.name = message.name;
+                if (message.price != null && message.hasOwnProperty("price"))
+                    if (typeof message.price === "number")
+                        object.price = options.longs === String ? String(message.price) : message.price;
+                    else
+                        object.price = options.longs === String ? $util.Long.prototype.toString.call(message.price) : options.longs === Number ? new $util.LongBits(message.price.low >>> 0, message.price.high >>> 0).toNumber() : message.price;
+                if (message.description != null && message.hasOwnProperty("description"))
+                    object.description = message.description;
+                if (message.type != null && message.hasOwnProperty("type"))
+                    object.type = message.type;
+                if (message.maxLevel != null && message.hasOwnProperty("maxLevel"))
+                    object.maxLevel = message.maxLevel;
+                return object;
+            };
+    
+            /**
+             * Converts this BuildingBase to JSON.
+             * @function toJSON
+             * @memberof proto.BuildingBase
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            BuildingBase.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for BuildingBase
+             * @function getTypeUrl
+             * @memberof proto.BuildingBase
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            BuildingBase.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.BuildingBase";
+            };
+    
+            return BuildingBase;
+        })();
+    
+        proto.PropertyBuilding = (function() {
+    
+            /**
+             * Properties of a PropertyBuilding.
+             * @memberof proto
+             * @interface IPropertyBuilding
+             * @property {number|null} [id] PropertyBuilding id
+             * @property {number|Long|null} [positionX] PropertyBuilding positionX
+             * @property {number|Long|null} [positionY] PropertyBuilding positionY
+             * @property {number|null} [upgradeId] PropertyBuilding upgradeId
+             * @property {number|null} [areaId] PropertyBuilding areaId
+             * @property {number|null} [commonBuildingId] PropertyBuilding commonBuildingId
+             * @property {number|null} [currentLevel] PropertyBuilding currentLevel
+             */
+    
+            /**
+             * Constructs a new PropertyBuilding.
+             * @memberof proto
+             * @classdesc Represents a PropertyBuilding.
+             * @implements IPropertyBuilding
+             * @constructor
+             * @param {proto.IPropertyBuilding=} [properties] Properties to set
+             */
+            function PropertyBuilding(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * PropertyBuilding id.
+             * @member {number} id
+             * @memberof proto.PropertyBuilding
+             * @instance
+             */
+            PropertyBuilding.prototype.id = 0;
+    
+            /**
+             * PropertyBuilding positionX.
+             * @member {number|Long} positionX
+             * @memberof proto.PropertyBuilding
+             * @instance
+             */
+            PropertyBuilding.prototype.positionX = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+            /**
+             * PropertyBuilding positionY.
+             * @member {number|Long} positionY
+             * @memberof proto.PropertyBuilding
+             * @instance
+             */
+            PropertyBuilding.prototype.positionY = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+            /**
+             * PropertyBuilding upgradeId.
+             * @member {number} upgradeId
+             * @memberof proto.PropertyBuilding
+             * @instance
+             */
+            PropertyBuilding.prototype.upgradeId = 0;
+    
+            /**
+             * PropertyBuilding areaId.
+             * @member {number} areaId
+             * @memberof proto.PropertyBuilding
+             * @instance
+             */
+            PropertyBuilding.prototype.areaId = 0;
+    
+            /**
+             * PropertyBuilding commonBuildingId.
+             * @member {number} commonBuildingId
+             * @memberof proto.PropertyBuilding
+             * @instance
+             */
+            PropertyBuilding.prototype.commonBuildingId = 0;
+    
+            /**
+             * PropertyBuilding currentLevel.
+             * @member {number} currentLevel
+             * @memberof proto.PropertyBuilding
+             * @instance
+             */
+            PropertyBuilding.prototype.currentLevel = 0;
+    
+            /**
+             * Creates a new PropertyBuilding instance using the specified properties.
+             * @function create
+             * @memberof proto.PropertyBuilding
+             * @static
+             * @param {proto.IPropertyBuilding=} [properties] Properties to set
+             * @returns {proto.PropertyBuilding} PropertyBuilding instance
+             */
+            PropertyBuilding.create = function create(properties) {
+                return new PropertyBuilding(properties);
+            };
+    
+            /**
+             * Encodes the specified PropertyBuilding message. Does not implicitly {@link proto.PropertyBuilding.verify|verify} messages.
+             * @function encode
+             * @memberof proto.PropertyBuilding
+             * @static
+             * @param {proto.IPropertyBuilding} message PropertyBuilding message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PropertyBuilding.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                if (message.positionX != null && Object.hasOwnProperty.call(message, "positionX"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.positionX);
+                if (message.positionY != null && Object.hasOwnProperty.call(message, "positionY"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int64(message.positionY);
+                if (message.upgradeId != null && Object.hasOwnProperty.call(message, "upgradeId"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).int32(message.upgradeId);
+                if (message.areaId != null && Object.hasOwnProperty.call(message, "areaId"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.areaId);
+                if (message.commonBuildingId != null && Object.hasOwnProperty.call(message, "commonBuildingId"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).int32(message.commonBuildingId);
+                if (message.currentLevel != null && Object.hasOwnProperty.call(message, "currentLevel"))
+                    writer.uint32(/* id 7, wireType 0 =*/56).int32(message.currentLevel);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified PropertyBuilding message, length delimited. Does not implicitly {@link proto.PropertyBuilding.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.PropertyBuilding
+             * @static
+             * @param {proto.IPropertyBuilding} message PropertyBuilding message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PropertyBuilding.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a PropertyBuilding message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.PropertyBuilding
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.PropertyBuilding} PropertyBuilding
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PropertyBuilding.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.PropertyBuilding();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.id = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.positionX = reader.int64();
+                            break;
+                        }
+                    case 3: {
+                            message.positionY = reader.int64();
+                            break;
+                        }
+                    case 4: {
+                            message.upgradeId = reader.int32();
+                            break;
+                        }
+                    case 5: {
+                            message.areaId = reader.int32();
+                            break;
+                        }
+                    case 6: {
+                            message.commonBuildingId = reader.int32();
+                            break;
+                        }
+                    case 7: {
+                            message.currentLevel = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a PropertyBuilding message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.PropertyBuilding
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.PropertyBuilding} PropertyBuilding
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PropertyBuilding.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a PropertyBuilding message.
+             * @function verify
+             * @memberof proto.PropertyBuilding
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PropertyBuilding.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                if (message.positionX != null && message.hasOwnProperty("positionX"))
+                    if (!$util.isInteger(message.positionX) && !(message.positionX && $util.isInteger(message.positionX.low) && $util.isInteger(message.positionX.high)))
+                        return "positionX: integer|Long expected";
+                if (message.positionY != null && message.hasOwnProperty("positionY"))
+                    if (!$util.isInteger(message.positionY) && !(message.positionY && $util.isInteger(message.positionY.low) && $util.isInteger(message.positionY.high)))
+                        return "positionY: integer|Long expected";
+                if (message.upgradeId != null && message.hasOwnProperty("upgradeId"))
+                    if (!$util.isInteger(message.upgradeId))
+                        return "upgradeId: integer expected";
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    if (!$util.isInteger(message.areaId))
+                        return "areaId: integer expected";
+                if (message.commonBuildingId != null && message.hasOwnProperty("commonBuildingId"))
+                    if (!$util.isInteger(message.commonBuildingId))
+                        return "commonBuildingId: integer expected";
+                if (message.currentLevel != null && message.hasOwnProperty("currentLevel"))
+                    if (!$util.isInteger(message.currentLevel))
+                        return "currentLevel: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a PropertyBuilding message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.PropertyBuilding
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.PropertyBuilding} PropertyBuilding
+             */
+            PropertyBuilding.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.PropertyBuilding)
+                    return object;
+                var message = new $root.proto.PropertyBuilding();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                if (object.positionX != null)
+                    if ($util.Long)
+                        (message.positionX = $util.Long.fromValue(object.positionX)).unsigned = false;
+                    else if (typeof object.positionX === "string")
+                        message.positionX = parseInt(object.positionX, 10);
+                    else if (typeof object.positionX === "number")
+                        message.positionX = object.positionX;
+                    else if (typeof object.positionX === "object")
+                        message.positionX = new $util.LongBits(object.positionX.low >>> 0, object.positionX.high >>> 0).toNumber();
+                if (object.positionY != null)
+                    if ($util.Long)
+                        (message.positionY = $util.Long.fromValue(object.positionY)).unsigned = false;
+                    else if (typeof object.positionY === "string")
+                        message.positionY = parseInt(object.positionY, 10);
+                    else if (typeof object.positionY === "number")
+                        message.positionY = object.positionY;
+                    else if (typeof object.positionY === "object")
+                        message.positionY = new $util.LongBits(object.positionY.low >>> 0, object.positionY.high >>> 0).toNumber();
+                if (object.upgradeId != null)
+                    message.upgradeId = object.upgradeId | 0;
+                if (object.areaId != null)
+                    message.areaId = object.areaId | 0;
+                if (object.commonBuildingId != null)
+                    message.commonBuildingId = object.commonBuildingId | 0;
+                if (object.currentLevel != null)
+                    message.currentLevel = object.currentLevel | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a PropertyBuilding message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.PropertyBuilding
+             * @static
+             * @param {proto.PropertyBuilding} message PropertyBuilding
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PropertyBuilding.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.id = 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.positionX = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.positionX = options.longs === String ? "0" : 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.positionY = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.positionY = options.longs === String ? "0" : 0;
+                    object.upgradeId = 0;
+                    object.areaId = 0;
+                    object.commonBuildingId = 0;
+                    object.currentLevel = 0;
+                }
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                if (message.positionX != null && message.hasOwnProperty("positionX"))
+                    if (typeof message.positionX === "number")
+                        object.positionX = options.longs === String ? String(message.positionX) : message.positionX;
+                    else
+                        object.positionX = options.longs === String ? $util.Long.prototype.toString.call(message.positionX) : options.longs === Number ? new $util.LongBits(message.positionX.low >>> 0, message.positionX.high >>> 0).toNumber() : message.positionX;
+                if (message.positionY != null && message.hasOwnProperty("positionY"))
+                    if (typeof message.positionY === "number")
+                        object.positionY = options.longs === String ? String(message.positionY) : message.positionY;
+                    else
+                        object.positionY = options.longs === String ? $util.Long.prototype.toString.call(message.positionY) : options.longs === Number ? new $util.LongBits(message.positionY.low >>> 0, message.positionY.high >>> 0).toNumber() : message.positionY;
+                if (message.upgradeId != null && message.hasOwnProperty("upgradeId"))
+                    object.upgradeId = message.upgradeId;
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    object.areaId = message.areaId;
+                if (message.commonBuildingId != null && message.hasOwnProperty("commonBuildingId"))
+                    object.commonBuildingId = message.commonBuildingId;
+                if (message.currentLevel != null && message.hasOwnProperty("currentLevel"))
+                    object.currentLevel = message.currentLevel;
+                return object;
+            };
+    
+            /**
+             * Converts this PropertyBuilding to JSON.
+             * @function toJSON
+             * @memberof proto.PropertyBuilding
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PropertyBuilding.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for PropertyBuilding
+             * @function getTypeUrl
+             * @memberof proto.PropertyBuilding
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            PropertyBuilding.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.PropertyBuilding";
+            };
+    
+            return PropertyBuilding;
+        })();
+    
+        proto.TillLand = (function() {
+    
+            /**
+             * Properties of a TillLand.
+             * @memberof proto
+             * @interface ITillLand
+             * @property {number|null} [id] TillLand id
+             * @property {number|null} [index] TillLand index
+             * @property {boolean|null} [statusTilled] TillLand statusTilled
+             */
+    
+            /**
+             * Constructs a new TillLand.
+             * @memberof proto
+             * @classdesc Represents a TillLand.
+             * @implements ITillLand
+             * @constructor
+             * @param {proto.ITillLand=} [properties] Properties to set
+             */
+            function TillLand(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * TillLand id.
+             * @member {number} id
+             * @memberof proto.TillLand
+             * @instance
+             */
+            TillLand.prototype.id = 0;
+    
+            /**
+             * TillLand index.
+             * @member {number} index
+             * @memberof proto.TillLand
+             * @instance
+             */
+            TillLand.prototype.index = 0;
+    
+            /**
+             * TillLand statusTilled.
+             * @member {boolean} statusTilled
+             * @memberof proto.TillLand
+             * @instance
+             */
+            TillLand.prototype.statusTilled = false;
+    
+            /**
+             * Creates a new TillLand instance using the specified properties.
+             * @function create
+             * @memberof proto.TillLand
+             * @static
+             * @param {proto.ITillLand=} [properties] Properties to set
+             * @returns {proto.TillLand} TillLand instance
+             */
+            TillLand.create = function create(properties) {
+                return new TillLand(properties);
+            };
+    
+            /**
+             * Encodes the specified TillLand message. Does not implicitly {@link proto.TillLand.verify|verify} messages.
+             * @function encode
+             * @memberof proto.TillLand
+             * @static
+             * @param {proto.ITillLand} message TillLand message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            TillLand.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                if (message.index != null && Object.hasOwnProperty.call(message, "index"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.index);
+                if (message.statusTilled != null && Object.hasOwnProperty.call(message, "statusTilled"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).bool(message.statusTilled);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified TillLand message, length delimited. Does not implicitly {@link proto.TillLand.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.TillLand
+             * @static
+             * @param {proto.ITillLand} message TillLand message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            TillLand.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a TillLand message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.TillLand
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.TillLand} TillLand
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            TillLand.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.TillLand();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.id = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.index = reader.int32();
+                            break;
+                        }
+                    case 3: {
+                            message.statusTilled = reader.bool();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a TillLand message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.TillLand
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.TillLand} TillLand
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            TillLand.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a TillLand message.
+             * @function verify
+             * @memberof proto.TillLand
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            TillLand.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                if (message.index != null && message.hasOwnProperty("index"))
+                    if (!$util.isInteger(message.index))
+                        return "index: integer expected";
+                if (message.statusTilled != null && message.hasOwnProperty("statusTilled"))
+                    if (typeof message.statusTilled !== "boolean")
+                        return "statusTilled: boolean expected";
+                return null;
+            };
+    
+            /**
+             * Creates a TillLand message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.TillLand
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.TillLand} TillLand
+             */
+            TillLand.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.TillLand)
+                    return object;
+                var message = new $root.proto.TillLand();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                if (object.index != null)
+                    message.index = object.index | 0;
+                if (object.statusTilled != null)
+                    message.statusTilled = Boolean(object.statusTilled);
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a TillLand message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.TillLand
+             * @static
+             * @param {proto.TillLand} message TillLand
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            TillLand.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.id = 0;
+                    object.index = 0;
+                    object.statusTilled = false;
+                }
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                if (message.index != null && message.hasOwnProperty("index"))
+                    object.index = message.index;
+                if (message.statusTilled != null && message.hasOwnProperty("statusTilled"))
+                    object.statusTilled = message.statusTilled;
+                return object;
+            };
+    
+            /**
+             * Converts this TillLand to JSON.
+             * @function toJSON
+             * @memberof proto.TillLand
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            TillLand.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for TillLand
+             * @function getTypeUrl
+             * @memberof proto.TillLand
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            TillLand.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.TillLand";
+            };
+    
+            return TillLand;
+        })();
+    
+        proto.FarmBuilding = (function() {
+    
+            /**
+             * Properties of a FarmBuilding.
+             * @memberof proto
+             * @interface IFarmBuilding
+             * @property {proto.IBuildingBase|null} [base] FarmBuilding base
+             * @property {proto.IPropertyBuilding|null} [propertyBuilding] FarmBuilding propertyBuilding
+             */
+    
+            /**
+             * Constructs a new FarmBuilding.
+             * @memberof proto
+             * @classdesc Represents a FarmBuilding.
+             * @implements IFarmBuilding
+             * @constructor
+             * @param {proto.IFarmBuilding=} [properties] Properties to set
+             */
+            function FarmBuilding(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * FarmBuilding base.
+             * @member {proto.IBuildingBase|null|undefined} base
+             * @memberof proto.FarmBuilding
+             * @instance
+             */
+            FarmBuilding.prototype.base = null;
+    
+            /**
+             * FarmBuilding propertyBuilding.
+             * @member {proto.IPropertyBuilding|null|undefined} propertyBuilding
+             * @memberof proto.FarmBuilding
+             * @instance
+             */
+            FarmBuilding.prototype.propertyBuilding = null;
+    
+            /**
+             * Creates a new FarmBuilding instance using the specified properties.
+             * @function create
+             * @memberof proto.FarmBuilding
+             * @static
+             * @param {proto.IFarmBuilding=} [properties] Properties to set
+             * @returns {proto.FarmBuilding} FarmBuilding instance
+             */
+            FarmBuilding.create = function create(properties) {
+                return new FarmBuilding(properties);
+            };
+    
+            /**
+             * Encodes the specified FarmBuilding message. Does not implicitly {@link proto.FarmBuilding.verify|verify} messages.
+             * @function encode
+             * @memberof proto.FarmBuilding
+             * @static
+             * @param {proto.IFarmBuilding} message FarmBuilding message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            FarmBuilding.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.base != null && Object.hasOwnProperty.call(message, "base"))
+                    $root.proto.BuildingBase.encode(message.base, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.propertyBuilding != null && Object.hasOwnProperty.call(message, "propertyBuilding"))
+                    $root.proto.PropertyBuilding.encode(message.propertyBuilding, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified FarmBuilding message, length delimited. Does not implicitly {@link proto.FarmBuilding.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.FarmBuilding
+             * @static
+             * @param {proto.IFarmBuilding} message FarmBuilding message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            FarmBuilding.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a FarmBuilding message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.FarmBuilding
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.FarmBuilding} FarmBuilding
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            FarmBuilding.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.FarmBuilding();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.base = $root.proto.BuildingBase.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.propertyBuilding = $root.proto.PropertyBuilding.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a FarmBuilding message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.FarmBuilding
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.FarmBuilding} FarmBuilding
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            FarmBuilding.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a FarmBuilding message.
+             * @function verify
+             * @memberof proto.FarmBuilding
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            FarmBuilding.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.base != null && message.hasOwnProperty("base")) {
+                    var error = $root.proto.BuildingBase.verify(message.base);
+                    if (error)
+                        return "base." + error;
+                }
+                if (message.propertyBuilding != null && message.hasOwnProperty("propertyBuilding")) {
+                    var error = $root.proto.PropertyBuilding.verify(message.propertyBuilding);
+                    if (error)
+                        return "propertyBuilding." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a FarmBuilding message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.FarmBuilding
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.FarmBuilding} FarmBuilding
+             */
+            FarmBuilding.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.FarmBuilding)
+                    return object;
+                var message = new $root.proto.FarmBuilding();
+                if (object.base != null) {
+                    if (typeof object.base !== "object")
+                        throw TypeError(".proto.FarmBuilding.base: object expected");
+                    message.base = $root.proto.BuildingBase.fromObject(object.base);
+                }
+                if (object.propertyBuilding != null) {
+                    if (typeof object.propertyBuilding !== "object")
+                        throw TypeError(".proto.FarmBuilding.propertyBuilding: object expected");
+                    message.propertyBuilding = $root.proto.PropertyBuilding.fromObject(object.propertyBuilding);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a FarmBuilding message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.FarmBuilding
+             * @static
+             * @param {proto.FarmBuilding} message FarmBuilding
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            FarmBuilding.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.base = null;
+                    object.propertyBuilding = null;
+                }
+                if (message.base != null && message.hasOwnProperty("base"))
+                    object.base = $root.proto.BuildingBase.toObject(message.base, options);
+                if (message.propertyBuilding != null && message.hasOwnProperty("propertyBuilding"))
+                    object.propertyBuilding = $root.proto.PropertyBuilding.toObject(message.propertyBuilding, options);
+                return object;
+            };
+    
+            /**
+             * Converts this FarmBuilding to JSON.
+             * @function toJSON
+             * @memberof proto.FarmBuilding
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            FarmBuilding.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for FarmBuilding
+             * @function getTypeUrl
+             * @memberof proto.FarmBuilding
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            FarmBuilding.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.FarmBuilding";
+            };
+    
+            return FarmBuilding;
+        })();
+    
+        proto.PlantingLandBuilding = (function() {
+    
+            /**
+             * Properties of a PlantingLandBuilding.
+             * @memberof proto
+             * @interface IPlantingLandBuilding
+             * @property {proto.IBuildingBase|null} [base] PlantingLandBuilding base
+             * @property {proto.IPropertyBuilding|null} [propertyBuilding] PlantingLandBuilding propertyBuilding
+             * @property {Array.<proto.ITillLand>|null} [tillLand] PlantingLandBuilding tillLand
+             */
+    
+            /**
+             * Constructs a new PlantingLandBuilding.
+             * @memberof proto
+             * @classdesc Represents a PlantingLandBuilding.
+             * @implements IPlantingLandBuilding
+             * @constructor
+             * @param {proto.IPlantingLandBuilding=} [properties] Properties to set
+             */
+            function PlantingLandBuilding(properties) {
+                this.tillLand = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * PlantingLandBuilding base.
+             * @member {proto.IBuildingBase|null|undefined} base
+             * @memberof proto.PlantingLandBuilding
+             * @instance
+             */
+            PlantingLandBuilding.prototype.base = null;
+    
+            /**
+             * PlantingLandBuilding propertyBuilding.
+             * @member {proto.IPropertyBuilding|null|undefined} propertyBuilding
+             * @memberof proto.PlantingLandBuilding
+             * @instance
+             */
+            PlantingLandBuilding.prototype.propertyBuilding = null;
+    
+            /**
+             * PlantingLandBuilding tillLand.
+             * @member {Array.<proto.ITillLand>} tillLand
+             * @memberof proto.PlantingLandBuilding
+             * @instance
+             */
+            PlantingLandBuilding.prototype.tillLand = $util.emptyArray;
+    
+            /**
+             * Creates a new PlantingLandBuilding instance using the specified properties.
+             * @function create
+             * @memberof proto.PlantingLandBuilding
+             * @static
+             * @param {proto.IPlantingLandBuilding=} [properties] Properties to set
+             * @returns {proto.PlantingLandBuilding} PlantingLandBuilding instance
+             */
+            PlantingLandBuilding.create = function create(properties) {
+                return new PlantingLandBuilding(properties);
+            };
+    
+            /**
+             * Encodes the specified PlantingLandBuilding message. Does not implicitly {@link proto.PlantingLandBuilding.verify|verify} messages.
+             * @function encode
+             * @memberof proto.PlantingLandBuilding
+             * @static
+             * @param {proto.IPlantingLandBuilding} message PlantingLandBuilding message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PlantingLandBuilding.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.base != null && Object.hasOwnProperty.call(message, "base"))
+                    $root.proto.BuildingBase.encode(message.base, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.propertyBuilding != null && Object.hasOwnProperty.call(message, "propertyBuilding"))
+                    $root.proto.PropertyBuilding.encode(message.propertyBuilding, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.tillLand != null && message.tillLand.length)
+                    for (var i = 0; i < message.tillLand.length; ++i)
+                        $root.proto.TillLand.encode(message.tillLand[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified PlantingLandBuilding message, length delimited. Does not implicitly {@link proto.PlantingLandBuilding.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.PlantingLandBuilding
+             * @static
+             * @param {proto.IPlantingLandBuilding} message PlantingLandBuilding message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PlantingLandBuilding.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a PlantingLandBuilding message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.PlantingLandBuilding
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.PlantingLandBuilding} PlantingLandBuilding
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PlantingLandBuilding.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.PlantingLandBuilding();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.base = $root.proto.BuildingBase.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.propertyBuilding = $root.proto.PropertyBuilding.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 3: {
+                            if (!(message.tillLand && message.tillLand.length))
+                                message.tillLand = [];
+                            message.tillLand.push($root.proto.TillLand.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a PlantingLandBuilding message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.PlantingLandBuilding
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.PlantingLandBuilding} PlantingLandBuilding
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PlantingLandBuilding.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a PlantingLandBuilding message.
+             * @function verify
+             * @memberof proto.PlantingLandBuilding
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PlantingLandBuilding.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.base != null && message.hasOwnProperty("base")) {
+                    var error = $root.proto.BuildingBase.verify(message.base);
+                    if (error)
+                        return "base." + error;
+                }
+                if (message.propertyBuilding != null && message.hasOwnProperty("propertyBuilding")) {
+                    var error = $root.proto.PropertyBuilding.verify(message.propertyBuilding);
+                    if (error)
+                        return "propertyBuilding." + error;
+                }
+                if (message.tillLand != null && message.hasOwnProperty("tillLand")) {
+                    if (!Array.isArray(message.tillLand))
+                        return "tillLand: array expected";
+                    for (var i = 0; i < message.tillLand.length; ++i) {
+                        var error = $root.proto.TillLand.verify(message.tillLand[i]);
+                        if (error)
+                            return "tillLand." + error;
+                    }
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a PlantingLandBuilding message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.PlantingLandBuilding
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.PlantingLandBuilding} PlantingLandBuilding
+             */
+            PlantingLandBuilding.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.PlantingLandBuilding)
+                    return object;
+                var message = new $root.proto.PlantingLandBuilding();
+                if (object.base != null) {
+                    if (typeof object.base !== "object")
+                        throw TypeError(".proto.PlantingLandBuilding.base: object expected");
+                    message.base = $root.proto.BuildingBase.fromObject(object.base);
+                }
+                if (object.propertyBuilding != null) {
+                    if (typeof object.propertyBuilding !== "object")
+                        throw TypeError(".proto.PlantingLandBuilding.propertyBuilding: object expected");
+                    message.propertyBuilding = $root.proto.PropertyBuilding.fromObject(object.propertyBuilding);
+                }
+                if (object.tillLand) {
+                    if (!Array.isArray(object.tillLand))
+                        throw TypeError(".proto.PlantingLandBuilding.tillLand: array expected");
+                    message.tillLand = [];
+                    for (var i = 0; i < object.tillLand.length; ++i) {
+                        if (typeof object.tillLand[i] !== "object")
+                            throw TypeError(".proto.PlantingLandBuilding.tillLand: object expected");
+                        message.tillLand[i] = $root.proto.TillLand.fromObject(object.tillLand[i]);
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a PlantingLandBuilding message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.PlantingLandBuilding
+             * @static
+             * @param {proto.PlantingLandBuilding} message PlantingLandBuilding
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PlantingLandBuilding.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.tillLand = [];
+                if (options.defaults) {
+                    object.base = null;
+                    object.propertyBuilding = null;
+                }
+                if (message.base != null && message.hasOwnProperty("base"))
+                    object.base = $root.proto.BuildingBase.toObject(message.base, options);
+                if (message.propertyBuilding != null && message.hasOwnProperty("propertyBuilding"))
+                    object.propertyBuilding = $root.proto.PropertyBuilding.toObject(message.propertyBuilding, options);
+                if (message.tillLand && message.tillLand.length) {
+                    object.tillLand = [];
+                    for (var j = 0; j < message.tillLand.length; ++j)
+                        object.tillLand[j] = $root.proto.TillLand.toObject(message.tillLand[j], options);
+                }
+                return object;
+            };
+    
+            /**
+             * Converts this PlantingLandBuilding to JSON.
+             * @function toJSON
+             * @memberof proto.PlantingLandBuilding
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PlantingLandBuilding.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for PlantingLandBuilding
+             * @function getTypeUrl
+             * @memberof proto.PlantingLandBuilding
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            PlantingLandBuilding.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.PlantingLandBuilding";
+            };
+    
+            return PlantingLandBuilding;
+        })();
+    
+        proto.Building = (function() {
+    
+            /**
+             * Properties of a Building.
+             * @memberof proto
+             * @interface IBuilding
+             * @property {proto.IFarmBuilding|null} [farmBuilding] Building farmBuilding
+             * @property {proto.IPlantingLandBuilding|null} [plantingLandBuilding] Building plantingLandBuilding
+             */
+    
+            /**
+             * Constructs a new Building.
+             * @memberof proto
+             * @classdesc Represents a Building.
+             * @implements IBuilding
+             * @constructor
+             * @param {proto.IBuilding=} [properties] Properties to set
+             */
+            function Building(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * Building farmBuilding.
+             * @member {proto.IFarmBuilding|null|undefined} farmBuilding
+             * @memberof proto.Building
+             * @instance
+             */
+            Building.prototype.farmBuilding = null;
+    
+            /**
+             * Building plantingLandBuilding.
+             * @member {proto.IPlantingLandBuilding|null|undefined} plantingLandBuilding
+             * @memberof proto.Building
+             * @instance
+             */
+            Building.prototype.plantingLandBuilding = null;
+    
+            // OneOf field names bound to virtual getters and setters
+            var $oneOfFields;
+    
+            /**
+             * Building data.
+             * @member {"farmBuilding"|"plantingLandBuilding"|undefined} data
+             * @memberof proto.Building
+             * @instance
+             */
+            Object.defineProperty(Building.prototype, "data", {
+                get: $util.oneOfGetter($oneOfFields = ["farmBuilding", "plantingLandBuilding"]),
+                set: $util.oneOfSetter($oneOfFields)
+            });
+    
+            /**
+             * Creates a new Building instance using the specified properties.
+             * @function create
+             * @memberof proto.Building
+             * @static
+             * @param {proto.IBuilding=} [properties] Properties to set
+             * @returns {proto.Building} Building instance
+             */
+            Building.create = function create(properties) {
+                return new Building(properties);
+            };
+    
+            /**
+             * Encodes the specified Building message. Does not implicitly {@link proto.Building.verify|verify} messages.
+             * @function encode
+             * @memberof proto.Building
+             * @static
+             * @param {proto.IBuilding} message Building message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Building.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.farmBuilding != null && Object.hasOwnProperty.call(message, "farmBuilding"))
+                    $root.proto.FarmBuilding.encode(message.farmBuilding, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.plantingLandBuilding != null && Object.hasOwnProperty.call(message, "plantingLandBuilding"))
+                    $root.proto.PlantingLandBuilding.encode(message.plantingLandBuilding, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified Building message, length delimited. Does not implicitly {@link proto.Building.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.Building
+             * @static
+             * @param {proto.IBuilding} message Building message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Building.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a Building message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.Building
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.Building} Building
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Building.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Building();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.farmBuilding = $root.proto.FarmBuilding.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.plantingLandBuilding = $root.proto.PlantingLandBuilding.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a Building message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.Building
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.Building} Building
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Building.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a Building message.
+             * @function verify
+             * @memberof proto.Building
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Building.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                var properties = {};
+                if (message.farmBuilding != null && message.hasOwnProperty("farmBuilding")) {
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.FarmBuilding.verify(message.farmBuilding);
+                        if (error)
+                            return "farmBuilding." + error;
+                    }
+                }
+                if (message.plantingLandBuilding != null && message.hasOwnProperty("plantingLandBuilding")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.PlantingLandBuilding.verify(message.plantingLandBuilding);
+                        if (error)
+                            return "plantingLandBuilding." + error;
+                    }
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a Building message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.Building
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.Building} Building
+             */
+            Building.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.Building)
+                    return object;
+                var message = new $root.proto.Building();
+                if (object.farmBuilding != null) {
+                    if (typeof object.farmBuilding !== "object")
+                        throw TypeError(".proto.Building.farmBuilding: object expected");
+                    message.farmBuilding = $root.proto.FarmBuilding.fromObject(object.farmBuilding);
+                }
+                if (object.plantingLandBuilding != null) {
+                    if (typeof object.plantingLandBuilding !== "object")
+                        throw TypeError(".proto.Building.plantingLandBuilding: object expected");
+                    message.plantingLandBuilding = $root.proto.PlantingLandBuilding.fromObject(object.plantingLandBuilding);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a Building message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.Building
+             * @static
+             * @param {proto.Building} message Building
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Building.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (message.farmBuilding != null && message.hasOwnProperty("farmBuilding")) {
+                    object.farmBuilding = $root.proto.FarmBuilding.toObject(message.farmBuilding, options);
+                    if (options.oneofs)
+                        object.data = "farmBuilding";
+                }
+                if (message.plantingLandBuilding != null && message.hasOwnProperty("plantingLandBuilding")) {
+                    object.plantingLandBuilding = $root.proto.PlantingLandBuilding.toObject(message.plantingLandBuilding, options);
+                    if (options.oneofs)
+                        object.data = "plantingLandBuilding";
+                }
+                return object;
+            };
+    
+            /**
+             * Converts this Building to JSON.
+             * @function toJSON
+             * @memberof proto.Building
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Building.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for Building
+             * @function getTypeUrl
+             * @memberof proto.Building
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            Building.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.Building";
+            };
+    
+            return Building;
+        })();
+    
+        proto.BuildingItems = (function() {
+    
+            /**
+             * Properties of a BuildingItems.
+             * @memberof proto
+             * @interface IBuildingItems
+             * @property {Array.<proto.IBuilding>|null} [building] BuildingItems building
+             */
+    
+            /**
+             * Constructs a new BuildingItems.
+             * @memberof proto
+             * @classdesc Represents a BuildingItems.
+             * @implements IBuildingItems
+             * @constructor
+             * @param {proto.IBuildingItems=} [properties] Properties to set
+             */
+            function BuildingItems(properties) {
+                this.building = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * BuildingItems building.
+             * @member {Array.<proto.IBuilding>} building
+             * @memberof proto.BuildingItems
+             * @instance
+             */
+            BuildingItems.prototype.building = $util.emptyArray;
+    
+            /**
+             * Creates a new BuildingItems instance using the specified properties.
+             * @function create
+             * @memberof proto.BuildingItems
+             * @static
+             * @param {proto.IBuildingItems=} [properties] Properties to set
+             * @returns {proto.BuildingItems} BuildingItems instance
+             */
+            BuildingItems.create = function create(properties) {
+                return new BuildingItems(properties);
+            };
+    
+            /**
+             * Encodes the specified BuildingItems message. Does not implicitly {@link proto.BuildingItems.verify|verify} messages.
+             * @function encode
+             * @memberof proto.BuildingItems
+             * @static
+             * @param {proto.IBuildingItems} message BuildingItems message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BuildingItems.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.building != null && message.building.length)
+                    for (var i = 0; i < message.building.length; ++i)
+                        $root.proto.Building.encode(message.building[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified BuildingItems message, length delimited. Does not implicitly {@link proto.BuildingItems.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.BuildingItems
+             * @static
+             * @param {proto.IBuildingItems} message BuildingItems message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            BuildingItems.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a BuildingItems message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.BuildingItems
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.BuildingItems} BuildingItems
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BuildingItems.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.BuildingItems();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            if (!(message.building && message.building.length))
+                                message.building = [];
+                            message.building.push($root.proto.Building.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a BuildingItems message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.BuildingItems
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.BuildingItems} BuildingItems
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            BuildingItems.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a BuildingItems message.
+             * @function verify
+             * @memberof proto.BuildingItems
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            BuildingItems.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.building != null && message.hasOwnProperty("building")) {
+                    if (!Array.isArray(message.building))
+                        return "building: array expected";
+                    for (var i = 0; i < message.building.length; ++i) {
+                        var error = $root.proto.Building.verify(message.building[i]);
+                        if (error)
+                            return "building." + error;
+                    }
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a BuildingItems message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.BuildingItems
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.BuildingItems} BuildingItems
+             */
+            BuildingItems.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.BuildingItems)
+                    return object;
+                var message = new $root.proto.BuildingItems();
+                if (object.building) {
+                    if (!Array.isArray(object.building))
+                        throw TypeError(".proto.BuildingItems.building: array expected");
+                    message.building = [];
+                    for (var i = 0; i < object.building.length; ++i) {
+                        if (typeof object.building[i] !== "object")
+                            throw TypeError(".proto.BuildingItems.building: object expected");
+                        message.building[i] = $root.proto.Building.fromObject(object.building[i]);
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a BuildingItems message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.BuildingItems
+             * @static
+             * @param {proto.BuildingItems} message BuildingItems
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            BuildingItems.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.building = [];
+                if (message.building && message.building.length) {
+                    object.building = [];
+                    for (var j = 0; j < message.building.length; ++j)
+                        object.building[j] = $root.proto.Building.toObject(message.building[j], options);
+                }
+                return object;
+            };
+    
+            /**
+             * Converts this BuildingItems to JSON.
+             * @function toJSON
+             * @memberof proto.BuildingItems
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            BuildingItems.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for BuildingItems
+             * @function getTypeUrl
+             * @memberof proto.BuildingItems
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            BuildingItems.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.BuildingItems";
+            };
+    
+            return BuildingItems;
+        })();
+    
+        proto.ResLoadItemsOfFarm = (function() {
+    
+            /**
+             * Properties of a ResLoadItemsOfFarm.
+             * @memberof proto
+             * @interface IResLoadItemsOfFarm
+             * @property {proto.IBuildingItems|null} [buildingItems] ResLoadItemsOfFarm buildingItems
+             */
+    
+            /**
+             * Constructs a new ResLoadItemsOfFarm.
+             * @memberof proto
+             * @classdesc Represents a ResLoadItemsOfFarm.
+             * @implements IResLoadItemsOfFarm
+             * @constructor
+             * @param {proto.IResLoadItemsOfFarm=} [properties] Properties to set
+             */
+            function ResLoadItemsOfFarm(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResLoadItemsOfFarm buildingItems.
+             * @member {proto.IBuildingItems|null|undefined} buildingItems
+             * @memberof proto.ResLoadItemsOfFarm
+             * @instance
+             */
+            ResLoadItemsOfFarm.prototype.buildingItems = null;
+    
+            /**
+             * Creates a new ResLoadItemsOfFarm instance using the specified properties.
+             * @function create
+             * @memberof proto.ResLoadItemsOfFarm
+             * @static
+             * @param {proto.IResLoadItemsOfFarm=} [properties] Properties to set
+             * @returns {proto.ResLoadItemsOfFarm} ResLoadItemsOfFarm instance
+             */
+            ResLoadItemsOfFarm.create = function create(properties) {
+                return new ResLoadItemsOfFarm(properties);
+            };
+    
+            /**
+             * Encodes the specified ResLoadItemsOfFarm message. Does not implicitly {@link proto.ResLoadItemsOfFarm.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResLoadItemsOfFarm
+             * @static
+             * @param {proto.IResLoadItemsOfFarm} message ResLoadItemsOfFarm message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResLoadItemsOfFarm.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.buildingItems != null && Object.hasOwnProperty.call(message, "buildingItems"))
+                    $root.proto.BuildingItems.encode(message.buildingItems, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResLoadItemsOfFarm message, length delimited. Does not implicitly {@link proto.ResLoadItemsOfFarm.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResLoadItemsOfFarm
+             * @static
+             * @param {proto.IResLoadItemsOfFarm} message ResLoadItemsOfFarm message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResLoadItemsOfFarm.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResLoadItemsOfFarm message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResLoadItemsOfFarm
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResLoadItemsOfFarm} ResLoadItemsOfFarm
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResLoadItemsOfFarm.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResLoadItemsOfFarm();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.buildingItems = $root.proto.BuildingItems.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResLoadItemsOfFarm message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResLoadItemsOfFarm
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResLoadItemsOfFarm} ResLoadItemsOfFarm
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResLoadItemsOfFarm.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResLoadItemsOfFarm message.
+             * @function verify
+             * @memberof proto.ResLoadItemsOfFarm
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResLoadItemsOfFarm.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.buildingItems != null && message.hasOwnProperty("buildingItems")) {
+                    var error = $root.proto.BuildingItems.verify(message.buildingItems);
+                    if (error)
+                        return "buildingItems." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a ResLoadItemsOfFarm message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResLoadItemsOfFarm
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResLoadItemsOfFarm} ResLoadItemsOfFarm
+             */
+            ResLoadItemsOfFarm.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResLoadItemsOfFarm)
+                    return object;
+                var message = new $root.proto.ResLoadItemsOfFarm();
+                if (object.buildingItems != null) {
+                    if (typeof object.buildingItems !== "object")
+                        throw TypeError(".proto.ResLoadItemsOfFarm.buildingItems: object expected");
+                    message.buildingItems = $root.proto.BuildingItems.fromObject(object.buildingItems);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResLoadItemsOfFarm message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResLoadItemsOfFarm
+             * @static
+             * @param {proto.ResLoadItemsOfFarm} message ResLoadItemsOfFarm
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResLoadItemsOfFarm.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.buildingItems = null;
+                if (message.buildingItems != null && message.hasOwnProperty("buildingItems"))
+                    object.buildingItems = $root.proto.BuildingItems.toObject(message.buildingItems, options);
+                return object;
+            };
+    
+            /**
+             * Converts this ResLoadItemsOfFarm to JSON.
+             * @function toJSON
+             * @memberof proto.ResLoadItemsOfFarm
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResLoadItemsOfFarm.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResLoadItemsOfFarm
+             * @function getTypeUrl
+             * @memberof proto.ResLoadItemsOfFarm
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResLoadItemsOfFarm.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResLoadItemsOfFarm";
+            };
+    
+            return ResLoadItemsOfFarm;
         })();
     
         return proto;

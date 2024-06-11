@@ -1096,6 +1096,36 @@ public final class Proto {
      */
     vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResOtherPlayerLeaveAreaOrBuilder getResOtherPlayerLeaveAreaOrBuilder();
 
+    /**
+     * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+     * @return Whether the reqLoadItemsOfFarm field is set.
+     */
+    boolean hasReqLoadItemsOfFarm();
+    /**
+     * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+     * @return The reqLoadItemsOfFarm.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm getReqLoadItemsOfFarm();
+    /**
+     * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarmOrBuilder getReqLoadItemsOfFarmOrBuilder();
+
+    /**
+     * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+     * @return Whether the resLoadItemsOfFarm field is set.
+     */
+    boolean hasResLoadItemsOfFarm();
+    /**
+     * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+     * @return The resLoadItemsOfFarm.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm getResLoadItemsOfFarm();
+    /**
+     * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarmOrBuilder getResLoadItemsOfFarmOrBuilder();
+
     vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Packet.DataCase getDataCase();
   }
   /**
@@ -1161,6 +1191,8 @@ public final class Proto {
       REQMOVING(20),
       RESMOVING(21),
       RESOTHERPLAYERLEAVEAREA(22),
+      REQLOADITEMSOFFARM(23),
+      RESLOADITEMSOFFARM(24),
       DATA_NOT_SET(0);
       private final int value;
       private DataCase(int value) {
@@ -1200,6 +1232,8 @@ public final class Proto {
           case 20: return REQMOVING;
           case 21: return RESMOVING;
           case 22: return RESOTHERPLAYERLEAVEAREA;
+          case 23: return REQLOADITEMSOFFARM;
+          case 24: return RESLOADITEMSOFFARM;
           case 0: return DATA_NOT_SET;
           default: return null;
         }
@@ -1897,6 +1931,68 @@ public final class Proto {
       return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResOtherPlayerLeaveArea.getDefaultInstance();
     }
 
+    public static final int REQLOADITEMSOFFARM_FIELD_NUMBER = 23;
+    /**
+     * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+     * @return Whether the reqLoadItemsOfFarm field is set.
+     */
+    @java.lang.Override
+    public boolean hasReqLoadItemsOfFarm() {
+      return dataCase_ == 23;
+    }
+    /**
+     * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+     * @return The reqLoadItemsOfFarm.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm getReqLoadItemsOfFarm() {
+      if (dataCase_ == 23) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarmOrBuilder getReqLoadItemsOfFarmOrBuilder() {
+      if (dataCase_ == 23) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.getDefaultInstance();
+    }
+
+    public static final int RESLOADITEMSOFFARM_FIELD_NUMBER = 24;
+    /**
+     * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+     * @return Whether the resLoadItemsOfFarm field is set.
+     */
+    @java.lang.Override
+    public boolean hasResLoadItemsOfFarm() {
+      return dataCase_ == 24;
+    }
+    /**
+     * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+     * @return The resLoadItemsOfFarm.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm getResLoadItemsOfFarm() {
+      if (dataCase_ == 24) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarmOrBuilder getResLoadItemsOfFarmOrBuilder() {
+      if (dataCase_ == 24) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.getDefaultInstance();
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -1976,6 +2072,12 @@ public final class Proto {
       }
       if (dataCase_ == 22) {
         output.writeMessage(22, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResOtherPlayerLeaveArea) data_);
+      }
+      if (dataCase_ == 23) {
+        output.writeMessage(23, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm) data_);
+      }
+      if (dataCase_ == 24) {
+        output.writeMessage(24, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm) data_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2073,6 +2175,14 @@ public final class Proto {
       if (dataCase_ == 22) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(22, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResOtherPlayerLeaveArea) data_);
+      }
+      if (dataCase_ == 23) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(23, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm) data_);
+      }
+      if (dataCase_ == 24) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(24, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm) data_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -2179,6 +2289,14 @@ public final class Proto {
           if (!getResOtherPlayerLeaveArea()
               .equals(other.getResOtherPlayerLeaveArea())) return false;
           break;
+        case 23:
+          if (!getReqLoadItemsOfFarm()
+              .equals(other.getReqLoadItemsOfFarm())) return false;
+          break;
+        case 24:
+          if (!getResLoadItemsOfFarm()
+              .equals(other.getResLoadItemsOfFarm())) return false;
+          break;
         case 0:
         default:
       }
@@ -2281,6 +2399,14 @@ public final class Proto {
         case 22:
           hash = (37 * hash) + RESOTHERPLAYERLEAVEAREA_FIELD_NUMBER;
           hash = (53 * hash) + getResOtherPlayerLeaveArea().hashCode();
+          break;
+        case 23:
+          hash = (37 * hash) + REQLOADITEMSOFFARM_FIELD_NUMBER;
+          hash = (53 * hash) + getReqLoadItemsOfFarm().hashCode();
+          break;
+        case 24:
+          hash = (37 * hash) + RESLOADITEMSOFFARM_FIELD_NUMBER;
+          hash = (53 * hash) + getResLoadItemsOfFarm().hashCode();
           break;
         case 0:
         default:
@@ -2480,6 +2606,12 @@ public final class Proto {
         if (resOtherPlayerLeaveAreaBuilder_ != null) {
           resOtherPlayerLeaveAreaBuilder_.clear();
         }
+        if (reqLoadItemsOfFarmBuilder_ != null) {
+          reqLoadItemsOfFarmBuilder_.clear();
+        }
+        if (resLoadItemsOfFarmBuilder_ != null) {
+          resLoadItemsOfFarmBuilder_.clear();
+        }
         dataCase_ = 0;
         data_ = null;
         return this;
@@ -2609,6 +2741,14 @@ public final class Proto {
             resOtherPlayerLeaveAreaBuilder_ != null) {
           result.data_ = resOtherPlayerLeaveAreaBuilder_.build();
         }
+        if (dataCase_ == 23 &&
+            reqLoadItemsOfFarmBuilder_ != null) {
+          result.data_ = reqLoadItemsOfFarmBuilder_.build();
+        }
+        if (dataCase_ == 24 &&
+            resLoadItemsOfFarmBuilder_ != null) {
+          result.data_ = resLoadItemsOfFarmBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -2710,6 +2850,14 @@ public final class Proto {
           }
           case RESOTHERPLAYERLEAVEAREA: {
             mergeResOtherPlayerLeaveArea(other.getResOtherPlayerLeaveArea());
+            break;
+          }
+          case REQLOADITEMSOFFARM: {
+            mergeReqLoadItemsOfFarm(other.getReqLoadItemsOfFarm());
+            break;
+          }
+          case RESLOADITEMSOFFARM: {
+            mergeResLoadItemsOfFarm(other.getResLoadItemsOfFarm());
             break;
           }
           case DATA_NOT_SET: {
@@ -2896,6 +3044,20 @@ public final class Proto {
                 dataCase_ = 22;
                 break;
               } // case 178
+              case 186: {
+                input.readMessage(
+                    getReqLoadItemsOfFarmFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 23;
+                break;
+              } // case 186
+              case 194: {
+                input.readMessage(
+                    getResLoadItemsOfFarmFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 24;
+                break;
+              } // case 194
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -6051,6 +6213,290 @@ public final class Proto {
         onChanged();
         return resOtherPlayerLeaveAreaBuilder_;
       }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarmOrBuilder> reqLoadItemsOfFarmBuilder_;
+      /**
+       * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+       * @return Whether the reqLoadItemsOfFarm field is set.
+       */
+      @java.lang.Override
+      public boolean hasReqLoadItemsOfFarm() {
+        return dataCase_ == 23;
+      }
+      /**
+       * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+       * @return The reqLoadItemsOfFarm.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm getReqLoadItemsOfFarm() {
+        if (reqLoadItemsOfFarmBuilder_ == null) {
+          if (dataCase_ == 23) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.getDefaultInstance();
+        } else {
+          if (dataCase_ == 23) {
+            return reqLoadItemsOfFarmBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+       */
+      public Builder setReqLoadItemsOfFarm(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm value) {
+        if (reqLoadItemsOfFarmBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          reqLoadItemsOfFarmBuilder_.setMessage(value);
+        }
+        dataCase_ = 23;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+       */
+      public Builder setReqLoadItemsOfFarm(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.Builder builderForValue) {
+        if (reqLoadItemsOfFarmBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          reqLoadItemsOfFarmBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 23;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+       */
+      public Builder mergeReqLoadItemsOfFarm(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm value) {
+        if (reqLoadItemsOfFarmBuilder_ == null) {
+          if (dataCase_ == 23 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 23) {
+            reqLoadItemsOfFarmBuilder_.mergeFrom(value);
+          } else {
+            reqLoadItemsOfFarmBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 23;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+       */
+      public Builder clearReqLoadItemsOfFarm() {
+        if (reqLoadItemsOfFarmBuilder_ == null) {
+          if (dataCase_ == 23) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 23) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          reqLoadItemsOfFarmBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.Builder getReqLoadItemsOfFarmBuilder() {
+        return getReqLoadItemsOfFarmFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarmOrBuilder getReqLoadItemsOfFarmOrBuilder() {
+        if ((dataCase_ == 23) && (reqLoadItemsOfFarmBuilder_ != null)) {
+          return reqLoadItemsOfFarmBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 23) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm = 23;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarmOrBuilder> 
+          getReqLoadItemsOfFarmFieldBuilder() {
+        if (reqLoadItemsOfFarmBuilder_ == null) {
+          if (!(dataCase_ == 23)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.getDefaultInstance();
+          }
+          reqLoadItemsOfFarmBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarmOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 23;
+        onChanged();
+        return reqLoadItemsOfFarmBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarmOrBuilder> resLoadItemsOfFarmBuilder_;
+      /**
+       * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+       * @return Whether the resLoadItemsOfFarm field is set.
+       */
+      @java.lang.Override
+      public boolean hasResLoadItemsOfFarm() {
+        return dataCase_ == 24;
+      }
+      /**
+       * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+       * @return The resLoadItemsOfFarm.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm getResLoadItemsOfFarm() {
+        if (resLoadItemsOfFarmBuilder_ == null) {
+          if (dataCase_ == 24) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.getDefaultInstance();
+        } else {
+          if (dataCase_ == 24) {
+            return resLoadItemsOfFarmBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+       */
+      public Builder setResLoadItemsOfFarm(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm value) {
+        if (resLoadItemsOfFarmBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          resLoadItemsOfFarmBuilder_.setMessage(value);
+        }
+        dataCase_ = 24;
+        return this;
+      }
+      /**
+       * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+       */
+      public Builder setResLoadItemsOfFarm(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.Builder builderForValue) {
+        if (resLoadItemsOfFarmBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          resLoadItemsOfFarmBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 24;
+        return this;
+      }
+      /**
+       * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+       */
+      public Builder mergeResLoadItemsOfFarm(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm value) {
+        if (resLoadItemsOfFarmBuilder_ == null) {
+          if (dataCase_ == 24 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 24) {
+            resLoadItemsOfFarmBuilder_.mergeFrom(value);
+          } else {
+            resLoadItemsOfFarmBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 24;
+        return this;
+      }
+      /**
+       * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+       */
+      public Builder clearResLoadItemsOfFarm() {
+        if (resLoadItemsOfFarmBuilder_ == null) {
+          if (dataCase_ == 24) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 24) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          resLoadItemsOfFarmBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.Builder getResLoadItemsOfFarmBuilder() {
+        return getResLoadItemsOfFarmFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarmOrBuilder getResLoadItemsOfFarmOrBuilder() {
+        if ((dataCase_ == 24) && (resLoadItemsOfFarmBuilder_ != null)) {
+          return resLoadItemsOfFarmBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 24) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResLoadItemsOfFarm resLoadItemsOfFarm = 24;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarmOrBuilder> 
+          getResLoadItemsOfFarmFieldBuilder() {
+        if (resLoadItemsOfFarmBuilder_ == null) {
+          if (!(dataCase_ == 24)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.getDefaultInstance();
+          }
+          resLoadItemsOfFarmBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarmOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 24;
+        onChanged();
+        return resLoadItemsOfFarmBuilder_;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -6198,16 +6644,34 @@ public final class Proto {
     long getDiamond();
 
     /**
-     * <code>int32 agencyLevel = 10;</code>
-     * @return The agencyLevel.
+     * <code>int32 level = 10;</code>
+     * @return The level.
      */
-    int getAgencyLevel();
+    int getLevel();
 
     /**
      * <code>int32 hasCharacter = 11;</code>
      * @return The hasCharacter.
      */
     int getHasCharacter();
+
+    /**
+     * <code>int32 characterId = 12;</code>
+     * @return The characterId.
+     */
+    int getCharacterId();
+
+    /**
+     * <code>int32 areaId = 13;</code>
+     * @return The areaId.
+     */
+    int getAreaId();
+
+    /**
+     * <code>int32 isNewAccount = 14;</code>
+     * @return The isNewAccount.
+     */
+    int getIsNewAccount();
   }
   /**
    * <pre>
@@ -6463,15 +6927,15 @@ public final class Proto {
       return diamond_;
     }
 
-    public static final int AGENCYLEVEL_FIELD_NUMBER = 10;
-    private int agencyLevel_ = 0;
+    public static final int LEVEL_FIELD_NUMBER = 10;
+    private int level_ = 0;
     /**
-     * <code>int32 agencyLevel = 10;</code>
-     * @return The agencyLevel.
+     * <code>int32 level = 10;</code>
+     * @return The level.
      */
     @java.lang.Override
-    public int getAgencyLevel() {
-      return agencyLevel_;
+    public int getLevel() {
+      return level_;
     }
 
     public static final int HASCHARACTER_FIELD_NUMBER = 11;
@@ -6483,6 +6947,39 @@ public final class Proto {
     @java.lang.Override
     public int getHasCharacter() {
       return hasCharacter_;
+    }
+
+    public static final int CHARACTERID_FIELD_NUMBER = 12;
+    private int characterId_ = 0;
+    /**
+     * <code>int32 characterId = 12;</code>
+     * @return The characterId.
+     */
+    @java.lang.Override
+    public int getCharacterId() {
+      return characterId_;
+    }
+
+    public static final int AREAID_FIELD_NUMBER = 13;
+    private int areaId_ = 0;
+    /**
+     * <code>int32 areaId = 13;</code>
+     * @return The areaId.
+     */
+    @java.lang.Override
+    public int getAreaId() {
+      return areaId_;
+    }
+
+    public static final int ISNEWACCOUNT_FIELD_NUMBER = 14;
+    private int isNewAccount_ = 0;
+    /**
+     * <code>int32 isNewAccount = 14;</code>
+     * @return The isNewAccount.
+     */
+    @java.lang.Override
+    public int getIsNewAccount() {
+      return isNewAccount_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -6526,11 +7023,20 @@ public final class Proto {
       if (diamond_ != 0L) {
         output.writeInt64(9, diamond_);
       }
-      if (agencyLevel_ != 0) {
-        output.writeInt32(10, agencyLevel_);
+      if (level_ != 0) {
+        output.writeInt32(10, level_);
       }
       if (hasCharacter_ != 0) {
         output.writeInt32(11, hasCharacter_);
+      }
+      if (characterId_ != 0) {
+        output.writeInt32(12, characterId_);
+      }
+      if (areaId_ != 0) {
+        output.writeInt32(13, areaId_);
+      }
+      if (isNewAccount_ != 0) {
+        output.writeInt32(14, isNewAccount_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -6573,13 +7079,25 @@ public final class Proto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(9, diamond_);
       }
-      if (agencyLevel_ != 0) {
+      if (level_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(10, agencyLevel_);
+          .computeInt32Size(10, level_);
       }
       if (hasCharacter_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(11, hasCharacter_);
+      }
+      if (characterId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(12, characterId_);
+      }
+      if (areaId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(13, areaId_);
+      }
+      if (isNewAccount_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(14, isNewAccount_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -6614,10 +7132,16 @@ public final class Proto {
           != other.getGold()) return false;
       if (getDiamond()
           != other.getDiamond()) return false;
-      if (getAgencyLevel()
-          != other.getAgencyLevel()) return false;
+      if (getLevel()
+          != other.getLevel()) return false;
       if (getHasCharacter()
           != other.getHasCharacter()) return false;
+      if (getCharacterId()
+          != other.getCharacterId()) return false;
+      if (getAreaId()
+          != other.getAreaId()) return false;
+      if (getIsNewAccount()
+          != other.getIsNewAccount()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -6649,10 +7173,16 @@ public final class Proto {
       hash = (37 * hash) + DIAMOND_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getDiamond());
-      hash = (37 * hash) + AGENCYLEVEL_FIELD_NUMBER;
-      hash = (53 * hash) + getAgencyLevel();
+      hash = (37 * hash) + LEVEL_FIELD_NUMBER;
+      hash = (53 * hash) + getLevel();
       hash = (37 * hash) + HASCHARACTER_FIELD_NUMBER;
       hash = (53 * hash) + getHasCharacter();
+      hash = (37 * hash) + CHARACTERID_FIELD_NUMBER;
+      hash = (53 * hash) + getCharacterId();
+      hash = (37 * hash) + AREAID_FIELD_NUMBER;
+      hash = (53 * hash) + getAreaId();
+      hash = (37 * hash) + ISNEWACCOUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getIsNewAccount();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -6795,8 +7325,11 @@ public final class Proto {
         phone_ = "";
         gold_ = 0L;
         diamond_ = 0L;
-        agencyLevel_ = 0;
+        level_ = 0;
         hasCharacter_ = 0;
+        characterId_ = 0;
+        areaId_ = 0;
+        isNewAccount_ = 0;
         return this;
       }
 
@@ -6858,10 +7391,19 @@ public final class Proto {
           result.diamond_ = diamond_;
         }
         if (((from_bitField0_ & 0x00000200) != 0)) {
-          result.agencyLevel_ = agencyLevel_;
+          result.level_ = level_;
         }
         if (((from_bitField0_ & 0x00000400) != 0)) {
           result.hasCharacter_ = hasCharacter_;
+        }
+        if (((from_bitField0_ & 0x00000800) != 0)) {
+          result.characterId_ = characterId_;
+        }
+        if (((from_bitField0_ & 0x00001000) != 0)) {
+          result.areaId_ = areaId_;
+        }
+        if (((from_bitField0_ & 0x00002000) != 0)) {
+          result.isNewAccount_ = isNewAccount_;
         }
       }
 
@@ -6912,11 +7454,20 @@ public final class Proto {
         if (other.getDiamond() != 0L) {
           setDiamond(other.getDiamond());
         }
-        if (other.getAgencyLevel() != 0) {
-          setAgencyLevel(other.getAgencyLevel());
+        if (other.getLevel() != 0) {
+          setLevel(other.getLevel());
         }
         if (other.getHasCharacter() != 0) {
           setHasCharacter(other.getHasCharacter());
+        }
+        if (other.getCharacterId() != 0) {
+          setCharacterId(other.getCharacterId());
+        }
+        if (other.getAreaId() != 0) {
+          setAreaId(other.getAreaId());
+        }
+        if (other.getIsNewAccount() != 0) {
+          setIsNewAccount(other.getIsNewAccount());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -6990,7 +7541,7 @@ public final class Proto {
                 break;
               } // case 72
               case 80: {
-                agencyLevel_ = input.readInt32();
+                level_ = input.readInt32();
                 bitField0_ |= 0x00000200;
                 break;
               } // case 80
@@ -6999,6 +7550,21 @@ public final class Proto {
                 bitField0_ |= 0x00000400;
                 break;
               } // case 88
+              case 96: {
+                characterId_ = input.readInt32();
+                bitField0_ |= 0x00000800;
+                break;
+              } // case 96
+              case 104: {
+                areaId_ = input.readInt32();
+                bitField0_ |= 0x00001000;
+                break;
+              } // case 104
+              case 112: {
+                isNewAccount_ = input.readInt32();
+                bitField0_ |= 0x00002000;
+                break;
+              } // case 112
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -7464,34 +8030,34 @@ public final class Proto {
         return this;
       }
 
-      private int agencyLevel_ ;
+      private int level_ ;
       /**
-       * <code>int32 agencyLevel = 10;</code>
-       * @return The agencyLevel.
+       * <code>int32 level = 10;</code>
+       * @return The level.
        */
       @java.lang.Override
-      public int getAgencyLevel() {
-        return agencyLevel_;
+      public int getLevel() {
+        return level_;
       }
       /**
-       * <code>int32 agencyLevel = 10;</code>
-       * @param value The agencyLevel to set.
+       * <code>int32 level = 10;</code>
+       * @param value The level to set.
        * @return This builder for chaining.
        */
-      public Builder setAgencyLevel(int value) {
+      public Builder setLevel(int value) {
 
-        agencyLevel_ = value;
+        level_ = value;
         bitField0_ |= 0x00000200;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 agencyLevel = 10;</code>
+       * <code>int32 level = 10;</code>
        * @return This builder for chaining.
        */
-      public Builder clearAgencyLevel() {
+      public Builder clearLevel() {
         bitField0_ = (bitField0_ & ~0x00000200);
-        agencyLevel_ = 0;
+        level_ = 0;
         onChanged();
         return this;
       }
@@ -7524,6 +8090,102 @@ public final class Proto {
       public Builder clearHasCharacter() {
         bitField0_ = (bitField0_ & ~0x00000400);
         hasCharacter_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int characterId_ ;
+      /**
+       * <code>int32 characterId = 12;</code>
+       * @return The characterId.
+       */
+      @java.lang.Override
+      public int getCharacterId() {
+        return characterId_;
+      }
+      /**
+       * <code>int32 characterId = 12;</code>
+       * @param value The characterId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCharacterId(int value) {
+
+        characterId_ = value;
+        bitField0_ |= 0x00000800;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 characterId = 12;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCharacterId() {
+        bitField0_ = (bitField0_ & ~0x00000800);
+        characterId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int areaId_ ;
+      /**
+       * <code>int32 areaId = 13;</code>
+       * @return The areaId.
+       */
+      @java.lang.Override
+      public int getAreaId() {
+        return areaId_;
+      }
+      /**
+       * <code>int32 areaId = 13;</code>
+       * @param value The areaId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAreaId(int value) {
+
+        areaId_ = value;
+        bitField0_ |= 0x00001000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 areaId = 13;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAreaId() {
+        bitField0_ = (bitField0_ & ~0x00001000);
+        areaId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int isNewAccount_ ;
+      /**
+       * <code>int32 isNewAccount = 14;</code>
+       * @return The isNewAccount.
+       */
+      @java.lang.Override
+      public int getIsNewAccount() {
+        return isNewAccount_;
+      }
+      /**
+       * <code>int32 isNewAccount = 14;</code>
+       * @param value The isNewAccount to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIsNewAccount(int value) {
+
+        isNewAccount_ = value;
+        bitField0_ |= 0x00002000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 isNewAccount = 14;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIsNewAccount() {
+        bitField0_ = (bitField0_ & ~0x00002000);
+        isNewAccount_ = 0;
         onChanged();
         return this;
       }
@@ -26976,6 +27638,6972 @@ public final class Proto {
 
   }
 
+  public interface ReqLoadItemsOfFarmOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ReqLoadItemsOfFarm)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code proto.ReqLoadItemsOfFarm}
+   */
+  public static final class ReqLoadItemsOfFarm extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ReqLoadItemsOfFarm)
+      ReqLoadItemsOfFarmOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReqLoadItemsOfFarm.newBuilder() to construct.
+    private ReqLoadItemsOfFarm(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReqLoadItemsOfFarm() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReqLoadItemsOfFarm();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqLoadItemsOfFarm_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqLoadItemsOfFarm_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm) obj;
+
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ReqLoadItemsOfFarm}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ReqLoadItemsOfFarm)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarmOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqLoadItemsOfFarm_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqLoadItemsOfFarm_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqLoadItemsOfFarm_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm(this);
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ReqLoadItemsOfFarm)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ReqLoadItemsOfFarm)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReqLoadItemsOfFarm>
+        PARSER = new com.google.protobuf.AbstractParser<ReqLoadItemsOfFarm>() {
+      @java.lang.Override
+      public ReqLoadItemsOfFarm parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReqLoadItemsOfFarm> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReqLoadItemsOfFarm> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadItemsOfFarm getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BuildingBaseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.BuildingBase)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 id = 1;</code>
+     * @return The id.
+     */
+    int getId();
+
+    /**
+     * <code>string name = 2;</code>
+     * @return The name.
+     */
+    java.lang.String getName();
+    /**
+     * <code>string name = 2;</code>
+     * @return The bytes for name.
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>int64 price = 3;</code>
+     * @return The price.
+     */
+    long getPrice();
+
+    /**
+     * <code>string description = 4;</code>
+     * @return The description.
+     */
+    java.lang.String getDescription();
+    /**
+     * <code>string description = 4;</code>
+     * @return The bytes for description.
+     */
+    com.google.protobuf.ByteString
+        getDescriptionBytes();
+
+    /**
+     * <code>string type = 5;</code>
+     * @return The type.
+     */
+    java.lang.String getType();
+    /**
+     * <code>string type = 5;</code>
+     * @return The bytes for type.
+     */
+    com.google.protobuf.ByteString
+        getTypeBytes();
+
+    /**
+     * <code>int32 maxLevel = 6;</code>
+     * @return The maxLevel.
+     */
+    int getMaxLevel();
+  }
+  /**
+   * Protobuf type {@code proto.BuildingBase}
+   */
+  public static final class BuildingBase extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.BuildingBase)
+      BuildingBaseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BuildingBase.newBuilder() to construct.
+    private BuildingBase(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private BuildingBase() {
+      name_ = "";
+      description_ = "";
+      type_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new BuildingBase();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_BuildingBase_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_BuildingBase_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.Builder.class);
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_ = 0;
+    /**
+     * <code>int32 id = 1;</code>
+     * @return The id.
+     */
+    @java.lang.Override
+    public int getId() {
+      return id_;
+    }
+
+    public static final int NAME_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object name_ = "";
+    /**
+     * <code>string name = 2;</code>
+     * @return The name.
+     */
+    @java.lang.Override
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string name = 2;</code>
+     * @return The bytes for name.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PRICE_FIELD_NUMBER = 3;
+    private long price_ = 0L;
+    /**
+     * <code>int64 price = 3;</code>
+     * @return The price.
+     */
+    @java.lang.Override
+    public long getPrice() {
+      return price_;
+    }
+
+    public static final int DESCRIPTION_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object description_ = "";
+    /**
+     * <code>string description = 4;</code>
+     * @return The description.
+     */
+    @java.lang.Override
+    public java.lang.String getDescription() {
+      java.lang.Object ref = description_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        description_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string description = 4;</code>
+     * @return The bytes for description.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getDescriptionBytes() {
+      java.lang.Object ref = description_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        description_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 5;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object type_ = "";
+    /**
+     * <code>string type = 5;</code>
+     * @return The type.
+     */
+    @java.lang.Override
+    public java.lang.String getType() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        type_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string type = 5;</code>
+     * @return The bytes for type.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTypeBytes() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        type_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MAXLEVEL_FIELD_NUMBER = 6;
+    private int maxLevel_ = 0;
+    /**
+     * <code>int32 maxLevel = 6;</code>
+     * @return The maxLevel.
+     */
+    @java.lang.Override
+    public int getMaxLevel() {
+      return maxLevel_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (id_ != 0) {
+        output.writeInt32(1, id_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
+      }
+      if (price_ != 0L) {
+        output.writeInt64(3, price_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, description_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(type_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, type_);
+      }
+      if (maxLevel_ != 0) {
+        output.writeInt32(6, maxLevel_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (id_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, id_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
+      }
+      if (price_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, price_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(description_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, description_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(type_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, type_);
+      }
+      if (maxLevel_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, maxLevel_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase) obj;
+
+      if (getId()
+          != other.getId()) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (getPrice()
+          != other.getPrice()) return false;
+      if (!getDescription()
+          .equals(other.getDescription())) return false;
+      if (!getType()
+          .equals(other.getType())) return false;
+      if (getMaxLevel()
+          != other.getMaxLevel()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + PRICE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getPrice());
+      hash = (37 * hash) + DESCRIPTION_FIELD_NUMBER;
+      hash = (53 * hash) + getDescription().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType().hashCode();
+      hash = (37 * hash) + MAXLEVEL_FIELD_NUMBER;
+      hash = (53 * hash) + getMaxLevel();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.BuildingBase}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.BuildingBase)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBaseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_BuildingBase_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_BuildingBase_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        id_ = 0;
+        name_ = "";
+        price_ = 0L;
+        description_ = "";
+        type_ = "";
+        maxLevel_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_BuildingBase_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.id_ = id_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.name_ = name_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.price_ = price_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.description_ = description_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.type_ = type_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.maxLevel_ = maxLevel_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.getDefaultInstance()) return this;
+        if (other.getId() != 0) {
+          setId(other.getId());
+        }
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (other.getPrice() != 0L) {
+          setPrice(other.getPrice());
+        }
+        if (!other.getDescription().isEmpty()) {
+          description_ = other.description_;
+          bitField0_ |= 0x00000008;
+          onChanged();
+        }
+        if (!other.getType().isEmpty()) {
+          type_ = other.type_;
+          bitField0_ |= 0x00000010;
+          onChanged();
+        }
+        if (other.getMaxLevel() != 0) {
+          setMaxLevel(other.getMaxLevel());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                id_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                name_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                price_ = input.readInt64();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 34: {
+                description_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              case 42: {
+                type_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              case 48: {
+                maxLevel_ = input.readInt32();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int id_ ;
+      /**
+       * <code>int32 id = 1;</code>
+       * @return The id.
+       */
+      @java.lang.Override
+      public int getId() {
+        return id_;
+      }
+      /**
+       * <code>int32 id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(int value) {
+
+        id_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>string name = 2;</code>
+       * @return The name.
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @return The bytes for name.
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        name_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearName() {
+        name_ = getDefaultInstance().getName();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        name_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private long price_ ;
+      /**
+       * <code>int64 price = 3;</code>
+       * @return The price.
+       */
+      @java.lang.Override
+      public long getPrice() {
+        return price_;
+      }
+      /**
+       * <code>int64 price = 3;</code>
+       * @param value The price to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPrice(long value) {
+
+        price_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 price = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPrice() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        price_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object description_ = "";
+      /**
+       * <code>string description = 4;</code>
+       * @return The description.
+       */
+      public java.lang.String getDescription() {
+        java.lang.Object ref = description_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          description_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string description = 4;</code>
+       * @return The bytes for description.
+       */
+      public com.google.protobuf.ByteString
+          getDescriptionBytes() {
+        java.lang.Object ref = description_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          description_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string description = 4;</code>
+       * @param value The description to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDescription(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        description_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string description = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDescription() {
+        description_ = getDefaultInstance().getDescription();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string description = 4;</code>
+       * @param value The bytes for description to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDescriptionBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        description_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object type_ = "";
+      /**
+       * <code>string type = 5;</code>
+       * @return The type.
+       */
+      public java.lang.String getType() {
+        java.lang.Object ref = type_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          type_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string type = 5;</code>
+       * @return The bytes for type.
+       */
+      public com.google.protobuf.ByteString
+          getTypeBytes() {
+        java.lang.Object ref = type_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          type_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string type = 5;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setType(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        type_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string type = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearType() {
+        type_ = getDefaultInstance().getType();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string type = 5;</code>
+       * @param value The bytes for type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTypeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        type_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+
+      private int maxLevel_ ;
+      /**
+       * <code>int32 maxLevel = 6;</code>
+       * @return The maxLevel.
+       */
+      @java.lang.Override
+      public int getMaxLevel() {
+        return maxLevel_;
+      }
+      /**
+       * <code>int32 maxLevel = 6;</code>
+       * @param value The maxLevel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMaxLevel(int value) {
+
+        maxLevel_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 maxLevel = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMaxLevel() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        maxLevel_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.BuildingBase)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.BuildingBase)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BuildingBase>
+        PARSER = new com.google.protobuf.AbstractParser<BuildingBase>() {
+      @java.lang.Override
+      public BuildingBase parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<BuildingBase> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BuildingBase> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface PropertyBuildingOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.PropertyBuilding)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 id = 1;</code>
+     * @return The id.
+     */
+    int getId();
+
+    /**
+     * <code>int64 positionX = 2;</code>
+     * @return The positionX.
+     */
+    long getPositionX();
+
+    /**
+     * <code>int64 positionY = 3;</code>
+     * @return The positionY.
+     */
+    long getPositionY();
+
+    /**
+     * <code>int32 upgradeId = 4;</code>
+     * @return The upgradeId.
+     */
+    int getUpgradeId();
+
+    /**
+     * <code>int32 areaId = 5;</code>
+     * @return The areaId.
+     */
+    int getAreaId();
+
+    /**
+     * <code>int32 commonBuildingId = 6;</code>
+     * @return The commonBuildingId.
+     */
+    int getCommonBuildingId();
+
+    /**
+     * <code>int32 currentLevel = 7;</code>
+     * @return The currentLevel.
+     */
+    int getCurrentLevel();
+  }
+  /**
+   * Protobuf type {@code proto.PropertyBuilding}
+   */
+  public static final class PropertyBuilding extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.PropertyBuilding)
+      PropertyBuildingOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use PropertyBuilding.newBuilder() to construct.
+    private PropertyBuilding(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private PropertyBuilding() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PropertyBuilding();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_PropertyBuilding_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_PropertyBuilding_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.Builder.class);
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_ = 0;
+    /**
+     * <code>int32 id = 1;</code>
+     * @return The id.
+     */
+    @java.lang.Override
+    public int getId() {
+      return id_;
+    }
+
+    public static final int POSITIONX_FIELD_NUMBER = 2;
+    private long positionX_ = 0L;
+    /**
+     * <code>int64 positionX = 2;</code>
+     * @return The positionX.
+     */
+    @java.lang.Override
+    public long getPositionX() {
+      return positionX_;
+    }
+
+    public static final int POSITIONY_FIELD_NUMBER = 3;
+    private long positionY_ = 0L;
+    /**
+     * <code>int64 positionY = 3;</code>
+     * @return The positionY.
+     */
+    @java.lang.Override
+    public long getPositionY() {
+      return positionY_;
+    }
+
+    public static final int UPGRADEID_FIELD_NUMBER = 4;
+    private int upgradeId_ = 0;
+    /**
+     * <code>int32 upgradeId = 4;</code>
+     * @return The upgradeId.
+     */
+    @java.lang.Override
+    public int getUpgradeId() {
+      return upgradeId_;
+    }
+
+    public static final int AREAID_FIELD_NUMBER = 5;
+    private int areaId_ = 0;
+    /**
+     * <code>int32 areaId = 5;</code>
+     * @return The areaId.
+     */
+    @java.lang.Override
+    public int getAreaId() {
+      return areaId_;
+    }
+
+    public static final int COMMONBUILDINGID_FIELD_NUMBER = 6;
+    private int commonBuildingId_ = 0;
+    /**
+     * <code>int32 commonBuildingId = 6;</code>
+     * @return The commonBuildingId.
+     */
+    @java.lang.Override
+    public int getCommonBuildingId() {
+      return commonBuildingId_;
+    }
+
+    public static final int CURRENTLEVEL_FIELD_NUMBER = 7;
+    private int currentLevel_ = 0;
+    /**
+     * <code>int32 currentLevel = 7;</code>
+     * @return The currentLevel.
+     */
+    @java.lang.Override
+    public int getCurrentLevel() {
+      return currentLevel_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (id_ != 0) {
+        output.writeInt32(1, id_);
+      }
+      if (positionX_ != 0L) {
+        output.writeInt64(2, positionX_);
+      }
+      if (positionY_ != 0L) {
+        output.writeInt64(3, positionY_);
+      }
+      if (upgradeId_ != 0) {
+        output.writeInt32(4, upgradeId_);
+      }
+      if (areaId_ != 0) {
+        output.writeInt32(5, areaId_);
+      }
+      if (commonBuildingId_ != 0) {
+        output.writeInt32(6, commonBuildingId_);
+      }
+      if (currentLevel_ != 0) {
+        output.writeInt32(7, currentLevel_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (id_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, id_);
+      }
+      if (positionX_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, positionX_);
+      }
+      if (positionY_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(3, positionY_);
+      }
+      if (upgradeId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, upgradeId_);
+      }
+      if (areaId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, areaId_);
+      }
+      if (commonBuildingId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, commonBuildingId_);
+      }
+      if (currentLevel_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, currentLevel_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding) obj;
+
+      if (getId()
+          != other.getId()) return false;
+      if (getPositionX()
+          != other.getPositionX()) return false;
+      if (getPositionY()
+          != other.getPositionY()) return false;
+      if (getUpgradeId()
+          != other.getUpgradeId()) return false;
+      if (getAreaId()
+          != other.getAreaId()) return false;
+      if (getCommonBuildingId()
+          != other.getCommonBuildingId()) return false;
+      if (getCurrentLevel()
+          != other.getCurrentLevel()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId();
+      hash = (37 * hash) + POSITIONX_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getPositionX());
+      hash = (37 * hash) + POSITIONY_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getPositionY());
+      hash = (37 * hash) + UPGRADEID_FIELD_NUMBER;
+      hash = (53 * hash) + getUpgradeId();
+      hash = (37 * hash) + AREAID_FIELD_NUMBER;
+      hash = (53 * hash) + getAreaId();
+      hash = (37 * hash) + COMMONBUILDINGID_FIELD_NUMBER;
+      hash = (53 * hash) + getCommonBuildingId();
+      hash = (37 * hash) + CURRENTLEVEL_FIELD_NUMBER;
+      hash = (53 * hash) + getCurrentLevel();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.PropertyBuilding}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.PropertyBuilding)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuildingOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_PropertyBuilding_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_PropertyBuilding_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        id_ = 0;
+        positionX_ = 0L;
+        positionY_ = 0L;
+        upgradeId_ = 0;
+        areaId_ = 0;
+        commonBuildingId_ = 0;
+        currentLevel_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_PropertyBuilding_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.id_ = id_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.positionX_ = positionX_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.positionY_ = positionY_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.upgradeId_ = upgradeId_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.areaId_ = areaId_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.commonBuildingId_ = commonBuildingId_;
+        }
+        if (((from_bitField0_ & 0x00000040) != 0)) {
+          result.currentLevel_ = currentLevel_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.getDefaultInstance()) return this;
+        if (other.getId() != 0) {
+          setId(other.getId());
+        }
+        if (other.getPositionX() != 0L) {
+          setPositionX(other.getPositionX());
+        }
+        if (other.getPositionY() != 0L) {
+          setPositionY(other.getPositionY());
+        }
+        if (other.getUpgradeId() != 0) {
+          setUpgradeId(other.getUpgradeId());
+        }
+        if (other.getAreaId() != 0) {
+          setAreaId(other.getAreaId());
+        }
+        if (other.getCommonBuildingId() != 0) {
+          setCommonBuildingId(other.getCommonBuildingId());
+        }
+        if (other.getCurrentLevel() != 0) {
+          setCurrentLevel(other.getCurrentLevel());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                id_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                positionX_ = input.readInt64();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                positionY_ = input.readInt64();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                upgradeId_ = input.readInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 40: {
+                areaId_ = input.readInt32();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
+              case 48: {
+                commonBuildingId_ = input.readInt32();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
+              case 56: {
+                currentLevel_ = input.readInt32();
+                bitField0_ |= 0x00000040;
+                break;
+              } // case 56
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int id_ ;
+      /**
+       * <code>int32 id = 1;</code>
+       * @return The id.
+       */
+      @java.lang.Override
+      public int getId() {
+        return id_;
+      }
+      /**
+       * <code>int32 id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(int value) {
+
+        id_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private long positionX_ ;
+      /**
+       * <code>int64 positionX = 2;</code>
+       * @return The positionX.
+       */
+      @java.lang.Override
+      public long getPositionX() {
+        return positionX_;
+      }
+      /**
+       * <code>int64 positionX = 2;</code>
+       * @param value The positionX to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPositionX(long value) {
+
+        positionX_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 positionX = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPositionX() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        positionX_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long positionY_ ;
+      /**
+       * <code>int64 positionY = 3;</code>
+       * @return The positionY.
+       */
+      @java.lang.Override
+      public long getPositionY() {
+        return positionY_;
+      }
+      /**
+       * <code>int64 positionY = 3;</code>
+       * @param value The positionY to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPositionY(long value) {
+
+        positionY_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 positionY = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPositionY() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        positionY_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private int upgradeId_ ;
+      /**
+       * <code>int32 upgradeId = 4;</code>
+       * @return The upgradeId.
+       */
+      @java.lang.Override
+      public int getUpgradeId() {
+        return upgradeId_;
+      }
+      /**
+       * <code>int32 upgradeId = 4;</code>
+       * @param value The upgradeId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUpgradeId(int value) {
+
+        upgradeId_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 upgradeId = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUpgradeId() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        upgradeId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int areaId_ ;
+      /**
+       * <code>int32 areaId = 5;</code>
+       * @return The areaId.
+       */
+      @java.lang.Override
+      public int getAreaId() {
+        return areaId_;
+      }
+      /**
+       * <code>int32 areaId = 5;</code>
+       * @param value The areaId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAreaId(int value) {
+
+        areaId_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 areaId = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAreaId() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        areaId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int commonBuildingId_ ;
+      /**
+       * <code>int32 commonBuildingId = 6;</code>
+       * @return The commonBuildingId.
+       */
+      @java.lang.Override
+      public int getCommonBuildingId() {
+        return commonBuildingId_;
+      }
+      /**
+       * <code>int32 commonBuildingId = 6;</code>
+       * @param value The commonBuildingId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCommonBuildingId(int value) {
+
+        commonBuildingId_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 commonBuildingId = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCommonBuildingId() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        commonBuildingId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int currentLevel_ ;
+      /**
+       * <code>int32 currentLevel = 7;</code>
+       * @return The currentLevel.
+       */
+      @java.lang.Override
+      public int getCurrentLevel() {
+        return currentLevel_;
+      }
+      /**
+       * <code>int32 currentLevel = 7;</code>
+       * @param value The currentLevel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCurrentLevel(int value) {
+
+        currentLevel_ = value;
+        bitField0_ |= 0x00000040;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 currentLevel = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCurrentLevel() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        currentLevel_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.PropertyBuilding)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.PropertyBuilding)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<PropertyBuilding>
+        PARSER = new com.google.protobuf.AbstractParser<PropertyBuilding>() {
+      @java.lang.Override
+      public PropertyBuilding parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<PropertyBuilding> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PropertyBuilding> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TillLandOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.TillLand)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 id = 1;</code>
+     * @return The id.
+     */
+    int getId();
+
+    /**
+     * <code>int32 index = 2;</code>
+     * @return The index.
+     */
+    int getIndex();
+
+    /**
+     * <code>bool statusTilled = 3;</code>
+     * @return The statusTilled.
+     */
+    boolean getStatusTilled();
+  }
+  /**
+   * Protobuf type {@code proto.TillLand}
+   */
+  public static final class TillLand extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.TillLand)
+      TillLandOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TillLand.newBuilder() to construct.
+    private TillLand(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TillLand() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TillLand();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_TillLand_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_TillLand_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.Builder.class);
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_ = 0;
+    /**
+     * <code>int32 id = 1;</code>
+     * @return The id.
+     */
+    @java.lang.Override
+    public int getId() {
+      return id_;
+    }
+
+    public static final int INDEX_FIELD_NUMBER = 2;
+    private int index_ = 0;
+    /**
+     * <code>int32 index = 2;</code>
+     * @return The index.
+     */
+    @java.lang.Override
+    public int getIndex() {
+      return index_;
+    }
+
+    public static final int STATUSTILLED_FIELD_NUMBER = 3;
+    private boolean statusTilled_ = false;
+    /**
+     * <code>bool statusTilled = 3;</code>
+     * @return The statusTilled.
+     */
+    @java.lang.Override
+    public boolean getStatusTilled() {
+      return statusTilled_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (id_ != 0) {
+        output.writeInt32(1, id_);
+      }
+      if (index_ != 0) {
+        output.writeInt32(2, index_);
+      }
+      if (statusTilled_ != false) {
+        output.writeBool(3, statusTilled_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (id_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, id_);
+      }
+      if (index_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, index_);
+      }
+      if (statusTilled_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, statusTilled_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand) obj;
+
+      if (getId()
+          != other.getId()) return false;
+      if (getIndex()
+          != other.getIndex()) return false;
+      if (getStatusTilled()
+          != other.getStatusTilled()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId();
+      hash = (37 * hash) + INDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getIndex();
+      hash = (37 * hash) + STATUSTILLED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getStatusTilled());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.TillLand}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.TillLand)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_TillLand_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_TillLand_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        id_ = 0;
+        index_ = 0;
+        statusTilled_ = false;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_TillLand_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.id_ = id_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.index_ = index_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.statusTilled_ = statusTilled_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.getDefaultInstance()) return this;
+        if (other.getId() != 0) {
+          setId(other.getId());
+        }
+        if (other.getIndex() != 0) {
+          setIndex(other.getIndex());
+        }
+        if (other.getStatusTilled() != false) {
+          setStatusTilled(other.getStatusTilled());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                id_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                index_ = input.readInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                statusTilled_ = input.readBool();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int id_ ;
+      /**
+       * <code>int32 id = 1;</code>
+       * @return The id.
+       */
+      @java.lang.Override
+      public int getId() {
+        return id_;
+      }
+      /**
+       * <code>int32 id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(int value) {
+
+        id_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int index_ ;
+      /**
+       * <code>int32 index = 2;</code>
+       * @return The index.
+       */
+      @java.lang.Override
+      public int getIndex() {
+        return index_;
+      }
+      /**
+       * <code>int32 index = 2;</code>
+       * @param value The index to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIndex(int value) {
+
+        index_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 index = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIndex() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        index_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean statusTilled_ ;
+      /**
+       * <code>bool statusTilled = 3;</code>
+       * @return The statusTilled.
+       */
+      @java.lang.Override
+      public boolean getStatusTilled() {
+        return statusTilled_;
+      }
+      /**
+       * <code>bool statusTilled = 3;</code>
+       * @param value The statusTilled to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatusTilled(boolean value) {
+
+        statusTilled_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool statusTilled = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatusTilled() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        statusTilled_ = false;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.TillLand)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.TillLand)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TillLand>
+        PARSER = new com.google.protobuf.AbstractParser<TillLand>() {
+      @java.lang.Override
+      public TillLand parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<TillLand> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TillLand> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface FarmBuildingOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.FarmBuilding)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.proto.BuildingBase base = 1;</code>
+     * @return Whether the base field is set.
+     */
+    boolean hasBase();
+    /**
+     * <code>.proto.BuildingBase base = 1;</code>
+     * @return The base.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase getBase();
+    /**
+     * <code>.proto.BuildingBase base = 1;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBaseOrBuilder getBaseOrBuilder();
+
+    /**
+     * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+     * @return Whether the propertyBuilding field is set.
+     */
+    boolean hasPropertyBuilding();
+    /**
+     * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+     * @return The propertyBuilding.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding getPropertyBuilding();
+    /**
+     * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuildingOrBuilder getPropertyBuildingOrBuilder();
+  }
+  /**
+   * Protobuf type {@code proto.FarmBuilding}
+   */
+  public static final class FarmBuilding extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.FarmBuilding)
+      FarmBuildingOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use FarmBuilding.newBuilder() to construct.
+    private FarmBuilding(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private FarmBuilding() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new FarmBuilding();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_FarmBuilding_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_FarmBuilding_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.Builder.class);
+    }
+
+    public static final int BASE_FIELD_NUMBER = 1;
+    private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase base_;
+    /**
+     * <code>.proto.BuildingBase base = 1;</code>
+     * @return Whether the base field is set.
+     */
+    @java.lang.Override
+    public boolean hasBase() {
+      return base_ != null;
+    }
+    /**
+     * <code>.proto.BuildingBase base = 1;</code>
+     * @return The base.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase getBase() {
+      return base_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.getDefaultInstance() : base_;
+    }
+    /**
+     * <code>.proto.BuildingBase base = 1;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBaseOrBuilder getBaseOrBuilder() {
+      return base_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.getDefaultInstance() : base_;
+    }
+
+    public static final int PROPERTYBUILDING_FIELD_NUMBER = 2;
+    private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding propertyBuilding_;
+    /**
+     * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+     * @return Whether the propertyBuilding field is set.
+     */
+    @java.lang.Override
+    public boolean hasPropertyBuilding() {
+      return propertyBuilding_ != null;
+    }
+    /**
+     * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+     * @return The propertyBuilding.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding getPropertyBuilding() {
+      return propertyBuilding_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.getDefaultInstance() : propertyBuilding_;
+    }
+    /**
+     * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuildingOrBuilder getPropertyBuildingOrBuilder() {
+      return propertyBuilding_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.getDefaultInstance() : propertyBuilding_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (base_ != null) {
+        output.writeMessage(1, getBase());
+      }
+      if (propertyBuilding_ != null) {
+        output.writeMessage(2, getPropertyBuilding());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (base_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getBase());
+      }
+      if (propertyBuilding_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getPropertyBuilding());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding) obj;
+
+      if (hasBase() != other.hasBase()) return false;
+      if (hasBase()) {
+        if (!getBase()
+            .equals(other.getBase())) return false;
+      }
+      if (hasPropertyBuilding() != other.hasPropertyBuilding()) return false;
+      if (hasPropertyBuilding()) {
+        if (!getPropertyBuilding()
+            .equals(other.getPropertyBuilding())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasBase()) {
+        hash = (37 * hash) + BASE_FIELD_NUMBER;
+        hash = (53 * hash) + getBase().hashCode();
+      }
+      if (hasPropertyBuilding()) {
+        hash = (37 * hash) + PROPERTYBUILDING_FIELD_NUMBER;
+        hash = (53 * hash) + getPropertyBuilding().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.FarmBuilding}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.FarmBuilding)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuildingOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_FarmBuilding_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_FarmBuilding_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        base_ = null;
+        if (baseBuilder_ != null) {
+          baseBuilder_.dispose();
+          baseBuilder_ = null;
+        }
+        propertyBuilding_ = null;
+        if (propertyBuildingBuilder_ != null) {
+          propertyBuildingBuilder_.dispose();
+          propertyBuildingBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_FarmBuilding_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.base_ = baseBuilder_ == null
+              ? base_
+              : baseBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.propertyBuilding_ = propertyBuildingBuilder_ == null
+              ? propertyBuilding_
+              : propertyBuildingBuilder_.build();
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.getDefaultInstance()) return this;
+        if (other.hasBase()) {
+          mergeBase(other.getBase());
+        }
+        if (other.hasPropertyBuilding()) {
+          mergePropertyBuilding(other.getPropertyBuilding());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getBaseFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getPropertyBuildingFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase base_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBaseOrBuilder> baseBuilder_;
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       * @return Whether the base field is set.
+       */
+      public boolean hasBase() {
+        return ((bitField0_ & 0x00000001) != 0);
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       * @return The base.
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase getBase() {
+        if (baseBuilder_ == null) {
+          return base_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.getDefaultInstance() : base_;
+        } else {
+          return baseBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       */
+      public Builder setBase(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase value) {
+        if (baseBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          base_ = value;
+        } else {
+          baseBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       */
+      public Builder setBase(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.Builder builderForValue) {
+        if (baseBuilder_ == null) {
+          base_ = builderForValue.build();
+        } else {
+          baseBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       */
+      public Builder mergeBase(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase value) {
+        if (baseBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0) &&
+            base_ != null &&
+            base_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.getDefaultInstance()) {
+            getBaseBuilder().mergeFrom(value);
+          } else {
+            base_ = value;
+          }
+        } else {
+          baseBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       */
+      public Builder clearBase() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        base_ = null;
+        if (baseBuilder_ != null) {
+          baseBuilder_.dispose();
+          baseBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.Builder getBaseBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getBaseFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBaseOrBuilder getBaseOrBuilder() {
+        if (baseBuilder_ != null) {
+          return baseBuilder_.getMessageOrBuilder();
+        } else {
+          return base_ == null ?
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.getDefaultInstance() : base_;
+        }
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBaseOrBuilder> 
+          getBaseFieldBuilder() {
+        if (baseBuilder_ == null) {
+          baseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBaseOrBuilder>(
+                  getBase(),
+                  getParentForChildren(),
+                  isClean());
+          base_ = null;
+        }
+        return baseBuilder_;
+      }
+
+      private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding propertyBuilding_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuildingOrBuilder> propertyBuildingBuilder_;
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       * @return Whether the propertyBuilding field is set.
+       */
+      public boolean hasPropertyBuilding() {
+        return ((bitField0_ & 0x00000002) != 0);
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       * @return The propertyBuilding.
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding getPropertyBuilding() {
+        if (propertyBuildingBuilder_ == null) {
+          return propertyBuilding_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.getDefaultInstance() : propertyBuilding_;
+        } else {
+          return propertyBuildingBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       */
+      public Builder setPropertyBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding value) {
+        if (propertyBuildingBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          propertyBuilding_ = value;
+        } else {
+          propertyBuildingBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       */
+      public Builder setPropertyBuilding(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.Builder builderForValue) {
+        if (propertyBuildingBuilder_ == null) {
+          propertyBuilding_ = builderForValue.build();
+        } else {
+          propertyBuildingBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       */
+      public Builder mergePropertyBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding value) {
+        if (propertyBuildingBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) != 0) &&
+            propertyBuilding_ != null &&
+            propertyBuilding_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.getDefaultInstance()) {
+            getPropertyBuildingBuilder().mergeFrom(value);
+          } else {
+            propertyBuilding_ = value;
+          }
+        } else {
+          propertyBuildingBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       */
+      public Builder clearPropertyBuilding() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        propertyBuilding_ = null;
+        if (propertyBuildingBuilder_ != null) {
+          propertyBuildingBuilder_.dispose();
+          propertyBuildingBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.Builder getPropertyBuildingBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getPropertyBuildingFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuildingOrBuilder getPropertyBuildingOrBuilder() {
+        if (propertyBuildingBuilder_ != null) {
+          return propertyBuildingBuilder_.getMessageOrBuilder();
+        } else {
+          return propertyBuilding_ == null ?
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.getDefaultInstance() : propertyBuilding_;
+        }
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuildingOrBuilder> 
+          getPropertyBuildingFieldBuilder() {
+        if (propertyBuildingBuilder_ == null) {
+          propertyBuildingBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuildingOrBuilder>(
+                  getPropertyBuilding(),
+                  getParentForChildren(),
+                  isClean());
+          propertyBuilding_ = null;
+        }
+        return propertyBuildingBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.FarmBuilding)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.FarmBuilding)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<FarmBuilding>
+        PARSER = new com.google.protobuf.AbstractParser<FarmBuilding>() {
+      @java.lang.Override
+      public FarmBuilding parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<FarmBuilding> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<FarmBuilding> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface PlantingLandBuildingOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.PlantingLandBuilding)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.proto.BuildingBase base = 1;</code>
+     * @return Whether the base field is set.
+     */
+    boolean hasBase();
+    /**
+     * <code>.proto.BuildingBase base = 1;</code>
+     * @return The base.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase getBase();
+    /**
+     * <code>.proto.BuildingBase base = 1;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBaseOrBuilder getBaseOrBuilder();
+
+    /**
+     * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+     * @return Whether the propertyBuilding field is set.
+     */
+    boolean hasPropertyBuilding();
+    /**
+     * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+     * @return The propertyBuilding.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding getPropertyBuilding();
+    /**
+     * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuildingOrBuilder getPropertyBuildingOrBuilder();
+
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand> 
+        getTillLandList();
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand getTillLand(int index);
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    int getTillLandCount();
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    java.util.List<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder> 
+        getTillLandOrBuilderList();
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder getTillLandOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code proto.PlantingLandBuilding}
+   */
+  public static final class PlantingLandBuilding extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.PlantingLandBuilding)
+      PlantingLandBuildingOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use PlantingLandBuilding.newBuilder() to construct.
+    private PlantingLandBuilding(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private PlantingLandBuilding() {
+      tillLand_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PlantingLandBuilding();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_PlantingLandBuilding_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_PlantingLandBuilding_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.Builder.class);
+    }
+
+    public static final int BASE_FIELD_NUMBER = 1;
+    private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase base_;
+    /**
+     * <code>.proto.BuildingBase base = 1;</code>
+     * @return Whether the base field is set.
+     */
+    @java.lang.Override
+    public boolean hasBase() {
+      return base_ != null;
+    }
+    /**
+     * <code>.proto.BuildingBase base = 1;</code>
+     * @return The base.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase getBase() {
+      return base_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.getDefaultInstance() : base_;
+    }
+    /**
+     * <code>.proto.BuildingBase base = 1;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBaseOrBuilder getBaseOrBuilder() {
+      return base_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.getDefaultInstance() : base_;
+    }
+
+    public static final int PROPERTYBUILDING_FIELD_NUMBER = 2;
+    private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding propertyBuilding_;
+    /**
+     * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+     * @return Whether the propertyBuilding field is set.
+     */
+    @java.lang.Override
+    public boolean hasPropertyBuilding() {
+      return propertyBuilding_ != null;
+    }
+    /**
+     * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+     * @return The propertyBuilding.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding getPropertyBuilding() {
+      return propertyBuilding_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.getDefaultInstance() : propertyBuilding_;
+    }
+    /**
+     * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuildingOrBuilder getPropertyBuildingOrBuilder() {
+      return propertyBuilding_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.getDefaultInstance() : propertyBuilding_;
+    }
+
+    public static final int TILLLAND_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand> tillLand_;
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    @java.lang.Override
+    public java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand> getTillLandList() {
+      return tillLand_;
+    }
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder> 
+        getTillLandOrBuilderList() {
+      return tillLand_;
+    }
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    @java.lang.Override
+    public int getTillLandCount() {
+      return tillLand_.size();
+    }
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand getTillLand(int index) {
+      return tillLand_.get(index);
+    }
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder getTillLandOrBuilder(
+        int index) {
+      return tillLand_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (base_ != null) {
+        output.writeMessage(1, getBase());
+      }
+      if (propertyBuilding_ != null) {
+        output.writeMessage(2, getPropertyBuilding());
+      }
+      for (int i = 0; i < tillLand_.size(); i++) {
+        output.writeMessage(3, tillLand_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (base_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getBase());
+      }
+      if (propertyBuilding_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getPropertyBuilding());
+      }
+      for (int i = 0; i < tillLand_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, tillLand_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding) obj;
+
+      if (hasBase() != other.hasBase()) return false;
+      if (hasBase()) {
+        if (!getBase()
+            .equals(other.getBase())) return false;
+      }
+      if (hasPropertyBuilding() != other.hasPropertyBuilding()) return false;
+      if (hasPropertyBuilding()) {
+        if (!getPropertyBuilding()
+            .equals(other.getPropertyBuilding())) return false;
+      }
+      if (!getTillLandList()
+          .equals(other.getTillLandList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasBase()) {
+        hash = (37 * hash) + BASE_FIELD_NUMBER;
+        hash = (53 * hash) + getBase().hashCode();
+      }
+      if (hasPropertyBuilding()) {
+        hash = (37 * hash) + PROPERTYBUILDING_FIELD_NUMBER;
+        hash = (53 * hash) + getPropertyBuilding().hashCode();
+      }
+      if (getTillLandCount() > 0) {
+        hash = (37 * hash) + TILLLAND_FIELD_NUMBER;
+        hash = (53 * hash) + getTillLandList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.PlantingLandBuilding}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.PlantingLandBuilding)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuildingOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_PlantingLandBuilding_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_PlantingLandBuilding_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        base_ = null;
+        if (baseBuilder_ != null) {
+          baseBuilder_.dispose();
+          baseBuilder_ = null;
+        }
+        propertyBuilding_ = null;
+        if (propertyBuildingBuilder_ != null) {
+          propertyBuildingBuilder_.dispose();
+          propertyBuildingBuilder_ = null;
+        }
+        if (tillLandBuilder_ == null) {
+          tillLand_ = java.util.Collections.emptyList();
+        } else {
+          tillLand_ = null;
+          tillLandBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_PlantingLandBuilding_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding result) {
+        if (tillLandBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) != 0)) {
+            tillLand_ = java.util.Collections.unmodifiableList(tillLand_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.tillLand_ = tillLand_;
+        } else {
+          result.tillLand_ = tillLandBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.base_ = baseBuilder_ == null
+              ? base_
+              : baseBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.propertyBuilding_ = propertyBuildingBuilder_ == null
+              ? propertyBuilding_
+              : propertyBuildingBuilder_.build();
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.getDefaultInstance()) return this;
+        if (other.hasBase()) {
+          mergeBase(other.getBase());
+        }
+        if (other.hasPropertyBuilding()) {
+          mergePropertyBuilding(other.getPropertyBuilding());
+        }
+        if (tillLandBuilder_ == null) {
+          if (!other.tillLand_.isEmpty()) {
+            if (tillLand_.isEmpty()) {
+              tillLand_ = other.tillLand_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureTillLandIsMutable();
+              tillLand_.addAll(other.tillLand_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.tillLand_.isEmpty()) {
+            if (tillLandBuilder_.isEmpty()) {
+              tillLandBuilder_.dispose();
+              tillLandBuilder_ = null;
+              tillLand_ = other.tillLand_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              tillLandBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getTillLandFieldBuilder() : null;
+            } else {
+              tillLandBuilder_.addAllMessages(other.tillLand_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getBaseFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getPropertyBuildingFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand m =
+                    input.readMessage(
+                        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.parser(),
+                        extensionRegistry);
+                if (tillLandBuilder_ == null) {
+                  ensureTillLandIsMutable();
+                  tillLand_.add(m);
+                } else {
+                  tillLandBuilder_.addMessage(m);
+                }
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase base_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBaseOrBuilder> baseBuilder_;
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       * @return Whether the base field is set.
+       */
+      public boolean hasBase() {
+        return ((bitField0_ & 0x00000001) != 0);
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       * @return The base.
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase getBase() {
+        if (baseBuilder_ == null) {
+          return base_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.getDefaultInstance() : base_;
+        } else {
+          return baseBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       */
+      public Builder setBase(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase value) {
+        if (baseBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          base_ = value;
+        } else {
+          baseBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       */
+      public Builder setBase(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.Builder builderForValue) {
+        if (baseBuilder_ == null) {
+          base_ = builderForValue.build();
+        } else {
+          baseBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       */
+      public Builder mergeBase(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase value) {
+        if (baseBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0) &&
+            base_ != null &&
+            base_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.getDefaultInstance()) {
+            getBaseBuilder().mergeFrom(value);
+          } else {
+            base_ = value;
+          }
+        } else {
+          baseBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       */
+      public Builder clearBase() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        base_ = null;
+        if (baseBuilder_ != null) {
+          baseBuilder_.dispose();
+          baseBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.Builder getBaseBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getBaseFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBaseOrBuilder getBaseOrBuilder() {
+        if (baseBuilder_ != null) {
+          return baseBuilder_.getMessageOrBuilder();
+        } else {
+          return base_ == null ?
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.getDefaultInstance() : base_;
+        }
+      }
+      /**
+       * <code>.proto.BuildingBase base = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBaseOrBuilder> 
+          getBaseFieldBuilder() {
+        if (baseBuilder_ == null) {
+          baseBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBase.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingBaseOrBuilder>(
+                  getBase(),
+                  getParentForChildren(),
+                  isClean());
+          base_ = null;
+        }
+        return baseBuilder_;
+      }
+
+      private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding propertyBuilding_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuildingOrBuilder> propertyBuildingBuilder_;
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       * @return Whether the propertyBuilding field is set.
+       */
+      public boolean hasPropertyBuilding() {
+        return ((bitField0_ & 0x00000002) != 0);
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       * @return The propertyBuilding.
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding getPropertyBuilding() {
+        if (propertyBuildingBuilder_ == null) {
+          return propertyBuilding_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.getDefaultInstance() : propertyBuilding_;
+        } else {
+          return propertyBuildingBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       */
+      public Builder setPropertyBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding value) {
+        if (propertyBuildingBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          propertyBuilding_ = value;
+        } else {
+          propertyBuildingBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       */
+      public Builder setPropertyBuilding(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.Builder builderForValue) {
+        if (propertyBuildingBuilder_ == null) {
+          propertyBuilding_ = builderForValue.build();
+        } else {
+          propertyBuildingBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       */
+      public Builder mergePropertyBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding value) {
+        if (propertyBuildingBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) != 0) &&
+            propertyBuilding_ != null &&
+            propertyBuilding_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.getDefaultInstance()) {
+            getPropertyBuildingBuilder().mergeFrom(value);
+          } else {
+            propertyBuilding_ = value;
+          }
+        } else {
+          propertyBuildingBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       */
+      public Builder clearPropertyBuilding() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        propertyBuilding_ = null;
+        if (propertyBuildingBuilder_ != null) {
+          propertyBuildingBuilder_.dispose();
+          propertyBuildingBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.Builder getPropertyBuildingBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getPropertyBuildingFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuildingOrBuilder getPropertyBuildingOrBuilder() {
+        if (propertyBuildingBuilder_ != null) {
+          return propertyBuildingBuilder_.getMessageOrBuilder();
+        } else {
+          return propertyBuilding_ == null ?
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.getDefaultInstance() : propertyBuilding_;
+        }
+      }
+      /**
+       * <code>.proto.PropertyBuilding propertyBuilding = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuildingOrBuilder> 
+          getPropertyBuildingFieldBuilder() {
+        if (propertyBuildingBuilder_ == null) {
+          propertyBuildingBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuildingOrBuilder>(
+                  getPropertyBuilding(),
+                  getParentForChildren(),
+                  isClean());
+          propertyBuilding_ = null;
+        }
+        return propertyBuildingBuilder_;
+      }
+
+      private java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand> tillLand_ =
+        java.util.Collections.emptyList();
+      private void ensureTillLandIsMutable() {
+        if (!((bitField0_ & 0x00000004) != 0)) {
+          tillLand_ = new java.util.ArrayList<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand>(tillLand_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder> tillLandBuilder_;
+
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand> getTillLandList() {
+        if (tillLandBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(tillLand_);
+        } else {
+          return tillLandBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public int getTillLandCount() {
+        if (tillLandBuilder_ == null) {
+          return tillLand_.size();
+        } else {
+          return tillLandBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand getTillLand(int index) {
+        if (tillLandBuilder_ == null) {
+          return tillLand_.get(index);
+        } else {
+          return tillLandBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public Builder setTillLand(
+          int index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand value) {
+        if (tillLandBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTillLandIsMutable();
+          tillLand_.set(index, value);
+          onChanged();
+        } else {
+          tillLandBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public Builder setTillLand(
+          int index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.Builder builderForValue) {
+        if (tillLandBuilder_ == null) {
+          ensureTillLandIsMutable();
+          tillLand_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          tillLandBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public Builder addTillLand(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand value) {
+        if (tillLandBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTillLandIsMutable();
+          tillLand_.add(value);
+          onChanged();
+        } else {
+          tillLandBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public Builder addTillLand(
+          int index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand value) {
+        if (tillLandBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTillLandIsMutable();
+          tillLand_.add(index, value);
+          onChanged();
+        } else {
+          tillLandBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public Builder addTillLand(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.Builder builderForValue) {
+        if (tillLandBuilder_ == null) {
+          ensureTillLandIsMutable();
+          tillLand_.add(builderForValue.build());
+          onChanged();
+        } else {
+          tillLandBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public Builder addTillLand(
+          int index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.Builder builderForValue) {
+        if (tillLandBuilder_ == null) {
+          ensureTillLandIsMutable();
+          tillLand_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          tillLandBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public Builder addAllTillLand(
+          java.lang.Iterable<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand> values) {
+        if (tillLandBuilder_ == null) {
+          ensureTillLandIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, tillLand_);
+          onChanged();
+        } else {
+          tillLandBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public Builder clearTillLand() {
+        if (tillLandBuilder_ == null) {
+          tillLand_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        } else {
+          tillLandBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public Builder removeTillLand(int index) {
+        if (tillLandBuilder_ == null) {
+          ensureTillLandIsMutable();
+          tillLand_.remove(index);
+          onChanged();
+        } else {
+          tillLandBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.Builder getTillLandBuilder(
+          int index) {
+        return getTillLandFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder getTillLandOrBuilder(
+          int index) {
+        if (tillLandBuilder_ == null) {
+          return tillLand_.get(index);  } else {
+          return tillLandBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public java.util.List<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder> 
+           getTillLandOrBuilderList() {
+        if (tillLandBuilder_ != null) {
+          return tillLandBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(tillLand_);
+        }
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.Builder addTillLandBuilder() {
+        return getTillLandFieldBuilder().addBuilder(
+            vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.Builder addTillLandBuilder(
+          int index) {
+        return getTillLandFieldBuilder().addBuilder(
+            index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .proto.TillLand tillLand = 3;</code>
+       */
+      public java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.Builder> 
+           getTillLandBuilderList() {
+        return getTillLandFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder> 
+          getTillLandFieldBuilder() {
+        if (tillLandBuilder_ == null) {
+          tillLandBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder>(
+                  tillLand_,
+                  ((bitField0_ & 0x00000004) != 0),
+                  getParentForChildren(),
+                  isClean());
+          tillLand_ = null;
+        }
+        return tillLandBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.PlantingLandBuilding)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.PlantingLandBuilding)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<PlantingLandBuilding>
+        PARSER = new com.google.protobuf.AbstractParser<PlantingLandBuilding>() {
+      @java.lang.Override
+      public PlantingLandBuilding parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<PlantingLandBuilding> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PlantingLandBuilding> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BuildingOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.Building)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+     * @return Whether the farmBuilding field is set.
+     */
+    boolean hasFarmBuilding();
+    /**
+     * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+     * @return The farmBuilding.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding getFarmBuilding();
+    /**
+     * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuildingOrBuilder getFarmBuildingOrBuilder();
+
+    /**
+     * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+     * @return Whether the plantingLandBuilding field is set.
+     */
+    boolean hasPlantingLandBuilding();
+    /**
+     * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+     * @return The plantingLandBuilding.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding getPlantingLandBuilding();
+    /**
+     * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuildingOrBuilder getPlantingLandBuildingOrBuilder();
+
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.DataCase getDataCase();
+  }
+  /**
+   * Protobuf type {@code proto.Building}
+   */
+  public static final class Building extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.Building)
+      BuildingOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Building.newBuilder() to construct.
+    private Building(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Building() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Building();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_Building_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_Building_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder.class);
+    }
+
+    private int dataCase_ = 0;
+    @SuppressWarnings("serial")
+    private java.lang.Object data_;
+    public enum DataCase
+        implements com.google.protobuf.Internal.EnumLite,
+            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+      FARMBUILDING(1),
+      PLANTINGLANDBUILDING(2),
+      DATA_NOT_SET(0);
+      private final int value;
+      private DataCase(int value) {
+        this.value = value;
+      }
+      /**
+       * @param value The number of the enum to look for.
+       * @return The enum associated with the given number.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static DataCase valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static DataCase forNumber(int value) {
+        switch (value) {
+          case 1: return FARMBUILDING;
+          case 2: return PLANTINGLANDBUILDING;
+          case 0: return DATA_NOT_SET;
+          default: return null;
+        }
+      }
+      public int getNumber() {
+        return this.value;
+      }
+    };
+
+    public DataCase
+    getDataCase() {
+      return DataCase.forNumber(
+          dataCase_);
+    }
+
+    public static final int FARMBUILDING_FIELD_NUMBER = 1;
+    /**
+     * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+     * @return Whether the farmBuilding field is set.
+     */
+    @java.lang.Override
+    public boolean hasFarmBuilding() {
+      return dataCase_ == 1;
+    }
+    /**
+     * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+     * @return The farmBuilding.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding getFarmBuilding() {
+      if (dataCase_ == 1) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuildingOrBuilder getFarmBuildingOrBuilder() {
+      if (dataCase_ == 1) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.getDefaultInstance();
+    }
+
+    public static final int PLANTINGLANDBUILDING_FIELD_NUMBER = 2;
+    /**
+     * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+     * @return Whether the plantingLandBuilding field is set.
+     */
+    @java.lang.Override
+    public boolean hasPlantingLandBuilding() {
+      return dataCase_ == 2;
+    }
+    /**
+     * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+     * @return The plantingLandBuilding.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding getPlantingLandBuilding() {
+      if (dataCase_ == 2) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuildingOrBuilder getPlantingLandBuildingOrBuilder() {
+      if (dataCase_ == 2) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.getDefaultInstance();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (dataCase_ == 1) {
+        output.writeMessage(1, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding) data_);
+      }
+      if (dataCase_ == 2) {
+        output.writeMessage(2, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding) data_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (dataCase_ == 1) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding) data_);
+      }
+      if (dataCase_ == 2) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding) data_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building) obj;
+
+      if (!getDataCase().equals(other.getDataCase())) return false;
+      switch (dataCase_) {
+        case 1:
+          if (!getFarmBuilding()
+              .equals(other.getFarmBuilding())) return false;
+          break;
+        case 2:
+          if (!getPlantingLandBuilding()
+              .equals(other.getPlantingLandBuilding())) return false;
+          break;
+        case 0:
+        default:
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      switch (dataCase_) {
+        case 1:
+          hash = (37 * hash) + FARMBUILDING_FIELD_NUMBER;
+          hash = (53 * hash) + getFarmBuilding().hashCode();
+          break;
+        case 2:
+          hash = (37 * hash) + PLANTINGLANDBUILDING_FIELD_NUMBER;
+          hash = (53 * hash) + getPlantingLandBuilding().hashCode();
+          break;
+        case 0:
+        default:
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.Building}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.Building)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_Building_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_Building_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        if (farmBuildingBuilder_ != null) {
+          farmBuildingBuilder_.clear();
+        }
+        if (plantingLandBuildingBuilder_ != null) {
+          plantingLandBuildingBuilder_.clear();
+        }
+        dataCase_ = 0;
+        data_ = null;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_Building_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        buildPartialOneofs(result);
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      private void buildPartialOneofs(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building result) {
+        result.dataCase_ = dataCase_;
+        result.data_ = this.data_;
+        if (dataCase_ == 1 &&
+            farmBuildingBuilder_ != null) {
+          result.data_ = farmBuildingBuilder_.build();
+        }
+        if (dataCase_ == 2 &&
+            plantingLandBuildingBuilder_ != null) {
+          result.data_ = plantingLandBuildingBuilder_.build();
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.getDefaultInstance()) return this;
+        switch (other.getDataCase()) {
+          case FARMBUILDING: {
+            mergeFarmBuilding(other.getFarmBuilding());
+            break;
+          }
+          case PLANTINGLANDBUILDING: {
+            mergePlantingLandBuilding(other.getPlantingLandBuilding());
+            break;
+          }
+          case DATA_NOT_SET: {
+            break;
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getFarmBuildingFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 1;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getPlantingLandBuildingFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 2;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int dataCase_ = 0;
+      private java.lang.Object data_;
+      public DataCase
+          getDataCase() {
+        return DataCase.forNumber(
+            dataCase_);
+      }
+
+      public Builder clearData() {
+        dataCase_ = 0;
+        data_ = null;
+        onChanged();
+        return this;
+      }
+
+      private int bitField0_;
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuildingOrBuilder> farmBuildingBuilder_;
+      /**
+       * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+       * @return Whether the farmBuilding field is set.
+       */
+      @java.lang.Override
+      public boolean hasFarmBuilding() {
+        return dataCase_ == 1;
+      }
+      /**
+       * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+       * @return The farmBuilding.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding getFarmBuilding() {
+        if (farmBuildingBuilder_ == null) {
+          if (dataCase_ == 1) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.getDefaultInstance();
+        } else {
+          if (dataCase_ == 1) {
+            return farmBuildingBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+       */
+      public Builder setFarmBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding value) {
+        if (farmBuildingBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          farmBuildingBuilder_.setMessage(value);
+        }
+        dataCase_ = 1;
+        return this;
+      }
+      /**
+       * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+       */
+      public Builder setFarmBuilding(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.Builder builderForValue) {
+        if (farmBuildingBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          farmBuildingBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 1;
+        return this;
+      }
+      /**
+       * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+       */
+      public Builder mergeFarmBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding value) {
+        if (farmBuildingBuilder_ == null) {
+          if (dataCase_ == 1 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 1) {
+            farmBuildingBuilder_.mergeFrom(value);
+          } else {
+            farmBuildingBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 1;
+        return this;
+      }
+      /**
+       * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+       */
+      public Builder clearFarmBuilding() {
+        if (farmBuildingBuilder_ == null) {
+          if (dataCase_ == 1) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 1) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          farmBuildingBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.Builder getFarmBuildingBuilder() {
+        return getFarmBuildingFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuildingOrBuilder getFarmBuildingOrBuilder() {
+        if ((dataCase_ == 1) && (farmBuildingBuilder_ != null)) {
+          return farmBuildingBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 1) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.FarmBuilding farmBuilding = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuildingOrBuilder> 
+          getFarmBuildingFieldBuilder() {
+        if (farmBuildingBuilder_ == null) {
+          if (!(dataCase_ == 1)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.getDefaultInstance();
+          }
+          farmBuildingBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuildingOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FarmBuilding) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 1;
+        onChanged();
+        return farmBuildingBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuildingOrBuilder> plantingLandBuildingBuilder_;
+      /**
+       * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+       * @return Whether the plantingLandBuilding field is set.
+       */
+      @java.lang.Override
+      public boolean hasPlantingLandBuilding() {
+        return dataCase_ == 2;
+      }
+      /**
+       * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+       * @return The plantingLandBuilding.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding getPlantingLandBuilding() {
+        if (plantingLandBuildingBuilder_ == null) {
+          if (dataCase_ == 2) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.getDefaultInstance();
+        } else {
+          if (dataCase_ == 2) {
+            return plantingLandBuildingBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+       */
+      public Builder setPlantingLandBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding value) {
+        if (plantingLandBuildingBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          plantingLandBuildingBuilder_.setMessage(value);
+        }
+        dataCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+       */
+      public Builder setPlantingLandBuilding(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.Builder builderForValue) {
+        if (plantingLandBuildingBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          plantingLandBuildingBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+       */
+      public Builder mergePlantingLandBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding value) {
+        if (plantingLandBuildingBuilder_ == null) {
+          if (dataCase_ == 2 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 2) {
+            plantingLandBuildingBuilder_.mergeFrom(value);
+          } else {
+            plantingLandBuildingBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+       */
+      public Builder clearPlantingLandBuilding() {
+        if (plantingLandBuildingBuilder_ == null) {
+          if (dataCase_ == 2) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 2) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          plantingLandBuildingBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.Builder getPlantingLandBuildingBuilder() {
+        return getPlantingLandBuildingFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuildingOrBuilder getPlantingLandBuildingOrBuilder() {
+        if ((dataCase_ == 2) && (plantingLandBuildingBuilder_ != null)) {
+          return plantingLandBuildingBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 2) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.PlantingLandBuilding plantingLandBuilding = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuildingOrBuilder> 
+          getPlantingLandBuildingFieldBuilder() {
+        if (plantingLandBuildingBuilder_ == null) {
+          if (!(dataCase_ == 2)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.getDefaultInstance();
+          }
+          plantingLandBuildingBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuildingOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 2;
+        onChanged();
+        return plantingLandBuildingBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.Building)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.Building)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Building>
+        PARSER = new com.google.protobuf.AbstractParser<Building>() {
+      @java.lang.Override
+      public Building parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Building> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Building> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface BuildingItemsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.BuildingItems)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .proto.Building building = 1;</code>
+     */
+    java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building> 
+        getBuildingList();
+    /**
+     * <code>repeated .proto.Building building = 1;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building getBuilding(int index);
+    /**
+     * <code>repeated .proto.Building building = 1;</code>
+     */
+    int getBuildingCount();
+    /**
+     * <code>repeated .proto.Building building = 1;</code>
+     */
+    java.util.List<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder> 
+        getBuildingOrBuilderList();
+    /**
+     * <code>repeated .proto.Building building = 1;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder getBuildingOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code proto.BuildingItems}
+   */
+  public static final class BuildingItems extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.BuildingItems)
+      BuildingItemsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use BuildingItems.newBuilder() to construct.
+    private BuildingItems(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private BuildingItems() {
+      building_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new BuildingItems();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_BuildingItems_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_BuildingItems_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.Builder.class);
+    }
+
+    public static final int BUILDING_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building> building_;
+    /**
+     * <code>repeated .proto.Building building = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building> getBuildingList() {
+      return building_;
+    }
+    /**
+     * <code>repeated .proto.Building building = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder> 
+        getBuildingOrBuilderList() {
+      return building_;
+    }
+    /**
+     * <code>repeated .proto.Building building = 1;</code>
+     */
+    @java.lang.Override
+    public int getBuildingCount() {
+      return building_.size();
+    }
+    /**
+     * <code>repeated .proto.Building building = 1;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building getBuilding(int index) {
+      return building_.get(index);
+    }
+    /**
+     * <code>repeated .proto.Building building = 1;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder getBuildingOrBuilder(
+        int index) {
+      return building_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < building_.size(); i++) {
+        output.writeMessage(1, building_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < building_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, building_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems) obj;
+
+      if (!getBuildingList()
+          .equals(other.getBuildingList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getBuildingCount() > 0) {
+        hash = (37 * hash) + BUILDING_FIELD_NUMBER;
+        hash = (53 * hash) + getBuildingList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.BuildingItems}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.BuildingItems)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItemsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_BuildingItems_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_BuildingItems_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        if (buildingBuilder_ == null) {
+          building_ = java.util.Collections.emptyList();
+        } else {
+          building_ = null;
+          buildingBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_BuildingItems_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems result) {
+        if (buildingBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            building_ = java.util.Collections.unmodifiableList(building_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.building_ = building_;
+        } else {
+          result.building_ = buildingBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.getDefaultInstance()) return this;
+        if (buildingBuilder_ == null) {
+          if (!other.building_.isEmpty()) {
+            if (building_.isEmpty()) {
+              building_ = other.building_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureBuildingIsMutable();
+              building_.addAll(other.building_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.building_.isEmpty()) {
+            if (buildingBuilder_.isEmpty()) {
+              buildingBuilder_.dispose();
+              buildingBuilder_ = null;
+              building_ = other.building_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              buildingBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getBuildingFieldBuilder() : null;
+            } else {
+              buildingBuilder_.addAllMessages(other.building_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building m =
+                    input.readMessage(
+                        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.parser(),
+                        extensionRegistry);
+                if (buildingBuilder_ == null) {
+                  ensureBuildingIsMutable();
+                  building_.add(m);
+                } else {
+                  buildingBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building> building_ =
+        java.util.Collections.emptyList();
+      private void ensureBuildingIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          building_ = new java.util.ArrayList<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building>(building_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder> buildingBuilder_;
+
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building> getBuildingList() {
+        if (buildingBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(building_);
+        } else {
+          return buildingBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public int getBuildingCount() {
+        if (buildingBuilder_ == null) {
+          return building_.size();
+        } else {
+          return buildingBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building getBuilding(int index) {
+        if (buildingBuilder_ == null) {
+          return building_.get(index);
+        } else {
+          return buildingBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public Builder setBuilding(
+          int index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building value) {
+        if (buildingBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBuildingIsMutable();
+          building_.set(index, value);
+          onChanged();
+        } else {
+          buildingBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public Builder setBuilding(
+          int index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder builderForValue) {
+        if (buildingBuilder_ == null) {
+          ensureBuildingIsMutable();
+          building_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          buildingBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public Builder addBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building value) {
+        if (buildingBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBuildingIsMutable();
+          building_.add(value);
+          onChanged();
+        } else {
+          buildingBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public Builder addBuilding(
+          int index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building value) {
+        if (buildingBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureBuildingIsMutable();
+          building_.add(index, value);
+          onChanged();
+        } else {
+          buildingBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public Builder addBuilding(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder builderForValue) {
+        if (buildingBuilder_ == null) {
+          ensureBuildingIsMutable();
+          building_.add(builderForValue.build());
+          onChanged();
+        } else {
+          buildingBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public Builder addBuilding(
+          int index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder builderForValue) {
+        if (buildingBuilder_ == null) {
+          ensureBuildingIsMutable();
+          building_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          buildingBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public Builder addAllBuilding(
+          java.lang.Iterable<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building> values) {
+        if (buildingBuilder_ == null) {
+          ensureBuildingIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, building_);
+          onChanged();
+        } else {
+          buildingBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public Builder clearBuilding() {
+        if (buildingBuilder_ == null) {
+          building_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          buildingBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public Builder removeBuilding(int index) {
+        if (buildingBuilder_ == null) {
+          ensureBuildingIsMutable();
+          building_.remove(index);
+          onChanged();
+        } else {
+          buildingBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder getBuildingBuilder(
+          int index) {
+        return getBuildingFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder getBuildingOrBuilder(
+          int index) {
+        if (buildingBuilder_ == null) {
+          return building_.get(index);  } else {
+          return buildingBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public java.util.List<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder> 
+           getBuildingOrBuilderList() {
+        if (buildingBuilder_ != null) {
+          return buildingBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(building_);
+        }
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder addBuildingBuilder() {
+        return getBuildingFieldBuilder().addBuilder(
+            vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder addBuildingBuilder(
+          int index) {
+        return getBuildingFieldBuilder().addBuilder(
+            index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .proto.Building building = 1;</code>
+       */
+      public java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder> 
+           getBuildingBuilderList() {
+        return getBuildingFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder> 
+          getBuildingFieldBuilder() {
+        if (buildingBuilder_ == null) {
+          buildingBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder>(
+                  building_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          building_ = null;
+        }
+        return buildingBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.BuildingItems)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.BuildingItems)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<BuildingItems>
+        PARSER = new com.google.protobuf.AbstractParser<BuildingItems>() {
+      @java.lang.Override
+      public BuildingItems parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<BuildingItems> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<BuildingItems> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ResLoadItemsOfFarmOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ResLoadItemsOfFarm)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.proto.BuildingItems buildingItems = 1;</code>
+     * @return Whether the buildingItems field is set.
+     */
+    boolean hasBuildingItems();
+    /**
+     * <code>.proto.BuildingItems buildingItems = 1;</code>
+     * @return The buildingItems.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems getBuildingItems();
+    /**
+     * <code>.proto.BuildingItems buildingItems = 1;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItemsOrBuilder getBuildingItemsOrBuilder();
+  }
+  /**
+   * Protobuf type {@code proto.ResLoadItemsOfFarm}
+   */
+  public static final class ResLoadItemsOfFarm extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ResLoadItemsOfFarm)
+      ResLoadItemsOfFarmOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ResLoadItemsOfFarm.newBuilder() to construct.
+    private ResLoadItemsOfFarm(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ResLoadItemsOfFarm() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ResLoadItemsOfFarm();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResLoadItemsOfFarm_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResLoadItemsOfFarm_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.Builder.class);
+    }
+
+    public static final int BUILDINGITEMS_FIELD_NUMBER = 1;
+    private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems buildingItems_;
+    /**
+     * <code>.proto.BuildingItems buildingItems = 1;</code>
+     * @return Whether the buildingItems field is set.
+     */
+    @java.lang.Override
+    public boolean hasBuildingItems() {
+      return buildingItems_ != null;
+    }
+    /**
+     * <code>.proto.BuildingItems buildingItems = 1;</code>
+     * @return The buildingItems.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems getBuildingItems() {
+      return buildingItems_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.getDefaultInstance() : buildingItems_;
+    }
+    /**
+     * <code>.proto.BuildingItems buildingItems = 1;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItemsOrBuilder getBuildingItemsOrBuilder() {
+      return buildingItems_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.getDefaultInstance() : buildingItems_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (buildingItems_ != null) {
+        output.writeMessage(1, getBuildingItems());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (buildingItems_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getBuildingItems());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm) obj;
+
+      if (hasBuildingItems() != other.hasBuildingItems()) return false;
+      if (hasBuildingItems()) {
+        if (!getBuildingItems()
+            .equals(other.getBuildingItems())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasBuildingItems()) {
+        hash = (37 * hash) + BUILDINGITEMS_FIELD_NUMBER;
+        hash = (53 * hash) + getBuildingItems().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ResLoadItemsOfFarm}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ResLoadItemsOfFarm)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarmOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResLoadItemsOfFarm_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResLoadItemsOfFarm_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        buildingItems_ = null;
+        if (buildingItemsBuilder_ != null) {
+          buildingItemsBuilder_.dispose();
+          buildingItemsBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResLoadItemsOfFarm_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.buildingItems_ = buildingItemsBuilder_ == null
+              ? buildingItems_
+              : buildingItemsBuilder_.build();
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.getDefaultInstance()) return this;
+        if (other.hasBuildingItems()) {
+          mergeBuildingItems(other.getBuildingItems());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getBuildingItemsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems buildingItems_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItemsOrBuilder> buildingItemsBuilder_;
+      /**
+       * <code>.proto.BuildingItems buildingItems = 1;</code>
+       * @return Whether the buildingItems field is set.
+       */
+      public boolean hasBuildingItems() {
+        return ((bitField0_ & 0x00000001) != 0);
+      }
+      /**
+       * <code>.proto.BuildingItems buildingItems = 1;</code>
+       * @return The buildingItems.
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems getBuildingItems() {
+        if (buildingItemsBuilder_ == null) {
+          return buildingItems_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.getDefaultInstance() : buildingItems_;
+        } else {
+          return buildingItemsBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.BuildingItems buildingItems = 1;</code>
+       */
+      public Builder setBuildingItems(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems value) {
+        if (buildingItemsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          buildingItems_ = value;
+        } else {
+          buildingItemsBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.BuildingItems buildingItems = 1;</code>
+       */
+      public Builder setBuildingItems(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.Builder builderForValue) {
+        if (buildingItemsBuilder_ == null) {
+          buildingItems_ = builderForValue.build();
+        } else {
+          buildingItemsBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.BuildingItems buildingItems = 1;</code>
+       */
+      public Builder mergeBuildingItems(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems value) {
+        if (buildingItemsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0) &&
+            buildingItems_ != null &&
+            buildingItems_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.getDefaultInstance()) {
+            getBuildingItemsBuilder().mergeFrom(value);
+          } else {
+            buildingItems_ = value;
+          }
+        } else {
+          buildingItemsBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.BuildingItems buildingItems = 1;</code>
+       */
+      public Builder clearBuildingItems() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        buildingItems_ = null;
+        if (buildingItemsBuilder_ != null) {
+          buildingItemsBuilder_.dispose();
+          buildingItemsBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.BuildingItems buildingItems = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.Builder getBuildingItemsBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getBuildingItemsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.BuildingItems buildingItems = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItemsOrBuilder getBuildingItemsOrBuilder() {
+        if (buildingItemsBuilder_ != null) {
+          return buildingItemsBuilder_.getMessageOrBuilder();
+        } else {
+          return buildingItems_ == null ?
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.getDefaultInstance() : buildingItems_;
+        }
+      }
+      /**
+       * <code>.proto.BuildingItems buildingItems = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItemsOrBuilder> 
+          getBuildingItemsFieldBuilder() {
+        if (buildingItemsBuilder_ == null) {
+          buildingItemsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItems.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingItemsOrBuilder>(
+                  getBuildingItems(),
+                  getParentForChildren(),
+                  isClean());
+          buildingItems_ = null;
+        }
+        return buildingItemsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ResLoadItemsOfFarm)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ResLoadItemsOfFarm)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ResLoadItemsOfFarm>
+        PARSER = new com.google.protobuf.AbstractParser<ResLoadItemsOfFarm>() {
+      @java.lang.Override
+      public ResLoadItemsOfFarm parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ResLoadItemsOfFarm> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ResLoadItemsOfFarm> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_PacketWrapper_descriptor;
   private static final 
@@ -27126,6 +34754,51 @@ public final class Proto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_proto_ResMoving_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ReqLoadItemsOfFarm_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ReqLoadItemsOfFarm_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_BuildingBase_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_BuildingBase_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_PropertyBuilding_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_PropertyBuilding_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_TillLand_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_TillLand_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_FarmBuilding_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_FarmBuilding_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_PlantingLandBuilding_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_PlantingLandBuilding_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_Building_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_Building_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_BuildingItems_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_BuildingItems_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ResLoadItemsOfFarm_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ResLoadItemsOfFarm_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -27136,7 +34809,7 @@ public final class Proto {
   static {
     java.lang.String[] descriptorData = {
       "\n\013Proto.proto\022\005proto\".\n\rPacketWrapper\022\035\n" +
-      "\006packet\030\001 \003(\0132\r.proto.Packet\"\352\010\n\006Packet\022" +
+      "\006packet\030\001 \003(\0132\r.proto.Packet\"\334\t\n\006Packet\022" +
       "#\n\010reqLogin\030\001 \001(\0132\017.proto.ReqLoginH\000\022\'\n\n" +
       "reqRelogin\030\002 \001(\0132\021.proto.ReqReloginH\000\022#\n" +
       "\010resLogin\030\003 \001(\0132\017.proto.ResLoginH\000\022%\n\tre" +
@@ -27164,60 +34837,85 @@ public final class Proto {
       "inAreaH\000\022%\n\treqMoving\030\024 \001(\0132\020.proto.ReqM" +
       "ovingH\000\022%\n\tresMoving\030\025 \001(\0132\020.proto.ResMo" +
       "vingH\000\022A\n\027resOtherPlayerLeaveArea\030\026 \001(\0132" +
-      "\036.proto.ResOtherPlayerLeaveAreaH\000B\006\n\004dat" +
-      "a\"\305\001\n\004User\022\016\n\006userId\030\001 \001(\005\022\020\n\010username\030\002" +
-      " \001(\t\022\022\n\nplayerName\030\003 \001(\t\022\016\n\006gender\030\004 \001(\005" +
-      "\022\017\n\007sponsor\030\005 \001(\005\022\r\n\005email\030\006 \001(\t\022\r\n\005phon" +
-      "e\030\007 \001(\t\022\014\n\004gold\030\010 \001(\003\022\017\n\007diamond\030\t \001(\003\022\023" +
-      "\n\013agencyLevel\030\n \001(\005\022\024\n\014hasCharacter\030\013 \001(" +
-      "\005\"r\n\006Player\022\020\n\010playerId\030\001 \001(\005\022\022\n\nplayerN" +
-      "ame\030\002 \001(\t\022\023\n\013characterId\030\003 \001(\005\022\r\n\005level\030" +
-      "\004 \001(\005\022\016\n\006userId\030\005 \001(\005\022\016\n\006areaId\030\006 \001(\005\"H\n" +
-      "\tCharacter\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\014\n\004" +
-      "code\030\003 \001(\t\022\023\n\013description\030\004 \001(\t\"m\n\004Area\022" +
-      "\016\n\006areaId\030\001 \001(\005\022\020\n\010playerId\030\002 \001(\005\022\020\n\010typ" +
-      "eArea\030\003 \001(\t\022!\n\010position\030\004 \001(\0132\017.proto.Po" +
-      "sition\022\016\n\006status\030\005 \001(\005\" \n\010Position\022\t\n\001x\030" +
-      "\001 \001(\002\022\t\n\001y\030\002 \001(\002\".\n\010ReqLogin\022\020\n\010username" +
-      "\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"-\n\nReqRelogin\022\020" +
-      "\n\010username\030\001 \001(\t\022\r\n\005token\030\002 \001(\t\"c\n\010ResLo" +
-      "gin\022\016\n\006status\030\001 \001(\005\022\r\n\005token\030\002 \001(\t\022\031\n\004us" +
-      "er\030\003 \001(\0132\013.proto.User\022\035\n\006player\030\004 \001(\0132\r." +
-      "proto.Player\"\036\n\014ResUserAlert\022\016\n\006status\030\001" +
-      " \001(\005\"\013\n\tReqLogout\"\033\n\tResLogout\022\016\n\006status" +
-      "\030\001 \001(\005\"\"\n\021ReqForgotPassword\022\r\n\005email\030\001 \001" +
-      "(\t\"#\n\021ResForgotPassword\022\016\n\006status\030\001 \001(\005\"" +
-      "`\n\013ReqRegister\022\020\n\010username\030\001 \001(\t\022\020\n\010pass" +
-      "word\030\002 \001(\t\022\017\n\007sponsor\030\003 \001(\t\022\r\n\005phone\030\004 \001" +
-      "(\t\022\r\n\005email\030\005 \001(\t\"\035\n\013ResRegister\022\016\n\006stat" +
-      "us\030\001 \001(\005\"7\n\021ReqUpdateUserInfo\022\022\n\nplayerN" +
-      "ame\030\001 \001(\t\022\016\n\006gender\030\002 \001(\005\"\023\n\021ReqLoadChar" +
-      "acters\"8\n\021ResLoadCharacters\022#\n\tcharacter" +
-      "\030\001 \003(\0132\020.proto.Character\";\n\020ReqPickChara" +
-      "cter\022\023\n\013characterId\030\001 \001(\005\022\022\n\nplayerName\030" +
-      "\002 \001(\t\"\"\n\020ResPickCharacter\022\016\n\006status\030\001 \001(" +
-      "\005\"R\n\027ReqPlayerJoinAreaCommon\022\024\n\014areaComm" +
-      "onId\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.proto.Pos" +
-      "ition\"\314\001\n\027ResPlayerJoinAreaCommon\022\024\n\014are" +
-      "aCommonId\030\001 \001(\005\022\031\n\004area\030\002 \001(\0132\013.proto.Ar" +
-      "ea\022\036\n\007players\030\003 \003(\0132\r.proto.Player\022\032\n\005us" +
-      "ers\030\004 \003(\0132\013.proto.User\022\016\n\006status\030\005 \001(\005\022\021" +
-      "\n\tareaState\030\006 \001(\005\022!\n\010position\030\007 \001(\0132\017.pr" +
-      "oto.Position\")\n\021ReqPlayerJoinArea\022\024\n\014use" +
-      "rTargetId\030\001 \001(\005\"\235\001\n\021ResPlayerJoinArea\022\031\n" +
-      "\004area\030\001 \001(\0132\013.proto.Area\022\036\n\007players\030\002 \003(" +
-      "\0132\r.proto.Player\022\032\n\005users\030\003 \003(\0132\013.proto." +
-      "User\022\016\n\006status\030\004 \001(\005\022!\n\010position\030\005 \001(\0132\017" +
-      ".proto.Position\"u\n\026ResOtherPlayerJoinAre" +
-      "a\022\035\n\006player\030\001 \001(\0132\r.proto.Player\022\031\n\004user" +
-      "\030\002 \001(\0132\013.proto.User\022!\n\010position\030\003 \001(\0132\017." +
-      "proto.Position\")\n\027ResOtherPlayerLeaveAre" +
-      "a\022\016\n\006userId\030\001 \001(\005\">\n\tReqMoving\022\016\n\006areaId" +
-      "\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.proto.Positio" +
-      "n\"P\n\tResMoving\022\016\n\006userId\030\001 \001(\005\022\020\n\010player" +
-      "Id\030\002 \001(\005\022!\n\010position\030\003 \001(\0132\017.proto.Posit" +
-      "ionB%\n#vn.edu.nlu.fit.nlugame.layer2.pro" +
-      "tob\006proto3"
+      "\036.proto.ResOtherPlayerLeaveAreaH\000\0227\n\022req" +
+      "LoadItemsOfFarm\030\027 \001(\0132\031.proto.ReqLoadIte" +
+      "msOfFarmH\000\0227\n\022resLoadItemsOfFarm\030\030 \001(\0132\031" +
+      ".proto.ResLoadItemsOfFarmH\000B\006\n\004data\"\372\001\n\004" +
+      "User\022\016\n\006userId\030\001 \001(\005\022\020\n\010username\030\002 \001(\t\022\022" +
+      "\n\nplayerName\030\003 \001(\t\022\016\n\006gender\030\004 \001(\005\022\017\n\007sp" +
+      "onsor\030\005 \001(\005\022\r\n\005email\030\006 \001(\t\022\r\n\005phone\030\007 \001(" +
+      "\t\022\014\n\004gold\030\010 \001(\003\022\017\n\007diamond\030\t \001(\003\022\r\n\005leve" +
+      "l\030\n \001(\005\022\024\n\014hasCharacter\030\013 \001(\005\022\023\n\013charact" +
+      "erId\030\014 \001(\005\022\016\n\006areaId\030\r \001(\005\022\024\n\014isNewAccou" +
+      "nt\030\016 \001(\005\"r\n\006Player\022\020\n\010playerId\030\001 \001(\005\022\022\n\n" +
+      "playerName\030\002 \001(\t\022\023\n\013characterId\030\003 \001(\005\022\r\n" +
+      "\005level\030\004 \001(\005\022\016\n\006userId\030\005 \001(\005\022\016\n\006areaId\030\006" +
+      " \001(\005\"H\n\tCharacter\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 " +
+      "\001(\t\022\014\n\004code\030\003 \001(\t\022\023\n\013description\030\004 \001(\t\"m" +
+      "\n\004Area\022\016\n\006areaId\030\001 \001(\005\022\020\n\010playerId\030\002 \001(\005" +
+      "\022\020\n\010typeArea\030\003 \001(\t\022!\n\010position\030\004 \001(\0132\017.p" +
+      "roto.Position\022\016\n\006status\030\005 \001(\005\" \n\010Positio" +
+      "n\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\".\n\010ReqLogin\022\020\n\010u" +
+      "sername\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"-\n\nReqRe" +
+      "login\022\020\n\010username\030\001 \001(\t\022\r\n\005token\030\002 \001(\t\"c" +
+      "\n\010ResLogin\022\016\n\006status\030\001 \001(\005\022\r\n\005token\030\002 \001(" +
+      "\t\022\031\n\004user\030\003 \001(\0132\013.proto.User\022\035\n\006player\030\004" +
+      " \001(\0132\r.proto.Player\"\036\n\014ResUserAlert\022\016\n\006s" +
+      "tatus\030\001 \001(\005\"\013\n\tReqLogout\"\033\n\tResLogout\022\016\n" +
+      "\006status\030\001 \001(\005\"\"\n\021ReqForgotPassword\022\r\n\005em" +
+      "ail\030\001 \001(\t\"#\n\021ResForgotPassword\022\016\n\006status" +
+      "\030\001 \001(\005\"`\n\013ReqRegister\022\020\n\010username\030\001 \001(\t\022" +
+      "\020\n\010password\030\002 \001(\t\022\017\n\007sponsor\030\003 \001(\t\022\r\n\005ph" +
+      "one\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\"\035\n\013ResRegister\022" +
+      "\016\n\006status\030\001 \001(\005\"7\n\021ReqUpdateUserInfo\022\022\n\n" +
+      "playerName\030\001 \001(\t\022\016\n\006gender\030\002 \001(\005\"\023\n\021ReqL" +
+      "oadCharacters\"8\n\021ResLoadCharacters\022#\n\tch" +
+      "aracter\030\001 \003(\0132\020.proto.Character\";\n\020ReqPi" +
+      "ckCharacter\022\023\n\013characterId\030\001 \001(\005\022\022\n\nplay" +
+      "erName\030\002 \001(\t\"\"\n\020ResPickCharacter\022\016\n\006stat" +
+      "us\030\001 \001(\005\"R\n\027ReqPlayerJoinAreaCommon\022\024\n\014a" +
+      "reaCommonId\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.pr" +
+      "oto.Position\"\314\001\n\027ResPlayerJoinAreaCommon" +
+      "\022\024\n\014areaCommonId\030\001 \001(\005\022\031\n\004area\030\002 \001(\0132\013.p" +
+      "roto.Area\022\036\n\007players\030\003 \003(\0132\r.proto.Playe" +
+      "r\022\032\n\005users\030\004 \003(\0132\013.proto.User\022\016\n\006status\030" +
+      "\005 \001(\005\022\021\n\tareaState\030\006 \001(\005\022!\n\010position\030\007 \001" +
+      "(\0132\017.proto.Position\")\n\021ReqPlayerJoinArea" +
+      "\022\024\n\014userTargetId\030\001 \001(\005\"\235\001\n\021ResPlayerJoin" +
+      "Area\022\031\n\004area\030\001 \001(\0132\013.proto.Area\022\036\n\007playe" +
+      "rs\030\002 \003(\0132\r.proto.Player\022\032\n\005users\030\003 \003(\0132\013" +
+      ".proto.User\022\016\n\006status\030\004 \001(\005\022!\n\010position\030" +
+      "\005 \001(\0132\017.proto.Position\"u\n\026ResOtherPlayer" +
+      "JoinArea\022\035\n\006player\030\001 \001(\0132\r.proto.Player\022" +
+      "\031\n\004user\030\002 \001(\0132\013.proto.User\022!\n\010position\030\003" +
+      " \001(\0132\017.proto.Position\")\n\027ResOtherPlayerL" +
+      "eaveArea\022\016\n\006userId\030\001 \001(\005\">\n\tReqMoving\022\016\n" +
+      "\006areaId\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.proto." +
+      "Position\"P\n\tResMoving\022\016\n\006userId\030\001 \001(\005\022\020\n" +
+      "\010playerId\030\002 \001(\005\022!\n\010position\030\003 \001(\0132\017.prot" +
+      "o.Position\"\024\n\022ReqLoadItemsOfFarm\"l\n\014Buil" +
+      "dingBase\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005pr" +
+      "ice\030\003 \001(\003\022\023\n\013description\030\004 \001(\t\022\014\n\004type\030\005" +
+      " \001(\t\022\020\n\010maxLevel\030\006 \001(\005\"\227\001\n\020PropertyBuild" +
+      "ing\022\n\n\002id\030\001 \001(\005\022\021\n\tpositionX\030\002 \001(\003\022\021\n\tpo" +
+      "sitionY\030\003 \001(\003\022\021\n\tupgradeId\030\004 \001(\005\022\016\n\006area" +
+      "Id\030\005 \001(\005\022\030\n\020commonBuildingId\030\006 \001(\005\022\024\n\014cu" +
+      "rrentLevel\030\007 \001(\005\";\n\010TillLand\022\n\n\002id\030\001 \001(\005" +
+      "\022\r\n\005index\030\002 \001(\005\022\024\n\014statusTilled\030\003 \001(\010\"d\n" +
+      "\014FarmBuilding\022!\n\004base\030\001 \001(\0132\023.proto.Buil" +
+      "dingBase\0221\n\020propertyBuilding\030\002 \001(\0132\027.pro" +
+      "to.PropertyBuilding\"\217\001\n\024PlantingLandBuil" +
+      "ding\022!\n\004base\030\001 \001(\0132\023.proto.BuildingBase\022" +
+      "1\n\020propertyBuilding\030\002 \001(\0132\027.proto.Proper" +
+      "tyBuilding\022!\n\010tillLand\030\003 \003(\0132\017.proto.Til" +
+      "lLand\"|\n\010Building\022+\n\014farmBuilding\030\001 \001(\0132" +
+      "\023.proto.FarmBuildingH\000\022;\n\024plantingLandBu" +
+      "ilding\030\002 \001(\0132\033.proto.PlantingLandBuildin" +
+      "gH\000B\006\n\004data\"2\n\rBuildingItems\022!\n\010building" +
+      "\030\001 \003(\0132\017.proto.Building\"A\n\022ResLoadItemsO" +
+      "fFarm\022+\n\rbuildingItems\030\001 \001(\0132\024.proto.Bui" +
+      "ldingItemsB%\n#vn.edu.nlu.fit.nlugame.lay" +
+      "er2.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -27234,13 +34932,13 @@ public final class Proto {
     internal_static_proto_Packet_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Packet_descriptor,
-        new java.lang.String[] { "ReqLogin", "ReqRelogin", "ResLogin", "ReqLogout", "ResLogout", "ReqForgotPassword", "ResForgotPassword", "ReqRegister", "ResRegister", "ReqUpdateUserInfo", "ReqLoadCharacters", "ResLoadCharacters", "ReqPickCharacter", "ResPickCharacter", "ReqPlayerJoinAreaCommon", "ResPlayerJoinAreaCommon", "ReqPlayerJoinArea", "ResPlayerJoinArea", "ResOtherPlayerJoinArea", "ReqMoving", "ResMoving", "ResOtherPlayerLeaveArea", "Data", });
+        new java.lang.String[] { "ReqLogin", "ReqRelogin", "ResLogin", "ReqLogout", "ResLogout", "ReqForgotPassword", "ResForgotPassword", "ReqRegister", "ResRegister", "ReqUpdateUserInfo", "ReqLoadCharacters", "ResLoadCharacters", "ReqPickCharacter", "ResPickCharacter", "ReqPlayerJoinAreaCommon", "ResPlayerJoinAreaCommon", "ReqPlayerJoinArea", "ResPlayerJoinArea", "ResOtherPlayerJoinArea", "ReqMoving", "ResMoving", "ResOtherPlayerLeaveArea", "ReqLoadItemsOfFarm", "ResLoadItemsOfFarm", "Data", });
     internal_static_proto_User_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_proto_User_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_User_descriptor,
-        new java.lang.String[] { "UserId", "Username", "PlayerName", "Gender", "Sponsor", "Email", "Phone", "Gold", "Diamond", "AgencyLevel", "HasCharacter", });
+        new java.lang.String[] { "UserId", "Username", "PlayerName", "Gender", "Sponsor", "Email", "Phone", "Gold", "Diamond", "Level", "HasCharacter", "CharacterId", "AreaId", "IsNewAccount", });
     internal_static_proto_Player_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_proto_Player_fieldAccessorTable = new
@@ -27403,6 +35101,60 @@ public final class Proto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_ResMoving_descriptor,
         new java.lang.String[] { "UserId", "PlayerId", "Position", });
+    internal_static_proto_ReqLoadItemsOfFarm_descriptor =
+      getDescriptor().getMessageTypes().get(30);
+    internal_static_proto_ReqLoadItemsOfFarm_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ReqLoadItemsOfFarm_descriptor,
+        new java.lang.String[] { });
+    internal_static_proto_BuildingBase_descriptor =
+      getDescriptor().getMessageTypes().get(31);
+    internal_static_proto_BuildingBase_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_BuildingBase_descriptor,
+        new java.lang.String[] { "Id", "Name", "Price", "Description", "Type", "MaxLevel", });
+    internal_static_proto_PropertyBuilding_descriptor =
+      getDescriptor().getMessageTypes().get(32);
+    internal_static_proto_PropertyBuilding_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_PropertyBuilding_descriptor,
+        new java.lang.String[] { "Id", "PositionX", "PositionY", "UpgradeId", "AreaId", "CommonBuildingId", "CurrentLevel", });
+    internal_static_proto_TillLand_descriptor =
+      getDescriptor().getMessageTypes().get(33);
+    internal_static_proto_TillLand_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_TillLand_descriptor,
+        new java.lang.String[] { "Id", "Index", "StatusTilled", });
+    internal_static_proto_FarmBuilding_descriptor =
+      getDescriptor().getMessageTypes().get(34);
+    internal_static_proto_FarmBuilding_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_FarmBuilding_descriptor,
+        new java.lang.String[] { "Base", "PropertyBuilding", });
+    internal_static_proto_PlantingLandBuilding_descriptor =
+      getDescriptor().getMessageTypes().get(35);
+    internal_static_proto_PlantingLandBuilding_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_PlantingLandBuilding_descriptor,
+        new java.lang.String[] { "Base", "PropertyBuilding", "TillLand", });
+    internal_static_proto_Building_descriptor =
+      getDescriptor().getMessageTypes().get(36);
+    internal_static_proto_Building_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_Building_descriptor,
+        new java.lang.String[] { "FarmBuilding", "PlantingLandBuilding", "Data", });
+    internal_static_proto_BuildingItems_descriptor =
+      getDescriptor().getMessageTypes().get(37);
+    internal_static_proto_BuildingItems_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_BuildingItems_descriptor,
+        new java.lang.String[] { "Building", });
+    internal_static_proto_ResLoadItemsOfFarm_descriptor =
+      getDescriptor().getMessageTypes().get(38);
+    internal_static_proto_ResLoadItemsOfFarm_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ResLoadItemsOfFarm_descriptor,
+        new java.lang.String[] { "BuildingItems", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

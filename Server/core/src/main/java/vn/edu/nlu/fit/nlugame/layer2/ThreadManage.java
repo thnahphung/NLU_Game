@@ -2,6 +2,7 @@ package vn.edu.nlu.fit.nlugame.layer2;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class ThreadManage {
     private static final ThreadManage instance = new ThreadManage();
@@ -19,5 +20,9 @@ public class ThreadManage {
         executorService.execute(r);
     }
 
+    public Future<?> executeFuture(Runnable r) {
+        Future<?> future = executorService.submit(r);
+        return future;
+    }
 
 }

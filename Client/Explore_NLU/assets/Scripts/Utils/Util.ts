@@ -1,5 +1,5 @@
 import { _decorator, Component, math, Node, Vec2, Vec3 } from "cc";
-import { ANIMAL_HUSBANDRY_AREA, SCENES, VETERINARIAN_AREA } from "./Const";
+import {ANIMAL_HUSBANDRY_AREA, SCENES, TYPE_ITEM, VETERINARIAN_AREA} from "./Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("Util")
@@ -41,5 +41,13 @@ export class Util {
 
   public static randomInRange(min: number, max: number): number {
     return math.random() * (max - min + 1) + min;
+  }
+
+  public static typeItemfromValue(value: string): TYPE_ITEM {
+    for (const key in TYPE_ITEM) {
+      if (TYPE_ITEM[key] === value) {
+        return key as TYPE_ITEM;
+      }
+    }
   }
 }

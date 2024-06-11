@@ -72,7 +72,7 @@ export class UICanvas extends Component {
     return this.joystick.getComponent(Joystick);
   }
 
-  showPopup(popupName: POPUP, nodeMove?: Node) {
+  showPopup(popupName: POPUP, handleNode?: Node, lable?: string) {
     switch (popupName) {
       case POPUP.POPUP_OPTION:
         if (this.node.getChildByName("BotMid").getChildByName("PopupOption")) {
@@ -82,7 +82,8 @@ export class UICanvas extends Component {
         this._popup.components.find((component) => {
           if (component instanceof PopupOption) {
             this._popupOption = component;
-            this._popupOption.nodeMove = nodeMove;
+            if(handleNode) this._popupOption.handleNode = handleNode;
+            if(lable) this._popupOption.lableString = lable;
           }
         });
         this.node.getChildByName("BotMid").addChild(this._popupOption.node);
