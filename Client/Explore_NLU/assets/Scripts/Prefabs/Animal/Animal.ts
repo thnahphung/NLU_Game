@@ -2,9 +2,11 @@ import {
   _decorator,
   Animation,
   Collider2D,
+  Color,
   Component,
   find,
   Node,
+  Sprite,
   UITransform,
   Vec2,
 } from "cc";
@@ -30,6 +32,8 @@ export class Animal extends Component {
 
   private animalAnimation: AnimalAnimation;
   private animalMovement: AnimalMovement;
+
+  private animalSprite: Sprite;
   private animation: Animation;
   private emoteAnimation: Animation;
   private collider: Collider2D;
@@ -52,6 +56,7 @@ export class Animal extends Component {
       .getChildByName("Emote")
       .getComponent(Animation);
     this.collider = this.node.getComponent(Collider2D);
+    this.animalSprite = this.node.getComponent(Sprite);
     this.popupInformationAnimal = this.node.getChildByName(
       "PopupInformationAnimal"
     );
@@ -70,6 +75,16 @@ export class Animal extends Component {
       -this.node.getParent().getComponent(UITransform).contentSize.height / 2;
     this.maxMovingDistanceY.y =
       this.node.getParent().getComponent(UITransform).contentSize.height / 2;
+  }
+
+  protected update(dt: number): void {
+    this.checkDisease();
+  }
+
+  public checkDisease() {
+    if (this.isDisease) {
+      this.animalSprite.color = new Color("#83FFB5");
+    }
   }
 
   private addPopupToLayer() {

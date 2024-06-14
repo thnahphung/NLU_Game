@@ -49,6 +49,13 @@ export const languages = {
     animal_health_disease: "Disease",
     animal_pregnant_yes: "Yes",
     animal_pregnant_no: "No",
+    //breeding popup
+    breeding_popup_title: "BREEDING",
+    //cage information popup
+    cage_information_popup_title_cow_barn: "COW BARN",
+    cage_information_popup_title_chicken_coop: "CHICKEN COOP",
+    cage_information_popup_capacity: "Capacity:",
+    cage_information_popup_level: "Level:",
   },
 };
 

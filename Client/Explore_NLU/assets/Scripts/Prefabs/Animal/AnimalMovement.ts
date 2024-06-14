@@ -12,6 +12,10 @@ export class AnimalMovement extends Component {
   @property private minDelay = 0;
   @property private maxDelay = 0;
 
+  movingCallBack = function () {
+    this.moving();
+  };
+
   private animalInfo: Animal;
   start() {
     this.animalInfo = this.node.getComponent(Animal);
@@ -20,15 +24,14 @@ export class AnimalMovement extends Component {
     this.interval = Util.randomInRange(this.minDelay, this.maxDelay);
 
     this.moving();
-    this.schedule(function () {
-      this.moving();
-    }, this.interval);
+    this.schedule(this.movingCallBack, this.interval);
   }
-
-  update(deltaTime: number) {}
 
   public moving() {
     this.target = this.randomTarget();
+    if (this.node === null) {
+      this.unschedule(this.movingCallBack);
+    }
     this.movingToTarget(this.target);
   }
 
@@ -51,6 +54,7 @@ export class AnimalMovement extends Component {
       .call(() => this.changeCurrentStateWalk())
       .to(this.duration, target, {
         onUpdate: (target: Vec3, ratio: number) => {
+          if (this.node === null) return;
           this.node.position = target;
         },
       })
@@ -67,6 +71,7 @@ export class AnimalMovement extends Component {
   }
 
   public changeCurrentStateIdle() {
+    if (this.animalInfo === null) return;
     if (this.animalInfo.getCurrentState() === ANIMAL_STATE.WALK_LEFT) {
       this.animalInfo.setCurrentState(ANIMAL_STATE.IDLE_LEFT);
     } else if (this.animalInfo.getCurrentState() === ANIMAL_STATE.WALK_RIGHT) {

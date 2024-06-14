@@ -1363,6 +1363,7 @@
              * @property {number|null} [characterId] User characterId
              * @property {number|null} [areaId] User areaId
              * @property {number|null} [isNewAccount] User isNewAccount
+             * @property {proto.ICharacter|null} [character] User character
              */
     
             /**
@@ -1493,6 +1494,14 @@
             User.prototype.isNewAccount = 0;
     
             /**
+             * User character.
+             * @member {proto.ICharacter|null|undefined} character
+             * @memberof proto.User
+             * @instance
+             */
+            User.prototype.character = null;
+    
+            /**
              * Creates a new User instance using the specified properties.
              * @function create
              * @memberof proto.User
@@ -1544,6 +1553,8 @@
                     writer.uint32(/* id 13, wireType 0 =*/104).int32(message.areaId);
                 if (message.isNewAccount != null && Object.hasOwnProperty.call(message, "isNewAccount"))
                     writer.uint32(/* id 14, wireType 0 =*/112).int32(message.isNewAccount);
+                if (message.character != null && Object.hasOwnProperty.call(message, "character"))
+                    $root.proto.Character.encode(message.character, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
                 return writer;
             };
     
@@ -1634,6 +1645,10 @@
                             message.isNewAccount = reader.int32();
                             break;
                         }
+                    case 15: {
+                            message.character = $root.proto.Character.decode(reader, reader.uint32());
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -1711,6 +1726,11 @@
                 if (message.isNewAccount != null && message.hasOwnProperty("isNewAccount"))
                     if (!$util.isInteger(message.isNewAccount))
                         return "isNewAccount: integer expected";
+                if (message.character != null && message.hasOwnProperty("character")) {
+                    var error = $root.proto.Character.verify(message.character);
+                    if (error)
+                        return "character." + error;
+                }
                 return null;
             };
     
@@ -1768,6 +1788,11 @@
                     message.areaId = object.areaId | 0;
                 if (object.isNewAccount != null)
                     message.isNewAccount = object.isNewAccount | 0;
+                if (object.character != null) {
+                    if (typeof object.character !== "object")
+                        throw TypeError(".proto.User.character: object expected");
+                    message.character = $root.proto.Character.fromObject(object.character);
+                }
                 return message;
             };
     
@@ -1807,6 +1832,7 @@
                     object.characterId = 0;
                     object.areaId = 0;
                     object.isNewAccount = 0;
+                    object.character = null;
                 }
                 if (message.userId != null && message.hasOwnProperty("userId"))
                     object.userId = message.userId;
@@ -1842,6 +1868,8 @@
                     object.areaId = message.areaId;
                 if (message.isNewAccount != null && message.hasOwnProperty("isNewAccount"))
                     object.isNewAccount = message.isNewAccount;
+                if (message.character != null && message.hasOwnProperty("character"))
+                    object.character = $root.proto.Character.toObject(message.character, options);
                 return object;
             };
     

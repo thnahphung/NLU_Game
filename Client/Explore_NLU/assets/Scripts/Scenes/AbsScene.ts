@@ -10,8 +10,8 @@ export default class AbsScene extends Component {
   @property(Node) private playerLayer: Node = null;
 
   protected onLoad(): void {
+    GlobalData.me().setMobileDevice(true);
     if (sys.isMobile === true || sys.isNative === true) {
-      GlobalData.me().setMobileDevice(true);
       screen.requestFullScreen();
     }
   }
@@ -28,18 +28,23 @@ export default class AbsScene extends Component {
   }
 
   createMainPlayer() {
-    let mainPlayer = PlayerManager.me().createMainPlayer(CHARACTERS.KSCN);
-    mainPlayer.setPosition(
+    let mainUserNode = PlayerManager.me().createCharacter(
+      CHARACTERS.KSCN,
+      GlobalData.me().getMainUser()
+    );
+    mainUserNode.setPosition(
       GlobalData.me().getMainPlayerPosition().x,
       GlobalData.me().getMainPlayerPosition().y
     );
-    mainPlayer
+
+    mainUserNode
       .getComponent(Character)
-      .setUserId(GlobalData.me().getMainUser().userId);
-    mainPlayer.getComponent(Character).setPlayerName("Main Player");
-    mainPlayer.getComponent(Character).setIsMainPlayer(true);
-    this.playerLayer.addChild(mainPlayer);
-    GlobalData.me().setMainPlayerNode(mainPlayer);
+      .setUserProto(GlobalData.me().getMainUser());
+
+    // mainUserNode.getComponent(Character).setPlayerName("Main Player");
+    mainUserNode.getComponent(Character).setIsMainPlayer(true);
+    this.playerLayer.addChild(mainUserNode);
+    GlobalData.me().setMainPlayerNode(mainUserNode);
   }
 
   addPlayerToScene(player: Node) {
@@ -47,16 +52,18 @@ export default class AbsScene extends Component {
   }
 
   createOtherPlayer() {
-    let players = GlobalData.me().getListOtherPlayer();
-    if (players == null || players.length == 0) return;
-    players.forEach((player) => {
-      let playerNode = PlayerManager.me().createOtherPlayer(CHARACTERS.BSTY);
-      playerNode.getComponent(Character).setUserId(player.userId);
-      playerNode.getComponent(Character).setPlayerName("Other Player");
-      playerNode.getComponent(Character).setIsMainPlayer(false);
-      playerNode.active = false;
-      GlobalData.me().addOtherPlayerNode(playerNode);
-      this.playerLayer.addChild(playerNode);
+    let users = GlobalData.me().getListOtherUser();
+    if (users == null || users.length == 0) return;
+    users.forEach((user) => {
+      let otherUserNode = PlayerManager.me().createCharacter(
+        CHARACTERS.BSTY,
+        user
+      );
+      otherUserNode.getComponent(Character).setUserProto(user);
+      otherUserNode.getComponent(Character).setIsMainPlayer(false);
+      otherUserNode.active = false;
+      GlobalData.me().addOtherUserNode(otherUserNode);
+      this.playerLayer.addChild(otherUserNode);
     });
   }
 

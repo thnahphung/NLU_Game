@@ -120,6 +120,9 @@ export class InputManager extends Component {
 
   private setDirection() {
     if (GlobalData.me().isMobileDevice()) {
+      if (this.joystick.getJoyStickVector() == null) {
+        this.joystick = UICanvas.me().getJoyStick();
+      }
       this._direction = this.joystick.getRotation();
       return;
     } else {

@@ -14,14 +14,14 @@ export default class GlobalData {
 
   private isMobile: boolean = false;
 
+  /* AGRI */
   private isUserOffline: boolean = true;
-  /* AGRI */ 
   private isMoveBuilding: boolean = false;
   private isTill: boolean = false;
   private isTilled: boolean = false;
   private isSow: boolean = false;
   private isSown: boolean = false;
-  /* END AGRI */ 
+  /* END AGRI */
 
   /*MAIN USER */
   private mainUser: proto.IUser = null;
@@ -35,7 +35,7 @@ export default class GlobalData {
   /*OTHER USER */
   private otherUsers: proto.IUser[] = [];
   private otherPlayers: proto.IPlayer[] = [];
-  private otherPlayersNode: Node[] = [];
+  private otherUsersNode: Node[] = [];
   /*END OTHER USER */
 
   public setMobileDevice(isMobile: boolean) {
@@ -136,30 +136,32 @@ export default class GlobalData {
     this.otherPlayers = players;
   }
 
-  public addOtherPlayerNode(player: Node) {
-    this.otherPlayersNode.push(player);
+  public addOtherUserNode(player: Node) {
+    this.otherUsersNode.push(player);
   }
 
-  public getOtherPlayerNode(userId: number): Node {
-    return this.otherPlayersNode.find(
-      (playerNode) => playerNode.getComponent(Character).getUserId() == userId
+  public getOtherUserNode(userId: number): Node {
+    return this.otherUsersNode.find(
+      (playerNode) =>
+        playerNode.getComponent(Character).getUserProto().userId == userId
     );
   }
 
-  public removeOtherPlayerNode(userId: number) {
-    const index = this.otherPlayersNode.findIndex(
-      (playerNode) => playerNode.getComponent(Character).getUserId() == userId
+  public removeOtherUserNode(userId: number) {
+    const index = this.otherUsersNode.findIndex(
+      (playerNode) =>
+        playerNode.getComponent(Character).getUserProto().userId == userId
     );
-    const playerNodeRemoved = this.otherPlayersNode.splice(index, 1);
+    const playerNodeRemoved = this.otherUsersNode.splice(index, 1);
     playerNodeRemoved[0].destroy();
   }
 
-  public getListOtherPlayerNode() {
-    return this.otherPlayersNode;
+  public getListOtherUserNode() {
+    return this.otherUsersNode;
   }
 
-  public clearOtherPlayersNode() {
-    this.otherPlayersNode = [];
+  public emptyOtherUsersNode() {
+    this.otherUsersNode = [];
   }
   /* END PLAYERS */
   /* Agricultural engineer */
@@ -194,7 +196,7 @@ export default class GlobalData {
   public getSownStatus() {
     return this.isSown;
   }
-  
+
   /* END Agricultural engineer */
 
   /* Building */

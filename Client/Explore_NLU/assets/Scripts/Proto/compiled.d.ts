@@ -395,6 +395,9 @@ export namespace proto {
 
         /** User isNewAccount */
         isNewAccount?: (number|null);
+
+        /** User character */
+        character?: (proto.ICharacter|null);
     }
 
     /** Represents a User. */
@@ -447,6 +450,9 @@ export namespace proto {
 
         /** User isNewAccount. */
         public isNewAccount: number;
+
+        /** User character. */
+        public character?: (proto.ICharacter|null);
 
         /**
          * Creates a new User instance using the specified properties.

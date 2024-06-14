@@ -646,6 +646,10 @@
     "__prefab": {
       "__id__": 33
     },
+    "popupCageInformation": {
+      "__uuid__": "5be98888-823f-489f-aeb6-e8afe604ef02",
+      "__expectedType__": "cc.Prefab"
+    },
     "_id": ""
   },
   {
