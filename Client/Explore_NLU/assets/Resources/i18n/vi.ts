@@ -49,6 +49,13 @@ export const languages = {
     animal_health_disease: "Bệnh",
     animal_pregnant_yes: "Có",
     animal_pregnant_no: "Không",
+    //breeding popup
+    breeding_popup_title: "LAI GIỐNG",
+    //cage information popup
+    cage_information_popup_title_cow_barn: "CHUỒNG BÒ",
+    cage_information_popup_title_chicken_coop: "CHUỒNG GÀ",
+    cage_information_popup_capacity: "Sức chứa:",
+    cage_information_popup_level: "Cấp độ:",
   },
 };
 
