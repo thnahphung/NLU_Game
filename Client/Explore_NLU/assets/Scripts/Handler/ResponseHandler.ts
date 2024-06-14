@@ -8,6 +8,7 @@ import AbsScene from "../Scenes/AbsScene";
 import { PlayerManager } from "../Manager/PlayerManager";
 import { CHARACTERS } from "../Utils/Const";
 import { Character } from "../Prefabs/Character/Character";
+import { user } from "../../../extensions/i18n/@types/editor/i18n/languages/en";
 const { ccclass, property } = _decorator;
 
 @ccclass("ResponseHandler")
@@ -53,36 +54,30 @@ export class ResponseHandler extends AbsHandler {
   }
 
   onJoinAreaHandler(packet: proto.IPacket) {
+    console.log("onJoinAreaHandler", packet.resPlayerJoinArea);
     if (GlobalData.me().getMainUser() == null) return;
-
-    if (packet.resPlayerJoinArea.position == null) {
-      // neu tra ve vi tri null thi lay vi tri spawn defaut cua scene
-      const position = Util.getSpawnPosSceneNotCurrentScene(
-        packet.resPlayerJoinArea.area.typeArea
-      );
-      const protoPos = Util.convertCocosPosToProtoPos(position);
-      GlobalData.me().setMainPlayerPosition(protoPos);
-    } else {
-      GlobalData.me().setMainPlayerPosition(packet.resPlayerJoinArea.position);
-    }
+    // neu tra ve vi tri null thi lay vi tri spawn defaut cua scene
+    const position = Util.getSpawnPosScene(
+      packet.resPlayerJoinArea.area.typeArea
+    );
+    // const protoPos = Util.convertCocosPosToProtoPos(position);
+    GlobalData.me().setMainPlayerPosition(position);
 
     if (GlobalData.me().getMainPlayerNode() != null) {
       GlobalData.me().getMainPlayerNode().destroy();
     }
-
-    const otherPlayers = packet.resPlayerJoinArea.players.filter(
-      (player) => player.userId != GlobalData.me().getMainUser().userId
-    );
-    GlobalData.me().setListOtherPlayer(otherPlayers);
     GlobalData.me().setArea(packet.resPlayerJoinArea.area);
-    GlobalData.me().setListOtherUsers(packet.resPlayerJoinArea.users);
-    GlobalData.me().clearOtherPlayersNode();
+    const otherUser = packet.resPlayerJoinArea.users.filter(
+      (user) => user.userId != GlobalData.me().getMainUser().userId
+    );
+    GlobalData.me().setListOtherUsers(otherUser);
+    GlobalData.me().emptyOtherUsersNode();
 
     UICanvas.me().transitScene(packet.resPlayerJoinArea.area.typeArea);
   }
 
   onMovingHandler(packet: proto.IPacket) {
-    const playerNode = GlobalData.me().getOtherPlayerNode(
+    const playerNode = GlobalData.me().getOtherUserNode(
       packet.resMoving.userId
     );
     if (playerNode == null || playerNode == undefined) return;
@@ -97,33 +92,36 @@ export class ResponseHandler extends AbsHandler {
   onOtherPlayerJoinAreaHandler(packet: proto.IPacket) {
     const scene = director.getScene();
     const canvas = scene.getChildByName("Canvas");
-    let playerNode = PlayerManager.me().createOtherPlayer(CHARACTERS.BSTY);
-    playerNode
+    let otherUserNode = PlayerManager.me().createCharacter(
+      CHARACTERS.BSTY,
+      packet.resOtherPlayerJoinArea.user
+    );
+    otherUserNode
       .getComponent(Character)
-      .setUserId(packet.resOtherPlayerJoinArea.user.userId);
-    playerNode.setPosition(
+      .setUserProto(packet.resOtherPlayerJoinArea.user);
+    otherUserNode.setPosition(
       packet.resOtherPlayerJoinArea.position.x,
       packet.resOtherPlayerJoinArea.position.y,
       0
     );
-    playerNode.getComponent(Character).setPlayerName("Other Player");
-    playerNode.getComponent(Character).setIsMainPlayer(false);
+    otherUserNode.getComponent(Character).setPlayerName("Other Player");
+    otherUserNode
+      .getComponent(Character)
+      .setUserProto(packet.resOtherPlayerJoinArea.user);
+    otherUserNode.getComponent(Character).setIsMainPlayer(false);
     GlobalData.me().addOtherUser(packet.resOtherPlayerJoinArea.user);
-    GlobalData.me().addOtherPlayer(packet.resOtherPlayerJoinArea.player);
-    GlobalData.me().addOtherPlayerNode(playerNode);
-    canvas.getComponent(AbsScene).addPlayerToScene(playerNode);
+    GlobalData.me().addOtherUserNode(otherUserNode);
+    canvas.getComponent(AbsScene).addPlayerToScene(otherUserNode);
   }
 
   onOtherPlayerLeaveAreaHandler(packet: proto.IPacket) {
-    const playerNode = GlobalData.me().getOtherPlayerNode(
+    const playerNode = GlobalData.me().getOtherUserNode(
       packet.resOtherPlayerLeaveArea.userId
     );
     if (playerNode == null || playerNode == undefined) return;
     GlobalData.me().removeOtherUser(packet.resOtherPlayerLeaveArea.userId);
     GlobalData.me().removeOtherPlayer(packet.resOtherPlayerLeaveArea.userId);
-    GlobalData.me().removeOtherPlayerNode(
-      packet.resOtherPlayerLeaveArea.userId
-    );
+    GlobalData.me().removeOtherUserNode(packet.resOtherPlayerLeaveArea.userId);
     // playerNode.destroy();
   }
 }

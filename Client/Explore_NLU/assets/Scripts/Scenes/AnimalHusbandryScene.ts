@@ -10,6 +10,4 @@ export class AnimalHusbandryScene extends AbsScene {
   protected start(): void {
     super.start();
   }
-
-  update(deltaTime: number) {}
 }

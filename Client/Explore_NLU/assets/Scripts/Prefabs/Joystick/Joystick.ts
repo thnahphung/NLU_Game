@@ -28,12 +28,12 @@ export class Joystick extends Component {
   @property
   public angle: 0;
 
-  protected joystickVector: Vec2;
+  protected joystickVector: Vec2 = Vec2.ZERO.clone();
 
   localTouchPosition: Vec3 = new Vec3();
 
   protected onLoad(): void {
-    this.joystickVector = Vec2.ZERO.clone();
+    // this.joystickVector = Vec2.ZERO.clone();
     this.setJoystickBall();
   }
 
@@ -89,6 +89,12 @@ export class Joystick extends Component {
   }
 
   public getRotation() {
+    // console.log("joystickVector", this.joystickVector);
+    // console.log("Joystick", this.node);
+    // console.log("localtouch", this.localTouchPosition);
+    // if (this.joystickVector == null) {
+    //   this.joystickVector = Vec2.ZERO.clone().normalize();
+    // }
     return this.joystickVector.normalize();
   }
 
@@ -102,5 +108,9 @@ export class Joystick extends Component {
 
   public getRadian() {
     return Math.atan2(this.localTouchPosition.x, this.localTouchPosition.y);
+  }
+
+  public getJoyStickVector() {
+    return this.joystickVector;
   }
 }

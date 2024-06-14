@@ -17,4 +17,15 @@ public class CharacterDAO extends BaseDAO{
                 .mapToBean(CharacterBean.class).stream().collect(Collectors.toList())
         );
     }
+
+    public static CharacterBean loadCharacterById(int id) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(handle -> handle.createQuery("select id, name, code, description from " + TABLE_NAME + " where id = :id")
+                .bind("id", id)
+                .mapToBean(CharacterBean.class).findFirst().orElse(null)
+        );
+    }
 }

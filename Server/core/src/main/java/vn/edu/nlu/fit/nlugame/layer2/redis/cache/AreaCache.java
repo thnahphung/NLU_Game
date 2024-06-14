@@ -5,7 +5,6 @@ import com.github.benmanes.caffeine.cache.Caffeine;
 import vn.edu.nlu.fit.nlugame.layer2.CompressUtils;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.RedisClusterHelper;
-import vn.edu.nlu.fit.nlugame.layer2.redis.context.AreaContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,11 +93,11 @@ public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area, 
         return result;
     }
 
-    public void addPlayerToArea(int areaId, int userId, int playerId) {
-        getConnection().hset((PLAYERS_AREA_KEY + areaId).getBytes(), String.valueOf(userId).getBytes(), String.valueOf(playerId).getBytes());
+    public void addUserToArea(int areaId, int userId, Proto.Position position) {
+        getConnection().hset((PLAYERS_AREA_KEY + areaId).getBytes(), String.valueOf(userId).getBytes(), String.valueOf(position).getBytes());
     }
 
-    public long removePlayerFromArea(int areaId, int userId) {
+    public long removeUserFromArea(int areaId, int userId) {
         return getConnection().hdel((PLAYERS_AREA_KEY + areaId).getBytes(), String.valueOf(userId).getBytes());
     }
 

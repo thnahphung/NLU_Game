@@ -1,5 +1,5 @@
 import { _decorator, Component, math, Node, Vec2, Vec3 } from "cc";
-import {ANIMAL_HUSBANDRY_AREA, SCENES, TYPE_ITEM, VETERINARIAN_AREA} from "./Const";
+import { SCENES, SETTING_AREA, TYPE_ITEM } from "./Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("Util")
@@ -12,18 +12,11 @@ export class Util {
     return new Vec3(vec2.x, vec2.y, 0);
   }
 
-  public static getSpawnPosSceneNotCurrentScene(targetScene: string): Vec3 {
-    switch (targetScene) {
-      case SCENES.FARM:
-        return new Vec3(0, 0, 0);
-      case SCENES.ANIMAL_HUSBANDRY:
-        return ANIMAL_HUSBANDRY_AREA.SPAWN_POS;
-      case SCENES.MECHANICAL:
-        return new Vec3(0, 0, 0);
-      case SCENES.VETERINARIAN:
-        return VETERINARIAN_AREA.SPAWN_POS;
-      default:
-        return new Vec3(0, 0, 0);
+  public static getSpawnPosScene(sceneName: string | SCENES): Vec3 {
+    for (const setting of SETTING_AREA) {
+      if (setting.sceneName === sceneName) {
+        return setting.spawnPos;
+      }
     }
   }
 
