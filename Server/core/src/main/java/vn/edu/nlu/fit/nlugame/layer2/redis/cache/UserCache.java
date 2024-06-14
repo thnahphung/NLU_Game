@@ -1,16 +1,22 @@
 package vn.edu.nlu.fit.nlugame.layer2.redis.cache;
 
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
+import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer2.CompressUtils;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.UserBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.RedisClusterHelper;
 import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class UserCache extends RedisClusterHelper implements ICache<UserContext, String> {
     private static final UserCache instance = new UserCache();
     private static final String USER_KEY = "users";
+    private static final Cache<String, UserContext> userLoginMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.MINUTES).build();
 
     private UserCache() {
     }
@@ -22,6 +28,7 @@ public class UserCache extends RedisClusterHelper implements ICache<UserContext,
 
     @Override
     public boolean add(String key, UserContext value) {
+        userLoginMap.put(key, value);
         return false;
     }
 
@@ -32,7 +39,14 @@ public class UserCache extends RedisClusterHelper implements ICache<UserContext,
 
     @Override
     public UserContext get(String key) {
-        return null;
+        UserContext userContext = userLoginMap.getIfPresent(key);
+        if(userContext == null) {
+            userContext = getUserContextOnline(Integer.parseInt(key));
+            if(userContext != null) {
+                userLoginMap.put(key, userContext);
+            }
+        }
+        return userContext;
     }
 
     @Override
@@ -66,8 +80,11 @@ public class UserCache extends RedisClusterHelper implements ICache<UserContext,
     }
 
     public void addUserOnline(Proto.User user, String sessionID) {
+        //Save cache redis
         UserContext userContext = UserContext.builder().user(user).sessionID(sessionID).build();
         getConnection().hset(USER_KEY.getBytes(), String.valueOf(user.getUserId()).getBytes(), CompressUtils.compress(userContext));
+        //Save cache local
+        add(String.valueOf(user.getUserId()), userContext);
     }
 
     public UserContext getUserContextOnline(int userID) {
@@ -100,6 +117,7 @@ public class UserCache extends RedisClusterHelper implements ICache<UserContext,
         Map<String, UserContext> result = new HashMap<>();
         userMap.forEach((k, v) -> {
             UserContext userContext = CompressUtils.decompress(v, UserContext.class);
+            result.put(new String(k), userContext);
             System.out.println(userContext.getUser().getUserId());
         });
         return result;

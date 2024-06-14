@@ -1,11 +1,9 @@
 import { _decorator, Component, EventMouse, EventTouch, find, Node } from 'cc';
 import AbsTool from './AbsTool';
 import GlobalData from '../../Utils/GlobalData';
-import { UI } from '../../../../extensions/i18n/@types/editor/ui-kit';
-import { UICanvas } from '../MainUI/UICanvas';
 import { CoatingComponent } from '../../Controller/CoatingComponent';
 import { COATING } from '../../Utils/Const';
-const { ccclass, property } = _decorator;
+const { ccclass } = _decorator;
 
 @ccclass('Pickaxe')
 export class Pickaxe extends AbsTool {

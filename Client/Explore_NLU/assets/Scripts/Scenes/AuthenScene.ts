@@ -5,6 +5,8 @@ import DataSender from "../Utils/DataSender";
 import { StorageManager } from "../Manager/StorageManger";
 import { PopupManager } from "../Manager/PopupManager";
 import GlobalData from "../Utils/GlobalData";
+import { POPUP_MESSAGE } from "../Utils/Const";
+import { UICanvas } from "../Prefabs/MainUI/UICanvas";
 const { ccclass, property } = _decorator;
 
 @ccclass("AuthenScene")
@@ -64,7 +66,7 @@ export class AuthenScene extends AbsScene {
   onLoginMsgHandler(resLogin: proto.IResLogin) {
     if (resLogin.status === 400) {
       PopupManager.me().showPopupMessage(
-        "Tên đăng nhập hoặc mật khẩu không đúng!"
+        POPUP_MESSAGE.LOGIN_FAILED_400
       );
       return;
     }
@@ -74,17 +76,17 @@ export class AuthenScene extends AbsScene {
       return;
     }
     if (resLogin.status === 402) {
-      PopupManager.me().showPopupMessage("Tài khoản đã bị khóa!");
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_402);
       return;
     }
     if (resLogin.status === 403) {
       PopupManager.me().showPopupMessage(
-        "Tài khoản đang đăng nhập ở thiết bị khác!"
+        POPUP_MESSAGE.LOGIN_FAILED_403
       );
       return;
     }
     if (resLogin.status === 500) {
-      PopupManager.me().showPopupMessage("Lỗi server!");
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.SERVER_ERROR);
       return;
     }
     if (resLogin.status === 200) {
@@ -98,19 +100,19 @@ export class AuthenScene extends AbsScene {
 
   onRegisterMsgHandler(resRegister: proto.IResRegister) {
     if (resRegister.status === 400) {
-      PopupManager.me().showPopupMessage("Tên đăng nhập đã tồn tại!");
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_400);
     } else if (resRegister.status === 401) {
       PopupManager.me().showPopupMessage(
-        "Tên đăng nhập hoặc mật khẩu không thể để trống!"
+        POPUP_MESSAGE.REGISTER_FAILED_401
       );
     } else if (resRegister.status === 403) {
-      PopupManager.me().showPopupMessage("Email này đã được sử dụng!");
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_403);
     } else if (resRegister.status === 402) {
-      PopupManager.me().showPopupMessage("Mật khẩu không trùng khớp!");
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_402);
     } else if (resRegister.status === 500) {
-      PopupManager.me().showPopupMessage("Lỗi server!");
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.SERVER_ERROR);
     } else if (resRegister.status === 200) {
-      PopupManager.me().showPopupMessage("Đăng ký thành công!");
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_SUCCESS_200);
     }
   }
 

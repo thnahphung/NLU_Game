@@ -1,5 +1,9 @@
-import { _decorator, Button, Component, find, instantiate, Node, Prefab } from 'cc';
-import { PLANTING_LAND } from '../../Utils/Const';
+import { _decorator, BlockInputEvents, Button, Component, find, instantiate, Node, Prefab, UIOpacity } from 'cc';
+import { CUSTOM_EVENT, PLANTING_LAND, POPUP } from '../../Utils/Const';
+import { CameraFollow } from '../Camera/CameraFollow';
+import { UICanvas } from '../MainUI/UICanvas';
+import GlobalData from '../../Utils/GlobalData';
+import DataSender from '../../Utils/DataSender';
 const { ccclass, property } = _decorator;
 
 @ccclass('PopupBuildingSystem')
@@ -15,6 +19,9 @@ export class PopupBuildingSystem extends Component {
 
     @property(Prefab)
     public plantingLandPrefab: Prefab = null;
+
+    private handleNode: Node = null;
+    private typeBuilding: string = null;
 
     start() {
         this.buttonPlantingLand.node.on(Node.EventType.TOUCH_END, this.handlePlantingBuilding, this);
@@ -33,12 +40,50 @@ export class PopupBuildingSystem extends Component {
         if (lastNode) {
             plantingLand.setPosition(lastNode.position.x + 50 + PLANTING_LAND.WIDTH, lastNode.position.y, lastNode.position.z);
         } else {
-            plantingLand.setPosition(0, 0, 0);
+            plantingLand.setPosition(0, -100, 0);
         }
 
         plantingPanel.addChild(plantingLand);
-        this.node.destroy();
+        this.node.active = false;
         this.openUICanvas();
+
+        this.cameraFollowTarget(plantingLand);
+
+        this.handleNode = plantingLand;
+        this.typeBuilding = "PLANTING_LAND";
+        this.showPopupOption();
+    }
+
+    private showPopupOption(): void {
+        UICanvas.me().showPopup(POPUP.POPUP_OPTION, this.handleNode, 'Mua: 10G');
+        this.handleNode.on(CUSTOM_EVENT.LISTEN_CANCEL, this.handleClickCancel, this);
+        this.handleNode.on(CUSTOM_EVENT.LISTEN_COMPLETE, this.handleClickComplete, this);
+    }
+
+    private handleClickCancel(event: CustomEvent): void {
+        this.handleNode.destroy();
+        this.hidePopupOption();
+        this.node.destroy();
+        this.cameraFollowTarget(GlobalData.me().getMainPlayerNode());
+    }
+
+    private handleClickComplete(event: CustomEvent): void {
+        this.hidePopupOption();
+        this.node.destroy();
+        this.effectNodeIsBuilding(this.handleNode);
+        this.cameraFollowTarget(GlobalData.me().getMainPlayerNode());
+        DataSender.sendReqBuyBuilding(this.handleNode.uuid, this.typeBuilding, this.handleNode.position.x,  this.handleNode.position.y, 1, 1)
+    }
+
+    private effectNodeIsBuilding(node: Node){
+        node.addComponent(UIOpacity).opacity = 150;
+        node.addComponent(BlockInputEvents);
+    }
+
+    private hidePopupOption(): void {
+        UICanvas.me().closePopup(POPUP.POPUP_OPTION);
+        this.handleNode.off(CUSTOM_EVENT.LISTEN_CANCEL, this.handleClickCancel, this);
+        this.handleNode.off(CUSTOM_EVENT.LISTEN_COMPLETE, this.handleClickComplete, this);
     }
 
     private handleHouseBuilding(event: Event, customEventData: string) {
@@ -51,6 +96,11 @@ export class PopupBuildingSystem extends Component {
 
     private handleTreeBuilding(event: Event, customEventData: string) {
         console.log('Tree');
+    }
+
+    private cameraFollowTarget(target: Node): void {
+        let CameraFollowComponent = find('Canvas/Camera').getComponent(CameraFollow);
+        CameraFollowComponent.updateTargetFollow(target);
     }
 
     openUICanvas(): void {

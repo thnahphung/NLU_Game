@@ -24,8 +24,8 @@ public class AuthHandler implements Subscriber {
             switch (packet.getDataCase()) {
                 case REQLOGIN:
                     UserBean userLoginBean = authService.checkLogin(session, packet.getReqLogin());
-                    if (userLoginBean == null) return;
-                    areaService.joinAreaLogin(userLoginBean.getId(), session);
+//                    if (userLoginBean == null) return;
+//                    areaService.joinAreaLogin(userLoginBean.getId(), session);
                     break;
                 case REQREGISTER:
                     authService.register(session, packet.getReqRegister());
@@ -35,8 +35,8 @@ public class AuthHandler implements Subscriber {
                     break;
                 case REQRELOGIN:
                     UserBean userRelogin = authService.checkReLogin(session, packet.getReqRelogin());
-                    if (userRelogin == null) return;
-                    areaService.joinAreaLogin(userRelogin.getId(), session);
+//                    if (userRelogin == null) return;
+//                    areaService.joinAreaLogin(userRelogin.getId(), session);
                     break;
             }
         });

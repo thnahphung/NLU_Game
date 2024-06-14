@@ -23,6 +23,9 @@ public class AreaHandler implements Subscriber {
                 case REQMOVING:
                     areaService.moving(session, packet.getReqMoving());
                     break;
+                case REQLOADITEMSOFFARM:
+                    areaService.loadItemsOfFarm(session, packet.getReqLoadItemsOfFarm());
+                    break;
             }
         });
     }
