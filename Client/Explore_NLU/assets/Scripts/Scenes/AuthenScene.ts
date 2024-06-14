@@ -95,6 +95,7 @@ export class AuthenScene extends AbsScene {
       StorageManager.me().saveItem("AUTO_LOGIN", this.rememberMe.isChecked);
       StorageManager.me().saveItem("TOKEN", resLogin.token);
       GlobalData.me().setMainUser(resLogin.user);
+      GlobalData.me().setIsUserOffline(false);
     }
   }
 

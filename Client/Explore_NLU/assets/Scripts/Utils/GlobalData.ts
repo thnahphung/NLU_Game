@@ -15,6 +15,7 @@ export default class GlobalData {
   private isMobile: boolean = false;
 
   /* AGRI */
+  private isUserOffline: boolean = true;
   private isMoveBuilding: boolean = false;
   private isTill: boolean = false;
   private isTilled: boolean = false;
@@ -67,6 +68,14 @@ export default class GlobalData {
 
   public removeOtherUser(userId: number) {
     this.otherUsers = this.otherUsers.filter((item) => item.userId != userId);
+  }
+
+  public getIsUserOffline() {
+    return this.isUserOffline;
+  }
+
+  public setIsUserOffline(isOffline: boolean) {
+    this.isUserOffline = isOffline;
   }
   /* END USER */
 

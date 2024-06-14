@@ -31,7 +31,6 @@ export class PopupBuildingSystem extends Component {
     }
 
     private handlePlantingBuilding(event: Event, customEventData: string) {
-        console.log('Plant');
         const plantingLand = instantiate(this.plantingLandPrefab);
         const plantingPanel = find('Canvas/BackgroundLayers/PlantingPanel');
 
@@ -51,6 +50,7 @@ export class PopupBuildingSystem extends Component {
 
         this.handleNode = plantingLand;
         this.typeBuilding = "PLANTING_LAND";
+        this.effectNodeIsBuilding(this.handleNode);
         this.showPopupOption();
     }
 
@@ -64,20 +64,36 @@ export class PopupBuildingSystem extends Component {
         this.handleNode.destroy();
         this.hidePopupOption();
         this.node.destroy();
+        if(this.handleUserOffline()) return;
         this.cameraFollowTarget(GlobalData.me().getMainPlayerNode());
     }
 
     private handleClickComplete(event: CustomEvent): void {
         this.hidePopupOption();
         this.node.destroy();
-        this.effectNodeIsBuilding(this.handleNode);
+        if(this.handleUserOffline()) return;
         this.cameraFollowTarget(GlobalData.me().getMainPlayerNode());
         DataSender.sendReqBuyBuilding(this.handleNode.uuid, this.typeBuilding, this.handleNode.position.x,  this.handleNode.position.y, 1, 1)
     }
 
+    private handleUserOffline(): boolean {
+      if(GlobalData.me().getIsUserOffline()) {
+            let mainCharacter = find('Canvas/ObjectLayers/MidLayer/CharacterKSNN');
+            this.cameraFollowTarget(mainCharacter);
+            this.hideEffectNodeIsBuilding(this.handleNode);
+            return true;
+        }
+        return false;
+    }
+
     private effectNodeIsBuilding(node: Node){
-        node.addComponent(UIOpacity).opacity = 150;
+        node.addComponent(UIOpacity).opacity = 200;
         node.addComponent(BlockInputEvents);
+    }
+
+    private hideEffectNodeIsBuilding(node: Node){
+        if(node.getComponent(UIOpacity)) node.removeComponent(UIOpacity);
+        if(node.getComponent(BlockInputEvents)) node.removeComponent(BlockInputEvents);
     }
 
     private hidePopupOption(): void {
