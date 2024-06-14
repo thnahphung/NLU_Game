@@ -54,4 +54,7 @@ export class CameraFollow extends Component {
       );
     }
   }
+  updateTargetFollow(target: Node): void {
+    this.target = target;
+  }
 }

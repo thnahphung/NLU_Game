@@ -1,10 +1,8 @@
-import { _decorator, Component, EventTouch, find, instantiate, Node, Prefab, UITransform, Vec3 } from 'cc';
+import { _decorator, Camera, Component, EventTouch, find, instantiate, Node, Prefab, UITransform, Vec3 } from 'cc';
 import { UICanvas } from '../Prefabs/MainUI/UICanvas';
 import { COATING, CUSTOM_EVENT, POPUP } from '../Utils/Const';
-import { off } from 'process';
 import GlobalData from '../Utils/GlobalData';
 import { CoatingComponent } from './CoatingComponent';
-import { Util } from '../Utils/Util';
 const { ccclass, property } = _decorator;
 
 @ccclass('MovementBuildingComponent')
@@ -79,13 +77,13 @@ export class MovementBuildingComponent extends Component {
         effectRight.setPosition(fixSizeValue / this.resizeValue, 0, 0);
         var nodeChildrenMove = this.node.children;
 
-        effectRight.getComponent(UITransform).priority = -100000000;
+        //effectRight.getComponent(UITransform).priority = -100000000;
         this.effectMove.active = true;
         this.node.addChild(this.effectMove);
 
-        nodeChildrenMove.forEach((node) => {
-            if(node && node.name != this.effectMove.name) node.getComponent(UITransform).priority = node.getComponent(UITransform).priority + 100
-        })
+        // nodeChildrenMove.forEach((node) => {
+        //     if(node && node.name != this.effectMove.name) node.getComponent(UITransform).priority = node.getComponent(UITransform).priority + 100
+        // })
     }
 
     private showPopupOption(): void {
@@ -105,7 +103,17 @@ export class MovementBuildingComponent extends Component {
     }
 
     private handleMoveLand(event: EventTouch): void {
-        var newLocation = this.node.parent.getComponent(UITransform).convertToNodeSpaceAR(Util.toVec3(event.touch.getUILocation()));
+        const touchPos = event.getLocation();
+        // Chuyển đổi vị trí chạm từ không gian màn hình sang không gian thế giới
+        const camera = find('Canvas/Camera').getComponent(Camera);
+        const worldPos = camera.screenToWorld(new Vec3(touchPos.x, touchPos.y, 0));
+        let newLocation = new Vec3(0, 0, 0);
+        if(this.node.parent == null) {
+            newLocation = this.node.getComponent(UITransform).convertToNodeSpaceAR(worldPos);
+        }else{
+             newLocation = this.node.parent.getComponent(UITransform).convertToNodeSpaceAR(worldPos);
+        }
+        // Đặt vị trí mới cho node
         this.node.setPosition(newLocation);
     }
 
@@ -130,7 +138,7 @@ export class MovementBuildingComponent extends Component {
     }
 
     private getMenuTopLayerNode(): Node {
-        return find('Canvas/ObjectLayers/TopLayer');
+        return find('Canvas/PopupGameLayer');
     }
 
     private handleDestroyEffectMove(): void {
@@ -147,7 +155,7 @@ export class MovementBuildingComponent extends Component {
     }
 
     private getMenuToolNode(): Node {
-        return find('Canvas/ObjectLayers/TopLayer/MenuToolPanel');
+        return find('Canvas/PopupGameLayer/MenuToolPanel');
     }
 
     protected onDestroy(): void {

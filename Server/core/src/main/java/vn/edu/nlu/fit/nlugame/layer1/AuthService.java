@@ -47,6 +47,7 @@ public class AuthService {
         Proto.Packet.Builder packetBuilder = Proto.Packet.newBuilder();
         Proto.ResLogin.Builder resLoginBuilder = Proto.ResLogin.newBuilder();
         UserBean userLoginBean = UserDAO.getUserLogin(reqLogin.getUsername());
+        System.out.println("check is new user --: "+userLoginBean.getIsNewAccount());
         // Check userLogin exists
         if (userLoginBean == null) {
             resLoginBuilder.setStatus(400);
@@ -64,6 +65,12 @@ public class AuthService {
                 .setUserId(userLoginBean.getId())
                 .setUsername(userLoginBean.getUsername())
                 .setHasCharacter(userLoginBean.getHasCharacter())
+                .setCharacterId(userLoginBean.getCharacterId())
+                .setLevel(userLoginBean.getLevel())
+                .setIsNewAccount(userLoginBean.getIsNewAccount())
+                .setEmail(userLoginBean.getEmail() == null ? "" : userLoginBean.getEmail())
+                .setPlayerName(userLoginBean.getPlayerName() == null ? "" : userLoginBean.getPlayerName())
+                .setGold(userLoginBean.getGold())
                 .build();
         if (checkLoginOtherDevice(userProto)) {
             sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(403)).build());
@@ -75,21 +82,21 @@ public class AuthService {
     }
 
     private void loginSuccess(Session session, Proto.User user) {
-        PlayerBean playerBean = PlayerDAO.getPlayerByUserId(user.getUserId());
-        Proto.Player playerProto = Proto.Player.newBuilder()
-                .setPlayerId(playerBean.getId())
-                .setPlayerName(playerBean.getPlayerName())
-                .setUserId(playerBean.getUserId())
-                .setCharacterId(playerBean.getCharacterId())
-                .setLevel(playerBean.getLevel())
-                .setAreaId(playerBean.getAreaId())
-                .build();
-        //Save user in cache redis
+        //PlayerBean playerBean = PlayerDAO.getPlayerByUserId(user.getUserId());
+//        Proto.Player playerProto = Proto.Player.newBuilder()
+//                .setPlayerId(user.getUserId())
+//                .setPlayerName(user.getPlayerName())
+//                .setUserId(user.getUserId())
+//                .setCharacterId(user.getCharacterId())
+//                .setLevel(user.getLevel())
+//                .setAreaId(user.getAreaId())
+//                .build();
+        //Save user login in cache redis
         SessionCache.me().addUserSession(SessionID.of(session), user);
         UserCache.me().addUserOnline(user, SessionID.of(session).getSessionId());
         //Save player
-        PlayerCache.me().add(String.valueOf(user.getUserId()), playerProto);
-        PlayerCache.me().addPlayer(String.valueOf(user.getUserId()), playerProto);
+//        PlayerCache.me().add(String.valueOf(user.getUserId()), playerProto);
+//        PlayerCache.me().addPlayer(String.valueOf(user.getUserId()), playerProto);
         //Token
         String reloginToken = UUID.randomUUID().toString();
         UserDAO.updateReloginToken(user.getUserId(), reloginToken);
@@ -98,26 +105,32 @@ public class AuthService {
                 .setUser(user)
                 .setToken(reloginToken)
                 .setStatus(200)
-                .setPlayer(playerProto)
                 .build();
         sendResponse(session, Proto.Packet.newBuilder().setResLogin(resLogin).build());
     }
 
     public UserBean checkReLogin(Session session, Proto.ReqRelogin reqRelogin) {
         boolean result = true;
-        UserBean userBean = UserDAO.getUser(reqRelogin.getUsername());
+        UserBean userLoginBean = UserDAO.getUserLogin(reqRelogin.getUsername());
+        System.out.println("checkReLogin is new user --: "+userLoginBean.toString());
         //Check null param
-        if (userBean == null || reqRelogin.getToken() == null) {
+        if (userLoginBean == null || reqRelogin.getToken() == null) {
             result = false;
         }
-        if (!reqRelogin.getToken().equals(userBean.getReLoginToken())) {
+        if (!reqRelogin.getToken().equals(userLoginBean.getReLoginToken())) {
             result = false;
         }
         //Check login other device
         Proto.User userProto = Proto.User.newBuilder()
-                .setUserId(userBean.getId())
-                .setUsername(userBean.getUsername())
-                .setHasCharacter(userBean.getHasCharacter())
+                .setUserId(userLoginBean.getId())
+                .setUsername(userLoginBean.getUsername())
+                .setHasCharacter(userLoginBean.getHasCharacter())
+                .setCharacterId(userLoginBean.getCharacterId())
+                .setLevel(userLoginBean.getLevel())
+                .setIsNewAccount(userLoginBean.getIsNewAccount())
+                .setEmail(userLoginBean.getEmail() == null ? "" : userLoginBean.getEmail())
+                .setPlayerName(userLoginBean.getPlayerName() == null ? "" : userLoginBean.getPlayerName())
+                .setGold(userLoginBean.getGold())
                 .build();
         if (checkLoginOtherDevice(userProto)) {
             result = false;
@@ -128,7 +141,7 @@ public class AuthService {
         }
         System.out.println("Relogin success: " + result);
         loginSuccess(session, userProto);
-        return userBean;
+        return userLoginBean;
     }
 
     private boolean checkLoginOtherDevice(Proto.User user) {

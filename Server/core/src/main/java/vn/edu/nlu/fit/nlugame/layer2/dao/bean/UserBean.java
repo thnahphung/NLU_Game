@@ -37,4 +37,12 @@ public class UserBean {
     private int isEmailVerified;
     @ColumnName("has_character")
     private int hasCharacter;
+    @ColumnName("character_id")
+    private int characterId;
+    @ColumnName("level")
+    private int level;
+    @ColumnName("gold")
+    private long gold;
+    @ColumnName("is_new_account")
+    private int isNewAccount;
 }

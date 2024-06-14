@@ -169,6 +169,18 @@ export namespace proto {
 
         /** Packet resOtherPlayerLeaveArea */
         resOtherPlayerLeaveArea?: (proto.IResOtherPlayerLeaveArea|null);
+
+        /** Packet reqLoadItemsOfFarm */
+        reqLoadItemsOfFarm?: (proto.IReqLoadItemsOfFarm|null);
+
+        /** Packet resLoadItemsOfFarm */
+        resLoadItemsOfFarm?: (proto.IResLoadItemsOfFarm|null);
+
+        /** Packet reqBuyBuilding */
+        reqBuyBuilding?: (proto.IReqBuyBuilding|null);
+
+        /** Packet resBuyBuilding */
+        resBuyBuilding?: (proto.IResBuyBuilding|null);
     }
 
     /** Represents a Packet. */
@@ -246,8 +258,20 @@ export namespace proto {
         /** Packet resOtherPlayerLeaveArea. */
         public resOtherPlayerLeaveArea?: (proto.IResOtherPlayerLeaveArea|null);
 
+        /** Packet reqLoadItemsOfFarm. */
+        public reqLoadItemsOfFarm?: (proto.IReqLoadItemsOfFarm|null);
+
+        /** Packet resLoadItemsOfFarm. */
+        public resLoadItemsOfFarm?: (proto.IResLoadItemsOfFarm|null);
+
+        /** Packet reqBuyBuilding. */
+        public reqBuyBuilding?: (proto.IReqBuyBuilding|null);
+
+        /** Packet resBuyBuilding. */
+        public resBuyBuilding?: (proto.IResBuyBuilding|null);
+
         /** Packet data. */
-        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea");
+        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding");
 
         /**
          * Creates a new Packet instance using the specified properties.
@@ -357,11 +381,20 @@ export namespace proto {
         /** User diamond */
         diamond?: (number|Long|null);
 
-        /** User agencyLevel */
-        agencyLevel?: (number|null);
+        /** User level */
+        level?: (number|null);
 
         /** User hasCharacter */
         hasCharacter?: (number|null);
+
+        /** User characterId */
+        characterId?: (number|null);
+
+        /** User areaId */
+        areaId?: (number|null);
+
+        /** User isNewAccount */
+        isNewAccount?: (number|null);
     }
 
     /** Represents a User. */
@@ -400,11 +433,20 @@ export namespace proto {
         /** User diamond. */
         public diamond: (number|Long);
 
-        /** User agencyLevel. */
-        public agencyLevel: number;
+        /** User level. */
+        public level: number;
 
         /** User hasCharacter. */
         public hasCharacter: number;
+
+        /** User characterId. */
+        public characterId: number;
+
+        /** User areaId. */
+        public areaId: number;
+
+        /** User isNewAccount. */
+        public isNewAccount: number;
 
         /**
          * Creates a new User instance using the specified properties.
@@ -3325,6 +3367,1311 @@ export namespace proto {
 
         /**
          * Gets the default type url for ResMoving
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ReqLoadItemsOfFarm. */
+    interface IReqLoadItemsOfFarm {
+    }
+
+    /** Represents a ReqLoadItemsOfFarm. */
+    class ReqLoadItemsOfFarm implements IReqLoadItemsOfFarm {
+
+        /**
+         * Constructs a new ReqLoadItemsOfFarm.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IReqLoadItemsOfFarm);
+
+        /**
+         * Creates a new ReqLoadItemsOfFarm instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReqLoadItemsOfFarm instance
+         */
+        public static create(properties?: proto.IReqLoadItemsOfFarm): proto.ReqLoadItemsOfFarm;
+
+        /**
+         * Encodes the specified ReqLoadItemsOfFarm message. Does not implicitly {@link proto.ReqLoadItemsOfFarm.verify|verify} messages.
+         * @param message ReqLoadItemsOfFarm message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IReqLoadItemsOfFarm, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReqLoadItemsOfFarm message, length delimited. Does not implicitly {@link proto.ReqLoadItemsOfFarm.verify|verify} messages.
+         * @param message ReqLoadItemsOfFarm message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IReqLoadItemsOfFarm, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReqLoadItemsOfFarm message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReqLoadItemsOfFarm
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ReqLoadItemsOfFarm;
+
+        /**
+         * Decodes a ReqLoadItemsOfFarm message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReqLoadItemsOfFarm
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ReqLoadItemsOfFarm;
+
+        /**
+         * Verifies a ReqLoadItemsOfFarm message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReqLoadItemsOfFarm message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReqLoadItemsOfFarm
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ReqLoadItemsOfFarm;
+
+        /**
+         * Creates a plain object from a ReqLoadItemsOfFarm message. Also converts values to other types if specified.
+         * @param message ReqLoadItemsOfFarm
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ReqLoadItemsOfFarm, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReqLoadItemsOfFarm to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReqLoadItemsOfFarm
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a BuildingBase. */
+    interface IBuildingBase {
+
+        /** BuildingBase id */
+        id?: (number|null);
+
+        /** BuildingBase name */
+        name?: (string|null);
+
+        /** BuildingBase price */
+        price?: (number|Long|null);
+
+        /** BuildingBase description */
+        description?: (string|null);
+
+        /** BuildingBase type */
+        type?: (string|null);
+
+        /** BuildingBase maxLevel */
+        maxLevel?: (number|null);
+    }
+
+    /** Represents a BuildingBase. */
+    class BuildingBase implements IBuildingBase {
+
+        /**
+         * Constructs a new BuildingBase.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IBuildingBase);
+
+        /** BuildingBase id. */
+        public id: number;
+
+        /** BuildingBase name. */
+        public name: string;
+
+        /** BuildingBase price. */
+        public price: (number|Long);
+
+        /** BuildingBase description. */
+        public description: string;
+
+        /** BuildingBase type. */
+        public type: string;
+
+        /** BuildingBase maxLevel. */
+        public maxLevel: number;
+
+        /**
+         * Creates a new BuildingBase instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BuildingBase instance
+         */
+        public static create(properties?: proto.IBuildingBase): proto.BuildingBase;
+
+        /**
+         * Encodes the specified BuildingBase message. Does not implicitly {@link proto.BuildingBase.verify|verify} messages.
+         * @param message BuildingBase message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IBuildingBase, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BuildingBase message, length delimited. Does not implicitly {@link proto.BuildingBase.verify|verify} messages.
+         * @param message BuildingBase message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IBuildingBase, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BuildingBase message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BuildingBase
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.BuildingBase;
+
+        /**
+         * Decodes a BuildingBase message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BuildingBase
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.BuildingBase;
+
+        /**
+         * Verifies a BuildingBase message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BuildingBase message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BuildingBase
+         */
+        public static fromObject(object: { [k: string]: any }): proto.BuildingBase;
+
+        /**
+         * Creates a plain object from a BuildingBase message. Also converts values to other types if specified.
+         * @param message BuildingBase
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.BuildingBase, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BuildingBase to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BuildingBase
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a PropertyBuilding. */
+    interface IPropertyBuilding {
+
+        /** PropertyBuilding id */
+        id?: (number|null);
+
+        /** PropertyBuilding positionX */
+        positionX?: (number|Long|null);
+
+        /** PropertyBuilding positionY */
+        positionY?: (number|Long|null);
+
+        /** PropertyBuilding upgradeId */
+        upgradeId?: (number|null);
+
+        /** PropertyBuilding areaId */
+        areaId?: (number|null);
+
+        /** PropertyBuilding commonBuildingId */
+        commonBuildingId?: (number|null);
+
+        /** PropertyBuilding currentLevel */
+        currentLevel?: (number|null);
+    }
+
+    /** Represents a PropertyBuilding. */
+    class PropertyBuilding implements IPropertyBuilding {
+
+        /**
+         * Constructs a new PropertyBuilding.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IPropertyBuilding);
+
+        /** PropertyBuilding id. */
+        public id: number;
+
+        /** PropertyBuilding positionX. */
+        public positionX: (number|Long);
+
+        /** PropertyBuilding positionY. */
+        public positionY: (number|Long);
+
+        /** PropertyBuilding upgradeId. */
+        public upgradeId: number;
+
+        /** PropertyBuilding areaId. */
+        public areaId: number;
+
+        /** PropertyBuilding commonBuildingId. */
+        public commonBuildingId: number;
+
+        /** PropertyBuilding currentLevel. */
+        public currentLevel: number;
+
+        /**
+         * Creates a new PropertyBuilding instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns PropertyBuilding instance
+         */
+        public static create(properties?: proto.IPropertyBuilding): proto.PropertyBuilding;
+
+        /**
+         * Encodes the specified PropertyBuilding message. Does not implicitly {@link proto.PropertyBuilding.verify|verify} messages.
+         * @param message PropertyBuilding message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IPropertyBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified PropertyBuilding message, length delimited. Does not implicitly {@link proto.PropertyBuilding.verify|verify} messages.
+         * @param message PropertyBuilding message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IPropertyBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a PropertyBuilding message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PropertyBuilding
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.PropertyBuilding;
+
+        /**
+         * Decodes a PropertyBuilding message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns PropertyBuilding
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.PropertyBuilding;
+
+        /**
+         * Verifies a PropertyBuilding message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a PropertyBuilding message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns PropertyBuilding
+         */
+        public static fromObject(object: { [k: string]: any }): proto.PropertyBuilding;
+
+        /**
+         * Creates a plain object from a PropertyBuilding message. Also converts values to other types if specified.
+         * @param message PropertyBuilding
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.PropertyBuilding, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this PropertyBuilding to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for PropertyBuilding
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a TillLand. */
+    interface ITillLand {
+
+        /** TillLand id */
+        id?: (number|null);
+
+        /** TillLand index */
+        index?: (number|null);
+
+        /** TillLand statusTilled */
+        statusTilled?: (boolean|null);
+
+        /** TillLand plantingLandId */
+        plantingLandId?: (number|null);
+    }
+
+    /** Represents a TillLand. */
+    class TillLand implements ITillLand {
+
+        /**
+         * Constructs a new TillLand.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.ITillLand);
+
+        /** TillLand id. */
+        public id: number;
+
+        /** TillLand index. */
+        public index: number;
+
+        /** TillLand statusTilled. */
+        public statusTilled: boolean;
+
+        /** TillLand plantingLandId. */
+        public plantingLandId: number;
+
+        /**
+         * Creates a new TillLand instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns TillLand instance
+         */
+        public static create(properties?: proto.ITillLand): proto.TillLand;
+
+        /**
+         * Encodes the specified TillLand message. Does not implicitly {@link proto.TillLand.verify|verify} messages.
+         * @param message TillLand message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.ITillLand, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified TillLand message, length delimited. Does not implicitly {@link proto.TillLand.verify|verify} messages.
+         * @param message TillLand message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.ITillLand, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a TillLand message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns TillLand
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.TillLand;
+
+        /**
+         * Decodes a TillLand message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns TillLand
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.TillLand;
+
+        /**
+         * Verifies a TillLand message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a TillLand message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns TillLand
+         */
+        public static fromObject(object: { [k: string]: any }): proto.TillLand;
+
+        /**
+         * Creates a plain object from a TillLand message. Also converts values to other types if specified.
+         * @param message TillLand
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.TillLand, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this TillLand to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for TillLand
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a FarmBuilding. */
+    interface IFarmBuilding {
+
+        /** FarmBuilding base */
+        base?: (proto.IBuildingBase|null);
+
+        /** FarmBuilding propertyBuilding */
+        propertyBuilding?: (proto.IPropertyBuilding|null);
+    }
+
+    /** Represents a FarmBuilding. */
+    class FarmBuilding implements IFarmBuilding {
+
+        /**
+         * Constructs a new FarmBuilding.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IFarmBuilding);
+
+        /** FarmBuilding base. */
+        public base?: (proto.IBuildingBase|null);
+
+        /** FarmBuilding propertyBuilding. */
+        public propertyBuilding?: (proto.IPropertyBuilding|null);
+
+        /**
+         * Creates a new FarmBuilding instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns FarmBuilding instance
+         */
+        public static create(properties?: proto.IFarmBuilding): proto.FarmBuilding;
+
+        /**
+         * Encodes the specified FarmBuilding message. Does not implicitly {@link proto.FarmBuilding.verify|verify} messages.
+         * @param message FarmBuilding message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IFarmBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified FarmBuilding message, length delimited. Does not implicitly {@link proto.FarmBuilding.verify|verify} messages.
+         * @param message FarmBuilding message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IFarmBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a FarmBuilding message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns FarmBuilding
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.FarmBuilding;
+
+        /**
+         * Decodes a FarmBuilding message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns FarmBuilding
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.FarmBuilding;
+
+        /**
+         * Verifies a FarmBuilding message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a FarmBuilding message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns FarmBuilding
+         */
+        public static fromObject(object: { [k: string]: any }): proto.FarmBuilding;
+
+        /**
+         * Creates a plain object from a FarmBuilding message. Also converts values to other types if specified.
+         * @param message FarmBuilding
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.FarmBuilding, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this FarmBuilding to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for FarmBuilding
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a PlantingLandBuilding. */
+    interface IPlantingLandBuilding {
+
+        /** PlantingLandBuilding base */
+        base?: (proto.IBuildingBase|null);
+
+        /** PlantingLandBuilding propertyBuilding */
+        propertyBuilding?: (proto.IPropertyBuilding|null);
+
+        /** PlantingLandBuilding tillLands */
+        tillLands?: (proto.ITillLands|null);
+    }
+
+    /** Represents a PlantingLandBuilding. */
+    class PlantingLandBuilding implements IPlantingLandBuilding {
+
+        /**
+         * Constructs a new PlantingLandBuilding.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IPlantingLandBuilding);
+
+        /** PlantingLandBuilding base. */
+        public base?: (proto.IBuildingBase|null);
+
+        /** PlantingLandBuilding propertyBuilding. */
+        public propertyBuilding?: (proto.IPropertyBuilding|null);
+
+        /** PlantingLandBuilding tillLands. */
+        public tillLands?: (proto.ITillLands|null);
+
+        /**
+         * Creates a new PlantingLandBuilding instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns PlantingLandBuilding instance
+         */
+        public static create(properties?: proto.IPlantingLandBuilding): proto.PlantingLandBuilding;
+
+        /**
+         * Encodes the specified PlantingLandBuilding message. Does not implicitly {@link proto.PlantingLandBuilding.verify|verify} messages.
+         * @param message PlantingLandBuilding message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IPlantingLandBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified PlantingLandBuilding message, length delimited. Does not implicitly {@link proto.PlantingLandBuilding.verify|verify} messages.
+         * @param message PlantingLandBuilding message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IPlantingLandBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a PlantingLandBuilding message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PlantingLandBuilding
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.PlantingLandBuilding;
+
+        /**
+         * Decodes a PlantingLandBuilding message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns PlantingLandBuilding
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.PlantingLandBuilding;
+
+        /**
+         * Verifies a PlantingLandBuilding message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a PlantingLandBuilding message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns PlantingLandBuilding
+         */
+        public static fromObject(object: { [k: string]: any }): proto.PlantingLandBuilding;
+
+        /**
+         * Creates a plain object from a PlantingLandBuilding message. Also converts values to other types if specified.
+         * @param message PlantingLandBuilding
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.PlantingLandBuilding, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this PlantingLandBuilding to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for PlantingLandBuilding
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a TillLands. */
+    interface ITillLands {
+
+        /** TillLands tillLand */
+        tillLand?: (proto.ITillLand[]|null);
+    }
+
+    /** Represents a TillLands. */
+    class TillLands implements ITillLands {
+
+        /**
+         * Constructs a new TillLands.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.ITillLands);
+
+        /** TillLands tillLand. */
+        public tillLand: proto.ITillLand[];
+
+        /**
+         * Creates a new TillLands instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns TillLands instance
+         */
+        public static create(properties?: proto.ITillLands): proto.TillLands;
+
+        /**
+         * Encodes the specified TillLands message. Does not implicitly {@link proto.TillLands.verify|verify} messages.
+         * @param message TillLands message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.ITillLands, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified TillLands message, length delimited. Does not implicitly {@link proto.TillLands.verify|verify} messages.
+         * @param message TillLands message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.ITillLands, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a TillLands message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns TillLands
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.TillLands;
+
+        /**
+         * Decodes a TillLands message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns TillLands
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.TillLands;
+
+        /**
+         * Verifies a TillLands message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a TillLands message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns TillLands
+         */
+        public static fromObject(object: { [k: string]: any }): proto.TillLands;
+
+        /**
+         * Creates a plain object from a TillLands message. Also converts values to other types if specified.
+         * @param message TillLands
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.TillLands, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this TillLands to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for TillLands
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a Building. */
+    interface IBuilding {
+
+        /** Building farmBuilding */
+        farmBuilding?: (proto.IFarmBuilding|null);
+
+        /** Building plantingLandBuilding */
+        plantingLandBuilding?: (proto.IPlantingLandBuilding|null);
+    }
+
+    /** Represents a Building. */
+    class Building implements IBuilding {
+
+        /**
+         * Constructs a new Building.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IBuilding);
+
+        /** Building farmBuilding. */
+        public farmBuilding?: (proto.IFarmBuilding|null);
+
+        /** Building plantingLandBuilding. */
+        public plantingLandBuilding?: (proto.IPlantingLandBuilding|null);
+
+        /** Building data. */
+        public data?: ("farmBuilding"|"plantingLandBuilding");
+
+        /**
+         * Creates a new Building instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Building instance
+         */
+        public static create(properties?: proto.IBuilding): proto.Building;
+
+        /**
+         * Encodes the specified Building message. Does not implicitly {@link proto.Building.verify|verify} messages.
+         * @param message Building message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Building message, length delimited. Does not implicitly {@link proto.Building.verify|verify} messages.
+         * @param message Building message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Building message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Building
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.Building;
+
+        /**
+         * Decodes a Building message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Building
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.Building;
+
+        /**
+         * Verifies a Building message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Building message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Building
+         */
+        public static fromObject(object: { [k: string]: any }): proto.Building;
+
+        /**
+         * Creates a plain object from a Building message. Also converts values to other types if specified.
+         * @param message Building
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.Building, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Building to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Building
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a BuildingItems. */
+    interface IBuildingItems {
+
+        /** BuildingItems building */
+        building?: (proto.IBuilding[]|null);
+    }
+
+    /** Represents a BuildingItems. */
+    class BuildingItems implements IBuildingItems {
+
+        /**
+         * Constructs a new BuildingItems.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IBuildingItems);
+
+        /** BuildingItems building. */
+        public building: proto.IBuilding[];
+
+        /**
+         * Creates a new BuildingItems instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BuildingItems instance
+         */
+        public static create(properties?: proto.IBuildingItems): proto.BuildingItems;
+
+        /**
+         * Encodes the specified BuildingItems message. Does not implicitly {@link proto.BuildingItems.verify|verify} messages.
+         * @param message BuildingItems message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IBuildingItems, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BuildingItems message, length delimited. Does not implicitly {@link proto.BuildingItems.verify|verify} messages.
+         * @param message BuildingItems message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IBuildingItems, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BuildingItems message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BuildingItems
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.BuildingItems;
+
+        /**
+         * Decodes a BuildingItems message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BuildingItems
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.BuildingItems;
+
+        /**
+         * Verifies a BuildingItems message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BuildingItems message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BuildingItems
+         */
+        public static fromObject(object: { [k: string]: any }): proto.BuildingItems;
+
+        /**
+         * Creates a plain object from a BuildingItems message. Also converts values to other types if specified.
+         * @param message BuildingItems
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.BuildingItems, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BuildingItems to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for BuildingItems
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ResLoadItemsOfFarm. */
+    interface IResLoadItemsOfFarm {
+
+        /** ResLoadItemsOfFarm buildingItems */
+        buildingItems?: (proto.IBuildingItems|null);
+    }
+
+    /** Represents a ResLoadItemsOfFarm. */
+    class ResLoadItemsOfFarm implements IResLoadItemsOfFarm {
+
+        /**
+         * Constructs a new ResLoadItemsOfFarm.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IResLoadItemsOfFarm);
+
+        /** ResLoadItemsOfFarm buildingItems. */
+        public buildingItems?: (proto.IBuildingItems|null);
+
+        /**
+         * Creates a new ResLoadItemsOfFarm instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ResLoadItemsOfFarm instance
+         */
+        public static create(properties?: proto.IResLoadItemsOfFarm): proto.ResLoadItemsOfFarm;
+
+        /**
+         * Encodes the specified ResLoadItemsOfFarm message. Does not implicitly {@link proto.ResLoadItemsOfFarm.verify|verify} messages.
+         * @param message ResLoadItemsOfFarm message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IResLoadItemsOfFarm, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ResLoadItemsOfFarm message, length delimited. Does not implicitly {@link proto.ResLoadItemsOfFarm.verify|verify} messages.
+         * @param message ResLoadItemsOfFarm message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IResLoadItemsOfFarm, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ResLoadItemsOfFarm message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ResLoadItemsOfFarm
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResLoadItemsOfFarm;
+
+        /**
+         * Decodes a ResLoadItemsOfFarm message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ResLoadItemsOfFarm
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResLoadItemsOfFarm;
+
+        /**
+         * Verifies a ResLoadItemsOfFarm message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ResLoadItemsOfFarm message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ResLoadItemsOfFarm
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ResLoadItemsOfFarm;
+
+        /**
+         * Creates a plain object from a ResLoadItemsOfFarm message. Also converts values to other types if specified.
+         * @param message ResLoadItemsOfFarm
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ResLoadItemsOfFarm, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ResLoadItemsOfFarm to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ResLoadItemsOfFarm
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ReqBuyBuilding. */
+    interface IReqBuyBuilding {
+
+        /** ReqBuyBuilding typeBuilding */
+        typeBuilding?: (string|null);
+
+        /** ReqBuyBuilding positionX */
+        positionX?: (number|null);
+
+        /** ReqBuyBuilding positionY */
+        positionY?: (number|null);
+
+        /** ReqBuyBuilding currentLevel */
+        currentLevel?: (number|null);
+
+        /** ReqBuyBuilding areaId */
+        areaId?: (number|null);
+
+        /** ReqBuyBuilding uuid */
+        uuid?: (string|null);
+    }
+
+    /** Represents a ReqBuyBuilding. */
+    class ReqBuyBuilding implements IReqBuyBuilding {
+
+        /**
+         * Constructs a new ReqBuyBuilding.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IReqBuyBuilding);
+
+        /** ReqBuyBuilding typeBuilding. */
+        public typeBuilding: string;
+
+        /** ReqBuyBuilding positionX. */
+        public positionX: number;
+
+        /** ReqBuyBuilding positionY. */
+        public positionY: number;
+
+        /** ReqBuyBuilding currentLevel. */
+        public currentLevel: number;
+
+        /** ReqBuyBuilding areaId. */
+        public areaId: number;
+
+        /** ReqBuyBuilding uuid. */
+        public uuid: string;
+
+        /**
+         * Creates a new ReqBuyBuilding instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReqBuyBuilding instance
+         */
+        public static create(properties?: proto.IReqBuyBuilding): proto.ReqBuyBuilding;
+
+        /**
+         * Encodes the specified ReqBuyBuilding message. Does not implicitly {@link proto.ReqBuyBuilding.verify|verify} messages.
+         * @param message ReqBuyBuilding message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IReqBuyBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReqBuyBuilding message, length delimited. Does not implicitly {@link proto.ReqBuyBuilding.verify|verify} messages.
+         * @param message ReqBuyBuilding message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IReqBuyBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReqBuyBuilding message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReqBuyBuilding
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ReqBuyBuilding;
+
+        /**
+         * Decodes a ReqBuyBuilding message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReqBuyBuilding
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ReqBuyBuilding;
+
+        /**
+         * Verifies a ReqBuyBuilding message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReqBuyBuilding message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReqBuyBuilding
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ReqBuyBuilding;
+
+        /**
+         * Creates a plain object from a ReqBuyBuilding message. Also converts values to other types if specified.
+         * @param message ReqBuyBuilding
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ReqBuyBuilding, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReqBuyBuilding to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReqBuyBuilding
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ResBuyBuilding. */
+    interface IResBuyBuilding {
+
+        /** ResBuyBuilding uuid */
+        uuid?: (string|null);
+
+        /** ResBuyBuilding building */
+        building?: (proto.IBuilding|null);
+    }
+
+    /** Represents a ResBuyBuilding. */
+    class ResBuyBuilding implements IResBuyBuilding {
+
+        /**
+         * Constructs a new ResBuyBuilding.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IResBuyBuilding);
+
+        /** ResBuyBuilding uuid. */
+        public uuid: string;
+
+        /** ResBuyBuilding building. */
+        public building?: (proto.IBuilding|null);
+
+        /**
+         * Creates a new ResBuyBuilding instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ResBuyBuilding instance
+         */
+        public static create(properties?: proto.IResBuyBuilding): proto.ResBuyBuilding;
+
+        /**
+         * Encodes the specified ResBuyBuilding message. Does not implicitly {@link proto.ResBuyBuilding.verify|verify} messages.
+         * @param message ResBuyBuilding message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IResBuyBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ResBuyBuilding message, length delimited. Does not implicitly {@link proto.ResBuyBuilding.verify|verify} messages.
+         * @param message ResBuyBuilding message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IResBuyBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ResBuyBuilding message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ResBuyBuilding
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResBuyBuilding;
+
+        /**
+         * Decodes a ResBuyBuilding message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ResBuyBuilding
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResBuyBuilding;
+
+        /**
+         * Verifies a ResBuyBuilding message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ResBuyBuilding message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ResBuyBuilding
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ResBuyBuilding;
+
+        /**
+         * Creates a plain object from a ResBuyBuilding message. Also converts values to other types if specified.
+         * @param message ResBuyBuilding
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ResBuyBuilding, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ResBuyBuilding to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ResBuyBuilding
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */

@@ -1,6 +1,7 @@
 package vn.edu.nlu.fit.nlugame.layer2.dao;
 
 import org.jdbi.v3.core.Jdbi;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.ABuilding;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.AreaBean;
 
 public class AreaDAO extends BaseDAO {
@@ -11,7 +12,7 @@ public class AreaDAO extends BaseDAO {
         if (jdbi == null) {
             return null;
         }
-        return jdbi.withHandle(handle -> handle.createQuery("select id, user_id, player_id, type_area, spawn_pos_x, spawn_pos_y, status from " + TABLE_NAME + " where id = :id")
+        return jdbi.withHandle(handle -> handle.createQuery("select id, user_id, type_area, status from " + TABLE_NAME + " where id = :id")
                 .bind("id", id)
                 .mapToBean(AreaBean.class).stream().findFirst().orElse(null));
     }
@@ -21,7 +22,7 @@ public class AreaDAO extends BaseDAO {
         if (jdbi == null) {
             return null;
         }
-        return jdbi.withHandle(handle -> handle.createQuery("select id, user_id, player_id, type_area, spawn_pos_x, spawn_pos_y, status from " + TABLE_NAME + " where user_id = :userId")
+        return jdbi.withHandle(handle -> handle.createQuery("select id, user_id, type_area, status from " + TABLE_NAME + " where user_id = :userId")
                 .bind("userId", userId)
                 .mapToBean(AreaBean.class).stream().findFirst().orElse(null));
     }
@@ -35,4 +36,5 @@ public class AreaDAO extends BaseDAO {
                 .bind("typeArea", typeArea)
                 .mapToBean(AreaBean.class).stream().findFirst().orElse(null));
     }
+
 }

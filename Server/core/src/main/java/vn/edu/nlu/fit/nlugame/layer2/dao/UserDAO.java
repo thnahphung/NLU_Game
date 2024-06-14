@@ -17,7 +17,7 @@ public class UserDAO extends BaseDAO {
         if (jdbi == null) {
             return null;
         }
-        return jdbi.withHandle(h -> h.createQuery("select id,username,password,active,relogin_token,has_character from " + TABLE_NAME + " where username = :username")
+        return jdbi.withHandle(h -> h.createQuery("select id,username,password,player_name,gender,gold,level,email,active,relogin_token,character_id,has_character,is_new_account from " + TABLE_NAME + " where username = :username")
                 .bind("username", username)
                 .mapToBean(UserBean.class).stream().findFirst().orElse(null));
 
@@ -110,6 +110,16 @@ public class UserDAO extends BaseDAO {
         jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set has_character = :hasCharacter where id = :id")
                 .bind("id", userId)
                 .bind("hasCharacter", hasCharacter)
+                .execute());
+    }
+    public static void updateIsNewAccount(int userId, boolean isNewAccount) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return;
+        }
+        jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set is_new_account = :isNewAccount where id = :id")
+                .bind("isNewAccount", isNewAccount)
+                .bind("id", userId)
                 .execute());
     }
 }
