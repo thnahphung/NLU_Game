@@ -28,10 +28,13 @@
       },
       {
         "__id__": 10
+      },
+      {
+        "__id__": 12
       }
     ],
     "_prefab": {
-      "__id__": 12
+      "__id__": 14
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -64,7 +67,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "SpriteSeed",
+    "_name": "Sprite",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -154,9 +157,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 58,
+      "r": 255,
       "g": 255,
-      "b": 49,
+      "b": 255,
       "a": 255
     },
     "_spriteFrame": {
@@ -239,6 +242,39 @@
   {
     "__type__": "cc.CompPrefabInfo",
     "fileId": "cbkTE01L9GvpU9xO9/vQ8a"
+  },
+  {
+    "__type__": "3afdeghmvxL5ZJnuadwVmXk",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 13
+    },
+    "seedSprite": {
+      "__uuid__": "9c8c9ead-a6d4-4f3f-91e2-5ff1fa89e8a4@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "sproutSprite": {
+      "__uuid__": "452187b2-12e5-4377-95b0-0a1d8d3289fa@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "smallTreeSprite": {
+      "__uuid__": "dd29572a-1f22-43b5-9891-246761d13d49@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "bigTreeSprite": {
+      "__uuid__": "fc107917-603c-40ac-a68d-6a788d8f7810@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "42X5N+R8dGooVbSk5B6vAX"
   },
   {
     "__type__": "cc.PrefabInfo",
