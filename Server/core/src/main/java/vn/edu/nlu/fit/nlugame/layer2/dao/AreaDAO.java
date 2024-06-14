@@ -32,7 +32,7 @@ public class AreaDAO extends BaseDAO {
         if (jdbi == null) {
             return null;
         }
-        return jdbi.withHandle(handle -> handle.createQuery("select id, user_id, player_id, type_area, spawn_pos_x, spawn_pos_y, status from " + TABLE_NAME + " where user_id = -1 and type_area = :typeArea")
+        return jdbi.withHandle(handle -> handle.createQuery("select id, user_id, type_area, status from " + TABLE_NAME + " where user_id = -1 and type_area = :typeArea")
                 .bind("typeArea", typeArea)
                 .mapToBean(AreaBean.class).stream().findFirst().orElse(null));
     }

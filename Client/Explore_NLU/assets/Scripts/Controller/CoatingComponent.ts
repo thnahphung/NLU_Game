@@ -55,7 +55,10 @@ export class CoatingComponent extends Component {
     return nodeCoating.getChildByName("CoatingPanel");
   }
 
-  public off(key: string): void {
+  public off(key: string, callback?: Function): void {
+    if (callback) {
+      callback();
+    }
     const nodeCoating = this.getCoatingNode(key);
 
     const nodeHide = this.getNodeHide(key);
@@ -69,11 +72,11 @@ export class CoatingComponent extends Component {
     this.nodeCoatingMap.delete(key);
   }
 
-  public autoOff(key: string): void {
+  public autoOff(key: string, callback?: Function): void {
     if (!this.getCoatingNode(key)) return;
     this.getCoatingNode(key).on(Node.EventType.TOUCH_START, () => {
       this.getCoatingNode(key).off(Node.EventType.TOUCH_START);
-      this.off(key);
+      this.off(key, callback);
       switch (key) {
         case "SEED":
           GlobalData.me().setSowStatus(false);

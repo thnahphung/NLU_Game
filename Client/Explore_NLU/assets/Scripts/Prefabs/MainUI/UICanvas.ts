@@ -59,8 +59,6 @@ export class UICanvas extends Component {
     }
   }
 
-  update(deltaTime: number) {}
-
   showPopupMessage(message: string) {
     this._popupMessage = instantiate(this.prefabPopupMessage);
     this._popupMessage.getComponent(PopupMessage).setMessage(message);
@@ -82,8 +80,8 @@ export class UICanvas extends Component {
         this._popup.components.find((component) => {
           if (component instanceof PopupOption) {
             this._popupOption = component;
-            if(handleNode) this._popupOption.handleNode = handleNode;
-            if(lable) this._popupOption.lableString = lable;
+            if (handleNode) this._popupOption.handleNode = handleNode;
+            if (lable) this._popupOption.lableString = lable;
           }
         });
         this.node.getChildByName("BotMid").addChild(this._popupOption.node);

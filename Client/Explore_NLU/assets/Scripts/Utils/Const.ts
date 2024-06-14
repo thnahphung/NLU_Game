@@ -27,19 +27,24 @@ export const AUDIOS = {
   BACKGROUND: "Audios/Bg/tungtung",
 };
 
-//Spawn position start
-export const KIOT_AREA = {
-  SPAWN_POS: new Vec3(-2800, -250, 0),
-  SPAWN_POS_NONG_HOC: new Vec3(3234, 180, 0),
-};
-
-export const VETERINARIAN_AREA = {
-  SPAWN_POS: new Vec3(-407, -86, 0),
-};
-
-export const ANIMAL_HUSBANDRY_AREA = {
-  SPAWN_POS: new Vec3(-40, -390, 0),
-};
+export const SETTING_AREA = [
+  {
+    sceneName: "FarmScene",
+    spawnPos: new Vec3(0, 0, 0),
+  },
+  {
+    sceneName: "AnimalHusbandryScene",
+    spawnPos: new Vec3(760, -354, 0),
+  },
+  {
+    sceneName: "MechanicalScene",
+    spawnPos: new Vec3(0, 0, 0),
+  },
+  {
+    sceneName: "VeterinarianScene",
+    spawnPos: new Vec3(-407, -86, 0),
+  },
+];
 //Spawn position end
 
 export enum CHARACTERS {
@@ -128,7 +133,6 @@ export enum ANIMAL_FOOD {
   HAY = "Hay",
   PADDY_GRAIN = "PaddyGrain",
 }
-
 
 export enum TYPE_ITEM {
   ANIMAL = "ANIMAL",

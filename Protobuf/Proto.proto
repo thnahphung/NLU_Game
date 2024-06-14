@@ -54,6 +54,7 @@ message User {
   int32 characterId = 12;
   int32 areaId = 13;
   int32 isNewAccount = 14;
+  Character character = 15;
 }
 
 message Player{

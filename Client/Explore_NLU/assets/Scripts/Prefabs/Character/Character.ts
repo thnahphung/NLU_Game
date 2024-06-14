@@ -16,10 +16,9 @@ const { ccclass, property } = _decorator;
 
 @ccclass("Character")
 export class Character extends Component {
-  @property private speed: number = 500;
+  private userProto: proto.IUser;
 
-  private playerName: string = "player name 123";
-  private userId: number;
+  @property private speed: number = 500;
   @property private isMainPlayer: boolean = false;
 
   private currentState: CHARACTER_STATE = CHARACTER_STATE.IDLE_DOWN;
@@ -47,11 +46,16 @@ export class Character extends Component {
 
   protected start(): void {
     this.playerNameLayer = find("Canvas/PopupGameLayer/PlayerNameLayer");
-    this.labelName.string = this.playerName;
+    this.labelName.string = "Player";
+    // this.labelName.string = this.userProto.playerName;
     this.labelName.node.parent = this.playerNameLayer;
   }
 
   protected update(dt: number): void {
+    this.updateLabelNamePosition();
+  }
+
+  public updateLabelNamePosition() {
     this.labelName.node.setPosition(
       this.node.position.x,
       this.node.position.y + 54
@@ -79,19 +83,20 @@ export class Character extends Component {
   public getSpeed() {
     return this.speed;
   }
-  public getPlayerName() {
-    return this.playerName;
-  }
+
   public setPlayerName(name: string) {
-    this.playerName = name;
+    this.userProto.playerName = name;
     this.labelName.string = name;
   }
-  public setUserId(id: number) {
-    this.userId = id;
+
+  public setUserProto(user: proto.IUser) {
+    this.userProto = user;
   }
-  public getUserId() {
-    return this.userId;
+
+  public getUserProto() {
+    return this.userProto;
   }
+
   public setIsMainPlayer(isMain: boolean) {
     this.isMainPlayer = isMain;
   }

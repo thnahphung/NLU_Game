@@ -104,14 +104,21 @@ export class Cage extends Component {
     this.menuNode
       .getChildByName("InformationButton")
       .on(Button.EventType.CLICK, this.onClickShowPopupCageInformation, this);
-
     CoatingComponent.me().setCoating(
       COATING.FEED,
       this.node.parent,
       this.menuNode
     );
     CoatingComponent.me().showCoating(COATING.FEED);
-    CoatingComponent.me().autoOff(COATING.FEED);
+    CoatingComponent.me().autoOff(COATING.FEED, () => {
+      this.menuNode
+        .getChildByName("InformationButton")
+        .off(
+          Button.EventType.CLICK,
+          this.onClickShowPopupCageInformation,
+          this
+        );
+    });
   }
 
   public getCageInformation(): Node {
@@ -130,6 +137,16 @@ export class Cage extends Component {
       .setInformationCage(this.cageInfo);
     popupCageInformation.parent = find("UICanvas/PopupLayer");
     popupCageInformation.getComponent(PopupComponent).show();
+
+    CoatingComponent.me().off(COATING.FEED, () => {
+      this.menuNode
+        .getChildByName("InformationButton")
+        .off(
+          Button.EventType.CLICK,
+          this.onClickShowPopupCageInformation,
+          this
+        );
+    });
   }
 
   public getPopupCageInformation(): Node {

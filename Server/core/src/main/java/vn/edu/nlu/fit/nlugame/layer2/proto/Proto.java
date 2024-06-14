@@ -7118,6 +7118,21 @@ public final class Proto {
      * @return The isNewAccount.
      */
     int getIsNewAccount();
+
+    /**
+     * <code>.proto.Character character = 15;</code>
+     * @return Whether the character field is set.
+     */
+    boolean hasCharacter();
+    /**
+     * <code>.proto.Character character = 15;</code>
+     * @return The character.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character getCharacter();
+    /**
+     * <code>.proto.Character character = 15;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.CharacterOrBuilder getCharacterOrBuilder();
   }
   /**
    * <pre>
@@ -7428,6 +7443,32 @@ public final class Proto {
       return isNewAccount_;
     }
 
+    public static final int CHARACTER_FIELD_NUMBER = 15;
+    private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character character_;
+    /**
+     * <code>.proto.Character character = 15;</code>
+     * @return Whether the character field is set.
+     */
+    @java.lang.Override
+    public boolean hasCharacter() {
+      return character_ != null;
+    }
+    /**
+     * <code>.proto.Character character = 15;</code>
+     * @return The character.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character getCharacter() {
+      return character_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character.getDefaultInstance() : character_;
+    }
+    /**
+     * <code>.proto.Character character = 15;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.CharacterOrBuilder getCharacterOrBuilder() {
+      return character_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character.getDefaultInstance() : character_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -7483,6 +7524,9 @@ public final class Proto {
       }
       if (isNewAccount_ != 0) {
         output.writeInt32(14, isNewAccount_);
+      }
+      if (character_ != null) {
+        output.writeMessage(15, getCharacter());
       }
       getUnknownFields().writeTo(output);
     }
@@ -7545,6 +7589,10 @@ public final class Proto {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(14, isNewAccount_);
       }
+      if (character_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(15, getCharacter());
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -7588,6 +7636,11 @@ public final class Proto {
           != other.getAreaId()) return false;
       if (getIsNewAccount()
           != other.getIsNewAccount()) return false;
+      if (hasCharacter() != other.hasCharacter()) return false;
+      if (hasCharacter()) {
+        if (!getCharacter()
+            .equals(other.getCharacter())) return false;
+      }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -7629,6 +7682,10 @@ public final class Proto {
       hash = (53 * hash) + getAreaId();
       hash = (37 * hash) + ISNEWACCOUNT_FIELD_NUMBER;
       hash = (53 * hash) + getIsNewAccount();
+      if (hasCharacter()) {
+        hash = (37 * hash) + CHARACTER_FIELD_NUMBER;
+        hash = (53 * hash) + getCharacter().hashCode();
+      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -7776,6 +7833,11 @@ public final class Proto {
         characterId_ = 0;
         areaId_ = 0;
         isNewAccount_ = 0;
+        character_ = null;
+        if (characterBuilder_ != null) {
+          characterBuilder_.dispose();
+          characterBuilder_ = null;
+        }
         return this;
       }
 
@@ -7851,6 +7913,11 @@ public final class Proto {
         if (((from_bitField0_ & 0x00002000) != 0)) {
           result.isNewAccount_ = isNewAccount_;
         }
+        if (((from_bitField0_ & 0x00004000) != 0)) {
+          result.character_ = characterBuilder_ == null
+              ? character_
+              : characterBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -7914,6 +7981,9 @@ public final class Proto {
         }
         if (other.getIsNewAccount() != 0) {
           setIsNewAccount(other.getIsNewAccount());
+        }
+        if (other.hasCharacter()) {
+          mergeCharacter(other.getCharacter());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -8011,6 +8081,13 @@ public final class Proto {
                 bitField0_ |= 0x00002000;
                 break;
               } // case 112
+              case 122: {
+                input.readMessage(
+                    getCharacterFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00004000;
+                break;
+              } // case 122
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -8634,6 +8711,125 @@ public final class Proto {
         isNewAccount_ = 0;
         onChanged();
         return this;
+      }
+
+      private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character character_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.CharacterOrBuilder> characterBuilder_;
+      /**
+       * <code>.proto.Character character = 15;</code>
+       * @return Whether the character field is set.
+       */
+      public boolean hasCharacter() {
+        return ((bitField0_ & 0x00004000) != 0);
+      }
+      /**
+       * <code>.proto.Character character = 15;</code>
+       * @return The character.
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character getCharacter() {
+        if (characterBuilder_ == null) {
+          return character_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character.getDefaultInstance() : character_;
+        } else {
+          return characterBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.Character character = 15;</code>
+       */
+      public Builder setCharacter(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character value) {
+        if (characterBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          character_ = value;
+        } else {
+          characterBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00004000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Character character = 15;</code>
+       */
+      public Builder setCharacter(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character.Builder builderForValue) {
+        if (characterBuilder_ == null) {
+          character_ = builderForValue.build();
+        } else {
+          characterBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00004000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Character character = 15;</code>
+       */
+      public Builder mergeCharacter(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character value) {
+        if (characterBuilder_ == null) {
+          if (((bitField0_ & 0x00004000) != 0) &&
+            character_ != null &&
+            character_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character.getDefaultInstance()) {
+            getCharacterBuilder().mergeFrom(value);
+          } else {
+            character_ = value;
+          }
+        } else {
+          characterBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00004000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Character character = 15;</code>
+       */
+      public Builder clearCharacter() {
+        bitField0_ = (bitField0_ & ~0x00004000);
+        character_ = null;
+        if (characterBuilder_ != null) {
+          characterBuilder_.dispose();
+          characterBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Character character = 15;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character.Builder getCharacterBuilder() {
+        bitField0_ |= 0x00004000;
+        onChanged();
+        return getCharacterFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.Character character = 15;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.CharacterOrBuilder getCharacterOrBuilder() {
+        if (characterBuilder_ != null) {
+          return characterBuilder_.getMessageOrBuilder();
+        } else {
+          return character_ == null ?
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character.getDefaultInstance() : character_;
+        }
+      }
+      /**
+       * <code>.proto.Character character = 15;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.CharacterOrBuilder> 
+          getCharacterFieldBuilder() {
+        if (characterBuilder_ == null) {
+          characterBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Character.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.CharacterOrBuilder>(
+                  getCharacter(),
+                  getParentForChildren(),
+                  isClean());
+          character_ = null;
+        }
+        return characterBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -37610,88 +37806,89 @@ public final class Proto {
       ".proto.ResLoadItemsOfFarmH\000\022/\n\016reqBuyBui" +
       "lding\030\031 \001(\0132\025.proto.ReqBuyBuildingH\000\022/\n\016" +
       "resBuyBuilding\030\032 \001(\0132\025.proto.ResBuyBuild" +
-      "ingH\000B\006\n\004data\"\372\001\n\004User\022\016\n\006userId\030\001 \001(\005\022\020" +
+      "ingH\000B\006\n\004data\"\237\002\n\004User\022\016\n\006userId\030\001 \001(\005\022\020" +
       "\n\010username\030\002 \001(\t\022\022\n\nplayerName\030\003 \001(\t\022\016\n\006" +
       "gender\030\004 \001(\005\022\017\n\007sponsor\030\005 \001(\005\022\r\n\005email\030\006" +
       " \001(\t\022\r\n\005phone\030\007 \001(\t\022\014\n\004gold\030\010 \001(\003\022\017\n\007dia" +
       "mond\030\t \001(\003\022\r\n\005level\030\n \001(\005\022\024\n\014hasCharacte" +
       "r\030\013 \001(\005\022\023\n\013characterId\030\014 \001(\005\022\016\n\006areaId\030\r" +
-      " \001(\005\022\024\n\014isNewAccount\030\016 \001(\005\"r\n\006Player\022\020\n\010" +
-      "playerId\030\001 \001(\005\022\022\n\nplayerName\030\002 \001(\t\022\023\n\013ch" +
-      "aracterId\030\003 \001(\005\022\r\n\005level\030\004 \001(\005\022\016\n\006userId" +
-      "\030\005 \001(\005\022\016\n\006areaId\030\006 \001(\005\"H\n\tCharacter\022\n\n\002i" +
-      "d\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\023\n\013d" +
-      "escription\030\004 \001(\t\"m\n\004Area\022\016\n\006areaId\030\001 \001(\005" +
-      "\022\020\n\010playerId\030\002 \001(\005\022\020\n\010typeArea\030\003 \001(\t\022!\n\010" +
-      "position\030\004 \001(\0132\017.proto.Position\022\016\n\006statu" +
-      "s\030\005 \001(\005\" \n\010Position\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(" +
-      "\002\".\n\010ReqLogin\022\020\n\010username\030\001 \001(\t\022\020\n\010passw" +
-      "ord\030\002 \001(\t\"-\n\nReqRelogin\022\020\n\010username\030\001 \001(" +
-      "\t\022\r\n\005token\030\002 \001(\t\"c\n\010ResLogin\022\016\n\006status\030\001" +
-      " \001(\005\022\r\n\005token\030\002 \001(\t\022\031\n\004user\030\003 \001(\0132\013.prot" +
-      "o.User\022\035\n\006player\030\004 \001(\0132\r.proto.Player\"\036\n" +
-      "\014ResUserAlert\022\016\n\006status\030\001 \001(\005\"\013\n\tReqLogo" +
-      "ut\"\033\n\tResLogout\022\016\n\006status\030\001 \001(\005\"\"\n\021ReqFo" +
-      "rgotPassword\022\r\n\005email\030\001 \001(\t\"#\n\021ResForgot" +
-      "Password\022\016\n\006status\030\001 \001(\005\"`\n\013ReqRegister\022" +
-      "\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\017\n\007s" +
-      "ponsor\030\003 \001(\t\022\r\n\005phone\030\004 \001(\t\022\r\n\005email\030\005 \001" +
-      "(\t\"\035\n\013ResRegister\022\016\n\006status\030\001 \001(\005\"7\n\021Req" +
-      "UpdateUserInfo\022\022\n\nplayerName\030\001 \001(\t\022\016\n\006ge" +
-      "nder\030\002 \001(\005\"\023\n\021ReqLoadCharacters\"8\n\021ResLo" +
-      "adCharacters\022#\n\tcharacter\030\001 \003(\0132\020.proto." +
-      "Character\";\n\020ReqPickCharacter\022\023\n\013charact" +
-      "erId\030\001 \001(\005\022\022\n\nplayerName\030\002 \001(\t\"\"\n\020ResPic" +
-      "kCharacter\022\016\n\006status\030\001 \001(\005\"R\n\027ReqPlayerJ" +
-      "oinAreaCommon\022\024\n\014areaCommonId\030\001 \001(\005\022!\n\010p" +
-      "osition\030\002 \001(\0132\017.proto.Position\"\314\001\n\027ResPl" +
-      "ayerJoinAreaCommon\022\024\n\014areaCommonId\030\001 \001(\005" +
-      "\022\031\n\004area\030\002 \001(\0132\013.proto.Area\022\036\n\007players\030\003" +
-      " \003(\0132\r.proto.Player\022\032\n\005users\030\004 \003(\0132\013.pro" +
-      "to.User\022\016\n\006status\030\005 \001(\005\022\021\n\tareaState\030\006 \001" +
-      "(\005\022!\n\010position\030\007 \001(\0132\017.proto.Position\")\n" +
-      "\021ReqPlayerJoinArea\022\024\n\014userTargetId\030\001 \001(\005" +
-      "\"\235\001\n\021ResPlayerJoinArea\022\031\n\004area\030\001 \001(\0132\013.p" +
-      "roto.Area\022\036\n\007players\030\002 \003(\0132\r.proto.Playe" +
-      "r\022\032\n\005users\030\003 \003(\0132\013.proto.User\022\016\n\006status\030" +
-      "\004 \001(\005\022!\n\010position\030\005 \001(\0132\017.proto.Position" +
-      "\"u\n\026ResOtherPlayerJoinArea\022\035\n\006player\030\001 \001" +
-      "(\0132\r.proto.Player\022\031\n\004user\030\002 \001(\0132\013.proto." +
-      "User\022!\n\010position\030\003 \001(\0132\017.proto.Position\"" +
-      ")\n\027ResOtherPlayerLeaveArea\022\016\n\006userId\030\001 \001" +
-      "(\005\">\n\tReqMoving\022\016\n\006areaId\030\001 \001(\005\022!\n\010posit" +
-      "ion\030\002 \001(\0132\017.proto.Position\"P\n\tResMoving\022" +
-      "\016\n\006userId\030\001 \001(\005\022\020\n\010playerId\030\002 \001(\005\022!\n\010pos" +
-      "ition\030\003 \001(\0132\017.proto.Position\"\024\n\022ReqLoadI" +
-      "temsOfFarm\"l\n\014BuildingBase\022\n\n\002id\030\001 \001(\005\022\014" +
-      "\n\004name\030\002 \001(\t\022\r\n\005price\030\003 \001(\003\022\023\n\013descripti" +
-      "on\030\004 \001(\t\022\014\n\004type\030\005 \001(\t\022\020\n\010maxLevel\030\006 \001(\005" +
-      "\"\227\001\n\020PropertyBuilding\022\n\n\002id\030\001 \001(\005\022\021\n\tpos" +
-      "itionX\030\002 \001(\003\022\021\n\tpositionY\030\003 \001(\003\022\021\n\tupgra" +
-      "deId\030\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\030\n\020commonBuil" +
-      "dingId\030\006 \001(\005\022\024\n\014currentLevel\030\007 \001(\005\"S\n\010Ti" +
-      "llLand\022\n\n\002id\030\001 \001(\005\022\r\n\005index\030\002 \001(\005\022\024\n\014sta" +
-      "tusTilled\030\003 \001(\010\022\026\n\016plantingLandId\030\004 \001(\005\"" +
-      "d\n\014FarmBuilding\022!\n\004base\030\001 \001(\0132\023.proto.Bu" +
-      "ildingBase\0221\n\020propertyBuilding\030\002 \001(\0132\027.p" +
-      "roto.PropertyBuilding\"\221\001\n\024PlantingLandBu" +
-      "ilding\022!\n\004base\030\001 \001(\0132\023.proto.BuildingBas" +
-      "e\0221\n\020propertyBuilding\030\002 \001(\0132\027.proto.Prop" +
-      "ertyBuilding\022#\n\ttillLands\030\003 \001(\0132\020.proto." +
-      "TillLands\".\n\tTillLands\022!\n\010tillLand\030\003 \003(\013" +
-      "2\017.proto.TillLand\"|\n\010Building\022+\n\014farmBui" +
-      "lding\030\001 \001(\0132\023.proto.FarmBuildingH\000\022;\n\024pl" +
-      "antingLandBuilding\030\002 \001(\0132\033.proto.Plantin" +
-      "gLandBuildingH\000B\006\n\004data\"2\n\rBuildingItems" +
-      "\022!\n\010building\030\001 \003(\0132\017.proto.Building\"A\n\022R" +
-      "esLoadItemsOfFarm\022+\n\rbuildingItems\030\001 \001(\013" +
-      "2\024.proto.BuildingItems\"\200\001\n\016ReqBuyBuildin" +
-      "g\022\024\n\014typeBuilding\030\001 \001(\t\022\021\n\tpositionX\030\002 \001" +
-      "(\005\022\021\n\tpositionY\030\003 \001(\005\022\024\n\014currentLevel\030\004 " +
-      "\001(\005\022\016\n\006areaId\030\005 \001(\005\022\014\n\004uuid\030\006 \001(\t\"A\n\016Res" +
-      "BuyBuilding\022\014\n\004uuid\030\001 \001(\t\022!\n\010building\030\002 " +
-      "\001(\0132\017.proto.BuildingB%\n#vn.edu.nlu.fit.n" +
-      "lugame.layer2.protob\006proto3"
+      " \001(\005\022\024\n\014isNewAccount\030\016 \001(\005\022#\n\tcharacter\030" +
+      "\017 \001(\0132\020.proto.Character\"r\n\006Player\022\020\n\010pla" +
+      "yerId\030\001 \001(\005\022\022\n\nplayerName\030\002 \001(\t\022\023\n\013chara" +
+      "cterId\030\003 \001(\005\022\r\n\005level\030\004 \001(\005\022\016\n\006userId\030\005 " +
+      "\001(\005\022\016\n\006areaId\030\006 \001(\005\"H\n\tCharacter\022\n\n\002id\030\001" +
+      " \001(\005\022\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\023\n\013desc" +
+      "ription\030\004 \001(\t\"m\n\004Area\022\016\n\006areaId\030\001 \001(\005\022\020\n" +
+      "\010playerId\030\002 \001(\005\022\020\n\010typeArea\030\003 \001(\t\022!\n\010pos" +
+      "ition\030\004 \001(\0132\017.proto.Position\022\016\n\006status\030\005" +
+      " \001(\005\" \n\010Position\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\"." +
+      "\n\010ReqLogin\022\020\n\010username\030\001 \001(\t\022\020\n\010password" +
+      "\030\002 \001(\t\"-\n\nReqRelogin\022\020\n\010username\030\001 \001(\t\022\r" +
+      "\n\005token\030\002 \001(\t\"c\n\010ResLogin\022\016\n\006status\030\001 \001(" +
+      "\005\022\r\n\005token\030\002 \001(\t\022\031\n\004user\030\003 \001(\0132\013.proto.U" +
+      "ser\022\035\n\006player\030\004 \001(\0132\r.proto.Player\"\036\n\014Re" +
+      "sUserAlert\022\016\n\006status\030\001 \001(\005\"\013\n\tReqLogout\"" +
+      "\033\n\tResLogout\022\016\n\006status\030\001 \001(\005\"\"\n\021ReqForgo" +
+      "tPassword\022\r\n\005email\030\001 \001(\t\"#\n\021ResForgotPas" +
+      "sword\022\016\n\006status\030\001 \001(\005\"`\n\013ReqRegister\022\020\n\010" +
+      "username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\017\n\007spon" +
+      "sor\030\003 \001(\t\022\r\n\005phone\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\"" +
+      "\035\n\013ResRegister\022\016\n\006status\030\001 \001(\005\"7\n\021ReqUpd" +
+      "ateUserInfo\022\022\n\nplayerName\030\001 \001(\t\022\016\n\006gende" +
+      "r\030\002 \001(\005\"\023\n\021ReqLoadCharacters\"8\n\021ResLoadC" +
+      "haracters\022#\n\tcharacter\030\001 \003(\0132\020.proto.Cha" +
+      "racter\";\n\020ReqPickCharacter\022\023\n\013characterI" +
+      "d\030\001 \001(\005\022\022\n\nplayerName\030\002 \001(\t\"\"\n\020ResPickCh" +
+      "aracter\022\016\n\006status\030\001 \001(\005\"R\n\027ReqPlayerJoin" +
+      "AreaCommon\022\024\n\014areaCommonId\030\001 \001(\005\022!\n\010posi" +
+      "tion\030\002 \001(\0132\017.proto.Position\"\314\001\n\027ResPlaye" +
+      "rJoinAreaCommon\022\024\n\014areaCommonId\030\001 \001(\005\022\031\n" +
+      "\004area\030\002 \001(\0132\013.proto.Area\022\036\n\007players\030\003 \003(" +
+      "\0132\r.proto.Player\022\032\n\005users\030\004 \003(\0132\013.proto." +
+      "User\022\016\n\006status\030\005 \001(\005\022\021\n\tareaState\030\006 \001(\005\022" +
+      "!\n\010position\030\007 \001(\0132\017.proto.Position\")\n\021Re" +
+      "qPlayerJoinArea\022\024\n\014userTargetId\030\001 \001(\005\"\235\001" +
+      "\n\021ResPlayerJoinArea\022\031\n\004area\030\001 \001(\0132\013.prot" +
+      "o.Area\022\036\n\007players\030\002 \003(\0132\r.proto.Player\022\032" +
+      "\n\005users\030\003 \003(\0132\013.proto.User\022\016\n\006status\030\004 \001" +
+      "(\005\022!\n\010position\030\005 \001(\0132\017.proto.Position\"u\n" +
+      "\026ResOtherPlayerJoinArea\022\035\n\006player\030\001 \001(\0132" +
+      "\r.proto.Player\022\031\n\004user\030\002 \001(\0132\013.proto.Use" +
+      "r\022!\n\010position\030\003 \001(\0132\017.proto.Position\")\n\027" +
+      "ResOtherPlayerLeaveArea\022\016\n\006userId\030\001 \001(\005\"" +
+      ">\n\tReqMoving\022\016\n\006areaId\030\001 \001(\005\022!\n\010position" +
+      "\030\002 \001(\0132\017.proto.Position\"P\n\tResMoving\022\016\n\006" +
+      "userId\030\001 \001(\005\022\020\n\010playerId\030\002 \001(\005\022!\n\010positi" +
+      "on\030\003 \001(\0132\017.proto.Position\"\024\n\022ReqLoadItem" +
+      "sOfFarm\"l\n\014BuildingBase\022\n\n\002id\030\001 \001(\005\022\014\n\004n" +
+      "ame\030\002 \001(\t\022\r\n\005price\030\003 \001(\003\022\023\n\013description\030" +
+      "\004 \001(\t\022\014\n\004type\030\005 \001(\t\022\020\n\010maxLevel\030\006 \001(\005\"\227\001" +
+      "\n\020PropertyBuilding\022\n\n\002id\030\001 \001(\005\022\021\n\tpositi" +
+      "onX\030\002 \001(\003\022\021\n\tpositionY\030\003 \001(\003\022\021\n\tupgradeI" +
+      "d\030\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\030\n\020commonBuildin" +
+      "gId\030\006 \001(\005\022\024\n\014currentLevel\030\007 \001(\005\"S\n\010TillL" +
+      "and\022\n\n\002id\030\001 \001(\005\022\r\n\005index\030\002 \001(\005\022\024\n\014status" +
+      "Tilled\030\003 \001(\010\022\026\n\016plantingLandId\030\004 \001(\005\"d\n\014" +
+      "FarmBuilding\022!\n\004base\030\001 \001(\0132\023.proto.Build" +
+      "ingBase\0221\n\020propertyBuilding\030\002 \001(\0132\027.prot" +
+      "o.PropertyBuilding\"\221\001\n\024PlantingLandBuild" +
+      "ing\022!\n\004base\030\001 \001(\0132\023.proto.BuildingBase\0221" +
+      "\n\020propertyBuilding\030\002 \001(\0132\027.proto.Propert" +
+      "yBuilding\022#\n\ttillLands\030\003 \001(\0132\020.proto.Til" +
+      "lLands\".\n\tTillLands\022!\n\010tillLand\030\003 \003(\0132\017." +
+      "proto.TillLand\"|\n\010Building\022+\n\014farmBuildi" +
+      "ng\030\001 \001(\0132\023.proto.FarmBuildingH\000\022;\n\024plant" +
+      "ingLandBuilding\030\002 \001(\0132\033.proto.PlantingLa" +
+      "ndBuildingH\000B\006\n\004data\"2\n\rBuildingItems\022!\n" +
+      "\010building\030\001 \003(\0132\017.proto.Building\"A\n\022ResL" +
+      "oadItemsOfFarm\022+\n\rbuildingItems\030\001 \001(\0132\024." +
+      "proto.BuildingItems\"\200\001\n\016ReqBuyBuilding\022\024" +
+      "\n\014typeBuilding\030\001 \001(\t\022\021\n\tpositionX\030\002 \001(\005\022" +
+      "\021\n\tpositionY\030\003 \001(\005\022\024\n\014currentLevel\030\004 \001(\005" +
+      "\022\016\n\006areaId\030\005 \001(\005\022\014\n\004uuid\030\006 \001(\t\"A\n\016ResBuy" +
+      "Building\022\014\n\004uuid\030\001 \001(\t\022!\n\010building\030\002 \001(\013" +
+      "2\017.proto.BuildingB%\n#vn.edu.nlu.fit.nlug" +
+      "ame.layer2.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -37714,7 +37911,7 @@ public final class Proto {
     internal_static_proto_User_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_User_descriptor,
-        new java.lang.String[] { "UserId", "Username", "PlayerName", "Gender", "Sponsor", "Email", "Phone", "Gold", "Diamond", "Level", "HasCharacter", "CharacterId", "AreaId", "IsNewAccount", });
+        new java.lang.String[] { "UserId", "Username", "PlayerName", "Gender", "Sponsor", "Email", "Phone", "Gold", "Diamond", "Level", "HasCharacter", "CharacterId", "AreaId", "IsNewAccount", "Character", });
     internal_static_proto_Player_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_proto_Player_fieldAccessorTable = new
