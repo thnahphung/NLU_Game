@@ -1,4 +1,4 @@
-import { _decorator, BlockInputEvents, find, instantiate, Node, Prefab, UIOpacity } from 'cc';
+import { _decorator, BlockInputEvents, find, instantiate, Node, Prefab, resources, TextAsset, UIOpacity } from 'cc';
 import { UICanvas } from '../Prefabs/MainUI/UICanvas';
 import { BUTTON } from '../Utils/Const';
 import AbsScene from '../Scenes/AbsScene';
@@ -6,6 +6,7 @@ import DataSender from '../Utils/DataSender';
 import { ABuilding } from '../Models/ABuilding';
 import { PlantingLand } from '../Prefabs/Lands/PlantingLand';
 import { TilledLand } from '../Prefabs/Lands/TilledLand';
+import GlobalData from '../Utils/GlobalData';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameFarmManager')
@@ -15,7 +16,6 @@ export class GameFarmManager extends AbsScene {
 
     private buildingSystem: Node = null;
 
-    private buildings: ABuilding[] = [];
     private buildingProtos: proto.IBuilding[] = [];
     @property([Prefab])
     private buildingFarmPrefab: Prefab[] = [];
@@ -42,11 +42,11 @@ export class GameFarmManager extends AbsScene {
     }
 
     onLoadItemsOfFarmMsgHandler(resLoadItemsOfFarm: proto.IResLoadItemsOfFarm): void {
-        this.buildings = [];
+        let plantingLandPanel = find('Canvas/BackgroundLayers/PlantingPanel');
+        plantingLandPanel.removeAllChildren();
         resLoadItemsOfFarm.buildingItems.building.forEach((building) => {
             this.buildingProtos.push(building);
         });
-        console.log("Building Protos 1", this.buildingProtos);
         this.loadBasicItemsToUI();
     }
 
@@ -74,14 +74,76 @@ export class GameFarmManager extends AbsScene {
     }
 
     private loadItemsOfFarm(): void {
-        DataSender.sendReqLoadItemsOfFarm();
+        if(GlobalData.me().getIsUserOffline()) {
+            this.loadItemsOfFarmOffline();
+        } else{
+            DataSender.sendReqLoadItemsOfFarm();
+        }
     }
 
+
+    private async loadItemsOfFarmOffline(): Promise<void> {
+       resources.load('CSV/farm_base_item', TextAsset, (err, asset) => {
+            if (err) {
+                console.error("File không tồn tại hoặc có lỗi khi load file!", err);
+                return;
+            }
+
+            const csvText = asset.text; // Get the text content of the CSV file
+            this.parseCSV(csvText);
+            this.loadBasicItemsToUI();
+        });
+    }
+
+     private parseCSV(csvText: string): void {
+        const lines = csvText.split('\n');
+        lines.shift(); // Bỏ qua dòng đầu tiên (header)
+
+        for (let line of lines) {
+            if (!line.trim()) continue; // Bỏ qua dòng trống
+            const values = line.split(',');
+
+            const name = values[0];
+            const price = parseInt(values[1]);
+            const description = values[2];
+            const type = values[3];
+            const maxLevel = parseInt(values[4]);
+            const currentLevel = parseInt(values[5]);
+            const areaId = parseInt(values[6]);
+            const positionX = parseInt(values[7]);
+            const positionY = parseInt(values[8]);
+            const buildingId = parseInt(values[9]);
+
+            const base = new proto.BuildingBase();
+            base.name = name;
+            base.price = price;
+            base.description = description;
+            base.type = type;
+            base.maxLevel = maxLevel;
+
+
+            const propertyBuilding = new proto.PropertyBuilding();
+            propertyBuilding.currentLevel = currentLevel;
+            propertyBuilding.areaId = areaId;
+            propertyBuilding.positionX = positionX;
+            propertyBuilding.positionY = positionY;
+            propertyBuilding.commonBuildingId = buildingId;
+
+            const farmBuilding = new proto.FarmBuilding();
+            farmBuilding.base = base;
+            farmBuilding.propertyBuilding = propertyBuilding;
+
+            const building = new proto.Building();
+            building.farmBuilding = farmBuilding;
+            this.buildingProtos.push(building);
+        }
+    }
 
     private loadBasicItemsToUI(): void {
         const midLayer = find('Canvas/ObjectLayers/MidLayer');
         const plantingLayer = find('Canvas/BackgroundLayers/PlantingPanel');
         if(this.buildingProtos.length === 0 || !this.buildingProtos) {
+            console.error('No building protos');
             return;
         }
 
