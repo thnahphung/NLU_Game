@@ -82,4 +82,17 @@ export default class DataSender {
     packet.reqLoadItemsOfFarm = reqLoadBaseItems;
     WS.send(packet);
   }
+
+  public static sendReqBuyBuilding(uuid: string,type: string, positionX: number, positionY: number, currentLevel: number, areaId: number){
+    let reqBuyBuilding = new proto.ReqBuyBuilding();
+    reqBuyBuilding.uuid = uuid;
+    reqBuyBuilding.typeBuilding = type;
+    reqBuyBuilding.areaId = areaId;
+    reqBuyBuilding.currentLevel = currentLevel;
+    reqBuyBuilding.positionX = positionX;
+    reqBuyBuilding.positionY = positionY;
+    let packet = new proto.Packet();
+    packet.reqBuyBuilding = reqBuyBuilding;
+    WS.send(packet);
+  }
 }

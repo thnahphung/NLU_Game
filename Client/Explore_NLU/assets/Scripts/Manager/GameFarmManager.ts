@@ -1,12 +1,11 @@
-import { _decorator, Component, find, instantiate, Node, Prefab } from 'cc';
+import { _decorator, BlockInputEvents, find, instantiate, Node, Prefab, UIOpacity } from 'cc';
 import { UICanvas } from '../Prefabs/MainUI/UICanvas';
-import { BUTTON, POPUP, TYPE_ITEM } from '../Utils/Const';
+import { BUTTON } from '../Utils/Const';
 import AbsScene from '../Scenes/AbsScene';
-import { FarmBuilding } from '../Models/FarmBuilding';
 import DataSender from '../Utils/DataSender';
 import { ABuilding } from '../Models/ABuilding';
-import { Util } from '../Utils/Util';
-import { PlantingLand } from '../Models/PlantingLand';
+import { PlantingLand } from '../Prefabs/Lands/PlantingLand';
+import { TilledLand } from '../Prefabs/Lands/TilledLand';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameFarmManager')
@@ -17,44 +16,9 @@ export class GameFarmManager extends AbsScene {
     private buildingSystem: Node = null;
 
     private buildings: ABuilding[] = [];
-
-    // ItemPrefab
-    @property(Prefab)
-    private mainHousePrefab: Prefab = null;
-    @property(Prefab)
-    private tree4Prefab: Prefab = null;
-    @property(Prefab)
-    private tree5Prefab: Prefab = null;
-    @property(Prefab)
-    private tree6Prefab: Prefab = null;
-    @property(Prefab)
-    private tree7Prefab: Prefab = null;
-    @property(Prefab)
-    private tree8Prefab: Prefab = null;
-    @property(Prefab)
-    private tree9Prefab: Prefab = null;
-    @property(Prefab)
-    private stone1Prefab: Prefab = null;
-    @property(Prefab)
-    private stone2Prefab: Prefab = null;
-    @property(Prefab)
-    private stone3Prefab: Prefab = null;
-    @property(Prefab)
-    private stone4Prefab: Prefab = null;
-    @property(Prefab)
-    private stone5Prefab: Prefab = null;
-    @property(Prefab)
-    private stone6Prefab: Prefab = null;
-    @property(Prefab)
-    private stone7Prefab: Prefab = null;
-    @property(Prefab)
-    private stone8Prefab: Prefab = null;
-    @property(Prefab)
-    private stone9Prefab: Prefab = null;
-    @property(Prefab)
-    private root1Prefab: Prefab = null;
-    @property(Prefab)
-    private plantingLandPrefab: Prefab = null;
+    private buildingProtos: proto.IBuilding[] = [];
+    @property([Prefab])
+    private buildingFarmPrefab: Prefab[] = [];
 
     protected onLoad(): void {
         // Load information of farm
@@ -71,29 +35,38 @@ export class GameFarmManager extends AbsScene {
             if (packet.resLoadItemsOfFarm) {
               this.onLoadItemsOfFarmMsgHandler(packet.resLoadItemsOfFarm);
             }
+            if(packet.resBuyBuilding){
+                this.handleResBuyBuilding(packet.resBuyBuilding);
+            }
           });
     }
 
     onLoadItemsOfFarmMsgHandler(resLoadItemsOfFarm: proto.IResLoadItemsOfFarm): void {
         this.buildings = [];
         resLoadItemsOfFarm.buildingItems.building.forEach((building) => {
-            if(building.farmBuilding){
-                let basebuildingItem = building.farmBuilding.base;
-                let propertyBuilding = building.farmBuilding.propertyBuilding;
-                const farmBuilding = new FarmBuilding(basebuildingItem.id, basebuildingItem.name, basebuildingItem.description, basebuildingItem.price, Util.typeItemfromValue(basebuildingItem.type), basebuildingItem.maxLevel, propertyBuilding.upgradeId, propertyBuilding.currentLevel, propertyBuilding.areaId, propertyBuilding.positionX, propertyBuilding.positionY);
-                this.buildings.push(farmBuilding);
-            }
-            if(building.plantingLandBuilding){
-                let basebuildingItem = building.plantingLandBuilding.base;
-                let tillLands = building.plantingLandBuilding.tillLand;
-                let propertyBuilding = building.plantingLandBuilding.propertyBuilding;
-                const plantingLandBuilding = new PlantingLand(basebuildingItem.id, basebuildingItem.name, basebuildingItem.description, basebuildingItem.price, Util.typeItemfromValue(basebuildingItem.type), basebuildingItem.maxLevel,  propertyBuilding.upgradeId, propertyBuilding.currentLevel, propertyBuilding.areaId, propertyBuilding.positionX, propertyBuilding.positionY);
-                plantingLandBuilding.setTillLands(tillLands);
-                this.buildings.push(plantingLandBuilding);
-            }
+            this.buildingProtos.push(building);
         });
-
+        console.log("Building Protos 1", this.buildingProtos);
         this.loadBasicItemsToUI();
+    }
+
+    handleResBuyBuilding(resBuyBuilding: proto.IResBuyBuilding): void {
+        let plantingLandPanel = find('Canvas/BackgroundLayers/PlantingPanel');
+        let plantingLands = plantingLandPanel.children;
+        plantingLands.forEach((plantingLand: Node) => {
+            if(plantingLand.uuid == resBuyBuilding.uuid){
+                let plantingLandComponent = plantingLand.getComponent(PlantingLand);
+                plantingLandComponent.plantingLandProto = resBuyBuilding.building.plantingLandBuilding;
+                
+                let tillLands = plantingLand.getChildByName("TilledLandPanel").children;
+                tillLands.forEach((tillLand: Node, index: number) => {
+                    let tillLandProto = resBuyBuilding.building.plantingLandBuilding.tillLands.tillLand[index];
+                    tillLand.getComponent(TilledLand).tillLandProto = tillLandProto;
+                });
+            }
+            if(plantingLand.getComponent(UIOpacity))plantingLand.removeComponent(UIOpacity)
+            if(plantingLand.getComponent(BlockInputEvents))plantingLand.removeComponent(BlockInputEvents);
+        });
     }
     private loadFarm(){
         // basic items
@@ -108,74 +81,47 @@ export class GameFarmManager extends AbsScene {
     private loadBasicItemsToUI(): void {
         const midLayer = find('Canvas/ObjectLayers/MidLayer');
         const plantingLayer = find('Canvas/BackgroundLayers/PlantingPanel');
-        if(this.buildings.length === 0) {
-            console.log("No building in farm");
+        if(this.buildingProtos.length === 0 || !this.buildingProtos) {
             return;
         }
 
-        this.buildings.forEach((item: ABuilding) => {
-            let itemprefab = null;
-            let nameItem = item.getName();
-            switch (nameItem) {
-                case 'mainhouse':
-                    itemprefab = instantiate(this.mainHousePrefab);
-                    break;
-                case 'tree4':
-                    itemprefab = instantiate(this.tree4Prefab);
-                    break;
-                case 'tree5':
-                    itemprefab = instantiate(this.tree5Prefab);
-                    break;
-                case 'tree6':
-                    itemprefab = instantiate(this.tree6Prefab);
-                    break;
-                case 'tree7':
-                    itemprefab = instantiate(this.tree7Prefab);
-                    break;
-                case 'tree8':
-                    itemprefab = instantiate(this.tree8Prefab);
-                    break;
-                case 'tree9':
-                    itemprefab = instantiate(this.tree9Prefab);
-                    break;
-                case 'stone1':
-                    itemprefab = instantiate(this.stone1Prefab);
-                    break;
-                case 'stone2':
-                    itemprefab = instantiate(this.stone2Prefab);
-                    break;
-                case 'stone3':
-                    itemprefab = instantiate(this.stone3Prefab);
-                    break;
-                case 'stone4':
-                    itemprefab = instantiate(this.stone4Prefab);
-                    break;
-                case 'stone5':
-                    itemprefab = instantiate(this.stone5Prefab);
-                    break;
-                case 'stone6':
-                    itemprefab = instantiate(this.stone6Prefab);
-                    break;
-                case 'stone7':
-                    itemprefab = instantiate(this.stone7Prefab);
-                    break;
-                case 'stone8':
-                    itemprefab = instantiate(this.stone8Prefab);
-                    break;
-                case 'stone9':
-                    itemprefab = instantiate(this.stone9Prefab);
-                    break;
-                case 'root1':
-                    itemprefab = instantiate(this.root1Prefab);
-                    break;
-                case 'plantingland':
-                    itemprefab = instantiate(this.plantingLandPrefab);
-                    break;
-
+        this.buildingProtos.forEach((building: proto.Building) => {
+            let itemprefab: Node = null;
+            let nameBuilding = null;
+            let positionX = 0;
+            let positionY = 0;
+            if(building.farmBuilding){
+                nameBuilding = building.farmBuilding.base.name;
+                positionX = building.farmBuilding.propertyBuilding.positionX;
+                positionY = building.farmBuilding.propertyBuilding.positionY;
+            }else{
+                nameBuilding = building.plantingLandBuilding.base.name;
+                positionX = building.plantingLandBuilding.propertyBuilding.positionX;
+                positionY = building.plantingLandBuilding.propertyBuilding.positionY;
             }
+
+
+            for(let prefab of this.buildingFarmPrefab) {
+                  if(nameBuilding.toUpperCase() == prefab.name.toUpperCase()){
+                    itemprefab = instantiate(prefab);
+                    if(building.plantingLandBuilding) {
+                        let component = itemprefab.getComponent(PlantingLand);
+                        component.plantingLandProto = building.plantingLandBuilding;
+                        let tillLands = itemprefab.getChildByName("TilledLandPanel").children;
+                        tillLands.forEach((tillLand: Node, index: number) => {
+                            let tillLandProto = building.plantingLandBuilding.tillLands.tillLand[index];
+                            tillLand.getComponent(TilledLand).tillLandProto = tillLandProto;
+                            let statusTilled = tillLandProto?.statusTilled;
+                            if(statusTilled) tillLand.getComponent(TilledLand).handleTillLand();
+                        });
+                    }
+                    break;
+                }
+            }
+
             if(itemprefab) {
-                itemprefab.setPosition(item.getPositionX(), item.getPositionY());
-                if(item.getType() === TYPE_ITEM.PLANTING_LAND) {
+                itemprefab.setPosition(positionX, positionY);
+                if(building.plantingLandBuilding) {
                     plantingLayer.addChild(itemprefab);
                 }else{
                     midLayer.addChild(itemprefab);

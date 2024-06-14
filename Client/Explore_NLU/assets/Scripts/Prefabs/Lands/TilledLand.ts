@@ -6,12 +6,8 @@ const { ccclass, property } = _decorator;
 
 @ccclass('TilledLand')
 export class TilledLand extends Component {
+    public tillLandProto : proto.ITillLand = null;
     private seedNode: Node = null;
-    private cabbageNode: Node = null;
-    private carrotNode: Node = null;
-    private cucumberNode: Node = null;
-    private pumpkinNode: Node = null;
-    private nodePosition: Vec3 = new Vec3();
     private isSown = false;
     @property(Prefab)
     private ricePrefab: Prefab = null;
@@ -23,6 +19,7 @@ export class TilledLand extends Component {
     private cucumberPrefab: Prefab = null;
     @property(Prefab)
     private pumkinPrefab: Prefab = null;
+
 
     protected start(): void {
         let collider = this.node.getComponent(Collider2D);
@@ -56,6 +53,7 @@ export class TilledLand extends Component {
 
     private handleSow(seed: string):void {
         this.isSown = true;
+        GlobalData.me().setSownStatus(true);
         switch(seed){
             case SEED_BAG.RICE:
                 this.seedNode = instantiate(this.ricePrefab);
@@ -76,9 +74,10 @@ export class TilledLand extends Component {
         let plantingLand = this.node.getParent().getParent();
         this.seedNode.setPosition(this.node.position.x + plantingLand.position.x, this.node.position.y + plantingLand.position.y - 5, 0);
         this.getMidLayer()?.addChild(this.seedNode);
+        this.node.off(Node.EventType.TOUCH_END, this.handleTouchTilledLand, this);
     }
 
-    private handleTillLand(): void {
+    public handleTillLand(): void {
         this.node.getComponent(Sprite).enabled = true;
         this.node.getComponent(BlockInputEvents).enabled = true;
         // Node begin listening sowing

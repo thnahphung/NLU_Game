@@ -13,10 +13,14 @@ export default class GlobalData {
   private constructor() {}
 
   private isMobile: boolean = false;
+
+  /* AGRI */ 
   private isMoveBuilding: boolean = false;
   private isTill: boolean = false;
   private isTilled: boolean = false;
   private isSow: boolean = false;
+  private isSown: boolean = false;
+  /* END AGRI */ 
 
   /*MAIN USER */
   private mainUser: proto.IUser = null;
@@ -173,6 +177,15 @@ export default class GlobalData {
   public getSowStatus() {
     return this.isSow;
   }
+
+  public setSownStatus(isSown: boolean) {
+    this.isSown = isSown;
+  }
+
+  public getSownStatus() {
+    return this.isSown;
+  }
+  
   /* END Agricultural engineer */
 
   /* Building */

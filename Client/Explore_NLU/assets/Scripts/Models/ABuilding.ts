@@ -8,6 +8,7 @@ export abstract class ABuilding {
     protected description?: string;
     protected type?: TYPE_ITEM;
     protected maxLevel?: number;
+    protected propertyId?: number;
     protected upgradeId?: number;
     protected currentLevel?: number;
     protected areaId?: number;
@@ -15,7 +16,7 @@ export abstract class ABuilding {
     protected positionY?: number;
     protected upgrades?: Upgrade[] = [];
 
-    constructor(id?:number, name?: string , description?: string, price?: number, type?: TYPE_ITEM, maxLevel?: number, upgradeId?: number, currentLevel?: number, areaId?: number, positionX?: number, positionY?: number) {
+    constructor(id?:number, name?: string , description?: string, price?: number, type?: TYPE_ITEM, maxLevel?: number, propertyId?: number, upgradeId?: number, currentLevel?: number, areaId?: number, positionX?: number, positionY?: number) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -27,6 +28,7 @@ export abstract class ABuilding {
         this.positionX = positionX;
         this.positionY = positionY;
         this.upgradeId = upgradeId;
+        this.propertyId = propertyId;
     }
 
     public getId(): number {    
@@ -123,5 +125,13 @@ export abstract class ABuilding {
 
     public setUpgradeId(upgradeId: number): void {
         this.upgradeId = upgradeId;
+    }
+
+    public getPropertyId(): number {
+        return this.propertyId;
+    }
+
+    public setPropertyId(propertyId: number): void {
+        this.propertyId = propertyId;
     }
 }

@@ -2,10 +2,6 @@ package vn.edu.nlu.fit.nlugame.layer2;
 
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.*;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
-import vn.edu.nlu.fit.nlugame.layer2.redis.cache.CommonBuildingCache;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MappingUtils {
     public static Proto.Building mapModelToProto(ABuilding building) {

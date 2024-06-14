@@ -175,6 +175,12 @@ export namespace proto {
 
         /** Packet resLoadItemsOfFarm */
         resLoadItemsOfFarm?: (proto.IResLoadItemsOfFarm|null);
+
+        /** Packet reqBuyBuilding */
+        reqBuyBuilding?: (proto.IReqBuyBuilding|null);
+
+        /** Packet resBuyBuilding */
+        resBuyBuilding?: (proto.IResBuyBuilding|null);
     }
 
     /** Represents a Packet. */
@@ -258,8 +264,14 @@ export namespace proto {
         /** Packet resLoadItemsOfFarm. */
         public resLoadItemsOfFarm?: (proto.IResLoadItemsOfFarm|null);
 
+        /** Packet reqBuyBuilding. */
+        public reqBuyBuilding?: (proto.IReqBuyBuilding|null);
+
+        /** Packet resBuyBuilding. */
+        public resBuyBuilding?: (proto.IResBuyBuilding|null);
+
         /** Packet data. */
-        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm");
+        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding");
 
         /**
          * Creates a new Packet instance using the specified properties.
@@ -3723,6 +3735,9 @@ export namespace proto {
 
         /** TillLand statusTilled */
         statusTilled?: (boolean|null);
+
+        /** TillLand plantingLandId */
+        plantingLandId?: (number|null);
     }
 
     /** Represents a TillLand. */
@@ -3742,6 +3757,9 @@ export namespace proto {
 
         /** TillLand statusTilled. */
         public statusTilled: boolean;
+
+        /** TillLand plantingLandId. */
+        public plantingLandId: number;
 
         /**
          * Creates a new TillLand instance using the specified properties.
@@ -3933,8 +3951,8 @@ export namespace proto {
         /** PlantingLandBuilding propertyBuilding */
         propertyBuilding?: (proto.IPropertyBuilding|null);
 
-        /** PlantingLandBuilding tillLand */
-        tillLand?: (proto.ITillLand[]|null);
+        /** PlantingLandBuilding tillLands */
+        tillLands?: (proto.ITillLands|null);
     }
 
     /** Represents a PlantingLandBuilding. */
@@ -3952,8 +3970,8 @@ export namespace proto {
         /** PlantingLandBuilding propertyBuilding. */
         public propertyBuilding?: (proto.IPropertyBuilding|null);
 
-        /** PlantingLandBuilding tillLand. */
-        public tillLand: proto.ITillLand[];
+        /** PlantingLandBuilding tillLands. */
+        public tillLands?: (proto.ITillLands|null);
 
         /**
          * Creates a new PlantingLandBuilding instance using the specified properties.
@@ -4027,6 +4045,103 @@ export namespace proto {
 
         /**
          * Gets the default type url for PlantingLandBuilding
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a TillLands. */
+    interface ITillLands {
+
+        /** TillLands tillLand */
+        tillLand?: (proto.ITillLand[]|null);
+    }
+
+    /** Represents a TillLands. */
+    class TillLands implements ITillLands {
+
+        /**
+         * Constructs a new TillLands.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.ITillLands);
+
+        /** TillLands tillLand. */
+        public tillLand: proto.ITillLand[];
+
+        /**
+         * Creates a new TillLands instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns TillLands instance
+         */
+        public static create(properties?: proto.ITillLands): proto.TillLands;
+
+        /**
+         * Encodes the specified TillLands message. Does not implicitly {@link proto.TillLands.verify|verify} messages.
+         * @param message TillLands message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.ITillLands, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified TillLands message, length delimited. Does not implicitly {@link proto.TillLands.verify|verify} messages.
+         * @param message TillLands message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.ITillLands, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a TillLands message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns TillLands
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.TillLands;
+
+        /**
+         * Decodes a TillLands message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns TillLands
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.TillLands;
+
+        /**
+         * Verifies a TillLands message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a TillLands message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns TillLands
+         */
+        public static fromObject(object: { [k: string]: any }): proto.TillLands;
+
+        /**
+         * Creates a plain object from a TillLands message. Also converts values to other types if specified.
+         * @param message TillLands
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.TillLands, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this TillLands to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for TillLands
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -4327,6 +4442,236 @@ export namespace proto {
 
         /**
          * Gets the default type url for ResLoadItemsOfFarm
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ReqBuyBuilding. */
+    interface IReqBuyBuilding {
+
+        /** ReqBuyBuilding typeBuilding */
+        typeBuilding?: (string|null);
+
+        /** ReqBuyBuilding positionX */
+        positionX?: (number|null);
+
+        /** ReqBuyBuilding positionY */
+        positionY?: (number|null);
+
+        /** ReqBuyBuilding currentLevel */
+        currentLevel?: (number|null);
+
+        /** ReqBuyBuilding areaId */
+        areaId?: (number|null);
+
+        /** ReqBuyBuilding uuid */
+        uuid?: (string|null);
+    }
+
+    /** Represents a ReqBuyBuilding. */
+    class ReqBuyBuilding implements IReqBuyBuilding {
+
+        /**
+         * Constructs a new ReqBuyBuilding.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IReqBuyBuilding);
+
+        /** ReqBuyBuilding typeBuilding. */
+        public typeBuilding: string;
+
+        /** ReqBuyBuilding positionX. */
+        public positionX: number;
+
+        /** ReqBuyBuilding positionY. */
+        public positionY: number;
+
+        /** ReqBuyBuilding currentLevel. */
+        public currentLevel: number;
+
+        /** ReqBuyBuilding areaId. */
+        public areaId: number;
+
+        /** ReqBuyBuilding uuid. */
+        public uuid: string;
+
+        /**
+         * Creates a new ReqBuyBuilding instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReqBuyBuilding instance
+         */
+        public static create(properties?: proto.IReqBuyBuilding): proto.ReqBuyBuilding;
+
+        /**
+         * Encodes the specified ReqBuyBuilding message. Does not implicitly {@link proto.ReqBuyBuilding.verify|verify} messages.
+         * @param message ReqBuyBuilding message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IReqBuyBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReqBuyBuilding message, length delimited. Does not implicitly {@link proto.ReqBuyBuilding.verify|verify} messages.
+         * @param message ReqBuyBuilding message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IReqBuyBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReqBuyBuilding message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReqBuyBuilding
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ReqBuyBuilding;
+
+        /**
+         * Decodes a ReqBuyBuilding message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReqBuyBuilding
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ReqBuyBuilding;
+
+        /**
+         * Verifies a ReqBuyBuilding message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReqBuyBuilding message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReqBuyBuilding
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ReqBuyBuilding;
+
+        /**
+         * Creates a plain object from a ReqBuyBuilding message. Also converts values to other types if specified.
+         * @param message ReqBuyBuilding
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ReqBuyBuilding, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReqBuyBuilding to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReqBuyBuilding
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ResBuyBuilding. */
+    interface IResBuyBuilding {
+
+        /** ResBuyBuilding uuid */
+        uuid?: (string|null);
+
+        /** ResBuyBuilding building */
+        building?: (proto.IBuilding|null);
+    }
+
+    /** Represents a ResBuyBuilding. */
+    class ResBuyBuilding implements IResBuyBuilding {
+
+        /**
+         * Constructs a new ResBuyBuilding.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IResBuyBuilding);
+
+        /** ResBuyBuilding uuid. */
+        public uuid: string;
+
+        /** ResBuyBuilding building. */
+        public building?: (proto.IBuilding|null);
+
+        /**
+         * Creates a new ResBuyBuilding instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ResBuyBuilding instance
+         */
+        public static create(properties?: proto.IResBuyBuilding): proto.ResBuyBuilding;
+
+        /**
+         * Encodes the specified ResBuyBuilding message. Does not implicitly {@link proto.ResBuyBuilding.verify|verify} messages.
+         * @param message ResBuyBuilding message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IResBuyBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ResBuyBuilding message, length delimited. Does not implicitly {@link proto.ResBuyBuilding.verify|verify} messages.
+         * @param message ResBuyBuilding message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IResBuyBuilding, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ResBuyBuilding message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ResBuyBuilding
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResBuyBuilding;
+
+        /**
+         * Decodes a ResBuyBuilding message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ResBuyBuilding
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResBuyBuilding;
+
+        /**
+         * Verifies a ResBuyBuilding message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ResBuyBuilding message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ResBuyBuilding
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ResBuyBuilding;
+
+        /**
+         * Creates a plain object from a ResBuyBuilding message. Also converts values to other types if specified.
+         * @param message ResBuyBuilding
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ResBuyBuilding, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ResBuyBuilding to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ResBuyBuilding
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */

@@ -271,6 +271,8 @@
              * @property {proto.IResOtherPlayerLeaveArea|null} [resOtherPlayerLeaveArea] Packet resOtherPlayerLeaveArea
              * @property {proto.IReqLoadItemsOfFarm|null} [reqLoadItemsOfFarm] Packet reqLoadItemsOfFarm
              * @property {proto.IResLoadItemsOfFarm|null} [resLoadItemsOfFarm] Packet resLoadItemsOfFarm
+             * @property {proto.IReqBuyBuilding|null} [reqBuyBuilding] Packet reqBuyBuilding
+             * @property {proto.IResBuyBuilding|null} [resBuyBuilding] Packet resBuyBuilding
              */
     
             /**
@@ -480,17 +482,33 @@
              */
             Packet.prototype.resLoadItemsOfFarm = null;
     
+            /**
+             * Packet reqBuyBuilding.
+             * @member {proto.IReqBuyBuilding|null|undefined} reqBuyBuilding
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqBuyBuilding = null;
+    
+            /**
+             * Packet resBuyBuilding.
+             * @member {proto.IResBuyBuilding|null|undefined} resBuyBuilding
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resBuyBuilding = null;
+    
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
     
             /**
              * Packet data.
-             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|undefined} data
+             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|undefined} data
              * @memberof proto.Packet
              * @instance
              */
             Object.defineProperty(Packet.prototype, "data", {
-                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter", "reqPlayerJoinAreaCommon", "resPlayerJoinAreaCommon", "reqPlayerJoinArea", "resPlayerJoinArea", "resOtherPlayerJoinArea", "reqMoving", "resMoving", "resOtherPlayerLeaveArea", "reqLoadItemsOfFarm", "resLoadItemsOfFarm"]),
+                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter", "reqPlayerJoinAreaCommon", "resPlayerJoinAreaCommon", "reqPlayerJoinArea", "resPlayerJoinArea", "resOtherPlayerJoinArea", "reqMoving", "resMoving", "resOtherPlayerLeaveArea", "reqLoadItemsOfFarm", "resLoadItemsOfFarm", "reqBuyBuilding", "resBuyBuilding"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
     
@@ -566,6 +584,10 @@
                     $root.proto.ReqLoadItemsOfFarm.encode(message.reqLoadItemsOfFarm, writer.uint32(/* id 23, wireType 2 =*/186).fork()).ldelim();
                 if (message.resLoadItemsOfFarm != null && Object.hasOwnProperty.call(message, "resLoadItemsOfFarm"))
                     $root.proto.ResLoadItemsOfFarm.encode(message.resLoadItemsOfFarm, writer.uint32(/* id 24, wireType 2 =*/194).fork()).ldelim();
+                if (message.reqBuyBuilding != null && Object.hasOwnProperty.call(message, "reqBuyBuilding"))
+                    $root.proto.ReqBuyBuilding.encode(message.reqBuyBuilding, writer.uint32(/* id 25, wireType 2 =*/202).fork()).ldelim();
+                if (message.resBuyBuilding != null && Object.hasOwnProperty.call(message, "resBuyBuilding"))
+                    $root.proto.ResBuyBuilding.encode(message.resBuyBuilding, writer.uint32(/* id 26, wireType 2 =*/210).fork()).ldelim();
                 return writer;
             };
     
@@ -694,6 +716,14 @@
                         }
                     case 24: {
                             message.resLoadItemsOfFarm = $root.proto.ResLoadItemsOfFarm.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 25: {
+                            message.reqBuyBuilding = $root.proto.ReqBuyBuilding.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 26: {
+                            message.resBuyBuilding = $root.proto.ResBuyBuilding.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -970,6 +1000,26 @@
                             return "resLoadItemsOfFarm." + error;
                     }
                 }
+                if (message.reqBuyBuilding != null && message.hasOwnProperty("reqBuyBuilding")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqBuyBuilding.verify(message.reqBuyBuilding);
+                        if (error)
+                            return "reqBuyBuilding." + error;
+                    }
+                }
+                if (message.resBuyBuilding != null && message.hasOwnProperty("resBuyBuilding")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResBuyBuilding.verify(message.resBuyBuilding);
+                        if (error)
+                            return "resBuyBuilding." + error;
+                    }
+                }
                 return null;
             };
     
@@ -1104,6 +1154,16 @@
                     if (typeof object.resLoadItemsOfFarm !== "object")
                         throw TypeError(".proto.Packet.resLoadItemsOfFarm: object expected");
                     message.resLoadItemsOfFarm = $root.proto.ResLoadItemsOfFarm.fromObject(object.resLoadItemsOfFarm);
+                }
+                if (object.reqBuyBuilding != null) {
+                    if (typeof object.reqBuyBuilding !== "object")
+                        throw TypeError(".proto.Packet.reqBuyBuilding: object expected");
+                    message.reqBuyBuilding = $root.proto.ReqBuyBuilding.fromObject(object.reqBuyBuilding);
+                }
+                if (object.resBuyBuilding != null) {
+                    if (typeof object.resBuyBuilding !== "object")
+                        throw TypeError(".proto.Packet.resBuyBuilding: object expected");
+                    message.resBuyBuilding = $root.proto.ResBuyBuilding.fromObject(object.resBuyBuilding);
                 }
                 return message;
             };
@@ -1240,6 +1300,16 @@
                     object.resLoadItemsOfFarm = $root.proto.ResLoadItemsOfFarm.toObject(message.resLoadItemsOfFarm, options);
                     if (options.oneofs)
                         object.data = "resLoadItemsOfFarm";
+                }
+                if (message.reqBuyBuilding != null && message.hasOwnProperty("reqBuyBuilding")) {
+                    object.reqBuyBuilding = $root.proto.ReqBuyBuilding.toObject(message.reqBuyBuilding, options);
+                    if (options.oneofs)
+                        object.data = "reqBuyBuilding";
+                }
+                if (message.resBuyBuilding != null && message.hasOwnProperty("resBuyBuilding")) {
+                    object.resBuyBuilding = $root.proto.ResBuyBuilding.toObject(message.resBuyBuilding, options);
+                    if (options.oneofs)
+                        object.data = "resBuyBuilding";
                 }
                 return object;
             };
@@ -9226,6 +9296,7 @@
              * @property {number|null} [id] TillLand id
              * @property {number|null} [index] TillLand index
              * @property {boolean|null} [statusTilled] TillLand statusTilled
+             * @property {number|null} [plantingLandId] TillLand plantingLandId
              */
     
             /**
@@ -9268,6 +9339,14 @@
             TillLand.prototype.statusTilled = false;
     
             /**
+             * TillLand plantingLandId.
+             * @member {number} plantingLandId
+             * @memberof proto.TillLand
+             * @instance
+             */
+            TillLand.prototype.plantingLandId = 0;
+    
+            /**
              * Creates a new TillLand instance using the specified properties.
              * @function create
              * @memberof proto.TillLand
@@ -9297,6 +9376,8 @@
                     writer.uint32(/* id 2, wireType 0 =*/16).int32(message.index);
                 if (message.statusTilled != null && Object.hasOwnProperty.call(message, "statusTilled"))
                     writer.uint32(/* id 3, wireType 0 =*/24).bool(message.statusTilled);
+                if (message.plantingLandId != null && Object.hasOwnProperty.call(message, "plantingLandId"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).int32(message.plantingLandId);
                 return writer;
             };
     
@@ -9343,6 +9424,10 @@
                             message.statusTilled = reader.bool();
                             break;
                         }
+                    case 4: {
+                            message.plantingLandId = reader.int32();
+                            break;
+                        }
                     default:
                         reader.skipType(tag & 7);
                         break;
@@ -9387,6 +9472,9 @@
                 if (message.statusTilled != null && message.hasOwnProperty("statusTilled"))
                     if (typeof message.statusTilled !== "boolean")
                         return "statusTilled: boolean expected";
+                if (message.plantingLandId != null && message.hasOwnProperty("plantingLandId"))
+                    if (!$util.isInteger(message.plantingLandId))
+                        return "plantingLandId: integer expected";
                 return null;
             };
     
@@ -9408,6 +9496,8 @@
                     message.index = object.index | 0;
                 if (object.statusTilled != null)
                     message.statusTilled = Boolean(object.statusTilled);
+                if (object.plantingLandId != null)
+                    message.plantingLandId = object.plantingLandId | 0;
                 return message;
             };
     
@@ -9428,6 +9518,7 @@
                     object.id = 0;
                     object.index = 0;
                     object.statusTilled = false;
+                    object.plantingLandId = 0;
                 }
                 if (message.id != null && message.hasOwnProperty("id"))
                     object.id = message.id;
@@ -9435,6 +9526,8 @@
                     object.index = message.index;
                 if (message.statusTilled != null && message.hasOwnProperty("statusTilled"))
                     object.statusTilled = message.statusTilled;
+                if (message.plantingLandId != null && message.hasOwnProperty("plantingLandId"))
+                    object.plantingLandId = message.plantingLandId;
                 return object;
             };
     
@@ -9712,7 +9805,7 @@
              * @interface IPlantingLandBuilding
              * @property {proto.IBuildingBase|null} [base] PlantingLandBuilding base
              * @property {proto.IPropertyBuilding|null} [propertyBuilding] PlantingLandBuilding propertyBuilding
-             * @property {Array.<proto.ITillLand>|null} [tillLand] PlantingLandBuilding tillLand
+             * @property {proto.ITillLands|null} [tillLands] PlantingLandBuilding tillLands
              */
     
             /**
@@ -9724,7 +9817,6 @@
              * @param {proto.IPlantingLandBuilding=} [properties] Properties to set
              */
             function PlantingLandBuilding(properties) {
-                this.tillLand = [];
                 if (properties)
                     for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
@@ -9748,12 +9840,12 @@
             PlantingLandBuilding.prototype.propertyBuilding = null;
     
             /**
-             * PlantingLandBuilding tillLand.
-             * @member {Array.<proto.ITillLand>} tillLand
+             * PlantingLandBuilding tillLands.
+             * @member {proto.ITillLands|null|undefined} tillLands
              * @memberof proto.PlantingLandBuilding
              * @instance
              */
-            PlantingLandBuilding.prototype.tillLand = $util.emptyArray;
+            PlantingLandBuilding.prototype.tillLands = null;
     
             /**
              * Creates a new PlantingLandBuilding instance using the specified properties.
@@ -9783,9 +9875,8 @@
                     $root.proto.BuildingBase.encode(message.base, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
                 if (message.propertyBuilding != null && Object.hasOwnProperty.call(message, "propertyBuilding"))
                     $root.proto.PropertyBuilding.encode(message.propertyBuilding, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                if (message.tillLand != null && message.tillLand.length)
-                    for (var i = 0; i < message.tillLand.length; ++i)
-                        $root.proto.TillLand.encode(message.tillLand[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                if (message.tillLands != null && Object.hasOwnProperty.call(message, "tillLands"))
+                    $root.proto.TillLands.encode(message.tillLands, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                 return writer;
             };
     
@@ -9829,9 +9920,7 @@
                             break;
                         }
                     case 3: {
-                            if (!(message.tillLand && message.tillLand.length))
-                                message.tillLand = [];
-                            message.tillLand.push($root.proto.TillLand.decode(reader, reader.uint32()));
+                            message.tillLands = $root.proto.TillLands.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -9879,14 +9968,10 @@
                     if (error)
                         return "propertyBuilding." + error;
                 }
-                if (message.tillLand != null && message.hasOwnProperty("tillLand")) {
-                    if (!Array.isArray(message.tillLand))
-                        return "tillLand: array expected";
-                    for (var i = 0; i < message.tillLand.length; ++i) {
-                        var error = $root.proto.TillLand.verify(message.tillLand[i]);
-                        if (error)
-                            return "tillLand." + error;
-                    }
+                if (message.tillLands != null && message.hasOwnProperty("tillLands")) {
+                    var error = $root.proto.TillLands.verify(message.tillLands);
+                    if (error)
+                        return "tillLands." + error;
                 }
                 return null;
             };
@@ -9913,15 +9998,10 @@
                         throw TypeError(".proto.PlantingLandBuilding.propertyBuilding: object expected");
                     message.propertyBuilding = $root.proto.PropertyBuilding.fromObject(object.propertyBuilding);
                 }
-                if (object.tillLand) {
-                    if (!Array.isArray(object.tillLand))
-                        throw TypeError(".proto.PlantingLandBuilding.tillLand: array expected");
-                    message.tillLand = [];
-                    for (var i = 0; i < object.tillLand.length; ++i) {
-                        if (typeof object.tillLand[i] !== "object")
-                            throw TypeError(".proto.PlantingLandBuilding.tillLand: object expected");
-                        message.tillLand[i] = $root.proto.TillLand.fromObject(object.tillLand[i]);
-                    }
+                if (object.tillLands != null) {
+                    if (typeof object.tillLands !== "object")
+                        throw TypeError(".proto.PlantingLandBuilding.tillLands: object expected");
+                    message.tillLands = $root.proto.TillLands.fromObject(object.tillLands);
                 }
                 return message;
             };
@@ -9939,21 +10019,17 @@
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.arrays || options.defaults)
-                    object.tillLand = [];
                 if (options.defaults) {
                     object.base = null;
                     object.propertyBuilding = null;
+                    object.tillLands = null;
                 }
                 if (message.base != null && message.hasOwnProperty("base"))
                     object.base = $root.proto.BuildingBase.toObject(message.base, options);
                 if (message.propertyBuilding != null && message.hasOwnProperty("propertyBuilding"))
                     object.propertyBuilding = $root.proto.PropertyBuilding.toObject(message.propertyBuilding, options);
-                if (message.tillLand && message.tillLand.length) {
-                    object.tillLand = [];
-                    for (var j = 0; j < message.tillLand.length; ++j)
-                        object.tillLand[j] = $root.proto.TillLand.toObject(message.tillLand[j], options);
-                }
+                if (message.tillLands != null && message.hasOwnProperty("tillLands"))
+                    object.tillLands = $root.proto.TillLands.toObject(message.tillLands, options);
                 return object;
             };
     
@@ -9984,6 +10060,230 @@
             };
     
             return PlantingLandBuilding;
+        })();
+    
+        proto.TillLands = (function() {
+    
+            /**
+             * Properties of a TillLands.
+             * @memberof proto
+             * @interface ITillLands
+             * @property {Array.<proto.ITillLand>|null} [tillLand] TillLands tillLand
+             */
+    
+            /**
+             * Constructs a new TillLands.
+             * @memberof proto
+             * @classdesc Represents a TillLands.
+             * @implements ITillLands
+             * @constructor
+             * @param {proto.ITillLands=} [properties] Properties to set
+             */
+            function TillLands(properties) {
+                this.tillLand = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * TillLands tillLand.
+             * @member {Array.<proto.ITillLand>} tillLand
+             * @memberof proto.TillLands
+             * @instance
+             */
+            TillLands.prototype.tillLand = $util.emptyArray;
+    
+            /**
+             * Creates a new TillLands instance using the specified properties.
+             * @function create
+             * @memberof proto.TillLands
+             * @static
+             * @param {proto.ITillLands=} [properties] Properties to set
+             * @returns {proto.TillLands} TillLands instance
+             */
+            TillLands.create = function create(properties) {
+                return new TillLands(properties);
+            };
+    
+            /**
+             * Encodes the specified TillLands message. Does not implicitly {@link proto.TillLands.verify|verify} messages.
+             * @function encode
+             * @memberof proto.TillLands
+             * @static
+             * @param {proto.ITillLands} message TillLands message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            TillLands.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.tillLand != null && message.tillLand.length)
+                    for (var i = 0; i < message.tillLand.length; ++i)
+                        $root.proto.TillLand.encode(message.tillLand[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified TillLands message, length delimited. Does not implicitly {@link proto.TillLands.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.TillLands
+             * @static
+             * @param {proto.ITillLands} message TillLands message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            TillLands.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a TillLands message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.TillLands
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.TillLands} TillLands
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            TillLands.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.TillLands();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 3: {
+                            if (!(message.tillLand && message.tillLand.length))
+                                message.tillLand = [];
+                            message.tillLand.push($root.proto.TillLand.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a TillLands message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.TillLands
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.TillLands} TillLands
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            TillLands.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a TillLands message.
+             * @function verify
+             * @memberof proto.TillLands
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            TillLands.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.tillLand != null && message.hasOwnProperty("tillLand")) {
+                    if (!Array.isArray(message.tillLand))
+                        return "tillLand: array expected";
+                    for (var i = 0; i < message.tillLand.length; ++i) {
+                        var error = $root.proto.TillLand.verify(message.tillLand[i]);
+                        if (error)
+                            return "tillLand." + error;
+                    }
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a TillLands message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.TillLands
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.TillLands} TillLands
+             */
+            TillLands.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.TillLands)
+                    return object;
+                var message = new $root.proto.TillLands();
+                if (object.tillLand) {
+                    if (!Array.isArray(object.tillLand))
+                        throw TypeError(".proto.TillLands.tillLand: array expected");
+                    message.tillLand = [];
+                    for (var i = 0; i < object.tillLand.length; ++i) {
+                        if (typeof object.tillLand[i] !== "object")
+                            throw TypeError(".proto.TillLands.tillLand: object expected");
+                        message.tillLand[i] = $root.proto.TillLand.fromObject(object.tillLand[i]);
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a TillLands message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.TillLands
+             * @static
+             * @param {proto.TillLands} message TillLands
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            TillLands.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.tillLand = [];
+                if (message.tillLand && message.tillLand.length) {
+                    object.tillLand = [];
+                    for (var j = 0; j < message.tillLand.length; ++j)
+                        object.tillLand[j] = $root.proto.TillLand.toObject(message.tillLand[j], options);
+                }
+                return object;
+            };
+    
+            /**
+             * Converts this TillLands to JSON.
+             * @function toJSON
+             * @memberof proto.TillLands
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            TillLands.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for TillLands
+             * @function getTypeUrl
+             * @memberof proto.TillLands
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            TillLands.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.TillLands";
+            };
+    
+            return TillLands;
         })();
     
         proto.Building = (function() {
@@ -10678,6 +10978,557 @@
             };
     
             return ResLoadItemsOfFarm;
+        })();
+    
+        proto.ReqBuyBuilding = (function() {
+    
+            /**
+             * Properties of a ReqBuyBuilding.
+             * @memberof proto
+             * @interface IReqBuyBuilding
+             * @property {string|null} [typeBuilding] ReqBuyBuilding typeBuilding
+             * @property {number|null} [positionX] ReqBuyBuilding positionX
+             * @property {number|null} [positionY] ReqBuyBuilding positionY
+             * @property {number|null} [currentLevel] ReqBuyBuilding currentLevel
+             * @property {number|null} [areaId] ReqBuyBuilding areaId
+             * @property {string|null} [uuid] ReqBuyBuilding uuid
+             */
+    
+            /**
+             * Constructs a new ReqBuyBuilding.
+             * @memberof proto
+             * @classdesc Represents a ReqBuyBuilding.
+             * @implements IReqBuyBuilding
+             * @constructor
+             * @param {proto.IReqBuyBuilding=} [properties] Properties to set
+             */
+            function ReqBuyBuilding(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ReqBuyBuilding typeBuilding.
+             * @member {string} typeBuilding
+             * @memberof proto.ReqBuyBuilding
+             * @instance
+             */
+            ReqBuyBuilding.prototype.typeBuilding = "";
+    
+            /**
+             * ReqBuyBuilding positionX.
+             * @member {number} positionX
+             * @memberof proto.ReqBuyBuilding
+             * @instance
+             */
+            ReqBuyBuilding.prototype.positionX = 0;
+    
+            /**
+             * ReqBuyBuilding positionY.
+             * @member {number} positionY
+             * @memberof proto.ReqBuyBuilding
+             * @instance
+             */
+            ReqBuyBuilding.prototype.positionY = 0;
+    
+            /**
+             * ReqBuyBuilding currentLevel.
+             * @member {number} currentLevel
+             * @memberof proto.ReqBuyBuilding
+             * @instance
+             */
+            ReqBuyBuilding.prototype.currentLevel = 0;
+    
+            /**
+             * ReqBuyBuilding areaId.
+             * @member {number} areaId
+             * @memberof proto.ReqBuyBuilding
+             * @instance
+             */
+            ReqBuyBuilding.prototype.areaId = 0;
+    
+            /**
+             * ReqBuyBuilding uuid.
+             * @member {string} uuid
+             * @memberof proto.ReqBuyBuilding
+             * @instance
+             */
+            ReqBuyBuilding.prototype.uuid = "";
+    
+            /**
+             * Creates a new ReqBuyBuilding instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqBuyBuilding
+             * @static
+             * @param {proto.IReqBuyBuilding=} [properties] Properties to set
+             * @returns {proto.ReqBuyBuilding} ReqBuyBuilding instance
+             */
+            ReqBuyBuilding.create = function create(properties) {
+                return new ReqBuyBuilding(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqBuyBuilding message. Does not implicitly {@link proto.ReqBuyBuilding.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqBuyBuilding
+             * @static
+             * @param {proto.IReqBuyBuilding} message ReqBuyBuilding message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqBuyBuilding.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.typeBuilding != null && Object.hasOwnProperty.call(message, "typeBuilding"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.typeBuilding);
+                if (message.positionX != null && Object.hasOwnProperty.call(message, "positionX"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.positionX);
+                if (message.positionY != null && Object.hasOwnProperty.call(message, "positionY"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.positionY);
+                if (message.currentLevel != null && Object.hasOwnProperty.call(message, "currentLevel"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).int32(message.currentLevel);
+                if (message.areaId != null && Object.hasOwnProperty.call(message, "areaId"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.areaId);
+                if (message.uuid != null && Object.hasOwnProperty.call(message, "uuid"))
+                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.uuid);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqBuyBuilding message, length delimited. Does not implicitly {@link proto.ReqBuyBuilding.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqBuyBuilding
+             * @static
+             * @param {proto.IReqBuyBuilding} message ReqBuyBuilding message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqBuyBuilding.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqBuyBuilding message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqBuyBuilding
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqBuyBuilding} ReqBuyBuilding
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqBuyBuilding.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqBuyBuilding();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.typeBuilding = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.positionX = reader.int32();
+                            break;
+                        }
+                    case 3: {
+                            message.positionY = reader.int32();
+                            break;
+                        }
+                    case 4: {
+                            message.currentLevel = reader.int32();
+                            break;
+                        }
+                    case 5: {
+                            message.areaId = reader.int32();
+                            break;
+                        }
+                    case 6: {
+                            message.uuid = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqBuyBuilding message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqBuyBuilding
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqBuyBuilding} ReqBuyBuilding
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqBuyBuilding.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqBuyBuilding message.
+             * @function verify
+             * @memberof proto.ReqBuyBuilding
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqBuyBuilding.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.typeBuilding != null && message.hasOwnProperty("typeBuilding"))
+                    if (!$util.isString(message.typeBuilding))
+                        return "typeBuilding: string expected";
+                if (message.positionX != null && message.hasOwnProperty("positionX"))
+                    if (!$util.isInteger(message.positionX))
+                        return "positionX: integer expected";
+                if (message.positionY != null && message.hasOwnProperty("positionY"))
+                    if (!$util.isInteger(message.positionY))
+                        return "positionY: integer expected";
+                if (message.currentLevel != null && message.hasOwnProperty("currentLevel"))
+                    if (!$util.isInteger(message.currentLevel))
+                        return "currentLevel: integer expected";
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    if (!$util.isInteger(message.areaId))
+                        return "areaId: integer expected";
+                if (message.uuid != null && message.hasOwnProperty("uuid"))
+                    if (!$util.isString(message.uuid))
+                        return "uuid: string expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ReqBuyBuilding message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqBuyBuilding
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqBuyBuilding} ReqBuyBuilding
+             */
+            ReqBuyBuilding.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqBuyBuilding)
+                    return object;
+                var message = new $root.proto.ReqBuyBuilding();
+                if (object.typeBuilding != null)
+                    message.typeBuilding = String(object.typeBuilding);
+                if (object.positionX != null)
+                    message.positionX = object.positionX | 0;
+                if (object.positionY != null)
+                    message.positionY = object.positionY | 0;
+                if (object.currentLevel != null)
+                    message.currentLevel = object.currentLevel | 0;
+                if (object.areaId != null)
+                    message.areaId = object.areaId | 0;
+                if (object.uuid != null)
+                    message.uuid = String(object.uuid);
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ReqBuyBuilding message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqBuyBuilding
+             * @static
+             * @param {proto.ReqBuyBuilding} message ReqBuyBuilding
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqBuyBuilding.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.typeBuilding = "";
+                    object.positionX = 0;
+                    object.positionY = 0;
+                    object.currentLevel = 0;
+                    object.areaId = 0;
+                    object.uuid = "";
+                }
+                if (message.typeBuilding != null && message.hasOwnProperty("typeBuilding"))
+                    object.typeBuilding = message.typeBuilding;
+                if (message.positionX != null && message.hasOwnProperty("positionX"))
+                    object.positionX = message.positionX;
+                if (message.positionY != null && message.hasOwnProperty("positionY"))
+                    object.positionY = message.positionY;
+                if (message.currentLevel != null && message.hasOwnProperty("currentLevel"))
+                    object.currentLevel = message.currentLevel;
+                if (message.areaId != null && message.hasOwnProperty("areaId"))
+                    object.areaId = message.areaId;
+                if (message.uuid != null && message.hasOwnProperty("uuid"))
+                    object.uuid = message.uuid;
+                return object;
+            };
+    
+            /**
+             * Converts this ReqBuyBuilding to JSON.
+             * @function toJSON
+             * @memberof proto.ReqBuyBuilding
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqBuyBuilding.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqBuyBuilding
+             * @function getTypeUrl
+             * @memberof proto.ReqBuyBuilding
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqBuyBuilding.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqBuyBuilding";
+            };
+    
+            return ReqBuyBuilding;
+        })();
+    
+        proto.ResBuyBuilding = (function() {
+    
+            /**
+             * Properties of a ResBuyBuilding.
+             * @memberof proto
+             * @interface IResBuyBuilding
+             * @property {string|null} [uuid] ResBuyBuilding uuid
+             * @property {proto.IBuilding|null} [building] ResBuyBuilding building
+             */
+    
+            /**
+             * Constructs a new ResBuyBuilding.
+             * @memberof proto
+             * @classdesc Represents a ResBuyBuilding.
+             * @implements IResBuyBuilding
+             * @constructor
+             * @param {proto.IResBuyBuilding=} [properties] Properties to set
+             */
+            function ResBuyBuilding(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResBuyBuilding uuid.
+             * @member {string} uuid
+             * @memberof proto.ResBuyBuilding
+             * @instance
+             */
+            ResBuyBuilding.prototype.uuid = "";
+    
+            /**
+             * ResBuyBuilding building.
+             * @member {proto.IBuilding|null|undefined} building
+             * @memberof proto.ResBuyBuilding
+             * @instance
+             */
+            ResBuyBuilding.prototype.building = null;
+    
+            /**
+             * Creates a new ResBuyBuilding instance using the specified properties.
+             * @function create
+             * @memberof proto.ResBuyBuilding
+             * @static
+             * @param {proto.IResBuyBuilding=} [properties] Properties to set
+             * @returns {proto.ResBuyBuilding} ResBuyBuilding instance
+             */
+            ResBuyBuilding.create = function create(properties) {
+                return new ResBuyBuilding(properties);
+            };
+    
+            /**
+             * Encodes the specified ResBuyBuilding message. Does not implicitly {@link proto.ResBuyBuilding.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResBuyBuilding
+             * @static
+             * @param {proto.IResBuyBuilding} message ResBuyBuilding message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResBuyBuilding.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.uuid != null && Object.hasOwnProperty.call(message, "uuid"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.uuid);
+                if (message.building != null && Object.hasOwnProperty.call(message, "building"))
+                    $root.proto.Building.encode(message.building, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResBuyBuilding message, length delimited. Does not implicitly {@link proto.ResBuyBuilding.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResBuyBuilding
+             * @static
+             * @param {proto.IResBuyBuilding} message ResBuyBuilding message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResBuyBuilding.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResBuyBuilding message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResBuyBuilding
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResBuyBuilding} ResBuyBuilding
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResBuyBuilding.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResBuyBuilding();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.uuid = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.building = $root.proto.Building.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResBuyBuilding message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResBuyBuilding
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResBuyBuilding} ResBuyBuilding
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResBuyBuilding.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResBuyBuilding message.
+             * @function verify
+             * @memberof proto.ResBuyBuilding
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResBuyBuilding.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.uuid != null && message.hasOwnProperty("uuid"))
+                    if (!$util.isString(message.uuid))
+                        return "uuid: string expected";
+                if (message.building != null && message.hasOwnProperty("building")) {
+                    var error = $root.proto.Building.verify(message.building);
+                    if (error)
+                        return "building." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a ResBuyBuilding message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResBuyBuilding
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResBuyBuilding} ResBuyBuilding
+             */
+            ResBuyBuilding.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResBuyBuilding)
+                    return object;
+                var message = new $root.proto.ResBuyBuilding();
+                if (object.uuid != null)
+                    message.uuid = String(object.uuid);
+                if (object.building != null) {
+                    if (typeof object.building !== "object")
+                        throw TypeError(".proto.ResBuyBuilding.building: object expected");
+                    message.building = $root.proto.Building.fromObject(object.building);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResBuyBuilding message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResBuyBuilding
+             * @static
+             * @param {proto.ResBuyBuilding} message ResBuyBuilding
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResBuyBuilding.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.uuid = "";
+                    object.building = null;
+                }
+                if (message.uuid != null && message.hasOwnProperty("uuid"))
+                    object.uuid = message.uuid;
+                if (message.building != null && message.hasOwnProperty("building"))
+                    object.building = $root.proto.Building.toObject(message.building, options);
+                return object;
+            };
+    
+            /**
+             * Converts this ResBuyBuilding to JSON.
+             * @function toJSON
+             * @memberof proto.ResBuyBuilding
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResBuyBuilding.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResBuyBuilding
+             * @function getTypeUrl
+             * @memberof proto.ResBuyBuilding
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResBuyBuilding.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResBuyBuilding";
+            };
+    
+            return ResBuyBuilding;
         })();
     
         return proto;

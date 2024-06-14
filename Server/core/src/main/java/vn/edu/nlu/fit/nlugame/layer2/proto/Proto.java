@@ -1126,6 +1126,36 @@ public final class Proto {
      */
     vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarmOrBuilder getResLoadItemsOfFarmOrBuilder();
 
+    /**
+     * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+     * @return Whether the reqBuyBuilding field is set.
+     */
+    boolean hasReqBuyBuilding();
+    /**
+     * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+     * @return The reqBuyBuilding.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding getReqBuyBuilding();
+    /**
+     * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuildingOrBuilder getReqBuyBuildingOrBuilder();
+
+    /**
+     * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+     * @return Whether the resBuyBuilding field is set.
+     */
+    boolean hasResBuyBuilding();
+    /**
+     * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+     * @return The resBuyBuilding.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding getResBuyBuilding();
+    /**
+     * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuildingOrBuilder getResBuyBuildingOrBuilder();
+
     vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Packet.DataCase getDataCase();
   }
   /**
@@ -1193,6 +1223,8 @@ public final class Proto {
       RESOTHERPLAYERLEAVEAREA(22),
       REQLOADITEMSOFFARM(23),
       RESLOADITEMSOFFARM(24),
+      REQBUYBUILDING(25),
+      RESBUYBUILDING(26),
       DATA_NOT_SET(0);
       private final int value;
       private DataCase(int value) {
@@ -1234,6 +1266,8 @@ public final class Proto {
           case 22: return RESOTHERPLAYERLEAVEAREA;
           case 23: return REQLOADITEMSOFFARM;
           case 24: return RESLOADITEMSOFFARM;
+          case 25: return REQBUYBUILDING;
+          case 26: return RESBUYBUILDING;
           case 0: return DATA_NOT_SET;
           default: return null;
         }
@@ -1993,6 +2027,68 @@ public final class Proto {
       return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm.getDefaultInstance();
     }
 
+    public static final int REQBUYBUILDING_FIELD_NUMBER = 25;
+    /**
+     * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+     * @return Whether the reqBuyBuilding field is set.
+     */
+    @java.lang.Override
+    public boolean hasReqBuyBuilding() {
+      return dataCase_ == 25;
+    }
+    /**
+     * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+     * @return The reqBuyBuilding.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding getReqBuyBuilding() {
+      if (dataCase_ == 25) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuildingOrBuilder getReqBuyBuildingOrBuilder() {
+      if (dataCase_ == 25) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.getDefaultInstance();
+    }
+
+    public static final int RESBUYBUILDING_FIELD_NUMBER = 26;
+    /**
+     * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+     * @return Whether the resBuyBuilding field is set.
+     */
+    @java.lang.Override
+    public boolean hasResBuyBuilding() {
+      return dataCase_ == 26;
+    }
+    /**
+     * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+     * @return The resBuyBuilding.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding getResBuyBuilding() {
+      if (dataCase_ == 26) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuildingOrBuilder getResBuyBuildingOrBuilder() {
+      if (dataCase_ == 26) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.getDefaultInstance();
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -2078,6 +2174,12 @@ public final class Proto {
       }
       if (dataCase_ == 24) {
         output.writeMessage(24, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm) data_);
+      }
+      if (dataCase_ == 25) {
+        output.writeMessage(25, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding) data_);
+      }
+      if (dataCase_ == 26) {
+        output.writeMessage(26, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding) data_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2183,6 +2285,14 @@ public final class Proto {
       if (dataCase_ == 24) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(24, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadItemsOfFarm) data_);
+      }
+      if (dataCase_ == 25) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(25, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding) data_);
+      }
+      if (dataCase_ == 26) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(26, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding) data_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -2297,6 +2407,14 @@ public final class Proto {
           if (!getResLoadItemsOfFarm()
               .equals(other.getResLoadItemsOfFarm())) return false;
           break;
+        case 25:
+          if (!getReqBuyBuilding()
+              .equals(other.getReqBuyBuilding())) return false;
+          break;
+        case 26:
+          if (!getResBuyBuilding()
+              .equals(other.getResBuyBuilding())) return false;
+          break;
         case 0:
         default:
       }
@@ -2407,6 +2525,14 @@ public final class Proto {
         case 24:
           hash = (37 * hash) + RESLOADITEMSOFFARM_FIELD_NUMBER;
           hash = (53 * hash) + getResLoadItemsOfFarm().hashCode();
+          break;
+        case 25:
+          hash = (37 * hash) + REQBUYBUILDING_FIELD_NUMBER;
+          hash = (53 * hash) + getReqBuyBuilding().hashCode();
+          break;
+        case 26:
+          hash = (37 * hash) + RESBUYBUILDING_FIELD_NUMBER;
+          hash = (53 * hash) + getResBuyBuilding().hashCode();
           break;
         case 0:
         default:
@@ -2612,6 +2738,12 @@ public final class Proto {
         if (resLoadItemsOfFarmBuilder_ != null) {
           resLoadItemsOfFarmBuilder_.clear();
         }
+        if (reqBuyBuildingBuilder_ != null) {
+          reqBuyBuildingBuilder_.clear();
+        }
+        if (resBuyBuildingBuilder_ != null) {
+          resBuyBuildingBuilder_.clear();
+        }
         dataCase_ = 0;
         data_ = null;
         return this;
@@ -2749,6 +2881,14 @@ public final class Proto {
             resLoadItemsOfFarmBuilder_ != null) {
           result.data_ = resLoadItemsOfFarmBuilder_.build();
         }
+        if (dataCase_ == 25 &&
+            reqBuyBuildingBuilder_ != null) {
+          result.data_ = reqBuyBuildingBuilder_.build();
+        }
+        if (dataCase_ == 26 &&
+            resBuyBuildingBuilder_ != null) {
+          result.data_ = resBuyBuildingBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -2858,6 +2998,14 @@ public final class Proto {
           }
           case RESLOADITEMSOFFARM: {
             mergeResLoadItemsOfFarm(other.getResLoadItemsOfFarm());
+            break;
+          }
+          case REQBUYBUILDING: {
+            mergeReqBuyBuilding(other.getReqBuyBuilding());
+            break;
+          }
+          case RESBUYBUILDING: {
+            mergeResBuyBuilding(other.getResBuyBuilding());
             break;
           }
           case DATA_NOT_SET: {
@@ -3058,6 +3206,20 @@ public final class Proto {
                 dataCase_ = 24;
                 break;
               } // case 194
+              case 202: {
+                input.readMessage(
+                    getReqBuyBuildingFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 25;
+                break;
+              } // case 202
+              case 210: {
+                input.readMessage(
+                    getResBuyBuildingFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 26;
+                break;
+              } // case 210
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -6496,6 +6658,290 @@ public final class Proto {
         dataCase_ = 24;
         onChanged();
         return resLoadItemsOfFarmBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuildingOrBuilder> reqBuyBuildingBuilder_;
+      /**
+       * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+       * @return Whether the reqBuyBuilding field is set.
+       */
+      @java.lang.Override
+      public boolean hasReqBuyBuilding() {
+        return dataCase_ == 25;
+      }
+      /**
+       * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+       * @return The reqBuyBuilding.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding getReqBuyBuilding() {
+        if (reqBuyBuildingBuilder_ == null) {
+          if (dataCase_ == 25) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.getDefaultInstance();
+        } else {
+          if (dataCase_ == 25) {
+            return reqBuyBuildingBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+       */
+      public Builder setReqBuyBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding value) {
+        if (reqBuyBuildingBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          reqBuyBuildingBuilder_.setMessage(value);
+        }
+        dataCase_ = 25;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+       */
+      public Builder setReqBuyBuilding(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.Builder builderForValue) {
+        if (reqBuyBuildingBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          reqBuyBuildingBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 25;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+       */
+      public Builder mergeReqBuyBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding value) {
+        if (reqBuyBuildingBuilder_ == null) {
+          if (dataCase_ == 25 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 25) {
+            reqBuyBuildingBuilder_.mergeFrom(value);
+          } else {
+            reqBuyBuildingBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 25;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+       */
+      public Builder clearReqBuyBuilding() {
+        if (reqBuyBuildingBuilder_ == null) {
+          if (dataCase_ == 25) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 25) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          reqBuyBuildingBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.Builder getReqBuyBuildingBuilder() {
+        return getReqBuyBuildingFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuildingOrBuilder getReqBuyBuildingOrBuilder() {
+        if ((dataCase_ == 25) && (reqBuyBuildingBuilder_ != null)) {
+          return reqBuyBuildingBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 25) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqBuyBuilding reqBuyBuilding = 25;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuildingOrBuilder> 
+          getReqBuyBuildingFieldBuilder() {
+        if (reqBuyBuildingBuilder_ == null) {
+          if (!(dataCase_ == 25)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.getDefaultInstance();
+          }
+          reqBuyBuildingBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuildingOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 25;
+        onChanged();
+        return reqBuyBuildingBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuildingOrBuilder> resBuyBuildingBuilder_;
+      /**
+       * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+       * @return Whether the resBuyBuilding field is set.
+       */
+      @java.lang.Override
+      public boolean hasResBuyBuilding() {
+        return dataCase_ == 26;
+      }
+      /**
+       * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+       * @return The resBuyBuilding.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding getResBuyBuilding() {
+        if (resBuyBuildingBuilder_ == null) {
+          if (dataCase_ == 26) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.getDefaultInstance();
+        } else {
+          if (dataCase_ == 26) {
+            return resBuyBuildingBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+       */
+      public Builder setResBuyBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding value) {
+        if (resBuyBuildingBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          resBuyBuildingBuilder_.setMessage(value);
+        }
+        dataCase_ = 26;
+        return this;
+      }
+      /**
+       * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+       */
+      public Builder setResBuyBuilding(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.Builder builderForValue) {
+        if (resBuyBuildingBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          resBuyBuildingBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 26;
+        return this;
+      }
+      /**
+       * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+       */
+      public Builder mergeResBuyBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding value) {
+        if (resBuyBuildingBuilder_ == null) {
+          if (dataCase_ == 26 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 26) {
+            resBuyBuildingBuilder_.mergeFrom(value);
+          } else {
+            resBuyBuildingBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 26;
+        return this;
+      }
+      /**
+       * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+       */
+      public Builder clearResBuyBuilding() {
+        if (resBuyBuildingBuilder_ == null) {
+          if (dataCase_ == 26) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 26) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          resBuyBuildingBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.Builder getResBuyBuildingBuilder() {
+        return getResBuyBuildingFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuildingOrBuilder getResBuyBuildingOrBuilder() {
+        if ((dataCase_ == 26) && (resBuyBuildingBuilder_ != null)) {
+          return resBuyBuildingBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 26) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResBuyBuilding resBuyBuilding = 26;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuildingOrBuilder> 
+          getResBuyBuildingFieldBuilder() {
+        if (resBuyBuildingBuilder_ == null) {
+          if (!(dataCase_ == 26)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.getDefaultInstance();
+          }
+          resBuyBuildingBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuildingOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 26;
+        onChanged();
+        return resBuyBuildingBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -29929,6 +30375,12 @@ public final class Proto {
      * @return The statusTilled.
      */
     boolean getStatusTilled();
+
+    /**
+     * <code>int32 plantingLandId = 4;</code>
+     * @return The plantingLandId.
+     */
+    int getPlantingLandId();
   }
   /**
    * Protobuf type {@code proto.TillLand}
@@ -29998,6 +30450,17 @@ public final class Proto {
       return statusTilled_;
     }
 
+    public static final int PLANTINGLANDID_FIELD_NUMBER = 4;
+    private int plantingLandId_ = 0;
+    /**
+     * <code>int32 plantingLandId = 4;</code>
+     * @return The plantingLandId.
+     */
+    @java.lang.Override
+    public int getPlantingLandId() {
+      return plantingLandId_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -30021,6 +30484,9 @@ public final class Proto {
       if (statusTilled_ != false) {
         output.writeBool(3, statusTilled_);
       }
+      if (plantingLandId_ != 0) {
+        output.writeInt32(4, plantingLandId_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -30041,6 +30507,10 @@ public final class Proto {
       if (statusTilled_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(3, statusTilled_);
+      }
+      if (plantingLandId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, plantingLandId_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -30063,6 +30533,8 @@ public final class Proto {
           != other.getIndex()) return false;
       if (getStatusTilled()
           != other.getStatusTilled()) return false;
+      if (getPlantingLandId()
+          != other.getPlantingLandId()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -30081,6 +30553,8 @@ public final class Proto {
       hash = (37 * hash) + STATUSTILLED_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getStatusTilled());
+      hash = (37 * hash) + PLANTINGLANDID_FIELD_NUMBER;
+      hash = (53 * hash) + getPlantingLandId();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -30213,6 +30687,7 @@ public final class Proto {
         id_ = 0;
         index_ = 0;
         statusTilled_ = false;
+        plantingLandId_ = 0;
         return this;
       }
 
@@ -30255,6 +30730,9 @@ public final class Proto {
         if (((from_bitField0_ & 0x00000004) != 0)) {
           result.statusTilled_ = statusTilled_;
         }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.plantingLandId_ = plantingLandId_;
+        }
       }
 
       @java.lang.Override
@@ -30277,6 +30755,9 @@ public final class Proto {
         }
         if (other.getStatusTilled() != false) {
           setStatusTilled(other.getStatusTilled());
+        }
+        if (other.getPlantingLandId() != 0) {
+          setPlantingLandId(other.getPlantingLandId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -30319,6 +30800,11 @@ public final class Proto {
                 bitField0_ |= 0x00000004;
                 break;
               } // case 24
+              case 32: {
+                plantingLandId_ = input.readInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -30428,6 +30914,38 @@ public final class Proto {
       public Builder clearStatusTilled() {
         bitField0_ = (bitField0_ & ~0x00000004);
         statusTilled_ = false;
+        onChanged();
+        return this;
+      }
+
+      private int plantingLandId_ ;
+      /**
+       * <code>int32 plantingLandId = 4;</code>
+       * @return The plantingLandId.
+       */
+      @java.lang.Override
+      public int getPlantingLandId() {
+        return plantingLandId_;
+      }
+      /**
+       * <code>int32 plantingLandId = 4;</code>
+       * @param value The plantingLandId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPlantingLandId(int value) {
+
+        plantingLandId_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 plantingLandId = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPlantingLandId() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        plantingLandId_ = 0;
         onChanged();
         return this;
       }
@@ -31292,28 +31810,19 @@ public final class Proto {
     vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuildingOrBuilder getPropertyBuildingOrBuilder();
 
     /**
-     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     * <code>.proto.TillLands tillLands = 3;</code>
+     * @return Whether the tillLands field is set.
      */
-    java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand> 
-        getTillLandList();
+    boolean hasTillLands();
     /**
-     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     * <code>.proto.TillLands tillLands = 3;</code>
+     * @return The tillLands.
      */
-    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand getTillLand(int index);
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands getTillLands();
     /**
-     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     * <code>.proto.TillLands tillLands = 3;</code>
      */
-    int getTillLandCount();
-    /**
-     * <code>repeated .proto.TillLand tillLand = 3;</code>
-     */
-    java.util.List<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder> 
-        getTillLandOrBuilderList();
-    /**
-     * <code>repeated .proto.TillLand tillLand = 3;</code>
-     */
-    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder getTillLandOrBuilder(
-        int index);
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandsOrBuilder getTillLandsOrBuilder();
   }
   /**
    * Protobuf type {@code proto.PlantingLandBuilding}
@@ -31328,7 +31837,6 @@ public final class Proto {
       super(builder);
     }
     private PlantingLandBuilding() {
-      tillLand_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -31403,45 +31911,30 @@ public final class Proto {
       return propertyBuilding_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PropertyBuilding.getDefaultInstance() : propertyBuilding_;
     }
 
-    public static final int TILLLAND_FIELD_NUMBER = 3;
-    @SuppressWarnings("serial")
-    private java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand> tillLand_;
+    public static final int TILLLANDS_FIELD_NUMBER = 3;
+    private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands tillLands_;
     /**
-     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     * <code>.proto.TillLands tillLands = 3;</code>
+     * @return Whether the tillLands field is set.
      */
     @java.lang.Override
-    public java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand> getTillLandList() {
-      return tillLand_;
+    public boolean hasTillLands() {
+      return tillLands_ != null;
     }
     /**
-     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     * <code>.proto.TillLands tillLands = 3;</code>
+     * @return The tillLands.
      */
     @java.lang.Override
-    public java.util.List<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder> 
-        getTillLandOrBuilderList() {
-      return tillLand_;
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands getTillLands() {
+      return tillLands_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.getDefaultInstance() : tillLands_;
     }
     /**
-     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     * <code>.proto.TillLands tillLands = 3;</code>
      */
     @java.lang.Override
-    public int getTillLandCount() {
-      return tillLand_.size();
-    }
-    /**
-     * <code>repeated .proto.TillLand tillLand = 3;</code>
-     */
-    @java.lang.Override
-    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand getTillLand(int index) {
-      return tillLand_.get(index);
-    }
-    /**
-     * <code>repeated .proto.TillLand tillLand = 3;</code>
-     */
-    @java.lang.Override
-    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder getTillLandOrBuilder(
-        int index) {
-      return tillLand_.get(index);
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandsOrBuilder getTillLandsOrBuilder() {
+      return tillLands_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.getDefaultInstance() : tillLands_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -31464,8 +31957,8 @@ public final class Proto {
       if (propertyBuilding_ != null) {
         output.writeMessage(2, getPropertyBuilding());
       }
-      for (int i = 0; i < tillLand_.size(); i++) {
-        output.writeMessage(3, tillLand_.get(i));
+      if (tillLands_ != null) {
+        output.writeMessage(3, getTillLands());
       }
       getUnknownFields().writeTo(output);
     }
@@ -31484,9 +31977,9 @@ public final class Proto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, getPropertyBuilding());
       }
-      for (int i = 0; i < tillLand_.size(); i++) {
+      if (tillLands_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, tillLand_.get(i));
+          .computeMessageSize(3, getTillLands());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -31513,8 +32006,11 @@ public final class Proto {
         if (!getPropertyBuilding()
             .equals(other.getPropertyBuilding())) return false;
       }
-      if (!getTillLandList()
-          .equals(other.getTillLandList())) return false;
+      if (hasTillLands() != other.hasTillLands()) return false;
+      if (hasTillLands()) {
+        if (!getTillLands()
+            .equals(other.getTillLands())) return false;
+      }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -31534,9 +32030,9 @@ public final class Proto {
         hash = (37 * hash) + PROPERTYBUILDING_FIELD_NUMBER;
         hash = (53 * hash) + getPropertyBuilding().hashCode();
       }
-      if (getTillLandCount() > 0) {
-        hash = (37 * hash) + TILLLAND_FIELD_NUMBER;
-        hash = (53 * hash) + getTillLandList().hashCode();
+      if (hasTillLands()) {
+        hash = (37 * hash) + TILLLANDS_FIELD_NUMBER;
+        hash = (53 * hash) + getTillLands().hashCode();
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -31677,13 +32173,11 @@ public final class Proto {
           propertyBuildingBuilder_.dispose();
           propertyBuildingBuilder_ = null;
         }
-        if (tillLandBuilder_ == null) {
-          tillLand_ = java.util.Collections.emptyList();
-        } else {
-          tillLand_ = null;
-          tillLandBuilder_.clear();
+        tillLands_ = null;
+        if (tillLandsBuilder_ != null) {
+          tillLandsBuilder_.dispose();
+          tillLandsBuilder_ = null;
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -31710,22 +32204,9 @@ public final class Proto {
       @java.lang.Override
       public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding buildPartial() {
         vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding(this);
-        buildPartialRepeatedFields(result);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
-      }
-
-      private void buildPartialRepeatedFields(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding result) {
-        if (tillLandBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) != 0)) {
-            tillLand_ = java.util.Collections.unmodifiableList(tillLand_);
-            bitField0_ = (bitField0_ & ~0x00000004);
-          }
-          result.tillLand_ = tillLand_;
-        } else {
-          result.tillLand_ = tillLandBuilder_.build();
-        }
       }
 
       private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding result) {
@@ -31739,6 +32220,11 @@ public final class Proto {
           result.propertyBuilding_ = propertyBuildingBuilder_ == null
               ? propertyBuilding_
               : propertyBuildingBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.tillLands_ = tillLandsBuilder_ == null
+              ? tillLands_
+              : tillLandsBuilder_.build();
         }
       }
 
@@ -31760,31 +32246,8 @@ public final class Proto {
         if (other.hasPropertyBuilding()) {
           mergePropertyBuilding(other.getPropertyBuilding());
         }
-        if (tillLandBuilder_ == null) {
-          if (!other.tillLand_.isEmpty()) {
-            if (tillLand_.isEmpty()) {
-              tillLand_ = other.tillLand_;
-              bitField0_ = (bitField0_ & ~0x00000004);
-            } else {
-              ensureTillLandIsMutable();
-              tillLand_.addAll(other.tillLand_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.tillLand_.isEmpty()) {
-            if (tillLandBuilder_.isEmpty()) {
-              tillLandBuilder_.dispose();
-              tillLandBuilder_ = null;
-              tillLand_ = other.tillLand_;
-              bitField0_ = (bitField0_ & ~0x00000004);
-              tillLandBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getTillLandFieldBuilder() : null;
-            } else {
-              tillLandBuilder_.addAllMessages(other.tillLand_);
-            }
-          }
+        if (other.hasTillLands()) {
+          mergeTillLands(other.getTillLands());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -31827,16 +32290,10 @@ public final class Proto {
                 break;
               } // case 18
               case 26: {
-                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand m =
-                    input.readMessage(
-                        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.parser(),
-                        extensionRegistry);
-                if (tillLandBuilder_ == null) {
-                  ensureTillLandIsMutable();
-                  tillLand_.add(m);
-                } else {
-                  tillLandBuilder_.addMessage(m);
-                }
+                input.readMessage(
+                    getTillLandsFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000004;
                 break;
               } // case 26
               default: {
@@ -32094,12 +32551,639 @@ public final class Proto {
         return propertyBuildingBuilder_;
       }
 
+      private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands tillLands_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandsOrBuilder> tillLandsBuilder_;
+      /**
+       * <code>.proto.TillLands tillLands = 3;</code>
+       * @return Whether the tillLands field is set.
+       */
+      public boolean hasTillLands() {
+        return ((bitField0_ & 0x00000004) != 0);
+      }
+      /**
+       * <code>.proto.TillLands tillLands = 3;</code>
+       * @return The tillLands.
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands getTillLands() {
+        if (tillLandsBuilder_ == null) {
+          return tillLands_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.getDefaultInstance() : tillLands_;
+        } else {
+          return tillLandsBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.TillLands tillLands = 3;</code>
+       */
+      public Builder setTillLands(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands value) {
+        if (tillLandsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          tillLands_ = value;
+        } else {
+          tillLandsBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.TillLands tillLands = 3;</code>
+       */
+      public Builder setTillLands(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.Builder builderForValue) {
+        if (tillLandsBuilder_ == null) {
+          tillLands_ = builderForValue.build();
+        } else {
+          tillLandsBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.TillLands tillLands = 3;</code>
+       */
+      public Builder mergeTillLands(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands value) {
+        if (tillLandsBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) != 0) &&
+            tillLands_ != null &&
+            tillLands_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.getDefaultInstance()) {
+            getTillLandsBuilder().mergeFrom(value);
+          } else {
+            tillLands_ = value;
+          }
+        } else {
+          tillLandsBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.TillLands tillLands = 3;</code>
+       */
+      public Builder clearTillLands() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        tillLands_ = null;
+        if (tillLandsBuilder_ != null) {
+          tillLandsBuilder_.dispose();
+          tillLandsBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.TillLands tillLands = 3;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.Builder getTillLandsBuilder() {
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return getTillLandsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.TillLands tillLands = 3;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandsOrBuilder getTillLandsOrBuilder() {
+        if (tillLandsBuilder_ != null) {
+          return tillLandsBuilder_.getMessageOrBuilder();
+        } else {
+          return tillLands_ == null ?
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.getDefaultInstance() : tillLands_;
+        }
+      }
+      /**
+       * <code>.proto.TillLands tillLands = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandsOrBuilder> 
+          getTillLandsFieldBuilder() {
+        if (tillLandsBuilder_ == null) {
+          tillLandsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandsOrBuilder>(
+                  getTillLands(),
+                  getParentForChildren(),
+                  isClean());
+          tillLands_ = null;
+        }
+        return tillLandsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.PlantingLandBuilding)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.PlantingLandBuilding)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<PlantingLandBuilding>
+        PARSER = new com.google.protobuf.AbstractParser<PlantingLandBuilding>() {
+      @java.lang.Override
+      public PlantingLandBuilding parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<PlantingLandBuilding> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PlantingLandBuilding> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TillLandsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.TillLands)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand> 
+        getTillLandList();
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand getTillLand(int index);
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    int getTillLandCount();
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    java.util.List<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder> 
+        getTillLandOrBuilderList();
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder getTillLandOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code proto.TillLands}
+   */
+  public static final class TillLands extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.TillLands)
+      TillLandsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TillLands.newBuilder() to construct.
+    private TillLands(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TillLands() {
+      tillLand_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TillLands();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_TillLands_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_TillLands_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.Builder.class);
+    }
+
+    public static final int TILLLAND_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand> tillLand_;
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    @java.lang.Override
+    public java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand> getTillLandList() {
+      return tillLand_;
+    }
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder> 
+        getTillLandOrBuilderList() {
+      return tillLand_;
+    }
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    @java.lang.Override
+    public int getTillLandCount() {
+      return tillLand_.size();
+    }
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand getTillLand(int index) {
+      return tillLand_.get(index);
+    }
+    /**
+     * <code>repeated .proto.TillLand tillLand = 3;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder getTillLandOrBuilder(
+        int index) {
+      return tillLand_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < tillLand_.size(); i++) {
+        output.writeMessage(3, tillLand_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < tillLand_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, tillLand_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands) obj;
+
+      if (!getTillLandList()
+          .equals(other.getTillLandList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getTillLandCount() > 0) {
+        hash = (37 * hash) + TILLLAND_FIELD_NUMBER;
+        hash = (53 * hash) + getTillLandList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.TillLands}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.TillLands)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_TillLands_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_TillLands_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        if (tillLandBuilder_ == null) {
+          tillLand_ = java.util.Collections.emptyList();
+        } else {
+          tillLand_ = null;
+          tillLandBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_TillLands_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands result) {
+        if (tillLandBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            tillLand_ = java.util.Collections.unmodifiableList(tillLand_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.tillLand_ = tillLand_;
+        } else {
+          result.tillLand_ = tillLandBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands.getDefaultInstance()) return this;
+        if (tillLandBuilder_ == null) {
+          if (!other.tillLand_.isEmpty()) {
+            if (tillLand_.isEmpty()) {
+              tillLand_ = other.tillLand_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureTillLandIsMutable();
+              tillLand_.addAll(other.tillLand_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.tillLand_.isEmpty()) {
+            if (tillLandBuilder_.isEmpty()) {
+              tillLandBuilder_.dispose();
+              tillLandBuilder_ = null;
+              tillLand_ = other.tillLand_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              tillLandBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getTillLandFieldBuilder() : null;
+            } else {
+              tillLandBuilder_.addAllMessages(other.tillLand_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 26: {
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand m =
+                    input.readMessage(
+                        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.parser(),
+                        extensionRegistry);
+                if (tillLandBuilder_ == null) {
+                  ensureTillLandIsMutable();
+                  tillLand_.add(m);
+                } else {
+                  tillLandBuilder_.addMessage(m);
+                }
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
       private java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand> tillLand_ =
         java.util.Collections.emptyList();
       private void ensureTillLandIsMutable() {
-        if (!((bitField0_ & 0x00000004) != 0)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           tillLand_ = new java.util.ArrayList<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand>(tillLand_);
-          bitField0_ |= 0x00000004;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -32249,7 +33333,7 @@ public final class Proto {
       public Builder clearTillLand() {
         if (tillLandBuilder_ == null) {
           tillLand_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000004);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           tillLandBuilder_.clear();
@@ -32326,7 +33410,7 @@ public final class Proto {
           tillLandBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLand.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLandOrBuilder>(
                   tillLand_,
-                  ((bitField0_ & 0x00000004) != 0),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           tillLand_ = null;
@@ -32346,23 +33430,23 @@ public final class Proto {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:proto.PlantingLandBuilding)
+      // @@protoc_insertion_point(builder_scope:proto.TillLands)
     }
 
-    // @@protoc_insertion_point(class_scope:proto.PlantingLandBuilding)
-    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:proto.TillLands)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding();
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands();
     }
 
-    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding getDefaultInstance() {
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<PlantingLandBuilding>
-        PARSER = new com.google.protobuf.AbstractParser<PlantingLandBuilding>() {
+    private static final com.google.protobuf.Parser<TillLands>
+        PARSER = new com.google.protobuf.AbstractParser<TillLands>() {
       @java.lang.Override
-      public PlantingLandBuilding parsePartialFrom(
+      public TillLands parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -32381,17 +33465,17 @@ public final class Proto {
       }
     };
 
-    public static com.google.protobuf.Parser<PlantingLandBuilding> parser() {
+    public static com.google.protobuf.Parser<TillLands> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<PlantingLandBuilding> getParserForType() {
+    public com.google.protobuf.Parser<TillLands> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.PlantingLandBuilding getDefaultInstanceForType() {
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.TillLands getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -34604,6 +35688,1674 @@ public final class Proto {
 
   }
 
+  public interface ReqBuyBuildingOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ReqBuyBuilding)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string typeBuilding = 1;</code>
+     * @return The typeBuilding.
+     */
+    java.lang.String getTypeBuilding();
+    /**
+     * <code>string typeBuilding = 1;</code>
+     * @return The bytes for typeBuilding.
+     */
+    com.google.protobuf.ByteString
+        getTypeBuildingBytes();
+
+    /**
+     * <code>int32 positionX = 2;</code>
+     * @return The positionX.
+     */
+    int getPositionX();
+
+    /**
+     * <code>int32 positionY = 3;</code>
+     * @return The positionY.
+     */
+    int getPositionY();
+
+    /**
+     * <code>int32 currentLevel = 4;</code>
+     * @return The currentLevel.
+     */
+    int getCurrentLevel();
+
+    /**
+     * <code>int32 areaId = 5;</code>
+     * @return The areaId.
+     */
+    int getAreaId();
+
+    /**
+     * <code>string uuid = 6;</code>
+     * @return The uuid.
+     */
+    java.lang.String getUuid();
+    /**
+     * <code>string uuid = 6;</code>
+     * @return The bytes for uuid.
+     */
+    com.google.protobuf.ByteString
+        getUuidBytes();
+  }
+  /**
+   * Protobuf type {@code proto.ReqBuyBuilding}
+   */
+  public static final class ReqBuyBuilding extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ReqBuyBuilding)
+      ReqBuyBuildingOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReqBuyBuilding.newBuilder() to construct.
+    private ReqBuyBuilding(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReqBuyBuilding() {
+      typeBuilding_ = "";
+      uuid_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReqBuyBuilding();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqBuyBuilding_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqBuyBuilding_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.Builder.class);
+    }
+
+    public static final int TYPEBUILDING_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object typeBuilding_ = "";
+    /**
+     * <code>string typeBuilding = 1;</code>
+     * @return The typeBuilding.
+     */
+    @java.lang.Override
+    public java.lang.String getTypeBuilding() {
+      java.lang.Object ref = typeBuilding_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        typeBuilding_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string typeBuilding = 1;</code>
+     * @return The bytes for typeBuilding.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTypeBuildingBytes() {
+      java.lang.Object ref = typeBuilding_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        typeBuilding_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int POSITIONX_FIELD_NUMBER = 2;
+    private int positionX_ = 0;
+    /**
+     * <code>int32 positionX = 2;</code>
+     * @return The positionX.
+     */
+    @java.lang.Override
+    public int getPositionX() {
+      return positionX_;
+    }
+
+    public static final int POSITIONY_FIELD_NUMBER = 3;
+    private int positionY_ = 0;
+    /**
+     * <code>int32 positionY = 3;</code>
+     * @return The positionY.
+     */
+    @java.lang.Override
+    public int getPositionY() {
+      return positionY_;
+    }
+
+    public static final int CURRENTLEVEL_FIELD_NUMBER = 4;
+    private int currentLevel_ = 0;
+    /**
+     * <code>int32 currentLevel = 4;</code>
+     * @return The currentLevel.
+     */
+    @java.lang.Override
+    public int getCurrentLevel() {
+      return currentLevel_;
+    }
+
+    public static final int AREAID_FIELD_NUMBER = 5;
+    private int areaId_ = 0;
+    /**
+     * <code>int32 areaId = 5;</code>
+     * @return The areaId.
+     */
+    @java.lang.Override
+    public int getAreaId() {
+      return areaId_;
+    }
+
+    public static final int UUID_FIELD_NUMBER = 6;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object uuid_ = "";
+    /**
+     * <code>string uuid = 6;</code>
+     * @return The uuid.
+     */
+    @java.lang.Override
+    public java.lang.String getUuid() {
+      java.lang.Object ref = uuid_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        uuid_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string uuid = 6;</code>
+     * @return The bytes for uuid.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getUuidBytes() {
+      java.lang.Object ref = uuid_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        uuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(typeBuilding_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, typeBuilding_);
+      }
+      if (positionX_ != 0) {
+        output.writeInt32(2, positionX_);
+      }
+      if (positionY_ != 0) {
+        output.writeInt32(3, positionY_);
+      }
+      if (currentLevel_ != 0) {
+        output.writeInt32(4, currentLevel_);
+      }
+      if (areaId_ != 0) {
+        output.writeInt32(5, areaId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(uuid_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, uuid_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(typeBuilding_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, typeBuilding_);
+      }
+      if (positionX_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, positionX_);
+      }
+      if (positionY_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, positionY_);
+      }
+      if (currentLevel_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, currentLevel_);
+      }
+      if (areaId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, areaId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(uuid_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, uuid_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding) obj;
+
+      if (!getTypeBuilding()
+          .equals(other.getTypeBuilding())) return false;
+      if (getPositionX()
+          != other.getPositionX()) return false;
+      if (getPositionY()
+          != other.getPositionY()) return false;
+      if (getCurrentLevel()
+          != other.getCurrentLevel()) return false;
+      if (getAreaId()
+          != other.getAreaId()) return false;
+      if (!getUuid()
+          .equals(other.getUuid())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TYPEBUILDING_FIELD_NUMBER;
+      hash = (53 * hash) + getTypeBuilding().hashCode();
+      hash = (37 * hash) + POSITIONX_FIELD_NUMBER;
+      hash = (53 * hash) + getPositionX();
+      hash = (37 * hash) + POSITIONY_FIELD_NUMBER;
+      hash = (53 * hash) + getPositionY();
+      hash = (37 * hash) + CURRENTLEVEL_FIELD_NUMBER;
+      hash = (53 * hash) + getCurrentLevel();
+      hash = (37 * hash) + AREAID_FIELD_NUMBER;
+      hash = (53 * hash) + getAreaId();
+      hash = (37 * hash) + UUID_FIELD_NUMBER;
+      hash = (53 * hash) + getUuid().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ReqBuyBuilding}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ReqBuyBuilding)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuildingOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqBuyBuilding_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqBuyBuilding_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        typeBuilding_ = "";
+        positionX_ = 0;
+        positionY_ = 0;
+        currentLevel_ = 0;
+        areaId_ = 0;
+        uuid_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqBuyBuilding_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.typeBuilding_ = typeBuilding_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.positionX_ = positionX_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.positionY_ = positionY_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.currentLevel_ = currentLevel_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.areaId_ = areaId_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.uuid_ = uuid_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding.getDefaultInstance()) return this;
+        if (!other.getTypeBuilding().isEmpty()) {
+          typeBuilding_ = other.typeBuilding_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (other.getPositionX() != 0) {
+          setPositionX(other.getPositionX());
+        }
+        if (other.getPositionY() != 0) {
+          setPositionY(other.getPositionY());
+        }
+        if (other.getCurrentLevel() != 0) {
+          setCurrentLevel(other.getCurrentLevel());
+        }
+        if (other.getAreaId() != 0) {
+          setAreaId(other.getAreaId());
+        }
+        if (!other.getUuid().isEmpty()) {
+          uuid_ = other.uuid_;
+          bitField0_ |= 0x00000020;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                typeBuilding_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 16: {
+                positionX_ = input.readInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 24: {
+                positionY_ = input.readInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 32: {
+                currentLevel_ = input.readInt32();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              case 40: {
+                areaId_ = input.readInt32();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
+              case 50: {
+                uuid_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 50
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object typeBuilding_ = "";
+      /**
+       * <code>string typeBuilding = 1;</code>
+       * @return The typeBuilding.
+       */
+      public java.lang.String getTypeBuilding() {
+        java.lang.Object ref = typeBuilding_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          typeBuilding_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string typeBuilding = 1;</code>
+       * @return The bytes for typeBuilding.
+       */
+      public com.google.protobuf.ByteString
+          getTypeBuildingBytes() {
+        java.lang.Object ref = typeBuilding_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          typeBuilding_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string typeBuilding = 1;</code>
+       * @param value The typeBuilding to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTypeBuilding(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        typeBuilding_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string typeBuilding = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTypeBuilding() {
+        typeBuilding_ = getDefaultInstance().getTypeBuilding();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string typeBuilding = 1;</code>
+       * @param value The bytes for typeBuilding to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTypeBuildingBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        typeBuilding_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private int positionX_ ;
+      /**
+       * <code>int32 positionX = 2;</code>
+       * @return The positionX.
+       */
+      @java.lang.Override
+      public int getPositionX() {
+        return positionX_;
+      }
+      /**
+       * <code>int32 positionX = 2;</code>
+       * @param value The positionX to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPositionX(int value) {
+
+        positionX_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 positionX = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPositionX() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        positionX_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int positionY_ ;
+      /**
+       * <code>int32 positionY = 3;</code>
+       * @return The positionY.
+       */
+      @java.lang.Override
+      public int getPositionY() {
+        return positionY_;
+      }
+      /**
+       * <code>int32 positionY = 3;</code>
+       * @param value The positionY to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPositionY(int value) {
+
+        positionY_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 positionY = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPositionY() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        positionY_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int currentLevel_ ;
+      /**
+       * <code>int32 currentLevel = 4;</code>
+       * @return The currentLevel.
+       */
+      @java.lang.Override
+      public int getCurrentLevel() {
+        return currentLevel_;
+      }
+      /**
+       * <code>int32 currentLevel = 4;</code>
+       * @param value The currentLevel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCurrentLevel(int value) {
+
+        currentLevel_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 currentLevel = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCurrentLevel() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        currentLevel_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int areaId_ ;
+      /**
+       * <code>int32 areaId = 5;</code>
+       * @return The areaId.
+       */
+      @java.lang.Override
+      public int getAreaId() {
+        return areaId_;
+      }
+      /**
+       * <code>int32 areaId = 5;</code>
+       * @param value The areaId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAreaId(int value) {
+
+        areaId_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 areaId = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAreaId() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        areaId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object uuid_ = "";
+      /**
+       * <code>string uuid = 6;</code>
+       * @return The uuid.
+       */
+      public java.lang.String getUuid() {
+        java.lang.Object ref = uuid_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          uuid_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string uuid = 6;</code>
+       * @return The bytes for uuid.
+       */
+      public com.google.protobuf.ByteString
+          getUuidBytes() {
+        java.lang.Object ref = uuid_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          uuid_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string uuid = 6;</code>
+       * @param value The uuid to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUuid(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        uuid_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string uuid = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUuid() {
+        uuid_ = getDefaultInstance().getUuid();
+        bitField0_ = (bitField0_ & ~0x00000020);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string uuid = 6;</code>
+       * @param value The bytes for uuid to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUuidBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        uuid_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ReqBuyBuilding)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ReqBuyBuilding)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReqBuyBuilding>
+        PARSER = new com.google.protobuf.AbstractParser<ReqBuyBuilding>() {
+      @java.lang.Override
+      public ReqBuyBuilding parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReqBuyBuilding> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReqBuyBuilding> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqBuyBuilding getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ResBuyBuildingOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ResBuyBuilding)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string uuid = 1;</code>
+     * @return The uuid.
+     */
+    java.lang.String getUuid();
+    /**
+     * <code>string uuid = 1;</code>
+     * @return The bytes for uuid.
+     */
+    com.google.protobuf.ByteString
+        getUuidBytes();
+
+    /**
+     * <code>.proto.Building building = 2;</code>
+     * @return Whether the building field is set.
+     */
+    boolean hasBuilding();
+    /**
+     * <code>.proto.Building building = 2;</code>
+     * @return The building.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building getBuilding();
+    /**
+     * <code>.proto.Building building = 2;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder getBuildingOrBuilder();
+  }
+  /**
+   * Protobuf type {@code proto.ResBuyBuilding}
+   */
+  public static final class ResBuyBuilding extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ResBuyBuilding)
+      ResBuyBuildingOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ResBuyBuilding.newBuilder() to construct.
+    private ResBuyBuilding(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ResBuyBuilding() {
+      uuid_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ResBuyBuilding();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResBuyBuilding_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResBuyBuilding_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.Builder.class);
+    }
+
+    public static final int UUID_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object uuid_ = "";
+    /**
+     * <code>string uuid = 1;</code>
+     * @return The uuid.
+     */
+    @java.lang.Override
+    public java.lang.String getUuid() {
+      java.lang.Object ref = uuid_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        uuid_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string uuid = 1;</code>
+     * @return The bytes for uuid.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getUuidBytes() {
+      java.lang.Object ref = uuid_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        uuid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int BUILDING_FIELD_NUMBER = 2;
+    private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building building_;
+    /**
+     * <code>.proto.Building building = 2;</code>
+     * @return Whether the building field is set.
+     */
+    @java.lang.Override
+    public boolean hasBuilding() {
+      return building_ != null;
+    }
+    /**
+     * <code>.proto.Building building = 2;</code>
+     * @return The building.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building getBuilding() {
+      return building_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.getDefaultInstance() : building_;
+    }
+    /**
+     * <code>.proto.Building building = 2;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder getBuildingOrBuilder() {
+      return building_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.getDefaultInstance() : building_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(uuid_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, uuid_);
+      }
+      if (building_ != null) {
+        output.writeMessage(2, getBuilding());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(uuid_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, uuid_);
+      }
+      if (building_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getBuilding());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding) obj;
+
+      if (!getUuid()
+          .equals(other.getUuid())) return false;
+      if (hasBuilding() != other.hasBuilding()) return false;
+      if (hasBuilding()) {
+        if (!getBuilding()
+            .equals(other.getBuilding())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + UUID_FIELD_NUMBER;
+      hash = (53 * hash) + getUuid().hashCode();
+      if (hasBuilding()) {
+        hash = (37 * hash) + BUILDING_FIELD_NUMBER;
+        hash = (53 * hash) + getBuilding().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ResBuyBuilding}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ResBuyBuilding)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuildingOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResBuyBuilding_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResBuyBuilding_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        uuid_ = "";
+        building_ = null;
+        if (buildingBuilder_ != null) {
+          buildingBuilder_.dispose();
+          buildingBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResBuyBuilding_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.uuid_ = uuid_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.building_ = buildingBuilder_ == null
+              ? building_
+              : buildingBuilder_.build();
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.getDefaultInstance()) return this;
+        if (!other.getUuid().isEmpty()) {
+          uuid_ = other.uuid_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (other.hasBuilding()) {
+          mergeBuilding(other.getBuilding());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                uuid_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                input.readMessage(
+                    getBuildingFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object uuid_ = "";
+      /**
+       * <code>string uuid = 1;</code>
+       * @return The uuid.
+       */
+      public java.lang.String getUuid() {
+        java.lang.Object ref = uuid_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          uuid_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string uuid = 1;</code>
+       * @return The bytes for uuid.
+       */
+      public com.google.protobuf.ByteString
+          getUuidBytes() {
+        java.lang.Object ref = uuid_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          uuid_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string uuid = 1;</code>
+       * @param value The uuid to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUuid(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        uuid_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string uuid = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUuid() {
+        uuid_ = getDefaultInstance().getUuid();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string uuid = 1;</code>
+       * @param value The bytes for uuid to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUuidBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        uuid_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building building_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder> buildingBuilder_;
+      /**
+       * <code>.proto.Building building = 2;</code>
+       * @return Whether the building field is set.
+       */
+      public boolean hasBuilding() {
+        return ((bitField0_ & 0x00000002) != 0);
+      }
+      /**
+       * <code>.proto.Building building = 2;</code>
+       * @return The building.
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building getBuilding() {
+        if (buildingBuilder_ == null) {
+          return building_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.getDefaultInstance() : building_;
+        } else {
+          return buildingBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.Building building = 2;</code>
+       */
+      public Builder setBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building value) {
+        if (buildingBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          building_ = value;
+        } else {
+          buildingBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Building building = 2;</code>
+       */
+      public Builder setBuilding(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder builderForValue) {
+        if (buildingBuilder_ == null) {
+          building_ = builderForValue.build();
+        } else {
+          buildingBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Building building = 2;</code>
+       */
+      public Builder mergeBuilding(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building value) {
+        if (buildingBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) != 0) &&
+            building_ != null &&
+            building_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.getDefaultInstance()) {
+            getBuildingBuilder().mergeFrom(value);
+          } else {
+            building_ = value;
+          }
+        } else {
+          buildingBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Building building = 2;</code>
+       */
+      public Builder clearBuilding() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        building_ = null;
+        if (buildingBuilder_ != null) {
+          buildingBuilder_.dispose();
+          buildingBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Building building = 2;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder getBuildingBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getBuildingFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.Building building = 2;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder getBuildingOrBuilder() {
+        if (buildingBuilder_ != null) {
+          return buildingBuilder_.getMessageOrBuilder();
+        } else {
+          return building_ == null ?
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.getDefaultInstance() : building_;
+        }
+      }
+      /**
+       * <code>.proto.Building building = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder> 
+          getBuildingFieldBuilder() {
+        if (buildingBuilder_ == null) {
+          buildingBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Building.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.BuildingOrBuilder>(
+                  getBuilding(),
+                  getParentForChildren(),
+                  isClean());
+          building_ = null;
+        }
+        return buildingBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ResBuyBuilding)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ResBuyBuilding)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ResBuyBuilding>
+        PARSER = new com.google.protobuf.AbstractParser<ResBuyBuilding>() {
+      @java.lang.Override
+      public ResBuyBuilding parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ResBuyBuilding> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ResBuyBuilding> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_PacketWrapper_descriptor;
   private static final 
@@ -34785,6 +37537,11 @@ public final class Proto {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_proto_PlantingLandBuilding_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_TillLands_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_TillLands_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_Building_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -34799,6 +37556,16 @@ public final class Proto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_proto_ResLoadItemsOfFarm_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ReqBuyBuilding_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ReqBuyBuilding_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ResBuyBuilding_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ResBuyBuilding_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -34809,7 +37576,7 @@ public final class Proto {
   static {
     java.lang.String[] descriptorData = {
       "\n\013Proto.proto\022\005proto\".\n\rPacketWrapper\022\035\n" +
-      "\006packet\030\001 \003(\0132\r.proto.Packet\"\334\t\n\006Packet\022" +
+      "\006packet\030\001 \003(\0132\r.proto.Packet\"\276\n\n\006Packet\022" +
       "#\n\010reqLogin\030\001 \001(\0132\017.proto.ReqLoginH\000\022\'\n\n" +
       "reqRelogin\030\002 \001(\0132\021.proto.ReqReloginH\000\022#\n" +
       "\010resLogin\030\003 \001(\0132\017.proto.ResLoginH\000\022%\n\tre" +
@@ -34840,82 +37607,91 @@ public final class Proto {
       "\036.proto.ResOtherPlayerLeaveAreaH\000\0227\n\022req" +
       "LoadItemsOfFarm\030\027 \001(\0132\031.proto.ReqLoadIte" +
       "msOfFarmH\000\0227\n\022resLoadItemsOfFarm\030\030 \001(\0132\031" +
-      ".proto.ResLoadItemsOfFarmH\000B\006\n\004data\"\372\001\n\004" +
-      "User\022\016\n\006userId\030\001 \001(\005\022\020\n\010username\030\002 \001(\t\022\022" +
-      "\n\nplayerName\030\003 \001(\t\022\016\n\006gender\030\004 \001(\005\022\017\n\007sp" +
-      "onsor\030\005 \001(\005\022\r\n\005email\030\006 \001(\t\022\r\n\005phone\030\007 \001(" +
-      "\t\022\014\n\004gold\030\010 \001(\003\022\017\n\007diamond\030\t \001(\003\022\r\n\005leve" +
-      "l\030\n \001(\005\022\024\n\014hasCharacter\030\013 \001(\005\022\023\n\013charact" +
-      "erId\030\014 \001(\005\022\016\n\006areaId\030\r \001(\005\022\024\n\014isNewAccou" +
-      "nt\030\016 \001(\005\"r\n\006Player\022\020\n\010playerId\030\001 \001(\005\022\022\n\n" +
-      "playerName\030\002 \001(\t\022\023\n\013characterId\030\003 \001(\005\022\r\n" +
-      "\005level\030\004 \001(\005\022\016\n\006userId\030\005 \001(\005\022\016\n\006areaId\030\006" +
-      " \001(\005\"H\n\tCharacter\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 " +
-      "\001(\t\022\014\n\004code\030\003 \001(\t\022\023\n\013description\030\004 \001(\t\"m" +
-      "\n\004Area\022\016\n\006areaId\030\001 \001(\005\022\020\n\010playerId\030\002 \001(\005" +
-      "\022\020\n\010typeArea\030\003 \001(\t\022!\n\010position\030\004 \001(\0132\017.p" +
-      "roto.Position\022\016\n\006status\030\005 \001(\005\" \n\010Positio" +
-      "n\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\".\n\010ReqLogin\022\020\n\010u" +
-      "sername\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"-\n\nReqRe" +
-      "login\022\020\n\010username\030\001 \001(\t\022\r\n\005token\030\002 \001(\t\"c" +
-      "\n\010ResLogin\022\016\n\006status\030\001 \001(\005\022\r\n\005token\030\002 \001(" +
-      "\t\022\031\n\004user\030\003 \001(\0132\013.proto.User\022\035\n\006player\030\004" +
-      " \001(\0132\r.proto.Player\"\036\n\014ResUserAlert\022\016\n\006s" +
-      "tatus\030\001 \001(\005\"\013\n\tReqLogout\"\033\n\tResLogout\022\016\n" +
-      "\006status\030\001 \001(\005\"\"\n\021ReqForgotPassword\022\r\n\005em" +
-      "ail\030\001 \001(\t\"#\n\021ResForgotPassword\022\016\n\006status" +
-      "\030\001 \001(\005\"`\n\013ReqRegister\022\020\n\010username\030\001 \001(\t\022" +
-      "\020\n\010password\030\002 \001(\t\022\017\n\007sponsor\030\003 \001(\t\022\r\n\005ph" +
-      "one\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\"\035\n\013ResRegister\022" +
-      "\016\n\006status\030\001 \001(\005\"7\n\021ReqUpdateUserInfo\022\022\n\n" +
-      "playerName\030\001 \001(\t\022\016\n\006gender\030\002 \001(\005\"\023\n\021ReqL" +
-      "oadCharacters\"8\n\021ResLoadCharacters\022#\n\tch" +
-      "aracter\030\001 \003(\0132\020.proto.Character\";\n\020ReqPi" +
-      "ckCharacter\022\023\n\013characterId\030\001 \001(\005\022\022\n\nplay" +
-      "erName\030\002 \001(\t\"\"\n\020ResPickCharacter\022\016\n\006stat" +
-      "us\030\001 \001(\005\"R\n\027ReqPlayerJoinAreaCommon\022\024\n\014a" +
-      "reaCommonId\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.pr" +
-      "oto.Position\"\314\001\n\027ResPlayerJoinAreaCommon" +
-      "\022\024\n\014areaCommonId\030\001 \001(\005\022\031\n\004area\030\002 \001(\0132\013.p" +
-      "roto.Area\022\036\n\007players\030\003 \003(\0132\r.proto.Playe" +
-      "r\022\032\n\005users\030\004 \003(\0132\013.proto.User\022\016\n\006status\030" +
-      "\005 \001(\005\022\021\n\tareaState\030\006 \001(\005\022!\n\010position\030\007 \001" +
-      "(\0132\017.proto.Position\")\n\021ReqPlayerJoinArea" +
-      "\022\024\n\014userTargetId\030\001 \001(\005\"\235\001\n\021ResPlayerJoin" +
-      "Area\022\031\n\004area\030\001 \001(\0132\013.proto.Area\022\036\n\007playe" +
-      "rs\030\002 \003(\0132\r.proto.Player\022\032\n\005users\030\003 \003(\0132\013" +
-      ".proto.User\022\016\n\006status\030\004 \001(\005\022!\n\010position\030" +
-      "\005 \001(\0132\017.proto.Position\"u\n\026ResOtherPlayer" +
-      "JoinArea\022\035\n\006player\030\001 \001(\0132\r.proto.Player\022" +
-      "\031\n\004user\030\002 \001(\0132\013.proto.User\022!\n\010position\030\003" +
-      " \001(\0132\017.proto.Position\")\n\027ResOtherPlayerL" +
-      "eaveArea\022\016\n\006userId\030\001 \001(\005\">\n\tReqMoving\022\016\n" +
-      "\006areaId\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.proto." +
-      "Position\"P\n\tResMoving\022\016\n\006userId\030\001 \001(\005\022\020\n" +
-      "\010playerId\030\002 \001(\005\022!\n\010position\030\003 \001(\0132\017.prot" +
-      "o.Position\"\024\n\022ReqLoadItemsOfFarm\"l\n\014Buil" +
-      "dingBase\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005pr" +
-      "ice\030\003 \001(\003\022\023\n\013description\030\004 \001(\t\022\014\n\004type\030\005" +
-      " \001(\t\022\020\n\010maxLevel\030\006 \001(\005\"\227\001\n\020PropertyBuild" +
-      "ing\022\n\n\002id\030\001 \001(\005\022\021\n\tpositionX\030\002 \001(\003\022\021\n\tpo" +
-      "sitionY\030\003 \001(\003\022\021\n\tupgradeId\030\004 \001(\005\022\016\n\006area" +
-      "Id\030\005 \001(\005\022\030\n\020commonBuildingId\030\006 \001(\005\022\024\n\014cu" +
-      "rrentLevel\030\007 \001(\005\";\n\010TillLand\022\n\n\002id\030\001 \001(\005" +
-      "\022\r\n\005index\030\002 \001(\005\022\024\n\014statusTilled\030\003 \001(\010\"d\n" +
-      "\014FarmBuilding\022!\n\004base\030\001 \001(\0132\023.proto.Buil" +
-      "dingBase\0221\n\020propertyBuilding\030\002 \001(\0132\027.pro" +
-      "to.PropertyBuilding\"\217\001\n\024PlantingLandBuil" +
-      "ding\022!\n\004base\030\001 \001(\0132\023.proto.BuildingBase\022" +
-      "1\n\020propertyBuilding\030\002 \001(\0132\027.proto.Proper" +
-      "tyBuilding\022!\n\010tillLand\030\003 \003(\0132\017.proto.Til" +
-      "lLand\"|\n\010Building\022+\n\014farmBuilding\030\001 \001(\0132" +
-      "\023.proto.FarmBuildingH\000\022;\n\024plantingLandBu" +
-      "ilding\030\002 \001(\0132\033.proto.PlantingLandBuildin" +
-      "gH\000B\006\n\004data\"2\n\rBuildingItems\022!\n\010building" +
-      "\030\001 \003(\0132\017.proto.Building\"A\n\022ResLoadItemsO" +
-      "fFarm\022+\n\rbuildingItems\030\001 \001(\0132\024.proto.Bui" +
-      "ldingItemsB%\n#vn.edu.nlu.fit.nlugame.lay" +
-      "er2.protob\006proto3"
+      ".proto.ResLoadItemsOfFarmH\000\022/\n\016reqBuyBui" +
+      "lding\030\031 \001(\0132\025.proto.ReqBuyBuildingH\000\022/\n\016" +
+      "resBuyBuilding\030\032 \001(\0132\025.proto.ResBuyBuild" +
+      "ingH\000B\006\n\004data\"\372\001\n\004User\022\016\n\006userId\030\001 \001(\005\022\020" +
+      "\n\010username\030\002 \001(\t\022\022\n\nplayerName\030\003 \001(\t\022\016\n\006" +
+      "gender\030\004 \001(\005\022\017\n\007sponsor\030\005 \001(\005\022\r\n\005email\030\006" +
+      " \001(\t\022\r\n\005phone\030\007 \001(\t\022\014\n\004gold\030\010 \001(\003\022\017\n\007dia" +
+      "mond\030\t \001(\003\022\r\n\005level\030\n \001(\005\022\024\n\014hasCharacte" +
+      "r\030\013 \001(\005\022\023\n\013characterId\030\014 \001(\005\022\016\n\006areaId\030\r" +
+      " \001(\005\022\024\n\014isNewAccount\030\016 \001(\005\"r\n\006Player\022\020\n\010" +
+      "playerId\030\001 \001(\005\022\022\n\nplayerName\030\002 \001(\t\022\023\n\013ch" +
+      "aracterId\030\003 \001(\005\022\r\n\005level\030\004 \001(\005\022\016\n\006userId" +
+      "\030\005 \001(\005\022\016\n\006areaId\030\006 \001(\005\"H\n\tCharacter\022\n\n\002i" +
+      "d\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\023\n\013d" +
+      "escription\030\004 \001(\t\"m\n\004Area\022\016\n\006areaId\030\001 \001(\005" +
+      "\022\020\n\010playerId\030\002 \001(\005\022\020\n\010typeArea\030\003 \001(\t\022!\n\010" +
+      "position\030\004 \001(\0132\017.proto.Position\022\016\n\006statu" +
+      "s\030\005 \001(\005\" \n\010Position\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(" +
+      "\002\".\n\010ReqLogin\022\020\n\010username\030\001 \001(\t\022\020\n\010passw" +
+      "ord\030\002 \001(\t\"-\n\nReqRelogin\022\020\n\010username\030\001 \001(" +
+      "\t\022\r\n\005token\030\002 \001(\t\"c\n\010ResLogin\022\016\n\006status\030\001" +
+      " \001(\005\022\r\n\005token\030\002 \001(\t\022\031\n\004user\030\003 \001(\0132\013.prot" +
+      "o.User\022\035\n\006player\030\004 \001(\0132\r.proto.Player\"\036\n" +
+      "\014ResUserAlert\022\016\n\006status\030\001 \001(\005\"\013\n\tReqLogo" +
+      "ut\"\033\n\tResLogout\022\016\n\006status\030\001 \001(\005\"\"\n\021ReqFo" +
+      "rgotPassword\022\r\n\005email\030\001 \001(\t\"#\n\021ResForgot" +
+      "Password\022\016\n\006status\030\001 \001(\005\"`\n\013ReqRegister\022" +
+      "\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\017\n\007s" +
+      "ponsor\030\003 \001(\t\022\r\n\005phone\030\004 \001(\t\022\r\n\005email\030\005 \001" +
+      "(\t\"\035\n\013ResRegister\022\016\n\006status\030\001 \001(\005\"7\n\021Req" +
+      "UpdateUserInfo\022\022\n\nplayerName\030\001 \001(\t\022\016\n\006ge" +
+      "nder\030\002 \001(\005\"\023\n\021ReqLoadCharacters\"8\n\021ResLo" +
+      "adCharacters\022#\n\tcharacter\030\001 \003(\0132\020.proto." +
+      "Character\";\n\020ReqPickCharacter\022\023\n\013charact" +
+      "erId\030\001 \001(\005\022\022\n\nplayerName\030\002 \001(\t\"\"\n\020ResPic" +
+      "kCharacter\022\016\n\006status\030\001 \001(\005\"R\n\027ReqPlayerJ" +
+      "oinAreaCommon\022\024\n\014areaCommonId\030\001 \001(\005\022!\n\010p" +
+      "osition\030\002 \001(\0132\017.proto.Position\"\314\001\n\027ResPl" +
+      "ayerJoinAreaCommon\022\024\n\014areaCommonId\030\001 \001(\005" +
+      "\022\031\n\004area\030\002 \001(\0132\013.proto.Area\022\036\n\007players\030\003" +
+      " \003(\0132\r.proto.Player\022\032\n\005users\030\004 \003(\0132\013.pro" +
+      "to.User\022\016\n\006status\030\005 \001(\005\022\021\n\tareaState\030\006 \001" +
+      "(\005\022!\n\010position\030\007 \001(\0132\017.proto.Position\")\n" +
+      "\021ReqPlayerJoinArea\022\024\n\014userTargetId\030\001 \001(\005" +
+      "\"\235\001\n\021ResPlayerJoinArea\022\031\n\004area\030\001 \001(\0132\013.p" +
+      "roto.Area\022\036\n\007players\030\002 \003(\0132\r.proto.Playe" +
+      "r\022\032\n\005users\030\003 \003(\0132\013.proto.User\022\016\n\006status\030" +
+      "\004 \001(\005\022!\n\010position\030\005 \001(\0132\017.proto.Position" +
+      "\"u\n\026ResOtherPlayerJoinArea\022\035\n\006player\030\001 \001" +
+      "(\0132\r.proto.Player\022\031\n\004user\030\002 \001(\0132\013.proto." +
+      "User\022!\n\010position\030\003 \001(\0132\017.proto.Position\"" +
+      ")\n\027ResOtherPlayerLeaveArea\022\016\n\006userId\030\001 \001" +
+      "(\005\">\n\tReqMoving\022\016\n\006areaId\030\001 \001(\005\022!\n\010posit" +
+      "ion\030\002 \001(\0132\017.proto.Position\"P\n\tResMoving\022" +
+      "\016\n\006userId\030\001 \001(\005\022\020\n\010playerId\030\002 \001(\005\022!\n\010pos" +
+      "ition\030\003 \001(\0132\017.proto.Position\"\024\n\022ReqLoadI" +
+      "temsOfFarm\"l\n\014BuildingBase\022\n\n\002id\030\001 \001(\005\022\014" +
+      "\n\004name\030\002 \001(\t\022\r\n\005price\030\003 \001(\003\022\023\n\013descripti" +
+      "on\030\004 \001(\t\022\014\n\004type\030\005 \001(\t\022\020\n\010maxLevel\030\006 \001(\005" +
+      "\"\227\001\n\020PropertyBuilding\022\n\n\002id\030\001 \001(\005\022\021\n\tpos" +
+      "itionX\030\002 \001(\003\022\021\n\tpositionY\030\003 \001(\003\022\021\n\tupgra" +
+      "deId\030\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\030\n\020commonBuil" +
+      "dingId\030\006 \001(\005\022\024\n\014currentLevel\030\007 \001(\005\"S\n\010Ti" +
+      "llLand\022\n\n\002id\030\001 \001(\005\022\r\n\005index\030\002 \001(\005\022\024\n\014sta" +
+      "tusTilled\030\003 \001(\010\022\026\n\016plantingLandId\030\004 \001(\005\"" +
+      "d\n\014FarmBuilding\022!\n\004base\030\001 \001(\0132\023.proto.Bu" +
+      "ildingBase\0221\n\020propertyBuilding\030\002 \001(\0132\027.p" +
+      "roto.PropertyBuilding\"\221\001\n\024PlantingLandBu" +
+      "ilding\022!\n\004base\030\001 \001(\0132\023.proto.BuildingBas" +
+      "e\0221\n\020propertyBuilding\030\002 \001(\0132\027.proto.Prop" +
+      "ertyBuilding\022#\n\ttillLands\030\003 \001(\0132\020.proto." +
+      "TillLands\".\n\tTillLands\022!\n\010tillLand\030\003 \003(\013" +
+      "2\017.proto.TillLand\"|\n\010Building\022+\n\014farmBui" +
+      "lding\030\001 \001(\0132\023.proto.FarmBuildingH\000\022;\n\024pl" +
+      "antingLandBuilding\030\002 \001(\0132\033.proto.Plantin" +
+      "gLandBuildingH\000B\006\n\004data\"2\n\rBuildingItems" +
+      "\022!\n\010building\030\001 \003(\0132\017.proto.Building\"A\n\022R" +
+      "esLoadItemsOfFarm\022+\n\rbuildingItems\030\001 \001(\013" +
+      "2\024.proto.BuildingItems\"\200\001\n\016ReqBuyBuildin" +
+      "g\022\024\n\014typeBuilding\030\001 \001(\t\022\021\n\tpositionX\030\002 \001" +
+      "(\005\022\021\n\tpositionY\030\003 \001(\005\022\024\n\014currentLevel\030\004 " +
+      "\001(\005\022\016\n\006areaId\030\005 \001(\005\022\014\n\004uuid\030\006 \001(\t\"A\n\016Res" +
+      "BuyBuilding\022\014\n\004uuid\030\001 \001(\t\022!\n\010building\030\002 " +
+      "\001(\0132\017.proto.BuildingB%\n#vn.edu.nlu.fit.n" +
+      "lugame.layer2.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -34932,7 +37708,7 @@ public final class Proto {
     internal_static_proto_Packet_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Packet_descriptor,
-        new java.lang.String[] { "ReqLogin", "ReqRelogin", "ResLogin", "ReqLogout", "ResLogout", "ReqForgotPassword", "ResForgotPassword", "ReqRegister", "ResRegister", "ReqUpdateUserInfo", "ReqLoadCharacters", "ResLoadCharacters", "ReqPickCharacter", "ResPickCharacter", "ReqPlayerJoinAreaCommon", "ResPlayerJoinAreaCommon", "ReqPlayerJoinArea", "ResPlayerJoinArea", "ResOtherPlayerJoinArea", "ReqMoving", "ResMoving", "ResOtherPlayerLeaveArea", "ReqLoadItemsOfFarm", "ResLoadItemsOfFarm", "Data", });
+        new java.lang.String[] { "ReqLogin", "ReqRelogin", "ResLogin", "ReqLogout", "ResLogout", "ReqForgotPassword", "ResForgotPassword", "ReqRegister", "ResRegister", "ReqUpdateUserInfo", "ReqLoadCharacters", "ResLoadCharacters", "ReqPickCharacter", "ResPickCharacter", "ReqPlayerJoinAreaCommon", "ResPlayerJoinAreaCommon", "ReqPlayerJoinArea", "ResPlayerJoinArea", "ResOtherPlayerJoinArea", "ReqMoving", "ResMoving", "ResOtherPlayerLeaveArea", "ReqLoadItemsOfFarm", "ResLoadItemsOfFarm", "ReqBuyBuilding", "ResBuyBuilding", "Data", });
     internal_static_proto_User_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_proto_User_fieldAccessorTable = new
@@ -35124,7 +37900,7 @@ public final class Proto {
     internal_static_proto_TillLand_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_TillLand_descriptor,
-        new java.lang.String[] { "Id", "Index", "StatusTilled", });
+        new java.lang.String[] { "Id", "Index", "StatusTilled", "PlantingLandId", });
     internal_static_proto_FarmBuilding_descriptor =
       getDescriptor().getMessageTypes().get(34);
     internal_static_proto_FarmBuilding_fieldAccessorTable = new
@@ -35136,25 +37912,43 @@ public final class Proto {
     internal_static_proto_PlantingLandBuilding_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_PlantingLandBuilding_descriptor,
-        new java.lang.String[] { "Base", "PropertyBuilding", "TillLand", });
-    internal_static_proto_Building_descriptor =
+        new java.lang.String[] { "Base", "PropertyBuilding", "TillLands", });
+    internal_static_proto_TillLands_descriptor =
       getDescriptor().getMessageTypes().get(36);
+    internal_static_proto_TillLands_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_TillLands_descriptor,
+        new java.lang.String[] { "TillLand", });
+    internal_static_proto_Building_descriptor =
+      getDescriptor().getMessageTypes().get(37);
     internal_static_proto_Building_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Building_descriptor,
         new java.lang.String[] { "FarmBuilding", "PlantingLandBuilding", "Data", });
     internal_static_proto_BuildingItems_descriptor =
-      getDescriptor().getMessageTypes().get(37);
+      getDescriptor().getMessageTypes().get(38);
     internal_static_proto_BuildingItems_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_BuildingItems_descriptor,
         new java.lang.String[] { "Building", });
     internal_static_proto_ResLoadItemsOfFarm_descriptor =
-      getDescriptor().getMessageTypes().get(38);
+      getDescriptor().getMessageTypes().get(39);
     internal_static_proto_ResLoadItemsOfFarm_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_ResLoadItemsOfFarm_descriptor,
         new java.lang.String[] { "BuildingItems", });
+    internal_static_proto_ReqBuyBuilding_descriptor =
+      getDescriptor().getMessageTypes().get(40);
+    internal_static_proto_ReqBuyBuilding_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ReqBuyBuilding_descriptor,
+        new java.lang.String[] { "TypeBuilding", "PositionX", "PositionY", "CurrentLevel", "AreaId", "Uuid", });
+    internal_static_proto_ResBuyBuilding_descriptor =
+      getDescriptor().getMessageTypes().get(41);
+    internal_static_proto_ResBuyBuilding_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ResBuyBuilding_descriptor,
+        new java.lang.String[] { "Uuid", "Building", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

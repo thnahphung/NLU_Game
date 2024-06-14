@@ -19,4 +19,15 @@ public class PlantingLandBuildingBean extends ABuilding{
 
     }
 
+    public PlantingLandBuildingBean(ABuilding aBuilding){
+        super(aBuilding.getId(), aBuilding.getName(), aBuilding.getDescription(), aBuilding.getType(), aBuilding.getMaxLevel(), aBuilding.getUpgradeId(), aBuilding.getCurrentLevel(), aBuilding.getAreaId(), aBuilding.getPositionX(), aBuilding.getPositionY(), aBuilding.getCommonBuildingId());
+    }
+
+    public List<TillLandBean> getTillLands() {
+        return tillLands;
+    }
+
+    public void setTillLands(List<TillLandBean> tillLands) {
+        this.tillLands = tillLands;
+    }
 }

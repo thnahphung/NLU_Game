@@ -3,6 +3,7 @@ package vn.edu.nlu.fit.nlugame.layer2.redis.cache;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import vn.edu.nlu.fit.nlugame.layer2.CompressUtils;
+import vn.edu.nlu.fit.nlugame.layer2.ConstUtils;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.CommonBuildingBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.RedisClusterHelper;
@@ -125,5 +126,27 @@ public class CommonBuildingCache extends RedisClusterHelper implements ICache<Co
             result.add(commonBuildingContext.getBuildingBaseBean());
         });
         return result;
+    }
+
+    public int getIdBuildingByType(ConstUtils.TYPE_ITEM typeItem) {
+        CommonBuildingContext commonBuildingContext = commonBuildingMap.asMap().values().stream().filter(context -> context.getBuildingBaseBean().getType().equals(typeItem.getValue())).findFirst().orElse(null);
+        if(commonBuildingContext == null) return 0;
+        return commonBuildingContext.getBuildingBaseBean().getId();
+    }
+
+    public static void main(String[] args) {
+        CommonBuildingContext commonBuildingContext1 = new CommonBuildingContext();
+        Proto.BuildingBase.Builder p = Proto.BuildingBase.newBuilder().setId(1).setType("TREE");
+        commonBuildingContext1.setBuildingBaseBean(p.build());
+
+        CommonBuildingContext commonBuildingContext2 = new CommonBuildingContext();
+        Proto.BuildingBase.Builder p2 = Proto.BuildingBase.newBuilder().setId(2).setType("PLANTING_LAND");
+        commonBuildingContext2.setBuildingBaseBean(p2.build());
+
+        CommonBuildingCache.me().add(commonBuildingContext1);
+
+        CommonBuildingCache.me().add(commonBuildingContext2);
+
+        System.out.println(CommonBuildingCache.me().getIdBuildingByType(ConstUtils.TYPE_ITEM.PLANTING_LAND));
     }
 }

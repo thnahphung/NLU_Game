@@ -1,8 +1,9 @@
-import { _decorator, Button, Component, find, instantiate, Node, Prefab } from 'cc';
+import { _decorator, BlockInputEvents, Button, Component, find, instantiate, Node, Prefab, UIOpacity } from 'cc';
 import { CUSTOM_EVENT, PLANTING_LAND, POPUP } from '../../Utils/Const';
 import { CameraFollow } from '../Camera/CameraFollow';
 import { UICanvas } from '../MainUI/UICanvas';
 import GlobalData from '../../Utils/GlobalData';
+import DataSender from '../../Utils/DataSender';
 const { ccclass, property } = _decorator;
 
 @ccclass('PopupBuildingSystem')
@@ -20,6 +21,7 @@ export class PopupBuildingSystem extends Component {
     public plantingLandPrefab: Prefab = null;
 
     private handleNode: Node = null;
+    private typeBuilding: string = null;
 
     start() {
         this.buttonPlantingLand.node.on(Node.EventType.TOUCH_END, this.handlePlantingBuilding, this);
@@ -48,6 +50,7 @@ export class PopupBuildingSystem extends Component {
         this.cameraFollowTarget(plantingLand);
 
         this.handleNode = plantingLand;
+        this.typeBuilding = "PLANTING_LAND";
         this.showPopupOption();
     }
 
@@ -67,14 +70,20 @@ export class PopupBuildingSystem extends Component {
     private handleClickComplete(event: CustomEvent): void {
         this.hidePopupOption();
         this.node.destroy();
+        this.effectNodeIsBuilding(this.handleNode);
         this.cameraFollowTarget(GlobalData.me().getMainPlayerNode());
+        DataSender.sendReqBuyBuilding(this.handleNode.uuid, this.typeBuilding, this.handleNode.position.x,  this.handleNode.position.y, 1, 1)
+    }
+
+    private effectNodeIsBuilding(node: Node){
+        node.addComponent(UIOpacity).opacity = 150;
+        node.addComponent(BlockInputEvents);
     }
 
     private hidePopupOption(): void {
         UICanvas.me().closePopup(POPUP.POPUP_OPTION);
         this.handleNode.off(CUSTOM_EVENT.LISTEN_CANCEL, this.handleClickCancel, this);
         this.handleNode.off(CUSTOM_EVENT.LISTEN_COMPLETE, this.handleClickComplete, this);
-        console.log('Hide Popup Option', this.handleNode);
     }
 
     private handleHouseBuilding(event: Event, customEventData: string) {

@@ -8,6 +8,7 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class SessionManage {
@@ -37,7 +38,15 @@ public class SessionManage {
     public ArrayList<Session> getListSession(List<String> keys) {
         return new ArrayList<>(sessionMap.getAllPresent(keys).values());
     }
-
+    public List<String> listSessionId() {
+        Set<String> strings = sessionMap.asMap().keySet();
+        ArrayList<String> reList = new ArrayList<>();
+        if (strings == null || strings.size() <= 0) {
+            return reList;
+        }
+        reList.addAll(strings);
+        return reList;
+    }
     public int count() {
         return sessionMap.asMap().size();
     }

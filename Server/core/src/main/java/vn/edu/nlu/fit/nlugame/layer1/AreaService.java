@@ -7,6 +7,7 @@ import vn.edu.nlu.fit.nlugame.layer2.SessionManage;
 import vn.edu.nlu.fit.nlugame.layer2.ThreadManage;
 import vn.edu.nlu.fit.nlugame.layer2.dao.AreaDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.BuildingDAO;
+import vn.edu.nlu.fit.nlugame.layer2.dao.TillLandDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.UserDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.*;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
@@ -18,12 +19,9 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.context.PropertyBuildingContext;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 public class AreaService {
-    private static final ExecutorService executorService = Executors.newCachedThreadPool();
     private static final AreaService instance = new AreaService();
 
     private AreaService() {
@@ -148,12 +146,13 @@ public class AreaService {
         // Check user vua tao account
         int userId = SessionCache.me().getUserID(SessionID.of(session));
         AreaBean areaBean = AreaDAO.loadAreaByUserId(userId);
+        System.out.println(areaBean);
         int areaId = areaBean.getId();
-        List<ABuilding> farmItems = new ArrayList<>();
+        Proto.BuildingItems farmItems = null;
         if(isUserNewAccount(userId)){
             farmItems = getFarmBaseItems();
             Runnable runnable = () -> {
-                saveItemsOfFarm(areaId, getFarmBaseItems());
+                saveBaseItemsOfFarm(areaId, getFarmBaseItems());
                 UserDAO.updateIsNewAccount(userId, false);
             };
             ThreadManage.me().execute(runnable);
@@ -164,16 +163,12 @@ public class AreaService {
             return;
         }
         Proto.ResLoadItemsOfFarm.Builder resLoadItemsOfFarm = Proto.ResLoadItemsOfFarm.newBuilder();
-        Proto.BuildingItems.Builder buildingItems = Proto.BuildingItems.newBuilder();
-        farmItems.forEach(item -> {
-            buildingItems.addBuilding(MappingUtils.mapModelToProto(item));
-        });
-        resLoadItemsOfFarm.setBuildingItems(buildingItems);
+        resLoadItemsOfFarm.setBuildingItems(farmItems);
         sendResponse(session, Proto.Packet.newBuilder().setResLoadItemsOfFarm(resLoadItemsOfFarm).build());
     }
-    public void saveItemsOfFarm(int areaId, List<ABuilding> farmBaseItems){
-        farmBaseItems.forEach(building -> {
-            BuildingDAO.insertBuildingInArea(areaId, building);
+    public void saveBaseItemsOfFarm(int areaId, Proto.BuildingItems farmBaseItems){
+        farmBaseItems.getBuildingList().forEach(building -> {
+            BuildingDAO.insertBaseBuildingInArea(areaId, building.getFarmBuilding());
         });
     }
 
@@ -188,15 +183,14 @@ public class AreaService {
         boolean isNewAccount = user.getIsNewAccount() == 1 ? true : false;
         return isNewAccount;
     }
-    private List<ABuilding> getFarmBaseItems() {
-        List<ABuilding> farmBaseItems = new ArrayList<>();
-
+    private Proto.BuildingItems getFarmBaseItems() {
+        Proto.BuildingItems.Builder buildingItems = Proto.BuildingItems.newBuilder();
         // Sử dụng ClassLoader để lấy InputStream từ file trong resources
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("farm_base_item.csv");
 
         if (inputStream == null) {
             System.out.println("File không tồn tại!");
-            return farmBaseItems;
+            return buildingItems.build();
         }
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
@@ -215,19 +209,37 @@ public class AreaService {
                 int buildingId = Integer.parseInt(values[9]);
                 ConstUtils.TYPE_ITEM typeItem = ConstUtils.TYPE_ITEM.fromValue(type);
                 if(typeItem != null){
-                    FarmBuildingBean farmBuilding = new FarmBuildingBean(buildingId, name, description, typeItem, maxLevel, 1, currentLevel, areaId, positionX, positionY, buildingId);
-                    farmBaseItems.add(farmBuilding);
+                    Proto.BuildingBase.Builder base = Proto.BuildingBase.newBuilder()
+                            .setId(buildingId)
+                            .setName(name)
+                            .setPrice(price)
+                            .setDescription(description)
+                            .setType(type)
+                            .setMaxLevel(maxLevel);
+                    Proto.PropertyBuilding.Builder propertyBuilding = Proto.PropertyBuilding.newBuilder()
+                            .setAreaId(areaId)
+                            .setPositionX(positionX)
+                            .setPositionY(positionY)
+                            .setCurrentLevel(currentLevel)
+                            .setCommonBuildingId(buildingId);
+                    Proto.Building.Builder buildingProto = Proto.Building.newBuilder();
+                    Proto.FarmBuilding.Builder farmBuilding = Proto.FarmBuilding.newBuilder()
+                            .setBase(base)
+                            .setPropertyBuilding(propertyBuilding);
+                    buildingProto.setFarmBuilding(farmBuilding);
+                    buildingItems.addBuilding(buildingProto);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return farmBaseItems;
+        return buildingItems.build();
     }
 
-    private List<ABuilding> getUserItemsOfFarm(int areaId){
+    private Proto.BuildingItems getUserItemsOfFarm(int areaId){
         List<ABuilding> userItems = new ArrayList<>();
+        Proto.BuildingItems.Builder buildingProtos = Proto.BuildingItems.newBuilder();
         List<Proto.BuildingBase> baseItems = null;
         List<Proto.PropertyBuilding> propertyItems = null;
         //Get baseItems
@@ -250,7 +262,6 @@ public class AreaService {
         propertyItems = PropertyBuildingCache.me().getAll(areaId).stream().map(PropertyBuildingContext::getPropertyBuildingBean).collect(Collectors.toList());
             //Get propertyItems from redis
         if(propertyItems == null || propertyItems.isEmpty()) propertyItems = PropertyBuildingCache.me().getAllPropertyBuildingBeanByAreaId(areaId);
-
         if(propertyItems == null || propertyItems.isEmpty()) {
             //Get propertyItems from database
             propertyItems = BuildingDAO.getAllPropertyBuildingByAreaId(areaId);
@@ -260,16 +271,32 @@ public class AreaService {
             ThreadManage.me().execute(runnable);
         }
 
-        List<ABuilding> buildingList = new ArrayList<>();
         for(Proto.PropertyBuilding p : propertyItems) {
-            Proto.BuildingBase c = CommonBuildingCache.me().get(String.valueOf(p.getCommonBuildingId())).getBuildingBaseBean();
+            Proto.BuildingBase c = null;
+            CommonBuildingContext commonBuildingContext = CommonBuildingCache.me().get(String.valueOf(p.getCommonBuildingId()));
+            if(commonBuildingContext != null) {
+                c = commonBuildingContext.getBuildingBaseBean();
+            }
             if(c == null) continue;
-            ABuilding building = MappingUtils.mapBuilding(c, p);
-            buildingList.add(building);
+            Proto.Building.Builder buildingProto = Proto.Building.newBuilder();
+            if(c.getType().equals(ConstUtils.TYPE_ITEM.PLANTING_LAND.getValue())) {
+                Proto.PlantingLandBuilding.Builder plantingLandProto = Proto.PlantingLandBuilding.newBuilder();
+                plantingLandProto.setBase(c);
+                plantingLandProto.setPropertyBuilding(p);
+                Proto.TillLands.Builder tillLandProtos = Proto.TillLands.newBuilder();
+                List<Proto.TillLand> tillLands = TillLandDAO.getListTillLandByPlantingLandId(plantingLandProto.getPropertyBuilding().getId());
+                tillLands.forEach(tillLand -> tillLandProtos.addTillLand(tillLand));
+                plantingLandProto.setTillLands(tillLandProtos);
+                buildingProto.setPlantingLandBuilding(plantingLandProto);
+            }else{
+                Proto.FarmBuilding.Builder farmBuildingProto = Proto.FarmBuilding.newBuilder();
+                farmBuildingProto.setBase(c);
+                farmBuildingProto.setPropertyBuilding(p);
+                buildingProto.setFarmBuilding(farmBuildingProto);
+            }
+            buildingProtos.addBuilding(buildingProto);
         }
-
-        userItems.addAll(buildingList);
-        return userItems;
+        return buildingProtos.build();
     }
 
     private void addListBaseBuildingToCache(List<Proto.BuildingBase> baseItems){

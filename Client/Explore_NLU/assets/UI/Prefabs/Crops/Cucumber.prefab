@@ -97,8 +97,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 0.5,
-      "y": 0.5,
+      "x": 0.7,
+      "y": 0.7,
       "z": 1
     },
     "_mobility": 0,
@@ -154,9 +154,9 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 182,
-      "g": 250,
-      "b": 155,
+      "r": 34,
+      "g": 253,
+      "b": 60,
       "a": 255
     },
     "_spriteFrame": {
