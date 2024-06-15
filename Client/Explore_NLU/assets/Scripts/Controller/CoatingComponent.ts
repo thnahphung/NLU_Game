@@ -81,6 +81,9 @@ export class CoatingComponent extends Component {
         case "SEED":
           GlobalData.me().setSowStatus(false);
           break;
+        case "HARVEST":
+          GlobalData.me().setHarvestStatus(false);
+          break;
       }
     });
   }

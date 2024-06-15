@@ -109,6 +109,7 @@ export enum COATING {
   TILL = "TILL",
   SEED = "SEED",
   FEED = "FEED",
+  HARVEST = "HARVEST",
 }
 
 export enum SEED_BAG {
