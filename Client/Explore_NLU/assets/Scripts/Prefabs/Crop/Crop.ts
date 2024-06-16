@@ -14,14 +14,11 @@ export class Crop extends Component {
     // Thời gian đã trôi qua
     private elapsedTime:number = 0;
     // Thời gian (giây) cho mỗi giai đoạn phát triển
-    // private seedTime:number = 5;
-    // private sproutTime:number = 8;
-    // private smallTreeTime:number = 8;
+    private seedTime:number = 4;
+    private sproutTime:number = 5;
+    private smallTreeTime:number = 5;
     private isHarvested:boolean = false;
     private effectHarvestTime: number = 0;
-    private seedTime:number = 1;
-    private sproutTime:number = 1;
-    private smallTreeTime:number = 1;
     @property(SpriteFrame)
     public seedSprite: SpriteFrame
     @property(SpriteFrame)
