@@ -97,10 +97,11 @@ export class GameFarmManager extends AbsScene {
 
      private parseCSV(csvText: string): void {
         const lines = csvText.split('\n');
-        lines.shift(); // Bỏ qua dòng đầu tiên (header)
+        lines.shift();
 
         for (let line of lines) {
-            if (!line.trim()) continue; // Bỏ qua dòng trống
+            if (!line.trim()) continue;
+            const building = new proto.Building();
             const values = line.split(',');
 
             const name = values[0];
@@ -129,12 +130,25 @@ export class GameFarmManager extends AbsScene {
             propertyBuilding.positionY = positionY;
             propertyBuilding.commonBuildingId = buildingId;
 
-            const farmBuilding = new proto.FarmBuilding();
-            farmBuilding.base = base;
-            farmBuilding.propertyBuilding = propertyBuilding;
+            if(type === 'PLANTING_LAND') {
+                const plantingLandBuilding = new proto.PlantingLandBuilding();
+                plantingLandBuilding.base = base;
+                plantingLandBuilding.propertyBuilding = propertyBuilding;
 
-            const building = new proto.Building();
-            building.farmBuilding = farmBuilding;
+                const tillLands = new proto.TillLands();
+                for (let i = 0; i < 30; i++) {
+                    const tillLand = new proto.TillLand();
+                    tillLand.statusTilled = false;
+                    tillLands.tillLand.push(tillLand);
+                }
+                plantingLandBuilding.tillLands = tillLands;
+                building.plantingLandBuilding = plantingLandBuilding;
+            }else{
+                const farmBuilding = new proto.FarmBuilding();
+                farmBuilding.base = base;
+                farmBuilding.propertyBuilding = propertyBuilding;
+                building.farmBuilding = farmBuilding;
+            }
             this.buildingProtos.push(building);
         }
     }
