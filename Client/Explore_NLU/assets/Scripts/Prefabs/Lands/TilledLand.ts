@@ -2,6 +2,7 @@ import { _decorator, BlockInputEvents, Collider2D, Component, Contact2DType, Eve
 import GlobalData from '../../Utils/GlobalData';
 import { CoatingComponent } from '../../Controller/CoatingComponent';
 import { COATING, SEED_BAG } from '../../Utils/Const';
+import { Crop } from '../Crop/Crop';
 const { ccclass, property } = _decorator;
 
 @ccclass('TilledLand')
@@ -72,9 +73,11 @@ export class TilledLand extends Component {
             break;
         }
         let plantingLand = this.node.getParent().getParent();
+        this.seedNode.getComponent(Crop).plantingLand = plantingLand;
         this.seedNode.setPosition(this.node.position.x + plantingLand.position.x, this.node.position.y + plantingLand.position.y - 5, 0);
         this.getMidLayer()?.addChild(this.seedNode);
         this.node.off(Node.EventType.TOUCH_END, this.handleTouchTilledLand, this);
+        this.node.getComponent(Collider2D).enabled = false;
     }
 
     public handleTillLand(): void {

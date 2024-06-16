@@ -1,17 +1,23 @@
-import { _decorator, Component, Node, Sprite, SpriteFrame } from 'cc';
+import { _decorator, BoxCollider2D, Collider2D, Component, Contact2DType, find, Node, RigidBody2D, Sprite, SpriteFrame } from 'cc';
+import GlobalData from '../../Utils/GlobalData';
+import { CoatingComponent } from '../../Controller/CoatingComponent';
+import { COATING } from '../../Utils/Const';
 const { ccclass, property } = _decorator;
 
 @ccclass('Crop')
 export class Crop extends Component {
+    public plantingLand: Node = null;
     // Giai đoạn phát triển hiện tại
     private currentStage:number = 0;
     // Thời gian đã trôi qua
     private elapsedTime:number = 0;
     // Thời gian (giây) cho mỗi giai đoạn phát triển
-    private seedTime:number = 5;
-    private sproutTime:number = 8;
-    private smallTreeTime:number = 8;
-
+    // private seedTime:number = 5;
+    // private sproutTime:number = 8;
+    // private smallTreeTime:number = 8;
+    private seedTime:number = 1;
+    private sproutTime:number = 1;
+    private smallTreeTime:number = 1;
     @property(SpriteFrame)
     public seedSprite: SpriteFrame
     @property(SpriteFrame)
@@ -22,8 +28,47 @@ export class Crop extends Component {
     public bigTreeSprite: SpriteFrame
 
     protected onLoad(): void {
-        // Đặt sprite ban đầu là hạt giống
         this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame = this.seedSprite;
+    }
+
+    protected start(): void {
+        // Đặt sprite ban đầu là hạt giống
+        this.node.on(Node.EventType.TOUCH_END, this.handleTouchCrop, this);
+    }
+
+    private handleTouchCrop(): void {
+        let spriteStatus = this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame.name
+        console.log("Touch Crop", spriteStatus);
+        if(spriteStatus == "rice-level4-v1"){
+            this.showMenuTool();
+        }else{
+            return;
+        }
+    }
+    private showMenuTool(): void {
+        if(GlobalData.me().getHarvestStatus()){
+            return;
+        }
+        GlobalData.me().setHarvestStatus(true);
+        var menuSeedNode = this.getMenuToolNode();
+        menuSeedNode.setPosition(this.plantingLand.getPosition().x, this.plantingLand.getPosition().y + 145, 0);
+        menuSeedNode.active = true;
+        CoatingComponent.me().setCoating(COATING.HARVEST, this.plantingLand.parent, menuSeedNode);
+        CoatingComponent.me().showCoating(COATING.HARVEST);
+        CoatingComponent.me().autoOff(COATING.HARVEST);
+    }
+
+    private getMenuToolNode(): Node {
+        return find('Canvas/PopupGameLayer/MenuToolPanel');
+    }
+
+    private onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D) {
+        if(otherCollider.node.name === "Sickle"){
+            this.node.getComponent(Collider2D).enabled = false;
+            this.node.destroy();
+        }else{
+            return;
+        }
     }
 
     update(deltaTime: number) {
@@ -32,15 +77,23 @@ export class Crop extends Component {
         if (this.currentStage === 0 && this.elapsedTime >= this.seedTime) {
             this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame = this.sproutSprite;
             this.currentStage = 1;
-            console.log("Sprout");
         } else if (this.currentStage === 1 && this.elapsedTime >= this.seedTime + this.sproutTime) {
             this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame = this.smallTreeSprite;
             this.currentStage = 2;
-            console.log("Small Tree");
         } else if (this.currentStage === 2 && this.elapsedTime >= this.seedTime + this.sproutTime + this.smallTreeTime) {
             this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame = this.bigTreeSprite;
             this.currentStage = 3;
-            console.log("Big Tree");
+            const collider = this.node.getComponent(BoxCollider2D);
+            const rigidBody = this.node.getComponent(RigidBody2D);
+            let collider2D = this.node.getComponent(Collider2D);
+            if(collider && rigidBody && collider2D){
+                collider.enabled = true;
+                rigidBody.enabled = true;
+                if(collider2D){
+                    collider2D.enabled = true;
+                    collider2D.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this)
+                }
+            }
         }
     }
 }
