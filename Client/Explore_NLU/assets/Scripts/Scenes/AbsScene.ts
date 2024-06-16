@@ -10,8 +10,8 @@ export default class AbsScene extends Component {
   @property(Node) private playerLayer: Node = null;
 
   protected onLoad(): void {
-    GlobalData.me().setMobileDevice(true);
     if (sys.isMobile === true || sys.isNative === true) {
+      GlobalData.me().setMobileDevice(true);
       screen.requestFullScreen();
     }
   }
