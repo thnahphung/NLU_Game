@@ -23,12 +23,12 @@ export class SeedBag extends AbsTool {
 
     handleOnTouchEnd(event: EventTouch): void {
         super.handleOnTouchEnd(event)
-        //this.handleStopSow();
+        this.handleStopSow();
     }
 
     handleOnTouchCancel(event: EventTouch): void {
         super.handleOnTouchCancel(event)
-        //this.handleStopSow();
+        this.handleStopSow();
     }
 
     handleStopSow(): void{
