@@ -9,7 +9,7 @@ const { ccclass, property } = _decorator;
 export class TilledLand extends Component {
     public tillLandProto : proto.ITillLand = null;
     private seedNode: Node = null;
-    private isSown = false;
+    public isSown = false;
     @property(Prefab)
     private ricePrefab: Prefab = null;
     @property(Prefab)
@@ -74,10 +74,11 @@ export class TilledLand extends Component {
         }
         let plantingLand = this.node.getParent().getParent();
         this.seedNode.getComponent(Crop).plantingLand = plantingLand;
+        this.seedNode.getComponent(Crop).tileLand = this.node;
         this.seedNode.setPosition(this.node.position.x + plantingLand.position.x, this.node.position.y + plantingLand.position.y - 5, 0);
         this.getMidLayer()?.addChild(this.seedNode);
-        this.node.off(Node.EventType.TOUCH_END, this.handleTouchTilledLand, this);
-        this.node.getComponent(Collider2D).enabled = false;
+        //this.node.off(Node.EventType.TOUCH_END, this.handleTouchTilledLand, this);
+        //this.node.getComponent(Collider2D).enabled = false;
     }
 
     public handleTillLand(): void {

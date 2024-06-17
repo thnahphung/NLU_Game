@@ -1,5 +1,8 @@
 import { _decorator, Component, EventMouse, EventTouch, Node } from 'cc';
 import AbsTool from './AbsTool';
+import GlobalData from '../../Utils/GlobalData';
+import { CoatingComponent } from '../../Controller/CoatingComponent';
+import { COATING } from '../../Utils/Const';
 const { ccclass, property } = _decorator;
 
 @ccclass('Sickle')
@@ -30,10 +33,21 @@ export class Sickle extends AbsTool {
 
     handleOnTouchEnd(event: EventTouch): void {
         super.handleOnTouchEnd(event)
+        this.handleCheckHarvest();
     }
 
     handleOnTouchCancel(event: EventTouch): void {
         super.handleOnTouchCancel(event)
+        this.handleCheckHarvest();
+    }
+
+    private handleCheckHarvest(): void {
+        GlobalData.me().setHarvestedStatus(false);
+        if(GlobalData.me().getHarvestedStatus()){
+            CoatingComponent.me().off(COATING.HARVEST);
+            return;
+        }
+        GlobalData.me().setHarvestedStatus(false);
     }
 }
 

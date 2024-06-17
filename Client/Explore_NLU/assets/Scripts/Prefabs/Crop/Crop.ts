@@ -1,23 +1,24 @@
-import { _decorator, BoxCollider2D, Collider2D, Component, Contact2DType, find, Node, RigidBody2D, Sprite, SpriteFrame } from 'cc';
+import { _decorator, BoxCollider2D, Collider2D, Component, Contact2DType, find, Node, RigidBody2D, Sprite, SpriteFrame, tween, Vec3 } from 'cc';
 import GlobalData from '../../Utils/GlobalData';
 import { CoatingComponent } from '../../Controller/CoatingComponent';
 import { COATING } from '../../Utils/Const';
+import { TilledLand } from '../Lands/TilledLand';
 const { ccclass, property } = _decorator;
 
 @ccclass('Crop')
 export class Crop extends Component {
     public plantingLand: Node = null;
+    public tileLand: Node = null;
     // Giai đoạn phát triển hiện tại
     private currentStage:number = 0;
     // Thời gian đã trôi qua
     private elapsedTime:number = 0;
     // Thời gian (giây) cho mỗi giai đoạn phát triển
-    // private seedTime:number = 5;
-    // private sproutTime:number = 8;
-    // private smallTreeTime:number = 8;
-    private seedTime:number = 1;
-    private sproutTime:number = 1;
-    private smallTreeTime:number = 1;
+    private seedTime:number = 4;
+    private sproutTime:number = 5;
+    private smallTreeTime:number = 5;
+    private isHarvested:boolean = false;
+    private effectHarvestTime: number = 0;
     @property(SpriteFrame)
     public seedSprite: SpriteFrame
     @property(SpriteFrame)
@@ -26,7 +27,8 @@ export class Crop extends Component {
     public smallTreeSprite: SpriteFrame
     @property(SpriteFrame)
     public bigTreeSprite: SpriteFrame
-
+    @property(SpriteFrame)
+    public harvestSprite: SpriteFrame
     protected onLoad(): void {
         this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame = this.seedSprite;
     }
@@ -38,8 +40,7 @@ export class Crop extends Component {
 
     private handleTouchCrop(): void {
         let spriteStatus = this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame.name
-        console.log("Touch Crop", spriteStatus);
-        if(spriteStatus == "rice-level4-v1"){
+        if(spriteStatus == "rice-level4-v1" || spriteStatus == "cabbage-level4-v1" || spriteStatus == "carrot-level4-v1" || spriteStatus == "cucumber-level4-v1"  || spriteStatus == "pumpkin-level4-v1"){
             this.showMenuTool();
         }else{
             return;
@@ -64,11 +65,27 @@ export class Crop extends Component {
 
     private onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D) {
         if(otherCollider.node.name === "Sickle"){
-            this.node.getComponent(Collider2D).enabled = false;
-            this.node.destroy();
+            this.handleHarvest();
         }else{
             return;
         }
+    }
+
+    private handleHarvest(): void {
+        this.node.off(Node.EventType.TOUCH_END, this.handleTouchCrop, this);
+        this.node.getComponent(Collider2D).enabled = false;
+        this.node.scale = new Vec3(0, 0, 0);
+        this.node.setPosition(this.node.getPosition().x, this.node.getPosition().y + 10, 0);
+        this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame = this.harvestSprite;
+        this.tileLand.getComponent(TilledLand).isSown = false;
+        this.isHarvested = true;
+        GlobalData.me().setHarvestedStatus(false);
+        tween(this.node)
+        .call(() => {
+            this.node.active = true;
+        })
+        .to(0.5, { scale: new Vec3(1, 1, 1) }, { easing: "backOut" })
+        .start();
     }
 
     update(deltaTime: number) {
@@ -93,6 +110,12 @@ export class Crop extends Component {
                     collider2D.enabled = true;
                     collider2D.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this)
                 }
+            }
+        }
+        if(this.isHarvested){
+            this.effectHarvestTime += deltaTime;
+            if(this.effectHarvestTime >= 1){
+                this.node.destroy();
             }
         }
     }
