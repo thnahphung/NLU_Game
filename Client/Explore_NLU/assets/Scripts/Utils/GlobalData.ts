@@ -22,6 +22,7 @@ export default class GlobalData {
   private isSow: boolean = false;
   private isSown: boolean = false;
   private isHarvest: boolean = false;
+  private isHarvested: boolean = false;
   /* END AGRI */
 
   /*MAIN USER */
@@ -204,6 +205,14 @@ export default class GlobalData {
 
   public getHarvestStatus() {
     return this.isHarvest;
+  }
+
+  public setHarvestedStatus(isHarvested: boolean) {
+    this.isHarvested = isHarvested;
+  }
+
+  public getHarvestedStatus() {
+    return this.isHarvested;
   }
   /* END Agricultural engineer */
 
