@@ -2,14 +2,11 @@ package vn.edu.nlu.fit.nlugame.layer1;
 
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer2.dao.CharacterDAO;
-import vn.edu.nlu.fit.nlugame.layer2.dao.PlayerDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.UserDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.CharacterBean;
-import vn.edu.nlu.fit.nlugame.layer2.dao.bean.PlayerBean;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.UserBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
-import vn.edu.nlu.fit.nlugame.layer2.redis.cache.PlayerCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.SessionCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.UserCache;
 

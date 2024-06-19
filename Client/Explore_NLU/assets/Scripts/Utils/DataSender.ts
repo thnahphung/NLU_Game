@@ -1,5 +1,6 @@
 import { Component } from "cc";
 import { WS } from "../Socket/WS";
+import { CHARACTER_STATE } from "./Const";
 
 export default class DataSender {
   public static sendReqSignIn(username: string, pass: string) {
@@ -56,13 +57,19 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqMoving(areaId: number, x: number, y: number) {
+  public static sendReqMoving(
+    areaId: number,
+    x: number,
+    y: number,
+    currentState: CHARACTER_STATE | string
+  ) {
     let reqMoving = new proto.ReqMoving();
     let position = new proto.Position();
     position.x = x;
     position.y = y;
     reqMoving.areaId = areaId;
     reqMoving.position = position;
+    reqMoving.currentState = currentState;
     let packet = new proto.Packet();
     packet.reqMoving = reqMoving;
     WS.send(packet);
@@ -83,7 +90,14 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqBuyBuilding(uuid: string,type: string, positionX: number, positionY: number, currentLevel: number, areaId: number){
+  public static sendReqBuyBuilding(
+    uuid: string,
+    type: string,
+    positionX: number,
+    positionY: number,
+    currentLevel: number,
+    areaId: number
+  ) {
     let reqBuyBuilding = new proto.ReqBuyBuilding();
     reqBuyBuilding.uuid = uuid;
     reqBuyBuilding.typeBuilding = type;

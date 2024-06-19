@@ -532,133 +532,6 @@ export namespace proto {
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
 
-    /** Properties of a Player. */
-    interface IPlayer {
-
-        /** Player playerId */
-        playerId?: (number|null);
-
-        /** Player playerName */
-        playerName?: (string|null);
-
-        /** Player characterId */
-        characterId?: (number|null);
-
-        /** Player level */
-        level?: (number|null);
-
-        /** Player userId */
-        userId?: (number|null);
-
-        /** Player areaId */
-        areaId?: (number|null);
-    }
-
-    /** Represents a Player. */
-    class Player implements IPlayer {
-
-        /**
-         * Constructs a new Player.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: proto.IPlayer);
-
-        /** Player playerId. */
-        public playerId: number;
-
-        /** Player playerName. */
-        public playerName: string;
-
-        /** Player characterId. */
-        public characterId: number;
-
-        /** Player level. */
-        public level: number;
-
-        /** Player userId. */
-        public userId: number;
-
-        /** Player areaId. */
-        public areaId: number;
-
-        /**
-         * Creates a new Player instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns Player instance
-         */
-        public static create(properties?: proto.IPlayer): proto.Player;
-
-        /**
-         * Encodes the specified Player message. Does not implicitly {@link proto.Player.verify|verify} messages.
-         * @param message Player message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: proto.IPlayer, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified Player message, length delimited. Does not implicitly {@link proto.Player.verify|verify} messages.
-         * @param message Player message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: proto.IPlayer, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a Player message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns Player
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.Player;
-
-        /**
-         * Decodes a Player message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns Player
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.Player;
-
-        /**
-         * Verifies a Player message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a Player message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns Player
-         */
-        public static fromObject(object: { [k: string]: any }): proto.Player;
-
-        /**
-         * Creates a plain object from a Player message. Also converts values to other types if specified.
-         * @param message Player
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: proto.Player, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this Player to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for Player
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
     /** Properties of a Character. */
     interface ICharacter {
 
@@ -780,9 +653,6 @@ export namespace proto {
         /** Area areaId */
         areaId?: (number|null);
 
-        /** Area playerId */
-        playerId?: (number|null);
-
         /** Area typeArea */
         typeArea?: (string|null);
 
@@ -804,9 +674,6 @@ export namespace proto {
 
         /** Area areaId. */
         public areaId: number;
-
-        /** Area playerId. */
-        public playerId: number;
 
         /** Area typeArea. */
         public typeArea: string;
@@ -1215,9 +1082,6 @@ export namespace proto {
 
         /** ResLogin user */
         user?: (proto.IUser|null);
-
-        /** ResLogin player */
-        player?: (proto.IPlayer|null);
     }
 
     /** Represents a ResLogin. */
@@ -1237,9 +1101,6 @@ export namespace proto {
 
         /** ResLogin user. */
         public user?: (proto.IUser|null);
-
-        /** ResLogin player. */
-        public player?: (proto.IPlayer|null);
 
         /**
          * Creates a new ResLogin instance using the specified properties.
@@ -2619,9 +2480,6 @@ export namespace proto {
         /** ResPlayerJoinAreaCommon area */
         area?: (proto.IArea|null);
 
-        /** ResPlayerJoinAreaCommon players */
-        players?: (proto.IPlayer[]|null);
-
         /** ResPlayerJoinAreaCommon users */
         users?: (proto.IUser[]|null);
 
@@ -2649,9 +2507,6 @@ export namespace proto {
 
         /** ResPlayerJoinAreaCommon area. */
         public area?: (proto.IArea|null);
-
-        /** ResPlayerJoinAreaCommon players. */
-        public players: proto.IPlayer[];
 
         /** ResPlayerJoinAreaCommon users. */
         public users: proto.IUser[];
@@ -2846,9 +2701,6 @@ export namespace proto {
         /** ResPlayerJoinArea area */
         area?: (proto.IArea|null);
 
-        /** ResPlayerJoinArea players */
-        players?: (proto.IPlayer[]|null);
-
         /** ResPlayerJoinArea users */
         users?: (proto.IUser[]|null);
 
@@ -2870,9 +2722,6 @@ export namespace proto {
 
         /** ResPlayerJoinArea area. */
         public area?: (proto.IArea|null);
-
-        /** ResPlayerJoinArea players. */
-        public players: proto.IPlayer[];
 
         /** ResPlayerJoinArea users. */
         public users: proto.IUser[];
@@ -2964,9 +2813,6 @@ export namespace proto {
     /** Properties of a ResOtherPlayerJoinArea. */
     interface IResOtherPlayerJoinArea {
 
-        /** ResOtherPlayerJoinArea player */
-        player?: (proto.IPlayer|null);
-
         /** ResOtherPlayerJoinArea user */
         user?: (proto.IUser|null);
 
@@ -2982,9 +2828,6 @@ export namespace proto {
          * @param [properties] Properties to set
          */
         constructor(properties?: proto.IResOtherPlayerJoinArea);
-
-        /** ResOtherPlayerJoinArea player. */
-        public player?: (proto.IPlayer|null);
 
         /** ResOtherPlayerJoinArea user. */
         public user?: (proto.IUser|null);
@@ -3175,6 +3018,9 @@ export namespace proto {
 
         /** ReqMoving position */
         position?: (proto.IPosition|null);
+
+        /** ReqMoving currentState */
+        currentState?: (string|null);
     }
 
     /** Represents a ReqMoving. */
@@ -3191,6 +3037,9 @@ export namespace proto {
 
         /** ReqMoving position. */
         public position?: (proto.IPosition|null);
+
+        /** ReqMoving currentState. */
+        public currentState: string;
 
         /**
          * Creates a new ReqMoving instance using the specified properties.
@@ -3276,11 +3125,11 @@ export namespace proto {
         /** ResMoving userId */
         userId?: (number|null);
 
-        /** ResMoving playerId */
-        playerId?: (number|null);
-
         /** ResMoving position */
         position?: (proto.IPosition|null);
+
+        /** ResMoving currentState */
+        currentState?: (string|null);
     }
 
     /** Represents a ResMoving. */
@@ -3295,11 +3144,11 @@ export namespace proto {
         /** ResMoving userId. */
         public userId: number;
 
-        /** ResMoving playerId. */
-        public playerId: number;
-
         /** ResMoving position. */
         public position?: (proto.IPosition|null);
+
+        /** ResMoving currentState. */
+        public currentState: string;
 
         /**
          * Creates a new ResMoving instance using the specified properties.
