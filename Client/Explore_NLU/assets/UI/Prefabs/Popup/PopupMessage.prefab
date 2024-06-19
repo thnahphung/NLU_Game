@@ -2104,8 +2104,8 @@
       "__id__": 1
     },
     "component": "",
-    "_componentId": "fb10eDBNWJMNob7bPpUcjmw",
-    "handler": "hide",
+    "_componentId": "ce6a5PMYjxGH51Za19hukVw",
+    "handler": "onClosePopup",
     "customEventData": ""
   },
   {

@@ -5015,7 +5015,6 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "playerLayer": null,
     "usernameRegister": {
       "__id__": 59
     },
@@ -7456,7 +7455,6 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "playerLayer": null,
     "usernameLogin": {
       "__id__": 159
     },
@@ -7537,7 +7535,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 465.8757197696737,
+    "_orthoHeight": 335.70198675496687,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -7786,7 +7784,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 465.8757197696737,
+    "_orthoHeight": 335.70198675496687,
     "_near": 0,
     "_far": 1000,
     "_color": {

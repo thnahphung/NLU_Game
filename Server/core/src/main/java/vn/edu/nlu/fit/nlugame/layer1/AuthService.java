@@ -166,9 +166,9 @@ public class AuthService {
     }
 
     private void sendResponse(Session session, Proto.Packet packet) {
+        System.out.println("send: " + packet.toString());
         Proto.PacketWrapper packets = Proto.PacketWrapper.newBuilder().addPacket(packet).build();
         if (session != null && session.isOpen())
             session.getAsyncRemote().sendObject(packets);
     }
-
 }

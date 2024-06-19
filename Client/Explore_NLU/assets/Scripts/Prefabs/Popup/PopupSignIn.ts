@@ -1,11 +1,11 @@
-import { _decorator, EditBox, find, instantiate, Prefab } from 'cc';
-import AbsScene from '../../Scenes/AbsScene';
+import { _decorator, Component, EditBox, find, Prefab } from 'cc';
 import DataSender from '../../Utils/DataSender';
-import { PopupManager } from '../../Manager/PopupManager';
+import { UICanvas } from '../MainUI/UICanvas';
+import { POPUP_MESSAGE } from '../../Utils/Const';
 const { ccclass, property } = _decorator;
 
 @ccclass('PopupSignIn')
-export class PopupSignIn extends AbsScene {
+export class PopupSignIn extends Component {
     // Khai bao login
     @property(EditBox)
     public usernameLogin: EditBox = null!;
@@ -23,7 +23,7 @@ export class PopupSignIn extends AbsScene {
     onClickLoginReq(){
         //Check không để trống username hoặc password
         if(this.usernameLogin.string === '' || this.passwordLogin.string === ''){
-           PopupManager.me().showPopupMessage("Tên đăng nhập hoặc mật khẩu không thể trống!");
+           UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_401);
            return;
         }
        //Xử lý khi click login
