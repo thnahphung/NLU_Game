@@ -39,6 +39,7 @@ export const languages = {
     btn_mail: "Mail",
     btn_event: "Event",
     btn_quest: "Quest",
+    btn_friend: "Friend",
     //UI Animal
     animal_type: "Type:",
     animal_age: "Age:",
