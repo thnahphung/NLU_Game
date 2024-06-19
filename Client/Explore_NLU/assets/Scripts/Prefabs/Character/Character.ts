@@ -22,7 +22,7 @@ export class Character extends Component {
   @property private speed: number = 500;
   @property private isMainPlayer: boolean = false;
 
-  private currentState: CHARACTER_STATE = CHARACTER_STATE.IDLE_DOWN;
+  private currentState: CHARACTER_STATE | string = CHARACTER_STATE.IDLE_DOWN;
 
   private animation: Animation;
   private rigidBody: RigidBody2D;
@@ -72,7 +72,7 @@ export class Character extends Component {
     );
   }
 
-  public setCurrentState(newState: CHARACTER_STATE) {
+  public setCurrentState(newState: CHARACTER_STATE | string) {
     this.currentState = newState;
   }
   public getCurrentState() {

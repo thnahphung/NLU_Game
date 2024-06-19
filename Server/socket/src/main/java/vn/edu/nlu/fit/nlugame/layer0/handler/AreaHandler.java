@@ -32,7 +32,7 @@ public class AreaHandler implements Subscriber {
 
     @Override
     public void onClose(Session session, CloseReason closeReason) {
-        areaService.leaveRoom(session);
+        areaService.leaveArea(session);
     }
 
     @Override

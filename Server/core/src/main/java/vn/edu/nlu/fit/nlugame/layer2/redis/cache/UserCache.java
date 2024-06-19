@@ -13,7 +13,7 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class UserCache extends RedisClusterHelper implements ICache<UserContext, String> {
+public class UserCache extends RedisClusterHelper implements ICache<UserContext> {
     private static final UserCache instance = new UserCache();
     private static final String USER_KEY = "users";
     private static final Cache<String, UserContext> userLoginMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.MINUTES).build();

@@ -5,16 +5,17 @@ import com.github.benmanes.caffeine.cache.Caffeine;
 import vn.edu.nlu.fit.nlugame.layer2.CompressUtils;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.RedisClusterHelper;
+import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area, Integer> {
+public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area> {
     private static final AreaCache instance = new AreaCache();
-    private static final Cache<Integer, Proto.Area> areaMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.MINUTES).build();
-    private static final Cache<Integer, Proto.Area> areaPlayersMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.MINUTES).build();
+    private static final Cache<String, Proto.Area> areaMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.MINUTES).build();
+    private static final Cache<String, Proto.Area> areaPlayersMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.MINUTES).build();
     private static final String PLAYERS_AREA_KEY = "area:";
     private static final String AREA_KEY = "areas";
 
@@ -26,7 +27,7 @@ public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area, 
     }
 
     @Override
-    public boolean add(Integer key, Proto.Area value) {
+    public boolean add(String key, Proto.Area value) {
         areaMap.put(key, value);
         return true;
     }
@@ -37,7 +38,15 @@ public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area, 
     }
 
     @Override
-    public Proto.Area get(Integer key) {
+    public Proto.Area get(String key) {
+//        UserContext userContext = areaMap.getIfPresent(key);
+//        if(userContext == null) {
+//            userContext = getUserContextOnline(Integer.parseInt(key));
+//            if(userContext != null) {
+//                userLoginMap.put(key, userContext);
+//            }
+//        }
+//        return userContext;
         return null;
     }
 
@@ -47,17 +56,17 @@ public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area, 
     }
 
     @Override
-    public Set<Integer> getKeys() {
+    public Set<String> getKeys() {
         return null;
     }
 
     @Override
-    public Proto.Area remove(Integer key) {
+    public Proto.Area remove(String key) {
         return null;
     }
 
     @Override
-    public boolean containsKey(Integer key) {
+    public boolean containsKey(String key) {
         return false;
     }
 
@@ -67,7 +76,7 @@ public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area, 
     }
 
     @Override
-    public Integer getKey(Proto.Area value) {
+    public String getKey(Proto.Area value) {
         return null;
     }
 
