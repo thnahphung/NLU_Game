@@ -83,7 +83,14 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqBuyBuilding(uuid: string,type: string, positionX: number, positionY: number, currentLevel: number, areaId: number){
+  public static sendReqBuyBuilding(
+    uuid: string,
+    type: string,
+    positionX: number,
+    positionY: number,
+    currentLevel: number,
+    areaId: number
+  ) {
     let reqBuyBuilding = new proto.ReqBuyBuilding();
     reqBuyBuilding.uuid = uuid;
     reqBuyBuilding.typeBuilding = type;
