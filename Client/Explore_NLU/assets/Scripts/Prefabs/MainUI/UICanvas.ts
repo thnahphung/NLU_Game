@@ -61,6 +61,7 @@ export class UICanvas extends Component {
 
   showPopupMessage(message: string) {
     this._popupMessage = instantiate(this.prefabPopupMessage);
+    this._popupMessage.setPosition(-100, 120);
     this._popupMessage.getComponent(PopupMessage).setMessage(message);
     this.node.getChildByName("PopupLayer").addChild(this._popupMessage);
     this._popupMessage.getComponent(PopupComponent).show();

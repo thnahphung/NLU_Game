@@ -61,10 +61,10 @@ export class ResponseHandler extends AbsHandler {
       packet.resPlayerJoinArea.area.typeArea
     );
     // const protoPos = Util.convertCocosPosToProtoPos(position);
-    GlobalData.me().setMainPlayerPosition(position);
+    GlobalData.me().setMainUserPosition(position);
 
-    if (GlobalData.me().getMainPlayerNode() != null) {
-      GlobalData.me().getMainPlayerNode().destroy();
+    if (GlobalData.me().getMainUserNode() != null) {
+      GlobalData.me().getMainUserNode().destroy();
     }
     GlobalData.me().setArea(packet.resPlayerJoinArea.area);
     const otherUser = packet.resPlayerJoinArea.users.filter(
@@ -77,12 +77,10 @@ export class ResponseHandler extends AbsHandler {
   }
 
   onMovingHandler(packet: proto.IPacket) {
-    const playerNode = GlobalData.me().getOtherUserNode(
-      packet.resMoving.userId
-    );
-    if (playerNode == null || playerNode == undefined) return;
-    if (!playerNode.active) playerNode.active = true;
-    playerNode.setPosition(
+    const userNode = GlobalData.me().getOtherUsersNode(packet.resMoving.userId);
+    if (userNode == null || userNode == undefined) return;
+    if (!userNode.active) userNode.active = true;
+    userNode.setPosition(
       packet.resMoving.position.x,
       packet.resMoving.position.y,
       0
@@ -92,36 +90,28 @@ export class ResponseHandler extends AbsHandler {
   onOtherPlayerJoinAreaHandler(packet: proto.IPacket) {
     const scene = director.getScene();
     const canvas = scene.getChildByName("Canvas");
-    let otherUserNode = PlayerManager.me().createCharacter(
-      CHARACTERS.BSTY,
+    const otherUserNode = PlayerManager.me().createCharacter(
       packet.resOtherPlayerJoinArea.user
     );
-    otherUserNode
-      .getComponent(Character)
-      .setUserProto(packet.resOtherPlayerJoinArea.user);
     otherUserNode.setPosition(
       packet.resOtherPlayerJoinArea.position.x,
       packet.resOtherPlayerJoinArea.position.y,
       0
     );
-    otherUserNode.getComponent(Character).setPlayerName("Other Player");
-    otherUserNode
-      .getComponent(Character)
-      .setUserProto(packet.resOtherPlayerJoinArea.user);
+    otherUserNode.active = false;
     otherUserNode.getComponent(Character).setIsMainPlayer(false);
     GlobalData.me().addOtherUser(packet.resOtherPlayerJoinArea.user);
-    GlobalData.me().addOtherUserNode(otherUserNode);
+    GlobalData.me().addOtherUsersNode(otherUserNode);
     canvas.getComponent(AbsScene).addPlayerToScene(otherUserNode);
   }
 
   onOtherPlayerLeaveAreaHandler(packet: proto.IPacket) {
-    const playerNode = GlobalData.me().getOtherUserNode(
+    const otherUserNode = GlobalData.me().getOtherUsersNode(
       packet.resOtherPlayerLeaveArea.userId
     );
-    if (playerNode == null || playerNode == undefined) return;
+    if (otherUserNode == null || otherUserNode == undefined) return;
     GlobalData.me().removeOtherUser(packet.resOtherPlayerLeaveArea.userId);
-    GlobalData.me().removeOtherPlayer(packet.resOtherPlayerLeaveArea.userId);
-    GlobalData.me().removeOtherUserNode(packet.resOtherPlayerLeaveArea.userId);
+    GlobalData.me().removeOtherUsersNode(packet.resOtherPlayerLeaveArea.userId);
     // playerNode.destroy();
   }
 }

@@ -12,6 +12,7 @@ import {
 import { CharacterMovement } from "./CharacterMovement";
 import { CharacterAnimation } from "./CharacterAnimation";
 import { CHARACTER_STATE } from "../../Utils/Const";
+import GlobalData from "../../Utils/GlobalData";
 const { ccclass, property } = _decorator;
 
 @ccclass("Character")
@@ -31,6 +32,8 @@ export class Character extends Component {
   private characterMovement: CharacterMovement;
   private characterAnimation: CharacterAnimation;
 
+  private isChangeScene: boolean = false;
+
   protected onLoad(): void {
     this.init();
   }
@@ -46,9 +49,16 @@ export class Character extends Component {
 
   protected start(): void {
     this.playerNameLayer = find("Canvas/PopupGameLayer/PlayerNameLayer");
-    this.labelName.string = "Player";
-    // this.labelName.string = this.userProto.playerName;
+    this.labelName.string = this.userProto.playerName;
     this.labelName.node.parent = this.playerNameLayer;
+
+    if (!this.isChangeScene) {
+      if (GlobalData.me().getPositionCharacter() == null) {
+        return;
+      }
+      this.node.setPosition(GlobalData.me().getPositionCharacter());
+      this.isChangeScene = true;
+    }
   }
 
   protected update(dt: number): void {
@@ -102,5 +112,8 @@ export class Character extends Component {
   }
   public getIsMainPlayer() {
     return this.isMainPlayer;
+  }
+  public getLabelName() {
+    return this.labelName;
   }
 }

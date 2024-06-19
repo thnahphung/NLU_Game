@@ -18,13 +18,12 @@ export class PlayerManager extends Component {
     PlayerManager._instance = this;
   }
 
-  createCharacter(character: CHARACTERS, userProto: proto.IUser): Node {
+  createCharacter(userProto: proto.IUser): Node {
     let characterNode: Node = null;
     this.playerPrefab.forEach((element) => {
-      if (element.name == "Character" + character) {
+      if (element.name == "Character" + userProto.character.code) {
         characterNode = instantiate(element);
         characterNode.getComponent(Character).setUserProto(userProto);
-        console.log("createCharacter", userProto);
       }
     });
     return characterNode;

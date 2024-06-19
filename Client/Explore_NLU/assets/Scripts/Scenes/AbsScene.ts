@@ -29,22 +29,15 @@ export default class AbsScene extends Component {
 
   createMainPlayer() {
     let mainUserNode = PlayerManager.me().createCharacter(
-      CHARACTERS.KSCN,
       GlobalData.me().getMainUser()
     );
     mainUserNode.setPosition(
-      GlobalData.me().getMainPlayerPosition().x,
-      GlobalData.me().getMainPlayerPosition().y
+      GlobalData.me().getMainUserPosition().x,
+      GlobalData.me().getMainUserPosition().y
     );
-
-    mainUserNode
-      .getComponent(Character)
-      .setUserProto(GlobalData.me().getMainUser());
-
-    // mainUserNode.getComponent(Character).setPlayerName("Main Player");
     mainUserNode.getComponent(Character).setIsMainPlayer(true);
     this.playerLayer.addChild(mainUserNode);
-    GlobalData.me().setMainPlayerNode(mainUserNode);
+    GlobalData.me().setMainUserNode(mainUserNode);
   }
 
   addPlayerToScene(player: Node) {
@@ -55,14 +48,10 @@ export default class AbsScene extends Component {
     let users = GlobalData.me().getListOtherUser();
     if (users == null || users.length == 0) return;
     users.forEach((user) => {
-      let otherUserNode = PlayerManager.me().createCharacter(
-        CHARACTERS.BSTY,
-        user
-      );
-      otherUserNode.getComponent(Character).setUserProto(user);
+      let otherUserNode = PlayerManager.me().createCharacter(user);
       otherUserNode.getComponent(Character).setIsMainPlayer(false);
       otherUserNode.active = false;
-      GlobalData.me().addOtherUserNode(otherUserNode);
+      GlobalData.me().addOtherUsersNode(otherUserNode);
       this.playerLayer.addChild(otherUserNode);
     });
   }
