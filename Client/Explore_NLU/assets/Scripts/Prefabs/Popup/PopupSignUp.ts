@@ -1,11 +1,11 @@
-import { _decorator, EditBox, find, Node, Prefab } from 'cc';
-import AbsScene from '../../Scenes/AbsScene';
+import { _decorator, Component, EditBox, find, Prefab } from 'cc';
 import DataSender from '../../Utils/DataSender';
-import { PopupManager } from '../../Manager/PopupManager';
+import { UICanvas } from '../MainUI/UICanvas';
+import { POPUP_MESSAGE } from '../../Utils/Const';
 const { ccclass, property } = _decorator;
 
 @ccclass('PopupSignUp')
-export class PopupSignUp extends AbsScene {
+export class PopupSignUp extends Component {
     // Khai bao register
     @property(EditBox)
     public usernameRegister: EditBox = null!;
@@ -33,25 +33,25 @@ export class PopupSignUp extends AbsScene {
         var rePassword = this.rePasswordRegister.string;
         var email = this.emailRegister.string;
         if(username === '' || password === '' || this.rePasswordRegister.string === ''){
-            PopupManager.me().showPopupMessage("Tên đăng nhập hoặc mật khẩu không được để trống!");
+            UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_401);
             return;
         }
         
         //Check valid username
         if(this.hasSpace(username)){
-            PopupManager.me().showPopupMessage("Tên đăng nhập không được chưa khoảng trắng!");
+            UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_INPUT);
             return;
         }
 
         //Check không trùng khớp mật khẩu
         if(password !== rePassword){
-            PopupManager.me().showPopupMessage("Mật khẩu không trùng khớp!");
+            UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_402);
             return;
         }
 
         //Check verify email
         if(!this.isEmail(email)){
-            PopupManager.me().showPopupMessage("Email không hợp lệ!");
+            UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_EMAIL);
             return;
         }
 

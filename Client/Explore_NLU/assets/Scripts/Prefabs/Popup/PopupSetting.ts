@@ -1,18 +1,20 @@
-import { _decorator, instantiate, Label, Node, Prefab, ProgressBar } from "cc";
-import { TransitionScenePrefab } from "../../Prefabs/TransitionScene/TransitionScenePrefab";
-import AbsScene from "../../Scenes/AbsScene";
+import { _decorator, Label, Node, ProgressBar } from "cc";
 
-import { POPUP_MESSAGE } from "../../Utils/Const";
+import { LOCAL_STORAGE, POPUP_MESSAGE, SCENES } from "../../Utils/Const";
 import DataSender from "../../Utils/DataSender";
 import { init } from "../../../../extensions/i18n/assets/LanguageData";
 import { updateSceneRenderers } from "../../../../extensions/i18n/assets/LanguageData";
 import { t } from "../../../../extensions/i18n/assets/LanguageData";
 import { StorageManager } from "../../Manager/StorageManger";
 import { PopupComponent } from "../../Controller/PopupComponent";
+import GlobalData from "../../Utils/GlobalData";
+import { UICanvas } from "../MainUI/UICanvas";
+import { AbsHandler } from "../../Handler/AbsHandler";
+import { HandlerManager } from "../../Manager/HandlerManager";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupSetting")
-export class PopupSetting extends AbsScene {
+export class PopupSetting extends AbsHandler {
   // Khai bao setting music
   @property(ProgressBar)
   public progressBarMusic: ProgressBar = null;
@@ -24,32 +26,29 @@ export class PopupSetting extends AbsScene {
   public dropdownLanguage: Node = null;
   @property(Label)
   public lableLanguage: Label = null;
-  // Khai bao transitScreen
-  @property(Prefab)
-  public transitScreen: Prefab = null;
-  start() {}
+
   protected onLoad(): void {
     this.lableLanguage.string = t("label_text.setting_language_current");
     this.dropdownLanguage.active = false;
+
+    HandlerManager.me().registerHandler(this);
   }
 
   onMessageHandler(packetWrapper: proto.IPacketWrapper): void {
-    let transitScreen = instantiate(this.transitScreen);
     packetWrapper.packet.forEach((packet) => {
+      console.log("PopupSetting load: ", packet);
       if (packet.resLogout) {
         switch (packet.resLogout.status) {
           case 200:
-            StorageManager.me().deleteItem("USERNAME");
-            StorageManager.me().deleteItem("AUTO_LOGIN");
-            StorageManager.me().deleteItem("TOKEN");
+            StorageManager.me().deleteItem(LOCAL_STORAGE.USERNAME);
+            StorageManager.me().deleteItem(LOCAL_STORAGE.TOKEN);
+            StorageManager.me().saveItem(LOCAL_STORAGE.AUTO_LOGIN, false);
+            GlobalData.me().setMainUser(null);
             //Chuyển scene
-            transitScreen
-              .getComponent(TransitionScenePrefab)
-              .setSceneName("AuthenScene");
-            this.node.addChild(transitScreen);
+            UICanvas.me().transitScene(SCENES.AUTHEN);
             break;
           case 400:
-            confirm(POPUP_MESSAGE.LOGOUT_FAILED_400);
+            UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGOUT_FAILED_400);
             break;
         }
       }
@@ -99,6 +98,10 @@ export class PopupSetting extends AbsScene {
   }
 
   onLogout() {
+    if(GlobalData.me().getMainUser() == null){
+      UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGOUT_FAILED_401);
+      return;
+    }
     DataSender.sendReqLogout();
   }
 }

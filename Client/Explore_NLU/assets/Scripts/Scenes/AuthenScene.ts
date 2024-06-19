@@ -3,9 +3,8 @@ import AbsScene from "./AbsScene";
 import { PopupComponent } from "../Controller/PopupComponent";
 import DataSender from "../Utils/DataSender";
 import { StorageManager } from "../Manager/StorageManger";
-import { PopupManager } from "../Manager/PopupManager";
 import GlobalData from "../Utils/GlobalData";
-import { POPUP_MESSAGE } from "../Utils/Const";
+import { LOCAL_STORAGE, POPUP, POPUP_MESSAGE } from "../Utils/Const";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
 const { ccclass, property } = _decorator;
 
@@ -39,9 +38,9 @@ export class AuthenScene extends AbsScene {
     this.popupLoadingNode = instantiate(this.popupLoading);
     this.popupLoadingNode.active = false;
     this.node.addChild(this.popupLoadingNode);
-    let username = StorageManager.me().getItem("USERNAME");
-    let token = StorageManager.me().getItem("TOKEN");
-    let autoLogin = StorageManager.me().getItem("AUTO_LOGIN");
+    let username = StorageManager.me().getItem(LOCAL_STORAGE.USERNAME);
+    let token = StorageManager.me().getItem(LOCAL_STORAGE.TOKEN);
+    let autoLogin = StorageManager.me().getItem(LOCAL_STORAGE.AUTO_LOGIN);
     if (autoLogin == "true" && username && token) {
       this.popupGeneral.active = false;
       DataSender.sendReqRelogin(username, token);
@@ -54,7 +53,6 @@ export class AuthenScene extends AbsScene {
     super.onMessageHandler(packets);
     packets.packet.forEach((packet) => {
       if (packet.resLogin) {
-        console.debug("resLogin", packet.resLogin);
         this.onLoginMsgHandler(packet.resLogin);
       }
       if (packet.resRegister) {
@@ -65,7 +63,7 @@ export class AuthenScene extends AbsScene {
 
   onLoginMsgHandler(resLogin: proto.IResLogin) {
     if (resLogin.status === 400) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_400);
+      UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_400);
       return;
     }
     if (resLogin.status === 401) {
@@ -74,22 +72,22 @@ export class AuthenScene extends AbsScene {
       return;
     }
     if (resLogin.status === 402) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_402);
+      UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_402);
       return;
     }
     if (resLogin.status === 403) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_403);
+      UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_403);
       return;
     }
     if (resLogin.status === 500) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.SERVER_ERROR);
+      UICanvas.me().showPopupMessage(POPUP_MESSAGE.SERVER_ERROR);
       return;
     }
     if (resLogin.status === 200) {
       //RememberLogin
-      StorageManager.me().saveItem("USERNAME", resLogin.user.username);
-      StorageManager.me().saveItem("AUTO_LOGIN", this.rememberMe.isChecked);
-      StorageManager.me().saveItem("TOKEN", resLogin.token);
+      StorageManager.me().saveItem(LOCAL_STORAGE.USERNAME, resLogin.user.username);
+      StorageManager.me().saveItem(LOCAL_STORAGE.AUTO_LOGIN, this.rememberMe.isChecked);
+      StorageManager.me().saveItem(LOCAL_STORAGE.TOKEN, resLogin.token);
       GlobalData.me().setMainUser(resLogin.user);
       GlobalData.me().setIsUserOffline(false);
     }
@@ -97,17 +95,17 @@ export class AuthenScene extends AbsScene {
 
   onRegisterMsgHandler(resRegister: proto.IResRegister) {
     if (resRegister.status === 400) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_400);
+      UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_400);
     } else if (resRegister.status === 401) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_401);
+      UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_401);
     } else if (resRegister.status === 403) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_403);
+      UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_403);
     } else if (resRegister.status === 402) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_402);
+      UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_402);
     } else if (resRegister.status === 500) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.SERVER_ERROR);
+      UICanvas.me().showPopupMessage(POPUP_MESSAGE.SERVER_ERROR);
     } else if (resRegister.status === 200) {
-      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_SUCCESS_200);
+      UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_SUCCESS_200);
     }
   }
 
@@ -122,14 +120,7 @@ export class AuthenScene extends AbsScene {
   }
 
   onClickSetting() {
-    let setting = instantiate(this.popupSetting);
-    let btnLogout = setting
-      .getChildByName("OtherSetting")
-      .getChildByName("ButtonLogout");
-    btnLogout.destroy();
-    this.node.addChild(setting);
-    // this.popupGeneral.active = false;
-    // this.popupSignIn.active = true;
+    UICanvas.me().showPopup(POPUP.POPUP_SETTING);
   }
 
   onClickBack() {

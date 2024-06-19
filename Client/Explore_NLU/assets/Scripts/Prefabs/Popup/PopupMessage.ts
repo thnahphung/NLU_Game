@@ -1,4 +1,5 @@
 import { _decorator, Component, Label, Node } from "cc";
+import { PopupComponent } from "../../Controller/PopupComponent";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupMessage")
@@ -14,5 +15,11 @@ export class PopupMessage extends Component {
   }
   start() {
     this.LabelMessage.string = this.message;
+  }
+  onClosePopup() {
+    this.node.getComponent(PopupComponent).hide();
+    this.scheduleOnce(() => {
+      this.node.destroy();
+    }, 0.3);
   }
 }

@@ -157,8 +157,6 @@ public class AuthService {
             return;
         }
         UserCache.me().logoutUser(userID);
-        Proto.Player playerRemoved = PlayerCache.me().remove(String.valueOf(userID));
-        PlayerCache.me().removePlayer(userID);
         UserDAO.updateReloginToken(userID, null);
         sendResponse(session, Proto.Packet.newBuilder().setResLogout(Proto.ResLogout.newBuilder().setStatus(200)).build());
     }
@@ -171,9 +169,9 @@ public class AuthService {
     }
 
     private void sendResponse(Session session, Proto.Packet packet) {
+        System.out.println("send: " + packet.toString());
         Proto.PacketWrapper packets = Proto.PacketWrapper.newBuilder().addPacket(packet).build();
         if (session != null && session.isOpen())
             session.getAsyncRemote().sendObject(packets);
     }
-
 }

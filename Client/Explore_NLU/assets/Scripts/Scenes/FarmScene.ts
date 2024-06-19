@@ -45,7 +45,6 @@ export class FarmScene extends AbsScene {
 
   onMessageHandler(packets: proto.IPacketWrapper): void {
     packets.packet.forEach((packet) => {
-        console.log("farm load: ", packet);
       if (packet.resLoadItemsOfFarm) {
         this.onLoadItemsOfFarmMsgHandler(packet.resLoadItemsOfFarm);
       }
@@ -58,11 +57,9 @@ export class FarmScene extends AbsScene {
   onLoadItemsOfFarmMsgHandler(resLoadItemsOfFarm: proto.IResLoadItemsOfFarm): void {
     let plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
     plantingLandPanel.removeAllChildren();
-    console.log("resLoadItemsOfFarm", resLoadItemsOfFarm)
     resLoadItemsOfFarm.buildingItems.building.forEach((building) => {
       this.buildingProtos.push(building);
     });
-    console.log("buildingProtos", this.buildingProtos)
     this.loadBasicItemsToUI();
   }
 
@@ -174,7 +171,7 @@ export class FarmScene extends AbsScene {
   }
 
   private loadBasicItemsToUI(): void {
-    console.log("loadBasicItemsToUI", this.buildingProtos);
+
     const midLayer = find("Canvas/ObjectLayers/MidLayer");
     const plantingLayer = find("Canvas/BackgroundLayers/PlantingPanel");
     if (this.buildingProtos.length === 0 || !this.buildingProtos) {

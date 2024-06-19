@@ -3,6 +3,7 @@ import { Vec3 } from "cc";
 export const POPUP_MESSAGE = {
   LOGIN_SUCCESS_200: `Đăng nhập thành công!`,
   LOGIN_FAILED_400: `Tên đăng nhập hoặc mật khẩu không đúng!`,
+  LOGIN_FAILED_401: `Tên đăng nhập hoặc mật khẩu không thể trống!`,
   LOGIN_FAILED_402: `Tài khoản chưa đã bị khóa!`,
   LOGIN_FAILED_403: `Tài khoản đăng được đăng nhập ở thiết bị khác!`,
   LOGIN_FAILED_500: `Tài khoản đã đăng nhập!`,
@@ -12,7 +13,10 @@ export const POPUP_MESSAGE = {
   REGISTER_FAILED_402: `Mật khẩu không trùng khớp!`,
   REGISTER_FAILED_403: `Email này đã được sử dụng!`,
   REGISTER_FAILED_500: `Lỗi hệ thống, hiện tại không thể đăng ký!`,
+  REGISTER_FAILED_INPUT: `Tên đăng nhập không được chưa khoảng trắng!`,
+  REGISTER_FAILED_EMAIL: `Email không hợp lệ!`,
   LOGOUT_FAILED_400: `Lỗi không thể đăng xuất!`,
+  LOGOUT_FAILED_401: `Chưa đăng nhập tài khoản!`,
   SERVER_ERROR: `Lỗi hệ thống!`,
 };
 
