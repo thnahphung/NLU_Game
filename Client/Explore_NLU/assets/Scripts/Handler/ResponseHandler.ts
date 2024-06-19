@@ -85,6 +85,9 @@ export class ResponseHandler extends AbsHandler {
       packet.resMoving.position.y,
       0
     );
+    userNode
+      .getComponent(Character)
+      .setCurrentState(packet.resMoving.currentState);
   }
 
   onOtherPlayerJoinAreaHandler(packet: proto.IPacket) {
