@@ -21,9 +21,10 @@ export class CameraFollow extends Component {
 
   private canvasWidth: number;
   private canvasHeight: number;
+  private isChangeScene: boolean = false;
 
   protected start(): void {
-    if (this.target == null) this.target = GlobalData.me().getMainPlayerNode();
+    if (this.target == null) this.target = GlobalData.me().getMainUserNode();
     const ratioWindow = screen.windowSize.width / screen.windowSize.height;
     const ratioDesign =
       view.getDesignResolutionSize().width /
@@ -46,6 +47,11 @@ export class CameraFollow extends Component {
       const maxY = (this.backgroundHeight - this.canvasHeight) / 2;
       targetPosition.x = misc.clampf(targetPosition.x, -maxX, maxX);
       targetPosition.y = misc.clampf(targetPosition.y, -maxY, maxY);
+      if (!this.isChangeScene) {
+        this.node.setPosition(new Vec3(targetPosition.x, targetPosition.y, 0));
+        this.isChangeScene = true;
+        return;
+      }
       this.node.position = Vec3.lerp(
         this.node.position,
         this.node.position,

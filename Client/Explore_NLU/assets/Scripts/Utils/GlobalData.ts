@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from "cc";
+import { _decorator, Component, Node, Vec3 } from "cc";
 import { Character } from "../Prefabs/Character/Character";
 const { ccclass, property } = _decorator;
 
@@ -25,20 +25,7 @@ export default class GlobalData {
   private isHarvested: boolean = false;
   /* END AGRI */
 
-  /*MAIN USER */
-  private mainUser: proto.IUser = null;
-  private mainPlayer: proto.IPlayer = null;
-  private mainPlayerNode: Node = null;
-  private mainPlayerPosition: proto.IPosition = null;
-  /*END MAIN USER */
-
-  private area: proto.IArea = null;
-
-  /*OTHER USER */
-  private otherUsers: proto.IUser[] = [];
-  private otherPlayers: proto.IPlayer[] = [];
-  private otherUsersNode: Node[] = [];
-  /*END OTHER USER */
+  private positionCharacter: Vec3 = null;
 
   public setMobileDevice(isMobile: boolean) {
     this.isMobile = isMobile;
@@ -47,7 +34,19 @@ export default class GlobalData {
     return this.isMobile;
   }
 
-  /* USER */
+  public getIsUserOffline() {
+    return this.isUserOffline;
+  }
+
+  public setIsUserOffline(isOffline: boolean) {
+    this.isUserOffline = isOffline;
+  }
+
+  /*===== MAIN USER =====*/
+  private mainUser: proto.IUser = null;
+  private mainUserNode: Node = null;
+  private mainUserPosition: proto.IPosition = null;
+
   public setMainUser(user: proto.IUser) {
     this.mainUser = user;
   }
@@ -55,6 +54,26 @@ export default class GlobalData {
   public getMainUser() {
     return this.mainUser;
   }
+
+  public setMainUserPosition(position: proto.IPosition) {
+    this.mainUserPosition = position;
+  }
+  public getMainUserPosition() {
+    return this.mainUserPosition;
+  }
+
+  public setMainUserNode(userNode: Node) {
+    this.mainUserNode = userNode;
+  }
+
+  public getMainUserNode() {
+    return this.mainUserNode;
+  }
+  /*===== END MAIN USER =====*/
+
+  /*===== OTHER USER =====*/
+  private otherUsers: proto.IUser[] = [];
+  private otherUsersNode: Node[] = [];
 
   public getListOtherUser() {
     return this.otherUsers;
@@ -69,93 +88,30 @@ export default class GlobalData {
   }
 
   public removeOtherUser(userId: number) {
-    this.otherUsers = this.otherUsers.filter((item) => item.userId != userId);
-  }
-
-  public getIsUserOffline() {
-    return this.isUserOffline;
-  }
-
-  public setIsUserOffline(isOffline: boolean) {
-    this.isUserOffline = isOffline;
-  }
-  /* END USER */
-
-  /* AREA */
-  public setArea(area: proto.IArea) {
-    this.area = area;
-  }
-  public getArea() {
-    return this.area;
-  }
-  /* END AREA */
-
-  /* MAIN PLAYER */
-  public setMainPlayerPosition(position: proto.IPosition) {
-    this.mainPlayerPosition = position;
-  }
-  public getMainPlayerPosition() {
-    return this.mainPlayerPosition;
-  }
-
-  public setMainPlayer(player: proto.IPlayer) {
-    this.mainPlayer = player;
-  }
-
-  public getMainPlayer() {
-    return this.mainPlayer;
-  }
-
-  public setMainPlayerNode(player: Node) {
-    this.mainPlayerNode = player;
-  }
-
-  public getMainPlayerNode() {
-    return this.mainPlayerNode;
-  }
-  /* END MAIN PLAYER */
-
-  /* PLAYERS */
-  public addOtherPlayer(player: proto.IPlayer) {
-    this.otherPlayers.push(player);
-  }
-
-  public getOtherPlayer(userId: number) {
-    return this.otherPlayers.find((player) => player.userId == userId);
-  }
-
-  public removeOtherPlayer(userId: number) {
-    this.otherPlayers = this.otherPlayers.filter(
-      (player) => player.userId != userId
+    this.otherUsers = this.otherUsers.filter(
+      (otherUser) => otherUser.userId != userId
     );
   }
 
-  public getListOtherPlayer() {
-    return this.otherPlayers;
+  public addOtherUsersNode(userNode: Node) {
+    this.otherUsersNode.push(userNode);
   }
 
-  public setListOtherPlayer(players: proto.IPlayer[]) {
-    this.otherPlayers = players;
-  }
-
-  public addOtherUserNode(player: Node) {
-    this.otherUsersNode.push(player);
-  }
-
-  public getOtherUserNode(userId: number): Node {
+  public getOtherUsersNode(userId: number): Node {
     return this.otherUsersNode.find(
-      (playerNode) =>
-        playerNode.getComponent(Character).getUserProto().userId == userId
+      (userNode) =>
+        userNode.getComponent(Character).getUserProto().userId == userId
     );
   }
 
-  public removeOtherUserNode(userId: number) {
+  public removeOtherUsersNode(userId: number) {
     const index = this.otherUsersNode.findIndex(
-      (playerNode) =>
-        playerNode.getComponent(Character).getUserProto().userId == userId
+      (userNode) =>
+        userNode.getComponent(Character).getUserProto().userId == userId
     );
-    const playerNodeRemoved = this.otherUsersNode.splice(index, 1);
-    playerNodeRemoved[0].destroy();
+    const userNodeRemoved = this.otherUsersNode.splice(index, 1);
+    userNodeRemoved[0].getComponent(Character).getLabelName().node.destroy();
+    userNodeRemoved[0].destroy();
   }
 
   public getListOtherUserNode() {
@@ -165,7 +121,25 @@ export default class GlobalData {
   public emptyOtherUsersNode() {
     this.otherUsersNode = [];
   }
-  /* END PLAYERS */
+
+  /*===== END OTHER USER =====*/
+
+  /*===== AREA =====*/
+  private area: proto.IArea = null;
+
+  public setArea(area: proto.IArea) {
+    this.area = area;
+  }
+
+  public getArea() {
+    return this.area;
+  }
+  /*===== END AREA =====*/
+
+  /* MAIN PLAYER */
+
+  /* END MAIN PLAYER */
+
   /* Agricultural engineer */
   public setTillStatus(isTill: boolean) {
     this.isTill = isTill;
@@ -225,4 +199,12 @@ export default class GlobalData {
     return this.isMoveBuilding;
   }
   /* END Building */
+
+  public setPositionCharacter(position: Vec3) {
+    this.positionCharacter = position;
+  }
+
+  public getPositionCharacter() {
+    return this.positionCharacter;
+  }
 }

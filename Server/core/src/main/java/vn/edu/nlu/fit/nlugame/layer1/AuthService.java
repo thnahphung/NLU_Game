@@ -93,7 +93,7 @@ public class AuthService {
                     .setCode(character.getCode())
                     .setDescription(character.getDescription())
                     .build();
-            user.toBuilder().setCharacter(characterProto);
+            user = user.toBuilder().setCharacter(characterProto).build();
         }
         //Save user login in cache redis
         SessionCache.me().addUserSession(SessionID.of(session), user);
