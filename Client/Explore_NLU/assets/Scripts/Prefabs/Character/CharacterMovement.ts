@@ -84,7 +84,8 @@ export class CharacterMovement extends Component {
     DataSender.sendReqMoving(
       GlobalData.me().getArea().areaId,
       this.node.position.x,
-      this.node.position.y
+      this.node.position.y,
+      this.characterInfo.getCurrentState()
     );
   }
 }

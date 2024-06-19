@@ -11,7 +11,7 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.context.PropertyBuildingContext;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class PropertyBuildingCache extends RedisClusterHelper implements ICache<PropertyBuildingContext, String>{
+public class PropertyBuildingCache extends RedisClusterHelper implements ICache<PropertyBuildingContext>{
     private static final PropertyBuildingCache instance = new PropertyBuildingCache();
     private static final String PROPERTY_BUILDING_KEY = "property_building:";
     private static final Cache<String, PropertyBuildingContext> propertyBuildingMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(30, TimeUnit.MINUTES).build();

@@ -11,7 +11,7 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class SessionCache extends RedisClusterHelper implements ICache<SessionContext, String> {
+public class SessionCache extends RedisClusterHelper implements ICache<SessionContext> {
     private static final String SESSION_KEY = "sessions";
     private static final SessionCache instance = new SessionCache();
 

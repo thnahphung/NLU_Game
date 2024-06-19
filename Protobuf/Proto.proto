@@ -57,15 +57,6 @@ message User {
   Character character = 15;
 }
 
-message Player{
-  int32 playerId = 1;
-  string playerName = 2;
-  int32 characterId = 3;
-  int32 level = 4;
-  int32 userId = 5;
-  int32 areaId = 6;
-}
-
 message Character {
   int32 id = 1;
   string name = 2;
@@ -75,7 +66,6 @@ message Character {
 
 message Area{
   int32 areaId = 1;
-  int32 playerId = 2;
   string typeArea = 3;
   Position position = 4;
   int32 status = 5;
@@ -105,7 +95,6 @@ message ResLogin {
   // in other device
   string token = 2;
   User user = 3;
-  Player player = 4;
 }
 
 message ResUserAlert {
@@ -171,7 +160,6 @@ message ReqPlayerJoinAreaCommon{
 message ResPlayerJoinAreaCommon{
   int32 areaCommonId = 1;
   Area area = 2;
-  repeated Player players = 3;
   repeated User users = 4;
   int32 status = 5; // 200: join thành công; 400: join không thành công
   int32 areaState = 6;
@@ -184,14 +172,12 @@ message ReqPlayerJoinArea{
 
 message ResPlayerJoinArea{
   Area area = 1;
-  repeated Player players = 2;
   repeated User users = 3;
   int32 status = 4; // 200: join thành công; 400: join không thành công
   Position position = 5;
 }
 
 message ResOtherPlayerJoinArea{
-  Player player = 1;
   User user = 2;
   Position position = 3;
 }
@@ -203,12 +189,13 @@ message ResOtherPlayerLeaveArea{
 message ReqMoving{
   int32 areaId = 1;
   Position position = 2;
+  string currentState = 3;
 }
 
 message ResMoving{
   int32 userId = 1;
-  int32 playerId = 2;
-  Position position = 3;
+  Position position = 2;
+  string currentState = 3;
 }
 
 message ReqLoadItemsOfFarm {

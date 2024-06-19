@@ -12,7 +12,7 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.context.CommonBuildingContext;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class CommonBuildingCache extends RedisClusterHelper implements ICache<CommonBuildingContext, String>{
+public class CommonBuildingCache extends RedisClusterHelper implements ICache<CommonBuildingContext>{
     private static final CommonBuildingCache instance = new CommonBuildingCache();
     private static final String COMMON_BUILDING_KEY = "common_building";
     private static final Cache<String, CommonBuildingContext> commonBuildingMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.HOURS).build();
