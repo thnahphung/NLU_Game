@@ -4,22 +4,22 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public interface ICache<T, E> {
-    boolean add(E key, T value);
+public interface ICache<T> {
+    boolean add(String key, T value);
 
     boolean add(T value);
 
-    T get(E key);
+    T get(String key);
 
     List<T> getAll();
 
-    Set<E> getKeys();
+    Set<String> getKeys();
 
-    T remove(E key);
+    T remove(String key);
 
-    boolean containsKey(E key);
+    boolean containsKey(String key);
 
     void clear();
 
-    E getKey(T value);
+    String getKey(T value);
 }

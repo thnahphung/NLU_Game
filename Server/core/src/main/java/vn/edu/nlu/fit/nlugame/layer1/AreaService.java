@@ -77,7 +77,7 @@ public class AreaService {
                 .setStatus(areaBean.getStatus())
                 .build();
 
-        AreaCache.me().add(userId, areaProto);
+        AreaCache.me().add(String.valueOf(userId), areaProto);
         AreaCache.me().addArea(userId, areaProto);
         Proto.ResPlayerJoinArea resPlayerJoinArea = Proto.ResPlayerJoinArea.newBuilder()
                 .setArea(areaProto)
