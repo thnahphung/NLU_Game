@@ -65,9 +65,7 @@ export class AuthenScene extends AbsScene {
 
   onLoginMsgHandler(resLogin: proto.IResLogin) {
     if (resLogin.status === 400) {
-      PopupManager.me().showPopupMessage(
-        POPUP_MESSAGE.LOGIN_FAILED_400
-      );
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_400);
       return;
     }
     if (resLogin.status === 401) {
@@ -80,9 +78,7 @@ export class AuthenScene extends AbsScene {
       return;
     }
     if (resLogin.status === 403) {
-      PopupManager.me().showPopupMessage(
-        POPUP_MESSAGE.LOGIN_FAILED_403
-      );
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_403);
       return;
     }
     if (resLogin.status === 500) {
@@ -103,9 +99,7 @@ export class AuthenScene extends AbsScene {
     if (resRegister.status === 400) {
       PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_400);
     } else if (resRegister.status === 401) {
-      PopupManager.me().showPopupMessage(
-        POPUP_MESSAGE.REGISTER_FAILED_401
-      );
+      PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_401);
     } else if (resRegister.status === 403) {
       PopupManager.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_403);
     } else if (resRegister.status === 402) {

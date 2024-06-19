@@ -203,7 +203,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 469.9700239808153,
+    "_orthoHeight": 490.4654510556622,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -19723,8 +19723,8 @@
     ],
     "value": {
       "__type__": "cc.Vec3",
-      "x": 3266.881,
-      "y": -253.619,
+      "x": -2752.149,
+      "y": -242.553,
       "z": 0
     }
   },
@@ -34472,6 +34472,12 @@
     "_enabled": true,
     "__prefab": null,
     "sceneName": "AnimalHusbandryScene",
+    "positionCharacter": {
+      "__type__": "cc.Vec3",
+      "x": 605.879,
+      "y": -350.678,
+      "z": 0
+    },
     "_id": "d6ix6ofFBDurS1qHeT0ehn"
   },
   {
@@ -34612,6 +34618,12 @@
     "_enabled": true,
     "__prefab": null,
     "sceneName": "PhuongViScene",
+    "positionCharacter": {
+      "__type__": "cc.Vec3",
+      "x": -237.84,
+      "y": -1682.965,
+      "z": 0
+    },
     "_id": "e85Nf+fchI+IlUTBVtxoyK"
   },
   {
@@ -34752,6 +34764,12 @@
     "_enabled": true,
     "__prefab": null,
     "sceneName": "FarmScene",
+    "positionCharacter": {
+      "__type__": "cc.Vec3",
+      "x": -176.381,
+      "y": -338.218,
+      "z": 0
+    },
     "_id": "b1z/Ac7IVEJZ1S7xuqSFqU"
   },
   {

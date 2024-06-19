@@ -40,27 +40,21 @@ public class AreaService {
 
         Proto.Position spawnPosition = areaTarget.getPosition();
 
-
         ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(areaTarget.getAreaId());
         ArrayList<Proto.User> listUserInArea = UserCache.me().getListUser(listUserIdInArea);
-        ArrayList<Proto.Player> listPlayerInArea = PlayerCache.me().getListPlayerByListUserId(listUserIdInArea);
-
         ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
 
         //gui cho player moi vao
         Proto.ResPlayerJoinArea resPlayerJoinArea = Proto.ResPlayerJoinArea.newBuilder()
                 .setArea(areaTarget)
-                .addAllPlayers(listPlayerInArea)
                 .addAllUsers(listUserInArea)
                 .setPosition(spawnPosition)
                 .build();
         sendResponse(session, Proto.Packet.newBuilder().setResPlayerJoinArea(resPlayerJoinArea).build());
 
-        Proto.Player player = PlayerCache.me().getPlayer(userId);
         AreaCache.me().addUserToArea(areaTarget.getAreaId(), userId, Proto.Position.newBuilder().setX(0).setY(0).build());
         //gui cho player cu
         Proto.ResOtherPlayerJoinArea resOtherPlayerJoinArea = Proto.ResOtherPlayerJoinArea.newBuilder()
-                .setPlayer(player)
                 .setUser(UserCache.me().getUserOnline(userId))
                 .setPosition(spawnPosition)
                 .build();
@@ -89,7 +83,6 @@ public class AreaService {
                 .setArea(areaProto)
                 .addAllUsers(listUserInArea)
                 .build();
-        System.out.println("joinAreaLogin: " + resPlayerJoinArea);
         sendResponse(session, Proto.Packet.newBuilder().setResPlayerJoinArea(resPlayerJoinArea).build());
     }
 
@@ -99,7 +92,6 @@ public class AreaService {
             return;
         }
 
-//        Proto.Player player = PlayerCache.me().get(String.valueOf(userId));
         Proto.Position position = reqMoving.getPosition();
 
         ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(reqMoving.getAreaId());
@@ -107,7 +99,6 @@ public class AreaService {
         listSessionInArea.removeIf(s -> s.equals(SessionID.of(session).getSessionId()));
         Proto.ResMoving resMoving = Proto.ResMoving.newBuilder()
                 .setUserId(userId)
-//                .setPlayerId(player.getPlayerId())
                 .setPosition(position)
                 .build();
         sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResMoving(resMoving).build());

@@ -6,15 +6,18 @@ import {
   IPhysics2DContact,
   Node,
   RigidBody2D,
+  Vec3,
 } from "cc";
 import { UICanvas } from "../../Scripts/Prefabs/MainUI/UICanvas";
 import { Character } from "../../Scripts/Prefabs/Character/Character";
+import GlobalData from "./GlobalData";
 const { ccclass, property } = _decorator;
 
 @ccclass("TransitScene")
 export class TransitScene extends Component {
-  @property sceneName: string = "";
-  rigidBody: RigidBody2D;
+  @property private sceneName: string = "";
+  private rigidBody: RigidBody2D;
+  @property(Vec3) positionCharacter: Vec3 = new Vec3(0, 0, 0);
 
   start() {
     this.rigidBody = this.getComponent(RigidBody2D);
@@ -35,6 +38,7 @@ export class TransitScene extends Component {
     ) {
       return;
     }
+    GlobalData.me().setPositionCharacter(this.positionCharacter);
     UICanvas.me().transitScene(this.sceneName);
   }
 }
