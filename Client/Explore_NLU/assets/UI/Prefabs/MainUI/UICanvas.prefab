@@ -150,7 +150,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 336.1472148541114,
+    "_orthoHeight": 335.70198675496687,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -1088,6 +1088,8 @@
       "__id__": 0
     },
     "fileId": "695OEzQIlFhaRpUQrTrMnd",
+    "instance": null,
+    "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
   },
   {
@@ -8012,6 +8014,10 @@
     },
     "buttonBuilding": {
       "__uuid__": "b03ffe19-76d3-47de-b74d-84cc7b4249e9",
+      "__expectedType__": "cc.Prefab"
+    },
+    "prefabPopupConnectionNotify": {
+      "__uuid__": "58ce0c6c-c417-4609-8556-a9296df3e448",
       "__expectedType__": "cc.Prefab"
     },
     "_id": ""

@@ -30,6 +30,10 @@ export class AuthenScene extends AbsScene {
   // Khai bao setting
   @property(Prefab)
   public popupSetting: Prefab = null;
+  // Khai bao forget password
+  @property(Node)
+  public popupForgetPassword: Node = null;
+
   public popupLoadingNode: Node = null;
 
   protected onLoad(): void {
@@ -123,9 +127,20 @@ export class AuthenScene extends AbsScene {
     UICanvas.me().showPopup(POPUP.POPUP_SETTING);
   }
 
+  onClickForgetPassword() {
+    this.popupGeneral.active = false;
+    this.popupSignIn.active = false;
+    this.popupForgetPassword.getComponent(PopupComponent).show();
+  }
+
   onClickBack() {
     this.popupSignIn.getComponent(PopupComponent).hide();
     this.popupSignUp.getComponent(PopupComponent).hide();
     this.popupGeneral.active = true;
+  }
+
+  onClickBackLogin(){
+    this.popupForgetPassword.getComponent(PopupComponent).hide();
+    this.popupSignIn.getComponent(PopupComponent).show();
   }
 }
