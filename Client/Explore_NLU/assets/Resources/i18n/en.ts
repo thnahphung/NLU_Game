@@ -13,6 +13,12 @@ export const languages = {
     authen_email: "Email",
     authen_confirm_password: "Confirm password",
     authen_policy: "I agree to all the terms and conditions",
+    authen_forget_password: "Forget password",
+    authen_forget_newpassword: "New password",
+    authen_forget_continue: "CONTINUE",
+    authen_forget_email: "Your email",
+    authen_forget_token: "Token",
+    authen_change_password: "CHANGE PASSWORD",
     //setting
     setting_title: "SETTING",
     setting_music: "Music ",
@@ -57,6 +63,9 @@ export const languages = {
     cage_information_popup_title_chicken_coop: "CHICKEN COOP",
     cage_information_popup_capacity: "Capacity:",
     cage_information_popup_level: "Level:",
+    //Popup
+    title_notify: "Notification",
+    closing_connection: "Lost connection to the server, trying to reconnect...",
   },
 };
 

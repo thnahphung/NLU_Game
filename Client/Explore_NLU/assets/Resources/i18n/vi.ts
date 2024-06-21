@@ -13,6 +13,13 @@ export const languages = {
     authen_email: "Email",
     authen_confirm_password: "Nhập lại mật khẩu",
     authen_policy: "Bạn đồng ý với chính sách của chúng tôi!",
+    authen_forget_password: "Quên mật khẩu",
+    authen_forget_newpassword: "Mật khẩu mới",
+    authen_forget_continue: "TIẾP TỤC",
+    authen_forget_email: "Email của bạn",
+    authen_forget_token: "Mã xác nhận",
+    authen_change_password: "ĐỔI MẬT KHẨU",
+
     //setting
     setting_title: "CÀI ĐẶT",
     setting_music: "Nhạc nền",
@@ -57,6 +64,9 @@ export const languages = {
     cage_information_popup_title_chicken_coop: "CHUỒNG GÀ",
     cage_information_popup_capacity: "Sức chứa:",
     cage_information_popup_level: "Cấp độ:",
+    //Popup
+    title_notify: "Thông báo",
+    closing_connection: "Mất kết nối với máy chủ, đang thử kết nối lại...",
   },
 };
 

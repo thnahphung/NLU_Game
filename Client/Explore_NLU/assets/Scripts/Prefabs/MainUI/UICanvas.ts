@@ -26,12 +26,14 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupSetting: Prefab;
   @property(Prefab) private prefabTransitionScene: Prefab;
   @property(Prefab) private buttonBuilding: Prefab = null;
+  @property(Prefab) private prefabPopupConnectionNotify: Prefab = null;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
   private _popupOption: PopupOption;
   private _popup: Node;
   private _buttonBuilding: Node;
+  public _popupConnectionNotify: Node;
 
   public static me(): UICanvas {
     return UICanvas._instance;
@@ -65,6 +67,18 @@ export class UICanvas extends Component {
     this._popupMessage.getComponent(PopupMessage).setMessage(message);
     this.node.getChildByName("PopupLayer").addChild(this._popupMessage);
     this._popupMessage.getComponent(PopupComponent).show();
+  }
+
+  showPopupConnectionNotify() {
+    this._popupConnectionNotify = instantiate(this.prefabPopupConnectionNotify);
+    this.node.getChildByName("PopupLayer").addChild(this._popupConnectionNotify);
+    this._popupConnectionNotify.getComponent(PopupComponent).show();
+  }
+
+  closePopupConnectionNotify() {
+    if(this._popupConnectionNotify == null) return; 
+      this._popupConnectionNotify.destroy();
+      this._popupConnectionNotify = null;
   }
 
   public getJoyStick(): Joystick {
