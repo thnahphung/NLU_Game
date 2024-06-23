@@ -1156,6 +1156,66 @@ public final class Proto {
      */
     vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuildingOrBuilder getResBuyBuildingOrBuilder();
 
+    /**
+     * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+     * @return Whether the reqEmailForgetPassword field is set.
+     */
+    boolean hasReqEmailForgetPassword();
+    /**
+     * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+     * @return The reqEmailForgetPassword.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword getReqEmailForgetPassword();
+    /**
+     * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPasswordOrBuilder getReqEmailForgetPasswordOrBuilder();
+
+    /**
+     * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+     * @return Whether the reqRecoverPassword field is set.
+     */
+    boolean hasReqRecoverPassword();
+    /**
+     * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+     * @return The reqRecoverPassword.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword getReqRecoverPassword();
+    /**
+     * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPasswordOrBuilder getReqRecoverPasswordOrBuilder();
+
+    /**
+     * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+     * @return Whether the resRecoverPassword field is set.
+     */
+    boolean hasResRecoverPassword();
+    /**
+     * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+     * @return The resRecoverPassword.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword getResRecoverPassword();
+    /**
+     * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPasswordOrBuilder getResRecoverPasswordOrBuilder();
+
+    /**
+     * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+     * @return Whether the resEmailForgetPassword field is set.
+     */
+    boolean hasResEmailForgetPassword();
+    /**
+     * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+     * @return The resEmailForgetPassword.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword getResEmailForgetPassword();
+    /**
+     * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPasswordOrBuilder getResEmailForgetPasswordOrBuilder();
+
     vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Packet.DataCase getDataCase();
   }
   /**
@@ -1225,6 +1285,10 @@ public final class Proto {
       RESLOADITEMSOFFARM(24),
       REQBUYBUILDING(25),
       RESBUYBUILDING(26),
+      REQEMAILFORGETPASSWORD(27),
+      REQRECOVERPASSWORD(28),
+      RESRECOVERPASSWORD(29),
+      RESEMAILFORGETPASSWORD(30),
       DATA_NOT_SET(0);
       private final int value;
       private DataCase(int value) {
@@ -1268,6 +1332,10 @@ public final class Proto {
           case 24: return RESLOADITEMSOFFARM;
           case 25: return REQBUYBUILDING;
           case 26: return RESBUYBUILDING;
+          case 27: return REQEMAILFORGETPASSWORD;
+          case 28: return REQRECOVERPASSWORD;
+          case 29: return RESRECOVERPASSWORD;
+          case 30: return RESEMAILFORGETPASSWORD;
           case 0: return DATA_NOT_SET;
           default: return null;
         }
@@ -2089,6 +2157,130 @@ public final class Proto {
       return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding.getDefaultInstance();
     }
 
+    public static final int REQEMAILFORGETPASSWORD_FIELD_NUMBER = 27;
+    /**
+     * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+     * @return Whether the reqEmailForgetPassword field is set.
+     */
+    @java.lang.Override
+    public boolean hasReqEmailForgetPassword() {
+      return dataCase_ == 27;
+    }
+    /**
+     * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+     * @return The reqEmailForgetPassword.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword getReqEmailForgetPassword() {
+      if (dataCase_ == 27) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPasswordOrBuilder getReqEmailForgetPasswordOrBuilder() {
+      if (dataCase_ == 27) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.getDefaultInstance();
+    }
+
+    public static final int REQRECOVERPASSWORD_FIELD_NUMBER = 28;
+    /**
+     * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+     * @return Whether the reqRecoverPassword field is set.
+     */
+    @java.lang.Override
+    public boolean hasReqRecoverPassword() {
+      return dataCase_ == 28;
+    }
+    /**
+     * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+     * @return The reqRecoverPassword.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword getReqRecoverPassword() {
+      if (dataCase_ == 28) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPasswordOrBuilder getReqRecoverPasswordOrBuilder() {
+      if (dataCase_ == 28) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.getDefaultInstance();
+    }
+
+    public static final int RESRECOVERPASSWORD_FIELD_NUMBER = 29;
+    /**
+     * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+     * @return Whether the resRecoverPassword field is set.
+     */
+    @java.lang.Override
+    public boolean hasResRecoverPassword() {
+      return dataCase_ == 29;
+    }
+    /**
+     * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+     * @return The resRecoverPassword.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword getResRecoverPassword() {
+      if (dataCase_ == 29) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPasswordOrBuilder getResRecoverPasswordOrBuilder() {
+      if (dataCase_ == 29) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.getDefaultInstance();
+    }
+
+    public static final int RESEMAILFORGETPASSWORD_FIELD_NUMBER = 30;
+    /**
+     * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+     * @return Whether the resEmailForgetPassword field is set.
+     */
+    @java.lang.Override
+    public boolean hasResEmailForgetPassword() {
+      return dataCase_ == 30;
+    }
+    /**
+     * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+     * @return The resEmailForgetPassword.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword getResEmailForgetPassword() {
+      if (dataCase_ == 30) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPasswordOrBuilder getResEmailForgetPasswordOrBuilder() {
+      if (dataCase_ == 30) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.getDefaultInstance();
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -2180,6 +2372,18 @@ public final class Proto {
       }
       if (dataCase_ == 26) {
         output.writeMessage(26, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding) data_);
+      }
+      if (dataCase_ == 27) {
+        output.writeMessage(27, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword) data_);
+      }
+      if (dataCase_ == 28) {
+        output.writeMessage(28, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword) data_);
+      }
+      if (dataCase_ == 29) {
+        output.writeMessage(29, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword) data_);
+      }
+      if (dataCase_ == 30) {
+        output.writeMessage(30, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword) data_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2293,6 +2497,22 @@ public final class Proto {
       if (dataCase_ == 26) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(26, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResBuyBuilding) data_);
+      }
+      if (dataCase_ == 27) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(27, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword) data_);
+      }
+      if (dataCase_ == 28) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(28, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword) data_);
+      }
+      if (dataCase_ == 29) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(29, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword) data_);
+      }
+      if (dataCase_ == 30) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(30, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword) data_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -2415,6 +2635,22 @@ public final class Proto {
           if (!getResBuyBuilding()
               .equals(other.getResBuyBuilding())) return false;
           break;
+        case 27:
+          if (!getReqEmailForgetPassword()
+              .equals(other.getReqEmailForgetPassword())) return false;
+          break;
+        case 28:
+          if (!getReqRecoverPassword()
+              .equals(other.getReqRecoverPassword())) return false;
+          break;
+        case 29:
+          if (!getResRecoverPassword()
+              .equals(other.getResRecoverPassword())) return false;
+          break;
+        case 30:
+          if (!getResEmailForgetPassword()
+              .equals(other.getResEmailForgetPassword())) return false;
+          break;
         case 0:
         default:
       }
@@ -2533,6 +2769,22 @@ public final class Proto {
         case 26:
           hash = (37 * hash) + RESBUYBUILDING_FIELD_NUMBER;
           hash = (53 * hash) + getResBuyBuilding().hashCode();
+          break;
+        case 27:
+          hash = (37 * hash) + REQEMAILFORGETPASSWORD_FIELD_NUMBER;
+          hash = (53 * hash) + getReqEmailForgetPassword().hashCode();
+          break;
+        case 28:
+          hash = (37 * hash) + REQRECOVERPASSWORD_FIELD_NUMBER;
+          hash = (53 * hash) + getReqRecoverPassword().hashCode();
+          break;
+        case 29:
+          hash = (37 * hash) + RESRECOVERPASSWORD_FIELD_NUMBER;
+          hash = (53 * hash) + getResRecoverPassword().hashCode();
+          break;
+        case 30:
+          hash = (37 * hash) + RESEMAILFORGETPASSWORD_FIELD_NUMBER;
+          hash = (53 * hash) + getResEmailForgetPassword().hashCode();
           break;
         case 0:
         default:
@@ -2744,6 +2996,18 @@ public final class Proto {
         if (resBuyBuildingBuilder_ != null) {
           resBuyBuildingBuilder_.clear();
         }
+        if (reqEmailForgetPasswordBuilder_ != null) {
+          reqEmailForgetPasswordBuilder_.clear();
+        }
+        if (reqRecoverPasswordBuilder_ != null) {
+          reqRecoverPasswordBuilder_.clear();
+        }
+        if (resRecoverPasswordBuilder_ != null) {
+          resRecoverPasswordBuilder_.clear();
+        }
+        if (resEmailForgetPasswordBuilder_ != null) {
+          resEmailForgetPasswordBuilder_.clear();
+        }
         dataCase_ = 0;
         data_ = null;
         return this;
@@ -2889,6 +3153,22 @@ public final class Proto {
             resBuyBuildingBuilder_ != null) {
           result.data_ = resBuyBuildingBuilder_.build();
         }
+        if (dataCase_ == 27 &&
+            reqEmailForgetPasswordBuilder_ != null) {
+          result.data_ = reqEmailForgetPasswordBuilder_.build();
+        }
+        if (dataCase_ == 28 &&
+            reqRecoverPasswordBuilder_ != null) {
+          result.data_ = reqRecoverPasswordBuilder_.build();
+        }
+        if (dataCase_ == 29 &&
+            resRecoverPasswordBuilder_ != null) {
+          result.data_ = resRecoverPasswordBuilder_.build();
+        }
+        if (dataCase_ == 30 &&
+            resEmailForgetPasswordBuilder_ != null) {
+          result.data_ = resEmailForgetPasswordBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -3006,6 +3286,22 @@ public final class Proto {
           }
           case RESBUYBUILDING: {
             mergeResBuyBuilding(other.getResBuyBuilding());
+            break;
+          }
+          case REQEMAILFORGETPASSWORD: {
+            mergeReqEmailForgetPassword(other.getReqEmailForgetPassword());
+            break;
+          }
+          case REQRECOVERPASSWORD: {
+            mergeReqRecoverPassword(other.getReqRecoverPassword());
+            break;
+          }
+          case RESRECOVERPASSWORD: {
+            mergeResRecoverPassword(other.getResRecoverPassword());
+            break;
+          }
+          case RESEMAILFORGETPASSWORD: {
+            mergeResEmailForgetPassword(other.getResEmailForgetPassword());
             break;
           }
           case DATA_NOT_SET: {
@@ -3220,6 +3516,34 @@ public final class Proto {
                 dataCase_ = 26;
                 break;
               } // case 210
+              case 218: {
+                input.readMessage(
+                    getReqEmailForgetPasswordFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 27;
+                break;
+              } // case 218
+              case 226: {
+                input.readMessage(
+                    getReqRecoverPasswordFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 28;
+                break;
+              } // case 226
+              case 234: {
+                input.readMessage(
+                    getResRecoverPasswordFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 29;
+                break;
+              } // case 234
+              case 242: {
+                input.readMessage(
+                    getResEmailForgetPasswordFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 30;
+                break;
+              } // case 242
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -6942,6 +7266,574 @@ public final class Proto {
         dataCase_ = 26;
         onChanged();
         return resBuyBuildingBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPasswordOrBuilder> reqEmailForgetPasswordBuilder_;
+      /**
+       * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+       * @return Whether the reqEmailForgetPassword field is set.
+       */
+      @java.lang.Override
+      public boolean hasReqEmailForgetPassword() {
+        return dataCase_ == 27;
+      }
+      /**
+       * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+       * @return The reqEmailForgetPassword.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword getReqEmailForgetPassword() {
+        if (reqEmailForgetPasswordBuilder_ == null) {
+          if (dataCase_ == 27) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.getDefaultInstance();
+        } else {
+          if (dataCase_ == 27) {
+            return reqEmailForgetPasswordBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+       */
+      public Builder setReqEmailForgetPassword(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword value) {
+        if (reqEmailForgetPasswordBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          reqEmailForgetPasswordBuilder_.setMessage(value);
+        }
+        dataCase_ = 27;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+       */
+      public Builder setReqEmailForgetPassword(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.Builder builderForValue) {
+        if (reqEmailForgetPasswordBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          reqEmailForgetPasswordBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 27;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+       */
+      public Builder mergeReqEmailForgetPassword(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword value) {
+        if (reqEmailForgetPasswordBuilder_ == null) {
+          if (dataCase_ == 27 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 27) {
+            reqEmailForgetPasswordBuilder_.mergeFrom(value);
+          } else {
+            reqEmailForgetPasswordBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 27;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+       */
+      public Builder clearReqEmailForgetPassword() {
+        if (reqEmailForgetPasswordBuilder_ == null) {
+          if (dataCase_ == 27) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 27) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          reqEmailForgetPasswordBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.Builder getReqEmailForgetPasswordBuilder() {
+        return getReqEmailForgetPasswordFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPasswordOrBuilder getReqEmailForgetPasswordOrBuilder() {
+        if ((dataCase_ == 27) && (reqEmailForgetPasswordBuilder_ != null)) {
+          return reqEmailForgetPasswordBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 27) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqEmailForgetPassword reqEmailForgetPassword = 27;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPasswordOrBuilder> 
+          getReqEmailForgetPasswordFieldBuilder() {
+        if (reqEmailForgetPasswordBuilder_ == null) {
+          if (!(dataCase_ == 27)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.getDefaultInstance();
+          }
+          reqEmailForgetPasswordBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPasswordOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 27;
+        onChanged();
+        return reqEmailForgetPasswordBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPasswordOrBuilder> reqRecoverPasswordBuilder_;
+      /**
+       * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+       * @return Whether the reqRecoverPassword field is set.
+       */
+      @java.lang.Override
+      public boolean hasReqRecoverPassword() {
+        return dataCase_ == 28;
+      }
+      /**
+       * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+       * @return The reqRecoverPassword.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword getReqRecoverPassword() {
+        if (reqRecoverPasswordBuilder_ == null) {
+          if (dataCase_ == 28) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.getDefaultInstance();
+        } else {
+          if (dataCase_ == 28) {
+            return reqRecoverPasswordBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+       */
+      public Builder setReqRecoverPassword(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword value) {
+        if (reqRecoverPasswordBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          reqRecoverPasswordBuilder_.setMessage(value);
+        }
+        dataCase_ = 28;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+       */
+      public Builder setReqRecoverPassword(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.Builder builderForValue) {
+        if (reqRecoverPasswordBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          reqRecoverPasswordBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 28;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+       */
+      public Builder mergeReqRecoverPassword(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword value) {
+        if (reqRecoverPasswordBuilder_ == null) {
+          if (dataCase_ == 28 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 28) {
+            reqRecoverPasswordBuilder_.mergeFrom(value);
+          } else {
+            reqRecoverPasswordBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 28;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+       */
+      public Builder clearReqRecoverPassword() {
+        if (reqRecoverPasswordBuilder_ == null) {
+          if (dataCase_ == 28) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 28) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          reqRecoverPasswordBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.Builder getReqRecoverPasswordBuilder() {
+        return getReqRecoverPasswordFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPasswordOrBuilder getReqRecoverPasswordOrBuilder() {
+        if ((dataCase_ == 28) && (reqRecoverPasswordBuilder_ != null)) {
+          return reqRecoverPasswordBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 28) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqRecoverPassword reqRecoverPassword = 28;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPasswordOrBuilder> 
+          getReqRecoverPasswordFieldBuilder() {
+        if (reqRecoverPasswordBuilder_ == null) {
+          if (!(dataCase_ == 28)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.getDefaultInstance();
+          }
+          reqRecoverPasswordBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPasswordOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 28;
+        onChanged();
+        return reqRecoverPasswordBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPasswordOrBuilder> resRecoverPasswordBuilder_;
+      /**
+       * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+       * @return Whether the resRecoverPassword field is set.
+       */
+      @java.lang.Override
+      public boolean hasResRecoverPassword() {
+        return dataCase_ == 29;
+      }
+      /**
+       * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+       * @return The resRecoverPassword.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword getResRecoverPassword() {
+        if (resRecoverPasswordBuilder_ == null) {
+          if (dataCase_ == 29) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.getDefaultInstance();
+        } else {
+          if (dataCase_ == 29) {
+            return resRecoverPasswordBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+       */
+      public Builder setResRecoverPassword(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword value) {
+        if (resRecoverPasswordBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          resRecoverPasswordBuilder_.setMessage(value);
+        }
+        dataCase_ = 29;
+        return this;
+      }
+      /**
+       * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+       */
+      public Builder setResRecoverPassword(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.Builder builderForValue) {
+        if (resRecoverPasswordBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          resRecoverPasswordBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 29;
+        return this;
+      }
+      /**
+       * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+       */
+      public Builder mergeResRecoverPassword(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword value) {
+        if (resRecoverPasswordBuilder_ == null) {
+          if (dataCase_ == 29 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 29) {
+            resRecoverPasswordBuilder_.mergeFrom(value);
+          } else {
+            resRecoverPasswordBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 29;
+        return this;
+      }
+      /**
+       * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+       */
+      public Builder clearResRecoverPassword() {
+        if (resRecoverPasswordBuilder_ == null) {
+          if (dataCase_ == 29) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 29) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          resRecoverPasswordBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.Builder getResRecoverPasswordBuilder() {
+        return getResRecoverPasswordFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPasswordOrBuilder getResRecoverPasswordOrBuilder() {
+        if ((dataCase_ == 29) && (resRecoverPasswordBuilder_ != null)) {
+          return resRecoverPasswordBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 29) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResRecoverPassword resRecoverPassword = 29;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPasswordOrBuilder> 
+          getResRecoverPasswordFieldBuilder() {
+        if (resRecoverPasswordBuilder_ == null) {
+          if (!(dataCase_ == 29)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.getDefaultInstance();
+          }
+          resRecoverPasswordBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPasswordOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 29;
+        onChanged();
+        return resRecoverPasswordBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPasswordOrBuilder> resEmailForgetPasswordBuilder_;
+      /**
+       * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+       * @return Whether the resEmailForgetPassword field is set.
+       */
+      @java.lang.Override
+      public boolean hasResEmailForgetPassword() {
+        return dataCase_ == 30;
+      }
+      /**
+       * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+       * @return The resEmailForgetPassword.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword getResEmailForgetPassword() {
+        if (resEmailForgetPasswordBuilder_ == null) {
+          if (dataCase_ == 30) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.getDefaultInstance();
+        } else {
+          if (dataCase_ == 30) {
+            return resEmailForgetPasswordBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+       */
+      public Builder setResEmailForgetPassword(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword value) {
+        if (resEmailForgetPasswordBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          resEmailForgetPasswordBuilder_.setMessage(value);
+        }
+        dataCase_ = 30;
+        return this;
+      }
+      /**
+       * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+       */
+      public Builder setResEmailForgetPassword(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.Builder builderForValue) {
+        if (resEmailForgetPasswordBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          resEmailForgetPasswordBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 30;
+        return this;
+      }
+      /**
+       * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+       */
+      public Builder mergeResEmailForgetPassword(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword value) {
+        if (resEmailForgetPasswordBuilder_ == null) {
+          if (dataCase_ == 30 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 30) {
+            resEmailForgetPasswordBuilder_.mergeFrom(value);
+          } else {
+            resEmailForgetPasswordBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 30;
+        return this;
+      }
+      /**
+       * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+       */
+      public Builder clearResEmailForgetPassword() {
+        if (resEmailForgetPasswordBuilder_ == null) {
+          if (dataCase_ == 30) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 30) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          resEmailForgetPasswordBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.Builder getResEmailForgetPasswordBuilder() {
+        return getResEmailForgetPasswordFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPasswordOrBuilder getResEmailForgetPasswordOrBuilder() {
+        if ((dataCase_ == 30) && (resEmailForgetPasswordBuilder_ != null)) {
+          return resEmailForgetPasswordBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 30) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResEmailForgetPassword resEmailForgetPassword = 30;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPasswordOrBuilder> 
+          getResEmailForgetPasswordFieldBuilder() {
+        if (resEmailForgetPasswordBuilder_ == null) {
+          if (!(dataCase_ == 30)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.getDefaultInstance();
+          }
+          resEmailForgetPasswordBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPasswordOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 30;
+        onChanged();
+        return resEmailForgetPasswordBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -35686,6 +36578,2222 @@ public final class Proto {
 
   }
 
+  public interface ReqEmailForgetPasswordOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ReqEmailForgetPassword)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string email = 1;</code>
+     * @return The email.
+     */
+    java.lang.String getEmail();
+    /**
+     * <code>string email = 1;</code>
+     * @return The bytes for email.
+     */
+    com.google.protobuf.ByteString
+        getEmailBytes();
+  }
+  /**
+   * Protobuf type {@code proto.ReqEmailForgetPassword}
+   */
+  public static final class ReqEmailForgetPassword extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ReqEmailForgetPassword)
+      ReqEmailForgetPasswordOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReqEmailForgetPassword.newBuilder() to construct.
+    private ReqEmailForgetPassword(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReqEmailForgetPassword() {
+      email_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReqEmailForgetPassword();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqEmailForgetPassword_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqEmailForgetPassword_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.Builder.class);
+    }
+
+    public static final int EMAIL_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object email_ = "";
+    /**
+     * <code>string email = 1;</code>
+     * @return The email.
+     */
+    @java.lang.Override
+    public java.lang.String getEmail() {
+      java.lang.Object ref = email_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        email_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string email = 1;</code>
+     * @return The bytes for email.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getEmailBytes() {
+      java.lang.Object ref = email_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        email_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(email_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, email_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(email_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, email_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword) obj;
+
+      if (!getEmail()
+          .equals(other.getEmail())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + EMAIL_FIELD_NUMBER;
+      hash = (53 * hash) + getEmail().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ReqEmailForgetPassword}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ReqEmailForgetPassword)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPasswordOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqEmailForgetPassword_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqEmailForgetPassword_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        email_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqEmailForgetPassword_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.email_ = email_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword.getDefaultInstance()) return this;
+        if (!other.getEmail().isEmpty()) {
+          email_ = other.email_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                email_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object email_ = "";
+      /**
+       * <code>string email = 1;</code>
+       * @return The email.
+       */
+      public java.lang.String getEmail() {
+        java.lang.Object ref = email_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          email_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string email = 1;</code>
+       * @return The bytes for email.
+       */
+      public com.google.protobuf.ByteString
+          getEmailBytes() {
+        java.lang.Object ref = email_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          email_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string email = 1;</code>
+       * @param value The email to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEmail(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        email_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string email = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearEmail() {
+        email_ = getDefaultInstance().getEmail();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string email = 1;</code>
+       * @param value The bytes for email to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEmailBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        email_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ReqEmailForgetPassword)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ReqEmailForgetPassword)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReqEmailForgetPassword>
+        PARSER = new com.google.protobuf.AbstractParser<ReqEmailForgetPassword>() {
+      @java.lang.Override
+      public ReqEmailForgetPassword parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReqEmailForgetPassword> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReqEmailForgetPassword> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqEmailForgetPassword getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ReqRecoverPasswordOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ReqRecoverPassword)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string password = 1;</code>
+     * @return The password.
+     */
+    java.lang.String getPassword();
+    /**
+     * <code>string password = 1;</code>
+     * @return The bytes for password.
+     */
+    com.google.protobuf.ByteString
+        getPasswordBytes();
+
+    /**
+     * <code>string token = 2;</code>
+     * @return The token.
+     */
+    java.lang.String getToken();
+    /**
+     * <code>string token = 2;</code>
+     * @return The bytes for token.
+     */
+    com.google.protobuf.ByteString
+        getTokenBytes();
+
+    /**
+     * <code>string email = 3;</code>
+     * @return The email.
+     */
+    java.lang.String getEmail();
+    /**
+     * <code>string email = 3;</code>
+     * @return The bytes for email.
+     */
+    com.google.protobuf.ByteString
+        getEmailBytes();
+  }
+  /**
+   * Protobuf type {@code proto.ReqRecoverPassword}
+   */
+  public static final class ReqRecoverPassword extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ReqRecoverPassword)
+      ReqRecoverPasswordOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReqRecoverPassword.newBuilder() to construct.
+    private ReqRecoverPassword(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReqRecoverPassword() {
+      password_ = "";
+      token_ = "";
+      email_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReqRecoverPassword();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqRecoverPassword_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqRecoverPassword_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.Builder.class);
+    }
+
+    public static final int PASSWORD_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object password_ = "";
+    /**
+     * <code>string password = 1;</code>
+     * @return The password.
+     */
+    @java.lang.Override
+    public java.lang.String getPassword() {
+      java.lang.Object ref = password_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        password_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string password = 1;</code>
+     * @return The bytes for password.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getPasswordBytes() {
+      java.lang.Object ref = password_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        password_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TOKEN_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object token_ = "";
+    /**
+     * <code>string token = 2;</code>
+     * @return The token.
+     */
+    @java.lang.Override
+    public java.lang.String getToken() {
+      java.lang.Object ref = token_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        token_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string token = 2;</code>
+     * @return The bytes for token.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTokenBytes() {
+      java.lang.Object ref = token_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        token_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int EMAIL_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object email_ = "";
+    /**
+     * <code>string email = 3;</code>
+     * @return The email.
+     */
+    @java.lang.Override
+    public java.lang.String getEmail() {
+      java.lang.Object ref = email_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        email_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string email = 3;</code>
+     * @return The bytes for email.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getEmailBytes() {
+      java.lang.Object ref = email_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        email_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, password_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(token_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, token_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(email_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, email_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(password_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, password_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(token_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, token_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(email_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, email_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword) obj;
+
+      if (!getPassword()
+          .equals(other.getPassword())) return false;
+      if (!getToken()
+          .equals(other.getToken())) return false;
+      if (!getEmail()
+          .equals(other.getEmail())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
+      hash = (53 * hash) + getPassword().hashCode();
+      hash = (37 * hash) + TOKEN_FIELD_NUMBER;
+      hash = (53 * hash) + getToken().hashCode();
+      hash = (37 * hash) + EMAIL_FIELD_NUMBER;
+      hash = (53 * hash) + getEmail().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ReqRecoverPassword}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ReqRecoverPassword)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPasswordOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqRecoverPassword_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqRecoverPassword_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        password_ = "";
+        token_ = "";
+        email_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqRecoverPassword_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.password_ = password_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.token_ = token_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.email_ = email_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword.getDefaultInstance()) return this;
+        if (!other.getPassword().isEmpty()) {
+          password_ = other.password_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (!other.getToken().isEmpty()) {
+          token_ = other.token_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (!other.getEmail().isEmpty()) {
+          email_ = other.email_;
+          bitField0_ |= 0x00000004;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                password_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                token_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                email_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object password_ = "";
+      /**
+       * <code>string password = 1;</code>
+       * @return The password.
+       */
+      public java.lang.String getPassword() {
+        java.lang.Object ref = password_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          password_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string password = 1;</code>
+       * @return The bytes for password.
+       */
+      public com.google.protobuf.ByteString
+          getPasswordBytes() {
+        java.lang.Object ref = password_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          password_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string password = 1;</code>
+       * @param value The password to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPassword(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        password_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string password = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPassword() {
+        password_ = getDefaultInstance().getPassword();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string password = 1;</code>
+       * @param value The bytes for password to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPasswordBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        password_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object token_ = "";
+      /**
+       * <code>string token = 2;</code>
+       * @return The token.
+       */
+      public java.lang.String getToken() {
+        java.lang.Object ref = token_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          token_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string token = 2;</code>
+       * @return The bytes for token.
+       */
+      public com.google.protobuf.ByteString
+          getTokenBytes() {
+        java.lang.Object ref = token_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          token_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string token = 2;</code>
+       * @param value The token to set.
+       * @return This builder for chaining.
+       */
+      public Builder setToken(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        token_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string token = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearToken() {
+        token_ = getDefaultInstance().getToken();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string token = 2;</code>
+       * @param value The bytes for token to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTokenBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        token_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object email_ = "";
+      /**
+       * <code>string email = 3;</code>
+       * @return The email.
+       */
+      public java.lang.String getEmail() {
+        java.lang.Object ref = email_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          email_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string email = 3;</code>
+       * @return The bytes for email.
+       */
+      public com.google.protobuf.ByteString
+          getEmailBytes() {
+        java.lang.Object ref = email_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          email_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string email = 3;</code>
+       * @param value The email to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEmail(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        email_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string email = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearEmail() {
+        email_ = getDefaultInstance().getEmail();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string email = 3;</code>
+       * @param value The bytes for email to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEmailBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        email_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ReqRecoverPassword)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ReqRecoverPassword)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReqRecoverPassword>
+        PARSER = new com.google.protobuf.AbstractParser<ReqRecoverPassword>() {
+      @java.lang.Override
+      public ReqRecoverPassword parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReqRecoverPassword> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReqRecoverPassword> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqRecoverPassword getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ResRecoverPasswordOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ResRecoverPassword)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 status = 1;</code>
+     * @return The status.
+     */
+    int getStatus();
+  }
+  /**
+   * Protobuf type {@code proto.ResRecoverPassword}
+   */
+  public static final class ResRecoverPassword extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ResRecoverPassword)
+      ResRecoverPasswordOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ResRecoverPassword.newBuilder() to construct.
+    private ResRecoverPassword(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ResRecoverPassword() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ResRecoverPassword();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResRecoverPassword_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResRecoverPassword_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.Builder.class);
+    }
+
+    public static final int STATUS_FIELD_NUMBER = 1;
+    private int status_ = 0;
+    /**
+     * <code>int32 status = 1;</code>
+     * @return The status.
+     */
+    @java.lang.Override
+    public int getStatus() {
+      return status_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (status_ != 0) {
+        output.writeInt32(1, status_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (status_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, status_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword) obj;
+
+      if (getStatus()
+          != other.getStatus()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ResRecoverPassword}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ResRecoverPassword)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPasswordOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResRecoverPassword_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResRecoverPassword_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        status_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResRecoverPassword_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.status_ = status_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword.getDefaultInstance()) return this;
+        if (other.getStatus() != 0) {
+          setStatus(other.getStatus());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                status_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int status_ ;
+      /**
+       * <code>int32 status = 1;</code>
+       * @return The status.
+       */
+      @java.lang.Override
+      public int getStatus() {
+        return status_;
+      }
+      /**
+       * <code>int32 status = 1;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatus(int value) {
+
+        status_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 status = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        status_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ResRecoverPassword)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ResRecoverPassword)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ResRecoverPassword>
+        PARSER = new com.google.protobuf.AbstractParser<ResRecoverPassword>() {
+      @java.lang.Override
+      public ResRecoverPassword parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ResRecoverPassword> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ResRecoverPassword> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResRecoverPassword getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ResEmailForgetPasswordOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ResEmailForgetPassword)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 status = 1;</code>
+     * @return The status.
+     */
+    int getStatus();
+  }
+  /**
+   * Protobuf type {@code proto.ResEmailForgetPassword}
+   */
+  public static final class ResEmailForgetPassword extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ResEmailForgetPassword)
+      ResEmailForgetPasswordOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ResEmailForgetPassword.newBuilder() to construct.
+    private ResEmailForgetPassword(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ResEmailForgetPassword() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ResEmailForgetPassword();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResEmailForgetPassword_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResEmailForgetPassword_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.Builder.class);
+    }
+
+    public static final int STATUS_FIELD_NUMBER = 1;
+    private int status_ = 0;
+    /**
+     * <code>int32 status = 1;</code>
+     * @return The status.
+     */
+    @java.lang.Override
+    public int getStatus() {
+      return status_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (status_ != 0) {
+        output.writeInt32(1, status_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (status_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, status_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword) obj;
+
+      if (getStatus()
+          != other.getStatus()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ResEmailForgetPassword}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ResEmailForgetPassword)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPasswordOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResEmailForgetPassword_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResEmailForgetPassword_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        status_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResEmailForgetPassword_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.status_ = status_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.getDefaultInstance()) return this;
+        if (other.getStatus() != 0) {
+          setStatus(other.getStatus());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                status_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int status_ ;
+      /**
+       * <code>int32 status = 1;</code>
+       * @return The status.
+       */
+      @java.lang.Override
+      public int getStatus() {
+        return status_;
+      }
+      /**
+       * <code>int32 status = 1;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatus(int value) {
+
+        status_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 status = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        status_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ResEmailForgetPassword)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ResEmailForgetPassword)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ResEmailForgetPassword>
+        PARSER = new com.google.protobuf.AbstractParser<ResEmailForgetPassword>() {
+      @java.lang.Override
+      public ResEmailForgetPassword parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ResEmailForgetPassword> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ResEmailForgetPassword> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_PacketWrapper_descriptor;
   private static final 
@@ -35891,6 +38999,26 @@ public final class Proto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_proto_ResBuyBuilding_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ReqEmailForgetPassword_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ReqEmailForgetPassword_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ReqRecoverPassword_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ReqRecoverPassword_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ResRecoverPassword_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ResRecoverPassword_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ResEmailForgetPassword_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ResEmailForgetPassword_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -35901,7 +39029,7 @@ public final class Proto {
   static {
     java.lang.String[] descriptorData = {
       "\n\013Proto.proto\022\005proto\".\n\rPacketWrapper\022\035\n" +
-      "\006packet\030\001 \003(\0132\r.proto.Packet\"\276\n\n\006Packet\022" +
+      "\006packet\030\001 \003(\0132\r.proto.Packet\"\262\014\n\006Packet\022" +
       "#\n\010reqLogin\030\001 \001(\0132\017.proto.ReqLoginH\000\022\'\n\n" +
       "reqRelogin\030\002 \001(\0132\021.proto.ReqReloginH\000\022#\n" +
       "\010resLogin\030\003 \001(\0132\017.proto.ResLoginH\000\022%\n\tre" +
@@ -35935,83 +39063,94 @@ public final class Proto {
       ".proto.ResLoadItemsOfFarmH\000\022/\n\016reqBuyBui" +
       "lding\030\031 \001(\0132\025.proto.ReqBuyBuildingH\000\022/\n\016" +
       "resBuyBuilding\030\032 \001(\0132\025.proto.ResBuyBuild" +
-      "ingH\000B\006\n\004data\"\237\002\n\004User\022\016\n\006userId\030\001 \001(\005\022\020" +
-      "\n\010username\030\002 \001(\t\022\022\n\nplayerName\030\003 \001(\t\022\016\n\006" +
-      "gender\030\004 \001(\005\022\017\n\007sponsor\030\005 \001(\005\022\r\n\005email\030\006" +
-      " \001(\t\022\r\n\005phone\030\007 \001(\t\022\014\n\004gold\030\010 \001(\003\022\017\n\007dia" +
-      "mond\030\t \001(\003\022\r\n\005level\030\n \001(\005\022\024\n\014hasCharacte" +
-      "r\030\013 \001(\005\022\023\n\013characterId\030\014 \001(\005\022\016\n\006areaId\030\r" +
-      " \001(\005\022\024\n\014isNewAccount\030\016 \001(\005\022#\n\tcharacter\030" +
-      "\017 \001(\0132\020.proto.Character\"H\n\tCharacter\022\n\n\002" +
-      "id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\023\n\013" +
-      "description\030\004 \001(\t\"[\n\004Area\022\016\n\006areaId\030\001 \001(" +
-      "\005\022\020\n\010typeArea\030\003 \001(\t\022!\n\010position\030\004 \001(\0132\017." +
-      "proto.Position\022\016\n\006status\030\005 \001(\005\" \n\010Positi" +
-      "on\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\".\n\010ReqLogin\022\020\n\010" +
-      "username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"-\n\nReqR" +
-      "elogin\022\020\n\010username\030\001 \001(\t\022\r\n\005token\030\002 \001(\t\"" +
-      "D\n\010ResLogin\022\016\n\006status\030\001 \001(\005\022\r\n\005token\030\002 \001" +
-      "(\t\022\031\n\004user\030\003 \001(\0132\013.proto.User\"\036\n\014ResUser" +
-      "Alert\022\016\n\006status\030\001 \001(\005\"\013\n\tReqLogout\"\033\n\tRe" +
-      "sLogout\022\016\n\006status\030\001 \001(\005\"\"\n\021ReqForgotPass" +
-      "word\022\r\n\005email\030\001 \001(\t\"#\n\021ResForgotPassword" +
-      "\022\016\n\006status\030\001 \001(\005\"`\n\013ReqRegister\022\020\n\010usern" +
-      "ame\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\017\n\007sponsor\030\003" +
-      " \001(\t\022\r\n\005phone\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\"\035\n\013Re" +
-      "sRegister\022\016\n\006status\030\001 \001(\005\"7\n\021ReqUpdateUs" +
-      "erInfo\022\022\n\nplayerName\030\001 \001(\t\022\016\n\006gender\030\002 \001" +
-      "(\005\"\023\n\021ReqLoadCharacters\"8\n\021ResLoadCharac" +
-      "ters\022#\n\tcharacter\030\001 \003(\0132\020.proto.Characte" +
-      "r\";\n\020ReqPickCharacter\022\023\n\013characterId\030\001 \001" +
-      "(\005\022\022\n\nplayerName\030\002 \001(\t\"\"\n\020ResPickCharact" +
-      "er\022\016\n\006status\030\001 \001(\005\"R\n\027ReqPlayerJoinAreaC" +
-      "ommon\022\024\n\014areaCommonId\030\001 \001(\005\022!\n\010position\030" +
-      "\002 \001(\0132\017.proto.Position\"\254\001\n\027ResPlayerJoin" +
-      "AreaCommon\022\024\n\014areaCommonId\030\001 \001(\005\022\031\n\004area" +
-      "\030\002 \001(\0132\013.proto.Area\022\032\n\005users\030\004 \003(\0132\013.pro" +
-      "to.User\022\016\n\006status\030\005 \001(\005\022\021\n\tareaState\030\006 \001" +
-      "(\005\022!\n\010position\030\007 \001(\0132\017.proto.Position\")\n" +
-      "\021ReqPlayerJoinArea\022\024\n\014userTargetId\030\001 \001(\005" +
-      "\"}\n\021ResPlayerJoinArea\022\031\n\004area\030\001 \001(\0132\013.pr" +
-      "oto.Area\022\032\n\005users\030\003 \003(\0132\013.proto.User\022\016\n\006" +
-      "status\030\004 \001(\005\022!\n\010position\030\005 \001(\0132\017.proto.P" +
-      "osition\"V\n\026ResOtherPlayerJoinArea\022\031\n\004use" +
-      "r\030\002 \001(\0132\013.proto.User\022!\n\010position\030\003 \001(\0132\017" +
-      ".proto.Position\")\n\027ResOtherPlayerLeaveAr" +
-      "ea\022\016\n\006userId\030\001 \001(\005\"T\n\tReqMoving\022\016\n\006areaI" +
-      "d\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.proto.Positi" +
-      "on\022\024\n\014currentState\030\003 \001(\t\"T\n\tResMoving\022\016\n" +
-      "\006userId\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.proto." +
-      "Position\022\024\n\014currentState\030\003 \001(\t\"\024\n\022ReqLoa" +
-      "dItemsOfFarm\"l\n\014BuildingBase\022\n\n\002id\030\001 \001(\005" +
-      "\022\014\n\004name\030\002 \001(\t\022\r\n\005price\030\003 \001(\003\022\023\n\013descrip" +
-      "tion\030\004 \001(\t\022\014\n\004type\030\005 \001(\t\022\020\n\010maxLevel\030\006 \001" +
-      "(\005\"\227\001\n\020PropertyBuilding\022\n\n\002id\030\001 \001(\005\022\021\n\tp" +
-      "ositionX\030\002 \001(\003\022\021\n\tpositionY\030\003 \001(\003\022\021\n\tupg" +
-      "radeId\030\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\030\n\020commonBu" +
-      "ildingId\030\006 \001(\005\022\024\n\014currentLevel\030\007 \001(\005\"S\n\010" +
-      "TillLand\022\n\n\002id\030\001 \001(\005\022\r\n\005index\030\002 \001(\005\022\024\n\014s" +
-      "tatusTilled\030\003 \001(\010\022\026\n\016plantingLandId\030\004 \001(" +
-      "\005\"d\n\014FarmBuilding\022!\n\004base\030\001 \001(\0132\023.proto." +
-      "BuildingBase\0221\n\020propertyBuilding\030\002 \001(\0132\027" +
-      ".proto.PropertyBuilding\"\221\001\n\024PlantingLand" +
-      "Building\022!\n\004base\030\001 \001(\0132\023.proto.BuildingB" +
-      "ase\0221\n\020propertyBuilding\030\002 \001(\0132\027.proto.Pr" +
-      "opertyBuilding\022#\n\ttillLands\030\003 \001(\0132\020.prot" +
-      "o.TillLands\".\n\tTillLands\022!\n\010tillLand\030\003 \003" +
-      "(\0132\017.proto.TillLand\"|\n\010Building\022+\n\014farmB" +
-      "uilding\030\001 \001(\0132\023.proto.FarmBuildingH\000\022;\n\024" +
-      "plantingLandBuilding\030\002 \001(\0132\033.proto.Plant" +
-      "ingLandBuildingH\000B\006\n\004data\"2\n\rBuildingIte" +
-      "ms\022!\n\010building\030\001 \003(\0132\017.proto.Building\"A\n" +
-      "\022ResLoadItemsOfFarm\022+\n\rbuildingItems\030\001 \001" +
-      "(\0132\024.proto.BuildingItems\"\200\001\n\016ReqBuyBuild" +
-      "ing\022\024\n\014typeBuilding\030\001 \001(\t\022\021\n\tpositionX\030\002" +
-      " \001(\005\022\021\n\tpositionY\030\003 \001(\005\022\024\n\014currentLevel\030" +
-      "\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\014\n\004uuid\030\006 \001(\t\"A\n\016R" +
-      "esBuyBuilding\022\014\n\004uuid\030\001 \001(\t\022!\n\010building\030" +
-      "\002 \001(\0132\017.proto.BuildingB%\n#vn.edu.nlu.fit" +
-      ".nlugame.layer2.protob\006proto3"
+      "ingH\000\022?\n\026reqEmailForgetPassword\030\033 \001(\0132\035." +
+      "proto.ReqEmailForgetPasswordH\000\0227\n\022reqRec" +
+      "overPassword\030\034 \001(\0132\031.proto.ReqRecoverPas" +
+      "swordH\000\0227\n\022resRecoverPassword\030\035 \001(\0132\031.pr" +
+      "oto.ResRecoverPasswordH\000\022?\n\026resEmailForg" +
+      "etPassword\030\036 \001(\0132\035.proto.ResEmailForgetP" +
+      "asswordH\000B\006\n\004data\"\237\002\n\004User\022\016\n\006userId\030\001 \001" +
+      "(\005\022\020\n\010username\030\002 \001(\t\022\022\n\nplayerName\030\003 \001(\t" +
+      "\022\016\n\006gender\030\004 \001(\005\022\017\n\007sponsor\030\005 \001(\005\022\r\n\005ema" +
+      "il\030\006 \001(\t\022\r\n\005phone\030\007 \001(\t\022\014\n\004gold\030\010 \001(\003\022\017\n" +
+      "\007diamond\030\t \001(\003\022\r\n\005level\030\n \001(\005\022\024\n\014hasChar" +
+      "acter\030\013 \001(\005\022\023\n\013characterId\030\014 \001(\005\022\016\n\006area" +
+      "Id\030\r \001(\005\022\024\n\014isNewAccount\030\016 \001(\005\022#\n\tcharac" +
+      "ter\030\017 \001(\0132\020.proto.Character\"H\n\tCharacter" +
+      "\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t" +
+      "\022\023\n\013description\030\004 \001(\t\"[\n\004Area\022\016\n\006areaId\030" +
+      "\001 \001(\005\022\020\n\010typeArea\030\003 \001(\t\022!\n\010position\030\004 \001(" +
+      "\0132\017.proto.Position\022\016\n\006status\030\005 \001(\005\" \n\010Po" +
+      "sition\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\".\n\010ReqLogin" +
+      "\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"-\n\n" +
+      "ReqRelogin\022\020\n\010username\030\001 \001(\t\022\r\n\005token\030\002 " +
+      "\001(\t\"D\n\010ResLogin\022\016\n\006status\030\001 \001(\005\022\r\n\005token" +
+      "\030\002 \001(\t\022\031\n\004user\030\003 \001(\0132\013.proto.User\"\036\n\014Res" +
+      "UserAlert\022\016\n\006status\030\001 \001(\005\"\013\n\tReqLogout\"\033" +
+      "\n\tResLogout\022\016\n\006status\030\001 \001(\005\"\"\n\021ReqForgot" +
+      "Password\022\r\n\005email\030\001 \001(\t\"#\n\021ResForgotPass" +
+      "word\022\016\n\006status\030\001 \001(\005\"`\n\013ReqRegister\022\020\n\010u" +
+      "sername\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\017\n\007spons" +
+      "or\030\003 \001(\t\022\r\n\005phone\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\"\035" +
+      "\n\013ResRegister\022\016\n\006status\030\001 \001(\005\"7\n\021ReqUpda" +
+      "teUserInfo\022\022\n\nplayerName\030\001 \001(\t\022\016\n\006gender" +
+      "\030\002 \001(\005\"\023\n\021ReqLoadCharacters\"8\n\021ResLoadCh" +
+      "aracters\022#\n\tcharacter\030\001 \003(\0132\020.proto.Char" +
+      "acter\";\n\020ReqPickCharacter\022\023\n\013characterId" +
+      "\030\001 \001(\005\022\022\n\nplayerName\030\002 \001(\t\"\"\n\020ResPickCha" +
+      "racter\022\016\n\006status\030\001 \001(\005\"R\n\027ReqPlayerJoinA" +
+      "reaCommon\022\024\n\014areaCommonId\030\001 \001(\005\022!\n\010posit" +
+      "ion\030\002 \001(\0132\017.proto.Position\"\254\001\n\027ResPlayer" +
+      "JoinAreaCommon\022\024\n\014areaCommonId\030\001 \001(\005\022\031\n\004" +
+      "area\030\002 \001(\0132\013.proto.Area\022\032\n\005users\030\004 \003(\0132\013" +
+      ".proto.User\022\016\n\006status\030\005 \001(\005\022\021\n\tareaState" +
+      "\030\006 \001(\005\022!\n\010position\030\007 \001(\0132\017.proto.Positio" +
+      "n\")\n\021ReqPlayerJoinArea\022\024\n\014userTargetId\030\001" +
+      " \001(\005\"}\n\021ResPlayerJoinArea\022\031\n\004area\030\001 \001(\0132" +
+      "\013.proto.Area\022\032\n\005users\030\003 \003(\0132\013.proto.User" +
+      "\022\016\n\006status\030\004 \001(\005\022!\n\010position\030\005 \001(\0132\017.pro" +
+      "to.Position\"V\n\026ResOtherPlayerJoinArea\022\031\n" +
+      "\004user\030\002 \001(\0132\013.proto.User\022!\n\010position\030\003 \001" +
+      "(\0132\017.proto.Position\")\n\027ResOtherPlayerLea" +
+      "veArea\022\016\n\006userId\030\001 \001(\005\"T\n\tReqMoving\022\016\n\006a" +
+      "reaId\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.proto.Po" +
+      "sition\022\024\n\014currentState\030\003 \001(\t\"T\n\tResMovin" +
+      "g\022\016\n\006userId\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.pr" +
+      "oto.Position\022\024\n\014currentState\030\003 \001(\t\"\024\n\022Re" +
+      "qLoadItemsOfFarm\"l\n\014BuildingBase\022\n\n\002id\030\001" +
+      " \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005price\030\003 \001(\003\022\023\n\013des" +
+      "cription\030\004 \001(\t\022\014\n\004type\030\005 \001(\t\022\020\n\010maxLevel" +
+      "\030\006 \001(\005\"\227\001\n\020PropertyBuilding\022\n\n\002id\030\001 \001(\005\022" +
+      "\021\n\tpositionX\030\002 \001(\003\022\021\n\tpositionY\030\003 \001(\003\022\021\n" +
+      "\tupgradeId\030\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\030\n\020comm" +
+      "onBuildingId\030\006 \001(\005\022\024\n\014currentLevel\030\007 \001(\005" +
+      "\"S\n\010TillLand\022\n\n\002id\030\001 \001(\005\022\r\n\005index\030\002 \001(\005\022" +
+      "\024\n\014statusTilled\030\003 \001(\010\022\026\n\016plantingLandId\030" +
+      "\004 \001(\005\"d\n\014FarmBuilding\022!\n\004base\030\001 \001(\0132\023.pr" +
+      "oto.BuildingBase\0221\n\020propertyBuilding\030\002 \001" +
+      "(\0132\027.proto.PropertyBuilding\"\221\001\n\024Planting" +
+      "LandBuilding\022!\n\004base\030\001 \001(\0132\023.proto.Build" +
+      "ingBase\0221\n\020propertyBuilding\030\002 \001(\0132\027.prot" +
+      "o.PropertyBuilding\022#\n\ttillLands\030\003 \001(\0132\020." +
+      "proto.TillLands\".\n\tTillLands\022!\n\010tillLand" +
+      "\030\003 \003(\0132\017.proto.TillLand\"|\n\010Building\022+\n\014f" +
+      "armBuilding\030\001 \001(\0132\023.proto.FarmBuildingH\000" +
+      "\022;\n\024plantingLandBuilding\030\002 \001(\0132\033.proto.P" +
+      "lantingLandBuildingH\000B\006\n\004data\"2\n\rBuildin" +
+      "gItems\022!\n\010building\030\001 \003(\0132\017.proto.Buildin" +
+      "g\"A\n\022ResLoadItemsOfFarm\022+\n\rbuildingItems" +
+      "\030\001 \001(\0132\024.proto.BuildingItems\"\200\001\n\016ReqBuyB" +
+      "uilding\022\024\n\014typeBuilding\030\001 \001(\t\022\021\n\tpositio" +
+      "nX\030\002 \001(\005\022\021\n\tpositionY\030\003 \001(\005\022\024\n\014currentLe" +
+      "vel\030\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\014\n\004uuid\030\006 \001(\t\"" +
+      "A\n\016ResBuyBuilding\022\014\n\004uuid\030\001 \001(\t\022!\n\010build" +
+      "ing\030\002 \001(\0132\017.proto.Building\"\'\n\026ReqEmailFo" +
+      "rgetPassword\022\r\n\005email\030\001 \001(\t\"D\n\022ReqRecove" +
+      "rPassword\022\020\n\010password\030\001 \001(\t\022\r\n\005token\030\002 \001" +
+      "(\t\022\r\n\005email\030\003 \001(\t\"$\n\022ResRecoverPassword\022" +
+      "\016\n\006status\030\001 \001(\005\"(\n\026ResEmailForgetPasswor" +
+      "d\022\016\n\006status\030\001 \001(\005B%\n#vn.edu.nlu.fit.nlug" +
+      "ame.layer2.protob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -36028,7 +39167,7 @@ public final class Proto {
     internal_static_proto_Packet_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Packet_descriptor,
-        new java.lang.String[] { "ReqLogin", "ReqRelogin", "ResLogin", "ReqLogout", "ResLogout", "ReqForgotPassword", "ResForgotPassword", "ReqRegister", "ResRegister", "ReqUpdateUserInfo", "ReqLoadCharacters", "ResLoadCharacters", "ReqPickCharacter", "ResPickCharacter", "ReqPlayerJoinAreaCommon", "ResPlayerJoinAreaCommon", "ReqPlayerJoinArea", "ResPlayerJoinArea", "ResOtherPlayerJoinArea", "ReqMoving", "ResMoving", "ResOtherPlayerLeaveArea", "ReqLoadItemsOfFarm", "ResLoadItemsOfFarm", "ReqBuyBuilding", "ResBuyBuilding", "Data", });
+        new java.lang.String[] { "ReqLogin", "ReqRelogin", "ResLogin", "ReqLogout", "ResLogout", "ReqForgotPassword", "ResForgotPassword", "ReqRegister", "ResRegister", "ReqUpdateUserInfo", "ReqLoadCharacters", "ResLoadCharacters", "ReqPickCharacter", "ResPickCharacter", "ReqPlayerJoinAreaCommon", "ResPlayerJoinAreaCommon", "ReqPlayerJoinArea", "ResPlayerJoinArea", "ResOtherPlayerJoinArea", "ReqMoving", "ResMoving", "ResOtherPlayerLeaveArea", "ReqLoadItemsOfFarm", "ResLoadItemsOfFarm", "ReqBuyBuilding", "ResBuyBuilding", "ReqEmailForgetPassword", "ReqRecoverPassword", "ResRecoverPassword", "ResEmailForgetPassword", "Data", });
     internal_static_proto_User_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_proto_User_fieldAccessorTable = new
@@ -36263,6 +39402,30 @@ public final class Proto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_ResBuyBuilding_descriptor,
         new java.lang.String[] { "Uuid", "Building", });
+    internal_static_proto_ReqEmailForgetPassword_descriptor =
+      getDescriptor().getMessageTypes().get(41);
+    internal_static_proto_ReqEmailForgetPassword_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ReqEmailForgetPassword_descriptor,
+        new java.lang.String[] { "Email", });
+    internal_static_proto_ReqRecoverPassword_descriptor =
+      getDescriptor().getMessageTypes().get(42);
+    internal_static_proto_ReqRecoverPassword_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ReqRecoverPassword_descriptor,
+        new java.lang.String[] { "Password", "Token", "Email", });
+    internal_static_proto_ResRecoverPassword_descriptor =
+      getDescriptor().getMessageTypes().get(43);
+    internal_static_proto_ResRecoverPassword_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ResRecoverPassword_descriptor,
+        new java.lang.String[] { "Status", });
+    internal_static_proto_ResEmailForgetPassword_descriptor =
+      getDescriptor().getMessageTypes().get(44);
+    internal_static_proto_ResEmailForgetPassword_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ResEmailForgetPassword_descriptor,
+        new java.lang.String[] { "Status", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

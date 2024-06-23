@@ -48,7 +48,7 @@ export class PopupSetting extends AbsHandler {
             UICanvas.me().transitScene(SCENES.AUTHEN);
             break;
           case 400:
-            UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGOUT_FAILED_400);
+            UICanvas.me().showPopupMessage(t("label_text.logout_failed_400"));
             break;
         }
       }

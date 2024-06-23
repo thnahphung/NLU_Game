@@ -273,6 +273,10 @@
              * @property {proto.IResLoadItemsOfFarm|null} [resLoadItemsOfFarm] Packet resLoadItemsOfFarm
              * @property {proto.IReqBuyBuilding|null} [reqBuyBuilding] Packet reqBuyBuilding
              * @property {proto.IResBuyBuilding|null} [resBuyBuilding] Packet resBuyBuilding
+             * @property {proto.IReqEmailForgetPassword|null} [reqEmailForgetPassword] Packet reqEmailForgetPassword
+             * @property {proto.IReqRecoverPassword|null} [reqRecoverPassword] Packet reqRecoverPassword
+             * @property {proto.IResRecoverPassword|null} [resRecoverPassword] Packet resRecoverPassword
+             * @property {proto.IResEmailForgetPassword|null} [resEmailForgetPassword] Packet resEmailForgetPassword
              */
     
             /**
@@ -498,17 +502,49 @@
              */
             Packet.prototype.resBuyBuilding = null;
     
+            /**
+             * Packet reqEmailForgetPassword.
+             * @member {proto.IReqEmailForgetPassword|null|undefined} reqEmailForgetPassword
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqEmailForgetPassword = null;
+    
+            /**
+             * Packet reqRecoverPassword.
+             * @member {proto.IReqRecoverPassword|null|undefined} reqRecoverPassword
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqRecoverPassword = null;
+    
+            /**
+             * Packet resRecoverPassword.
+             * @member {proto.IResRecoverPassword|null|undefined} resRecoverPassword
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resRecoverPassword = null;
+    
+            /**
+             * Packet resEmailForgetPassword.
+             * @member {proto.IResEmailForgetPassword|null|undefined} resEmailForgetPassword
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resEmailForgetPassword = null;
+    
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
     
             /**
              * Packet data.
-             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|undefined} data
+             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|"reqEmailForgetPassword"|"reqRecoverPassword"|"resRecoverPassword"|"resEmailForgetPassword"|undefined} data
              * @memberof proto.Packet
              * @instance
              */
             Object.defineProperty(Packet.prototype, "data", {
-                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter", "reqPlayerJoinAreaCommon", "resPlayerJoinAreaCommon", "reqPlayerJoinArea", "resPlayerJoinArea", "resOtherPlayerJoinArea", "reqMoving", "resMoving", "resOtherPlayerLeaveArea", "reqLoadItemsOfFarm", "resLoadItemsOfFarm", "reqBuyBuilding", "resBuyBuilding"]),
+                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter", "reqPlayerJoinAreaCommon", "resPlayerJoinAreaCommon", "reqPlayerJoinArea", "resPlayerJoinArea", "resOtherPlayerJoinArea", "reqMoving", "resMoving", "resOtherPlayerLeaveArea", "reqLoadItemsOfFarm", "resLoadItemsOfFarm", "reqBuyBuilding", "resBuyBuilding", "reqEmailForgetPassword", "reqRecoverPassword", "resRecoverPassword", "resEmailForgetPassword"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
     
@@ -588,6 +624,14 @@
                     $root.proto.ReqBuyBuilding.encode(message.reqBuyBuilding, writer.uint32(/* id 25, wireType 2 =*/202).fork()).ldelim();
                 if (message.resBuyBuilding != null && Object.hasOwnProperty.call(message, "resBuyBuilding"))
                     $root.proto.ResBuyBuilding.encode(message.resBuyBuilding, writer.uint32(/* id 26, wireType 2 =*/210).fork()).ldelim();
+                if (message.reqEmailForgetPassword != null && Object.hasOwnProperty.call(message, "reqEmailForgetPassword"))
+                    $root.proto.ReqEmailForgetPassword.encode(message.reqEmailForgetPassword, writer.uint32(/* id 27, wireType 2 =*/218).fork()).ldelim();
+                if (message.reqRecoverPassword != null && Object.hasOwnProperty.call(message, "reqRecoverPassword"))
+                    $root.proto.ReqRecoverPassword.encode(message.reqRecoverPassword, writer.uint32(/* id 28, wireType 2 =*/226).fork()).ldelim();
+                if (message.resRecoverPassword != null && Object.hasOwnProperty.call(message, "resRecoverPassword"))
+                    $root.proto.ResRecoverPassword.encode(message.resRecoverPassword, writer.uint32(/* id 29, wireType 2 =*/234).fork()).ldelim();
+                if (message.resEmailForgetPassword != null && Object.hasOwnProperty.call(message, "resEmailForgetPassword"))
+                    $root.proto.ResEmailForgetPassword.encode(message.resEmailForgetPassword, writer.uint32(/* id 30, wireType 2 =*/242).fork()).ldelim();
                 return writer;
             };
     
@@ -724,6 +768,22 @@
                         }
                     case 26: {
                             message.resBuyBuilding = $root.proto.ResBuyBuilding.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 27: {
+                            message.reqEmailForgetPassword = $root.proto.ReqEmailForgetPassword.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 28: {
+                            message.reqRecoverPassword = $root.proto.ReqRecoverPassword.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 29: {
+                            message.resRecoverPassword = $root.proto.ResRecoverPassword.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 30: {
+                            message.resEmailForgetPassword = $root.proto.ResEmailForgetPassword.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -1020,6 +1080,46 @@
                             return "resBuyBuilding." + error;
                     }
                 }
+                if (message.reqEmailForgetPassword != null && message.hasOwnProperty("reqEmailForgetPassword")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqEmailForgetPassword.verify(message.reqEmailForgetPassword);
+                        if (error)
+                            return "reqEmailForgetPassword." + error;
+                    }
+                }
+                if (message.reqRecoverPassword != null && message.hasOwnProperty("reqRecoverPassword")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqRecoverPassword.verify(message.reqRecoverPassword);
+                        if (error)
+                            return "reqRecoverPassword." + error;
+                    }
+                }
+                if (message.resRecoverPassword != null && message.hasOwnProperty("resRecoverPassword")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResRecoverPassword.verify(message.resRecoverPassword);
+                        if (error)
+                            return "resRecoverPassword." + error;
+                    }
+                }
+                if (message.resEmailForgetPassword != null && message.hasOwnProperty("resEmailForgetPassword")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResEmailForgetPassword.verify(message.resEmailForgetPassword);
+                        if (error)
+                            return "resEmailForgetPassword." + error;
+                    }
+                }
                 return null;
             };
     
@@ -1164,6 +1264,26 @@
                     if (typeof object.resBuyBuilding !== "object")
                         throw TypeError(".proto.Packet.resBuyBuilding: object expected");
                     message.resBuyBuilding = $root.proto.ResBuyBuilding.fromObject(object.resBuyBuilding);
+                }
+                if (object.reqEmailForgetPassword != null) {
+                    if (typeof object.reqEmailForgetPassword !== "object")
+                        throw TypeError(".proto.Packet.reqEmailForgetPassword: object expected");
+                    message.reqEmailForgetPassword = $root.proto.ReqEmailForgetPassword.fromObject(object.reqEmailForgetPassword);
+                }
+                if (object.reqRecoverPassword != null) {
+                    if (typeof object.reqRecoverPassword !== "object")
+                        throw TypeError(".proto.Packet.reqRecoverPassword: object expected");
+                    message.reqRecoverPassword = $root.proto.ReqRecoverPassword.fromObject(object.reqRecoverPassword);
+                }
+                if (object.resRecoverPassword != null) {
+                    if (typeof object.resRecoverPassword !== "object")
+                        throw TypeError(".proto.Packet.resRecoverPassword: object expected");
+                    message.resRecoverPassword = $root.proto.ResRecoverPassword.fromObject(object.resRecoverPassword);
+                }
+                if (object.resEmailForgetPassword != null) {
+                    if (typeof object.resEmailForgetPassword !== "object")
+                        throw TypeError(".proto.Packet.resEmailForgetPassword: object expected");
+                    message.resEmailForgetPassword = $root.proto.ResEmailForgetPassword.fromObject(object.resEmailForgetPassword);
                 }
                 return message;
             };
@@ -1310,6 +1430,26 @@
                     object.resBuyBuilding = $root.proto.ResBuyBuilding.toObject(message.resBuyBuilding, options);
                     if (options.oneofs)
                         object.data = "resBuyBuilding";
+                }
+                if (message.reqEmailForgetPassword != null && message.hasOwnProperty("reqEmailForgetPassword")) {
+                    object.reqEmailForgetPassword = $root.proto.ReqEmailForgetPassword.toObject(message.reqEmailForgetPassword, options);
+                    if (options.oneofs)
+                        object.data = "reqEmailForgetPassword";
+                }
+                if (message.reqRecoverPassword != null && message.hasOwnProperty("reqRecoverPassword")) {
+                    object.reqRecoverPassword = $root.proto.ReqRecoverPassword.toObject(message.reqRecoverPassword, options);
+                    if (options.oneofs)
+                        object.data = "reqRecoverPassword";
+                }
+                if (message.resRecoverPassword != null && message.hasOwnProperty("resRecoverPassword")) {
+                    object.resRecoverPassword = $root.proto.ResRecoverPassword.toObject(message.resRecoverPassword, options);
+                    if (options.oneofs)
+                        object.data = "resRecoverPassword";
+                }
+                if (message.resEmailForgetPassword != null && message.hasOwnProperty("resEmailForgetPassword")) {
+                    object.resEmailForgetPassword = $root.proto.ResEmailForgetPassword.toObject(message.resEmailForgetPassword, options);
+                    if (options.oneofs)
+                        object.data = "resEmailForgetPassword";
                 }
                 return object;
             };
@@ -11092,6 +11232,865 @@
             };
     
             return ResBuyBuilding;
+        })();
+    
+        proto.ReqEmailForgetPassword = (function() {
+    
+            /**
+             * Properties of a ReqEmailForgetPassword.
+             * @memberof proto
+             * @interface IReqEmailForgetPassword
+             * @property {string|null} [email] ReqEmailForgetPassword email
+             */
+    
+            /**
+             * Constructs a new ReqEmailForgetPassword.
+             * @memberof proto
+             * @classdesc Represents a ReqEmailForgetPassword.
+             * @implements IReqEmailForgetPassword
+             * @constructor
+             * @param {proto.IReqEmailForgetPassword=} [properties] Properties to set
+             */
+            function ReqEmailForgetPassword(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ReqEmailForgetPassword email.
+             * @member {string} email
+             * @memberof proto.ReqEmailForgetPassword
+             * @instance
+             */
+            ReqEmailForgetPassword.prototype.email = "";
+    
+            /**
+             * Creates a new ReqEmailForgetPassword instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {proto.IReqEmailForgetPassword=} [properties] Properties to set
+             * @returns {proto.ReqEmailForgetPassword} ReqEmailForgetPassword instance
+             */
+            ReqEmailForgetPassword.create = function create(properties) {
+                return new ReqEmailForgetPassword(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqEmailForgetPassword message. Does not implicitly {@link proto.ReqEmailForgetPassword.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {proto.IReqEmailForgetPassword} message ReqEmailForgetPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqEmailForgetPassword.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.email != null && Object.hasOwnProperty.call(message, "email"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.email);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqEmailForgetPassword message, length delimited. Does not implicitly {@link proto.ReqEmailForgetPassword.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {proto.IReqEmailForgetPassword} message ReqEmailForgetPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqEmailForgetPassword.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqEmailForgetPassword message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqEmailForgetPassword} ReqEmailForgetPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqEmailForgetPassword.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqEmailForgetPassword();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.email = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqEmailForgetPassword message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqEmailForgetPassword} ReqEmailForgetPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqEmailForgetPassword.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqEmailForgetPassword message.
+             * @function verify
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqEmailForgetPassword.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.email != null && message.hasOwnProperty("email"))
+                    if (!$util.isString(message.email))
+                        return "email: string expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ReqEmailForgetPassword message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqEmailForgetPassword} ReqEmailForgetPassword
+             */
+            ReqEmailForgetPassword.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqEmailForgetPassword)
+                    return object;
+                var message = new $root.proto.ReqEmailForgetPassword();
+                if (object.email != null)
+                    message.email = String(object.email);
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ReqEmailForgetPassword message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {proto.ReqEmailForgetPassword} message ReqEmailForgetPassword
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqEmailForgetPassword.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.email = "";
+                if (message.email != null && message.hasOwnProperty("email"))
+                    object.email = message.email;
+                return object;
+            };
+    
+            /**
+             * Converts this ReqEmailForgetPassword to JSON.
+             * @function toJSON
+             * @memberof proto.ReqEmailForgetPassword
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqEmailForgetPassword.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqEmailForgetPassword
+             * @function getTypeUrl
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqEmailForgetPassword.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqEmailForgetPassword";
+            };
+    
+            return ReqEmailForgetPassword;
+        })();
+    
+        proto.ReqRecoverPassword = (function() {
+    
+            /**
+             * Properties of a ReqRecoverPassword.
+             * @memberof proto
+             * @interface IReqRecoverPassword
+             * @property {string|null} [password] ReqRecoverPassword password
+             * @property {string|null} [token] ReqRecoverPassword token
+             * @property {string|null} [email] ReqRecoverPassword email
+             */
+    
+            /**
+             * Constructs a new ReqRecoverPassword.
+             * @memberof proto
+             * @classdesc Represents a ReqRecoverPassword.
+             * @implements IReqRecoverPassword
+             * @constructor
+             * @param {proto.IReqRecoverPassword=} [properties] Properties to set
+             */
+            function ReqRecoverPassword(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ReqRecoverPassword password.
+             * @member {string} password
+             * @memberof proto.ReqRecoverPassword
+             * @instance
+             */
+            ReqRecoverPassword.prototype.password = "";
+    
+            /**
+             * ReqRecoverPassword token.
+             * @member {string} token
+             * @memberof proto.ReqRecoverPassword
+             * @instance
+             */
+            ReqRecoverPassword.prototype.token = "";
+    
+            /**
+             * ReqRecoverPassword email.
+             * @member {string} email
+             * @memberof proto.ReqRecoverPassword
+             * @instance
+             */
+            ReqRecoverPassword.prototype.email = "";
+    
+            /**
+             * Creates a new ReqRecoverPassword instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {proto.IReqRecoverPassword=} [properties] Properties to set
+             * @returns {proto.ReqRecoverPassword} ReqRecoverPassword instance
+             */
+            ReqRecoverPassword.create = function create(properties) {
+                return new ReqRecoverPassword(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqRecoverPassword message. Does not implicitly {@link proto.ReqRecoverPassword.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {proto.IReqRecoverPassword} message ReqRecoverPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqRecoverPassword.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.password != null && Object.hasOwnProperty.call(message, "password"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.password);
+                if (message.token != null && Object.hasOwnProperty.call(message, "token"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.token);
+                if (message.email != null && Object.hasOwnProperty.call(message, "email"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.email);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqRecoverPassword message, length delimited. Does not implicitly {@link proto.ReqRecoverPassword.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {proto.IReqRecoverPassword} message ReqRecoverPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqRecoverPassword.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqRecoverPassword message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqRecoverPassword} ReqRecoverPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqRecoverPassword.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqRecoverPassword();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.password = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.token = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.email = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqRecoverPassword message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqRecoverPassword} ReqRecoverPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqRecoverPassword.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqRecoverPassword message.
+             * @function verify
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqRecoverPassword.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.password != null && message.hasOwnProperty("password"))
+                    if (!$util.isString(message.password))
+                        return "password: string expected";
+                if (message.token != null && message.hasOwnProperty("token"))
+                    if (!$util.isString(message.token))
+                        return "token: string expected";
+                if (message.email != null && message.hasOwnProperty("email"))
+                    if (!$util.isString(message.email))
+                        return "email: string expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ReqRecoverPassword message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqRecoverPassword} ReqRecoverPassword
+             */
+            ReqRecoverPassword.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqRecoverPassword)
+                    return object;
+                var message = new $root.proto.ReqRecoverPassword();
+                if (object.password != null)
+                    message.password = String(object.password);
+                if (object.token != null)
+                    message.token = String(object.token);
+                if (object.email != null)
+                    message.email = String(object.email);
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ReqRecoverPassword message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {proto.ReqRecoverPassword} message ReqRecoverPassword
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqRecoverPassword.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.password = "";
+                    object.token = "";
+                    object.email = "";
+                }
+                if (message.password != null && message.hasOwnProperty("password"))
+                    object.password = message.password;
+                if (message.token != null && message.hasOwnProperty("token"))
+                    object.token = message.token;
+                if (message.email != null && message.hasOwnProperty("email"))
+                    object.email = message.email;
+                return object;
+            };
+    
+            /**
+             * Converts this ReqRecoverPassword to JSON.
+             * @function toJSON
+             * @memberof proto.ReqRecoverPassword
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqRecoverPassword.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqRecoverPassword
+             * @function getTypeUrl
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqRecoverPassword.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqRecoverPassword";
+            };
+    
+            return ReqRecoverPassword;
+        })();
+    
+        proto.ResRecoverPassword = (function() {
+    
+            /**
+             * Properties of a ResRecoverPassword.
+             * @memberof proto
+             * @interface IResRecoverPassword
+             * @property {number|null} [status] ResRecoverPassword status
+             */
+    
+            /**
+             * Constructs a new ResRecoverPassword.
+             * @memberof proto
+             * @classdesc Represents a ResRecoverPassword.
+             * @implements IResRecoverPassword
+             * @constructor
+             * @param {proto.IResRecoverPassword=} [properties] Properties to set
+             */
+            function ResRecoverPassword(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResRecoverPassword status.
+             * @member {number} status
+             * @memberof proto.ResRecoverPassword
+             * @instance
+             */
+            ResRecoverPassword.prototype.status = 0;
+    
+            /**
+             * Creates a new ResRecoverPassword instance using the specified properties.
+             * @function create
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {proto.IResRecoverPassword=} [properties] Properties to set
+             * @returns {proto.ResRecoverPassword} ResRecoverPassword instance
+             */
+            ResRecoverPassword.create = function create(properties) {
+                return new ResRecoverPassword(properties);
+            };
+    
+            /**
+             * Encodes the specified ResRecoverPassword message. Does not implicitly {@link proto.ResRecoverPassword.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {proto.IResRecoverPassword} message ResRecoverPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResRecoverPassword.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResRecoverPassword message, length delimited. Does not implicitly {@link proto.ResRecoverPassword.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {proto.IResRecoverPassword} message ResRecoverPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResRecoverPassword.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResRecoverPassword message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResRecoverPassword} ResRecoverPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResRecoverPassword.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResRecoverPassword();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.status = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResRecoverPassword message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResRecoverPassword} ResRecoverPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResRecoverPassword.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResRecoverPassword message.
+             * @function verify
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResRecoverPassword.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ResRecoverPassword message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResRecoverPassword} ResRecoverPassword
+             */
+            ResRecoverPassword.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResRecoverPassword)
+                    return object;
+                var message = new $root.proto.ResRecoverPassword();
+                if (object.status != null)
+                    message.status = object.status | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResRecoverPassword message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {proto.ResRecoverPassword} message ResRecoverPassword
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResRecoverPassword.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.status = 0;
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                return object;
+            };
+    
+            /**
+             * Converts this ResRecoverPassword to JSON.
+             * @function toJSON
+             * @memberof proto.ResRecoverPassword
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResRecoverPassword.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResRecoverPassword
+             * @function getTypeUrl
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResRecoverPassword.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResRecoverPassword";
+            };
+    
+            return ResRecoverPassword;
+        })();
+    
+        proto.ResEmailForgetPassword = (function() {
+    
+            /**
+             * Properties of a ResEmailForgetPassword.
+             * @memberof proto
+             * @interface IResEmailForgetPassword
+             * @property {number|null} [status] ResEmailForgetPassword status
+             */
+    
+            /**
+             * Constructs a new ResEmailForgetPassword.
+             * @memberof proto
+             * @classdesc Represents a ResEmailForgetPassword.
+             * @implements IResEmailForgetPassword
+             * @constructor
+             * @param {proto.IResEmailForgetPassword=} [properties] Properties to set
+             */
+            function ResEmailForgetPassword(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResEmailForgetPassword status.
+             * @member {number} status
+             * @memberof proto.ResEmailForgetPassword
+             * @instance
+             */
+            ResEmailForgetPassword.prototype.status = 0;
+    
+            /**
+             * Creates a new ResEmailForgetPassword instance using the specified properties.
+             * @function create
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {proto.IResEmailForgetPassword=} [properties] Properties to set
+             * @returns {proto.ResEmailForgetPassword} ResEmailForgetPassword instance
+             */
+            ResEmailForgetPassword.create = function create(properties) {
+                return new ResEmailForgetPassword(properties);
+            };
+    
+            /**
+             * Encodes the specified ResEmailForgetPassword message. Does not implicitly {@link proto.ResEmailForgetPassword.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {proto.IResEmailForgetPassword} message ResEmailForgetPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResEmailForgetPassword.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResEmailForgetPassword message, length delimited. Does not implicitly {@link proto.ResEmailForgetPassword.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {proto.IResEmailForgetPassword} message ResEmailForgetPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResEmailForgetPassword.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResEmailForgetPassword message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResEmailForgetPassword} ResEmailForgetPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResEmailForgetPassword.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResEmailForgetPassword();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.status = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResEmailForgetPassword message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResEmailForgetPassword} ResEmailForgetPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResEmailForgetPassword.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResEmailForgetPassword message.
+             * @function verify
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResEmailForgetPassword.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ResEmailForgetPassword message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResEmailForgetPassword} ResEmailForgetPassword
+             */
+            ResEmailForgetPassword.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResEmailForgetPassword)
+                    return object;
+                var message = new $root.proto.ResEmailForgetPassword();
+                if (object.status != null)
+                    message.status = object.status | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResEmailForgetPassword message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {proto.ResEmailForgetPassword} message ResEmailForgetPassword
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResEmailForgetPassword.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.status = 0;
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                return object;
+            };
+    
+            /**
+             * Converts this ResEmailForgetPassword to JSON.
+             * @function toJSON
+             * @memberof proto.ResEmailForgetPassword
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResEmailForgetPassword.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResEmailForgetPassword
+             * @function getTypeUrl
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResEmailForgetPassword.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResEmailForgetPassword";
+            };
+    
+            return ResEmailForgetPassword;
         })();
     
         return proto;

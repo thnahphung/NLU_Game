@@ -23,6 +23,7 @@ dependencies {
     api 'at.favre.lib:bcrypt:0.10.2'
     api 'com.github.ben-manes.caffeine:caffeine:3.0.3'
     api 'org.quartz-scheduler:quartz:2.3.0'
+    api 'com.sun.mail:javax.mail:1.6.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }

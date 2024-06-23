@@ -35,6 +35,10 @@ message Packet {
     ResLoadItemsOfFarm resLoadItemsOfFarm = 24;
     ReqBuyBuilding reqBuyBuilding = 25;
     ResBuyBuilding resBuyBuilding = 26;
+    ReqEmailForgetPassword reqEmailForgetPassword = 27;
+    ReqRecoverPassword reqRecoverPassword = 28;
+    ResRecoverPassword resRecoverPassword = 29;
+    ResEmailForgetPassword resEmailForgetPassword = 30;
   }
 }
 
@@ -277,4 +281,22 @@ message ReqBuyBuilding {
 message ResBuyBuilding {
   string uuid = 1;
   Building building = 2;
+}
+
+message ReqEmailForgetPassword {
+  string email = 1;
+}
+
+message ReqRecoverPassword {
+  string password = 1;
+  string token = 2;
+  string email = 3;
+}
+
+message ResRecoverPassword {
+  int32 status = 1;
+}
+
+message ResEmailForgetPassword {
+  int32 status = 1;
 }

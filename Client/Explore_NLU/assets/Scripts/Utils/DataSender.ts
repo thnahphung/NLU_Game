@@ -109,4 +109,22 @@ export default class DataSender {
     packet.reqBuyBuilding = reqBuyBuilding;
     WS.send(packet);
   }
+
+  public static sendReqEmailForgetPassword(email: string) {
+    let reqEmailForgetPassword = new proto.ReqEmailForgetPassword();
+    reqEmailForgetPassword.email = email;
+    let packet = new proto.Packet();
+    packet.reqEmailForgetPassword = reqEmailForgetPassword;
+    WS.send(packet);
+  }
+
+  public static sendReqRecoverPassword(email: string, newPassword: string, token: string) {
+    let reqRecoverPassword = new proto.ReqRecoverPassword();
+    reqRecoverPassword.password = newPassword;
+    reqRecoverPassword.token = token;
+    reqRecoverPassword.email = email;
+    let packet = new proto.Packet();
+    packet.reqRecoverPassword = reqRecoverPassword;
+    WS.send(packet);
+  }
 }

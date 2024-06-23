@@ -66,6 +66,27 @@ export const languages = {
     //Popup
     title_notify: "Notification",
     closing_connection: "Lost connection to the server, trying to reconnect...",
+    login_success_200: "Login successful!",
+    login_failed_400: "Username or password is incorrect!",
+    login_failed_401: "Username or password cannot be empty!",
+    login_failed_402: "The account has been locked!",
+    login_failed_403: "The account is logged in on another device!",
+    login_failed_500: "The account is already logged in!",
+    register_success_200: "Registration successful!",
+    register_failed_400: "The username already exists!",
+    register_failed_401: "Username or password cannot be empty!",
+    register_failed_402: "Passwords do not match!",
+    register_failed_403: "This email has already been used!",
+    register_failed_500: "System error, registration is currently unavailable!",
+    register_failed_input: "Username cannot contain spaces!",
+    register_failed_email: "Invalid email!",
+    logout_failed_400: "Cannot logout!",
+    logout_failed_401: "No account logged in!",
+    server_error: "System error!",
+    forget_password_success: "A new password has been sent to your email!",
+    forget_password_failed_400: "Email has not been registered!",
+    forget_password_failed_401: "Email cannot be empty!",
+    forget_password_failed_403: "Invalid email!"
   },
 };
 

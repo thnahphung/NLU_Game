@@ -181,6 +181,18 @@ export namespace proto {
 
         /** Packet resBuyBuilding */
         resBuyBuilding?: (proto.IResBuyBuilding|null);
+
+        /** Packet reqEmailForgetPassword */
+        reqEmailForgetPassword?: (proto.IReqEmailForgetPassword|null);
+
+        /** Packet reqRecoverPassword */
+        reqRecoverPassword?: (proto.IReqRecoverPassword|null);
+
+        /** Packet resRecoverPassword */
+        resRecoverPassword?: (proto.IResRecoverPassword|null);
+
+        /** Packet resEmailForgetPassword */
+        resEmailForgetPassword?: (proto.IResEmailForgetPassword|null);
     }
 
     /** Represents a Packet. */
@@ -270,8 +282,20 @@ export namespace proto {
         /** Packet resBuyBuilding. */
         public resBuyBuilding?: (proto.IResBuyBuilding|null);
 
+        /** Packet reqEmailForgetPassword. */
+        public reqEmailForgetPassword?: (proto.IReqEmailForgetPassword|null);
+
+        /** Packet reqRecoverPassword. */
+        public reqRecoverPassword?: (proto.IReqRecoverPassword|null);
+
+        /** Packet resRecoverPassword. */
+        public resRecoverPassword?: (proto.IResRecoverPassword|null);
+
+        /** Packet resEmailForgetPassword. */
+        public resEmailForgetPassword?: (proto.IResEmailForgetPassword|null);
+
         /** Packet data. */
-        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding");
+        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|"reqEmailForgetPassword"|"reqRecoverPassword"|"resRecoverPassword"|"resEmailForgetPassword");
 
         /**
          * Creates a new Packet instance using the specified properties.
@@ -4527,6 +4551,406 @@ export namespace proto {
 
         /**
          * Gets the default type url for ResBuyBuilding
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ReqEmailForgetPassword. */
+    interface IReqEmailForgetPassword {
+
+        /** ReqEmailForgetPassword email */
+        email?: (string|null);
+    }
+
+    /** Represents a ReqEmailForgetPassword. */
+    class ReqEmailForgetPassword implements IReqEmailForgetPassword {
+
+        /**
+         * Constructs a new ReqEmailForgetPassword.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IReqEmailForgetPassword);
+
+        /** ReqEmailForgetPassword email. */
+        public email: string;
+
+        /**
+         * Creates a new ReqEmailForgetPassword instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReqEmailForgetPassword instance
+         */
+        public static create(properties?: proto.IReqEmailForgetPassword): proto.ReqEmailForgetPassword;
+
+        /**
+         * Encodes the specified ReqEmailForgetPassword message. Does not implicitly {@link proto.ReqEmailForgetPassword.verify|verify} messages.
+         * @param message ReqEmailForgetPassword message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IReqEmailForgetPassword, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReqEmailForgetPassword message, length delimited. Does not implicitly {@link proto.ReqEmailForgetPassword.verify|verify} messages.
+         * @param message ReqEmailForgetPassword message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IReqEmailForgetPassword, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReqEmailForgetPassword message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReqEmailForgetPassword
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ReqEmailForgetPassword;
+
+        /**
+         * Decodes a ReqEmailForgetPassword message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReqEmailForgetPassword
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ReqEmailForgetPassword;
+
+        /**
+         * Verifies a ReqEmailForgetPassword message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReqEmailForgetPassword message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReqEmailForgetPassword
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ReqEmailForgetPassword;
+
+        /**
+         * Creates a plain object from a ReqEmailForgetPassword message. Also converts values to other types if specified.
+         * @param message ReqEmailForgetPassword
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ReqEmailForgetPassword, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReqEmailForgetPassword to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReqEmailForgetPassword
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ReqRecoverPassword. */
+    interface IReqRecoverPassword {
+
+        /** ReqRecoverPassword password */
+        password?: (string|null);
+
+        /** ReqRecoverPassword token */
+        token?: (string|null);
+
+        /** ReqRecoverPassword email */
+        email?: (string|null);
+    }
+
+    /** Represents a ReqRecoverPassword. */
+    class ReqRecoverPassword implements IReqRecoverPassword {
+
+        /**
+         * Constructs a new ReqRecoverPassword.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IReqRecoverPassword);
+
+        /** ReqRecoverPassword password. */
+        public password: string;
+
+        /** ReqRecoverPassword token. */
+        public token: string;
+
+        /** ReqRecoverPassword email. */
+        public email: string;
+
+        /**
+         * Creates a new ReqRecoverPassword instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReqRecoverPassword instance
+         */
+        public static create(properties?: proto.IReqRecoverPassword): proto.ReqRecoverPassword;
+
+        /**
+         * Encodes the specified ReqRecoverPassword message. Does not implicitly {@link proto.ReqRecoverPassword.verify|verify} messages.
+         * @param message ReqRecoverPassword message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IReqRecoverPassword, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReqRecoverPassword message, length delimited. Does not implicitly {@link proto.ReqRecoverPassword.verify|verify} messages.
+         * @param message ReqRecoverPassword message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IReqRecoverPassword, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReqRecoverPassword message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReqRecoverPassword
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ReqRecoverPassword;
+
+        /**
+         * Decodes a ReqRecoverPassword message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReqRecoverPassword
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ReqRecoverPassword;
+
+        /**
+         * Verifies a ReqRecoverPassword message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReqRecoverPassword message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReqRecoverPassword
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ReqRecoverPassword;
+
+        /**
+         * Creates a plain object from a ReqRecoverPassword message. Also converts values to other types if specified.
+         * @param message ReqRecoverPassword
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ReqRecoverPassword, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReqRecoverPassword to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReqRecoverPassword
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ResRecoverPassword. */
+    interface IResRecoverPassword {
+
+        /** ResRecoverPassword status */
+        status?: (number|null);
+    }
+
+    /** Represents a ResRecoverPassword. */
+    class ResRecoverPassword implements IResRecoverPassword {
+
+        /**
+         * Constructs a new ResRecoverPassword.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IResRecoverPassword);
+
+        /** ResRecoverPassword status. */
+        public status: number;
+
+        /**
+         * Creates a new ResRecoverPassword instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ResRecoverPassword instance
+         */
+        public static create(properties?: proto.IResRecoverPassword): proto.ResRecoverPassword;
+
+        /**
+         * Encodes the specified ResRecoverPassword message. Does not implicitly {@link proto.ResRecoverPassword.verify|verify} messages.
+         * @param message ResRecoverPassword message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IResRecoverPassword, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ResRecoverPassword message, length delimited. Does not implicitly {@link proto.ResRecoverPassword.verify|verify} messages.
+         * @param message ResRecoverPassword message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IResRecoverPassword, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ResRecoverPassword message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ResRecoverPassword
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResRecoverPassword;
+
+        /**
+         * Decodes a ResRecoverPassword message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ResRecoverPassword
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResRecoverPassword;
+
+        /**
+         * Verifies a ResRecoverPassword message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ResRecoverPassword message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ResRecoverPassword
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ResRecoverPassword;
+
+        /**
+         * Creates a plain object from a ResRecoverPassword message. Also converts values to other types if specified.
+         * @param message ResRecoverPassword
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ResRecoverPassword, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ResRecoverPassword to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ResRecoverPassword
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ResEmailForgetPassword. */
+    interface IResEmailForgetPassword {
+
+        /** ResEmailForgetPassword status */
+        status?: (number|null);
+    }
+
+    /** Represents a ResEmailForgetPassword. */
+    class ResEmailForgetPassword implements IResEmailForgetPassword {
+
+        /**
+         * Constructs a new ResEmailForgetPassword.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IResEmailForgetPassword);
+
+        /** ResEmailForgetPassword status. */
+        public status: number;
+
+        /**
+         * Creates a new ResEmailForgetPassword instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ResEmailForgetPassword instance
+         */
+        public static create(properties?: proto.IResEmailForgetPassword): proto.ResEmailForgetPassword;
+
+        /**
+         * Encodes the specified ResEmailForgetPassword message. Does not implicitly {@link proto.ResEmailForgetPassword.verify|verify} messages.
+         * @param message ResEmailForgetPassword message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IResEmailForgetPassword, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ResEmailForgetPassword message, length delimited. Does not implicitly {@link proto.ResEmailForgetPassword.verify|verify} messages.
+         * @param message ResEmailForgetPassword message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IResEmailForgetPassword, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ResEmailForgetPassword message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ResEmailForgetPassword
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResEmailForgetPassword;
+
+        /**
+         * Decodes a ResEmailForgetPassword message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ResEmailForgetPassword
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResEmailForgetPassword;
+
+        /**
+         * Verifies a ResEmailForgetPassword message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ResEmailForgetPassword message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ResEmailForgetPassword
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ResEmailForgetPassword;
+
+        /**
+         * Creates a plain object from a ResEmailForgetPassword message. Also converts values to other types if specified.
+         * @param message ResEmailForgetPassword
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ResEmailForgetPassword, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ResEmailForgetPassword to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ResEmailForgetPassword
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
