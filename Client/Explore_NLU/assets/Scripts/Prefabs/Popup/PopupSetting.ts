@@ -35,7 +35,6 @@ export class PopupSetting extends AbsHandler {
 
   onMessageHandler(packetWrapper: proto.IPacketWrapper): void {
     packetWrapper.packet.forEach((packet) => {
-      console.log("PopupSetting load: ", packet);
       if (packet.resLogout) {
         switch (packet.resLogout.status) {
           case 200:
@@ -102,5 +101,9 @@ export class PopupSetting extends AbsHandler {
       return;
     }
     DataSender.sendReqLogout();
+  }
+
+  protected onDestroy(): void {
+    HandlerManager.me().unRegisterHandler(this);
   }
 }

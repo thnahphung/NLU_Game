@@ -39,7 +39,6 @@ export class PopupFriend extends AbsHandler {
 
     onMessageHandler(packetWrapper: proto.IPacketWrapper): void {
         packetWrapper.packet.forEach((packet) => {
-            console.log("PopupFriend load: ", packet);
             if (packet.resFindFriend) {
                 if(!packet.resFindFriend.friend){
                     UICanvas.me().showPopupMessage(t("label_text.friend_not_found"));
@@ -103,6 +102,10 @@ export class PopupFriend extends AbsHandler {
         labelContent.getChildByName("NameLabel").getComponent(Label).string = name;
         labelContent.getChildByName("CareerLabel").getComponent(Label).string = career;
         labelContent.getChildByName("LevelLabel").getComponent(Label).string = level.toString();
+    }
+
+    protected onDestroy(): void {
+        HandlerManager.me().unRegisterHandler(this);
     }
 }
 

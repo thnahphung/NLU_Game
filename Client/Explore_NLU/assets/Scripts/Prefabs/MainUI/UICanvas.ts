@@ -110,14 +110,14 @@ export class UICanvas extends Component {
         this._popupOption.node.getComponent(PopupComponent).show();
         return;
       case POPUP.POPUP_SETTING:
-        if (this.node.getChildByName("BotMid").getChildByName("PopupSetting")) {
+        if (this.node.getChildByName("PopupLayer").getChildByName("PopupSetting")) {
           return;
         }
         this._popup = instantiate(this.prefabPopupSetting);
         this.node.getChildByName("PopupLayer").addChild(this._popup);
         break;
       case POPUP.POPUP_FRIEND:
-        if (this.node.getChildByName("BotMid").getChildByName("PopupFriend")) {
+        if (this.node.getChildByName("PopupLayer").getChildByName("PopupFriend")) {
           return;
         }
         this._popup = instantiate(this.prefabPopupFriend);
