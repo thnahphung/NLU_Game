@@ -127,4 +127,12 @@ export default class DataSender {
     packet.reqRecoverPassword = reqRecoverPassword;
     WS.send(packet);
   }
+
+  public static sendReqFindFriend(friendName: string) {
+    let reqFindFriend = new proto.ReqFindFriend();
+    reqFindFriend.username = friendName;
+    let packet = new proto.Packet();
+    packet.reqFindFriend = reqFindFriend;
+    WS.send(packet);
+  }
 }

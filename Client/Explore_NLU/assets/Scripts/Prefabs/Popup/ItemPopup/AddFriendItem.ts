@@ -18,7 +18,6 @@ export class AddFriendItem extends Component {
         const modal = find("UICanvas/PopupLayer/PopupFriend/PopupInfoFriendDetail");
         return modal;
     }
-
 }
 
 

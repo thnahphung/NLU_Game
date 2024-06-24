@@ -101,6 +101,10 @@ export const languages = {
     label_name: "Tên",
     label_career: "Nghề",
     label_level: "Cấp độ",
+    friend_not_found: "Không tìm thấy bạn bè!",
+    friend_name_empty: "Tên bạn bè không được để trống!",
+    friend_name_invalid: "Không thể tìm kiếm chính mình!",
+    friend_suggested_list: "Danh sách đề cử",
   },
 };
 

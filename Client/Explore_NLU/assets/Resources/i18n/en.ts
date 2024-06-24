@@ -96,7 +96,10 @@ export const languages = {
     label_name: "Name",
     label_career: "Career",
     label_level: "Level",
-
+    friend_not_found: "Friend not found!",
+    friend_name_empty: "Friend name cannot be empty!",
+    friend_name_invalid: "Do not enter your own username!",
+    friend_suggested_list: "List of suggested friends",
   },
 };
 

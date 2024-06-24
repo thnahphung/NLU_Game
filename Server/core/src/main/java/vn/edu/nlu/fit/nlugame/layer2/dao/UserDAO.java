@@ -54,11 +54,13 @@ public class UserDAO extends BaseDAO {
         }
         try {
             Integer count = jdbi.withHandle(h -> h.createUpdate(
-                            "insert into " + TABLE_NAME + " (username, password, email) " +
-                                    "values (:username, :password, :email)")
+                            "insert into " + TABLE_NAME + " (username, password, email, level, active) " +
+                                    "values (:username, :password, :email, :level, :active)")
                     .bind("username", username)
                     .bind("password", pass)
                     .bind("email", email)
+                    .bind("level", 1)
+                    .bind("active", 1)
                   .execute());
             return count == 1 ? 200 : 500;
         } catch (Exception e) {
@@ -90,10 +92,24 @@ public class UserDAO extends BaseDAO {
         if (jdbi == null) {
             return null;
         }
-        return jdbi.withHandle(h -> h.createQuery("select id,username,password,player_name,gender,email,active,relogin_token,has_character from " + TABLE_NAME + " where username = :username")
+        return jdbi.withHandle(h -> h.createQuery("select id,username,password,player_name,gender,email,active,relogin_token,has_character, character_id from " + TABLE_NAME + " where username = :username")
                 .bind("username", username)
                 .mapToBean(UserBean.class).stream().findFirst().orElse(null));
     }
+
+    public static UserBean getUserByName(String name) {
+        if (name.equals("") || name.isEmpty()) {
+            return null;
+        }
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(h -> h.createQuery("select id,username,password,player_name,gender,email,active,relogin_token,has_character,character_id,level from " + TABLE_NAME + " where player_name = :name")
+                .bind("name", name)
+                .mapToBean(UserBean.class).stream().findFirst().orElse(null));
+    }
+
     public static void updateReloginToken(int userId, String token) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {

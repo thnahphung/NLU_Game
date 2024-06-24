@@ -1216,6 +1216,66 @@ public final class Proto {
      */
     vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPasswordOrBuilder getResEmailForgetPasswordOrBuilder();
 
+    /**
+     * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+     * @return Whether the reqLoadFriend field is set.
+     */
+    boolean hasReqLoadFriend();
+    /**
+     * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+     * @return The reqLoadFriend.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend getReqLoadFriend();
+    /**
+     * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriendOrBuilder getReqLoadFriendOrBuilder();
+
+    /**
+     * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+     * @return Whether the resLoadFriendList field is set.
+     */
+    boolean hasResLoadFriendList();
+    /**
+     * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+     * @return The resLoadFriendList.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList getResLoadFriendList();
+    /**
+     * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendListOrBuilder getResLoadFriendListOrBuilder();
+
+    /**
+     * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+     * @return Whether the reqFindFriend field is set.
+     */
+    boolean hasReqFindFriend();
+    /**
+     * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+     * @return The reqFindFriend.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend getReqFindFriend();
+    /**
+     * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriendOrBuilder getReqFindFriendOrBuilder();
+
+    /**
+     * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+     * @return Whether the resFindFriend field is set.
+     */
+    boolean hasResFindFriend();
+    /**
+     * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+     * @return The resFindFriend.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend getResFindFriend();
+    /**
+     * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriendOrBuilder getResFindFriendOrBuilder();
+
     vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Packet.DataCase getDataCase();
   }
   /**
@@ -1289,6 +1349,10 @@ public final class Proto {
       REQRECOVERPASSWORD(28),
       RESRECOVERPASSWORD(29),
       RESEMAILFORGETPASSWORD(30),
+      REQLOADFRIEND(31),
+      RESLOADFRIENDLIST(32),
+      REQFINDFRIEND(33),
+      RESFINDFRIEND(34),
       DATA_NOT_SET(0);
       private final int value;
       private DataCase(int value) {
@@ -1336,6 +1400,10 @@ public final class Proto {
           case 28: return REQRECOVERPASSWORD;
           case 29: return RESRECOVERPASSWORD;
           case 30: return RESEMAILFORGETPASSWORD;
+          case 31: return REQLOADFRIEND;
+          case 32: return RESLOADFRIENDLIST;
+          case 33: return REQFINDFRIEND;
+          case 34: return RESFINDFRIEND;
           case 0: return DATA_NOT_SET;
           default: return null;
         }
@@ -2281,6 +2349,130 @@ public final class Proto {
       return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword.getDefaultInstance();
     }
 
+    public static final int REQLOADFRIEND_FIELD_NUMBER = 31;
+    /**
+     * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+     * @return Whether the reqLoadFriend field is set.
+     */
+    @java.lang.Override
+    public boolean hasReqLoadFriend() {
+      return dataCase_ == 31;
+    }
+    /**
+     * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+     * @return The reqLoadFriend.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend getReqLoadFriend() {
+      if (dataCase_ == 31) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriendOrBuilder getReqLoadFriendOrBuilder() {
+      if (dataCase_ == 31) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.getDefaultInstance();
+    }
+
+    public static final int RESLOADFRIENDLIST_FIELD_NUMBER = 32;
+    /**
+     * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+     * @return Whether the resLoadFriendList field is set.
+     */
+    @java.lang.Override
+    public boolean hasResLoadFriendList() {
+      return dataCase_ == 32;
+    }
+    /**
+     * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+     * @return The resLoadFriendList.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList getResLoadFriendList() {
+      if (dataCase_ == 32) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendListOrBuilder getResLoadFriendListOrBuilder() {
+      if (dataCase_ == 32) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.getDefaultInstance();
+    }
+
+    public static final int REQFINDFRIEND_FIELD_NUMBER = 33;
+    /**
+     * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+     * @return Whether the reqFindFriend field is set.
+     */
+    @java.lang.Override
+    public boolean hasReqFindFriend() {
+      return dataCase_ == 33;
+    }
+    /**
+     * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+     * @return The reqFindFriend.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend getReqFindFriend() {
+      if (dataCase_ == 33) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriendOrBuilder getReqFindFriendOrBuilder() {
+      if (dataCase_ == 33) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.getDefaultInstance();
+    }
+
+    public static final int RESFINDFRIEND_FIELD_NUMBER = 34;
+    /**
+     * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+     * @return Whether the resFindFriend field is set.
+     */
+    @java.lang.Override
+    public boolean hasResFindFriend() {
+      return dataCase_ == 34;
+    }
+    /**
+     * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+     * @return The resFindFriend.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend getResFindFriend() {
+      if (dataCase_ == 34) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriendOrBuilder getResFindFriendOrBuilder() {
+      if (dataCase_ == 34) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.getDefaultInstance();
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -2384,6 +2576,18 @@ public final class Proto {
       }
       if (dataCase_ == 30) {
         output.writeMessage(30, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword) data_);
+      }
+      if (dataCase_ == 31) {
+        output.writeMessage(31, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend) data_);
+      }
+      if (dataCase_ == 32) {
+        output.writeMessage(32, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList) data_);
+      }
+      if (dataCase_ == 33) {
+        output.writeMessage(33, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend) data_);
+      }
+      if (dataCase_ == 34) {
+        output.writeMessage(34, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend) data_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2513,6 +2717,22 @@ public final class Proto {
       if (dataCase_ == 30) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(30, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResEmailForgetPassword) data_);
+      }
+      if (dataCase_ == 31) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(31, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend) data_);
+      }
+      if (dataCase_ == 32) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(32, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList) data_);
+      }
+      if (dataCase_ == 33) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(33, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend) data_);
+      }
+      if (dataCase_ == 34) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(34, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend) data_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -2651,6 +2871,22 @@ public final class Proto {
           if (!getResEmailForgetPassword()
               .equals(other.getResEmailForgetPassword())) return false;
           break;
+        case 31:
+          if (!getReqLoadFriend()
+              .equals(other.getReqLoadFriend())) return false;
+          break;
+        case 32:
+          if (!getResLoadFriendList()
+              .equals(other.getResLoadFriendList())) return false;
+          break;
+        case 33:
+          if (!getReqFindFriend()
+              .equals(other.getReqFindFriend())) return false;
+          break;
+        case 34:
+          if (!getResFindFriend()
+              .equals(other.getResFindFriend())) return false;
+          break;
         case 0:
         default:
       }
@@ -2786,6 +3022,22 @@ public final class Proto {
           hash = (37 * hash) + RESEMAILFORGETPASSWORD_FIELD_NUMBER;
           hash = (53 * hash) + getResEmailForgetPassword().hashCode();
           break;
+        case 31:
+          hash = (37 * hash) + REQLOADFRIEND_FIELD_NUMBER;
+          hash = (53 * hash) + getReqLoadFriend().hashCode();
+          break;
+        case 32:
+          hash = (37 * hash) + RESLOADFRIENDLIST_FIELD_NUMBER;
+          hash = (53 * hash) + getResLoadFriendList().hashCode();
+          break;
+        case 33:
+          hash = (37 * hash) + REQFINDFRIEND_FIELD_NUMBER;
+          hash = (53 * hash) + getReqFindFriend().hashCode();
+          break;
+        case 34:
+          hash = (37 * hash) + RESFINDFRIEND_FIELD_NUMBER;
+          hash = (53 * hash) + getResFindFriend().hashCode();
+          break;
         case 0:
         default:
       }
@@ -2918,6 +3170,7 @@ public final class Proto {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
+        bitField1_ = 0;
         if (reqLoginBuilder_ != null) {
           reqLoginBuilder_.clear();
         }
@@ -3008,6 +3261,18 @@ public final class Proto {
         if (resEmailForgetPasswordBuilder_ != null) {
           resEmailForgetPasswordBuilder_.clear();
         }
+        if (reqLoadFriendBuilder_ != null) {
+          reqLoadFriendBuilder_.clear();
+        }
+        if (resLoadFriendListBuilder_ != null) {
+          resLoadFriendListBuilder_.clear();
+        }
+        if (reqFindFriendBuilder_ != null) {
+          reqFindFriendBuilder_.clear();
+        }
+        if (resFindFriendBuilder_ != null) {
+          resFindFriendBuilder_.clear();
+        }
         dataCase_ = 0;
         data_ = null;
         return this;
@@ -3037,6 +3302,7 @@ public final class Proto {
       public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Packet buildPartial() {
         vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Packet result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Packet(this);
         if (bitField0_ != 0) { buildPartial0(result); }
+        if (bitField1_ != 0) { buildPartial1(result); }
         buildPartialOneofs(result);
         onBuilt();
         return result;
@@ -3044,6 +3310,10 @@ public final class Proto {
 
       private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Packet result) {
         int from_bitField0_ = bitField0_;
+      }
+
+      private void buildPartial1(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Packet result) {
+        int from_bitField1_ = bitField1_;
       }
 
       private void buildPartialOneofs(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Packet result) {
@@ -3168,6 +3438,22 @@ public final class Proto {
         if (dataCase_ == 30 &&
             resEmailForgetPasswordBuilder_ != null) {
           result.data_ = resEmailForgetPasswordBuilder_.build();
+        }
+        if (dataCase_ == 31 &&
+            reqLoadFriendBuilder_ != null) {
+          result.data_ = reqLoadFriendBuilder_.build();
+        }
+        if (dataCase_ == 32 &&
+            resLoadFriendListBuilder_ != null) {
+          result.data_ = resLoadFriendListBuilder_.build();
+        }
+        if (dataCase_ == 33 &&
+            reqFindFriendBuilder_ != null) {
+          result.data_ = reqFindFriendBuilder_.build();
+        }
+        if (dataCase_ == 34 &&
+            resFindFriendBuilder_ != null) {
+          result.data_ = resFindFriendBuilder_.build();
         }
       }
 
@@ -3302,6 +3588,22 @@ public final class Proto {
           }
           case RESEMAILFORGETPASSWORD: {
             mergeResEmailForgetPassword(other.getResEmailForgetPassword());
+            break;
+          }
+          case REQLOADFRIEND: {
+            mergeReqLoadFriend(other.getReqLoadFriend());
+            break;
+          }
+          case RESLOADFRIENDLIST: {
+            mergeResLoadFriendList(other.getResLoadFriendList());
+            break;
+          }
+          case REQFINDFRIEND: {
+            mergeReqFindFriend(other.getReqFindFriend());
+            break;
+          }
+          case RESFINDFRIEND: {
+            mergeResFindFriend(other.getResFindFriend());
             break;
           }
           case DATA_NOT_SET: {
@@ -3544,6 +3846,34 @@ public final class Proto {
                 dataCase_ = 30;
                 break;
               } // case 242
+              case 250: {
+                input.readMessage(
+                    getReqLoadFriendFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 31;
+                break;
+              } // case 250
+              case 258: {
+                input.readMessage(
+                    getResLoadFriendListFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 32;
+                break;
+              } // case 258
+              case 266: {
+                input.readMessage(
+                    getReqFindFriendFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 33;
+                break;
+              } // case 266
+              case 274: {
+                input.readMessage(
+                    getResFindFriendFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 34;
+                break;
+              } // case 274
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -3575,6 +3905,7 @@ public final class Proto {
       }
 
       private int bitField0_;
+      private int bitField1_;
 
       private com.google.protobuf.SingleFieldBuilderV3<
           vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLogin, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLogin.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoginOrBuilder> reqLoginBuilder_;
@@ -7834,6 +8165,574 @@ public final class Proto {
         dataCase_ = 30;
         onChanged();
         return resEmailForgetPasswordBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriendOrBuilder> reqLoadFriendBuilder_;
+      /**
+       * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+       * @return Whether the reqLoadFriend field is set.
+       */
+      @java.lang.Override
+      public boolean hasReqLoadFriend() {
+        return dataCase_ == 31;
+      }
+      /**
+       * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+       * @return The reqLoadFriend.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend getReqLoadFriend() {
+        if (reqLoadFriendBuilder_ == null) {
+          if (dataCase_ == 31) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.getDefaultInstance();
+        } else {
+          if (dataCase_ == 31) {
+            return reqLoadFriendBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+       */
+      public Builder setReqLoadFriend(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend value) {
+        if (reqLoadFriendBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          reqLoadFriendBuilder_.setMessage(value);
+        }
+        dataCase_ = 31;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+       */
+      public Builder setReqLoadFriend(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.Builder builderForValue) {
+        if (reqLoadFriendBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          reqLoadFriendBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 31;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+       */
+      public Builder mergeReqLoadFriend(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend value) {
+        if (reqLoadFriendBuilder_ == null) {
+          if (dataCase_ == 31 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 31) {
+            reqLoadFriendBuilder_.mergeFrom(value);
+          } else {
+            reqLoadFriendBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 31;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+       */
+      public Builder clearReqLoadFriend() {
+        if (reqLoadFriendBuilder_ == null) {
+          if (dataCase_ == 31) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 31) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          reqLoadFriendBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.Builder getReqLoadFriendBuilder() {
+        return getReqLoadFriendFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriendOrBuilder getReqLoadFriendOrBuilder() {
+        if ((dataCase_ == 31) && (reqLoadFriendBuilder_ != null)) {
+          return reqLoadFriendBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 31) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqLoadFriend reqLoadFriend = 31;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriendOrBuilder> 
+          getReqLoadFriendFieldBuilder() {
+        if (reqLoadFriendBuilder_ == null) {
+          if (!(dataCase_ == 31)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.getDefaultInstance();
+          }
+          reqLoadFriendBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriendOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 31;
+        onChanged();
+        return reqLoadFriendBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendListOrBuilder> resLoadFriendListBuilder_;
+      /**
+       * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+       * @return Whether the resLoadFriendList field is set.
+       */
+      @java.lang.Override
+      public boolean hasResLoadFriendList() {
+        return dataCase_ == 32;
+      }
+      /**
+       * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+       * @return The resLoadFriendList.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList getResLoadFriendList() {
+        if (resLoadFriendListBuilder_ == null) {
+          if (dataCase_ == 32) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.getDefaultInstance();
+        } else {
+          if (dataCase_ == 32) {
+            return resLoadFriendListBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+       */
+      public Builder setResLoadFriendList(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList value) {
+        if (resLoadFriendListBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          resLoadFriendListBuilder_.setMessage(value);
+        }
+        dataCase_ = 32;
+        return this;
+      }
+      /**
+       * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+       */
+      public Builder setResLoadFriendList(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.Builder builderForValue) {
+        if (resLoadFriendListBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          resLoadFriendListBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 32;
+        return this;
+      }
+      /**
+       * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+       */
+      public Builder mergeResLoadFriendList(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList value) {
+        if (resLoadFriendListBuilder_ == null) {
+          if (dataCase_ == 32 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 32) {
+            resLoadFriendListBuilder_.mergeFrom(value);
+          } else {
+            resLoadFriendListBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 32;
+        return this;
+      }
+      /**
+       * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+       */
+      public Builder clearResLoadFriendList() {
+        if (resLoadFriendListBuilder_ == null) {
+          if (dataCase_ == 32) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 32) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          resLoadFriendListBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.Builder getResLoadFriendListBuilder() {
+        return getResLoadFriendListFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendListOrBuilder getResLoadFriendListOrBuilder() {
+        if ((dataCase_ == 32) && (resLoadFriendListBuilder_ != null)) {
+          return resLoadFriendListBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 32) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResLoadFriendList resLoadFriendList = 32;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendListOrBuilder> 
+          getResLoadFriendListFieldBuilder() {
+        if (resLoadFriendListBuilder_ == null) {
+          if (!(dataCase_ == 32)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.getDefaultInstance();
+          }
+          resLoadFriendListBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendListOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 32;
+        onChanged();
+        return resLoadFriendListBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriendOrBuilder> reqFindFriendBuilder_;
+      /**
+       * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+       * @return Whether the reqFindFriend field is set.
+       */
+      @java.lang.Override
+      public boolean hasReqFindFriend() {
+        return dataCase_ == 33;
+      }
+      /**
+       * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+       * @return The reqFindFriend.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend getReqFindFriend() {
+        if (reqFindFriendBuilder_ == null) {
+          if (dataCase_ == 33) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.getDefaultInstance();
+        } else {
+          if (dataCase_ == 33) {
+            return reqFindFriendBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+       */
+      public Builder setReqFindFriend(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend value) {
+        if (reqFindFriendBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          reqFindFriendBuilder_.setMessage(value);
+        }
+        dataCase_ = 33;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+       */
+      public Builder setReqFindFriend(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.Builder builderForValue) {
+        if (reqFindFriendBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          reqFindFriendBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 33;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+       */
+      public Builder mergeReqFindFriend(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend value) {
+        if (reqFindFriendBuilder_ == null) {
+          if (dataCase_ == 33 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 33) {
+            reqFindFriendBuilder_.mergeFrom(value);
+          } else {
+            reqFindFriendBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 33;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+       */
+      public Builder clearReqFindFriend() {
+        if (reqFindFriendBuilder_ == null) {
+          if (dataCase_ == 33) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 33) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          reqFindFriendBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.Builder getReqFindFriendBuilder() {
+        return getReqFindFriendFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriendOrBuilder getReqFindFriendOrBuilder() {
+        if ((dataCase_ == 33) && (reqFindFriendBuilder_ != null)) {
+          return reqFindFriendBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 33) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqFindFriend reqFindFriend = 33;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriendOrBuilder> 
+          getReqFindFriendFieldBuilder() {
+        if (reqFindFriendBuilder_ == null) {
+          if (!(dataCase_ == 33)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.getDefaultInstance();
+          }
+          reqFindFriendBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriendOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 33;
+        onChanged();
+        return reqFindFriendBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriendOrBuilder> resFindFriendBuilder_;
+      /**
+       * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+       * @return Whether the resFindFriend field is set.
+       */
+      @java.lang.Override
+      public boolean hasResFindFriend() {
+        return dataCase_ == 34;
+      }
+      /**
+       * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+       * @return The resFindFriend.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend getResFindFriend() {
+        if (resFindFriendBuilder_ == null) {
+          if (dataCase_ == 34) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.getDefaultInstance();
+        } else {
+          if (dataCase_ == 34) {
+            return resFindFriendBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+       */
+      public Builder setResFindFriend(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend value) {
+        if (resFindFriendBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          resFindFriendBuilder_.setMessage(value);
+        }
+        dataCase_ = 34;
+        return this;
+      }
+      /**
+       * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+       */
+      public Builder setResFindFriend(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.Builder builderForValue) {
+        if (resFindFriendBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          resFindFriendBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 34;
+        return this;
+      }
+      /**
+       * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+       */
+      public Builder mergeResFindFriend(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend value) {
+        if (resFindFriendBuilder_ == null) {
+          if (dataCase_ == 34 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 34) {
+            resFindFriendBuilder_.mergeFrom(value);
+          } else {
+            resFindFriendBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 34;
+        return this;
+      }
+      /**
+       * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+       */
+      public Builder clearResFindFriend() {
+        if (resFindFriendBuilder_ == null) {
+          if (dataCase_ == 34) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 34) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          resFindFriendBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.Builder getResFindFriendBuilder() {
+        return getResFindFriendFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriendOrBuilder getResFindFriendOrBuilder() {
+        if ((dataCase_ == 34) && (resFindFriendBuilder_ != null)) {
+          return resFindFriendBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 34) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResFindFriend resFindFriend = 34;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriendOrBuilder> 
+          getResFindFriendFieldBuilder() {
+        if (resFindFriendBuilder_ == null) {
+          if (!(dataCase_ == 34)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.getDefaultInstance();
+          }
+          resFindFriendBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriendOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 34;
+        onChanged();
+        return resFindFriendBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -38794,6 +39693,3011 @@ public final class Proto {
 
   }
 
+  public interface ReqLoadFriendOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ReqLoadFriend)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code proto.ReqLoadFriend}
+   */
+  public static final class ReqLoadFriend extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ReqLoadFriend)
+      ReqLoadFriendOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReqLoadFriend.newBuilder() to construct.
+    private ReqLoadFriend(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReqLoadFriend() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReqLoadFriend();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqLoadFriend_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqLoadFriend_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend) obj;
+
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ReqLoadFriend}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ReqLoadFriend)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriendOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqLoadFriend_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqLoadFriend_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqLoadFriend_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend(this);
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ReqLoadFriend)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ReqLoadFriend)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReqLoadFriend>
+        PARSER = new com.google.protobuf.AbstractParser<ReqLoadFriend>() {
+      @java.lang.Override
+      public ReqLoadFriend parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReqLoadFriend> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReqLoadFriend> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface FriendOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.Friend)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 id = 1;</code>
+     * @return The id.
+     */
+    int getId();
+
+    /**
+     * <code>string name = 2;</code>
+     * @return The name.
+     */
+    java.lang.String getName();
+    /**
+     * <code>string name = 2;</code>
+     * @return The bytes for name.
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>int32 level = 3;</code>
+     * @return The level.
+     */
+    int getLevel();
+
+    /**
+     * <code>string character = 4;</code>
+     * @return The character.
+     */
+    java.lang.String getCharacter();
+    /**
+     * <code>string character = 4;</code>
+     * @return The bytes for character.
+     */
+    com.google.protobuf.ByteString
+        getCharacterBytes();
+  }
+  /**
+   * Protobuf type {@code proto.Friend}
+   */
+  public static final class Friend extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.Friend)
+      FriendOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use Friend.newBuilder() to construct.
+    private Friend(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Friend() {
+      name_ = "";
+      character_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Friend();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_Friend_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_Friend_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder.class);
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    private int id_ = 0;
+    /**
+     * <code>int32 id = 1;</code>
+     * @return The id.
+     */
+    @java.lang.Override
+    public int getId() {
+      return id_;
+    }
+
+    public static final int NAME_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object name_ = "";
+    /**
+     * <code>string name = 2;</code>
+     * @return The name.
+     */
+    @java.lang.Override
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string name = 2;</code>
+     * @return The bytes for name.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int LEVEL_FIELD_NUMBER = 3;
+    private int level_ = 0;
+    /**
+     * <code>int32 level = 3;</code>
+     * @return The level.
+     */
+    @java.lang.Override
+    public int getLevel() {
+      return level_;
+    }
+
+    public static final int CHARACTER_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object character_ = "";
+    /**
+     * <code>string character = 4;</code>
+     * @return The character.
+     */
+    @java.lang.Override
+    public java.lang.String getCharacter() {
+      java.lang.Object ref = character_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        character_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string character = 4;</code>
+     * @return The bytes for character.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getCharacterBytes() {
+      java.lang.Object ref = character_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        character_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (id_ != 0) {
+        output.writeInt32(1, id_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
+      }
+      if (level_ != 0) {
+        output.writeInt32(3, level_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(character_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, character_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (id_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, id_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
+      }
+      if (level_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, level_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(character_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, character_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend) obj;
+
+      if (getId()
+          != other.getId()) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (getLevel()
+          != other.getLevel()) return false;
+      if (!getCharacter()
+          .equals(other.getCharacter())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + LEVEL_FIELD_NUMBER;
+      hash = (53 * hash) + getLevel();
+      hash = (37 * hash) + CHARACTER_FIELD_NUMBER;
+      hash = (53 * hash) + getCharacter().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.Friend}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.Friend)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_Friend_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_Friend_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        id_ = 0;
+        name_ = "";
+        level_ = 0;
+        character_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_Friend_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.id_ = id_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.name_ = name_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.level_ = level_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.character_ = character_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.getDefaultInstance()) return this;
+        if (other.getId() != 0) {
+          setId(other.getId());
+        }
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (other.getLevel() != 0) {
+          setLevel(other.getLevel());
+        }
+        if (!other.getCharacter().isEmpty()) {
+          character_ = other.character_;
+          bitField0_ |= 0x00000008;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                id_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                name_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                level_ = input.readInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 34: {
+                character_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int id_ ;
+      /**
+       * <code>int32 id = 1;</code>
+       * @return The id.
+       */
+      @java.lang.Override
+      public int getId() {
+        return id_;
+      }
+      /**
+       * <code>int32 id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(int value) {
+
+        id_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>string name = 2;</code>
+       * @return The name.
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @return The bytes for name.
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        name_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearName() {
+        name_ = getDefaultInstance().getName();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        name_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private int level_ ;
+      /**
+       * <code>int32 level = 3;</code>
+       * @return The level.
+       */
+      @java.lang.Override
+      public int getLevel() {
+        return level_;
+      }
+      /**
+       * <code>int32 level = 3;</code>
+       * @param value The level to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLevel(int value) {
+
+        level_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 level = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLevel() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        level_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object character_ = "";
+      /**
+       * <code>string character = 4;</code>
+       * @return The character.
+       */
+      public java.lang.String getCharacter() {
+        java.lang.Object ref = character_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          character_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string character = 4;</code>
+       * @return The bytes for character.
+       */
+      public com.google.protobuf.ByteString
+          getCharacterBytes() {
+        java.lang.Object ref = character_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          character_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string character = 4;</code>
+       * @param value The character to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCharacter(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        character_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string character = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCharacter() {
+        character_ = getDefaultInstance().getCharacter();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string character = 4;</code>
+       * @param value The bytes for character to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCharacterBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        character_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.Friend)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.Friend)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Friend>
+        PARSER = new com.google.protobuf.AbstractParser<Friend>() {
+      @java.lang.Override
+      public Friend parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<Friend> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Friend> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ResLoadFriendListOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ResLoadFriendList)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .proto.Friend friends = 1;</code>
+     */
+    java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend> 
+        getFriendsList();
+    /**
+     * <code>repeated .proto.Friend friends = 1;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend getFriends(int index);
+    /**
+     * <code>repeated .proto.Friend friends = 1;</code>
+     */
+    int getFriendsCount();
+    /**
+     * <code>repeated .proto.Friend friends = 1;</code>
+     */
+    java.util.List<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder> 
+        getFriendsOrBuilderList();
+    /**
+     * <code>repeated .proto.Friend friends = 1;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder getFriendsOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code proto.ResLoadFriendList}
+   */
+  public static final class ResLoadFriendList extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ResLoadFriendList)
+      ResLoadFriendListOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ResLoadFriendList.newBuilder() to construct.
+    private ResLoadFriendList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ResLoadFriendList() {
+      friends_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ResLoadFriendList();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResLoadFriendList_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResLoadFriendList_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.Builder.class);
+    }
+
+    public static final int FRIENDS_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend> friends_;
+    /**
+     * <code>repeated .proto.Friend friends = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend> getFriendsList() {
+      return friends_;
+    }
+    /**
+     * <code>repeated .proto.Friend friends = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder> 
+        getFriendsOrBuilderList() {
+      return friends_;
+    }
+    /**
+     * <code>repeated .proto.Friend friends = 1;</code>
+     */
+    @java.lang.Override
+    public int getFriendsCount() {
+      return friends_.size();
+    }
+    /**
+     * <code>repeated .proto.Friend friends = 1;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend getFriends(int index) {
+      return friends_.get(index);
+    }
+    /**
+     * <code>repeated .proto.Friend friends = 1;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder getFriendsOrBuilder(
+        int index) {
+      return friends_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < friends_.size(); i++) {
+        output.writeMessage(1, friends_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < friends_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, friends_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList) obj;
+
+      if (!getFriendsList()
+          .equals(other.getFriendsList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getFriendsCount() > 0) {
+        hash = (37 * hash) + FRIENDS_FIELD_NUMBER;
+        hash = (53 * hash) + getFriendsList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ResLoadFriendList}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ResLoadFriendList)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendListOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResLoadFriendList_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResLoadFriendList_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        if (friendsBuilder_ == null) {
+          friends_ = java.util.Collections.emptyList();
+        } else {
+          friends_ = null;
+          friendsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResLoadFriendList_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList result) {
+        if (friendsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            friends_ = java.util.Collections.unmodifiableList(friends_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.friends_ = friends_;
+        } else {
+          result.friends_ = friendsBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList result) {
+        int from_bitField0_ = bitField0_;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList.getDefaultInstance()) return this;
+        if (friendsBuilder_ == null) {
+          if (!other.friends_.isEmpty()) {
+            if (friends_.isEmpty()) {
+              friends_ = other.friends_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureFriendsIsMutable();
+              friends_.addAll(other.friends_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.friends_.isEmpty()) {
+            if (friendsBuilder_.isEmpty()) {
+              friendsBuilder_.dispose();
+              friendsBuilder_ = null;
+              friends_ = other.friends_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              friendsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getFriendsFieldBuilder() : null;
+            } else {
+              friendsBuilder_.addAllMessages(other.friends_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend m =
+                    input.readMessage(
+                        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.parser(),
+                        extensionRegistry);
+                if (friendsBuilder_ == null) {
+                  ensureFriendsIsMutable();
+                  friends_.add(m);
+                } else {
+                  friendsBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend> friends_ =
+        java.util.Collections.emptyList();
+      private void ensureFriendsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          friends_ = new java.util.ArrayList<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend>(friends_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder> friendsBuilder_;
+
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend> getFriendsList() {
+        if (friendsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(friends_);
+        } else {
+          return friendsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public int getFriendsCount() {
+        if (friendsBuilder_ == null) {
+          return friends_.size();
+        } else {
+          return friendsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend getFriends(int index) {
+        if (friendsBuilder_ == null) {
+          return friends_.get(index);
+        } else {
+          return friendsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public Builder setFriends(
+          int index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend value) {
+        if (friendsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFriendsIsMutable();
+          friends_.set(index, value);
+          onChanged();
+        } else {
+          friendsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public Builder setFriends(
+          int index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder builderForValue) {
+        if (friendsBuilder_ == null) {
+          ensureFriendsIsMutable();
+          friends_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          friendsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public Builder addFriends(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend value) {
+        if (friendsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFriendsIsMutable();
+          friends_.add(value);
+          onChanged();
+        } else {
+          friendsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public Builder addFriends(
+          int index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend value) {
+        if (friendsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFriendsIsMutable();
+          friends_.add(index, value);
+          onChanged();
+        } else {
+          friendsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public Builder addFriends(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder builderForValue) {
+        if (friendsBuilder_ == null) {
+          ensureFriendsIsMutable();
+          friends_.add(builderForValue.build());
+          onChanged();
+        } else {
+          friendsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public Builder addFriends(
+          int index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder builderForValue) {
+        if (friendsBuilder_ == null) {
+          ensureFriendsIsMutable();
+          friends_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          friendsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public Builder addAllFriends(
+          java.lang.Iterable<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend> values) {
+        if (friendsBuilder_ == null) {
+          ensureFriendsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, friends_);
+          onChanged();
+        } else {
+          friendsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public Builder clearFriends() {
+        if (friendsBuilder_ == null) {
+          friends_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          friendsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public Builder removeFriends(int index) {
+        if (friendsBuilder_ == null) {
+          ensureFriendsIsMutable();
+          friends_.remove(index);
+          onChanged();
+        } else {
+          friendsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder getFriendsBuilder(
+          int index) {
+        return getFriendsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder getFriendsOrBuilder(
+          int index) {
+        if (friendsBuilder_ == null) {
+          return friends_.get(index);  } else {
+          return friendsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public java.util.List<? extends vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder> 
+           getFriendsOrBuilderList() {
+        if (friendsBuilder_ != null) {
+          return friendsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(friends_);
+        }
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder addFriendsBuilder() {
+        return getFriendsFieldBuilder().addBuilder(
+            vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder addFriendsBuilder(
+          int index) {
+        return getFriendsFieldBuilder().addBuilder(
+            index, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .proto.Friend friends = 1;</code>
+       */
+      public java.util.List<vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder> 
+           getFriendsBuilderList() {
+        return getFriendsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder> 
+          getFriendsFieldBuilder() {
+        if (friendsBuilder_ == null) {
+          friendsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder>(
+                  friends_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          friends_ = null;
+        }
+        return friendsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ResLoadFriendList)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ResLoadFriendList)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ResLoadFriendList>
+        PARSER = new com.google.protobuf.AbstractParser<ResLoadFriendList>() {
+      @java.lang.Override
+      public ResLoadFriendList parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ResLoadFriendList> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ResLoadFriendList> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ReqFindFriendOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ReqFindFriend)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string username = 1;</code>
+     * @return The username.
+     */
+    java.lang.String getUsername();
+    /**
+     * <code>string username = 1;</code>
+     * @return The bytes for username.
+     */
+    com.google.protobuf.ByteString
+        getUsernameBytes();
+  }
+  /**
+   * Protobuf type {@code proto.ReqFindFriend}
+   */
+  public static final class ReqFindFriend extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ReqFindFriend)
+      ReqFindFriendOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReqFindFriend.newBuilder() to construct.
+    private ReqFindFriend(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReqFindFriend() {
+      username_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReqFindFriend();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqFindFriend_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqFindFriend_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.Builder.class);
+    }
+
+    public static final int USERNAME_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object username_ = "";
+    /**
+     * <code>string username = 1;</code>
+     * @return The username.
+     */
+    @java.lang.Override
+    public java.lang.String getUsername() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        username_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string username = 1;</code>
+     * @return The bytes for username.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getUsernameBytes() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        username_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, username_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(username_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, username_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend) obj;
+
+      if (!getUsername()
+          .equals(other.getUsername())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + USERNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getUsername().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ReqFindFriend}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ReqFindFriend)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriendOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqFindFriend_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqFindFriend_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        username_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqFindFriend_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.username_ = username_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend.getDefaultInstance()) return this;
+        if (!other.getUsername().isEmpty()) {
+          username_ = other.username_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                username_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object username_ = "";
+      /**
+       * <code>string username = 1;</code>
+       * @return The username.
+       */
+      public java.lang.String getUsername() {
+        java.lang.Object ref = username_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          username_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string username = 1;</code>
+       * @return The bytes for username.
+       */
+      public com.google.protobuf.ByteString
+          getUsernameBytes() {
+        java.lang.Object ref = username_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          username_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string username = 1;</code>
+       * @param value The username to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUsername(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        username_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string username = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUsername() {
+        username_ = getDefaultInstance().getUsername();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string username = 1;</code>
+       * @param value The bytes for username to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUsernameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        username_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ReqFindFriend)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ReqFindFriend)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReqFindFriend>
+        PARSER = new com.google.protobuf.AbstractParser<ReqFindFriend>() {
+      @java.lang.Override
+      public ReqFindFriend parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReqFindFriend> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReqFindFriend> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqFindFriend getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ResFindFriendOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ResFindFriend)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.proto.Friend friend = 1;</code>
+     * @return Whether the friend field is set.
+     */
+    boolean hasFriend();
+    /**
+     * <code>.proto.Friend friend = 1;</code>
+     * @return The friend.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend getFriend();
+    /**
+     * <code>.proto.Friend friend = 1;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder getFriendOrBuilder();
+  }
+  /**
+   * Protobuf type {@code proto.ResFindFriend}
+   */
+  public static final class ResFindFriend extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ResFindFriend)
+      ResFindFriendOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ResFindFriend.newBuilder() to construct.
+    private ResFindFriend(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ResFindFriend() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ResFindFriend();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResFindFriend_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResFindFriend_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.Builder.class);
+    }
+
+    public static final int FRIEND_FIELD_NUMBER = 1;
+    private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend friend_;
+    /**
+     * <code>.proto.Friend friend = 1;</code>
+     * @return Whether the friend field is set.
+     */
+    @java.lang.Override
+    public boolean hasFriend() {
+      return friend_ != null;
+    }
+    /**
+     * <code>.proto.Friend friend = 1;</code>
+     * @return The friend.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend getFriend() {
+      return friend_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.getDefaultInstance() : friend_;
+    }
+    /**
+     * <code>.proto.Friend friend = 1;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder getFriendOrBuilder() {
+      return friend_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.getDefaultInstance() : friend_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (friend_ != null) {
+        output.writeMessage(1, getFriend());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (friend_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getFriend());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend) obj;
+
+      if (hasFriend() != other.hasFriend()) return false;
+      if (hasFriend()) {
+        if (!getFriend()
+            .equals(other.getFriend())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasFriend()) {
+        hash = (37 * hash) + FRIEND_FIELD_NUMBER;
+        hash = (53 * hash) + getFriend().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ResFindFriend}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ResFindFriend)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriendOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResFindFriend_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResFindFriend_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        friend_ = null;
+        if (friendBuilder_ != null) {
+          friendBuilder_.dispose();
+          friendBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResFindFriend_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.friend_ = friendBuilder_ == null
+              ? friend_
+              : friendBuilder_.build();
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.getDefaultInstance()) return this;
+        if (other.hasFriend()) {
+          mergeFriend(other.getFriend());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getFriendFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend friend_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder> friendBuilder_;
+      /**
+       * <code>.proto.Friend friend = 1;</code>
+       * @return Whether the friend field is set.
+       */
+      public boolean hasFriend() {
+        return ((bitField0_ & 0x00000001) != 0);
+      }
+      /**
+       * <code>.proto.Friend friend = 1;</code>
+       * @return The friend.
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend getFriend() {
+        if (friendBuilder_ == null) {
+          return friend_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.getDefaultInstance() : friend_;
+        } else {
+          return friendBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.Friend friend = 1;</code>
+       */
+      public Builder setFriend(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend value) {
+        if (friendBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          friend_ = value;
+        } else {
+          friendBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Friend friend = 1;</code>
+       */
+      public Builder setFriend(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder builderForValue) {
+        if (friendBuilder_ == null) {
+          friend_ = builderForValue.build();
+        } else {
+          friendBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Friend friend = 1;</code>
+       */
+      public Builder mergeFriend(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend value) {
+        if (friendBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0) &&
+            friend_ != null &&
+            friend_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.getDefaultInstance()) {
+            getFriendBuilder().mergeFrom(value);
+          } else {
+            friend_ = value;
+          }
+        } else {
+          friendBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Friend friend = 1;</code>
+       */
+      public Builder clearFriend() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        friend_ = null;
+        if (friendBuilder_ != null) {
+          friendBuilder_.dispose();
+          friendBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Friend friend = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder getFriendBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getFriendFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.Friend friend = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder getFriendOrBuilder() {
+        if (friendBuilder_ != null) {
+          return friendBuilder_.getMessageOrBuilder();
+        } else {
+          return friend_ == null ?
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.getDefaultInstance() : friend_;
+        }
+      }
+      /**
+       * <code>.proto.Friend friend = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder> 
+          getFriendFieldBuilder() {
+        if (friendBuilder_ == null) {
+          friendBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder>(
+                  getFriend(),
+                  getParentForChildren(),
+                  isClean());
+          friend_ = null;
+        }
+        return friendBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ResFindFriend)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ResFindFriend)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ResFindFriend>
+        PARSER = new com.google.protobuf.AbstractParser<ResFindFriend>() {
+      @java.lang.Override
+      public ResFindFriend parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ResFindFriend> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ResFindFriend> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_PacketWrapper_descriptor;
   private static final 
@@ -39019,6 +42923,31 @@ public final class Proto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_proto_ResEmailForgetPassword_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ReqLoadFriend_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ReqLoadFriend_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_Friend_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_Friend_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ResLoadFriendList_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ResLoadFriendList_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ReqFindFriend_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ReqFindFriend_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ResFindFriend_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ResFindFriend_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -39029,7 +42958,7 @@ public final class Proto {
   static {
     java.lang.String[] descriptorData = {
       "\n\013Proto.proto\022\005proto\".\n\rPacketWrapper\022\035\n" +
-      "\006packet\030\001 \003(\0132\r.proto.Packet\"\262\014\n\006Packet\022" +
+      "\006packet\030\001 \003(\0132\r.proto.Packet\"\366\r\n\006Packet\022" +
       "#\n\010reqLogin\030\001 \001(\0132\017.proto.ReqLoginH\000\022\'\n\n" +
       "reqRelogin\030\002 \001(\0132\021.proto.ReqReloginH\000\022#\n" +
       "\010resLogin\030\003 \001(\0132\017.proto.ResLoginH\000\022%\n\tre" +
@@ -39069,88 +42998,99 @@ public final class Proto {
       "swordH\000\0227\n\022resRecoverPassword\030\035 \001(\0132\031.pr" +
       "oto.ResRecoverPasswordH\000\022?\n\026resEmailForg" +
       "etPassword\030\036 \001(\0132\035.proto.ResEmailForgetP" +
-      "asswordH\000B\006\n\004data\"\237\002\n\004User\022\016\n\006userId\030\001 \001" +
-      "(\005\022\020\n\010username\030\002 \001(\t\022\022\n\nplayerName\030\003 \001(\t" +
-      "\022\016\n\006gender\030\004 \001(\005\022\017\n\007sponsor\030\005 \001(\005\022\r\n\005ema" +
-      "il\030\006 \001(\t\022\r\n\005phone\030\007 \001(\t\022\014\n\004gold\030\010 \001(\003\022\017\n" +
-      "\007diamond\030\t \001(\003\022\r\n\005level\030\n \001(\005\022\024\n\014hasChar" +
-      "acter\030\013 \001(\005\022\023\n\013characterId\030\014 \001(\005\022\016\n\006area" +
-      "Id\030\r \001(\005\022\024\n\014isNewAccount\030\016 \001(\005\022#\n\tcharac" +
-      "ter\030\017 \001(\0132\020.proto.Character\"H\n\tCharacter" +
-      "\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t" +
-      "\022\023\n\013description\030\004 \001(\t\"[\n\004Area\022\016\n\006areaId\030" +
-      "\001 \001(\005\022\020\n\010typeArea\030\003 \001(\t\022!\n\010position\030\004 \001(" +
-      "\0132\017.proto.Position\022\016\n\006status\030\005 \001(\005\" \n\010Po" +
-      "sition\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\".\n\010ReqLogin" +
-      "\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"-\n\n" +
-      "ReqRelogin\022\020\n\010username\030\001 \001(\t\022\r\n\005token\030\002 " +
-      "\001(\t\"D\n\010ResLogin\022\016\n\006status\030\001 \001(\005\022\r\n\005token" +
-      "\030\002 \001(\t\022\031\n\004user\030\003 \001(\0132\013.proto.User\"\036\n\014Res" +
-      "UserAlert\022\016\n\006status\030\001 \001(\005\"\013\n\tReqLogout\"\033" +
-      "\n\tResLogout\022\016\n\006status\030\001 \001(\005\"\"\n\021ReqForgot" +
-      "Password\022\r\n\005email\030\001 \001(\t\"#\n\021ResForgotPass" +
-      "word\022\016\n\006status\030\001 \001(\005\"`\n\013ReqRegister\022\020\n\010u" +
-      "sername\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\017\n\007spons" +
-      "or\030\003 \001(\t\022\r\n\005phone\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\"\035" +
-      "\n\013ResRegister\022\016\n\006status\030\001 \001(\005\"7\n\021ReqUpda" +
-      "teUserInfo\022\022\n\nplayerName\030\001 \001(\t\022\016\n\006gender" +
-      "\030\002 \001(\005\"\023\n\021ReqLoadCharacters\"8\n\021ResLoadCh" +
-      "aracters\022#\n\tcharacter\030\001 \003(\0132\020.proto.Char" +
-      "acter\";\n\020ReqPickCharacter\022\023\n\013characterId" +
-      "\030\001 \001(\005\022\022\n\nplayerName\030\002 \001(\t\"\"\n\020ResPickCha" +
-      "racter\022\016\n\006status\030\001 \001(\005\"R\n\027ReqPlayerJoinA" +
-      "reaCommon\022\024\n\014areaCommonId\030\001 \001(\005\022!\n\010posit" +
-      "ion\030\002 \001(\0132\017.proto.Position\"\254\001\n\027ResPlayer" +
-      "JoinAreaCommon\022\024\n\014areaCommonId\030\001 \001(\005\022\031\n\004" +
-      "area\030\002 \001(\0132\013.proto.Area\022\032\n\005users\030\004 \003(\0132\013" +
-      ".proto.User\022\016\n\006status\030\005 \001(\005\022\021\n\tareaState" +
-      "\030\006 \001(\005\022!\n\010position\030\007 \001(\0132\017.proto.Positio" +
-      "n\")\n\021ReqPlayerJoinArea\022\024\n\014userTargetId\030\001" +
-      " \001(\005\"}\n\021ResPlayerJoinArea\022\031\n\004area\030\001 \001(\0132" +
-      "\013.proto.Area\022\032\n\005users\030\003 \003(\0132\013.proto.User" +
-      "\022\016\n\006status\030\004 \001(\005\022!\n\010position\030\005 \001(\0132\017.pro" +
-      "to.Position\"V\n\026ResOtherPlayerJoinArea\022\031\n" +
-      "\004user\030\002 \001(\0132\013.proto.User\022!\n\010position\030\003 \001" +
-      "(\0132\017.proto.Position\")\n\027ResOtherPlayerLea" +
-      "veArea\022\016\n\006userId\030\001 \001(\005\"T\n\tReqMoving\022\016\n\006a" +
-      "reaId\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.proto.Po" +
-      "sition\022\024\n\014currentState\030\003 \001(\t\"T\n\tResMovin" +
-      "g\022\016\n\006userId\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.pr" +
-      "oto.Position\022\024\n\014currentState\030\003 \001(\t\"\024\n\022Re" +
-      "qLoadItemsOfFarm\"l\n\014BuildingBase\022\n\n\002id\030\001" +
-      " \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005price\030\003 \001(\003\022\023\n\013des" +
-      "cription\030\004 \001(\t\022\014\n\004type\030\005 \001(\t\022\020\n\010maxLevel" +
-      "\030\006 \001(\005\"\227\001\n\020PropertyBuilding\022\n\n\002id\030\001 \001(\005\022" +
-      "\021\n\tpositionX\030\002 \001(\003\022\021\n\tpositionY\030\003 \001(\003\022\021\n" +
-      "\tupgradeId\030\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\030\n\020comm" +
-      "onBuildingId\030\006 \001(\005\022\024\n\014currentLevel\030\007 \001(\005" +
-      "\"S\n\010TillLand\022\n\n\002id\030\001 \001(\005\022\r\n\005index\030\002 \001(\005\022" +
-      "\024\n\014statusTilled\030\003 \001(\010\022\026\n\016plantingLandId\030" +
-      "\004 \001(\005\"d\n\014FarmBuilding\022!\n\004base\030\001 \001(\0132\023.pr" +
-      "oto.BuildingBase\0221\n\020propertyBuilding\030\002 \001" +
-      "(\0132\027.proto.PropertyBuilding\"\221\001\n\024Planting" +
-      "LandBuilding\022!\n\004base\030\001 \001(\0132\023.proto.Build" +
-      "ingBase\0221\n\020propertyBuilding\030\002 \001(\0132\027.prot" +
-      "o.PropertyBuilding\022#\n\ttillLands\030\003 \001(\0132\020." +
-      "proto.TillLands\".\n\tTillLands\022!\n\010tillLand" +
-      "\030\003 \003(\0132\017.proto.TillLand\"|\n\010Building\022+\n\014f" +
-      "armBuilding\030\001 \001(\0132\023.proto.FarmBuildingH\000" +
-      "\022;\n\024plantingLandBuilding\030\002 \001(\0132\033.proto.P" +
-      "lantingLandBuildingH\000B\006\n\004data\"2\n\rBuildin" +
-      "gItems\022!\n\010building\030\001 \003(\0132\017.proto.Buildin" +
-      "g\"A\n\022ResLoadItemsOfFarm\022+\n\rbuildingItems" +
-      "\030\001 \001(\0132\024.proto.BuildingItems\"\200\001\n\016ReqBuyB" +
-      "uilding\022\024\n\014typeBuilding\030\001 \001(\t\022\021\n\tpositio" +
-      "nX\030\002 \001(\005\022\021\n\tpositionY\030\003 \001(\005\022\024\n\014currentLe" +
-      "vel\030\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\014\n\004uuid\030\006 \001(\t\"" +
-      "A\n\016ResBuyBuilding\022\014\n\004uuid\030\001 \001(\t\022!\n\010build" +
-      "ing\030\002 \001(\0132\017.proto.Building\"\'\n\026ReqEmailFo" +
-      "rgetPassword\022\r\n\005email\030\001 \001(\t\"D\n\022ReqRecove" +
-      "rPassword\022\020\n\010password\030\001 \001(\t\022\r\n\005token\030\002 \001" +
-      "(\t\022\r\n\005email\030\003 \001(\t\"$\n\022ResRecoverPassword\022" +
-      "\016\n\006status\030\001 \001(\005\"(\n\026ResEmailForgetPasswor" +
-      "d\022\016\n\006status\030\001 \001(\005B%\n#vn.edu.nlu.fit.nlug" +
-      "ame.layer2.protob\006proto3"
+      "asswordH\000\022-\n\rreqLoadFriend\030\037 \001(\0132\024.proto" +
+      ".ReqLoadFriendH\000\0225\n\021resLoadFriendList\030  " +
+      "\001(\0132\030.proto.ResLoadFriendListH\000\022-\n\rreqFi" +
+      "ndFriend\030! \001(\0132\024.proto.ReqFindFriendH\000\022-" +
+      "\n\rresFindFriend\030\" \001(\0132\024.proto.ResFindFri" +
+      "endH\000B\006\n\004data\"\237\002\n\004User\022\016\n\006userId\030\001 \001(\005\022\020" +
+      "\n\010username\030\002 \001(\t\022\022\n\nplayerName\030\003 \001(\t\022\016\n\006" +
+      "gender\030\004 \001(\005\022\017\n\007sponsor\030\005 \001(\005\022\r\n\005email\030\006" +
+      " \001(\t\022\r\n\005phone\030\007 \001(\t\022\014\n\004gold\030\010 \001(\003\022\017\n\007dia" +
+      "mond\030\t \001(\003\022\r\n\005level\030\n \001(\005\022\024\n\014hasCharacte" +
+      "r\030\013 \001(\005\022\023\n\013characterId\030\014 \001(\005\022\016\n\006areaId\030\r" +
+      " \001(\005\022\024\n\014isNewAccount\030\016 \001(\005\022#\n\tcharacter\030" +
+      "\017 \001(\0132\020.proto.Character\"H\n\tCharacter\022\n\n\002" +
+      "id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\023\n\013" +
+      "description\030\004 \001(\t\"[\n\004Area\022\016\n\006areaId\030\001 \001(" +
+      "\005\022\020\n\010typeArea\030\003 \001(\t\022!\n\010position\030\004 \001(\0132\017." +
+      "proto.Position\022\016\n\006status\030\005 \001(\005\" \n\010Positi" +
+      "on\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\".\n\010ReqLogin\022\020\n\010" +
+      "username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"-\n\nReqR" +
+      "elogin\022\020\n\010username\030\001 \001(\t\022\r\n\005token\030\002 \001(\t\"" +
+      "D\n\010ResLogin\022\016\n\006status\030\001 \001(\005\022\r\n\005token\030\002 \001" +
+      "(\t\022\031\n\004user\030\003 \001(\0132\013.proto.User\"\036\n\014ResUser" +
+      "Alert\022\016\n\006status\030\001 \001(\005\"\013\n\tReqLogout\"\033\n\tRe" +
+      "sLogout\022\016\n\006status\030\001 \001(\005\"\"\n\021ReqForgotPass" +
+      "word\022\r\n\005email\030\001 \001(\t\"#\n\021ResForgotPassword" +
+      "\022\016\n\006status\030\001 \001(\005\"`\n\013ReqRegister\022\020\n\010usern" +
+      "ame\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\017\n\007sponsor\030\003" +
+      " \001(\t\022\r\n\005phone\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\"\035\n\013Re" +
+      "sRegister\022\016\n\006status\030\001 \001(\005\"7\n\021ReqUpdateUs" +
+      "erInfo\022\022\n\nplayerName\030\001 \001(\t\022\016\n\006gender\030\002 \001" +
+      "(\005\"\023\n\021ReqLoadCharacters\"8\n\021ResLoadCharac" +
+      "ters\022#\n\tcharacter\030\001 \003(\0132\020.proto.Characte" +
+      "r\";\n\020ReqPickCharacter\022\023\n\013characterId\030\001 \001" +
+      "(\005\022\022\n\nplayerName\030\002 \001(\t\"\"\n\020ResPickCharact" +
+      "er\022\016\n\006status\030\001 \001(\005\"R\n\027ReqPlayerJoinAreaC" +
+      "ommon\022\024\n\014areaCommonId\030\001 \001(\005\022!\n\010position\030" +
+      "\002 \001(\0132\017.proto.Position\"\254\001\n\027ResPlayerJoin" +
+      "AreaCommon\022\024\n\014areaCommonId\030\001 \001(\005\022\031\n\004area" +
+      "\030\002 \001(\0132\013.proto.Area\022\032\n\005users\030\004 \003(\0132\013.pro" +
+      "to.User\022\016\n\006status\030\005 \001(\005\022\021\n\tareaState\030\006 \001" +
+      "(\005\022!\n\010position\030\007 \001(\0132\017.proto.Position\")\n" +
+      "\021ReqPlayerJoinArea\022\024\n\014userTargetId\030\001 \001(\005" +
+      "\"}\n\021ResPlayerJoinArea\022\031\n\004area\030\001 \001(\0132\013.pr" +
+      "oto.Area\022\032\n\005users\030\003 \003(\0132\013.proto.User\022\016\n\006" +
+      "status\030\004 \001(\005\022!\n\010position\030\005 \001(\0132\017.proto.P" +
+      "osition\"V\n\026ResOtherPlayerJoinArea\022\031\n\004use" +
+      "r\030\002 \001(\0132\013.proto.User\022!\n\010position\030\003 \001(\0132\017" +
+      ".proto.Position\")\n\027ResOtherPlayerLeaveAr" +
+      "ea\022\016\n\006userId\030\001 \001(\005\"T\n\tReqMoving\022\016\n\006areaI" +
+      "d\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.proto.Positi" +
+      "on\022\024\n\014currentState\030\003 \001(\t\"T\n\tResMoving\022\016\n" +
+      "\006userId\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.proto." +
+      "Position\022\024\n\014currentState\030\003 \001(\t\"\024\n\022ReqLoa" +
+      "dItemsOfFarm\"l\n\014BuildingBase\022\n\n\002id\030\001 \001(\005" +
+      "\022\014\n\004name\030\002 \001(\t\022\r\n\005price\030\003 \001(\003\022\023\n\013descrip" +
+      "tion\030\004 \001(\t\022\014\n\004type\030\005 \001(\t\022\020\n\010maxLevel\030\006 \001" +
+      "(\005\"\227\001\n\020PropertyBuilding\022\n\n\002id\030\001 \001(\005\022\021\n\tp" +
+      "ositionX\030\002 \001(\003\022\021\n\tpositionY\030\003 \001(\003\022\021\n\tupg" +
+      "radeId\030\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\030\n\020commonBu" +
+      "ildingId\030\006 \001(\005\022\024\n\014currentLevel\030\007 \001(\005\"S\n\010" +
+      "TillLand\022\n\n\002id\030\001 \001(\005\022\r\n\005index\030\002 \001(\005\022\024\n\014s" +
+      "tatusTilled\030\003 \001(\010\022\026\n\016plantingLandId\030\004 \001(" +
+      "\005\"d\n\014FarmBuilding\022!\n\004base\030\001 \001(\0132\023.proto." +
+      "BuildingBase\0221\n\020propertyBuilding\030\002 \001(\0132\027" +
+      ".proto.PropertyBuilding\"\221\001\n\024PlantingLand" +
+      "Building\022!\n\004base\030\001 \001(\0132\023.proto.BuildingB" +
+      "ase\0221\n\020propertyBuilding\030\002 \001(\0132\027.proto.Pr" +
+      "opertyBuilding\022#\n\ttillLands\030\003 \001(\0132\020.prot" +
+      "o.TillLands\".\n\tTillLands\022!\n\010tillLand\030\003 \003" +
+      "(\0132\017.proto.TillLand\"|\n\010Building\022+\n\014farmB" +
+      "uilding\030\001 \001(\0132\023.proto.FarmBuildingH\000\022;\n\024" +
+      "plantingLandBuilding\030\002 \001(\0132\033.proto.Plant" +
+      "ingLandBuildingH\000B\006\n\004data\"2\n\rBuildingIte" +
+      "ms\022!\n\010building\030\001 \003(\0132\017.proto.Building\"A\n" +
+      "\022ResLoadItemsOfFarm\022+\n\rbuildingItems\030\001 \001" +
+      "(\0132\024.proto.BuildingItems\"\200\001\n\016ReqBuyBuild" +
+      "ing\022\024\n\014typeBuilding\030\001 \001(\t\022\021\n\tpositionX\030\002" +
+      " \001(\005\022\021\n\tpositionY\030\003 \001(\005\022\024\n\014currentLevel\030" +
+      "\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\014\n\004uuid\030\006 \001(\t\"A\n\016R" +
+      "esBuyBuilding\022\014\n\004uuid\030\001 \001(\t\022!\n\010building\030" +
+      "\002 \001(\0132\017.proto.Building\"\'\n\026ReqEmailForget" +
+      "Password\022\r\n\005email\030\001 \001(\t\"D\n\022ReqRecoverPas" +
+      "sword\022\020\n\010password\030\001 \001(\t\022\r\n\005token\030\002 \001(\t\022\r" +
+      "\n\005email\030\003 \001(\t\"$\n\022ResRecoverPassword\022\016\n\006s" +
+      "tatus\030\001 \001(\005\"(\n\026ResEmailForgetPassword\022\016\n" +
+      "\006status\030\001 \001(\005\"\017\n\rReqLoadFriend\"D\n\006Friend" +
+      "\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005level\030\003 \001(" +
+      "\005\022\021\n\tcharacter\030\004 \001(\t\"3\n\021ResLoadFriendLis" +
+      "t\022\036\n\007friends\030\001 \003(\0132\r.proto.Friend\"!\n\rReq" +
+      "FindFriend\022\020\n\010username\030\001 \001(\t\".\n\rResFindF" +
+      "riend\022\035\n\006friend\030\001 \001(\0132\r.proto.FriendB%\n#" +
+      "vn.edu.nlu.fit.nlugame.layer2.protob\006pro" +
+      "to3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -39167,7 +43107,7 @@ public final class Proto {
     internal_static_proto_Packet_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Packet_descriptor,
-        new java.lang.String[] { "ReqLogin", "ReqRelogin", "ResLogin", "ReqLogout", "ResLogout", "ReqForgotPassword", "ResForgotPassword", "ReqRegister", "ResRegister", "ReqUpdateUserInfo", "ReqLoadCharacters", "ResLoadCharacters", "ReqPickCharacter", "ResPickCharacter", "ReqPlayerJoinAreaCommon", "ResPlayerJoinAreaCommon", "ReqPlayerJoinArea", "ResPlayerJoinArea", "ResOtherPlayerJoinArea", "ReqMoving", "ResMoving", "ResOtherPlayerLeaveArea", "ReqLoadItemsOfFarm", "ResLoadItemsOfFarm", "ReqBuyBuilding", "ResBuyBuilding", "ReqEmailForgetPassword", "ReqRecoverPassword", "ResRecoverPassword", "ResEmailForgetPassword", "Data", });
+        new java.lang.String[] { "ReqLogin", "ReqRelogin", "ResLogin", "ReqLogout", "ResLogout", "ReqForgotPassword", "ResForgotPassword", "ReqRegister", "ResRegister", "ReqUpdateUserInfo", "ReqLoadCharacters", "ResLoadCharacters", "ReqPickCharacter", "ResPickCharacter", "ReqPlayerJoinAreaCommon", "ResPlayerJoinAreaCommon", "ReqPlayerJoinArea", "ResPlayerJoinArea", "ResOtherPlayerJoinArea", "ReqMoving", "ResMoving", "ResOtherPlayerLeaveArea", "ReqLoadItemsOfFarm", "ResLoadItemsOfFarm", "ReqBuyBuilding", "ResBuyBuilding", "ReqEmailForgetPassword", "ReqRecoverPassword", "ResRecoverPassword", "ResEmailForgetPassword", "ReqLoadFriend", "ResLoadFriendList", "ReqFindFriend", "ResFindFriend", "Data", });
     internal_static_proto_User_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_proto_User_fieldAccessorTable = new
@@ -39426,6 +43366,36 @@ public final class Proto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_ResEmailForgetPassword_descriptor,
         new java.lang.String[] { "Status", });
+    internal_static_proto_ReqLoadFriend_descriptor =
+      getDescriptor().getMessageTypes().get(45);
+    internal_static_proto_ReqLoadFriend_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ReqLoadFriend_descriptor,
+        new java.lang.String[] { });
+    internal_static_proto_Friend_descriptor =
+      getDescriptor().getMessageTypes().get(46);
+    internal_static_proto_Friend_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_Friend_descriptor,
+        new java.lang.String[] { "Id", "Name", "Level", "Character", });
+    internal_static_proto_ResLoadFriendList_descriptor =
+      getDescriptor().getMessageTypes().get(47);
+    internal_static_proto_ResLoadFriendList_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ResLoadFriendList_descriptor,
+        new java.lang.String[] { "Friends", });
+    internal_static_proto_ReqFindFriend_descriptor =
+      getDescriptor().getMessageTypes().get(48);
+    internal_static_proto_ReqFindFriend_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ReqFindFriend_descriptor,
+        new java.lang.String[] { "Username", });
+    internal_static_proto_ResFindFriend_descriptor =
+      getDescriptor().getMessageTypes().get(49);
+    internal_static_proto_ResFindFriend_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ResFindFriend_descriptor,
+        new java.lang.String[] { "Friend", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
