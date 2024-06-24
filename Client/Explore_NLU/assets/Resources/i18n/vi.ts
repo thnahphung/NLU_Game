@@ -66,6 +66,7 @@ export const languages = {
     cage_information_popup_level: "Cấp độ:",
     //Popup
     title_notify: "Thông báo",
+    title_friend: "Bạn bè",
     closing_connection: "Mất kết nối với máy chủ, đang thử kết nối lại...",
     login_success_200: "Đăng nhập thành công!",
     login_failed_400: "Tên đăng nhập hoặc mật khẩu không đúng!",
@@ -92,6 +93,14 @@ export const languages = {
     recover_password_failed_token_402: "Mã xác nhận không đúng!",
     recover_password_failed_time_403: "Mã xác nhận đã hết hạn!",
     recover_password_failed_500: "Đã có lỗi! Vui lòng thử lại sau!",
+    find_friend: "Nhập tên bạn cần tìm",
+    btn_friend_list: "Danh sách",
+    btn_friend_add: "Kết bạn",
+    btn_friend_visiting: "Thăm nhà",
+    btn_friend_add_new: "Kết bạn",
+    label_name: "Tên",
+    label_career: "Nghề",
+    label_level: "Cấp độ",
   },
 };
 

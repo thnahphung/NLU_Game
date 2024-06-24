@@ -101,6 +101,7 @@ export const LOCAL_STORAGE = {
 export enum POPUP {
   POPUP_OPTION = "POPUP_OPTION",
   POPUP_SETTING = "POPUP_SETTING",
+  POPUP_FRIEND = "POPUP_FRIEND",
 }
 
 export enum BUTTON {

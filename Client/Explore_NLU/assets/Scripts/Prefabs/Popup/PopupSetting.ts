@@ -26,7 +26,6 @@ export class PopupSetting extends AbsHandler {
   public dropdownLanguage: Node = null;
   @property(Label)
   public lableLanguage: Label = null;
-
   protected onLoad(): void {
     this.lableLanguage.string = t("label_text.setting_language_current");
     this.dropdownLanguage.active = false;

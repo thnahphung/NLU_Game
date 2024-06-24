@@ -65,6 +65,7 @@ export const languages = {
     cage_information_popup_level: "Level:",
     //Popup
     title_notify: "Notification",
+    title_friend: "Friend",
     closing_connection: "Lost connection to the server, trying to reconnect...",
     login_success_200: "Login successful!",
     login_failed_400: "Username or password is incorrect!",
@@ -86,7 +87,16 @@ export const languages = {
     forget_password_success: "A new password has been sent to your email!",
     forget_password_failed_400: "Email has not been registered!",
     forget_password_failed_401: "Email cannot be empty!",
-    forget_password_failed_403: "Invalid email!"
+    forget_password_failed_403: "Invalid email!",
+    find_friend : "Enter your friend's username",
+    btn_friend_list: "List friend",
+    btn_friend_add: "Add friend",
+    btn_friend_visiting: "Visit house",
+    btn_friend_add_new: "Add friend",
+    label_name: "Name",
+    label_career: "Career",
+    label_level: "Level",
+
   },
 };
 
