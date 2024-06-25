@@ -43,6 +43,8 @@ message Packet {
     ResLoadFriendList resLoadFriendList = 32;
     ReqFindFriend reqFindFriend = 33;
     ResFindFriend resFindFriend = 34;
+    ReqAddFriend reqAddFriend = 35;
+    ResAddFriend resAddFriend = 36;
   }
 }
 
@@ -306,7 +308,7 @@ message ResEmailForgetPassword {
 }
 
 message ReqLoadFriend {
-
+  int32 status = 1;
 }
 
 message Friend {
@@ -318,6 +320,7 @@ message Friend {
 
 message ResLoadFriendList {
   repeated Friend friends = 1;
+  int32 status = 2;
 }
 
 message ReqFindFriend {
@@ -326,4 +329,12 @@ message ReqFindFriend {
 
 message ResFindFriend {
   Friend friend = 1;
+}
+
+message ReqAddFriend {
+  int32 receiverId = 1;
+}
+
+message ResAddFriend {
+  Friend sender = 1;
 }

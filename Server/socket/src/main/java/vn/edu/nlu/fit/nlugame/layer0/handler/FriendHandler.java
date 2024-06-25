@@ -19,6 +19,12 @@ public class FriendHandler implements Subscriber{
                 case REQFINDFRIEND:
                     friendService.findFriend(session, packet.getReqFindFriend());
                     break;
+                case REQADDFRIEND:
+                    friendService.addFriend(session, packet.getReqAddFriend());
+                    break;
+                case REQLOADFRIEND:
+                    friendService.loadFriendList(session, packet.getReqLoadFriend());
+                    break;
             }
         });
     }

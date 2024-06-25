@@ -105,6 +105,9 @@ export const languages = {
     friend_name_empty: "Tên bạn bè không được để trống!",
     friend_name_invalid: "Không thể tìm kiếm chính mình!",
     friend_suggested_list: "Danh sách đề cử",
+    error_common: "Đã có lỗi xảy ra, vui lòng thử lại sau!",
+    btn_friend_request_add: "Lời mời",
+    friend_request_list: "Danh sách lời mời",
   },
 };
 

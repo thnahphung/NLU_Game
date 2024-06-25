@@ -1,4 +1,4 @@
-import { _decorator, Button, Component, EditBox, Label, Node, Sprite, SpriteFrame } from 'cc';
+import { _decorator, Button, Component, EditBox, instantiate, Label, Node, Prefab, Sprite, SpriteFrame } from 'cc';
 import { PopupComponent } from '../../Controller/PopupComponent';
 import DataSender from '../../Utils/DataSender';
 import { AbsHandler } from '../../Handler/AbsHandler';
@@ -28,12 +28,28 @@ export class PopupFriend extends AbsHandler {
     public friendDetailNode: Node = null;
     @property(EditBox)
     public friendName: EditBox = null;
+    @property(Button)
+    public btnRequestFriend: Button = null;
+    @property(Node)
+    public requestFriendNode: Node = null;
+    @property(Prefab)
+    public friendItemPrefab: Prefab = null;
+    @property(Node)
+    public scrollViewListFriend: Node = null;
+    @property(Prefab)
+    public friendItemRequestPrefab: Prefab = null;
+    @property(Node)
+    public scrollViewRequestFriend: Node = null;
+
+    private requestFriendListLoaded: boolean = false;
 
     onLoad() {
         HandlerManager.me().registerHandler(this);
         this.btnAddFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
+        this.btnRequestFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
         this.listFriendNode.active = true;
         this.addFriendNode.active = false;
+        this.onLoadListFriend();
         this.friendDetailModal.on(Node.EventType.TOUCH_END, this.onCloseFriendDetailModal, this);
     }
 
@@ -47,6 +63,10 @@ export class PopupFriend extends AbsHandler {
                 this.showInfoFriendPopupDetail(packet.resFindFriend.friend.id, packet.resFindFriend.friend.name, packet.resFindFriend.friend.character, packet.resFindFriend.friend.level);
                 this.friendDetailNode.active = true;
                 this.friendDetailModal.active = true;
+            }
+
+            if (packet.resLoadFriendList) {
+                this.onLoadFriendListHandle(packet.resLoadFriendList);
             }
         });
     }
@@ -63,16 +83,35 @@ export class PopupFriend extends AbsHandler {
         console.log("List friend");
         this.btnListFriend.getComponent(Sprite).spriteFrame = this.btnPressedSprite;
         this.btnAddFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
+        this.btnRequestFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
         this.listFriendNode.active = true;
         this.addFriendNode.active = false;
+        this.requestFriendNode.active = false;
     }
 
     onClickAddFriend() {
         console.log("Add friend");
         this.btnListFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
         this.btnAddFriend.getComponent(Sprite).spriteFrame = this.btnPressedSprite;
+        this.btnRequestFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
         this.listFriendNode.active = false;
         this.addFriendNode.active = true;
+        this.requestFriendNode.active = false;
+    }
+
+    onClickRequestFriend() {
+        console.log("Request friend");
+        this.btnRequestFriend.getComponent(Sprite).spriteFrame = this.btnPressedSprite;
+        this.btnListFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
+        this.btnAddFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
+        this.listFriendNode.active = false;
+        this.addFriendNode.active = false;
+        this.requestFriendNode.active = true;
+
+        if(!this.requestFriendListLoaded) {
+            DataSender.sendReqLoadFriend(1);
+            this.requestFriendListLoaded = true;
+        }
     }
 
     onClickAcceptFriend() {
@@ -106,6 +145,49 @@ export class PopupFriend extends AbsHandler {
 
     protected onDestroy(): void {
         HandlerManager.me().unRegisterHandler(this);
+    }
+
+    onClickAddNewFriend():void {
+        const labelContent = this.friendDetailNode.getChildByName("Content").getChildByName("TopInfo").getChildByName("ValueInfo");
+        const friendId = labelContent.getChildByName("IdLabel").getComponent(Label).string;
+        if(friendId) {
+            DataSender.sendReqAddFriend(Number.parseInt(friendId));
+        }else{
+            UICanvas.me().showPopupMessage(t("label_text.error_common"));
+        }
+    }
+
+    onLoadListFriend(): void {
+        if(GlobalData.me().getMainUser() == null) return;
+        DataSender.sendReqLoadFriend(2);
+    }
+
+    onLoadFriendListHandle(resLoadFriendList: proto.IResLoadFriendList): void{
+        console.log("Load friend list success");
+        const listFriend = resLoadFriendList.friends;
+        const status = resLoadFriendList.status;
+        if(listFriend.length == 0) {
+            return;
+        }
+        listFriend.forEach((friend) => {
+            if(status == 2) {
+                const friendItem = instantiate(this.friendItemPrefab);
+                const labelInfo = friendItem.getChildByName("ValueInfo");
+                labelInfo.getChildByName("NameLabel").getComponent(Label).string = friend.name;
+                labelInfo.getChildByName("CareerLabel").getComponent(Label).string = "Hiện chưa có";
+                labelInfo.getChildByName("LevelLabel").getComponent(Label).string = friend.level.toString();
+                this.scrollViewListFriend.addChild(friendItem);
+            }
+
+            if(status == 1) {
+                const friendItem = instantiate(this.friendItemRequestPrefab);
+                const labelInfo = friendItem.getChildByName("ValueInfo");
+                labelInfo.getChildByName("NameLabel").getComponent(Label).string = friend.name;
+                labelInfo.getChildByName("CareerLabel").getComponent(Label).string = "Hiện chưa có";
+                labelInfo.getChildByName("LevelLabel").getComponent(Label).string = friend.level.toString();
+                this.scrollViewRequestFriend.addChild(friendItem);
+            }
+        });
     }
 }
 

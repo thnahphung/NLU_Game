@@ -1,4 +1,7 @@
-import { _decorator, Component, find, Node } from 'cc';
+import { _decorator, Component, find, Label, Node } from 'cc';
+import { UICanvas } from '../../MainUI/UICanvas';
+import { t } from '../../../../../extensions/i18n/assets/LanguageData';
+import DataSender from '../../../Utils/DataSender';
 const { ccclass, property } = _decorator;
 
 @ccclass('AddFriendItem')
@@ -17,6 +20,16 @@ export class AddFriendItem extends Component {
     private openFriendDetail(): Node {
         const modal = find("UICanvas/PopupLayer/PopupFriend/PopupInfoFriendDetail");
         return modal;
+    }
+
+    onClickAddNewFriend():void {
+        const valueInfo = this.node.getChildByName("ValueInfo");
+        const friendId = valueInfo.getChildByName("IdLabel").getComponent(Label).string;
+        if(friendId) {
+            DataSender.sendReqAddFriend(Number.parseInt(friendId));
+        }else{
+            UICanvas.me().showPopupMessage(t("label_text.error_common"));
+        }
     }
 }
 

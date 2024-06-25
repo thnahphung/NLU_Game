@@ -100,6 +100,9 @@ export const languages = {
     friend_name_empty: "Friend name cannot be empty!",
     friend_name_invalid: "Do not enter your own username!",
     friend_suggested_list: "List of suggested friends",
+    error_common: "An error occurred, please try again later!",
+    btn_friend_request_add: "Request",
+    friend_request_list: "Request list",
   },
 };
 

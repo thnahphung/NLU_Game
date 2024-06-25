@@ -1276,6 +1276,36 @@ public final class Proto {
      */
     vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriendOrBuilder getResFindFriendOrBuilder();
 
+    /**
+     * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+     * @return Whether the reqAddFriend field is set.
+     */
+    boolean hasReqAddFriend();
+    /**
+     * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+     * @return The reqAddFriend.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend getReqAddFriend();
+    /**
+     * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriendOrBuilder getReqAddFriendOrBuilder();
+
+    /**
+     * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+     * @return Whether the resAddFriend field is set.
+     */
+    boolean hasResAddFriend();
+    /**
+     * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+     * @return The resAddFriend.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend getResAddFriend();
+    /**
+     * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriendOrBuilder getResAddFriendOrBuilder();
+
     vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Packet.DataCase getDataCase();
   }
   /**
@@ -1353,6 +1383,8 @@ public final class Proto {
       RESLOADFRIENDLIST(32),
       REQFINDFRIEND(33),
       RESFINDFRIEND(34),
+      REQADDFRIEND(35),
+      RESADDFRIEND(36),
       DATA_NOT_SET(0);
       private final int value;
       private DataCase(int value) {
@@ -1404,6 +1436,8 @@ public final class Proto {
           case 32: return RESLOADFRIENDLIST;
           case 33: return REQFINDFRIEND;
           case 34: return RESFINDFRIEND;
+          case 35: return REQADDFRIEND;
+          case 36: return RESADDFRIEND;
           case 0: return DATA_NOT_SET;
           default: return null;
         }
@@ -2473,6 +2507,68 @@ public final class Proto {
       return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend.getDefaultInstance();
     }
 
+    public static final int REQADDFRIEND_FIELD_NUMBER = 35;
+    /**
+     * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+     * @return Whether the reqAddFriend field is set.
+     */
+    @java.lang.Override
+    public boolean hasReqAddFriend() {
+      return dataCase_ == 35;
+    }
+    /**
+     * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+     * @return The reqAddFriend.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend getReqAddFriend() {
+      if (dataCase_ == 35) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriendOrBuilder getReqAddFriendOrBuilder() {
+      if (dataCase_ == 35) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.getDefaultInstance();
+    }
+
+    public static final int RESADDFRIEND_FIELD_NUMBER = 36;
+    /**
+     * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+     * @return Whether the resAddFriend field is set.
+     */
+    @java.lang.Override
+    public boolean hasResAddFriend() {
+      return dataCase_ == 36;
+    }
+    /**
+     * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+     * @return The resAddFriend.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend getResAddFriend() {
+      if (dataCase_ == 36) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.getDefaultInstance();
+    }
+    /**
+     * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriendOrBuilder getResAddFriendOrBuilder() {
+      if (dataCase_ == 36) {
+         return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend) data_;
+      }
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.getDefaultInstance();
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -2588,6 +2684,12 @@ public final class Proto {
       }
       if (dataCase_ == 34) {
         output.writeMessage(34, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend) data_);
+      }
+      if (dataCase_ == 35) {
+        output.writeMessage(35, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend) data_);
+      }
+      if (dataCase_ == 36) {
+        output.writeMessage(36, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend) data_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -2733,6 +2835,14 @@ public final class Proto {
       if (dataCase_ == 34) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(34, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResFindFriend) data_);
+      }
+      if (dataCase_ == 35) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(35, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend) data_);
+      }
+      if (dataCase_ == 36) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(36, (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend) data_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -2887,6 +2997,14 @@ public final class Proto {
           if (!getResFindFriend()
               .equals(other.getResFindFriend())) return false;
           break;
+        case 35:
+          if (!getReqAddFriend()
+              .equals(other.getReqAddFriend())) return false;
+          break;
+        case 36:
+          if (!getResAddFriend()
+              .equals(other.getResAddFriend())) return false;
+          break;
         case 0:
         default:
       }
@@ -3037,6 +3155,14 @@ public final class Proto {
         case 34:
           hash = (37 * hash) + RESFINDFRIEND_FIELD_NUMBER;
           hash = (53 * hash) + getResFindFriend().hashCode();
+          break;
+        case 35:
+          hash = (37 * hash) + REQADDFRIEND_FIELD_NUMBER;
+          hash = (53 * hash) + getReqAddFriend().hashCode();
+          break;
+        case 36:
+          hash = (37 * hash) + RESADDFRIEND_FIELD_NUMBER;
+          hash = (53 * hash) + getResAddFriend().hashCode();
           break;
         case 0:
         default:
@@ -3273,6 +3399,12 @@ public final class Proto {
         if (resFindFriendBuilder_ != null) {
           resFindFriendBuilder_.clear();
         }
+        if (reqAddFriendBuilder_ != null) {
+          reqAddFriendBuilder_.clear();
+        }
+        if (resAddFriendBuilder_ != null) {
+          resAddFriendBuilder_.clear();
+        }
         dataCase_ = 0;
         data_ = null;
         return this;
@@ -3455,6 +3587,14 @@ public final class Proto {
             resFindFriendBuilder_ != null) {
           result.data_ = resFindFriendBuilder_.build();
         }
+        if (dataCase_ == 35 &&
+            reqAddFriendBuilder_ != null) {
+          result.data_ = reqAddFriendBuilder_.build();
+        }
+        if (dataCase_ == 36 &&
+            resAddFriendBuilder_ != null) {
+          result.data_ = resAddFriendBuilder_.build();
+        }
       }
 
       @java.lang.Override
@@ -3604,6 +3744,14 @@ public final class Proto {
           }
           case RESFINDFRIEND: {
             mergeResFindFriend(other.getResFindFriend());
+            break;
+          }
+          case REQADDFRIEND: {
+            mergeReqAddFriend(other.getReqAddFriend());
+            break;
+          }
+          case RESADDFRIEND: {
+            mergeResAddFriend(other.getResAddFriend());
             break;
           }
           case DATA_NOT_SET: {
@@ -3874,6 +4022,20 @@ public final class Proto {
                 dataCase_ = 34;
                 break;
               } // case 274
+              case 282: {
+                input.readMessage(
+                    getReqAddFriendFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 35;
+                break;
+              } // case 282
+              case 290: {
+                input.readMessage(
+                    getResAddFriendFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                dataCase_ = 36;
+                break;
+              } // case 290
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -8733,6 +8895,290 @@ public final class Proto {
         dataCase_ = 34;
         onChanged();
         return resFindFriendBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriendOrBuilder> reqAddFriendBuilder_;
+      /**
+       * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+       * @return Whether the reqAddFriend field is set.
+       */
+      @java.lang.Override
+      public boolean hasReqAddFriend() {
+        return dataCase_ == 35;
+      }
+      /**
+       * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+       * @return The reqAddFriend.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend getReqAddFriend() {
+        if (reqAddFriendBuilder_ == null) {
+          if (dataCase_ == 35) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.getDefaultInstance();
+        } else {
+          if (dataCase_ == 35) {
+            return reqAddFriendBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+       */
+      public Builder setReqAddFriend(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend value) {
+        if (reqAddFriendBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          reqAddFriendBuilder_.setMessage(value);
+        }
+        dataCase_ = 35;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+       */
+      public Builder setReqAddFriend(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.Builder builderForValue) {
+        if (reqAddFriendBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          reqAddFriendBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 35;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+       */
+      public Builder mergeReqAddFriend(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend value) {
+        if (reqAddFriendBuilder_ == null) {
+          if (dataCase_ == 35 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 35) {
+            reqAddFriendBuilder_.mergeFrom(value);
+          } else {
+            reqAddFriendBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 35;
+        return this;
+      }
+      /**
+       * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+       */
+      public Builder clearReqAddFriend() {
+        if (reqAddFriendBuilder_ == null) {
+          if (dataCase_ == 35) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 35) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          reqAddFriendBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.Builder getReqAddFriendBuilder() {
+        return getReqAddFriendFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriendOrBuilder getReqAddFriendOrBuilder() {
+        if ((dataCase_ == 35) && (reqAddFriendBuilder_ != null)) {
+          return reqAddFriendBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 35) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ReqAddFriend reqAddFriend = 35;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriendOrBuilder> 
+          getReqAddFriendFieldBuilder() {
+        if (reqAddFriendBuilder_ == null) {
+          if (!(dataCase_ == 35)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.getDefaultInstance();
+          }
+          reqAddFriendBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriendOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 35;
+        onChanged();
+        return reqAddFriendBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriendOrBuilder> resAddFriendBuilder_;
+      /**
+       * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+       * @return Whether the resAddFriend field is set.
+       */
+      @java.lang.Override
+      public boolean hasResAddFriend() {
+        return dataCase_ == 36;
+      }
+      /**
+       * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+       * @return The resAddFriend.
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend getResAddFriend() {
+        if (resAddFriendBuilder_ == null) {
+          if (dataCase_ == 36) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.getDefaultInstance();
+        } else {
+          if (dataCase_ == 36) {
+            return resAddFriendBuilder_.getMessage();
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+       */
+      public Builder setResAddFriend(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend value) {
+        if (resAddFriendBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          resAddFriendBuilder_.setMessage(value);
+        }
+        dataCase_ = 36;
+        return this;
+      }
+      /**
+       * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+       */
+      public Builder setResAddFriend(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.Builder builderForValue) {
+        if (resAddFriendBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          resAddFriendBuilder_.setMessage(builderForValue.build());
+        }
+        dataCase_ = 36;
+        return this;
+      }
+      /**
+       * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+       */
+      public Builder mergeResAddFriend(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend value) {
+        if (resAddFriendBuilder_ == null) {
+          if (dataCase_ == 36 &&
+              data_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.getDefaultInstance()) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.newBuilder((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend) data_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          if (dataCase_ == 36) {
+            resAddFriendBuilder_.mergeFrom(value);
+          } else {
+            resAddFriendBuilder_.setMessage(value);
+          }
+        }
+        dataCase_ = 36;
+        return this;
+      }
+      /**
+       * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+       */
+      public Builder clearResAddFriend() {
+        if (resAddFriendBuilder_ == null) {
+          if (dataCase_ == 36) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+          }
+        } else {
+          if (dataCase_ == 36) {
+            dataCase_ = 0;
+            data_ = null;
+          }
+          resAddFriendBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.Builder getResAddFriendBuilder() {
+        return getResAddFriendFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+       */
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriendOrBuilder getResAddFriendOrBuilder() {
+        if ((dataCase_ == 36) && (resAddFriendBuilder_ != null)) {
+          return resAddFriendBuilder_.getMessageOrBuilder();
+        } else {
+          if (dataCase_ == 36) {
+            return (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend) data_;
+          }
+          return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>.proto.ResAddFriend resAddFriend = 36;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriendOrBuilder> 
+          getResAddFriendFieldBuilder() {
+        if (resAddFriendBuilder_ == null) {
+          if (!(dataCase_ == 36)) {
+            data_ = vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.getDefaultInstance();
+          }
+          resAddFriendBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriendOrBuilder>(
+                  (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend) data_,
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        dataCase_ = 36;
+        onChanged();
+        return resAddFriendBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -39696,6 +40142,12 @@ public final class Proto {
   public interface ReqLoadFriendOrBuilder extends
       // @@protoc_insertion_point(interface_extends:proto.ReqLoadFriend)
       com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 status = 1;</code>
+     * @return The status.
+     */
+    int getStatus();
   }
   /**
    * Protobuf type {@code proto.ReqLoadFriend}
@@ -39732,6 +40184,17 @@ public final class Proto {
               vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.Builder.class);
     }
 
+    public static final int STATUS_FIELD_NUMBER = 1;
+    private int status_ = 0;
+    /**
+     * <code>int32 status = 1;</code>
+     * @return The status.
+     */
+    @java.lang.Override
+    public int getStatus() {
+      return status_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -39746,6 +40209,9 @@ public final class Proto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (status_ != 0) {
+        output.writeInt32(1, status_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -39755,6 +40221,10 @@ public final class Proto {
       if (size != -1) return size;
 
       size = 0;
+      if (status_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, status_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -39770,6 +40240,8 @@ public final class Proto {
       }
       vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend) obj;
 
+      if (getStatus()
+          != other.getStatus()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -39781,6 +40253,8 @@ public final class Proto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -39909,6 +40383,8 @@ public final class Proto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
+        status_ = 0;
         return this;
       }
 
@@ -39935,8 +40411,16 @@ public final class Proto {
       @java.lang.Override
       public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend buildPartial() {
         vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.status_ = status_;
+        }
       }
 
       @java.lang.Override
@@ -39951,6 +40435,9 @@ public final class Proto {
 
       public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend other) {
         if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqLoadFriend.getDefaultInstance()) return this;
+        if (other.getStatus() != 0) {
+          setStatus(other.getStatus());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -39977,6 +40464,11 @@ public final class Proto {
               case 0:
                 done = true;
                 break;
+              case 8: {
+                status_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -39990,6 +40482,39 @@ public final class Proto {
         } finally {
           onChanged();
         } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int status_ ;
+      /**
+       * <code>int32 status = 1;</code>
+       * @return The status.
+       */
+      @java.lang.Override
+      public int getStatus() {
+        return status_;
+      }
+      /**
+       * <code>int32 status = 1;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatus(int value) {
+
+        status_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 status = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        status_ = 0;
+        onChanged();
         return this;
       }
       @java.lang.Override
@@ -40893,6 +41418,12 @@ public final class Proto {
      */
     vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder getFriendsOrBuilder(
         int index);
+
+    /**
+     * <code>int32 status = 2;</code>
+     * @return The status.
+     */
+    int getStatus();
   }
   /**
    * Protobuf type {@code proto.ResLoadFriendList}
@@ -40971,6 +41502,17 @@ public final class Proto {
       return friends_.get(index);
     }
 
+    public static final int STATUS_FIELD_NUMBER = 2;
+    private int status_ = 0;
+    /**
+     * <code>int32 status = 2;</code>
+     * @return The status.
+     */
+    @java.lang.Override
+    public int getStatus() {
+      return status_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -40988,6 +41530,9 @@ public final class Proto {
       for (int i = 0; i < friends_.size(); i++) {
         output.writeMessage(1, friends_.get(i));
       }
+      if (status_ != 0) {
+        output.writeInt32(2, status_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -41000,6 +41545,10 @@ public final class Proto {
       for (int i = 0; i < friends_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, friends_.get(i));
+      }
+      if (status_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, status_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -41018,6 +41567,8 @@ public final class Proto {
 
       if (!getFriendsList()
           .equals(other.getFriendsList())) return false;
+      if (getStatus()
+          != other.getStatus()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -41033,6 +41584,8 @@ public final class Proto {
         hash = (37 * hash) + FRIENDS_FIELD_NUMBER;
         hash = (53 * hash) + getFriendsList().hashCode();
       }
+      hash = (37 * hash) + STATUS_FIELD_NUMBER;
+      hash = (53 * hash) + getStatus();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -41169,6 +41722,7 @@ public final class Proto {
           friendsBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
+        status_ = 0;
         return this;
       }
 
@@ -41215,6 +41769,9 @@ public final class Proto {
 
       private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResLoadFriendList result) {
         int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.status_ = status_;
+        }
       }
 
       @java.lang.Override
@@ -41255,6 +41812,9 @@ public final class Proto {
             }
           }
         }
+        if (other.getStatus() != 0) {
+          setStatus(other.getStatus());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -41294,6 +41854,11 @@ public final class Proto {
                 }
                 break;
               } // case 10
+              case 16: {
+                status_ = input.readInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -41549,6 +42114,38 @@ public final class Proto {
           friends_ = null;
         }
         return friendsBuilder_;
+      }
+
+      private int status_ ;
+      /**
+       * <code>int32 status = 2;</code>
+       * @return The status.
+       */
+      @java.lang.Override
+      public int getStatus() {
+        return status_;
+      }
+      /**
+       * <code>int32 status = 2;</code>
+       * @param value The status to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatus(int value) {
+
+        status_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 status = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatus() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        status_ = 0;
+        onChanged();
+        return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -42698,6 +43295,1014 @@ public final class Proto {
 
   }
 
+  public interface ReqAddFriendOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ReqAddFriend)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 receiverId = 1;</code>
+     * @return The receiverId.
+     */
+    int getReceiverId();
+  }
+  /**
+   * Protobuf type {@code proto.ReqAddFriend}
+   */
+  public static final class ReqAddFriend extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ReqAddFriend)
+      ReqAddFriendOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReqAddFriend.newBuilder() to construct.
+    private ReqAddFriend(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReqAddFriend() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReqAddFriend();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqAddFriend_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqAddFriend_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.Builder.class);
+    }
+
+    public static final int RECEIVERID_FIELD_NUMBER = 1;
+    private int receiverId_ = 0;
+    /**
+     * <code>int32 receiverId = 1;</code>
+     * @return The receiverId.
+     */
+    @java.lang.Override
+    public int getReceiverId() {
+      return receiverId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (receiverId_ != 0) {
+        output.writeInt32(1, receiverId_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (receiverId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, receiverId_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend) obj;
+
+      if (getReceiverId()
+          != other.getReceiverId()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + RECEIVERID_FIELD_NUMBER;
+      hash = (53 * hash) + getReceiverId();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ReqAddFriend}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ReqAddFriend)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriendOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqAddFriend_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqAddFriend_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        receiverId_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ReqAddFriend_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.receiverId_ = receiverId_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend.getDefaultInstance()) return this;
+        if (other.getReceiverId() != 0) {
+          setReceiverId(other.getReceiverId());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                receiverId_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int receiverId_ ;
+      /**
+       * <code>int32 receiverId = 1;</code>
+       * @return The receiverId.
+       */
+      @java.lang.Override
+      public int getReceiverId() {
+        return receiverId_;
+      }
+      /**
+       * <code>int32 receiverId = 1;</code>
+       * @param value The receiverId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setReceiverId(int value) {
+
+        receiverId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 receiverId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearReceiverId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        receiverId_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ReqAddFriend)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ReqAddFriend)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReqAddFriend>
+        PARSER = new com.google.protobuf.AbstractParser<ReqAddFriend>() {
+      @java.lang.Override
+      public ReqAddFriend parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReqAddFriend> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReqAddFriend> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ReqAddFriend getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ResAddFriendOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:proto.ResAddFriend)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.proto.Friend sender = 1;</code>
+     * @return Whether the sender field is set.
+     */
+    boolean hasSender();
+    /**
+     * <code>.proto.Friend sender = 1;</code>
+     * @return The sender.
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend getSender();
+    /**
+     * <code>.proto.Friend sender = 1;</code>
+     */
+    vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder getSenderOrBuilder();
+  }
+  /**
+   * Protobuf type {@code proto.ResAddFriend}
+   */
+  public static final class ResAddFriend extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:proto.ResAddFriend)
+      ResAddFriendOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ResAddFriend.newBuilder() to construct.
+    private ResAddFriend(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ResAddFriend() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ResAddFriend();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResAddFriend_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResAddFriend_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.Builder.class);
+    }
+
+    public static final int SENDER_FIELD_NUMBER = 1;
+    private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend sender_;
+    /**
+     * <code>.proto.Friend sender = 1;</code>
+     * @return Whether the sender field is set.
+     */
+    @java.lang.Override
+    public boolean hasSender() {
+      return sender_ != null;
+    }
+    /**
+     * <code>.proto.Friend sender = 1;</code>
+     * @return The sender.
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend getSender() {
+      return sender_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.getDefaultInstance() : sender_;
+    }
+    /**
+     * <code>.proto.Friend sender = 1;</code>
+     */
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder getSenderOrBuilder() {
+      return sender_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.getDefaultInstance() : sender_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (sender_ != null) {
+        output.writeMessage(1, getSender());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (sender_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getSender());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend)) {
+        return super.equals(obj);
+      }
+      vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend other = (vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend) obj;
+
+      if (hasSender() != other.hasSender()) return false;
+      if (hasSender()) {
+        if (!getSender()
+            .equals(other.getSender())) return false;
+      }
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasSender()) {
+        hash = (37 * hash) + SENDER_FIELD_NUMBER;
+        hash = (53 * hash) + getSender().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code proto.ResAddFriend}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:proto.ResAddFriend)
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriendOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResAddFriend_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResAddFriend_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.class, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.Builder.class);
+      }
+
+      // Construct using vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        sender_ = null;
+        if (senderBuilder_ != null) {
+          senderBuilder_.dispose();
+          senderBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.internal_static_proto_ResAddFriend_descriptor;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend getDefaultInstanceForType() {
+        return vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend build() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend buildPartial() {
+        vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend result = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.sender_ = senderBuilder_ == null
+              ? sender_
+              : senderBuilder_.build();
+        }
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend) {
+          return mergeFrom((vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend other) {
+        if (other == vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend.getDefaultInstance()) return this;
+        if (other.hasSender()) {
+          mergeSender(other.getSender());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getSenderFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend sender_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder> senderBuilder_;
+      /**
+       * <code>.proto.Friend sender = 1;</code>
+       * @return Whether the sender field is set.
+       */
+      public boolean hasSender() {
+        return ((bitField0_ & 0x00000001) != 0);
+      }
+      /**
+       * <code>.proto.Friend sender = 1;</code>
+       * @return The sender.
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend getSender() {
+        if (senderBuilder_ == null) {
+          return sender_ == null ? vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.getDefaultInstance() : sender_;
+        } else {
+          return senderBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.proto.Friend sender = 1;</code>
+       */
+      public Builder setSender(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend value) {
+        if (senderBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          sender_ = value;
+        } else {
+          senderBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Friend sender = 1;</code>
+       */
+      public Builder setSender(
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder builderForValue) {
+        if (senderBuilder_ == null) {
+          sender_ = builderForValue.build();
+        } else {
+          senderBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Friend sender = 1;</code>
+       */
+      public Builder mergeSender(vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend value) {
+        if (senderBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0) &&
+            sender_ != null &&
+            sender_ != vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.getDefaultInstance()) {
+            getSenderBuilder().mergeFrom(value);
+          } else {
+            sender_ = value;
+          }
+        } else {
+          senderBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Friend sender = 1;</code>
+       */
+      public Builder clearSender() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        sender_ = null;
+        if (senderBuilder_ != null) {
+          senderBuilder_.dispose();
+          senderBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.proto.Friend sender = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder getSenderBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getSenderFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.proto.Friend sender = 1;</code>
+       */
+      public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder getSenderOrBuilder() {
+        if (senderBuilder_ != null) {
+          return senderBuilder_.getMessageOrBuilder();
+        } else {
+          return sender_ == null ?
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.getDefaultInstance() : sender_;
+        }
+      }
+      /**
+       * <code>.proto.Friend sender = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder> 
+          getSenderFieldBuilder() {
+        if (senderBuilder_ == null) {
+          senderBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.Friend.Builder, vn.edu.nlu.fit.nlugame.layer2.proto.Proto.FriendOrBuilder>(
+                  getSender(),
+                  getParentForChildren(),
+                  isClean());
+          sender_ = null;
+        }
+        return senderBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:proto.ResAddFriend)
+    }
+
+    // @@protoc_insertion_point(class_scope:proto.ResAddFriend)
+    private static final vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend();
+    }
+
+    public static vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ResAddFriend>
+        PARSER = new com.google.protobuf.AbstractParser<ResAddFriend>() {
+      @java.lang.Override
+      public ResAddFriend parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ResAddFriend> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ResAddFriend> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public vn.edu.nlu.fit.nlugame.layer2.proto.Proto.ResAddFriend getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_PacketWrapper_descriptor;
   private static final 
@@ -42948,6 +44553,16 @@ public final class Proto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_proto_ResFindFriend_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ReqAddFriend_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ReqAddFriend_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_ResAddFriend_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_proto_ResAddFriend_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -42958,7 +44573,7 @@ public final class Proto {
   static {
     java.lang.String[] descriptorData = {
       "\n\013Proto.proto\022\005proto\".\n\rPacketWrapper\022\035\n" +
-      "\006packet\030\001 \003(\0132\r.proto.Packet\"\366\r\n\006Packet\022" +
+      "\006packet\030\001 \003(\0132\r.proto.Packet\"\320\016\n\006Packet\022" +
       "#\n\010reqLogin\030\001 \001(\0132\017.proto.ReqLoginH\000\022\'\n\n" +
       "reqRelogin\030\002 \001(\0132\021.proto.ReqReloginH\000\022#\n" +
       "\010resLogin\030\003 \001(\0132\017.proto.ResLoginH\000\022%\n\tre" +
@@ -43003,94 +44618,99 @@ public final class Proto {
       "\001(\0132\030.proto.ResLoadFriendListH\000\022-\n\rreqFi" +
       "ndFriend\030! \001(\0132\024.proto.ReqFindFriendH\000\022-" +
       "\n\rresFindFriend\030\" \001(\0132\024.proto.ResFindFri" +
-      "endH\000B\006\n\004data\"\237\002\n\004User\022\016\n\006userId\030\001 \001(\005\022\020" +
-      "\n\010username\030\002 \001(\t\022\022\n\nplayerName\030\003 \001(\t\022\016\n\006" +
-      "gender\030\004 \001(\005\022\017\n\007sponsor\030\005 \001(\005\022\r\n\005email\030\006" +
-      " \001(\t\022\r\n\005phone\030\007 \001(\t\022\014\n\004gold\030\010 \001(\003\022\017\n\007dia" +
-      "mond\030\t \001(\003\022\r\n\005level\030\n \001(\005\022\024\n\014hasCharacte" +
-      "r\030\013 \001(\005\022\023\n\013characterId\030\014 \001(\005\022\016\n\006areaId\030\r" +
-      " \001(\005\022\024\n\014isNewAccount\030\016 \001(\005\022#\n\tcharacter\030" +
-      "\017 \001(\0132\020.proto.Character\"H\n\tCharacter\022\n\n\002" +
-      "id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\023\n\013" +
-      "description\030\004 \001(\t\"[\n\004Area\022\016\n\006areaId\030\001 \001(" +
-      "\005\022\020\n\010typeArea\030\003 \001(\t\022!\n\010position\030\004 \001(\0132\017." +
-      "proto.Position\022\016\n\006status\030\005 \001(\005\" \n\010Positi" +
-      "on\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\".\n\010ReqLogin\022\020\n\010" +
-      "username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"-\n\nReqR" +
-      "elogin\022\020\n\010username\030\001 \001(\t\022\r\n\005token\030\002 \001(\t\"" +
-      "D\n\010ResLogin\022\016\n\006status\030\001 \001(\005\022\r\n\005token\030\002 \001" +
-      "(\t\022\031\n\004user\030\003 \001(\0132\013.proto.User\"\036\n\014ResUser" +
-      "Alert\022\016\n\006status\030\001 \001(\005\"\013\n\tReqLogout\"\033\n\tRe" +
-      "sLogout\022\016\n\006status\030\001 \001(\005\"\"\n\021ReqForgotPass" +
-      "word\022\r\n\005email\030\001 \001(\t\"#\n\021ResForgotPassword" +
-      "\022\016\n\006status\030\001 \001(\005\"`\n\013ReqRegister\022\020\n\010usern" +
-      "ame\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\017\n\007sponsor\030\003" +
-      " \001(\t\022\r\n\005phone\030\004 \001(\t\022\r\n\005email\030\005 \001(\t\"\035\n\013Re" +
-      "sRegister\022\016\n\006status\030\001 \001(\005\"7\n\021ReqUpdateUs" +
-      "erInfo\022\022\n\nplayerName\030\001 \001(\t\022\016\n\006gender\030\002 \001" +
-      "(\005\"\023\n\021ReqLoadCharacters\"8\n\021ResLoadCharac" +
-      "ters\022#\n\tcharacter\030\001 \003(\0132\020.proto.Characte" +
-      "r\";\n\020ReqPickCharacter\022\023\n\013characterId\030\001 \001" +
-      "(\005\022\022\n\nplayerName\030\002 \001(\t\"\"\n\020ResPickCharact" +
-      "er\022\016\n\006status\030\001 \001(\005\"R\n\027ReqPlayerJoinAreaC" +
-      "ommon\022\024\n\014areaCommonId\030\001 \001(\005\022!\n\010position\030" +
-      "\002 \001(\0132\017.proto.Position\"\254\001\n\027ResPlayerJoin" +
-      "AreaCommon\022\024\n\014areaCommonId\030\001 \001(\005\022\031\n\004area" +
-      "\030\002 \001(\0132\013.proto.Area\022\032\n\005users\030\004 \003(\0132\013.pro" +
-      "to.User\022\016\n\006status\030\005 \001(\005\022\021\n\tareaState\030\006 \001" +
-      "(\005\022!\n\010position\030\007 \001(\0132\017.proto.Position\")\n" +
-      "\021ReqPlayerJoinArea\022\024\n\014userTargetId\030\001 \001(\005" +
-      "\"}\n\021ResPlayerJoinArea\022\031\n\004area\030\001 \001(\0132\013.pr" +
-      "oto.Area\022\032\n\005users\030\003 \003(\0132\013.proto.User\022\016\n\006" +
-      "status\030\004 \001(\005\022!\n\010position\030\005 \001(\0132\017.proto.P" +
-      "osition\"V\n\026ResOtherPlayerJoinArea\022\031\n\004use" +
-      "r\030\002 \001(\0132\013.proto.User\022!\n\010position\030\003 \001(\0132\017" +
-      ".proto.Position\")\n\027ResOtherPlayerLeaveAr" +
-      "ea\022\016\n\006userId\030\001 \001(\005\"T\n\tReqMoving\022\016\n\006areaI" +
-      "d\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.proto.Positi" +
-      "on\022\024\n\014currentState\030\003 \001(\t\"T\n\tResMoving\022\016\n" +
-      "\006userId\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.proto." +
-      "Position\022\024\n\014currentState\030\003 \001(\t\"\024\n\022ReqLoa" +
-      "dItemsOfFarm\"l\n\014BuildingBase\022\n\n\002id\030\001 \001(\005" +
-      "\022\014\n\004name\030\002 \001(\t\022\r\n\005price\030\003 \001(\003\022\023\n\013descrip" +
-      "tion\030\004 \001(\t\022\014\n\004type\030\005 \001(\t\022\020\n\010maxLevel\030\006 \001" +
-      "(\005\"\227\001\n\020PropertyBuilding\022\n\n\002id\030\001 \001(\005\022\021\n\tp" +
-      "ositionX\030\002 \001(\003\022\021\n\tpositionY\030\003 \001(\003\022\021\n\tupg" +
-      "radeId\030\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\030\n\020commonBu" +
-      "ildingId\030\006 \001(\005\022\024\n\014currentLevel\030\007 \001(\005\"S\n\010" +
-      "TillLand\022\n\n\002id\030\001 \001(\005\022\r\n\005index\030\002 \001(\005\022\024\n\014s" +
-      "tatusTilled\030\003 \001(\010\022\026\n\016plantingLandId\030\004 \001(" +
-      "\005\"d\n\014FarmBuilding\022!\n\004base\030\001 \001(\0132\023.proto." +
-      "BuildingBase\0221\n\020propertyBuilding\030\002 \001(\0132\027" +
-      ".proto.PropertyBuilding\"\221\001\n\024PlantingLand" +
-      "Building\022!\n\004base\030\001 \001(\0132\023.proto.BuildingB" +
-      "ase\0221\n\020propertyBuilding\030\002 \001(\0132\027.proto.Pr" +
-      "opertyBuilding\022#\n\ttillLands\030\003 \001(\0132\020.prot" +
-      "o.TillLands\".\n\tTillLands\022!\n\010tillLand\030\003 \003" +
-      "(\0132\017.proto.TillLand\"|\n\010Building\022+\n\014farmB" +
-      "uilding\030\001 \001(\0132\023.proto.FarmBuildingH\000\022;\n\024" +
-      "plantingLandBuilding\030\002 \001(\0132\033.proto.Plant" +
-      "ingLandBuildingH\000B\006\n\004data\"2\n\rBuildingIte" +
-      "ms\022!\n\010building\030\001 \003(\0132\017.proto.Building\"A\n" +
-      "\022ResLoadItemsOfFarm\022+\n\rbuildingItems\030\001 \001" +
-      "(\0132\024.proto.BuildingItems\"\200\001\n\016ReqBuyBuild" +
-      "ing\022\024\n\014typeBuilding\030\001 \001(\t\022\021\n\tpositionX\030\002" +
-      " \001(\005\022\021\n\tpositionY\030\003 \001(\005\022\024\n\014currentLevel\030" +
-      "\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\014\n\004uuid\030\006 \001(\t\"A\n\016R" +
-      "esBuyBuilding\022\014\n\004uuid\030\001 \001(\t\022!\n\010building\030" +
-      "\002 \001(\0132\017.proto.Building\"\'\n\026ReqEmailForget" +
-      "Password\022\r\n\005email\030\001 \001(\t\"D\n\022ReqRecoverPas" +
-      "sword\022\020\n\010password\030\001 \001(\t\022\r\n\005token\030\002 \001(\t\022\r" +
-      "\n\005email\030\003 \001(\t\"$\n\022ResRecoverPassword\022\016\n\006s" +
-      "tatus\030\001 \001(\005\"(\n\026ResEmailForgetPassword\022\016\n" +
-      "\006status\030\001 \001(\005\"\017\n\rReqLoadFriend\"D\n\006Friend" +
-      "\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005level\030\003 \001(" +
-      "\005\022\021\n\tcharacter\030\004 \001(\t\"3\n\021ResLoadFriendLis" +
-      "t\022\036\n\007friends\030\001 \003(\0132\r.proto.Friend\"!\n\rReq" +
-      "FindFriend\022\020\n\010username\030\001 \001(\t\".\n\rResFindF" +
-      "riend\022\035\n\006friend\030\001 \001(\0132\r.proto.FriendB%\n#" +
-      "vn.edu.nlu.fit.nlugame.layer2.protob\006pro" +
-      "to3"
+      "endH\000\022+\n\014reqAddFriend\030# \001(\0132\023.proto.ReqA" +
+      "ddFriendH\000\022+\n\014resAddFriend\030$ \001(\0132\023.proto" +
+      ".ResAddFriendH\000B\006\n\004data\"\237\002\n\004User\022\016\n\006user" +
+      "Id\030\001 \001(\005\022\020\n\010username\030\002 \001(\t\022\022\n\nplayerName" +
+      "\030\003 \001(\t\022\016\n\006gender\030\004 \001(\005\022\017\n\007sponsor\030\005 \001(\005\022" +
+      "\r\n\005email\030\006 \001(\t\022\r\n\005phone\030\007 \001(\t\022\014\n\004gold\030\010 " +
+      "\001(\003\022\017\n\007diamond\030\t \001(\003\022\r\n\005level\030\n \001(\005\022\024\n\014h" +
+      "asCharacter\030\013 \001(\005\022\023\n\013characterId\030\014 \001(\005\022\016" +
+      "\n\006areaId\030\r \001(\005\022\024\n\014isNewAccount\030\016 \001(\005\022#\n\t" +
+      "character\030\017 \001(\0132\020.proto.Character\"H\n\tCha" +
+      "racter\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\014\n\004code" +
+      "\030\003 \001(\t\022\023\n\013description\030\004 \001(\t\"[\n\004Area\022\016\n\006a" +
+      "reaId\030\001 \001(\005\022\020\n\010typeArea\030\003 \001(\t\022!\n\010positio" +
+      "n\030\004 \001(\0132\017.proto.Position\022\016\n\006status\030\005 \001(\005" +
+      "\" \n\010Position\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\".\n\010Re" +
+      "qLogin\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001" +
+      "(\t\"-\n\nReqRelogin\022\020\n\010username\030\001 \001(\t\022\r\n\005to" +
+      "ken\030\002 \001(\t\"D\n\010ResLogin\022\016\n\006status\030\001 \001(\005\022\r\n" +
+      "\005token\030\002 \001(\t\022\031\n\004user\030\003 \001(\0132\013.proto.User\"" +
+      "\036\n\014ResUserAlert\022\016\n\006status\030\001 \001(\005\"\013\n\tReqLo" +
+      "gout\"\033\n\tResLogout\022\016\n\006status\030\001 \001(\005\"\"\n\021Req" +
+      "ForgotPassword\022\r\n\005email\030\001 \001(\t\"#\n\021ResForg" +
+      "otPassword\022\016\n\006status\030\001 \001(\005\"`\n\013ReqRegiste" +
+      "r\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\022\017\n" +
+      "\007sponsor\030\003 \001(\t\022\r\n\005phone\030\004 \001(\t\022\r\n\005email\030\005" +
+      " \001(\t\"\035\n\013ResRegister\022\016\n\006status\030\001 \001(\005\"7\n\021R" +
+      "eqUpdateUserInfo\022\022\n\nplayerName\030\001 \001(\t\022\016\n\006" +
+      "gender\030\002 \001(\005\"\023\n\021ReqLoadCharacters\"8\n\021Res" +
+      "LoadCharacters\022#\n\tcharacter\030\001 \003(\0132\020.prot" +
+      "o.Character\";\n\020ReqPickCharacter\022\023\n\013chara" +
+      "cterId\030\001 \001(\005\022\022\n\nplayerName\030\002 \001(\t\"\"\n\020ResP" +
+      "ickCharacter\022\016\n\006status\030\001 \001(\005\"R\n\027ReqPlaye" +
+      "rJoinAreaCommon\022\024\n\014areaCommonId\030\001 \001(\005\022!\n" +
+      "\010position\030\002 \001(\0132\017.proto.Position\"\254\001\n\027Res" +
+      "PlayerJoinAreaCommon\022\024\n\014areaCommonId\030\001 \001" +
+      "(\005\022\031\n\004area\030\002 \001(\0132\013.proto.Area\022\032\n\005users\030\004" +
+      " \003(\0132\013.proto.User\022\016\n\006status\030\005 \001(\005\022\021\n\tare" +
+      "aState\030\006 \001(\005\022!\n\010position\030\007 \001(\0132\017.proto.P" +
+      "osition\")\n\021ReqPlayerJoinArea\022\024\n\014userTarg" +
+      "etId\030\001 \001(\005\"}\n\021ResPlayerJoinArea\022\031\n\004area\030" +
+      "\001 \001(\0132\013.proto.Area\022\032\n\005users\030\003 \003(\0132\013.prot" +
+      "o.User\022\016\n\006status\030\004 \001(\005\022!\n\010position\030\005 \001(\013" +
+      "2\017.proto.Position\"V\n\026ResOtherPlayerJoinA" +
+      "rea\022\031\n\004user\030\002 \001(\0132\013.proto.User\022!\n\010positi" +
+      "on\030\003 \001(\0132\017.proto.Position\")\n\027ResOtherPla" +
+      "yerLeaveArea\022\016\n\006userId\030\001 \001(\005\"T\n\tReqMovin" +
+      "g\022\016\n\006areaId\030\001 \001(\005\022!\n\010position\030\002 \001(\0132\017.pr" +
+      "oto.Position\022\024\n\014currentState\030\003 \001(\t\"T\n\tRe" +
+      "sMoving\022\016\n\006userId\030\001 \001(\005\022!\n\010position\030\002 \001(" +
+      "\0132\017.proto.Position\022\024\n\014currentState\030\003 \001(\t" +
+      "\"\024\n\022ReqLoadItemsOfFarm\"l\n\014BuildingBase\022\n" +
+      "\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\r\n\005price\030\003 \001(\003\022" +
+      "\023\n\013description\030\004 \001(\t\022\014\n\004type\030\005 \001(\t\022\020\n\010ma" +
+      "xLevel\030\006 \001(\005\"\227\001\n\020PropertyBuilding\022\n\n\002id\030" +
+      "\001 \001(\005\022\021\n\tpositionX\030\002 \001(\003\022\021\n\tpositionY\030\003 " +
+      "\001(\003\022\021\n\tupgradeId\030\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\030" +
+      "\n\020commonBuildingId\030\006 \001(\005\022\024\n\014currentLevel" +
+      "\030\007 \001(\005\"S\n\010TillLand\022\n\n\002id\030\001 \001(\005\022\r\n\005index\030" +
+      "\002 \001(\005\022\024\n\014statusTilled\030\003 \001(\010\022\026\n\016plantingL" +
+      "andId\030\004 \001(\005\"d\n\014FarmBuilding\022!\n\004base\030\001 \001(" +
+      "\0132\023.proto.BuildingBase\0221\n\020propertyBuildi" +
+      "ng\030\002 \001(\0132\027.proto.PropertyBuilding\"\221\001\n\024Pl" +
+      "antingLandBuilding\022!\n\004base\030\001 \001(\0132\023.proto" +
+      ".BuildingBase\0221\n\020propertyBuilding\030\002 \001(\0132" +
+      "\027.proto.PropertyBuilding\022#\n\ttillLands\030\003 " +
+      "\001(\0132\020.proto.TillLands\".\n\tTillLands\022!\n\010ti" +
+      "llLand\030\003 \003(\0132\017.proto.TillLand\"|\n\010Buildin" +
+      "g\022+\n\014farmBuilding\030\001 \001(\0132\023.proto.FarmBuil" +
+      "dingH\000\022;\n\024plantingLandBuilding\030\002 \001(\0132\033.p" +
+      "roto.PlantingLandBuildingH\000B\006\n\004data\"2\n\rB" +
+      "uildingItems\022!\n\010building\030\001 \003(\0132\017.proto.B" +
+      "uilding\"A\n\022ResLoadItemsOfFarm\022+\n\rbuildin" +
+      "gItems\030\001 \001(\0132\024.proto.BuildingItems\"\200\001\n\016R" +
+      "eqBuyBuilding\022\024\n\014typeBuilding\030\001 \001(\t\022\021\n\tp" +
+      "ositionX\030\002 \001(\005\022\021\n\tpositionY\030\003 \001(\005\022\024\n\014cur" +
+      "rentLevel\030\004 \001(\005\022\016\n\006areaId\030\005 \001(\005\022\014\n\004uuid\030" +
+      "\006 \001(\t\"A\n\016ResBuyBuilding\022\014\n\004uuid\030\001 \001(\t\022!\n" +
+      "\010building\030\002 \001(\0132\017.proto.Building\"\'\n\026ReqE" +
+      "mailForgetPassword\022\r\n\005email\030\001 \001(\t\"D\n\022Req" +
+      "RecoverPassword\022\020\n\010password\030\001 \001(\t\022\r\n\005tok" +
+      "en\030\002 \001(\t\022\r\n\005email\030\003 \001(\t\"$\n\022ResRecoverPas" +
+      "sword\022\016\n\006status\030\001 \001(\005\"(\n\026ResEmailForgetP" +
+      "assword\022\016\n\006status\030\001 \001(\005\"\037\n\rReqLoadFriend" +
+      "\022\016\n\006status\030\001 \001(\005\"D\n\006Friend\022\n\n\002id\030\001 \001(\005\022\014" +
+      "\n\004name\030\002 \001(\t\022\r\n\005level\030\003 \001(\005\022\021\n\tcharacter" +
+      "\030\004 \001(\t\"C\n\021ResLoadFriendList\022\036\n\007friends\030\001" +
+      " \003(\0132\r.proto.Friend\022\016\n\006status\030\002 \001(\005\"!\n\rR" +
+      "eqFindFriend\022\020\n\010username\030\001 \001(\t\".\n\rResFin" +
+      "dFriend\022\035\n\006friend\030\001 \001(\0132\r.proto.Friend\"\"" +
+      "\n\014ReqAddFriend\022\022\n\nreceiverId\030\001 \001(\005\"-\n\014Re" +
+      "sAddFriend\022\035\n\006sender\030\001 \001(\0132\r.proto.Frien" +
+      "dB%\n#vn.edu.nlu.fit.nlugame.layer2.proto" +
+      "b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -43107,7 +44727,7 @@ public final class Proto {
     internal_static_proto_Packet_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_Packet_descriptor,
-        new java.lang.String[] { "ReqLogin", "ReqRelogin", "ResLogin", "ReqLogout", "ResLogout", "ReqForgotPassword", "ResForgotPassword", "ReqRegister", "ResRegister", "ReqUpdateUserInfo", "ReqLoadCharacters", "ResLoadCharacters", "ReqPickCharacter", "ResPickCharacter", "ReqPlayerJoinAreaCommon", "ResPlayerJoinAreaCommon", "ReqPlayerJoinArea", "ResPlayerJoinArea", "ResOtherPlayerJoinArea", "ReqMoving", "ResMoving", "ResOtherPlayerLeaveArea", "ReqLoadItemsOfFarm", "ResLoadItemsOfFarm", "ReqBuyBuilding", "ResBuyBuilding", "ReqEmailForgetPassword", "ReqRecoverPassword", "ResRecoverPassword", "ResEmailForgetPassword", "ReqLoadFriend", "ResLoadFriendList", "ReqFindFriend", "ResFindFriend", "Data", });
+        new java.lang.String[] { "ReqLogin", "ReqRelogin", "ResLogin", "ReqLogout", "ResLogout", "ReqForgotPassword", "ResForgotPassword", "ReqRegister", "ResRegister", "ReqUpdateUserInfo", "ReqLoadCharacters", "ResLoadCharacters", "ReqPickCharacter", "ResPickCharacter", "ReqPlayerJoinAreaCommon", "ResPlayerJoinAreaCommon", "ReqPlayerJoinArea", "ResPlayerJoinArea", "ResOtherPlayerJoinArea", "ReqMoving", "ResMoving", "ResOtherPlayerLeaveArea", "ReqLoadItemsOfFarm", "ResLoadItemsOfFarm", "ReqBuyBuilding", "ResBuyBuilding", "ReqEmailForgetPassword", "ReqRecoverPassword", "ResRecoverPassword", "ResEmailForgetPassword", "ReqLoadFriend", "ResLoadFriendList", "ReqFindFriend", "ResFindFriend", "ReqAddFriend", "ResAddFriend", "Data", });
     internal_static_proto_User_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_proto_User_fieldAccessorTable = new
@@ -43371,7 +44991,7 @@ public final class Proto {
     internal_static_proto_ReqLoadFriend_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_ReqLoadFriend_descriptor,
-        new java.lang.String[] { });
+        new java.lang.String[] { "Status", });
     internal_static_proto_Friend_descriptor =
       getDescriptor().getMessageTypes().get(46);
     internal_static_proto_Friend_fieldAccessorTable = new
@@ -43383,7 +45003,7 @@ public final class Proto {
     internal_static_proto_ResLoadFriendList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_ResLoadFriendList_descriptor,
-        new java.lang.String[] { "Friends", });
+        new java.lang.String[] { "Friends", "Status", });
     internal_static_proto_ReqFindFriend_descriptor =
       getDescriptor().getMessageTypes().get(48);
     internal_static_proto_ReqFindFriend_fieldAccessorTable = new
@@ -43396,6 +45016,18 @@ public final class Proto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_proto_ResFindFriend_descriptor,
         new java.lang.String[] { "Friend", });
+    internal_static_proto_ReqAddFriend_descriptor =
+      getDescriptor().getMessageTypes().get(50);
+    internal_static_proto_ReqAddFriend_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ReqAddFriend_descriptor,
+        new java.lang.String[] { "ReceiverId", });
+    internal_static_proto_ResAddFriend_descriptor =
+      getDescriptor().getMessageTypes().get(51);
+    internal_static_proto_ResAddFriend_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_proto_ResAddFriend_descriptor,
+        new java.lang.String[] { "Sender", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

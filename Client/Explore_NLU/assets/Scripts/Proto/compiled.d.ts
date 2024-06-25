@@ -205,6 +205,12 @@ export namespace proto {
 
         /** Packet resFindFriend */
         resFindFriend?: (proto.IResFindFriend|null);
+
+        /** Packet reqAddFriend */
+        reqAddFriend?: (proto.IReqAddFriend|null);
+
+        /** Packet resAddFriend */
+        resAddFriend?: (proto.IResAddFriend|null);
     }
 
     /** Represents a Packet. */
@@ -318,8 +324,14 @@ export namespace proto {
         /** Packet resFindFriend. */
         public resFindFriend?: (proto.IResFindFriend|null);
 
+        /** Packet reqAddFriend. */
+        public reqAddFriend?: (proto.IReqAddFriend|null);
+
+        /** Packet resAddFriend. */
+        public resAddFriend?: (proto.IResAddFriend|null);
+
         /** Packet data. */
-        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|"reqEmailForgetPassword"|"reqRecoverPassword"|"resRecoverPassword"|"resEmailForgetPassword"|"reqLoadFriend"|"resLoadFriendList"|"reqFindFriend"|"resFindFriend");
+        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|"reqEmailForgetPassword"|"reqRecoverPassword"|"resRecoverPassword"|"resEmailForgetPassword"|"reqLoadFriend"|"resLoadFriendList"|"reqFindFriend"|"resFindFriend"|"reqAddFriend"|"resAddFriend");
 
         /**
          * Creates a new Packet instance using the specified properties.
@@ -4983,6 +4995,9 @@ export namespace proto {
 
     /** Properties of a ReqLoadFriend. */
     interface IReqLoadFriend {
+
+        /** ReqLoadFriend status */
+        status?: (number|null);
     }
 
     /** Represents a ReqLoadFriend. */
@@ -4993,6 +5008,9 @@ export namespace proto {
          * @param [properties] Properties to set
          */
         constructor(properties?: proto.IReqLoadFriend);
+
+        /** ReqLoadFriend status. */
+        public status: number;
 
         /**
          * Creates a new ReqLoadFriend instance using the specified properties.
@@ -5192,6 +5210,9 @@ export namespace proto {
 
         /** ResLoadFriendList friends */
         friends?: (proto.IFriend[]|null);
+
+        /** ResLoadFriendList status */
+        status?: (number|null);
     }
 
     /** Represents a ResLoadFriendList. */
@@ -5205,6 +5226,9 @@ export namespace proto {
 
         /** ResLoadFriendList friends. */
         public friends: proto.IFriend[];
+
+        /** ResLoadFriendList status. */
+        public status: number;
 
         /**
          * Creates a new ResLoadFriendList instance using the specified properties.
@@ -5472,6 +5496,200 @@ export namespace proto {
 
         /**
          * Gets the default type url for ResFindFriend
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ReqAddFriend. */
+    interface IReqAddFriend {
+
+        /** ReqAddFriend receiverId */
+        receiverId?: (number|null);
+    }
+
+    /** Represents a ReqAddFriend. */
+    class ReqAddFriend implements IReqAddFriend {
+
+        /**
+         * Constructs a new ReqAddFriend.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IReqAddFriend);
+
+        /** ReqAddFriend receiverId. */
+        public receiverId: number;
+
+        /**
+         * Creates a new ReqAddFriend instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReqAddFriend instance
+         */
+        public static create(properties?: proto.IReqAddFriend): proto.ReqAddFriend;
+
+        /**
+         * Encodes the specified ReqAddFriend message. Does not implicitly {@link proto.ReqAddFriend.verify|verify} messages.
+         * @param message ReqAddFriend message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IReqAddFriend, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReqAddFriend message, length delimited. Does not implicitly {@link proto.ReqAddFriend.verify|verify} messages.
+         * @param message ReqAddFriend message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IReqAddFriend, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReqAddFriend message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReqAddFriend
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ReqAddFriend;
+
+        /**
+         * Decodes a ReqAddFriend message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReqAddFriend
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ReqAddFriend;
+
+        /**
+         * Verifies a ReqAddFriend message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReqAddFriend message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReqAddFriend
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ReqAddFriend;
+
+        /**
+         * Creates a plain object from a ReqAddFriend message. Also converts values to other types if specified.
+         * @param message ReqAddFriend
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ReqAddFriend, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReqAddFriend to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReqAddFriend
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ResAddFriend. */
+    interface IResAddFriend {
+
+        /** ResAddFriend sender */
+        sender?: (proto.IFriend|null);
+    }
+
+    /** Represents a ResAddFriend. */
+    class ResAddFriend implements IResAddFriend {
+
+        /**
+         * Constructs a new ResAddFriend.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IResAddFriend);
+
+        /** ResAddFriend sender. */
+        public sender?: (proto.IFriend|null);
+
+        /**
+         * Creates a new ResAddFriend instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ResAddFriend instance
+         */
+        public static create(properties?: proto.IResAddFriend): proto.ResAddFriend;
+
+        /**
+         * Encodes the specified ResAddFriend message. Does not implicitly {@link proto.ResAddFriend.verify|verify} messages.
+         * @param message ResAddFriend message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IResAddFriend, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ResAddFriend message, length delimited. Does not implicitly {@link proto.ResAddFriend.verify|verify} messages.
+         * @param message ResAddFriend message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IResAddFriend, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ResAddFriend message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ResAddFriend
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResAddFriend;
+
+        /**
+         * Decodes a ResAddFriend message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ResAddFriend
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResAddFriend;
+
+        /**
+         * Verifies a ResAddFriend message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ResAddFriend message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ResAddFriend
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ResAddFriend;
+
+        /**
+         * Creates a plain object from a ResAddFriend message. Also converts values to other types if specified.
+         * @param message ResAddFriend
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ResAddFriend, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ResAddFriend to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ResAddFriend
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */

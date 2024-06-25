@@ -135,4 +135,20 @@ export default class DataSender {
     packet.reqFindFriend = reqFindFriend;
     WS.send(packet);
   }
+
+  public static sendReqAddFriend(friendId: number) {
+    let reqAddFriend = new proto.ReqAddFriend();
+    reqAddFriend.receiverId = friendId;
+    let packet = new proto.Packet();
+    packet.reqAddFriend = reqAddFriend;
+    WS.send(packet);
+  }
+
+  public static sendReqLoadFriend(status: number) {
+    let reqLoadFriend = new proto.ReqLoadFriend();
+    reqLoadFriend.status = status;
+    let packet = new proto.Packet();
+    packet.reqLoadFriend = reqLoadFriend;
+    WS.send(packet);
+  }
 }

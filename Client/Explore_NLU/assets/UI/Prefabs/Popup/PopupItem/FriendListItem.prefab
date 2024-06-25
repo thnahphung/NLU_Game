@@ -713,7 +713,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "IndustryLabel",
+    "_name": "CareerLabel",
     "_objFlags": 0,
     "_parent": {
       "__id__": 14
@@ -1003,7 +1003,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Label",
+    "_name": "NameLabel",
     "_objFlags": 0,
     "_parent": {
       "__id__": 44
@@ -1136,7 +1136,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Label-001",
+    "_name": "LevelLabel",
     "_objFlags": 0,
     "_parent": {
       "__id__": 44
@@ -1269,7 +1269,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Label-002",
+    "_name": "CareerLabel",
     "_objFlags": 0,
     "_parent": {
       "__id__": 44
