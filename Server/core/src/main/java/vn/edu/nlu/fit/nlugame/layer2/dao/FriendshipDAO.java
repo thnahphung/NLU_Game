@@ -67,6 +67,22 @@ public class FriendshipDAO {
                 .list());
     }
 
+    public static List<Proto.Friend> loadSuggestFriendList(int userId) {
+        Jdbi jdbi = BaseDAO.getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT U.id, U.player_name, U.level FROM Users U WHERE U.id != :userId AND U.id NOT IN (SELECT F.friend_id FROM Friendships F WHERE F.user_id  = :userId UNION SELECT F.user_id FROM Friendships F WHERE F.friend_id = :userId) ORDER BY RAND() LIMIT 10")
+                .bind("userId", userId)
+                .map((rs, ctx) -> Proto.Friend.newBuilder()
+                        .setId(rs.getInt("id"))
+                        .setName(rs.getString("player_name"))
+                        .setLevel(rs.getInt("level"))
+                        .build())
+                .list());
+    }
+
     public static void main(String[] args) {
         FriendshipDAO friendshipDAO = new FriendshipDAO();
         System.out.println(loadFriendList(1, 1));

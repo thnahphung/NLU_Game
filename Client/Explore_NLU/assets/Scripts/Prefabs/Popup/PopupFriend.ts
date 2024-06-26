@@ -41,8 +41,13 @@ export class PopupFriend extends AbsHandler {
     public friendItemRequestPrefab: Prefab = null;
     @property(Node)
     public scrollViewRequestFriend: Node = null;
+    @property(Node)
+    public scrollViewSuggestFriend: Node = null;
+    @property(Prefab)
+    public addFriendItemPrefab: Prefab = null;
 
     private requestFriendListLoaded: boolean = false;
+    private suggestFriendListLoaded: boolean = false;
 
     onLoad() {
         HandlerManager.me().registerHandler(this);
@@ -106,6 +111,10 @@ export class PopupFriend extends AbsHandler {
         this.listFriendNode.active = false;
         this.addFriendNode.active = true;
         this.requestFriendNode.active = false;
+        if(!this.suggestFriendListLoaded) {
+            DataSender.sendReqLoadFriend(4);
+            this.suggestFriendListLoaded = true;
+        }
     }
 
     onClickRequestFriend() {
@@ -198,6 +207,16 @@ export class PopupFriend extends AbsHandler {
                 labelInfo.getChildByName("LevelLabel").getComponent(Label).string = friend.level.toString();
                 labelInfo.getChildByName("IdLabel").getComponent(Label).string = friend.id.toString();
                 this.scrollViewRequestFriend.addChild(friendItem);
+            }
+
+            if(status == 4){
+                const addFriendItem = instantiate(this.addFriendItemPrefab);
+                const labelInfo = addFriendItem.getChildByName("ValueInfo");
+                labelInfo.getChildByName("NameLabel").getComponent(Label).string = friend.name;
+                labelInfo.getChildByName("CareerLabel").getComponent(Label).string = "Hiện chưa có";
+                labelInfo.getChildByName("LevelLabel").getComponent(Label).string = friend.level.toString();
+                labelInfo.getChildByName("IdLabel").getComponent(Label).string = friend.id.toString();
+                this.scrollViewSuggestFriend.addChild(addFriendItem);
             }
         });
     }

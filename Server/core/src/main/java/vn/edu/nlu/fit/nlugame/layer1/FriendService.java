@@ -34,6 +34,12 @@ public class FriendService {
         if (userId < 1 || reqLoadFriend.getStatus() == 0) {
             return;
         }
+        if(status == 4) {
+            List<Proto.Friend> friends = FriendshipDAO.loadSuggestFriendList(userId);
+            Proto.ResLoadFriendList resLoadFriendList = Proto.ResLoadFriendList.newBuilder().addAllFriends(friends).setStatus(status).build();
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadFriendList(resLoadFriendList).build());
+            return;
+        }
         List<Proto.Friend> friends = FriendshipDAO.loadFriendList(userId, status);
         Proto.ResLoadFriendList resLoadFriendList = Proto.ResLoadFriendList.newBuilder().addAllFriends(friends).setStatus(status).build();
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadFriendList(resLoadFriendList).build());
