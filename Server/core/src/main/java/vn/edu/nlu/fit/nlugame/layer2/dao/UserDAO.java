@@ -72,7 +72,7 @@ public class UserDAO extends BaseDAO {
         if (jdbi == null) {
             return null;
         }
-        return jdbi.withHandle(h -> h.createQuery("select id,username,player_name,gender,email,active,relogin_token  from " + TABLE_NAME + " where id = :id")
+        return jdbi.withHandle(h -> h.createQuery("select id,username,player_name,gender,email,active,relogin_token,character_id,level  from " + TABLE_NAME + " where id = :id")
                 .bind("id", userId)
                 .mapToBean(UserBean.class).stream().findFirst().orElse(null));
     }

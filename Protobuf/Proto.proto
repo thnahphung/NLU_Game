@@ -45,6 +45,8 @@ message Packet {
     ResFindFriend resFindFriend = 34;
     ReqAddFriend reqAddFriend = 35;
     ResAddFriend resAddFriend = 36;
+    ReqAcceptFriend reqAcceptFriend = 37; 
+    ResAcceptFriend resAcceptFriend = 38;
   }
 }
 
@@ -338,3 +340,12 @@ message ReqAddFriend {
 message ResAddFriend {
   Friend sender = 1;
 }
+
+message ReqAcceptFriend {
+  int32 senderId = 1;
+}
+
+message ResAcceptFriend {
+  Friend receiver = 1;
+}
+

@@ -80,7 +80,6 @@ public class FriendService {
             //TODO: get from other server
         }
 
-
         if(sessionUserReceive.isOpen()) {
             Proto.Packet.Builder packet = Proto.Packet.newBuilder();
             Proto.ResAddFriend.Builder resAddFriend = Proto.ResAddFriend.newBuilder();
@@ -103,5 +102,29 @@ public class FriendService {
             packet.setResAddFriend(resAddFriend);
             DataSenderUtils.sendResponse(sessionUserReceive, packet.build());
         }
+    }
+
+    public void acceptFriend(Session session, Proto.ReqAcceptFriend reqAcceptFriend) {
+        int senderId = reqAcceptFriend.getSenderId();
+        int receiverId = SessionCache.me().getUserID(SessionID.of(session));
+        FriendshipDAO.acceptFriendRequest(senderId, receiverId);
+        UserBean receiverBean = UserDAO.selectUser(receiverId);
+
+        Proto.Friend receiver = Proto.Friend.newBuilder()
+                .setId(receiverId)
+                .setName(receiverBean.getPlayerName())
+                .setLevel(receiverBean.getLevel())
+                .build();
+
+        UserContext userContextSender = UserCache.me().getUserContextOnline(senderId);
+        if(userContextSender == null) {
+            return;
+        }
+        Session sessionSender = SessionManage.me().get(userContextSender.getSessionID());
+        if(sessionSender == null) {
+            return;
+            //TODO: get from other server
+        }
+        DataSenderUtils.sendResponse(sessionSender, Proto.Packet.newBuilder().setResAcceptFriend(Proto.ResAcceptFriend.newBuilder().setReceiver(receiver)).build());
     }
 }

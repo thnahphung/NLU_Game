@@ -20,24 +20,26 @@ public class FriendshipDAO {
                 .execute());
     }
 
-    public static void acceptFriendRequest(int requestId) {
+    public static void acceptFriendRequest(int senderId, int receiverId) {
         Jdbi jdbi = BaseDAO.getJdbi();
         if (jdbi == null) {
             return;
         }
-        jdbi.useHandle(handle -> handle.createUpdate("update " + TABLE_NAME + " set status = 2 where id = :requestId")
-                .bind("requestId", requestId)
+        jdbi.useHandle(handle -> handle.createUpdate("update " + TABLE_NAME + " set status = 2 where user_id = :senderId and friend_id = :receiverId")
+                .bind("senderId", senderId)
+                .bind("receiverId", receiverId)
                 .execute()
         );
     }
 
-    public static void rejectFriendRequest(int requestId) {
+    public static void rejectFriendRequest(int senderId, int receiverId) {
         Jdbi jdbi = BaseDAO.getJdbi();
         if (jdbi == null) {
             return;
         }
-        jdbi.useHandle(handle -> handle.createUpdate("update " + TABLE_NAME + " set status = 3 where id = :requestId")
-                .bind("requestId", requestId)
+        jdbi.useHandle(handle -> handle.createUpdate("update " + TABLE_NAME + " set status = 3 where user_id = :senderId and friend_id = :receiverId")
+                .bind("senderId", senderId)
+                .bind("receiverId", receiverId)
                 .execute()
         );
     }
@@ -47,7 +49,14 @@ public class FriendshipDAO {
         if (jdbi == null) {
             return null;
         }
-        return jdbi.withHandle(handle -> handle.createQuery("SELECT U.id, U.player_name, U.level FROM Users U JOIN Friendships F ON (U.id = F.friend_id OR U.id = F.user_id) WHERE (F.user_id = :userId OR F.friend_id = :userId) AND U.id != :userId AND F.status = :status")
+        String query;
+        if(status == 1) {
+            query = "SELECT U.id, U.player_name, U.level FROM Users U JOIN Friendships F ON (U.id = F.friend_id OR U.id = F.user_id) WHERE (F.friend_id = :userId) AND U.id != :userId AND F.status = :status";
+        } else {
+            query = "SELECT U.id, U.player_name, U.level FROM Users U JOIN Friendships F ON (U.id = F.friend_id OR U.id = F.user_id) WHERE (F.user_id = :userId OR F.friend_id = :userId) AND U.id != :userId AND F.status = :status";
+        }
+
+        return jdbi.withHandle(handle -> handle.createQuery(query)
                 .bind("userId", userId)
                 .bind("status", status)
                 .map((rs, ctx) -> Proto.Friend.newBuilder()

@@ -211,6 +211,12 @@ export namespace proto {
 
         /** Packet resAddFriend */
         resAddFriend?: (proto.IResAddFriend|null);
+
+        /** Packet reqAcceptFriend */
+        reqAcceptFriend?: (proto.IReqAcceptFriend|null);
+
+        /** Packet resAcceptFriend */
+        resAcceptFriend?: (proto.IResAcceptFriend|null);
     }
 
     /** Represents a Packet. */
@@ -330,8 +336,14 @@ export namespace proto {
         /** Packet resAddFriend. */
         public resAddFriend?: (proto.IResAddFriend|null);
 
+        /** Packet reqAcceptFriend. */
+        public reqAcceptFriend?: (proto.IReqAcceptFriend|null);
+
+        /** Packet resAcceptFriend. */
+        public resAcceptFriend?: (proto.IResAcceptFriend|null);
+
         /** Packet data. */
-        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|"reqEmailForgetPassword"|"reqRecoverPassword"|"resRecoverPassword"|"resEmailForgetPassword"|"reqLoadFriend"|"resLoadFriendList"|"reqFindFriend"|"resFindFriend"|"reqAddFriend"|"resAddFriend");
+        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|"reqEmailForgetPassword"|"reqRecoverPassword"|"resRecoverPassword"|"resEmailForgetPassword"|"reqLoadFriend"|"resLoadFriendList"|"reqFindFriend"|"resFindFriend"|"reqAddFriend"|"resAddFriend"|"reqAcceptFriend"|"resAcceptFriend");
 
         /**
          * Creates a new Packet instance using the specified properties.
@@ -5690,6 +5702,200 @@ export namespace proto {
 
         /**
          * Gets the default type url for ResAddFriend
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ReqAcceptFriend. */
+    interface IReqAcceptFriend {
+
+        /** ReqAcceptFriend senderId */
+        senderId?: (number|null);
+    }
+
+    /** Represents a ReqAcceptFriend. */
+    class ReqAcceptFriend implements IReqAcceptFriend {
+
+        /**
+         * Constructs a new ReqAcceptFriend.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IReqAcceptFriend);
+
+        /** ReqAcceptFriend senderId. */
+        public senderId: number;
+
+        /**
+         * Creates a new ReqAcceptFriend instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReqAcceptFriend instance
+         */
+        public static create(properties?: proto.IReqAcceptFriend): proto.ReqAcceptFriend;
+
+        /**
+         * Encodes the specified ReqAcceptFriend message. Does not implicitly {@link proto.ReqAcceptFriend.verify|verify} messages.
+         * @param message ReqAcceptFriend message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IReqAcceptFriend, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReqAcceptFriend message, length delimited. Does not implicitly {@link proto.ReqAcceptFriend.verify|verify} messages.
+         * @param message ReqAcceptFriend message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IReqAcceptFriend, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReqAcceptFriend message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReqAcceptFriend
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ReqAcceptFriend;
+
+        /**
+         * Decodes a ReqAcceptFriend message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReqAcceptFriend
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ReqAcceptFriend;
+
+        /**
+         * Verifies a ReqAcceptFriend message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReqAcceptFriend message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReqAcceptFriend
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ReqAcceptFriend;
+
+        /**
+         * Creates a plain object from a ReqAcceptFriend message. Also converts values to other types if specified.
+         * @param message ReqAcceptFriend
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ReqAcceptFriend, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReqAcceptFriend to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReqAcceptFriend
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ResAcceptFriend. */
+    interface IResAcceptFriend {
+
+        /** ResAcceptFriend receiver */
+        receiver?: (proto.IFriend|null);
+    }
+
+    /** Represents a ResAcceptFriend. */
+    class ResAcceptFriend implements IResAcceptFriend {
+
+        /**
+         * Constructs a new ResAcceptFriend.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IResAcceptFriend);
+
+        /** ResAcceptFriend receiver. */
+        public receiver?: (proto.IFriend|null);
+
+        /**
+         * Creates a new ResAcceptFriend instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ResAcceptFriend instance
+         */
+        public static create(properties?: proto.IResAcceptFriend): proto.ResAcceptFriend;
+
+        /**
+         * Encodes the specified ResAcceptFriend message. Does not implicitly {@link proto.ResAcceptFriend.verify|verify} messages.
+         * @param message ResAcceptFriend message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IResAcceptFriend, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ResAcceptFriend message, length delimited. Does not implicitly {@link proto.ResAcceptFriend.verify|verify} messages.
+         * @param message ResAcceptFriend message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IResAcceptFriend, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ResAcceptFriend message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ResAcceptFriend
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResAcceptFriend;
+
+        /**
+         * Decodes a ResAcceptFriend message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ResAcceptFriend
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResAcceptFriend;
+
+        /**
+         * Verifies a ResAcceptFriend message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ResAcceptFriend message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ResAcceptFriend
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ResAcceptFriend;
+
+        /**
+         * Creates a plain object from a ResAcceptFriend message. Also converts values to other types if specified.
+         * @param message ResAcceptFriend
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ResAcceptFriend, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ResAcceptFriend to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ResAcceptFriend
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */

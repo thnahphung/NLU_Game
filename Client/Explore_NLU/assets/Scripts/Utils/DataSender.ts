@@ -151,4 +151,12 @@ export default class DataSender {
     packet.reqLoadFriend = reqLoadFriend;
     WS.send(packet);
   }
+
+  public static sendReqAcceptFriend(senderId: number) {
+    let reqAcceptFriend = new proto.ReqAcceptFriend();
+    reqAcceptFriend.senderId = senderId;
+    let packet = new proto.Packet();
+    packet.reqAcceptFriend = reqAcceptFriend;
+    WS.send(packet);
+  }
 }

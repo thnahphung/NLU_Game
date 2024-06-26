@@ -6,6 +6,7 @@ import { HandlerManager } from '../../Manager/HandlerManager';
 import { UICanvas } from '../MainUI/UICanvas';
 import { t } from '../../../../extensions/i18n/assets/LanguageData';
 import GlobalData from '../../Utils/GlobalData';
+import { ReqAddFriendItem } from './ItemPopup/ReqAddFriendItem';
 const { ccclass, property } = _decorator;
 
 @ccclass('PopupFriend')
@@ -68,6 +69,14 @@ export class PopupFriend extends AbsHandler {
             if (packet.resLoadFriendList) {
                 this.onLoadFriendListHandle(packet.resLoadFriendList);
             }
+
+            if(packet.resAcceptFriend) {
+                this.onAcceptedFriendHandle(packet.resAcceptFriend);
+            }
+
+            if(packet.resAddFriend) {
+                this.onRequestAddFriendHandle(packet.resAddFriend);
+            }
         });
     }
 
@@ -76,7 +85,7 @@ export class PopupFriend extends AbsHandler {
         let timeoutDestroy = setTimeout(() => {
             this.node.destroy();
             clearTimeout(timeoutDestroy);
-        }, 300);      
+        }, 300);
     }
 
     onClickListFriend() {
@@ -176,18 +185,45 @@ export class PopupFriend extends AbsHandler {
                 labelInfo.getChildByName("NameLabel").getComponent(Label).string = friend.name;
                 labelInfo.getChildByName("CareerLabel").getComponent(Label).string = "Hiện chưa có";
                 labelInfo.getChildByName("LevelLabel").getComponent(Label).string = friend.level.toString();
+                labelInfo.getChildByName("IdLabel").getComponent(Label).string = friend.id.toString();
                 this.scrollViewListFriend.addChild(friendItem);
             }
 
             if(status == 1) {
                 const friendItem = instantiate(this.friendItemRequestPrefab);
+                friendItem.getComponent(ReqAddFriendItem).scrollListFriend = this.scrollViewListFriend;
                 const labelInfo = friendItem.getChildByName("ValueInfo");
                 labelInfo.getChildByName("NameLabel").getComponent(Label).string = friend.name;
                 labelInfo.getChildByName("CareerLabel").getComponent(Label).string = "Hiện chưa có";
                 labelInfo.getChildByName("LevelLabel").getComponent(Label).string = friend.level.toString();
+                labelInfo.getChildByName("IdLabel").getComponent(Label).string = friend.id.toString();
                 this.scrollViewRequestFriend.addChild(friendItem);
             }
         });
+    }
+
+    onAcceptedFriendHandle(resAcceptFriend: proto.IResAcceptFriend): void {
+        console.log("Accept friend success");
+        const friend = resAcceptFriend.receiver;
+        const friendItem = instantiate(this.friendItemPrefab);
+        const labelInfo = friendItem.getChildByName("ValueInfo");
+        labelInfo.getChildByName("NameLabel").getComponent(Label).string = friend.name;
+        labelInfo.getChildByName("CareerLabel").getComponent(Label).string = "Hiện chưa có";
+        labelInfo.getChildByName("LevelLabel").getComponent(Label).string = friend.level.toString();
+        labelInfo.getChildByName("IdLabel").getComponent(Label).string = friend.id.toString();
+        this.scrollViewListFriend.addChild(friendItem);
+    }
+
+    onRequestAddFriendHandle(resAddFriend: proto.IResAddFriend): void {
+        const sender = resAddFriend.sender;
+        const friendItem = instantiate(this.friendItemRequestPrefab);
+        friendItem.getComponent(ReqAddFriendItem).scrollListFriend = this.scrollViewListFriend;
+        const labelInfo = friendItem.getChildByName("ValueInfo");
+        labelInfo.getChildByName("NameLabel").getComponent(Label).string = sender.name;
+        labelInfo.getChildByName("CareerLabel").getComponent(Label).string = "Hiện chưa có";
+        labelInfo.getChildByName("LevelLabel").getComponent(Label).string = sender.level.toString();
+        labelInfo.getChildByName("IdLabel").getComponent(Label).string = sender.id.toString();
+        this.scrollViewRequestFriend.addChild(friendItem);
     }
 }
 
