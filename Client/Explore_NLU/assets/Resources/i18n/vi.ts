@@ -108,6 +108,7 @@ export const languages = {
     error_common: "Đã có lỗi xảy ra, vui lòng thử lại sau!",
     btn_friend_request_add: "Lời mời",
     friend_request_list: "Danh sách lời mời",
+    friend_already_exist: "Bạn bè đã tồn tại!",
   },
 };
 

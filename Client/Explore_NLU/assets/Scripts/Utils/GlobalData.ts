@@ -46,6 +46,7 @@ export default class GlobalData {
   private mainUser: proto.IUser = null;
   private mainUserNode: Node = null;
   private mainUserPosition: proto.IPosition = null;
+  private mainUserFriends: proto.IFriend[] = [];
 
   public setMainUser(user: proto.IUser) {
     this.mainUser = user;
@@ -68,6 +69,14 @@ export default class GlobalData {
 
   public getMainUserNode() {
     return this.mainUserNode;
+  }
+
+  public setMainUserFriends(friends: proto.IFriend[]) {
+    this.mainUserFriends = friends;
+  }
+
+  public getMainUserFriends() {
+    return this.mainUserFriends;
   }
   /*===== END MAIN USER =====*/
 

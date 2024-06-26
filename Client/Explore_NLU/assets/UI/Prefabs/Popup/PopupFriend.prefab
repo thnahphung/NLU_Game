@@ -4479,7 +4479,7 @@
     "_actualFontSize": 20,
     "_fontSize": 20,
     "_fontFamily": "Arial",
-    "_lineHeight": 22,
+    "_lineHeight": 24,
     "_overflow": 0,
     "_enableWrapText": true,
     "_font": null,
@@ -6926,8 +6926,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.8,
+      "y": 0.8,
       "z": 1
     },
     "_mobility": 0,
@@ -9624,6 +9624,22 @@
     "addFriendItemPrefab": {
       "__uuid__": "ec570732-dbcb-4531-aeb0-4525c2b4143a",
       "__expectedType__": "cc.Prefab"
+    },
+    "bstySprite": {
+      "__uuid__": "ae8a9453-356a-44e4-8b4c-588e860303ab@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "ksckSprite": {
+      "__uuid__": "a14121f4-9e57-4b84-ae1a-1dacd35446a0@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "ksnnSprite": {
+      "__uuid__": "f78c6be7-f288-465e-a7ac-0816e5a2be87@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
+    "kschSprite": {
+      "__uuid__": "dd7b8b3e-86cf-41ee-af96-2e65dcb7df2f@f9941",
+      "__expectedType__": "cc.SpriteFrame"
     },
     "_id": ""
   },

@@ -46,6 +46,15 @@ export class PopupFriend extends AbsHandler {
     @property(Prefab)
     public addFriendItemPrefab: Prefab = null;
 
+    @property(SpriteFrame)
+    protected bstySprite: SpriteFrame
+     @property(SpriteFrame)
+    protected ksckSprite: SpriteFrame
+    @property(SpriteFrame)
+    protected ksnnSprite: SpriteFrame
+    @property(SpriteFrame)
+    protected kschSprite: SpriteFrame
+
     private requestFriendListLoaded: boolean = false;
     private suggestFriendListLoaded: boolean = false;
 
@@ -150,6 +159,15 @@ export class PopupFriend extends AbsHandler {
             UICanvas.me().showPopupMessage(t("label_text.friend_name_invalid"));
             return;
         }
+
+        if(GlobalData.me().getMainUserFriends() != null) {
+            for(let i = 0; i < GlobalData.me().getMainUserFriends().length; i++) {
+                if(GlobalData.me().getMainUserFriends()[i].name == this.friendName.string) {
+                    UICanvas.me().showPopupMessage(t("label_text.friend_already_exist"));
+                    return;
+                }
+            }
+        }
         DataSender.sendReqFindFriend(this.friendName.string);
     }
 
@@ -159,6 +177,16 @@ export class PopupFriend extends AbsHandler {
         labelContent.getChildByName("NameLabel").getComponent(Label).string = name;
         labelContent.getChildByName("CareerLabel").getComponent(Label).string = career;
         labelContent.getChildByName("LevelLabel").getComponent(Label).string = level.toString();
+        let sprite = this.friendDetailNode.getChildByName("Content").getChildByName("TopInfo").getChildByName("Avatar").getChildByName("Sprite").getComponent(Sprite);
+        if(career.trim() == "Bác sĩ thú y"){
+            sprite.spriteFrame = this.bstySprite;
+        }else if(career.trim() == "Kỹ sư cơ khí"){
+            sprite.spriteFrame = this.ksckSprite;
+        }else if(career.trim() == "Kỹ sư nông nghiệp"){
+            sprite.spriteFrame = this.ksnnSprite;
+        }else if(career.trim() == "Kỹ sư chăn nuôi"){
+            sprite.spriteFrame = this.kschSprite;
+        }
     }
 
     protected onDestroy(): void {
@@ -192,10 +220,14 @@ export class PopupFriend extends AbsHandler {
                 const friendItem = instantiate(this.friendItemPrefab);
                 const labelInfo = friendItem.getChildByName("ValueInfo");
                 labelInfo.getChildByName("NameLabel").getComponent(Label).string = friend.name;
-                labelInfo.getChildByName("CareerLabel").getComponent(Label).string = "Hiện chưa có";
+                labelInfo.getChildByName("CareerLabel").getComponent(Label).string = friend.character;
                 labelInfo.getChildByName("LevelLabel").getComponent(Label).string = friend.level.toString();
                 labelInfo.getChildByName("IdLabel").getComponent(Label).string = friend.id.toString();
                 this.scrollViewListFriend.addChild(friendItem);
+
+                if(GlobalData.me().getMainUserFriends() == null || GlobalData.me().getMainUserFriends().length == 0) {
+                    GlobalData.me().setMainUserFriends(listFriend);
+                }
             }
 
             if(status == 1) {
@@ -203,7 +235,7 @@ export class PopupFriend extends AbsHandler {
                 friendItem.getComponent(ReqAddFriendItem).scrollListFriend = this.scrollViewListFriend;
                 const labelInfo = friendItem.getChildByName("ValueInfo");
                 labelInfo.getChildByName("NameLabel").getComponent(Label).string = friend.name;
-                labelInfo.getChildByName("CareerLabel").getComponent(Label).string = "Hiện chưa có";
+                labelInfo.getChildByName("CareerLabel").getComponent(Label).string = friend.character;
                 labelInfo.getChildByName("LevelLabel").getComponent(Label).string = friend.level.toString();
                 labelInfo.getChildByName("IdLabel").getComponent(Label).string = friend.id.toString();
                 this.scrollViewRequestFriend.addChild(friendItem);
@@ -213,7 +245,7 @@ export class PopupFriend extends AbsHandler {
                 const addFriendItem = instantiate(this.addFriendItemPrefab);
                 const labelInfo = addFriendItem.getChildByName("ValueInfo");
                 labelInfo.getChildByName("NameLabel").getComponent(Label).string = friend.name;
-                labelInfo.getChildByName("CareerLabel").getComponent(Label).string = "Hiện chưa có";
+                labelInfo.getChildByName("CareerLabel").getComponent(Label).string = friend.character;
                 labelInfo.getChildByName("LevelLabel").getComponent(Label).string = friend.level.toString();
                 labelInfo.getChildByName("IdLabel").getComponent(Label).string = friend.id.toString();
                 this.scrollViewSuggestFriend.addChild(addFriendItem);
@@ -227,10 +259,11 @@ export class PopupFriend extends AbsHandler {
         const friendItem = instantiate(this.friendItemPrefab);
         const labelInfo = friendItem.getChildByName("ValueInfo");
         labelInfo.getChildByName("NameLabel").getComponent(Label).string = friend.name;
-        labelInfo.getChildByName("CareerLabel").getComponent(Label).string = "Hiện chưa có";
+        labelInfo.getChildByName("CareerLabel").getComponent(Label).string = friend.character;
         labelInfo.getChildByName("LevelLabel").getComponent(Label).string = friend.level.toString();
         labelInfo.getChildByName("IdLabel").getComponent(Label).string = friend.id.toString();
         this.scrollViewListFriend.addChild(friendItem);
+        GlobalData.me().getMainUserFriends().push(friend);
     }
 
     onRequestAddFriendHandle(resAddFriend: proto.IResAddFriend): void {
@@ -239,7 +272,7 @@ export class PopupFriend extends AbsHandler {
         friendItem.getComponent(ReqAddFriendItem).scrollListFriend = this.scrollViewListFriend;
         const labelInfo = friendItem.getChildByName("ValueInfo");
         labelInfo.getChildByName("NameLabel").getComponent(Label).string = sender.name;
-        labelInfo.getChildByName("CareerLabel").getComponent(Label).string = "Hiện chưa có";
+        labelInfo.getChildByName("CareerLabel").getComponent(Label).string = sender.character;
         labelInfo.getChildByName("LevelLabel").getComponent(Label).string = sender.level.toString();
         labelInfo.getChildByName("IdLabel").getComponent(Label).string = sender.id.toString();
         this.scrollViewRequestFriend.addChild(friendItem);

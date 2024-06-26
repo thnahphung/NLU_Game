@@ -1,12 +1,14 @@
-import { _decorator, Component, find, Label, Node } from 'cc';
+import { _decorator, find, Label, Node } from 'cc';
 import { UICanvas } from '../../MainUI/UICanvas';
 import { t } from '../../../../../extensions/i18n/assets/LanguageData';
 import DataSender from '../../../Utils/DataSender';
+import { AbsFriendItem } from './AbsFriendItem';
 const { ccclass, property } = _decorator;
 
 @ccclass('AddFriendItem')
-export class AddFriendItem extends Component {
+export class AddFriendItem extends AbsFriendItem {
     start() {
+        super.start();
         this.node.on(Node.EventType.TOUCH_END, this.handleTouchAddFriendItem, this);
     }
 

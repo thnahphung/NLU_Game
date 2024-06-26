@@ -103,6 +103,7 @@ export const languages = {
     error_common: "An error occurred, please try again later!",
     btn_friend_request_add: "Request",
     friend_request_list: "Request list",
+    friend_already_exist: "Friend already exists!",
   },
 };
 
