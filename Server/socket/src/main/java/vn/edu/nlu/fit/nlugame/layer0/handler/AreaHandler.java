@@ -18,7 +18,10 @@ public class AreaHandler implements Subscriber {
         packetWrapper.getPacketList().forEach(packet -> {
             switch (packet.getDataCase()) {
                 case REQPLAYERJOINAREA:
-                    areaService.joinArea(session, packet.getReqPlayerJoinArea());
+                    areaService.joinOtherArea(session, packet.getReqPlayerJoinArea());
+                    break;
+                case REQPLAYERJOINAREACOMMON:
+                    areaService.joinAreaCommon(session, packet.getReqPlayerJoinAreaCommon());
                     break;
                 case REQMOVING:
                     areaService.moving(session, packet.getReqMoving());
