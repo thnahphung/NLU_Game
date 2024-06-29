@@ -30,61 +30,90 @@ public class AreaService {
         return instance;
     }
 
-    public void joinArea(Session session, Proto.ReqPlayerJoinArea reqJoinArea) {
-        leaveArea(session);
+    public void joinOtherArea(Session session, Proto.ReqPlayerJoinArea reqJoinArea) {
+        Proto.Area areaLeaved = leaveArea(session);
         int userId = SessionCache.me().getUserID(SessionID.of(session));
-
-        int userIdTarget = reqJoinArea.getUserTargetId();
-        Proto.Area areaTarget = AreaCache.me().getArea(userIdTarget);
-        if (areaTarget == null) return;
-
-        Proto.Position spawnPosition = areaTarget.getPosition();
-
-        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(areaTarget.getAreaId());
-        ArrayList<Proto.User> listUserInArea = UserCache.me().getListUser(listUserIdInArea);
-        ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
-
-        //gui cho player moi vao
-        Proto.ResPlayerJoinArea resPlayerJoinArea = Proto.ResPlayerJoinArea.newBuilder()
-                .setArea(areaTarget)
-                .addAllUsers(listUserInArea)
-                .setPosition(spawnPosition)
-                .build();
-        sendResponse(session, Proto.Packet.newBuilder().setResPlayerJoinArea(resPlayerJoinArea).build());
-
-        AreaCache.me().addUserToArea(areaTarget.getAreaId(), userId, Proto.Position.newBuilder().setX(0).setY(0).build());
-        //gui cho player cu
-        Proto.ResOtherPlayerJoinArea resOtherPlayerJoinArea = Proto.ResOtherPlayerJoinArea.newBuilder()
-                .setUser(UserCache.me().getUserOnline(userId))
-                .setPosition(spawnPosition)
-                .build();
-        sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResOtherPlayerJoinArea(resOtherPlayerJoinArea).build());
+        Proto.Area areaProto = getAreaByUserId(reqJoinArea.getUserTargetId());
+        if (areaProto == null) return;
+        joinArea(userId, areaLeaved.getTypeArea(), areaProto, session);
     }
 
     public void joinAreaLogin(int userId, Session session) {
-        AreaBean areaBean = AreaDAO.loadAreaByUserId(userId);
-        if (areaBean == null) return;
-
-        //Them player vao area
-        AreaCache.me().addUserToArea(areaBean.getId(), userId, Proto.Position.newBuilder().setX(0).setY(0).build());
-
-        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(areaBean.getId());
-        ArrayList<Proto.User> listUserInArea = UserCache.me().getListUser(listUserIdInArea);
-
-        Proto.Area areaProto = Proto.Area.newBuilder()
-                .setAreaId(areaBean.getId())
-                .setTypeArea(areaBean.getTypeArea())
-                .setStatus(areaBean.getStatus())
-                .build();
-
-        AreaCache.me().add(String.valueOf(userId), areaProto);
-        AreaCache.me().addArea(userId, areaProto);
-        Proto.ResPlayerJoinArea resPlayerJoinArea = Proto.ResPlayerJoinArea.newBuilder()
-                .setArea(areaProto)
-                .addAllUsers(listUserInArea)
-                .build();
-        sendResponse(session, Proto.Packet.newBuilder().setResPlayerJoinArea(resPlayerJoinArea).build());
+        Proto.Area areaProto = getAreaByUserId(userId);
+        if (areaProto == null) return;
+        joinArea(userId, "", areaProto, session);
     }
+
+    public void joinAreaCommon(Session session, Proto.ReqPlayerJoinAreaCommon reqPlayerJoinAreaCommon) {
+        Proto.Area areaLeaved = leaveArea(session);
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        Proto.Area areaProto = getAreaByAreaId(reqPlayerJoinAreaCommon.getAreaCommonId());
+        if (areaProto == null) return;
+        joinArea(userId, areaLeaved.getTypeArea(), areaProto, session);
+    }
+
+    public void joinArea(int userId, String oldAreaType, Proto.Area areaProto, Session session) {
+        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(areaProto.getAreaId()));
+        ArrayList<Proto.User> listUserInArea = UserCache.me().getListUser(listUserIdInArea);
+        ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
+        Proto.ResPlayerJoinArea resPlayerJoinArea;
+        //gui cho player moi vao
+        if ("".equals(oldAreaType)) {
+            resPlayerJoinArea = Proto.ResPlayerJoinArea.newBuilder()
+                    .setArea(areaProto)
+                    .addAllUsers(listUserInArea)
+                    .build();
+        } else {
+            resPlayerJoinArea = Proto.ResPlayerJoinArea.newBuilder()
+                    .setArea(areaProto)
+                    .addAllUsers(listUserInArea)
+                    .setOldAreaType(oldAreaType)
+                    .build();
+        }
+        sendResponse(session, Proto.Packet.newBuilder().setResPlayerJoinArea(resPlayerJoinArea).build());
+        AreaCache.me().addUserToArea(String.valueOf(areaProto.getAreaId()), String.valueOf(userId), Proto.Position.newBuilder().setX(0).setY(0).build());
+
+        //gui cho player cu
+        if (listSessionInArea.size() > 0) {
+            Proto.ResOtherPlayerJoinArea resOtherPlayerJoinArea = Proto.ResOtherPlayerJoinArea.newBuilder()
+                    .setUser(UserCache.me().getUserOnline(userId))
+                    .build();
+            sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResOtherPlayerJoinArea(resOtherPlayerJoinArea).build());
+        }
+    }
+
+    public Proto.Area getAreaByUserId(int userId) {
+        Proto.Area areaProto = AreaCache.me().getAreaByUserId(userId);
+        // kiem tra neu chua co area trong cache thi load tu database
+        if (areaProto == null) {
+            AreaBean areaBean = AreaDAO.loadAreaByUserId(userId);
+            if (areaBean == null) return null;
+            areaProto = Proto.Area.newBuilder()
+                    .setAreaId(areaBean.getId())
+                    .setTypeArea(areaBean.getTypeArea())
+                    .setStatus(areaBean.getStatus())
+                    .build();
+            AreaCache.me().add(areaProto);
+        }
+        return areaProto;
+    }
+
+    public Proto.Area getAreaByAreaId(int areaId) {
+        Proto.Area areaProto = AreaCache.me().get(String.valueOf(areaId));
+        // kiem tra neu chua co area trong cache thi load tu database
+        if (areaProto == null) {
+            AreaBean areaBean = AreaDAO.loadAreaById(areaId);
+            if (areaBean == null) return null;
+            areaProto = Proto.Area.newBuilder()
+                    .setAreaId(areaBean.getId())
+                    .setTypeArea(areaBean.getTypeArea())
+                    .setStatus(areaBean.getStatus())
+                    .build();
+            AreaCache.me().add(areaProto);
+        }
+        return areaProto;
+    }
+
 
     public void moving(Session session, Proto.ReqMoving reqMoving) {
         int userId = SessionCache.me().getUserID(SessionID.of(session));
@@ -92,7 +121,7 @@ public class AreaService {
             return;
         }
         Proto.Position position = reqMoving.getPosition();
-        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(reqMoving.getAreaId());
+        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(reqMoving.getAreaId()));
         ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
         listSessionInArea.removeIf(s -> s.equals(SessionID.of(session).getSessionId()));
         Proto.ResMoving resMoving = Proto.ResMoving.newBuilder()
@@ -103,24 +132,25 @@ public class AreaService {
         sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResMoving(resMoving).build());
     }
 
-    public void leaveArea(Session session) {
+    public Proto.Area leaveArea(Session session) {
         int userId = SessionCache.me().getUserID(SessionID.of(session));
         if (userId == -1) {
-            return;
+            return null;
         }
-        ArrayList<Proto.Area> areas = AreaCache.me().getAllArea();
+        List<Proto.Area> areas = AreaCache.me().getAllAreaRedis();
         for (Proto.Area area : areas) {
-            if (AreaCache.me().removeUserFromArea(area.getAreaId(), userId) > 0) {
-                ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(area.getAreaId());
+            if (AreaCache.me().removeUserFromArea(String.valueOf(area.getAreaId()), String.valueOf(userId)) > 0) {
+                ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(area.getAreaId()));
                 ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
                 listSessionInArea.removeIf(s -> s.equals(SessionID.of(session).getSessionId()));
                 Proto.ResOtherPlayerLeaveArea resPlayerLeaveArea = Proto.ResOtherPlayerLeaveArea.newBuilder()
                         .setUserId(userId)
                         .build();
                 sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResOtherPlayerLeaveArea(resPlayerLeaveArea).build());
-                break;
+                return area;
             }
         }
+        return null;
     }
 
     public void loadItemsOfFarm(Session session, Proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm) {
