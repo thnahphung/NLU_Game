@@ -225,4 +225,21 @@ export default class GlobalData {
   public getPositionCharacter() {
     return this.positionCharacter;
   }
+
+  public logout() {
+    this.mainUser = null;
+    this.mainUserNode = null;
+    this.mainUserPosition = null;
+    this.otherUsers = [];
+    this.otherUsersNode = [];
+    this.area = null;
+    this.isMoveBuilding = false;
+    this.isTill = false;
+    this.isTilled = false;
+    this.isSow = false;
+    this.isSown = false;
+    this.isHarvest = false;
+    this.isHarvested = false;
+    this.positionCharacter = null;
+  }
 }

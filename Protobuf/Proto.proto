@@ -31,7 +31,6 @@ message Packet {
     ReqPickCharacter reqPickCharacter = 13;
     ResPickCharacter resPickCharacter = 14;
     ReqPlayerJoinAreaCommon reqPlayerJoinAreaCommon = 15;
-    ResPlayerJoinAreaCommon resPlayerJoinAreaCommon = 16;
     ReqPlayerJoinArea reqPlayerJoinArea = 17;
     ResPlayerJoinArea resPlayerJoinArea = 18;
     ResOtherPlayerJoinArea resOtherPlayerJoinArea = 19;
@@ -87,8 +86,8 @@ message Character {
 message Area{
   int32 areaId = 1;
   string typeArea = 3;
-  Position position = 4;
   int32 status = 5;
+  int32 userId = 6;
 }
 
 message Position{
@@ -174,16 +173,6 @@ message ResPickCharacter {
 
 message ReqPlayerJoinAreaCommon{
   int32 areaCommonId = 1;
-  Position position = 2;
-}
-
-message ResPlayerJoinAreaCommon{
-  int32 areaCommonId = 1;
-  Area area = 2;
-  repeated User users = 4;
-  int32 status = 5; // 200: join thành công; 400: join không thành công
-  int32 areaState = 6;
-  Position position = 7;
 }
 
 message ReqPlayerJoinArea{
@@ -194,7 +183,7 @@ message ResPlayerJoinArea{
   Area area = 1;
   repeated User users = 3;
   int32 status = 4; // 200: join thành công; 400: join không thành công
-  Position position = 5;
+  string oldAreaType = 5;
 }
 
 message ResOtherPlayerJoinArea{

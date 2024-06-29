@@ -12,10 +12,25 @@ export class Util {
     return new Vec3(vec2.x, vec2.y, 0);
   }
 
-  public static getSpawnPosScene(sceneName: string | SCENES): Vec3 {
-    for (const setting of SETTING_AREA) {
-      if (setting.sceneName === sceneName) {
-        return setting.spawnPos;
+  public static getSpawnPosScene(
+    sceneName: string | SCENES,
+    oldSceneName?: string | SCENES
+  ): Vec3 {
+    if (oldSceneName) {
+      for (const setting of SETTING_AREA) {
+        if (setting.sceneName === sceneName) {
+          for (const spawnPos of setting.spawnPos) {
+            if (spawnPos.oldSceneName === oldSceneName) {
+              return spawnPos.spawnPos;
+            }
+          }
+        }
+      }
+    } else {
+      for (const setting of SETTING_AREA) {
+        if (setting.sceneName === sceneName) {
+          return setting.spawnPos[0].spawnPos;
+        }
       }
     }
   }
@@ -28,7 +43,6 @@ export class Util {
     const pos: proto.IPosition = new proto.Position();
     pos.x = cocosPos.x;
     pos.y = cocosPos.y;
-    console.debug("convertCocosPosToProtoPos", pos);
     return pos;
   }
 

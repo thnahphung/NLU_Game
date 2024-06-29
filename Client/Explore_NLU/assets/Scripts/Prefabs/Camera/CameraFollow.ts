@@ -41,7 +41,7 @@ export class CameraFollow extends Component {
   }
 
   protected lateUpdate(dt: number): void {
-    if (this.target) {
+    if (this.target != null && this.target.position != null) {
       const targetPosition: Vec3 = this.target.getPosition();
       const maxX = (this.backgroundWidth - this.canvasWidth) / 2;
       const maxY = (this.backgroundHeight - this.canvasHeight) / 2;
@@ -60,6 +60,7 @@ export class CameraFollow extends Component {
       );
     }
   }
+
   updateTargetFollow(target: Node): void {
     this.target = target;
   }

@@ -206,7 +206,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 582.0653477218225,
+    "_orthoHeight": 481.19871794871796,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -768,13 +768,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "sceneName": "KiotScene",
-    "positionCharacter": {
-      "__type__": "cc.Vec3",
-      "x": 3609.495,
-      "y": 579.855,
-      "z": 0
-    },
+    "areaCommonId": 5,
     "_id": "a4zbScPURMkabfeCmqwNbo"
   },
   {

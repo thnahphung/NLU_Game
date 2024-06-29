@@ -92,14 +92,15 @@ export class PopupSetting extends AbsHandler {
     let timeoutDestroy = setTimeout(() => {
       this.node.destroy();
       clearTimeout(timeoutDestroy);
-    }, 300);      
+    }, 300);
   }
 
   onLogout() {
-    if(GlobalData.me().getMainUser() == null){
+    if (GlobalData.me().getMainUser() == null) {
       UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGOUT_FAILED_401);
       return;
     }
+    GlobalData.me().logout();
     DataSender.sendReqLogout();
   }
 

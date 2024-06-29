@@ -1,4 +1,5 @@
-import { Vec3 } from "cc";
+import { Enum, Vec3 } from "cc";
+import { spawn } from "child_process";
 
 export const POPUP_MESSAGE = {
   LOGIN_SUCCESS_200: `Đăng nhập thành công!`,
@@ -24,6 +25,29 @@ export const POPUP_MESSAGE = {
   FORGET_PASSWORD_FAILED_403: `Email không hợp lệ!`,
 };
 
+export enum SCENES {
+  AUTHEN = "AuthenScene",
+  ANIMAL_HUSBANDRY = "AnimalHusbandryScene",
+  FARM = "FarmScene",
+  KIOT = "KiotScene",
+  VETERINARIAN = "VeterinarianScene",
+  MECHANICAL = "MechanicalScene",
+  PICK_CHARACTER = "PickCharacterScene",
+  PHUONG_VI = "PhuongViScene",
+  CAM_TU = "CamTuScene",
+  RANG_DONG = "RangDongScene",
+}
+
+export enum SCENES_COMMON {
+  NONE = 0,
+  KIOT = 5,
+  PHUONG_VI = 6,
+  // CAM_TU = "CamTuScene",
+  // RANG_DONG = "RangDongScene",
+}
+
+Enum(SCENES_COMMON);
+
 export const SETTINGS = {
   DEFAULT_EFFECT: 1,
   DEFAULT_MUSIC: 1,
@@ -37,20 +61,96 @@ export const AUDIOS = {
 
 export const SETTING_AREA = [
   {
-    sceneName: "FarmScene",
-    spawnPos: new Vec3(0, 0, 0),
+    sceneName: SCENES.VETERINARIAN,
+    spawnPos: [
+      {
+        oldSceneName: SCENES.KIOT,
+        spawnPos: new Vec3(-626, -555, 0),
+      },
+    ],
   },
   {
-    sceneName: "AnimalHusbandryScene",
-    spawnPos: new Vec3(760, -354, 0),
+    sceneName: SCENES.ANIMAL_HUSBANDRY,
+    spawnPos: [
+      {
+        oldSceneName: SCENES.KIOT,
+        spawnPos: new Vec3(606, -350, 0),
+      },
+    ],
   },
   {
-    sceneName: "MechanicalScene",
-    spawnPos: new Vec3(0, 0, 0),
+    sceneName: SCENES.MECHANICAL,
+    spawnPos: [
+      {
+        oldSceneName: SCENES.CAM_TU,
+        spawnPos: new Vec3(0, 0, 0),
+      },
+    ],
   },
   {
-    sceneName: "VeterinarianScene",
-    spawnPos: new Vec3(-407, -86, 0),
+    sceneName: SCENES.FARM,
+    spawnPos: [
+      {
+        oldSceneName: SCENES.KIOT,
+        spawnPos: new Vec3(-176, -338, 0),
+      },
+    ],
+  },
+  {
+    sceneName: SCENES.KIOT,
+    spawnPos: [
+      {
+        oldSceneName: SCENES.ANIMAL_HUSBANDRY,
+        spawnPos: new Vec3(3610, 580, 0),
+      },
+      {
+        oldSceneName: SCENES.FARM,
+        spawnPos: new Vec3(3280, 175, 0),
+      },
+      {
+        oldSceneName: SCENES.PHUONG_VI,
+        spawnPos: new Vec3(1960, -515, 0),
+      },
+      {
+        oldSceneName: SCENES.VETERINARIAN,
+        spawnPos: new Vec3(-3447, -262, 0),
+      },
+    ],
+  },
+  {
+    sceneName: SCENES.PHUONG_VI,
+    spawnPos: [
+      {
+        oldSceneName: SCENES.CAM_TU,
+        spawnPos: new Vec3(3610, 580, 0),
+      },
+      {
+        oldSceneName: SCENES.RANG_DONG,
+        spawnPos: new Vec3(3280, 175, 0),
+      },
+      {
+        oldSceneName: SCENES.KIOT,
+        spawnPos: new Vec3(-240, -1630, 0),
+      },
+    ],
+  },
+  {
+    sceneName: SCENES.CAM_TU,
+    spawnPos: [
+      {
+        oldSceneName: SCENES.PHUONG_VI,
+        spawnPos: new Vec3(145, -1236, 0),
+      },
+    ],
+  },
+  {
+    sceneName: SCENES.RANG_DONG,
+    spawnPos: [
+      {
+        oldSceneName: SCENES.PHUONG_VI,
+        spawnPos: new Vec3(-144, -857, 0),
+      },
+    ],
   },
 ];
 //Spawn position end
@@ -80,16 +180,6 @@ export enum ANIMAL_STATE {
   WALK_RIGHT = "walk-right",
   EAT_LEFT = "eat-left",
   EAT_RIGHT = "eat-right",
-}
-
-export enum SCENES {
-  AUTHEN = "AuthenScene",
-  ANIMAL_HUSBANDRY = "AnimalHusbandryScene",
-  FARM = "FarmScene",
-  KIOT = "KiotScene",
-  VETERINARIAN = "VeterinarianScene",
-  MECHANICAL = "MechanicalScene",
-  PICK_CHARACTER = "PickCharacterScene",
 }
 
 export const LOCAL_STORAGE = {

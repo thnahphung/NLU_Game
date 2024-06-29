@@ -56,11 +56,11 @@ export class ResponseHandler extends AbsHandler {
   onJoinAreaHandler(packet: proto.IPacket) {
     console.log("onJoinAreaHandler", packet.resPlayerJoinArea);
     if (GlobalData.me().getMainUser() == null) return;
-    // neu tra ve vi tri null thi lay vi tri spawn defaut cua scene
     const position = Util.getSpawnPosScene(
-      packet.resPlayerJoinArea.area.typeArea
+      packet.resPlayerJoinArea.area.typeArea,
+      packet.resPlayerJoinArea?.oldAreaType
     );
-    // const protoPos = Util.convertCocosPosToProtoPos(position);
+
     GlobalData.me().setMainUserPosition(position);
 
     if (GlobalData.me().getMainUserNode() != null) {
@@ -96,11 +96,8 @@ export class ResponseHandler extends AbsHandler {
     const otherUserNode = PlayerManager.me().createCharacter(
       packet.resOtherPlayerJoinArea.user
     );
-    otherUserNode.setPosition(
-      packet.resOtherPlayerJoinArea.position.x,
-      packet.resOtherPlayerJoinArea.position.y,
-      0
-    );
+    const position = Util.getSpawnPosScene(director.getScene().name);
+    otherUserNode.setPosition(position);
     otherUserNode.active = false;
     otherUserNode.getComponent(Character).setIsMainPlayer(false);
     GlobalData.me().addOtherUser(packet.resOtherPlayerJoinArea.user);
