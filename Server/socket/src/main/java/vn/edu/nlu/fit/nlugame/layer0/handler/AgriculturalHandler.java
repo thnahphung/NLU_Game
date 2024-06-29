@@ -19,6 +19,9 @@ public class AgriculturalHandler implements Subscriber{
                 case REQBUYBUILDING:
                     agriculturalService.handleBuyBuilding(session, packet.getReqBuyBuilding());
                     break;
+                case REQTILLEDLAND:
+                    agriculturalService.handleTilledLand(session, packet.getReqTilledLand());
+                    break;
             }
         });
     }

@@ -208,7 +208,7 @@ export class FarmScene extends AbsScene {
               tillLand.getComponent(TilledLand).tillLandProto = tillLandProto;
               let statusTilled = tillLandProto?.statusTilled;
               if (statusTilled)
-                tillLand.getComponent(TilledLand).handleTillLand();
+                tillLand.getComponent(TilledLand).handleTilledLand();
             });
           }
           break;

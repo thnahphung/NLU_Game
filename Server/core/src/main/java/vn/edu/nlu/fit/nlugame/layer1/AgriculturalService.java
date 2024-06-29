@@ -65,4 +65,14 @@ public class AgriculturalService {
         if (session != null && session.isOpen())
             session.getAsyncRemote().sendObject(packets);
     }
+
+    public void handleTilledLand(Session session, Proto.ReqTilledLand reqTilledLand) {
+        if(reqTilledLand.getTillLands().getTillLandList() == null || reqTilledLand.getTillLands().getTillLandList() == null || reqTilledLand.getTillLands().getTillLandList().size() == 0) return;
+        Proto.TillLands tillLands = reqTilledLand.getTillLands();
+        //TODO: update status tilled land redis
+        tillLands.getTillLandList().forEach(tillLand -> {
+            TillLandDAO.updateTillLand(tillLand.getId(), tillLand.getStatusTilled());
+        });
+        System.out.println("handleTilledLand: " + reqTilledLand);
+    }
 }

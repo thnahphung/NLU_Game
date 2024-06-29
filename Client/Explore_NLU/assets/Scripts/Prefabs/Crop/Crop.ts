@@ -8,15 +8,18 @@ const { ccclass, property } = _decorator;
 @ccclass('Crop')
 export class Crop extends Component {
     public plantingLand: Node = null;
-    public tileLand: Node = null;
+    public tilledLand: Node = null;
     // Giai đoạn phát triển hiện tại
     private currentStage:number = 0;
     // Thời gian đã trôi qua
     private elapsedTime:number = 0;
     // Thời gian (giây) cho mỗi giai đoạn phát triển
-    private seedTime:number = 4;
-    private sproutTime:number = 5;
-    private smallTreeTime:number = 5;
+    // private seedTime:number = 4;
+    // private sproutTime:number = 5;
+    // private smallTreeTime:number = 5;
+    private seedTime:number = 1;
+    private sproutTime:number = 1;
+    private smallTreeTime:number = 1;
     private isHarvested:boolean = false;
     private effectHarvestTime: number = 0;
     @property(SpriteFrame)
@@ -47,6 +50,7 @@ export class Crop extends Component {
         }
     }
     private showMenuTool(): void {
+        CoatingComponent.me().offAllCoating();
         if(GlobalData.me().getHarvestStatus()){
             return;
         }
@@ -54,9 +58,21 @@ export class Crop extends Component {
         var menuSeedNode = this.getMenuToolNode();
         menuSeedNode.setPosition(this.plantingLand.getPosition().x, this.plantingLand.getPosition().y + 145, 0);
         menuSeedNode.active = true;
-        CoatingComponent.me().setCoating(COATING.HARVEST, this.plantingLand.parent, menuSeedNode);
+        let menuModalPanel = menuSeedNode.getChildByName("MenuToolModal");
+        console.log(menuModalPanel)
+        CoatingComponent.me().setCoating(COATING.HARVEST, menuModalPanel, menuSeedNode);
         CoatingComponent.me().showCoating(COATING.HARVEST);
         CoatingComponent.me().autoOff(COATING.HARVEST);
+
+        let childrenMenu = menuSeedNode.getChildByName("MenuToolContent").children;
+        for (let i = 0; i < childrenMenu.length; i++) {
+            const name = childrenMenu[i].name;
+            if(name != "Sickle"){
+                childrenMenu[i].active = false;
+            }else{
+                childrenMenu[i].active = true;
+            }
+        }
     }
 
     private getMenuToolNode(): Node {
@@ -77,7 +93,7 @@ export class Crop extends Component {
         this.node.scale = new Vec3(0, 0, 0);
         this.node.setPosition(this.node.getPosition().x, this.node.getPosition().y + 10, 0);
         this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame = this.harvestSprite;
-        this.tileLand.getComponent(TilledLand).isSown = false;
+        this.tilledLand.getComponent(TilledLand).isSown = false;
         this.isHarvested = true;
         GlobalData.me().setHarvestedStatus(false);
         tween(this.node)

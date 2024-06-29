@@ -8,6 +8,9 @@ export default class AbsTool extends Component {
     
     start(): void {
         this.originalPosition = this.node.getPosition();
+        if(this.node.name == "Pickaxe" || this.node.name == "Sickle"){
+            this.originalPosition = new Vec3(0,0,0);
+        }
         this.node.on(Node.EventType.TOUCH_START, this.handleOnTouchStart, this);
         this.node.on(Node.EventType.TOUCH_MOVE, this.handleOnTouchMove, this);
         this.node.on(Node.EventType.TOUCH_END, this.handleOnTouchEnd, this);

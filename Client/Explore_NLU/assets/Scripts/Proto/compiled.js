@@ -17,6 +17,214 @@
          */
         var proto = {};
     
+        proto.MyMessage = (function() {
+    
+            /**
+             * Properties of a MyMessage.
+             * @memberof proto
+             * @interface IMyMessage
+             * @property {google.protobuf.ITimestamp|null} [myField] MyMessage myField
+             */
+    
+            /**
+             * Constructs a new MyMessage.
+             * @memberof proto
+             * @classdesc Represents a MyMessage.
+             * @implements IMyMessage
+             * @constructor
+             * @param {proto.IMyMessage=} [properties] Properties to set
+             */
+            function MyMessage(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * MyMessage myField.
+             * @member {google.protobuf.ITimestamp|null|undefined} myField
+             * @memberof proto.MyMessage
+             * @instance
+             */
+            MyMessage.prototype.myField = null;
+    
+            /**
+             * Creates a new MyMessage instance using the specified properties.
+             * @function create
+             * @memberof proto.MyMessage
+             * @static
+             * @param {proto.IMyMessage=} [properties] Properties to set
+             * @returns {proto.MyMessage} MyMessage instance
+             */
+            MyMessage.create = function create(properties) {
+                return new MyMessage(properties);
+            };
+    
+            /**
+             * Encodes the specified MyMessage message. Does not implicitly {@link proto.MyMessage.verify|verify} messages.
+             * @function encode
+             * @memberof proto.MyMessage
+             * @static
+             * @param {proto.IMyMessage} message MyMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MyMessage.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.myField != null && Object.hasOwnProperty.call(message, "myField"))
+                    $root.google.protobuf.Timestamp.encode(message.myField, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified MyMessage message, length delimited. Does not implicitly {@link proto.MyMessage.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.MyMessage
+             * @static
+             * @param {proto.IMyMessage} message MyMessage message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            MyMessage.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a MyMessage message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.MyMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.MyMessage} MyMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MyMessage.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.MyMessage();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.myField = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a MyMessage message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.MyMessage
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.MyMessage} MyMessage
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            MyMessage.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a MyMessage message.
+             * @function verify
+             * @memberof proto.MyMessage
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            MyMessage.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.myField != null && message.hasOwnProperty("myField")) {
+                    var error = $root.google.protobuf.Timestamp.verify(message.myField);
+                    if (error)
+                        return "myField." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a MyMessage message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.MyMessage
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.MyMessage} MyMessage
+             */
+            MyMessage.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.MyMessage)
+                    return object;
+                var message = new $root.proto.MyMessage();
+                if (object.myField != null) {
+                    if (typeof object.myField !== "object")
+                        throw TypeError(".proto.MyMessage.myField: object expected");
+                    message.myField = $root.google.protobuf.Timestamp.fromObject(object.myField);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a MyMessage message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.MyMessage
+             * @static
+             * @param {proto.MyMessage} message MyMessage
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            MyMessage.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.myField = null;
+                if (message.myField != null && message.hasOwnProperty("myField"))
+                    object.myField = $root.google.protobuf.Timestamp.toObject(message.myField, options);
+                return object;
+            };
+    
+            /**
+             * Converts this MyMessage to JSON.
+             * @function toJSON
+             * @memberof proto.MyMessage
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            MyMessage.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for MyMessage
+             * @function getTypeUrl
+             * @memberof proto.MyMessage
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            MyMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.MyMessage";
+            };
+    
+            return MyMessage;
+        })();
+    
         proto.PacketWrapper = (function() {
     
             /**
@@ -285,6 +493,7 @@
              * @property {proto.IResAddFriend|null} [resAddFriend] Packet resAddFriend
              * @property {proto.IReqAcceptFriend|null} [reqAcceptFriend] Packet reqAcceptFriend
              * @property {proto.IResAcceptFriend|null} [resAcceptFriend] Packet resAcceptFriend
+             * @property {proto.IReqTilledLand|null} [reqTilledLand] Packet reqTilledLand
              */
     
             /**
@@ -606,17 +815,25 @@
              */
             Packet.prototype.resAcceptFriend = null;
     
+            /**
+             * Packet reqTilledLand.
+             * @member {proto.IReqTilledLand|null|undefined} reqTilledLand
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqTilledLand = null;
+    
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
     
             /**
              * Packet data.
-             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|"reqEmailForgetPassword"|"reqRecoverPassword"|"resRecoverPassword"|"resEmailForgetPassword"|"reqLoadFriend"|"resLoadFriendList"|"reqFindFriend"|"resFindFriend"|"reqAddFriend"|"resAddFriend"|"reqAcceptFriend"|"resAcceptFriend"|undefined} data
+             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|"reqEmailForgetPassword"|"reqRecoverPassword"|"resRecoverPassword"|"resEmailForgetPassword"|"reqLoadFriend"|"resLoadFriendList"|"reqFindFriend"|"resFindFriend"|"reqAddFriend"|"resAddFriend"|"reqAcceptFriend"|"resAcceptFriend"|"reqTilledLand"|undefined} data
              * @memberof proto.Packet
              * @instance
              */
             Object.defineProperty(Packet.prototype, "data", {
-                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter", "reqPlayerJoinAreaCommon", "resPlayerJoinAreaCommon", "reqPlayerJoinArea", "resPlayerJoinArea", "resOtherPlayerJoinArea", "reqMoving", "resMoving", "resOtherPlayerLeaveArea", "reqLoadItemsOfFarm", "resLoadItemsOfFarm", "reqBuyBuilding", "resBuyBuilding", "reqEmailForgetPassword", "reqRecoverPassword", "resRecoverPassword", "resEmailForgetPassword", "reqLoadFriend", "resLoadFriendList", "reqFindFriend", "resFindFriend", "reqAddFriend", "resAddFriend", "reqAcceptFriend", "resAcceptFriend"]),
+                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter", "reqPlayerJoinAreaCommon", "resPlayerJoinAreaCommon", "reqPlayerJoinArea", "resPlayerJoinArea", "resOtherPlayerJoinArea", "reqMoving", "resMoving", "resOtherPlayerLeaveArea", "reqLoadItemsOfFarm", "resLoadItemsOfFarm", "reqBuyBuilding", "resBuyBuilding", "reqEmailForgetPassword", "reqRecoverPassword", "resRecoverPassword", "resEmailForgetPassword", "reqLoadFriend", "resLoadFriendList", "reqFindFriend", "resFindFriend", "reqAddFriend", "resAddFriend", "reqAcceptFriend", "resAcceptFriend", "reqTilledLand"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
     
@@ -720,6 +937,8 @@
                     $root.proto.ReqAcceptFriend.encode(message.reqAcceptFriend, writer.uint32(/* id 37, wireType 2 =*/298).fork()).ldelim();
                 if (message.resAcceptFriend != null && Object.hasOwnProperty.call(message, "resAcceptFriend"))
                     $root.proto.ResAcceptFriend.encode(message.resAcceptFriend, writer.uint32(/* id 38, wireType 2 =*/306).fork()).ldelim();
+                if (message.reqTilledLand != null && Object.hasOwnProperty.call(message, "reqTilledLand"))
+                    $root.proto.ReqTilledLand.encode(message.reqTilledLand, writer.uint32(/* id 39, wireType 2 =*/314).fork()).ldelim();
                 return writer;
             };
     
@@ -904,6 +1123,10 @@
                         }
                     case 38: {
                             message.resAcceptFriend = $root.proto.ResAcceptFriend.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 39: {
+                            message.reqTilledLand = $root.proto.ReqTilledLand.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -1320,6 +1543,16 @@
                             return "resAcceptFriend." + error;
                     }
                 }
+                if (message.reqTilledLand != null && message.hasOwnProperty("reqTilledLand")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqTilledLand.verify(message.reqTilledLand);
+                        if (error)
+                            return "reqTilledLand." + error;
+                    }
+                }
                 return null;
             };
     
@@ -1524,6 +1757,11 @@
                     if (typeof object.resAcceptFriend !== "object")
                         throw TypeError(".proto.Packet.resAcceptFriend: object expected");
                     message.resAcceptFriend = $root.proto.ResAcceptFriend.fromObject(object.resAcceptFriend);
+                }
+                if (object.reqTilledLand != null) {
+                    if (typeof object.reqTilledLand !== "object")
+                        throw TypeError(".proto.Packet.reqTilledLand: object expected");
+                    message.reqTilledLand = $root.proto.ReqTilledLand.fromObject(object.reqTilledLand);
                 }
                 return message;
             };
@@ -1730,6 +1968,11 @@
                     object.resAcceptFriend = $root.proto.ResAcceptFriend.toObject(message.resAcceptFriend, options);
                     if (options.oneofs)
                         object.data = "resAcceptFriend";
+                }
+                if (message.reqTilledLand != null && message.hasOwnProperty("reqTilledLand")) {
+                    object.reqTilledLand = $root.proto.ReqTilledLand.toObject(message.reqTilledLand, options);
+                    if (options.oneofs)
+                        object.data = "reqTilledLand";
                 }
                 return object;
             };
@@ -10762,6 +11005,7 @@
              * @memberof proto
              * @interface IResLoadItemsOfFarm
              * @property {proto.IBuildingItems|null} [buildingItems] ResLoadItemsOfFarm buildingItems
+             * @property {proto.ICrops|null} [crops] ResLoadItemsOfFarm crops
              */
     
             /**
@@ -10786,6 +11030,14 @@
              * @instance
              */
             ResLoadItemsOfFarm.prototype.buildingItems = null;
+    
+            /**
+             * ResLoadItemsOfFarm crops.
+             * @member {proto.ICrops|null|undefined} crops
+             * @memberof proto.ResLoadItemsOfFarm
+             * @instance
+             */
+            ResLoadItemsOfFarm.prototype.crops = null;
     
             /**
              * Creates a new ResLoadItemsOfFarm instance using the specified properties.
@@ -10813,6 +11065,8 @@
                     writer = $Writer.create();
                 if (message.buildingItems != null && Object.hasOwnProperty.call(message, "buildingItems"))
                     $root.proto.BuildingItems.encode(message.buildingItems, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.crops != null && Object.hasOwnProperty.call(message, "crops"))
+                    $root.proto.Crops.encode(message.crops, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
     
@@ -10849,6 +11103,10 @@
                     switch (tag >>> 3) {
                     case 1: {
                             message.buildingItems = $root.proto.BuildingItems.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.crops = $root.proto.Crops.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -10891,6 +11149,11 @@
                     if (error)
                         return "buildingItems." + error;
                 }
+                if (message.crops != null && message.hasOwnProperty("crops")) {
+                    var error = $root.proto.Crops.verify(message.crops);
+                    if (error)
+                        return "crops." + error;
+                }
                 return null;
             };
     
@@ -10911,6 +11174,11 @@
                         throw TypeError(".proto.ResLoadItemsOfFarm.buildingItems: object expected");
                     message.buildingItems = $root.proto.BuildingItems.fromObject(object.buildingItems);
                 }
+                if (object.crops != null) {
+                    if (typeof object.crops !== "object")
+                        throw TypeError(".proto.ResLoadItemsOfFarm.crops: object expected");
+                    message.crops = $root.proto.Crops.fromObject(object.crops);
+                }
                 return message;
             };
     
@@ -10927,10 +11195,14 @@
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.defaults)
+                if (options.defaults) {
                     object.buildingItems = null;
+                    object.crops = null;
+                }
                 if (message.buildingItems != null && message.hasOwnProperty("buildingItems"))
                     object.buildingItems = $root.proto.BuildingItems.toObject(message.buildingItems, options);
+                if (message.crops != null && message.hasOwnProperty("crops"))
+                    object.crops = $root.proto.Crops.toObject(message.crops, options);
                 return object;
             };
     
@@ -14330,7 +14602,2508 @@
             return ResAcceptFriend;
         })();
     
+        proto.ReqTilledLand = (function() {
+    
+            /**
+             * Properties of a ReqTilledLand.
+             * @memberof proto
+             * @interface IReqTilledLand
+             * @property {proto.ITillLands|null} [tillLands] ReqTilledLand tillLands
+             */
+    
+            /**
+             * Constructs a new ReqTilledLand.
+             * @memberof proto
+             * @classdesc Represents a ReqTilledLand.
+             * @implements IReqTilledLand
+             * @constructor
+             * @param {proto.IReqTilledLand=} [properties] Properties to set
+             */
+            function ReqTilledLand(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ReqTilledLand tillLands.
+             * @member {proto.ITillLands|null|undefined} tillLands
+             * @memberof proto.ReqTilledLand
+             * @instance
+             */
+            ReqTilledLand.prototype.tillLands = null;
+    
+            /**
+             * Creates a new ReqTilledLand instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqTilledLand
+             * @static
+             * @param {proto.IReqTilledLand=} [properties] Properties to set
+             * @returns {proto.ReqTilledLand} ReqTilledLand instance
+             */
+            ReqTilledLand.create = function create(properties) {
+                return new ReqTilledLand(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqTilledLand message. Does not implicitly {@link proto.ReqTilledLand.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqTilledLand
+             * @static
+             * @param {proto.IReqTilledLand} message ReqTilledLand message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqTilledLand.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.tillLands != null && Object.hasOwnProperty.call(message, "tillLands"))
+                    $root.proto.TillLands.encode(message.tillLands, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqTilledLand message, length delimited. Does not implicitly {@link proto.ReqTilledLand.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqTilledLand
+             * @static
+             * @param {proto.IReqTilledLand} message ReqTilledLand message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqTilledLand.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqTilledLand message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqTilledLand
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqTilledLand} ReqTilledLand
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqTilledLand.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqTilledLand();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.tillLands = $root.proto.TillLands.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqTilledLand message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqTilledLand
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqTilledLand} ReqTilledLand
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqTilledLand.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqTilledLand message.
+             * @function verify
+             * @memberof proto.ReqTilledLand
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqTilledLand.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.tillLands != null && message.hasOwnProperty("tillLands")) {
+                    var error = $root.proto.TillLands.verify(message.tillLands);
+                    if (error)
+                        return "tillLands." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a ReqTilledLand message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqTilledLand
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqTilledLand} ReqTilledLand
+             */
+            ReqTilledLand.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqTilledLand)
+                    return object;
+                var message = new $root.proto.ReqTilledLand();
+                if (object.tillLands != null) {
+                    if (typeof object.tillLands !== "object")
+                        throw TypeError(".proto.ReqTilledLand.tillLands: object expected");
+                    message.tillLands = $root.proto.TillLands.fromObject(object.tillLands);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ReqTilledLand message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqTilledLand
+             * @static
+             * @param {proto.ReqTilledLand} message ReqTilledLand
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqTilledLand.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.tillLands = null;
+                if (message.tillLands != null && message.hasOwnProperty("tillLands"))
+                    object.tillLands = $root.proto.TillLands.toObject(message.tillLands, options);
+                return object;
+            };
+    
+            /**
+             * Converts this ReqTilledLand to JSON.
+             * @function toJSON
+             * @memberof proto.ReqTilledLand
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqTilledLand.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqTilledLand
+             * @function getTypeUrl
+             * @memberof proto.ReqTilledLand
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqTilledLand.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqTilledLand";
+            };
+    
+            return ReqTilledLand;
+        })();
+    
+        proto.fertilized = (function() {
+    
+            /**
+             * Properties of a fertilized.
+             * @memberof proto
+             * @interface Ifertilized
+             * @property {number|null} [id] fertilized id
+             * @property {number|null} [ecffectiveTime] fertilized ecffectiveTime
+             * @property {number|null} [ecffectiveValue] fertilized ecffectiveValue
+             * @property {string|null} ["function"] fertilized function
+             * @property {number|null} [noGrowthItemId] fertilized noGrowthItemId
+             */
+    
+            /**
+             * Constructs a new fertilized.
+             * @memberof proto
+             * @classdesc Represents a fertilized.
+             * @implements Ifertilized
+             * @constructor
+             * @param {proto.Ifertilized=} [properties] Properties to set
+             */
+            function fertilized(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * fertilized id.
+             * @member {number} id
+             * @memberof proto.fertilized
+             * @instance
+             */
+            fertilized.prototype.id = 0;
+    
+            /**
+             * fertilized ecffectiveTime.
+             * @member {number} ecffectiveTime
+             * @memberof proto.fertilized
+             * @instance
+             */
+            fertilized.prototype.ecffectiveTime = 0;
+    
+            /**
+             * fertilized ecffectiveValue.
+             * @member {number} ecffectiveValue
+             * @memberof proto.fertilized
+             * @instance
+             */
+            fertilized.prototype.ecffectiveValue = 0;
+    
+            /**
+             * fertilized function.
+             * @member {string} function
+             * @memberof proto.fertilized
+             * @instance
+             */
+            fertilized.prototype["function"] = "";
+    
+            /**
+             * fertilized noGrowthItemId.
+             * @member {number} noGrowthItemId
+             * @memberof proto.fertilized
+             * @instance
+             */
+            fertilized.prototype.noGrowthItemId = 0;
+    
+            /**
+             * Creates a new fertilized instance using the specified properties.
+             * @function create
+             * @memberof proto.fertilized
+             * @static
+             * @param {proto.Ifertilized=} [properties] Properties to set
+             * @returns {proto.fertilized} fertilized instance
+             */
+            fertilized.create = function create(properties) {
+                return new fertilized(properties);
+            };
+    
+            /**
+             * Encodes the specified fertilized message. Does not implicitly {@link proto.fertilized.verify|verify} messages.
+             * @function encode
+             * @memberof proto.fertilized
+             * @static
+             * @param {proto.Ifertilized} message fertilized message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            fertilized.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                if (message.ecffectiveTime != null && Object.hasOwnProperty.call(message, "ecffectiveTime"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.ecffectiveTime);
+                if (message.ecffectiveValue != null && Object.hasOwnProperty.call(message, "ecffectiveValue"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.ecffectiveValue);
+                if (message["function"] != null && Object.hasOwnProperty.call(message, "function"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message["function"]);
+                if (message.noGrowthItemId != null && Object.hasOwnProperty.call(message, "noGrowthItemId"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.noGrowthItemId);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified fertilized message, length delimited. Does not implicitly {@link proto.fertilized.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.fertilized
+             * @static
+             * @param {proto.Ifertilized} message fertilized message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            fertilized.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a fertilized message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.fertilized
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.fertilized} fertilized
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            fertilized.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.fertilized();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.id = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.ecffectiveTime = reader.int32();
+                            break;
+                        }
+                    case 3: {
+                            message.ecffectiveValue = reader.int32();
+                            break;
+                        }
+                    case 4: {
+                            message["function"] = reader.string();
+                            break;
+                        }
+                    case 5: {
+                            message.noGrowthItemId = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a fertilized message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.fertilized
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.fertilized} fertilized
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            fertilized.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a fertilized message.
+             * @function verify
+             * @memberof proto.fertilized
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            fertilized.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                if (message.ecffectiveTime != null && message.hasOwnProperty("ecffectiveTime"))
+                    if (!$util.isInteger(message.ecffectiveTime))
+                        return "ecffectiveTime: integer expected";
+                if (message.ecffectiveValue != null && message.hasOwnProperty("ecffectiveValue"))
+                    if (!$util.isInteger(message.ecffectiveValue))
+                        return "ecffectiveValue: integer expected";
+                if (message["function"] != null && message.hasOwnProperty("function"))
+                    if (!$util.isString(message["function"]))
+                        return "function: string expected";
+                if (message.noGrowthItemId != null && message.hasOwnProperty("noGrowthItemId"))
+                    if (!$util.isInteger(message.noGrowthItemId))
+                        return "noGrowthItemId: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a fertilized message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.fertilized
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.fertilized} fertilized
+             */
+            fertilized.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.fertilized)
+                    return object;
+                var message = new $root.proto.fertilized();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                if (object.ecffectiveTime != null)
+                    message.ecffectiveTime = object.ecffectiveTime | 0;
+                if (object.ecffectiveValue != null)
+                    message.ecffectiveValue = object.ecffectiveValue | 0;
+                if (object["function"] != null)
+                    message["function"] = String(object["function"]);
+                if (object.noGrowthItemId != null)
+                    message.noGrowthItemId = object.noGrowthItemId | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a fertilized message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.fertilized
+             * @static
+             * @param {proto.fertilized} message fertilized
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            fertilized.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.id = 0;
+                    object.ecffectiveTime = 0;
+                    object.ecffectiveValue = 0;
+                    object["function"] = "";
+                    object.noGrowthItemId = 0;
+                }
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                if (message.ecffectiveTime != null && message.hasOwnProperty("ecffectiveTime"))
+                    object.ecffectiveTime = message.ecffectiveTime;
+                if (message.ecffectiveValue != null && message.hasOwnProperty("ecffectiveValue"))
+                    object.ecffectiveValue = message.ecffectiveValue;
+                if (message["function"] != null && message.hasOwnProperty("function"))
+                    object["function"] = message["function"];
+                if (message.noGrowthItemId != null && message.hasOwnProperty("noGrowthItemId"))
+                    object.noGrowthItemId = message.noGrowthItemId;
+                return object;
+            };
+    
+            /**
+             * Converts this fertilized to JSON.
+             * @function toJSON
+             * @memberof proto.fertilized
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            fertilized.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for fertilized
+             * @function getTypeUrl
+             * @memberof proto.fertilized
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            fertilized.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.fertilized";
+            };
+    
+            return fertilized;
+        })();
+    
+        proto.Crops = (function() {
+    
+            /**
+             * Properties of a Crops.
+             * @memberof proto
+             * @interface ICrops
+             * @property {Array.<proto.ICrop>|null} [crops] Crops crops
+             */
+    
+            /**
+             * Constructs a new Crops.
+             * @memberof proto
+             * @classdesc Represents a Crops.
+             * @implements ICrops
+             * @constructor
+             * @param {proto.ICrops=} [properties] Properties to set
+             */
+            function Crops(properties) {
+                this.crops = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * Crops crops.
+             * @member {Array.<proto.ICrop>} crops
+             * @memberof proto.Crops
+             * @instance
+             */
+            Crops.prototype.crops = $util.emptyArray;
+    
+            /**
+             * Creates a new Crops instance using the specified properties.
+             * @function create
+             * @memberof proto.Crops
+             * @static
+             * @param {proto.ICrops=} [properties] Properties to set
+             * @returns {proto.Crops} Crops instance
+             */
+            Crops.create = function create(properties) {
+                return new Crops(properties);
+            };
+    
+            /**
+             * Encodes the specified Crops message. Does not implicitly {@link proto.Crops.verify|verify} messages.
+             * @function encode
+             * @memberof proto.Crops
+             * @static
+             * @param {proto.ICrops} message Crops message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Crops.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.crops != null && message.crops.length)
+                    for (var i = 0; i < message.crops.length; ++i)
+                        $root.proto.Crop.encode(message.crops[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified Crops message, length delimited. Does not implicitly {@link proto.Crops.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.Crops
+             * @static
+             * @param {proto.ICrops} message Crops message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Crops.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a Crops message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.Crops
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.Crops} Crops
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Crops.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Crops();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            if (!(message.crops && message.crops.length))
+                                message.crops = [];
+                            message.crops.push($root.proto.Crop.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a Crops message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.Crops
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.Crops} Crops
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Crops.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a Crops message.
+             * @function verify
+             * @memberof proto.Crops
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Crops.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.crops != null && message.hasOwnProperty("crops")) {
+                    if (!Array.isArray(message.crops))
+                        return "crops: array expected";
+                    for (var i = 0; i < message.crops.length; ++i) {
+                        var error = $root.proto.Crop.verify(message.crops[i]);
+                        if (error)
+                            return "crops." + error;
+                    }
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a Crops message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.Crops
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.Crops} Crops
+             */
+            Crops.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.Crops)
+                    return object;
+                var message = new $root.proto.Crops();
+                if (object.crops) {
+                    if (!Array.isArray(object.crops))
+                        throw TypeError(".proto.Crops.crops: array expected");
+                    message.crops = [];
+                    for (var i = 0; i < object.crops.length; ++i) {
+                        if (typeof object.crops[i] !== "object")
+                            throw TypeError(".proto.Crops.crops: object expected");
+                        message.crops[i] = $root.proto.Crop.fromObject(object.crops[i]);
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a Crops message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.Crops
+             * @static
+             * @param {proto.Crops} message Crops
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Crops.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.crops = [];
+                if (message.crops && message.crops.length) {
+                    object.crops = [];
+                    for (var j = 0; j < message.crops.length; ++j)
+                        object.crops[j] = $root.proto.Crop.toObject(message.crops[j], options);
+                }
+                return object;
+            };
+    
+            /**
+             * Converts this Crops to JSON.
+             * @function toJSON
+             * @memberof proto.Crops
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Crops.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for Crops
+             * @function getTypeUrl
+             * @memberof proto.Crops
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            Crops.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.Crops";
+            };
+    
+            return Crops;
+        })();
+    
+        proto.CommonGrowthItem = (function() {
+    
+            /**
+             * Properties of a CommonGrowthItem.
+             * @memberof proto
+             * @interface ICommonGrowthItem
+             * @property {number|null} [id] CommonGrowthItem id
+             * @property {string|null} [name] CommonGrowthItem name
+             * @property {number|Long|null} [price] CommonGrowthItem price
+             * @property {number|Long|null} [salePrice] CommonGrowthItem salePrice
+             * @property {number|null} [experienceReceive] CommonGrowthItem experienceReceive
+             * @property {string|null} [description] CommonGrowthItem description
+             * @property {string|null} [weatherRequire] CommonGrowthItem weatherRequire
+             * @property {string|null} [seasonRequire] CommonGrowthItem seasonRequire
+             * @property {number|null} [timePregant] CommonGrowthItem timePregant
+             * @property {number|null} [timeGrowth] CommonGrowthItem timeGrowth
+             * @property {string|null} [type] CommonGrowthItem type
+             */
+    
+            /**
+             * Constructs a new CommonGrowthItem.
+             * @memberof proto
+             * @classdesc Represents a CommonGrowthItem.
+             * @implements ICommonGrowthItem
+             * @constructor
+             * @param {proto.ICommonGrowthItem=} [properties] Properties to set
+             */
+            function CommonGrowthItem(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * CommonGrowthItem id.
+             * @member {number} id
+             * @memberof proto.CommonGrowthItem
+             * @instance
+             */
+            CommonGrowthItem.prototype.id = 0;
+    
+            /**
+             * CommonGrowthItem name.
+             * @member {string} name
+             * @memberof proto.CommonGrowthItem
+             * @instance
+             */
+            CommonGrowthItem.prototype.name = "";
+    
+            /**
+             * CommonGrowthItem price.
+             * @member {number|Long} price
+             * @memberof proto.CommonGrowthItem
+             * @instance
+             */
+            CommonGrowthItem.prototype.price = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+            /**
+             * CommonGrowthItem salePrice.
+             * @member {number|Long} salePrice
+             * @memberof proto.CommonGrowthItem
+             * @instance
+             */
+            CommonGrowthItem.prototype.salePrice = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+            /**
+             * CommonGrowthItem experienceReceive.
+             * @member {number} experienceReceive
+             * @memberof proto.CommonGrowthItem
+             * @instance
+             */
+            CommonGrowthItem.prototype.experienceReceive = 0;
+    
+            /**
+             * CommonGrowthItem description.
+             * @member {string} description
+             * @memberof proto.CommonGrowthItem
+             * @instance
+             */
+            CommonGrowthItem.prototype.description = "";
+    
+            /**
+             * CommonGrowthItem weatherRequire.
+             * @member {string} weatherRequire
+             * @memberof proto.CommonGrowthItem
+             * @instance
+             */
+            CommonGrowthItem.prototype.weatherRequire = "";
+    
+            /**
+             * CommonGrowthItem seasonRequire.
+             * @member {string} seasonRequire
+             * @memberof proto.CommonGrowthItem
+             * @instance
+             */
+            CommonGrowthItem.prototype.seasonRequire = "";
+    
+            /**
+             * CommonGrowthItem timePregant.
+             * @member {number} timePregant
+             * @memberof proto.CommonGrowthItem
+             * @instance
+             */
+            CommonGrowthItem.prototype.timePregant = 0;
+    
+            /**
+             * CommonGrowthItem timeGrowth.
+             * @member {number} timeGrowth
+             * @memberof proto.CommonGrowthItem
+             * @instance
+             */
+            CommonGrowthItem.prototype.timeGrowth = 0;
+    
+            /**
+             * CommonGrowthItem type.
+             * @member {string} type
+             * @memberof proto.CommonGrowthItem
+             * @instance
+             */
+            CommonGrowthItem.prototype.type = "";
+    
+            /**
+             * Creates a new CommonGrowthItem instance using the specified properties.
+             * @function create
+             * @memberof proto.CommonGrowthItem
+             * @static
+             * @param {proto.ICommonGrowthItem=} [properties] Properties to set
+             * @returns {proto.CommonGrowthItem} CommonGrowthItem instance
+             */
+            CommonGrowthItem.create = function create(properties) {
+                return new CommonGrowthItem(properties);
+            };
+    
+            /**
+             * Encodes the specified CommonGrowthItem message. Does not implicitly {@link proto.CommonGrowthItem.verify|verify} messages.
+             * @function encode
+             * @memberof proto.CommonGrowthItem
+             * @static
+             * @param {proto.ICommonGrowthItem} message CommonGrowthItem message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CommonGrowthItem.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+                if (message.price != null && Object.hasOwnProperty.call(message, "price"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int64(message.price);
+                if (message.salePrice != null && Object.hasOwnProperty.call(message, "salePrice"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).int64(message.salePrice);
+                if (message.experienceReceive != null && Object.hasOwnProperty.call(message, "experienceReceive"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.experienceReceive);
+                if (message.description != null && Object.hasOwnProperty.call(message, "description"))
+                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.description);
+                if (message.weatherRequire != null && Object.hasOwnProperty.call(message, "weatherRequire"))
+                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.weatherRequire);
+                if (message.seasonRequire != null && Object.hasOwnProperty.call(message, "seasonRequire"))
+                    writer.uint32(/* id 8, wireType 2 =*/66).string(message.seasonRequire);
+                if (message.timePregant != null && Object.hasOwnProperty.call(message, "timePregant"))
+                    writer.uint32(/* id 9, wireType 0 =*/72).int32(message.timePregant);
+                if (message.timeGrowth != null && Object.hasOwnProperty.call(message, "timeGrowth"))
+                    writer.uint32(/* id 10, wireType 0 =*/80).int32(message.timeGrowth);
+                if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                    writer.uint32(/* id 11, wireType 2 =*/90).string(message.type);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified CommonGrowthItem message, length delimited. Does not implicitly {@link proto.CommonGrowthItem.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.CommonGrowthItem
+             * @static
+             * @param {proto.ICommonGrowthItem} message CommonGrowthItem message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            CommonGrowthItem.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a CommonGrowthItem message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.CommonGrowthItem
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.CommonGrowthItem} CommonGrowthItem
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CommonGrowthItem.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.CommonGrowthItem();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.id = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.price = reader.int64();
+                            break;
+                        }
+                    case 4: {
+                            message.salePrice = reader.int64();
+                            break;
+                        }
+                    case 5: {
+                            message.experienceReceive = reader.int32();
+                            break;
+                        }
+                    case 6: {
+                            message.description = reader.string();
+                            break;
+                        }
+                    case 7: {
+                            message.weatherRequire = reader.string();
+                            break;
+                        }
+                    case 8: {
+                            message.seasonRequire = reader.string();
+                            break;
+                        }
+                    case 9: {
+                            message.timePregant = reader.int32();
+                            break;
+                        }
+                    case 10: {
+                            message.timeGrowth = reader.int32();
+                            break;
+                        }
+                    case 11: {
+                            message.type = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a CommonGrowthItem message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.CommonGrowthItem
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.CommonGrowthItem} CommonGrowthItem
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            CommonGrowthItem.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a CommonGrowthItem message.
+             * @function verify
+             * @memberof proto.CommonGrowthItem
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            CommonGrowthItem.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                if (message.name != null && message.hasOwnProperty("name"))
+                    if (!$util.isString(message.name))
+                        return "name: string expected";
+                if (message.price != null && message.hasOwnProperty("price"))
+                    if (!$util.isInteger(message.price) && !(message.price && $util.isInteger(message.price.low) && $util.isInteger(message.price.high)))
+                        return "price: integer|Long expected";
+                if (message.salePrice != null && message.hasOwnProperty("salePrice"))
+                    if (!$util.isInteger(message.salePrice) && !(message.salePrice && $util.isInteger(message.salePrice.low) && $util.isInteger(message.salePrice.high)))
+                        return "salePrice: integer|Long expected";
+                if (message.experienceReceive != null && message.hasOwnProperty("experienceReceive"))
+                    if (!$util.isInteger(message.experienceReceive))
+                        return "experienceReceive: integer expected";
+                if (message.description != null && message.hasOwnProperty("description"))
+                    if (!$util.isString(message.description))
+                        return "description: string expected";
+                if (message.weatherRequire != null && message.hasOwnProperty("weatherRequire"))
+                    if (!$util.isString(message.weatherRequire))
+                        return "weatherRequire: string expected";
+                if (message.seasonRequire != null && message.hasOwnProperty("seasonRequire"))
+                    if (!$util.isString(message.seasonRequire))
+                        return "seasonRequire: string expected";
+                if (message.timePregant != null && message.hasOwnProperty("timePregant"))
+                    if (!$util.isInteger(message.timePregant))
+                        return "timePregant: integer expected";
+                if (message.timeGrowth != null && message.hasOwnProperty("timeGrowth"))
+                    if (!$util.isInteger(message.timeGrowth))
+                        return "timeGrowth: integer expected";
+                if (message.type != null && message.hasOwnProperty("type"))
+                    if (!$util.isString(message.type))
+                        return "type: string expected";
+                return null;
+            };
+    
+            /**
+             * Creates a CommonGrowthItem message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.CommonGrowthItem
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.CommonGrowthItem} CommonGrowthItem
+             */
+            CommonGrowthItem.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.CommonGrowthItem)
+                    return object;
+                var message = new $root.proto.CommonGrowthItem();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                if (object.name != null)
+                    message.name = String(object.name);
+                if (object.price != null)
+                    if ($util.Long)
+                        (message.price = $util.Long.fromValue(object.price)).unsigned = false;
+                    else if (typeof object.price === "string")
+                        message.price = parseInt(object.price, 10);
+                    else if (typeof object.price === "number")
+                        message.price = object.price;
+                    else if (typeof object.price === "object")
+                        message.price = new $util.LongBits(object.price.low >>> 0, object.price.high >>> 0).toNumber();
+                if (object.salePrice != null)
+                    if ($util.Long)
+                        (message.salePrice = $util.Long.fromValue(object.salePrice)).unsigned = false;
+                    else if (typeof object.salePrice === "string")
+                        message.salePrice = parseInt(object.salePrice, 10);
+                    else if (typeof object.salePrice === "number")
+                        message.salePrice = object.salePrice;
+                    else if (typeof object.salePrice === "object")
+                        message.salePrice = new $util.LongBits(object.salePrice.low >>> 0, object.salePrice.high >>> 0).toNumber();
+                if (object.experienceReceive != null)
+                    message.experienceReceive = object.experienceReceive | 0;
+                if (object.description != null)
+                    message.description = String(object.description);
+                if (object.weatherRequire != null)
+                    message.weatherRequire = String(object.weatherRequire);
+                if (object.seasonRequire != null)
+                    message.seasonRequire = String(object.seasonRequire);
+                if (object.timePregant != null)
+                    message.timePregant = object.timePregant | 0;
+                if (object.timeGrowth != null)
+                    message.timeGrowth = object.timeGrowth | 0;
+                if (object.type != null)
+                    message.type = String(object.type);
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a CommonGrowthItem message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.CommonGrowthItem
+             * @static
+             * @param {proto.CommonGrowthItem} message CommonGrowthItem
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            CommonGrowthItem.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.id = 0;
+                    object.name = "";
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.price = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.price = options.longs === String ? "0" : 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.salePrice = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.salePrice = options.longs === String ? "0" : 0;
+                    object.experienceReceive = 0;
+                    object.description = "";
+                    object.weatherRequire = "";
+                    object.seasonRequire = "";
+                    object.timePregant = 0;
+                    object.timeGrowth = 0;
+                    object.type = "";
+                }
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                if (message.name != null && message.hasOwnProperty("name"))
+                    object.name = message.name;
+                if (message.price != null && message.hasOwnProperty("price"))
+                    if (typeof message.price === "number")
+                        object.price = options.longs === String ? String(message.price) : message.price;
+                    else
+                        object.price = options.longs === String ? $util.Long.prototype.toString.call(message.price) : options.longs === Number ? new $util.LongBits(message.price.low >>> 0, message.price.high >>> 0).toNumber() : message.price;
+                if (message.salePrice != null && message.hasOwnProperty("salePrice"))
+                    if (typeof message.salePrice === "number")
+                        object.salePrice = options.longs === String ? String(message.salePrice) : message.salePrice;
+                    else
+                        object.salePrice = options.longs === String ? $util.Long.prototype.toString.call(message.salePrice) : options.longs === Number ? new $util.LongBits(message.salePrice.low >>> 0, message.salePrice.high >>> 0).toNumber() : message.salePrice;
+                if (message.experienceReceive != null && message.hasOwnProperty("experienceReceive"))
+                    object.experienceReceive = message.experienceReceive;
+                if (message.description != null && message.hasOwnProperty("description"))
+                    object.description = message.description;
+                if (message.weatherRequire != null && message.hasOwnProperty("weatherRequire"))
+                    object.weatherRequire = message.weatherRequire;
+                if (message.seasonRequire != null && message.hasOwnProperty("seasonRequire"))
+                    object.seasonRequire = message.seasonRequire;
+                if (message.timePregant != null && message.hasOwnProperty("timePregant"))
+                    object.timePregant = message.timePregant;
+                if (message.timeGrowth != null && message.hasOwnProperty("timeGrowth"))
+                    object.timeGrowth = message.timeGrowth;
+                if (message.type != null && message.hasOwnProperty("type"))
+                    object.type = message.type;
+                return object;
+            };
+    
+            /**
+             * Converts this CommonGrowthItem to JSON.
+             * @function toJSON
+             * @memberof proto.CommonGrowthItem
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            CommonGrowthItem.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for CommonGrowthItem
+             * @function getTypeUrl
+             * @memberof proto.CommonGrowthItem
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            CommonGrowthItem.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.CommonGrowthItem";
+            };
+    
+            return CommonGrowthItem;
+        })();
+    
+        proto.PropertyGrowthItems = (function() {
+    
+            /**
+             * Properties of a PropertyGrowthItems.
+             * @memberof proto
+             * @interface IPropertyGrowthItems
+             * @property {number|null} [id] PropertyGrowthItems id
+             * @property {number|null} [currentDiseaseId] PropertyGrowthItems currentDiseaseId
+             * @property {number|Long|null} [diseaseRate] PropertyGrowthItems diseaseRate
+             * @property {boolean|null} [isDisease] PropertyGrowthItems isDisease
+             * @property {number|null} [startTimeDisease] PropertyGrowthItems startTimeDisease
+             * @property {number|Long|null} [health] PropertyGrowthItems health
+             * @property {number|null} [stage] PropertyGrowthItems stage
+             * @property {number|null} [startDate] PropertyGrowthItems startDate
+             * @property {number|null} [growthItemId] PropertyGrowthItems growthItemId
+             */
+    
+            /**
+             * Constructs a new PropertyGrowthItems.
+             * @memberof proto
+             * @classdesc Represents a PropertyGrowthItems.
+             * @implements IPropertyGrowthItems
+             * @constructor
+             * @param {proto.IPropertyGrowthItems=} [properties] Properties to set
+             */
+            function PropertyGrowthItems(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * PropertyGrowthItems id.
+             * @member {number} id
+             * @memberof proto.PropertyGrowthItems
+             * @instance
+             */
+            PropertyGrowthItems.prototype.id = 0;
+    
+            /**
+             * PropertyGrowthItems currentDiseaseId.
+             * @member {number} currentDiseaseId
+             * @memberof proto.PropertyGrowthItems
+             * @instance
+             */
+            PropertyGrowthItems.prototype.currentDiseaseId = 0;
+    
+            /**
+             * PropertyGrowthItems diseaseRate.
+             * @member {number|Long} diseaseRate
+             * @memberof proto.PropertyGrowthItems
+             * @instance
+             */
+            PropertyGrowthItems.prototype.diseaseRate = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+            /**
+             * PropertyGrowthItems isDisease.
+             * @member {boolean} isDisease
+             * @memberof proto.PropertyGrowthItems
+             * @instance
+             */
+            PropertyGrowthItems.prototype.isDisease = false;
+    
+            /**
+             * PropertyGrowthItems startTimeDisease.
+             * @member {number} startTimeDisease
+             * @memberof proto.PropertyGrowthItems
+             * @instance
+             */
+            PropertyGrowthItems.prototype.startTimeDisease = 0;
+    
+            /**
+             * PropertyGrowthItems health.
+             * @member {number|Long} health
+             * @memberof proto.PropertyGrowthItems
+             * @instance
+             */
+            PropertyGrowthItems.prototype.health = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+            /**
+             * PropertyGrowthItems stage.
+             * @member {number} stage
+             * @memberof proto.PropertyGrowthItems
+             * @instance
+             */
+            PropertyGrowthItems.prototype.stage = 0;
+    
+            /**
+             * PropertyGrowthItems startDate.
+             * @member {number} startDate
+             * @memberof proto.PropertyGrowthItems
+             * @instance
+             */
+            PropertyGrowthItems.prototype.startDate = 0;
+    
+            /**
+             * PropertyGrowthItems growthItemId.
+             * @member {number} growthItemId
+             * @memberof proto.PropertyGrowthItems
+             * @instance
+             */
+            PropertyGrowthItems.prototype.growthItemId = 0;
+    
+            /**
+             * Creates a new PropertyGrowthItems instance using the specified properties.
+             * @function create
+             * @memberof proto.PropertyGrowthItems
+             * @static
+             * @param {proto.IPropertyGrowthItems=} [properties] Properties to set
+             * @returns {proto.PropertyGrowthItems} PropertyGrowthItems instance
+             */
+            PropertyGrowthItems.create = function create(properties) {
+                return new PropertyGrowthItems(properties);
+            };
+    
+            /**
+             * Encodes the specified PropertyGrowthItems message. Does not implicitly {@link proto.PropertyGrowthItems.verify|verify} messages.
+             * @function encode
+             * @memberof proto.PropertyGrowthItems
+             * @static
+             * @param {proto.IPropertyGrowthItems} message PropertyGrowthItems message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PropertyGrowthItems.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                if (message.currentDiseaseId != null && Object.hasOwnProperty.call(message, "currentDiseaseId"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.currentDiseaseId);
+                if (message.diseaseRate != null && Object.hasOwnProperty.call(message, "diseaseRate"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int64(message.diseaseRate);
+                if (message.isDisease != null && Object.hasOwnProperty.call(message, "isDisease"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).bool(message.isDisease);
+                if (message.startTimeDisease != null && Object.hasOwnProperty.call(message, "startTimeDisease"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.startTimeDisease);
+                if (message.health != null && Object.hasOwnProperty.call(message, "health"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).int64(message.health);
+                if (message.stage != null && Object.hasOwnProperty.call(message, "stage"))
+                    writer.uint32(/* id 7, wireType 0 =*/56).int32(message.stage);
+                if (message.startDate != null && Object.hasOwnProperty.call(message, "startDate"))
+                    writer.uint32(/* id 8, wireType 0 =*/64).int32(message.startDate);
+                if (message.growthItemId != null && Object.hasOwnProperty.call(message, "growthItemId"))
+                    writer.uint32(/* id 9, wireType 0 =*/72).int32(message.growthItemId);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified PropertyGrowthItems message, length delimited. Does not implicitly {@link proto.PropertyGrowthItems.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.PropertyGrowthItems
+             * @static
+             * @param {proto.IPropertyGrowthItems} message PropertyGrowthItems message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PropertyGrowthItems.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a PropertyGrowthItems message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.PropertyGrowthItems
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.PropertyGrowthItems} PropertyGrowthItems
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PropertyGrowthItems.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.PropertyGrowthItems();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.id = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.currentDiseaseId = reader.int32();
+                            break;
+                        }
+                    case 3: {
+                            message.diseaseRate = reader.int64();
+                            break;
+                        }
+                    case 4: {
+                            message.isDisease = reader.bool();
+                            break;
+                        }
+                    case 5: {
+                            message.startTimeDisease = reader.int32();
+                            break;
+                        }
+                    case 6: {
+                            message.health = reader.int64();
+                            break;
+                        }
+                    case 7: {
+                            message.stage = reader.int32();
+                            break;
+                        }
+                    case 8: {
+                            message.startDate = reader.int32();
+                            break;
+                        }
+                    case 9: {
+                            message.growthItemId = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a PropertyGrowthItems message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.PropertyGrowthItems
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.PropertyGrowthItems} PropertyGrowthItems
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PropertyGrowthItems.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a PropertyGrowthItems message.
+             * @function verify
+             * @memberof proto.PropertyGrowthItems
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PropertyGrowthItems.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                if (message.currentDiseaseId != null && message.hasOwnProperty("currentDiseaseId"))
+                    if (!$util.isInteger(message.currentDiseaseId))
+                        return "currentDiseaseId: integer expected";
+                if (message.diseaseRate != null && message.hasOwnProperty("diseaseRate"))
+                    if (!$util.isInteger(message.diseaseRate) && !(message.diseaseRate && $util.isInteger(message.diseaseRate.low) && $util.isInteger(message.diseaseRate.high)))
+                        return "diseaseRate: integer|Long expected";
+                if (message.isDisease != null && message.hasOwnProperty("isDisease"))
+                    if (typeof message.isDisease !== "boolean")
+                        return "isDisease: boolean expected";
+                if (message.startTimeDisease != null && message.hasOwnProperty("startTimeDisease"))
+                    if (!$util.isInteger(message.startTimeDisease))
+                        return "startTimeDisease: integer expected";
+                if (message.health != null && message.hasOwnProperty("health"))
+                    if (!$util.isInteger(message.health) && !(message.health && $util.isInteger(message.health.low) && $util.isInteger(message.health.high)))
+                        return "health: integer|Long expected";
+                if (message.stage != null && message.hasOwnProperty("stage"))
+                    if (!$util.isInteger(message.stage))
+                        return "stage: integer expected";
+                if (message.startDate != null && message.hasOwnProperty("startDate"))
+                    if (!$util.isInteger(message.startDate))
+                        return "startDate: integer expected";
+                if (message.growthItemId != null && message.hasOwnProperty("growthItemId"))
+                    if (!$util.isInteger(message.growthItemId))
+                        return "growthItemId: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a PropertyGrowthItems message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.PropertyGrowthItems
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.PropertyGrowthItems} PropertyGrowthItems
+             */
+            PropertyGrowthItems.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.PropertyGrowthItems)
+                    return object;
+                var message = new $root.proto.PropertyGrowthItems();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                if (object.currentDiseaseId != null)
+                    message.currentDiseaseId = object.currentDiseaseId | 0;
+                if (object.diseaseRate != null)
+                    if ($util.Long)
+                        (message.diseaseRate = $util.Long.fromValue(object.diseaseRate)).unsigned = false;
+                    else if (typeof object.diseaseRate === "string")
+                        message.diseaseRate = parseInt(object.diseaseRate, 10);
+                    else if (typeof object.diseaseRate === "number")
+                        message.diseaseRate = object.diseaseRate;
+                    else if (typeof object.diseaseRate === "object")
+                        message.diseaseRate = new $util.LongBits(object.diseaseRate.low >>> 0, object.diseaseRate.high >>> 0).toNumber();
+                if (object.isDisease != null)
+                    message.isDisease = Boolean(object.isDisease);
+                if (object.startTimeDisease != null)
+                    message.startTimeDisease = object.startTimeDisease | 0;
+                if (object.health != null)
+                    if ($util.Long)
+                        (message.health = $util.Long.fromValue(object.health)).unsigned = false;
+                    else if (typeof object.health === "string")
+                        message.health = parseInt(object.health, 10);
+                    else if (typeof object.health === "number")
+                        message.health = object.health;
+                    else if (typeof object.health === "object")
+                        message.health = new $util.LongBits(object.health.low >>> 0, object.health.high >>> 0).toNumber();
+                if (object.stage != null)
+                    message.stage = object.stage | 0;
+                if (object.startDate != null)
+                    message.startDate = object.startDate | 0;
+                if (object.growthItemId != null)
+                    message.growthItemId = object.growthItemId | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a PropertyGrowthItems message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.PropertyGrowthItems
+             * @static
+             * @param {proto.PropertyGrowthItems} message PropertyGrowthItems
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PropertyGrowthItems.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.id = 0;
+                    object.currentDiseaseId = 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.diseaseRate = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.diseaseRate = options.longs === String ? "0" : 0;
+                    object.isDisease = false;
+                    object.startTimeDisease = 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.health = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                    } else
+                        object.health = options.longs === String ? "0" : 0;
+                    object.stage = 0;
+                    object.startDate = 0;
+                    object.growthItemId = 0;
+                }
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                if (message.currentDiseaseId != null && message.hasOwnProperty("currentDiseaseId"))
+                    object.currentDiseaseId = message.currentDiseaseId;
+                if (message.diseaseRate != null && message.hasOwnProperty("diseaseRate"))
+                    if (typeof message.diseaseRate === "number")
+                        object.diseaseRate = options.longs === String ? String(message.diseaseRate) : message.diseaseRate;
+                    else
+                        object.diseaseRate = options.longs === String ? $util.Long.prototype.toString.call(message.diseaseRate) : options.longs === Number ? new $util.LongBits(message.diseaseRate.low >>> 0, message.diseaseRate.high >>> 0).toNumber() : message.diseaseRate;
+                if (message.isDisease != null && message.hasOwnProperty("isDisease"))
+                    object.isDisease = message.isDisease;
+                if (message.startTimeDisease != null && message.hasOwnProperty("startTimeDisease"))
+                    object.startTimeDisease = message.startTimeDisease;
+                if (message.health != null && message.hasOwnProperty("health"))
+                    if (typeof message.health === "number")
+                        object.health = options.longs === String ? String(message.health) : message.health;
+                    else
+                        object.health = options.longs === String ? $util.Long.prototype.toString.call(message.health) : options.longs === Number ? new $util.LongBits(message.health.low >>> 0, message.health.high >>> 0).toNumber() : message.health;
+                if (message.stage != null && message.hasOwnProperty("stage"))
+                    object.stage = message.stage;
+                if (message.startDate != null && message.hasOwnProperty("startDate"))
+                    object.startDate = message.startDate;
+                if (message.growthItemId != null && message.hasOwnProperty("growthItemId"))
+                    object.growthItemId = message.growthItemId;
+                return object;
+            };
+    
+            /**
+             * Converts this PropertyGrowthItems to JSON.
+             * @function toJSON
+             * @memberof proto.PropertyGrowthItems
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PropertyGrowthItems.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for PropertyGrowthItems
+             * @function getTypeUrl
+             * @memberof proto.PropertyGrowthItems
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            PropertyGrowthItems.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.PropertyGrowthItems";
+            };
+    
+            return PropertyGrowthItems;
+        })();
+    
+        proto.PropertyCrop = (function() {
+    
+            /**
+             * Properties of a PropertyCrop.
+             * @memberof proto
+             * @interface IPropertyCrop
+             * @property {number|null} [id] PropertyCrop id
+             * @property {number|null} [harvestYield] PropertyCrop harvestYield
+             * @property {number|null} [statusWatered] PropertyCrop statusWatered
+             * @property {number|null} [statusFertilized] PropertyCrop statusFertilized
+             * @property {number|null} [tillLandId] PropertyCrop tillLandId
+             * @property {number|null} [timeFertilized] PropertyCrop timeFertilized
+             * @property {number|null} [fertilizerId] PropertyCrop fertilizerId
+             * @property {number|null} [propertyGrowthItemId] PropertyCrop propertyGrowthItemId
+             */
+    
+            /**
+             * Constructs a new PropertyCrop.
+             * @memberof proto
+             * @classdesc Represents a PropertyCrop.
+             * @implements IPropertyCrop
+             * @constructor
+             * @param {proto.IPropertyCrop=} [properties] Properties to set
+             */
+            function PropertyCrop(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * PropertyCrop id.
+             * @member {number} id
+             * @memberof proto.PropertyCrop
+             * @instance
+             */
+            PropertyCrop.prototype.id = 0;
+    
+            /**
+             * PropertyCrop harvestYield.
+             * @member {number} harvestYield
+             * @memberof proto.PropertyCrop
+             * @instance
+             */
+            PropertyCrop.prototype.harvestYield = 0;
+    
+            /**
+             * PropertyCrop statusWatered.
+             * @member {number} statusWatered
+             * @memberof proto.PropertyCrop
+             * @instance
+             */
+            PropertyCrop.prototype.statusWatered = 0;
+    
+            /**
+             * PropertyCrop statusFertilized.
+             * @member {number} statusFertilized
+             * @memberof proto.PropertyCrop
+             * @instance
+             */
+            PropertyCrop.prototype.statusFertilized = 0;
+    
+            /**
+             * PropertyCrop tillLandId.
+             * @member {number} tillLandId
+             * @memberof proto.PropertyCrop
+             * @instance
+             */
+            PropertyCrop.prototype.tillLandId = 0;
+    
+            /**
+             * PropertyCrop timeFertilized.
+             * @member {number} timeFertilized
+             * @memberof proto.PropertyCrop
+             * @instance
+             */
+            PropertyCrop.prototype.timeFertilized = 0;
+    
+            /**
+             * PropertyCrop fertilizerId.
+             * @member {number} fertilizerId
+             * @memberof proto.PropertyCrop
+             * @instance
+             */
+            PropertyCrop.prototype.fertilizerId = 0;
+    
+            /**
+             * PropertyCrop propertyGrowthItemId.
+             * @member {number} propertyGrowthItemId
+             * @memberof proto.PropertyCrop
+             * @instance
+             */
+            PropertyCrop.prototype.propertyGrowthItemId = 0;
+    
+            /**
+             * Creates a new PropertyCrop instance using the specified properties.
+             * @function create
+             * @memberof proto.PropertyCrop
+             * @static
+             * @param {proto.IPropertyCrop=} [properties] Properties to set
+             * @returns {proto.PropertyCrop} PropertyCrop instance
+             */
+            PropertyCrop.create = function create(properties) {
+                return new PropertyCrop(properties);
+            };
+    
+            /**
+             * Encodes the specified PropertyCrop message. Does not implicitly {@link proto.PropertyCrop.verify|verify} messages.
+             * @function encode
+             * @memberof proto.PropertyCrop
+             * @static
+             * @param {proto.IPropertyCrop} message PropertyCrop message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PropertyCrop.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                if (message.harvestYield != null && Object.hasOwnProperty.call(message, "harvestYield"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.harvestYield);
+                if (message.statusWatered != null && Object.hasOwnProperty.call(message, "statusWatered"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.statusWatered);
+                if (message.statusFertilized != null && Object.hasOwnProperty.call(message, "statusFertilized"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).int32(message.statusFertilized);
+                if (message.tillLandId != null && Object.hasOwnProperty.call(message, "tillLandId"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.tillLandId);
+                if (message.timeFertilized != null && Object.hasOwnProperty.call(message, "timeFertilized"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).int32(message.timeFertilized);
+                if (message.fertilizerId != null && Object.hasOwnProperty.call(message, "fertilizerId"))
+                    writer.uint32(/* id 7, wireType 0 =*/56).int32(message.fertilizerId);
+                if (message.propertyGrowthItemId != null && Object.hasOwnProperty.call(message, "propertyGrowthItemId"))
+                    writer.uint32(/* id 8, wireType 0 =*/64).int32(message.propertyGrowthItemId);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified PropertyCrop message, length delimited. Does not implicitly {@link proto.PropertyCrop.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.PropertyCrop
+             * @static
+             * @param {proto.IPropertyCrop} message PropertyCrop message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            PropertyCrop.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a PropertyCrop message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.PropertyCrop
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.PropertyCrop} PropertyCrop
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PropertyCrop.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.PropertyCrop();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.id = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.harvestYield = reader.int32();
+                            break;
+                        }
+                    case 3: {
+                            message.statusWatered = reader.int32();
+                            break;
+                        }
+                    case 4: {
+                            message.statusFertilized = reader.int32();
+                            break;
+                        }
+                    case 5: {
+                            message.tillLandId = reader.int32();
+                            break;
+                        }
+                    case 6: {
+                            message.timeFertilized = reader.int32();
+                            break;
+                        }
+                    case 7: {
+                            message.fertilizerId = reader.int32();
+                            break;
+                        }
+                    case 8: {
+                            message.propertyGrowthItemId = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a PropertyCrop message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.PropertyCrop
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.PropertyCrop} PropertyCrop
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            PropertyCrop.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a PropertyCrop message.
+             * @function verify
+             * @memberof proto.PropertyCrop
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            PropertyCrop.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                if (message.harvestYield != null && message.hasOwnProperty("harvestYield"))
+                    if (!$util.isInteger(message.harvestYield))
+                        return "harvestYield: integer expected";
+                if (message.statusWatered != null && message.hasOwnProperty("statusWatered"))
+                    if (!$util.isInteger(message.statusWatered))
+                        return "statusWatered: integer expected";
+                if (message.statusFertilized != null && message.hasOwnProperty("statusFertilized"))
+                    if (!$util.isInteger(message.statusFertilized))
+                        return "statusFertilized: integer expected";
+                if (message.tillLandId != null && message.hasOwnProperty("tillLandId"))
+                    if (!$util.isInteger(message.tillLandId))
+                        return "tillLandId: integer expected";
+                if (message.timeFertilized != null && message.hasOwnProperty("timeFertilized"))
+                    if (!$util.isInteger(message.timeFertilized))
+                        return "timeFertilized: integer expected";
+                if (message.fertilizerId != null && message.hasOwnProperty("fertilizerId"))
+                    if (!$util.isInteger(message.fertilizerId))
+                        return "fertilizerId: integer expected";
+                if (message.propertyGrowthItemId != null && message.hasOwnProperty("propertyGrowthItemId"))
+                    if (!$util.isInteger(message.propertyGrowthItemId))
+                        return "propertyGrowthItemId: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a PropertyCrop message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.PropertyCrop
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.PropertyCrop} PropertyCrop
+             */
+            PropertyCrop.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.PropertyCrop)
+                    return object;
+                var message = new $root.proto.PropertyCrop();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                if (object.harvestYield != null)
+                    message.harvestYield = object.harvestYield | 0;
+                if (object.statusWatered != null)
+                    message.statusWatered = object.statusWatered | 0;
+                if (object.statusFertilized != null)
+                    message.statusFertilized = object.statusFertilized | 0;
+                if (object.tillLandId != null)
+                    message.tillLandId = object.tillLandId | 0;
+                if (object.timeFertilized != null)
+                    message.timeFertilized = object.timeFertilized | 0;
+                if (object.fertilizerId != null)
+                    message.fertilizerId = object.fertilizerId | 0;
+                if (object.propertyGrowthItemId != null)
+                    message.propertyGrowthItemId = object.propertyGrowthItemId | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a PropertyCrop message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.PropertyCrop
+             * @static
+             * @param {proto.PropertyCrop} message PropertyCrop
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            PropertyCrop.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.id = 0;
+                    object.harvestYield = 0;
+                    object.statusWatered = 0;
+                    object.statusFertilized = 0;
+                    object.tillLandId = 0;
+                    object.timeFertilized = 0;
+                    object.fertilizerId = 0;
+                    object.propertyGrowthItemId = 0;
+                }
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                if (message.harvestYield != null && message.hasOwnProperty("harvestYield"))
+                    object.harvestYield = message.harvestYield;
+                if (message.statusWatered != null && message.hasOwnProperty("statusWatered"))
+                    object.statusWatered = message.statusWatered;
+                if (message.statusFertilized != null && message.hasOwnProperty("statusFertilized"))
+                    object.statusFertilized = message.statusFertilized;
+                if (message.tillLandId != null && message.hasOwnProperty("tillLandId"))
+                    object.tillLandId = message.tillLandId;
+                if (message.timeFertilized != null && message.hasOwnProperty("timeFertilized"))
+                    object.timeFertilized = message.timeFertilized;
+                if (message.fertilizerId != null && message.hasOwnProperty("fertilizerId"))
+                    object.fertilizerId = message.fertilizerId;
+                if (message.propertyGrowthItemId != null && message.hasOwnProperty("propertyGrowthItemId"))
+                    object.propertyGrowthItemId = message.propertyGrowthItemId;
+                return object;
+            };
+    
+            /**
+             * Converts this PropertyCrop to JSON.
+             * @function toJSON
+             * @memberof proto.PropertyCrop
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            PropertyCrop.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for PropertyCrop
+             * @function getTypeUrl
+             * @memberof proto.PropertyCrop
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            PropertyCrop.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.PropertyCrop";
+            };
+    
+            return PropertyCrop;
+        })();
+    
+        proto.Crop = (function() {
+    
+            /**
+             * Properties of a Crop.
+             * @memberof proto
+             * @interface ICrop
+             * @property {proto.ICommonGrowthItem|null} [CommonGrowthItem] Crop CommonGrowthItem
+             * @property {proto.IPropertyGrowthItems|null} [propertyGrowthItems] Crop propertyGrowthItems
+             * @property {proto.IPropertyCrop|null} [propertyCrop] Crop propertyCrop
+             */
+    
+            /**
+             * Constructs a new Crop.
+             * @memberof proto
+             * @classdesc Represents a Crop.
+             * @implements ICrop
+             * @constructor
+             * @param {proto.ICrop=} [properties] Properties to set
+             */
+            function Crop(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * Crop CommonGrowthItem.
+             * @member {proto.ICommonGrowthItem|null|undefined} CommonGrowthItem
+             * @memberof proto.Crop
+             * @instance
+             */
+            Crop.prototype.CommonGrowthItem = null;
+    
+            /**
+             * Crop propertyGrowthItems.
+             * @member {proto.IPropertyGrowthItems|null|undefined} propertyGrowthItems
+             * @memberof proto.Crop
+             * @instance
+             */
+            Crop.prototype.propertyGrowthItems = null;
+    
+            /**
+             * Crop propertyCrop.
+             * @member {proto.IPropertyCrop|null|undefined} propertyCrop
+             * @memberof proto.Crop
+             * @instance
+             */
+            Crop.prototype.propertyCrop = null;
+    
+            /**
+             * Creates a new Crop instance using the specified properties.
+             * @function create
+             * @memberof proto.Crop
+             * @static
+             * @param {proto.ICrop=} [properties] Properties to set
+             * @returns {proto.Crop} Crop instance
+             */
+            Crop.create = function create(properties) {
+                return new Crop(properties);
+            };
+    
+            /**
+             * Encodes the specified Crop message. Does not implicitly {@link proto.Crop.verify|verify} messages.
+             * @function encode
+             * @memberof proto.Crop
+             * @static
+             * @param {proto.ICrop} message Crop message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Crop.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.CommonGrowthItem != null && Object.hasOwnProperty.call(message, "CommonGrowthItem"))
+                    $root.proto.CommonGrowthItem.encode(message.CommonGrowthItem, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.propertyGrowthItems != null && Object.hasOwnProperty.call(message, "propertyGrowthItems"))
+                    $root.proto.PropertyGrowthItems.encode(message.propertyGrowthItems, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.propertyCrop != null && Object.hasOwnProperty.call(message, "propertyCrop"))
+                    $root.proto.PropertyCrop.encode(message.propertyCrop, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified Crop message, length delimited. Does not implicitly {@link proto.Crop.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.Crop
+             * @static
+             * @param {proto.ICrop} message Crop message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Crop.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a Crop message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.Crop
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.Crop} Crop
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Crop.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Crop();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.CommonGrowthItem = $root.proto.CommonGrowthItem.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 2: {
+                            message.propertyGrowthItems = $root.proto.PropertyGrowthItems.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 3: {
+                            message.propertyCrop = $root.proto.PropertyCrop.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a Crop message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.Crop
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.Crop} Crop
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Crop.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a Crop message.
+             * @function verify
+             * @memberof proto.Crop
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Crop.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.CommonGrowthItem != null && message.hasOwnProperty("CommonGrowthItem")) {
+                    var error = $root.proto.CommonGrowthItem.verify(message.CommonGrowthItem);
+                    if (error)
+                        return "CommonGrowthItem." + error;
+                }
+                if (message.propertyGrowthItems != null && message.hasOwnProperty("propertyGrowthItems")) {
+                    var error = $root.proto.PropertyGrowthItems.verify(message.propertyGrowthItems);
+                    if (error)
+                        return "propertyGrowthItems." + error;
+                }
+                if (message.propertyCrop != null && message.hasOwnProperty("propertyCrop")) {
+                    var error = $root.proto.PropertyCrop.verify(message.propertyCrop);
+                    if (error)
+                        return "propertyCrop." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a Crop message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.Crop
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.Crop} Crop
+             */
+            Crop.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.Crop)
+                    return object;
+                var message = new $root.proto.Crop();
+                if (object.CommonGrowthItem != null) {
+                    if (typeof object.CommonGrowthItem !== "object")
+                        throw TypeError(".proto.Crop.CommonGrowthItem: object expected");
+                    message.CommonGrowthItem = $root.proto.CommonGrowthItem.fromObject(object.CommonGrowthItem);
+                }
+                if (object.propertyGrowthItems != null) {
+                    if (typeof object.propertyGrowthItems !== "object")
+                        throw TypeError(".proto.Crop.propertyGrowthItems: object expected");
+                    message.propertyGrowthItems = $root.proto.PropertyGrowthItems.fromObject(object.propertyGrowthItems);
+                }
+                if (object.propertyCrop != null) {
+                    if (typeof object.propertyCrop !== "object")
+                        throw TypeError(".proto.Crop.propertyCrop: object expected");
+                    message.propertyCrop = $root.proto.PropertyCrop.fromObject(object.propertyCrop);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a Crop message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.Crop
+             * @static
+             * @param {proto.Crop} message Crop
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Crop.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.CommonGrowthItem = null;
+                    object.propertyGrowthItems = null;
+                    object.propertyCrop = null;
+                }
+                if (message.CommonGrowthItem != null && message.hasOwnProperty("CommonGrowthItem"))
+                    object.CommonGrowthItem = $root.proto.CommonGrowthItem.toObject(message.CommonGrowthItem, options);
+                if (message.propertyGrowthItems != null && message.hasOwnProperty("propertyGrowthItems"))
+                    object.propertyGrowthItems = $root.proto.PropertyGrowthItems.toObject(message.propertyGrowthItems, options);
+                if (message.propertyCrop != null && message.hasOwnProperty("propertyCrop"))
+                    object.propertyCrop = $root.proto.PropertyCrop.toObject(message.propertyCrop, options);
+                return object;
+            };
+    
+            /**
+             * Converts this Crop to JSON.
+             * @function toJSON
+             * @memberof proto.Crop
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Crop.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for Crop
+             * @function getTypeUrl
+             * @memberof proto.Crop
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            Crop.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.Crop";
+            };
+    
+            return Crop;
+        })();
+    
         return proto;
+    })();
+    
+    $root.google = (function() {
+    
+        /**
+         * Namespace google.
+         * @exports google
+         * @namespace
+         */
+        var google = {};
+    
+        google.protobuf = (function() {
+    
+            /**
+             * Namespace protobuf.
+             * @memberof google
+             * @namespace
+             */
+            var protobuf = {};
+    
+            protobuf.Timestamp = (function() {
+    
+                /**
+                 * Properties of a Timestamp.
+                 * @memberof google.protobuf
+                 * @interface ITimestamp
+                 * @property {number|Long|null} [seconds] Timestamp seconds
+                 * @property {number|null} [nanos] Timestamp nanos
+                 */
+    
+                /**
+                 * Constructs a new Timestamp.
+                 * @memberof google.protobuf
+                 * @classdesc Represents a Timestamp.
+                 * @implements ITimestamp
+                 * @constructor
+                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
+                 */
+                function Timestamp(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * Timestamp seconds.
+                 * @member {number|Long} seconds
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 */
+                Timestamp.prototype.seconds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                /**
+                 * Timestamp nanos.
+                 * @member {number} nanos
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 */
+                Timestamp.prototype.nanos = 0;
+    
+                /**
+                 * Creates a new Timestamp instance using the specified properties.
+                 * @function create
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
+                 * @returns {google.protobuf.Timestamp} Timestamp instance
+                 */
+                Timestamp.create = function create(properties) {
+                    return new Timestamp(properties);
+                };
+    
+                /**
+                 * Encodes the specified Timestamp message. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Timestamp.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int64(message.seconds);
+                    if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.nanos);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified Timestamp message, length delimited. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Timestamp.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a Timestamp message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Timestamp.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1: {
+                                message.seconds = reader.int64();
+                                break;
+                            }
+                        case 2: {
+                                message.nanos = reader.int32();
+                                break;
+                            }
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a Timestamp message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Timestamp.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a Timestamp message.
+                 * @function verify
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Timestamp.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.seconds != null && message.hasOwnProperty("seconds"))
+                        if (!$util.isInteger(message.seconds) && !(message.seconds && $util.isInteger(message.seconds.low) && $util.isInteger(message.seconds.high)))
+                            return "seconds: integer|Long expected";
+                    if (message.nanos != null && message.hasOwnProperty("nanos"))
+                        if (!$util.isInteger(message.nanos))
+                            return "nanos: integer expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a Timestamp message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 */
+                Timestamp.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.protobuf.Timestamp)
+                        return object;
+                    var message = new $root.google.protobuf.Timestamp();
+                    if (object.seconds != null)
+                        if ($util.Long)
+                            (message.seconds = $util.Long.fromValue(object.seconds)).unsigned = false;
+                        else if (typeof object.seconds === "string")
+                            message.seconds = parseInt(object.seconds, 10);
+                        else if (typeof object.seconds === "number")
+                            message.seconds = object.seconds;
+                        else if (typeof object.seconds === "object")
+                            message.seconds = new $util.LongBits(object.seconds.low >>> 0, object.seconds.high >>> 0).toNumber();
+                    if (object.nanos != null)
+                        message.nanos = object.nanos | 0;
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a Timestamp message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.Timestamp} message Timestamp
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Timestamp.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        if ($util.Long) {
+                            var long = new $util.Long(0, 0, false);
+                            object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        } else
+                            object.seconds = options.longs === String ? "0" : 0;
+                        object.nanos = 0;
+                    }
+                    if (message.seconds != null && message.hasOwnProperty("seconds"))
+                        if (typeof message.seconds === "number")
+                            object.seconds = options.longs === String ? String(message.seconds) : message.seconds;
+                        else
+                            object.seconds = options.longs === String ? $util.Long.prototype.toString.call(message.seconds) : options.longs === Number ? new $util.LongBits(message.seconds.low >>> 0, message.seconds.high >>> 0).toNumber() : message.seconds;
+                    if (message.nanos != null && message.hasOwnProperty("nanos"))
+                        object.nanos = message.nanos;
+                    return object;
+                };
+    
+                /**
+                 * Converts this Timestamp to JSON.
+                 * @function toJSON
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Timestamp.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * Gets the default type url for Timestamp
+                 * @function getTypeUrl
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+                 * @returns {string} The default type url
+                 */
+                Timestamp.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                    if (typeUrlPrefix === undefined) {
+                        typeUrlPrefix = "type.googleapis.com";
+                    }
+                    return typeUrlPrefix + "/google.protobuf.Timestamp";
+                };
+    
+                return Timestamp;
+            })();
+    
+            return protobuf;
+        })();
+    
+        return google;
     })();
 
     return $root;

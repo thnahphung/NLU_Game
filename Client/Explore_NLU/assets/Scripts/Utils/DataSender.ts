@@ -159,4 +159,12 @@ export default class DataSender {
     packet.reqAcceptFriend = reqAcceptFriend;
     WS.send(packet);
   }
+
+  public static sendReqTilledLand(tilledLands: proto.ITillLands) {
+    let reqTilledLand = new proto.ReqTilledLand();
+    reqTilledLand.tillLands = tilledLands;
+    let packet = new proto.Packet();
+    packet.reqTilledLand = reqTilledLand;
+    WS.send(packet);
+  }
 }
