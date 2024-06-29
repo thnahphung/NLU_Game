@@ -19,6 +19,7 @@ public class ServerEndpoint {
         ServerEndpoint.subscribe(new CharacterHandler());
         ServerEndpoint.subscribe(new AreaHandler());
         ServerEndpoint.subscribe(new AgriculturalHandler());
+        ServerEndpoint.subscribe(new FriendHandler());
     }
 
     public static void subscribe(Subscriber sub) {

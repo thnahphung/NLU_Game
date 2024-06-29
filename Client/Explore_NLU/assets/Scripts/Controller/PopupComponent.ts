@@ -5,6 +5,9 @@ const { ccclass, property } = _decorator;
 export class PopupComponent extends Component {
   protected onLoad(): void {
     this.node.scale = new Vec3(0, 0, 0);
+    if(this.node.name === "PopupMessage"){
+      this.node.scale = new Vec3(0.5, 0.5, 0.5);
+    }
   }
   // protected start(): void {
 
@@ -20,6 +23,10 @@ export class PopupComponent extends Component {
   }
 
   public hide() {
+    if(this.node.name === "PopupMessage"){
+      const bg = this.node.getChildByName("bg")
+      if(bg) bg.active = false;
+    }
     tween(this.node)
       .to(0.3, { scale: new Vec3(0, 0, 0) }, { easing: "backIn" })
       .call(() => {

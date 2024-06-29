@@ -40,6 +40,12 @@ public class AuthHandler implements Subscriber {
                     System.out.println("check is new user --: " + userRelogin.getIsNewAccount());
                     areaService.joinAreaLogin(userRelogin.getId(), session);
                     break;
+                case REQEMAILFORGETPASSWORD:
+                    authService.sendEmailForgetPassword(session, packet.getReqEmailForgetPassword());
+                    break;
+                case REQRECOVERPASSWORD:
+                    authService.checkRecoverPassword(session, packet.getReqRecoverPassword());
+                    break;
             }
         });
     }

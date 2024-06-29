@@ -3,6 +3,8 @@ package vn.edu.nlu.fit.nlugame.layer2.dao;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.UserBean;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,11 +54,13 @@ public class UserDAO extends BaseDAO {
         }
         try {
             Integer count = jdbi.withHandle(h -> h.createUpdate(
-                            "insert into " + TABLE_NAME + " (username, password, email) " +
-                                    "values (:username, :password, :email)")
+                            "insert into " + TABLE_NAME + " (username, password, email, level, active) " +
+                                    "values (:username, :password, :email, :level, :active)")
                     .bind("username", username)
                     .bind("password", pass)
                     .bind("email", email)
+                    .bind("level", 1)
+                    .bind("active", 1)
                   .execute());
             return count == 1 ? 200 : 500;
         } catch (Exception e) {
@@ -68,7 +72,7 @@ public class UserDAO extends BaseDAO {
         if (jdbi == null) {
             return null;
         }
-        return jdbi.withHandle(h -> h.createQuery("select id,username,player_name,gender,email,active,relogin_token  from " + TABLE_NAME + " where id = :id")
+        return jdbi.withHandle(h -> h.createQuery("select id,username,player_name,gender,email,active,relogin_token,character_id,level  from " + TABLE_NAME + " where id = :id")
                 .bind("id", userId)
                 .mapToBean(UserBean.class).stream().findFirst().orElse(null));
     }
@@ -76,7 +80,7 @@ public class UserDAO extends BaseDAO {
     //    select user by username
     public static UserBean selectUser(String username) {
         Jdbi jdbi = getJdbi();
-        return jdbi.withHandle(h -> h.createQuery("select id, username,player_name,gender,email,active,relogin_token  from " + TABLE_NAME + " where username = :username")
+        return jdbi.withHandle(h -> h.createQuery("select id, username,player_name,gender,email,active,relogin_token,character_id,level  from " + TABLE_NAME + " where username = :username")
                 .bind("username", username)
                 .mapToBean(UserBean.class).stream().findFirst().orElse(null));
     }
@@ -88,10 +92,24 @@ public class UserDAO extends BaseDAO {
         if (jdbi == null) {
             return null;
         }
-        return jdbi.withHandle(h -> h.createQuery("select id,username,password,player_name,gender,email,active,relogin_token,has_character from " + TABLE_NAME + " where username = :username")
+        return jdbi.withHandle(h -> h.createQuery("select id,username,password,player_name,gender,email,active,relogin_token,has_character, character_id from " + TABLE_NAME + " where username = :username")
                 .bind("username", username)
                 .mapToBean(UserBean.class).stream().findFirst().orElse(null));
     }
+
+    public static UserBean getUserByName(String name) {
+        if (name.equals("") || name.isEmpty()) {
+            return null;
+        }
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(h -> h.createQuery("select id,username,password,player_name,gender,email,active,relogin_token,has_character,character_id,level from " + TABLE_NAME + " where player_name = :name")
+                .bind("name", name)
+                .mapToBean(UserBean.class).stream().findFirst().orElse(null));
+    }
+
     public static void updateReloginToken(int userId, String token) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
@@ -121,5 +139,64 @@ public class UserDAO extends BaseDAO {
                 .bind("isNewAccount", isNewAccount)
                 .bind("id", userId)
                 .execute());
+    }
+
+    public static void saveResetTokenToDatabase(String email, String resetToken) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return;
+        }
+        // time up is 5 minute
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MINUTE, 5);
+        Timestamp expirationTime = new Timestamp(calendar.getTimeInMillis());
+
+        jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set password_recovery_token = :resetToken, password_recovery_time = :time where email = :email")
+                .bind("resetToken", resetToken)
+                .bind("time", expirationTime)
+                .bind("email", email)
+                .execute());
+    }
+
+    public static boolean checkEmailExist(String email) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return false;
+        }
+        return jdbi.withHandle(h -> h.createQuery("select count(*) from " + TABLE_NAME + " where email = :email")
+                .bind("email", email)
+                .mapTo(Integer.class).one() > 0);
+    }
+
+    public static int checkForgetPasswordToken (String email, String token) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return 500;
+        }
+        return jdbi.withHandle(h -> h.createQuery("select password_recovery_token, password_recovery_time from " + TABLE_NAME + " where email = :email")
+                .bind("email", email)
+                .mapToBean(UserBean.class).stream().findFirst().map(user -> {
+                    if (user.getPasswordRecoveryToken().equals(token)) {
+                        Calendar calendar = Calendar.getInstance();
+                        Timestamp currentTime = new Timestamp(calendar.getTimeInMillis());
+                        if(currentTime.before(user.getPasswordRecoveryTime())) return 200;
+                        return 403;
+                    }
+                    return 402;
+                }).orElse(500));
+    }
+
+    public static void updatePassword(String email, String password) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return;
+        }
+        jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set password = :password where email = :email")
+                .bind("password", password)
+                .bind("email", email)
+                .execute());
+    }
+    public static void main(String[] args) {
+        System.out.println(checkForgetPasswordToken("minhtrongvtctp@gmail.com", "Yx1yxa"));
     }
 }

@@ -1,7 +1,7 @@
 import { _decorator, Component, EditBox, find, Prefab } from 'cc';
 import DataSender from '../../Utils/DataSender';
 import { UICanvas } from '../MainUI/UICanvas';
-import { POPUP_MESSAGE } from '../../Utils/Const';
+import { t } from '../../../../extensions/i18n/assets/LanguageData';
 const { ccclass, property } = _decorator;
 
 @ccclass('PopupSignUp')
@@ -33,25 +33,25 @@ export class PopupSignUp extends Component {
         var rePassword = this.rePasswordRegister.string;
         var email = this.emailRegister.string;
         if(username === '' || password === '' || this.rePasswordRegister.string === ''){
-            UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_401);
+            UICanvas.me().showPopupMessage(t('label_text.register_failed_401'));
             return;
         }
         
         //Check valid username
         if(this.hasSpace(username)){
-            UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_INPUT);
+            UICanvas.me().showPopupMessage(t('label_text.register_failed_input'));
             return;
         }
 
         //Check không trùng khớp mật khẩu
         if(password !== rePassword){
-            UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_402);
+            UICanvas.me().showPopupMessage(t('label_text.register_failed_402'));
             return;
         }
 
         //Check verify email
         if(!this.isEmail(email)){
-            UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_EMAIL);
+            UICanvas.me().showPopupMessage(t('label_text.register_failed_email'));
             return;
         }
 

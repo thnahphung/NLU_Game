@@ -1,17 +1,18 @@
 import { wsConfig } from "../Config/Config";
 import { HandlerManager } from "../Manager/HandlerManager";
 import { SceneManager } from "../Manager/SceneManager";
+import { UICanvas } from "../Prefabs/MainUI/UICanvas";
 export class WS {
-  private static _instance: WS;
+  private static _instance: WS = null;
   private _ws: WebSocket;
   private _url: string = wsConfig.host + ":" + wsConfig.port + wsConfig.path;
   private static listPacket: proto.Packet[] = [];
   private connectFailLastTime: number = 0;
   public static me(): WS {
-    if (WS._instance == null) {
-      WS._instance = new WS();
+    if (this._instance == null) {
+      this._instance = new WS();
     }
-    return WS._instance;
+    return this._instance;
   }
 
   public static send(msg: proto.Packet): void {
@@ -35,11 +36,9 @@ export class WS {
 
   constructor() {
     this.checkAndReconnect();
-    console.debug("WS created");
   }
 
   onOpen = (event: any) => {
-    console.debug("WS connected", event.data);
     SceneManager.me()?.onOpen(event.data);
   };
 
@@ -51,12 +50,10 @@ export class WS {
   };
 
   onClose = (event: any) => {
-    console.debug("WS close", event.data);
     SceneManager.me()?.onClose(event.data);
   };
 
   onError = (event: any) => {
-    console.debug("WS error", event.data);
     SceneManager.me()?.onError(event.data);
   };
 
@@ -67,15 +64,20 @@ export class WS {
     this._ws.onmessage = this.onMessage;
     this._ws.onclose = this.onClose;
     this._ws.onerror = this.onError;
+
+    if(this._ws.readyState == WebSocket.CONNECTING) {
+      if(UICanvas.me()._popupConnectionNotify == null) {
+        UICanvas.me().showPopupConnectionNotify();
+      }
+    }
   }
 
   public checkAndReconnect() {
     let now = new Date().getTime();
-    if (
-      WS._instance &&
-      (WS._instance._ws.readyState == WebSocket.OPEN ||
-        now - this.connectFailLastTime < 30000)
-    ) {
+    if (this._ws && (this._ws.readyState == WebSocket.OPEN || now - this.connectFailLastTime < 3000)) {
+      if(this._ws.readyState == WebSocket.OPEN){
+        UICanvas.me().closePopupConnectionNotify();
+      }
       return;
     }
     this.connectFailLastTime = now;
