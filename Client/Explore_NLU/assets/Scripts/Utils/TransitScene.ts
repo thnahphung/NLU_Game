@@ -4,23 +4,23 @@ import {
   Component,
   Contact2DType,
   IPhysics2DContact,
-  Node,
-  RigidBody2D,
-  Vec3,
 } from "cc";
 import { UICanvas } from "../../Scripts/Prefabs/MainUI/UICanvas";
 import { Character } from "../../Scripts/Prefabs/Character/Character";
 import GlobalData from "./GlobalData";
-const { ccclass, property } = _decorator;
+import { SCENES, SCENES_COMMON } from "./Const";
+import { exec } from "child_process";
+import DataSender from "./DataSender";
+const { ccclass, property, executeInEditMode } = _decorator;
 
 @ccclass("TransitScene")
 export class TransitScene extends Component {
-  @property private sceneName: string = "";
-  private rigidBody: RigidBody2D;
-  @property(Vec3) positionCharacter: Vec3 = new Vec3(0, 0, 0);
+  @property({
+    type: SCENES_COMMON,
+  })
+  private areaCommonId: SCENES_COMMON;
 
   start() {
-    this.rigidBody = this.getComponent(RigidBody2D);
     let collider = this.node.getComponent(Collider2D);
     if (collider !== null) {
       collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
@@ -38,7 +38,9 @@ export class TransitScene extends Component {
     ) {
       return;
     }
-    GlobalData.me().setPositionCharacter(this.positionCharacter);
-    UICanvas.me().transitScene(this.sceneName);
+    console.log("onBeginContact", this.areaCommonId);
+    if (this.areaCommonId == SCENES_COMMON.NONE) return;
+    console.log("send", this.areaCommonId);
+    DataSender.sendReqPlayerJoinAreaCommon(this.areaCommonId);
   }
 }

@@ -83,6 +83,14 @@ export default class DataSender {
     WS.send(packet);
   }
 
+  public static sendReqPlayerJoinAreaCommon(areaId: number) {
+    let reqPlayerJoinArea = new proto.ReqPlayerJoinAreaCommon();
+    reqPlayerJoinArea.areaCommonId = areaId;
+    let packet = new proto.Packet();
+    packet.reqPlayerJoinAreaCommon = reqPlayerJoinArea;
+    WS.send(packet);
+  }
+
   public static sendReqLoadItemsOfFarm() {
     let reqLoadBaseItems = new proto.ReqLoadItemsOfFarm();
     let packet = new proto.Packet();

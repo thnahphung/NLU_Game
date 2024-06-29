@@ -23,22 +23,16 @@ public class AuthHandler implements Subscriber {
             //to check user đang login trong hệ thống
             switch (packet.getDataCase()) {
                 case REQLOGIN:
-                    UserBean userLoginBean = authService.checkLogin(session, packet.getReqLogin());
-                    if (userLoginBean == null) return;
-                    System.out.println("check is new user --: " + userLoginBean.getIsNewAccount());
-                    areaService.joinAreaLogin(userLoginBean.getId(), session);
+                    this.login(session, packet);
                     break;
                 case REQREGISTER:
                     authService.register(session, packet.getReqRegister());
                     break;
                 case REQLOGOUT:
-                    authService.logout(session, packet.getReqLogout());
+                    this.logout(session, packet);
                     break;
                 case REQRELOGIN:
-                    UserBean userRelogin = authService.checkReLogin(session, packet.getReqRelogin());
-                    if (userRelogin == null) return;
-                    System.out.println("check is new user --: " + userRelogin.getIsNewAccount());
-                    areaService.joinAreaLogin(userRelogin.getId(), session);
+                    this.reLogin(session, packet);
                     break;
                 case REQEMAILFORGETPASSWORD:
                     authService.sendEmailForgetPassword(session, packet.getReqEmailForgetPassword());
@@ -63,5 +57,22 @@ public class AuthHandler implements Subscriber {
     @Override
     public boolean requireLogin() {
         return false;
+    }
+
+    public void login(Session session, Proto.Packet packet) {
+        UserBean userLoginBean = authService.checkLogin(session, packet.getReqLogin());
+        if (userLoginBean == null) return;
+        areaService.joinAreaLogin(userLoginBean.getId(), session);
+    }
+
+    public void reLogin(Session session, Proto.Packet packet) {
+        UserBean userRelogin = authService.checkReLogin(session, packet.getReqRelogin());
+        if (userRelogin == null) return;
+        areaService.joinAreaLogin(userRelogin.getId(), session);
+    }
+
+    public void logout(Session session, Proto.Packet packet) {
+        areaService.leaveArea(session);
+        authService.logout(session, packet.getReqLogout());
     }
 }
