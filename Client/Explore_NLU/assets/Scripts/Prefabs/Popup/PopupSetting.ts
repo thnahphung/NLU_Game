@@ -26,7 +26,6 @@ export class PopupSetting extends AbsHandler {
   public dropdownLanguage: Node = null;
   @property(Label)
   public lableLanguage: Label = null;
-
   protected onLoad(): void {
     this.lableLanguage.string = t("label_text.setting_language_current");
     this.dropdownLanguage.active = false;
@@ -36,7 +35,6 @@ export class PopupSetting extends AbsHandler {
 
   onMessageHandler(packetWrapper: proto.IPacketWrapper): void {
     packetWrapper.packet.forEach((packet) => {
-      console.log("PopupSetting load: ", packet);
       if (packet.resLogout) {
         switch (packet.resLogout.status) {
           case 200:
@@ -48,7 +46,7 @@ export class PopupSetting extends AbsHandler {
             UICanvas.me().transitScene(SCENES.AUTHEN);
             break;
           case 400:
-            UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGOUT_FAILED_400);
+            UICanvas.me().showPopupMessage(t("label_text.logout_failed_400"));
             break;
         }
       }
@@ -104,5 +102,9 @@ export class PopupSetting extends AbsHandler {
     }
     GlobalData.me().logout();
     DataSender.sendReqLogout();
+  }
+
+  protected onDestroy(): void {
+    HandlerManager.me().unRegisterHandler(this);
   }
 }

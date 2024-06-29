@@ -34,6 +34,12 @@ public class AuthHandler implements Subscriber {
                 case REQRELOGIN:
                     this.reLogin(session, packet);
                     break;
+                case REQEMAILFORGETPASSWORD:
+                    authService.sendEmailForgetPassword(session, packet.getReqEmailForgetPassword());
+                    break;
+                case REQRECOVERPASSWORD:
+                    authService.checkRecoverPassword(session, packet.getReqRecoverPassword());
+                    break;
             }
         });
     }

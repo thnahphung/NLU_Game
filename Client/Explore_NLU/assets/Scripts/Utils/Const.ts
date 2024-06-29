@@ -19,6 +19,10 @@ export const POPUP_MESSAGE = {
   LOGOUT_FAILED_400: `Lỗi không thể đăng xuất!`,
   LOGOUT_FAILED_401: `Chưa đăng nhập tài khoản!`,
   SERVER_ERROR: `Lỗi hệ thống!`,
+  FORGET_PASSWORD_SUCCESS: `Mật khẩu mới đã được gửi vào email của bạn!`,
+  FORGET_PASSWORD_FAILED_400: `Email không tồn tại!`,
+  FORGET_PASSWORD_FAILED_401: `Email không được để trống!`,
+  FORGET_PASSWORD_FAILED_403: `Email không hợp lệ!`,
 };
 
 export enum SCENES {
@@ -187,6 +191,7 @@ export const LOCAL_STORAGE = {
 export enum POPUP {
   POPUP_OPTION = "POPUP_OPTION",
   POPUP_SETTING = "POPUP_SETTING",
+  POPUP_FRIEND = "POPUP_FRIEND",
 }
 
 export enum BUTTON {

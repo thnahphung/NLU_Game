@@ -1,7 +1,7 @@
 import { _decorator, Component, EditBox, find, Prefab } from 'cc';
 import DataSender from '../../Utils/DataSender';
 import { UICanvas } from '../MainUI/UICanvas';
-import { POPUP_MESSAGE } from '../../Utils/Const';
+import { t } from '../../../../extensions/i18n/assets/LanguageData';
 const { ccclass, property } = _decorator;
 
 @ccclass('PopupSignIn')
@@ -23,7 +23,7 @@ export class PopupSignIn extends Component {
     onClickLoginReq(){
         //Check không để trống username hoặc password
         if(this.usernameLogin.string === '' || this.passwordLogin.string === ''){
-           UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_401);
+           UICanvas.me().showPopupMessage(t('label_text.login_failed_401'));
            return;
         }
        //Xử lý khi click login

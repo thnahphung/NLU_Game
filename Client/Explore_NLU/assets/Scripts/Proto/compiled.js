@@ -262,6 +262,7 @@
              * @property {proto.IReqPickCharacter|null} [reqPickCharacter] Packet reqPickCharacter
              * @property {proto.IResPickCharacter|null} [resPickCharacter] Packet resPickCharacter
              * @property {proto.IReqPlayerJoinAreaCommon|null} [reqPlayerJoinAreaCommon] Packet reqPlayerJoinAreaCommon
+             * @property {proto.IResPlayerJoinAreaCommon|null} [resPlayerJoinAreaCommon] Packet resPlayerJoinAreaCommon
              * @property {proto.IReqPlayerJoinArea|null} [reqPlayerJoinArea] Packet reqPlayerJoinArea
              * @property {proto.IResPlayerJoinArea|null} [resPlayerJoinArea] Packet resPlayerJoinArea
              * @property {proto.IResOtherPlayerJoinArea|null} [resOtherPlayerJoinArea] Packet resOtherPlayerJoinArea
@@ -272,6 +273,18 @@
              * @property {proto.IResLoadItemsOfFarm|null} [resLoadItemsOfFarm] Packet resLoadItemsOfFarm
              * @property {proto.IReqBuyBuilding|null} [reqBuyBuilding] Packet reqBuyBuilding
              * @property {proto.IResBuyBuilding|null} [resBuyBuilding] Packet resBuyBuilding
+             * @property {proto.IReqEmailForgetPassword|null} [reqEmailForgetPassword] Packet reqEmailForgetPassword
+             * @property {proto.IReqRecoverPassword|null} [reqRecoverPassword] Packet reqRecoverPassword
+             * @property {proto.IResRecoverPassword|null} [resRecoverPassword] Packet resRecoverPassword
+             * @property {proto.IResEmailForgetPassword|null} [resEmailForgetPassword] Packet resEmailForgetPassword
+             * @property {proto.IReqLoadFriend|null} [reqLoadFriend] Packet reqLoadFriend
+             * @property {proto.IResLoadFriendList|null} [resLoadFriendList] Packet resLoadFriendList
+             * @property {proto.IReqFindFriend|null} [reqFindFriend] Packet reqFindFriend
+             * @property {proto.IResFindFriend|null} [resFindFriend] Packet resFindFriend
+             * @property {proto.IReqAddFriend|null} [reqAddFriend] Packet reqAddFriend
+             * @property {proto.IResAddFriend|null} [resAddFriend] Packet resAddFriend
+             * @property {proto.IReqAcceptFriend|null} [reqAcceptFriend] Packet reqAcceptFriend
+             * @property {proto.IResAcceptFriend|null} [resAcceptFriend] Packet resAcceptFriend
              */
     
             /**
@@ -410,6 +423,14 @@
             Packet.prototype.reqPlayerJoinAreaCommon = null;
     
             /**
+             * Packet resPlayerJoinAreaCommon.
+             * @member {proto.IResPlayerJoinAreaCommon|null|undefined} resPlayerJoinAreaCommon
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resPlayerJoinAreaCommon = null;
+    
+            /**
              * Packet reqPlayerJoinArea.
              * @member {proto.IReqPlayerJoinArea|null|undefined} reqPlayerJoinArea
              * @memberof proto.Packet
@@ -489,17 +510,113 @@
              */
             Packet.prototype.resBuyBuilding = null;
     
+            /**
+             * Packet reqEmailForgetPassword.
+             * @member {proto.IReqEmailForgetPassword|null|undefined} reqEmailForgetPassword
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqEmailForgetPassword = null;
+    
+            /**
+             * Packet reqRecoverPassword.
+             * @member {proto.IReqRecoverPassword|null|undefined} reqRecoverPassword
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqRecoverPassword = null;
+    
+            /**
+             * Packet resRecoverPassword.
+             * @member {proto.IResRecoverPassword|null|undefined} resRecoverPassword
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resRecoverPassword = null;
+    
+            /**
+             * Packet resEmailForgetPassword.
+             * @member {proto.IResEmailForgetPassword|null|undefined} resEmailForgetPassword
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resEmailForgetPassword = null;
+    
+            /**
+             * Packet reqLoadFriend.
+             * @member {proto.IReqLoadFriend|null|undefined} reqLoadFriend
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqLoadFriend = null;
+    
+            /**
+             * Packet resLoadFriendList.
+             * @member {proto.IResLoadFriendList|null|undefined} resLoadFriendList
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resLoadFriendList = null;
+    
+            /**
+             * Packet reqFindFriend.
+             * @member {proto.IReqFindFriend|null|undefined} reqFindFriend
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqFindFriend = null;
+    
+            /**
+             * Packet resFindFriend.
+             * @member {proto.IResFindFriend|null|undefined} resFindFriend
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resFindFriend = null;
+    
+            /**
+             * Packet reqAddFriend.
+             * @member {proto.IReqAddFriend|null|undefined} reqAddFriend
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqAddFriend = null;
+    
+            /**
+             * Packet resAddFriend.
+             * @member {proto.IResAddFriend|null|undefined} resAddFriend
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resAddFriend = null;
+    
+            /**
+             * Packet reqAcceptFriend.
+             * @member {proto.IReqAcceptFriend|null|undefined} reqAcceptFriend
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.reqAcceptFriend = null;
+    
+            /**
+             * Packet resAcceptFriend.
+             * @member {proto.IResAcceptFriend|null|undefined} resAcceptFriend
+             * @memberof proto.Packet
+             * @instance
+             */
+            Packet.prototype.resAcceptFriend = null;
+    
             // OneOf field names bound to virtual getters and setters
             var $oneOfFields;
     
             /**
              * Packet data.
-             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|undefined} data
+             * @member {"reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|"reqEmailForgetPassword"|"reqRecoverPassword"|"resRecoverPassword"|"resEmailForgetPassword"|"reqLoadFriend"|"resLoadFriendList"|"reqFindFriend"|"resFindFriend"|"reqAddFriend"|"resAddFriend"|"reqAcceptFriend"|"resAcceptFriend"|undefined} data
              * @memberof proto.Packet
              * @instance
              */
             Object.defineProperty(Packet.prototype, "data", {
-                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter", "reqPlayerJoinAreaCommon", "reqPlayerJoinArea", "resPlayerJoinArea", "resOtherPlayerJoinArea", "reqMoving", "resMoving", "resOtherPlayerLeaveArea", "reqLoadItemsOfFarm", "resLoadItemsOfFarm", "reqBuyBuilding", "resBuyBuilding"]),
+                get: $util.oneOfGetter($oneOfFields = ["reqLogin", "reqRelogin", "resLogin", "reqLogout", "resLogout", "reqForgotPassword", "resForgotPassword", "reqRegister", "resRegister", "reqUpdateUserInfo", "reqLoadCharacters", "resLoadCharacters", "reqPickCharacter", "resPickCharacter", "reqPlayerJoinAreaCommon", "resPlayerJoinAreaCommon", "reqPlayerJoinArea", "resPlayerJoinArea", "resOtherPlayerJoinArea", "reqMoving", "resMoving", "resOtherPlayerLeaveArea", "reqLoadItemsOfFarm", "resLoadItemsOfFarm", "reqBuyBuilding", "resBuyBuilding", "reqEmailForgetPassword", "reqRecoverPassword", "resRecoverPassword", "resEmailForgetPassword", "reqLoadFriend", "resLoadFriendList", "reqFindFriend", "resFindFriend", "reqAddFriend", "resAddFriend", "reqAcceptFriend", "resAcceptFriend"]),
                 set: $util.oneOfSetter($oneOfFields)
             });
     
@@ -557,6 +674,8 @@
                     $root.proto.ResPickCharacter.encode(message.resPickCharacter, writer.uint32(/* id 14, wireType 2 =*/114).fork()).ldelim();
                 if (message.reqPlayerJoinAreaCommon != null && Object.hasOwnProperty.call(message, "reqPlayerJoinAreaCommon"))
                     $root.proto.ReqPlayerJoinAreaCommon.encode(message.reqPlayerJoinAreaCommon, writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
+                if (message.resPlayerJoinAreaCommon != null && Object.hasOwnProperty.call(message, "resPlayerJoinAreaCommon"))
+                    $root.proto.ResPlayerJoinAreaCommon.encode(message.resPlayerJoinAreaCommon, writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
                 if (message.reqPlayerJoinArea != null && Object.hasOwnProperty.call(message, "reqPlayerJoinArea"))
                     $root.proto.ReqPlayerJoinArea.encode(message.reqPlayerJoinArea, writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
                 if (message.resPlayerJoinArea != null && Object.hasOwnProperty.call(message, "resPlayerJoinArea"))
@@ -577,6 +696,30 @@
                     $root.proto.ReqBuyBuilding.encode(message.reqBuyBuilding, writer.uint32(/* id 25, wireType 2 =*/202).fork()).ldelim();
                 if (message.resBuyBuilding != null && Object.hasOwnProperty.call(message, "resBuyBuilding"))
                     $root.proto.ResBuyBuilding.encode(message.resBuyBuilding, writer.uint32(/* id 26, wireType 2 =*/210).fork()).ldelim();
+                if (message.reqEmailForgetPassword != null && Object.hasOwnProperty.call(message, "reqEmailForgetPassword"))
+                    $root.proto.ReqEmailForgetPassword.encode(message.reqEmailForgetPassword, writer.uint32(/* id 27, wireType 2 =*/218).fork()).ldelim();
+                if (message.reqRecoverPassword != null && Object.hasOwnProperty.call(message, "reqRecoverPassword"))
+                    $root.proto.ReqRecoverPassword.encode(message.reqRecoverPassword, writer.uint32(/* id 28, wireType 2 =*/226).fork()).ldelim();
+                if (message.resRecoverPassword != null && Object.hasOwnProperty.call(message, "resRecoverPassword"))
+                    $root.proto.ResRecoverPassword.encode(message.resRecoverPassword, writer.uint32(/* id 29, wireType 2 =*/234).fork()).ldelim();
+                if (message.resEmailForgetPassword != null && Object.hasOwnProperty.call(message, "resEmailForgetPassword"))
+                    $root.proto.ResEmailForgetPassword.encode(message.resEmailForgetPassword, writer.uint32(/* id 30, wireType 2 =*/242).fork()).ldelim();
+                if (message.reqLoadFriend != null && Object.hasOwnProperty.call(message, "reqLoadFriend"))
+                    $root.proto.ReqLoadFriend.encode(message.reqLoadFriend, writer.uint32(/* id 31, wireType 2 =*/250).fork()).ldelim();
+                if (message.resLoadFriendList != null && Object.hasOwnProperty.call(message, "resLoadFriendList"))
+                    $root.proto.ResLoadFriendList.encode(message.resLoadFriendList, writer.uint32(/* id 32, wireType 2 =*/258).fork()).ldelim();
+                if (message.reqFindFriend != null && Object.hasOwnProperty.call(message, "reqFindFriend"))
+                    $root.proto.ReqFindFriend.encode(message.reqFindFriend, writer.uint32(/* id 33, wireType 2 =*/266).fork()).ldelim();
+                if (message.resFindFriend != null && Object.hasOwnProperty.call(message, "resFindFriend"))
+                    $root.proto.ResFindFriend.encode(message.resFindFriend, writer.uint32(/* id 34, wireType 2 =*/274).fork()).ldelim();
+                if (message.reqAddFriend != null && Object.hasOwnProperty.call(message, "reqAddFriend"))
+                    $root.proto.ReqAddFriend.encode(message.reqAddFriend, writer.uint32(/* id 35, wireType 2 =*/282).fork()).ldelim();
+                if (message.resAddFriend != null && Object.hasOwnProperty.call(message, "resAddFriend"))
+                    $root.proto.ResAddFriend.encode(message.resAddFriend, writer.uint32(/* id 36, wireType 2 =*/290).fork()).ldelim();
+                if (message.reqAcceptFriend != null && Object.hasOwnProperty.call(message, "reqAcceptFriend"))
+                    $root.proto.ReqAcceptFriend.encode(message.reqAcceptFriend, writer.uint32(/* id 37, wireType 2 =*/298).fork()).ldelim();
+                if (message.resAcceptFriend != null && Object.hasOwnProperty.call(message, "resAcceptFriend"))
+                    $root.proto.ResAcceptFriend.encode(message.resAcceptFriend, writer.uint32(/* id 38, wireType 2 =*/306).fork()).ldelim();
                 return writer;
             };
     
@@ -671,6 +814,10 @@
                             message.reqPlayerJoinAreaCommon = $root.proto.ReqPlayerJoinAreaCommon.decode(reader, reader.uint32());
                             break;
                         }
+                    case 16: {
+                            message.resPlayerJoinAreaCommon = $root.proto.ResPlayerJoinAreaCommon.decode(reader, reader.uint32());
+                            break;
+                        }
                     case 17: {
                             message.reqPlayerJoinArea = $root.proto.ReqPlayerJoinArea.decode(reader, reader.uint32());
                             break;
@@ -709,6 +856,54 @@
                         }
                     case 26: {
                             message.resBuyBuilding = $root.proto.ResBuyBuilding.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 27: {
+                            message.reqEmailForgetPassword = $root.proto.ReqEmailForgetPassword.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 28: {
+                            message.reqRecoverPassword = $root.proto.ReqRecoverPassword.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 29: {
+                            message.resRecoverPassword = $root.proto.ResRecoverPassword.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 30: {
+                            message.resEmailForgetPassword = $root.proto.ResEmailForgetPassword.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 31: {
+                            message.reqLoadFriend = $root.proto.ReqLoadFriend.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 32: {
+                            message.resLoadFriendList = $root.proto.ResLoadFriendList.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 33: {
+                            message.reqFindFriend = $root.proto.ReqFindFriend.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 34: {
+                            message.resFindFriend = $root.proto.ResFindFriend.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 35: {
+                            message.reqAddFriend = $root.proto.ReqAddFriend.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 36: {
+                            message.resAddFriend = $root.proto.ResAddFriend.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 37: {
+                            message.reqAcceptFriend = $root.proto.ReqAcceptFriend.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 38: {
+                            message.resAcceptFriend = $root.proto.ResAcceptFriend.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -895,6 +1090,16 @@
                             return "reqPlayerJoinAreaCommon." + error;
                     }
                 }
+                if (message.resPlayerJoinAreaCommon != null && message.hasOwnProperty("resPlayerJoinAreaCommon")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResPlayerJoinAreaCommon.verify(message.resPlayerJoinAreaCommon);
+                        if (error)
+                            return "resPlayerJoinAreaCommon." + error;
+                    }
+                }
                 if (message.reqPlayerJoinArea != null && message.hasOwnProperty("reqPlayerJoinArea")) {
                     if (properties.data === 1)
                         return "data: multiple values";
@@ -995,6 +1200,126 @@
                             return "resBuyBuilding." + error;
                     }
                 }
+                if (message.reqEmailForgetPassword != null && message.hasOwnProperty("reqEmailForgetPassword")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqEmailForgetPassword.verify(message.reqEmailForgetPassword);
+                        if (error)
+                            return "reqEmailForgetPassword." + error;
+                    }
+                }
+                if (message.reqRecoverPassword != null && message.hasOwnProperty("reqRecoverPassword")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqRecoverPassword.verify(message.reqRecoverPassword);
+                        if (error)
+                            return "reqRecoverPassword." + error;
+                    }
+                }
+                if (message.resRecoverPassword != null && message.hasOwnProperty("resRecoverPassword")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResRecoverPassword.verify(message.resRecoverPassword);
+                        if (error)
+                            return "resRecoverPassword." + error;
+                    }
+                }
+                if (message.resEmailForgetPassword != null && message.hasOwnProperty("resEmailForgetPassword")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResEmailForgetPassword.verify(message.resEmailForgetPassword);
+                        if (error)
+                            return "resEmailForgetPassword." + error;
+                    }
+                }
+                if (message.reqLoadFriend != null && message.hasOwnProperty("reqLoadFriend")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqLoadFriend.verify(message.reqLoadFriend);
+                        if (error)
+                            return "reqLoadFriend." + error;
+                    }
+                }
+                if (message.resLoadFriendList != null && message.hasOwnProperty("resLoadFriendList")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResLoadFriendList.verify(message.resLoadFriendList);
+                        if (error)
+                            return "resLoadFriendList." + error;
+                    }
+                }
+                if (message.reqFindFriend != null && message.hasOwnProperty("reqFindFriend")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqFindFriend.verify(message.reqFindFriend);
+                        if (error)
+                            return "reqFindFriend." + error;
+                    }
+                }
+                if (message.resFindFriend != null && message.hasOwnProperty("resFindFriend")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResFindFriend.verify(message.resFindFriend);
+                        if (error)
+                            return "resFindFriend." + error;
+                    }
+                }
+                if (message.reqAddFriend != null && message.hasOwnProperty("reqAddFriend")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqAddFriend.verify(message.reqAddFriend);
+                        if (error)
+                            return "reqAddFriend." + error;
+                    }
+                }
+                if (message.resAddFriend != null && message.hasOwnProperty("resAddFriend")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResAddFriend.verify(message.resAddFriend);
+                        if (error)
+                            return "resAddFriend." + error;
+                    }
+                }
+                if (message.reqAcceptFriend != null && message.hasOwnProperty("reqAcceptFriend")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ReqAcceptFriend.verify(message.reqAcceptFriend);
+                        if (error)
+                            return "reqAcceptFriend." + error;
+                    }
+                }
+                if (message.resAcceptFriend != null && message.hasOwnProperty("resAcceptFriend")) {
+                    if (properties.data === 1)
+                        return "data: multiple values";
+                    properties.data = 1;
+                    {
+                        var error = $root.proto.ResAcceptFriend.verify(message.resAcceptFriend);
+                        if (error)
+                            return "resAcceptFriend." + error;
+                    }
+                }
                 return null;
             };
     
@@ -1085,6 +1410,11 @@
                         throw TypeError(".proto.Packet.reqPlayerJoinAreaCommon: object expected");
                     message.reqPlayerJoinAreaCommon = $root.proto.ReqPlayerJoinAreaCommon.fromObject(object.reqPlayerJoinAreaCommon);
                 }
+                if (object.resPlayerJoinAreaCommon != null) {
+                    if (typeof object.resPlayerJoinAreaCommon !== "object")
+                        throw TypeError(".proto.Packet.resPlayerJoinAreaCommon: object expected");
+                    message.resPlayerJoinAreaCommon = $root.proto.ResPlayerJoinAreaCommon.fromObject(object.resPlayerJoinAreaCommon);
+                }
                 if (object.reqPlayerJoinArea != null) {
                     if (typeof object.reqPlayerJoinArea !== "object")
                         throw TypeError(".proto.Packet.reqPlayerJoinArea: object expected");
@@ -1134,6 +1464,66 @@
                     if (typeof object.resBuyBuilding !== "object")
                         throw TypeError(".proto.Packet.resBuyBuilding: object expected");
                     message.resBuyBuilding = $root.proto.ResBuyBuilding.fromObject(object.resBuyBuilding);
+                }
+                if (object.reqEmailForgetPassword != null) {
+                    if (typeof object.reqEmailForgetPassword !== "object")
+                        throw TypeError(".proto.Packet.reqEmailForgetPassword: object expected");
+                    message.reqEmailForgetPassword = $root.proto.ReqEmailForgetPassword.fromObject(object.reqEmailForgetPassword);
+                }
+                if (object.reqRecoverPassword != null) {
+                    if (typeof object.reqRecoverPassword !== "object")
+                        throw TypeError(".proto.Packet.reqRecoverPassword: object expected");
+                    message.reqRecoverPassword = $root.proto.ReqRecoverPassword.fromObject(object.reqRecoverPassword);
+                }
+                if (object.resRecoverPassword != null) {
+                    if (typeof object.resRecoverPassword !== "object")
+                        throw TypeError(".proto.Packet.resRecoverPassword: object expected");
+                    message.resRecoverPassword = $root.proto.ResRecoverPassword.fromObject(object.resRecoverPassword);
+                }
+                if (object.resEmailForgetPassword != null) {
+                    if (typeof object.resEmailForgetPassword !== "object")
+                        throw TypeError(".proto.Packet.resEmailForgetPassword: object expected");
+                    message.resEmailForgetPassword = $root.proto.ResEmailForgetPassword.fromObject(object.resEmailForgetPassword);
+                }
+                if (object.reqLoadFriend != null) {
+                    if (typeof object.reqLoadFriend !== "object")
+                        throw TypeError(".proto.Packet.reqLoadFriend: object expected");
+                    message.reqLoadFriend = $root.proto.ReqLoadFriend.fromObject(object.reqLoadFriend);
+                }
+                if (object.resLoadFriendList != null) {
+                    if (typeof object.resLoadFriendList !== "object")
+                        throw TypeError(".proto.Packet.resLoadFriendList: object expected");
+                    message.resLoadFriendList = $root.proto.ResLoadFriendList.fromObject(object.resLoadFriendList);
+                }
+                if (object.reqFindFriend != null) {
+                    if (typeof object.reqFindFriend !== "object")
+                        throw TypeError(".proto.Packet.reqFindFriend: object expected");
+                    message.reqFindFriend = $root.proto.ReqFindFriend.fromObject(object.reqFindFriend);
+                }
+                if (object.resFindFriend != null) {
+                    if (typeof object.resFindFriend !== "object")
+                        throw TypeError(".proto.Packet.resFindFriend: object expected");
+                    message.resFindFriend = $root.proto.ResFindFriend.fromObject(object.resFindFriend);
+                }
+                if (object.reqAddFriend != null) {
+                    if (typeof object.reqAddFriend !== "object")
+                        throw TypeError(".proto.Packet.reqAddFriend: object expected");
+                    message.reqAddFriend = $root.proto.ReqAddFriend.fromObject(object.reqAddFriend);
+                }
+                if (object.resAddFriend != null) {
+                    if (typeof object.resAddFriend !== "object")
+                        throw TypeError(".proto.Packet.resAddFriend: object expected");
+                    message.resAddFriend = $root.proto.ResAddFriend.fromObject(object.resAddFriend);
+                }
+                if (object.reqAcceptFriend != null) {
+                    if (typeof object.reqAcceptFriend !== "object")
+                        throw TypeError(".proto.Packet.reqAcceptFriend: object expected");
+                    message.reqAcceptFriend = $root.proto.ReqAcceptFriend.fromObject(object.reqAcceptFriend);
+                }
+                if (object.resAcceptFriend != null) {
+                    if (typeof object.resAcceptFriend !== "object")
+                        throw TypeError(".proto.Packet.resAcceptFriend: object expected");
+                    message.resAcceptFriend = $root.proto.ResAcceptFriend.fromObject(object.resAcceptFriend);
                 }
                 return message;
             };
@@ -1226,6 +1616,11 @@
                     if (options.oneofs)
                         object.data = "reqPlayerJoinAreaCommon";
                 }
+                if (message.resPlayerJoinAreaCommon != null && message.hasOwnProperty("resPlayerJoinAreaCommon")) {
+                    object.resPlayerJoinAreaCommon = $root.proto.ResPlayerJoinAreaCommon.toObject(message.resPlayerJoinAreaCommon, options);
+                    if (options.oneofs)
+                        object.data = "resPlayerJoinAreaCommon";
+                }
                 if (message.reqPlayerJoinArea != null && message.hasOwnProperty("reqPlayerJoinArea")) {
                     object.reqPlayerJoinArea = $root.proto.ReqPlayerJoinArea.toObject(message.reqPlayerJoinArea, options);
                     if (options.oneofs)
@@ -1275,6 +1670,66 @@
                     object.resBuyBuilding = $root.proto.ResBuyBuilding.toObject(message.resBuyBuilding, options);
                     if (options.oneofs)
                         object.data = "resBuyBuilding";
+                }
+                if (message.reqEmailForgetPassword != null && message.hasOwnProperty("reqEmailForgetPassword")) {
+                    object.reqEmailForgetPassword = $root.proto.ReqEmailForgetPassword.toObject(message.reqEmailForgetPassword, options);
+                    if (options.oneofs)
+                        object.data = "reqEmailForgetPassword";
+                }
+                if (message.reqRecoverPassword != null && message.hasOwnProperty("reqRecoverPassword")) {
+                    object.reqRecoverPassword = $root.proto.ReqRecoverPassword.toObject(message.reqRecoverPassword, options);
+                    if (options.oneofs)
+                        object.data = "reqRecoverPassword";
+                }
+                if (message.resRecoverPassword != null && message.hasOwnProperty("resRecoverPassword")) {
+                    object.resRecoverPassword = $root.proto.ResRecoverPassword.toObject(message.resRecoverPassword, options);
+                    if (options.oneofs)
+                        object.data = "resRecoverPassword";
+                }
+                if (message.resEmailForgetPassword != null && message.hasOwnProperty("resEmailForgetPassword")) {
+                    object.resEmailForgetPassword = $root.proto.ResEmailForgetPassword.toObject(message.resEmailForgetPassword, options);
+                    if (options.oneofs)
+                        object.data = "resEmailForgetPassword";
+                }
+                if (message.reqLoadFriend != null && message.hasOwnProperty("reqLoadFriend")) {
+                    object.reqLoadFriend = $root.proto.ReqLoadFriend.toObject(message.reqLoadFriend, options);
+                    if (options.oneofs)
+                        object.data = "reqLoadFriend";
+                }
+                if (message.resLoadFriendList != null && message.hasOwnProperty("resLoadFriendList")) {
+                    object.resLoadFriendList = $root.proto.ResLoadFriendList.toObject(message.resLoadFriendList, options);
+                    if (options.oneofs)
+                        object.data = "resLoadFriendList";
+                }
+                if (message.reqFindFriend != null && message.hasOwnProperty("reqFindFriend")) {
+                    object.reqFindFriend = $root.proto.ReqFindFriend.toObject(message.reqFindFriend, options);
+                    if (options.oneofs)
+                        object.data = "reqFindFriend";
+                }
+                if (message.resFindFriend != null && message.hasOwnProperty("resFindFriend")) {
+                    object.resFindFriend = $root.proto.ResFindFriend.toObject(message.resFindFriend, options);
+                    if (options.oneofs)
+                        object.data = "resFindFriend";
+                }
+                if (message.reqAddFriend != null && message.hasOwnProperty("reqAddFriend")) {
+                    object.reqAddFriend = $root.proto.ReqAddFriend.toObject(message.reqAddFriend, options);
+                    if (options.oneofs)
+                        object.data = "reqAddFriend";
+                }
+                if (message.resAddFriend != null && message.hasOwnProperty("resAddFriend")) {
+                    object.resAddFriend = $root.proto.ResAddFriend.toObject(message.resAddFriend, options);
+                    if (options.oneofs)
+                        object.data = "resAddFriend";
+                }
+                if (message.reqAcceptFriend != null && message.hasOwnProperty("reqAcceptFriend")) {
+                    object.reqAcceptFriend = $root.proto.ReqAcceptFriend.toObject(message.reqAcceptFriend, options);
+                    if (options.oneofs)
+                        object.data = "reqAcceptFriend";
+                }
+                if (message.resAcceptFriend != null && message.hasOwnProperty("resAcceptFriend")) {
+                    object.resAcceptFriend = $root.proto.ResAcceptFriend.toObject(message.resAcceptFriend, options);
+                    if (options.oneofs)
+                        object.data = "resAcceptFriend";
                 }
                 return object;
             };
@@ -2148,8 +2603,8 @@
              * @interface IArea
              * @property {number|null} [areaId] Area areaId
              * @property {string|null} [typeArea] Area typeArea
+             * @property {proto.IPosition|null} [position] Area position
              * @property {number|null} [status] Area status
-             * @property {number|null} [userId] Area userId
              */
     
             /**
@@ -2184,20 +2639,20 @@
             Area.prototype.typeArea = "";
     
             /**
+             * Area position.
+             * @member {proto.IPosition|null|undefined} position
+             * @memberof proto.Area
+             * @instance
+             */
+            Area.prototype.position = null;
+    
+            /**
              * Area status.
              * @member {number} status
              * @memberof proto.Area
              * @instance
              */
             Area.prototype.status = 0;
-    
-            /**
-             * Area userId.
-             * @member {number} userId
-             * @memberof proto.Area
-             * @instance
-             */
-            Area.prototype.userId = 0;
     
             /**
              * Creates a new Area instance using the specified properties.
@@ -2227,10 +2682,10 @@
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.areaId);
                 if (message.typeArea != null && Object.hasOwnProperty.call(message, "typeArea"))
                     writer.uint32(/* id 3, wireType 2 =*/26).string(message.typeArea);
+                if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                    $root.proto.Position.encode(message.position, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                 if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                     writer.uint32(/* id 5, wireType 0 =*/40).int32(message.status);
-                if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
-                    writer.uint32(/* id 6, wireType 0 =*/48).int32(message.userId);
                 return writer;
             };
     
@@ -2273,12 +2728,12 @@
                             message.typeArea = reader.string();
                             break;
                         }
-                    case 5: {
-                            message.status = reader.int32();
+                    case 4: {
+                            message.position = $root.proto.Position.decode(reader, reader.uint32());
                             break;
                         }
-                    case 6: {
-                            message.userId = reader.int32();
+                    case 5: {
+                            message.status = reader.int32();
                             break;
                         }
                     default:
@@ -2322,12 +2777,14 @@
                 if (message.typeArea != null && message.hasOwnProperty("typeArea"))
                     if (!$util.isString(message.typeArea))
                         return "typeArea: string expected";
+                if (message.position != null && message.hasOwnProperty("position")) {
+                    var error = $root.proto.Position.verify(message.position);
+                    if (error)
+                        return "position." + error;
+                }
                 if (message.status != null && message.hasOwnProperty("status"))
                     if (!$util.isInteger(message.status))
                         return "status: integer expected";
-                if (message.userId != null && message.hasOwnProperty("userId"))
-                    if (!$util.isInteger(message.userId))
-                        return "userId: integer expected";
                 return null;
             };
     
@@ -2347,10 +2804,13 @@
                     message.areaId = object.areaId | 0;
                 if (object.typeArea != null)
                     message.typeArea = String(object.typeArea);
+                if (object.position != null) {
+                    if (typeof object.position !== "object")
+                        throw TypeError(".proto.Area.position: object expected");
+                    message.position = $root.proto.Position.fromObject(object.position);
+                }
                 if (object.status != null)
                     message.status = object.status | 0;
-                if (object.userId != null)
-                    message.userId = object.userId | 0;
                 return message;
             };
     
@@ -2370,17 +2830,17 @@
                 if (options.defaults) {
                     object.areaId = 0;
                     object.typeArea = "";
+                    object.position = null;
                     object.status = 0;
-                    object.userId = 0;
                 }
                 if (message.areaId != null && message.hasOwnProperty("areaId"))
                     object.areaId = message.areaId;
                 if (message.typeArea != null && message.hasOwnProperty("typeArea"))
                     object.typeArea = message.typeArea;
+                if (message.position != null && message.hasOwnProperty("position"))
+                    object.position = $root.proto.Position.toObject(message.position, options);
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = message.status;
-                if (message.userId != null && message.hasOwnProperty("userId"))
-                    object.userId = message.userId;
                 return object;
             };
     
@@ -5898,6 +6358,7 @@
              * @memberof proto
              * @interface IReqPlayerJoinAreaCommon
              * @property {number|null} [areaCommonId] ReqPlayerJoinAreaCommon areaCommonId
+             * @property {proto.IPosition|null} [position] ReqPlayerJoinAreaCommon position
              */
     
             /**
@@ -5922,6 +6383,14 @@
              * @instance
              */
             ReqPlayerJoinAreaCommon.prototype.areaCommonId = 0;
+    
+            /**
+             * ReqPlayerJoinAreaCommon position.
+             * @member {proto.IPosition|null|undefined} position
+             * @memberof proto.ReqPlayerJoinAreaCommon
+             * @instance
+             */
+            ReqPlayerJoinAreaCommon.prototype.position = null;
     
             /**
              * Creates a new ReqPlayerJoinAreaCommon instance using the specified properties.
@@ -5949,6 +6418,8 @@
                     writer = $Writer.create();
                 if (message.areaCommonId != null && Object.hasOwnProperty.call(message, "areaCommonId"))
                     writer.uint32(/* id 1, wireType 0 =*/8).int32(message.areaCommonId);
+                if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                    $root.proto.Position.encode(message.position, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
                 return writer;
             };
     
@@ -5985,6 +6456,10 @@
                     switch (tag >>> 3) {
                     case 1: {
                             message.areaCommonId = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.position = $root.proto.Position.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -6025,6 +6500,11 @@
                 if (message.areaCommonId != null && message.hasOwnProperty("areaCommonId"))
                     if (!$util.isInteger(message.areaCommonId))
                         return "areaCommonId: integer expected";
+                if (message.position != null && message.hasOwnProperty("position")) {
+                    var error = $root.proto.Position.verify(message.position);
+                    if (error)
+                        return "position." + error;
+                }
                 return null;
             };
     
@@ -6042,6 +6522,11 @@
                 var message = new $root.proto.ReqPlayerJoinAreaCommon();
                 if (object.areaCommonId != null)
                     message.areaCommonId = object.areaCommonId | 0;
+                if (object.position != null) {
+                    if (typeof object.position !== "object")
+                        throw TypeError(".proto.ReqPlayerJoinAreaCommon.position: object expected");
+                    message.position = $root.proto.Position.fromObject(object.position);
+                }
                 return message;
             };
     
@@ -6058,10 +6543,14 @@
                 if (!options)
                     options = {};
                 var object = {};
-                if (options.defaults)
+                if (options.defaults) {
                     object.areaCommonId = 0;
+                    object.position = null;
+                }
                 if (message.areaCommonId != null && message.hasOwnProperty("areaCommonId"))
                     object.areaCommonId = message.areaCommonId;
+                if (message.position != null && message.hasOwnProperty("position"))
+                    object.position = $root.proto.Position.toObject(message.position, options);
                 return object;
             };
     
@@ -6092,6 +6581,357 @@
             };
     
             return ReqPlayerJoinAreaCommon;
+        })();
+    
+        proto.ResPlayerJoinAreaCommon = (function() {
+    
+            /**
+             * Properties of a ResPlayerJoinAreaCommon.
+             * @memberof proto
+             * @interface IResPlayerJoinAreaCommon
+             * @property {number|null} [areaCommonId] ResPlayerJoinAreaCommon areaCommonId
+             * @property {proto.IArea|null} [area] ResPlayerJoinAreaCommon area
+             * @property {Array.<proto.IUser>|null} [users] ResPlayerJoinAreaCommon users
+             * @property {number|null} [status] ResPlayerJoinAreaCommon status
+             * @property {number|null} [areaState] ResPlayerJoinAreaCommon areaState
+             * @property {proto.IPosition|null} [position] ResPlayerJoinAreaCommon position
+             */
+    
+            /**
+             * Constructs a new ResPlayerJoinAreaCommon.
+             * @memberof proto
+             * @classdesc Represents a ResPlayerJoinAreaCommon.
+             * @implements IResPlayerJoinAreaCommon
+             * @constructor
+             * @param {proto.IResPlayerJoinAreaCommon=} [properties] Properties to set
+             */
+            function ResPlayerJoinAreaCommon(properties) {
+                this.users = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResPlayerJoinAreaCommon areaCommonId.
+             * @member {number} areaCommonId
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             */
+            ResPlayerJoinAreaCommon.prototype.areaCommonId = 0;
+    
+            /**
+             * ResPlayerJoinAreaCommon area.
+             * @member {proto.IArea|null|undefined} area
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             */
+            ResPlayerJoinAreaCommon.prototype.area = null;
+    
+            /**
+             * ResPlayerJoinAreaCommon users.
+             * @member {Array.<proto.IUser>} users
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             */
+            ResPlayerJoinAreaCommon.prototype.users = $util.emptyArray;
+    
+            /**
+             * ResPlayerJoinAreaCommon status.
+             * @member {number} status
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             */
+            ResPlayerJoinAreaCommon.prototype.status = 0;
+    
+            /**
+             * ResPlayerJoinAreaCommon areaState.
+             * @member {number} areaState
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             */
+            ResPlayerJoinAreaCommon.prototype.areaState = 0;
+    
+            /**
+             * ResPlayerJoinAreaCommon position.
+             * @member {proto.IPosition|null|undefined} position
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             */
+            ResPlayerJoinAreaCommon.prototype.position = null;
+    
+            /**
+             * Creates a new ResPlayerJoinAreaCommon instance using the specified properties.
+             * @function create
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {proto.IResPlayerJoinAreaCommon=} [properties] Properties to set
+             * @returns {proto.ResPlayerJoinAreaCommon} ResPlayerJoinAreaCommon instance
+             */
+            ResPlayerJoinAreaCommon.create = function create(properties) {
+                return new ResPlayerJoinAreaCommon(properties);
+            };
+    
+            /**
+             * Encodes the specified ResPlayerJoinAreaCommon message. Does not implicitly {@link proto.ResPlayerJoinAreaCommon.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {proto.IResPlayerJoinAreaCommon} message ResPlayerJoinAreaCommon message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResPlayerJoinAreaCommon.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.areaCommonId != null && Object.hasOwnProperty.call(message, "areaCommonId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.areaCommonId);
+                if (message.area != null && Object.hasOwnProperty.call(message, "area"))
+                    $root.proto.Area.encode(message.area, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                if (message.users != null && message.users.length)
+                    for (var i = 0; i < message.users.length; ++i)
+                        $root.proto.User.encode(message.users[i], writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).int32(message.status);
+                if (message.areaState != null && Object.hasOwnProperty.call(message, "areaState"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).int32(message.areaState);
+                if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                    $root.proto.Position.encode(message.position, writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResPlayerJoinAreaCommon message, length delimited. Does not implicitly {@link proto.ResPlayerJoinAreaCommon.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {proto.IResPlayerJoinAreaCommon} message ResPlayerJoinAreaCommon message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResPlayerJoinAreaCommon.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResPlayerJoinAreaCommon message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResPlayerJoinAreaCommon} ResPlayerJoinAreaCommon
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResPlayerJoinAreaCommon.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResPlayerJoinAreaCommon();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.areaCommonId = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.area = $root.proto.Area.decode(reader, reader.uint32());
+                            break;
+                        }
+                    case 4: {
+                            if (!(message.users && message.users.length))
+                                message.users = [];
+                            message.users.push($root.proto.User.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 5: {
+                            message.status = reader.int32();
+                            break;
+                        }
+                    case 6: {
+                            message.areaState = reader.int32();
+                            break;
+                        }
+                    case 7: {
+                            message.position = $root.proto.Position.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResPlayerJoinAreaCommon message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResPlayerJoinAreaCommon} ResPlayerJoinAreaCommon
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResPlayerJoinAreaCommon.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResPlayerJoinAreaCommon message.
+             * @function verify
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResPlayerJoinAreaCommon.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.areaCommonId != null && message.hasOwnProperty("areaCommonId"))
+                    if (!$util.isInteger(message.areaCommonId))
+                        return "areaCommonId: integer expected";
+                if (message.area != null && message.hasOwnProperty("area")) {
+                    var error = $root.proto.Area.verify(message.area);
+                    if (error)
+                        return "area." + error;
+                }
+                if (message.users != null && message.hasOwnProperty("users")) {
+                    if (!Array.isArray(message.users))
+                        return "users: array expected";
+                    for (var i = 0; i < message.users.length; ++i) {
+                        var error = $root.proto.User.verify(message.users[i]);
+                        if (error)
+                            return "users." + error;
+                    }
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                if (message.areaState != null && message.hasOwnProperty("areaState"))
+                    if (!$util.isInteger(message.areaState))
+                        return "areaState: integer expected";
+                if (message.position != null && message.hasOwnProperty("position")) {
+                    var error = $root.proto.Position.verify(message.position);
+                    if (error)
+                        return "position." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a ResPlayerJoinAreaCommon message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResPlayerJoinAreaCommon} ResPlayerJoinAreaCommon
+             */
+            ResPlayerJoinAreaCommon.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResPlayerJoinAreaCommon)
+                    return object;
+                var message = new $root.proto.ResPlayerJoinAreaCommon();
+                if (object.areaCommonId != null)
+                    message.areaCommonId = object.areaCommonId | 0;
+                if (object.area != null) {
+                    if (typeof object.area !== "object")
+                        throw TypeError(".proto.ResPlayerJoinAreaCommon.area: object expected");
+                    message.area = $root.proto.Area.fromObject(object.area);
+                }
+                if (object.users) {
+                    if (!Array.isArray(object.users))
+                        throw TypeError(".proto.ResPlayerJoinAreaCommon.users: array expected");
+                    message.users = [];
+                    for (var i = 0; i < object.users.length; ++i) {
+                        if (typeof object.users[i] !== "object")
+                            throw TypeError(".proto.ResPlayerJoinAreaCommon.users: object expected");
+                        message.users[i] = $root.proto.User.fromObject(object.users[i]);
+                    }
+                }
+                if (object.status != null)
+                    message.status = object.status | 0;
+                if (object.areaState != null)
+                    message.areaState = object.areaState | 0;
+                if (object.position != null) {
+                    if (typeof object.position !== "object")
+                        throw TypeError(".proto.ResPlayerJoinAreaCommon.position: object expected");
+                    message.position = $root.proto.Position.fromObject(object.position);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResPlayerJoinAreaCommon message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {proto.ResPlayerJoinAreaCommon} message ResPlayerJoinAreaCommon
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResPlayerJoinAreaCommon.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.users = [];
+                if (options.defaults) {
+                    object.areaCommonId = 0;
+                    object.area = null;
+                    object.status = 0;
+                    object.areaState = 0;
+                    object.position = null;
+                }
+                if (message.areaCommonId != null && message.hasOwnProperty("areaCommonId"))
+                    object.areaCommonId = message.areaCommonId;
+                if (message.area != null && message.hasOwnProperty("area"))
+                    object.area = $root.proto.Area.toObject(message.area, options);
+                if (message.users && message.users.length) {
+                    object.users = [];
+                    for (var j = 0; j < message.users.length; ++j)
+                        object.users[j] = $root.proto.User.toObject(message.users[j], options);
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                if (message.areaState != null && message.hasOwnProperty("areaState"))
+                    object.areaState = message.areaState;
+                if (message.position != null && message.hasOwnProperty("position"))
+                    object.position = $root.proto.Position.toObject(message.position, options);
+                return object;
+            };
+    
+            /**
+             * Converts this ResPlayerJoinAreaCommon to JSON.
+             * @function toJSON
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResPlayerJoinAreaCommon.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResPlayerJoinAreaCommon
+             * @function getTypeUrl
+             * @memberof proto.ResPlayerJoinAreaCommon
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResPlayerJoinAreaCommon.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResPlayerJoinAreaCommon";
+            };
+    
+            return ResPlayerJoinAreaCommon;
         })();
     
         proto.ReqPlayerJoinArea = (function() {
@@ -6306,7 +7146,7 @@
              * @property {proto.IArea|null} [area] ResPlayerJoinArea area
              * @property {Array.<proto.IUser>|null} [users] ResPlayerJoinArea users
              * @property {number|null} [status] ResPlayerJoinArea status
-             * @property {string|null} [oldAreaType] ResPlayerJoinArea oldAreaType
+             * @property {proto.IPosition|null} [position] ResPlayerJoinArea position
              */
     
             /**
@@ -6350,12 +7190,12 @@
             ResPlayerJoinArea.prototype.status = 0;
     
             /**
-             * ResPlayerJoinArea oldAreaType.
-             * @member {string} oldAreaType
+             * ResPlayerJoinArea position.
+             * @member {proto.IPosition|null|undefined} position
              * @memberof proto.ResPlayerJoinArea
              * @instance
              */
-            ResPlayerJoinArea.prototype.oldAreaType = "";
+            ResPlayerJoinArea.prototype.position = null;
     
             /**
              * Creates a new ResPlayerJoinArea instance using the specified properties.
@@ -6388,8 +7228,8 @@
                         $root.proto.User.encode(message.users[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
                 if (message.status != null && Object.hasOwnProperty.call(message, "status"))
                     writer.uint32(/* id 4, wireType 0 =*/32).int32(message.status);
-                if (message.oldAreaType != null && Object.hasOwnProperty.call(message, "oldAreaType"))
-                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.oldAreaType);
+                if (message.position != null && Object.hasOwnProperty.call(message, "position"))
+                    $root.proto.Position.encode(message.position, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                 return writer;
             };
     
@@ -6439,7 +7279,7 @@
                             break;
                         }
                     case 5: {
-                            message.oldAreaType = reader.string();
+                            message.position = $root.proto.Position.decode(reader, reader.uint32());
                             break;
                         }
                     default:
@@ -6494,9 +7334,11 @@
                 if (message.status != null && message.hasOwnProperty("status"))
                     if (!$util.isInteger(message.status))
                         return "status: integer expected";
-                if (message.oldAreaType != null && message.hasOwnProperty("oldAreaType"))
-                    if (!$util.isString(message.oldAreaType))
-                        return "oldAreaType: string expected";
+                if (message.position != null && message.hasOwnProperty("position")) {
+                    var error = $root.proto.Position.verify(message.position);
+                    if (error)
+                        return "position." + error;
+                }
                 return null;
             };
     
@@ -6529,8 +7371,11 @@
                 }
                 if (object.status != null)
                     message.status = object.status | 0;
-                if (object.oldAreaType != null)
-                    message.oldAreaType = String(object.oldAreaType);
+                if (object.position != null) {
+                    if (typeof object.position !== "object")
+                        throw TypeError(".proto.ResPlayerJoinArea.position: object expected");
+                    message.position = $root.proto.Position.fromObject(object.position);
+                }
                 return message;
             };
     
@@ -6552,7 +7397,7 @@
                 if (options.defaults) {
                     object.area = null;
                     object.status = 0;
-                    object.oldAreaType = "";
+                    object.position = null;
                 }
                 if (message.area != null && message.hasOwnProperty("area"))
                     object.area = $root.proto.Area.toObject(message.area, options);
@@ -6563,8 +7408,8 @@
                 }
                 if (message.status != null && message.hasOwnProperty("status"))
                     object.status = message.status;
-                if (message.oldAreaType != null && message.hasOwnProperty("oldAreaType"))
-                    object.oldAreaType = message.oldAreaType;
+                if (message.position != null && message.hasOwnProperty("position"))
+                    object.position = $root.proto.Position.toObject(message.position, options);
                 return object;
             };
     
@@ -10667,6 +11512,2822 @@
             };
     
             return ResBuyBuilding;
+        })();
+    
+        proto.ReqEmailForgetPassword = (function() {
+    
+            /**
+             * Properties of a ReqEmailForgetPassword.
+             * @memberof proto
+             * @interface IReqEmailForgetPassword
+             * @property {string|null} [email] ReqEmailForgetPassword email
+             */
+    
+            /**
+             * Constructs a new ReqEmailForgetPassword.
+             * @memberof proto
+             * @classdesc Represents a ReqEmailForgetPassword.
+             * @implements IReqEmailForgetPassword
+             * @constructor
+             * @param {proto.IReqEmailForgetPassword=} [properties] Properties to set
+             */
+            function ReqEmailForgetPassword(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ReqEmailForgetPassword email.
+             * @member {string} email
+             * @memberof proto.ReqEmailForgetPassword
+             * @instance
+             */
+            ReqEmailForgetPassword.prototype.email = "";
+    
+            /**
+             * Creates a new ReqEmailForgetPassword instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {proto.IReqEmailForgetPassword=} [properties] Properties to set
+             * @returns {proto.ReqEmailForgetPassword} ReqEmailForgetPassword instance
+             */
+            ReqEmailForgetPassword.create = function create(properties) {
+                return new ReqEmailForgetPassword(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqEmailForgetPassword message. Does not implicitly {@link proto.ReqEmailForgetPassword.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {proto.IReqEmailForgetPassword} message ReqEmailForgetPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqEmailForgetPassword.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.email != null && Object.hasOwnProperty.call(message, "email"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.email);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqEmailForgetPassword message, length delimited. Does not implicitly {@link proto.ReqEmailForgetPassword.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {proto.IReqEmailForgetPassword} message ReqEmailForgetPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqEmailForgetPassword.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqEmailForgetPassword message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqEmailForgetPassword} ReqEmailForgetPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqEmailForgetPassword.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqEmailForgetPassword();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.email = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqEmailForgetPassword message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqEmailForgetPassword} ReqEmailForgetPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqEmailForgetPassword.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqEmailForgetPassword message.
+             * @function verify
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqEmailForgetPassword.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.email != null && message.hasOwnProperty("email"))
+                    if (!$util.isString(message.email))
+                        return "email: string expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ReqEmailForgetPassword message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqEmailForgetPassword} ReqEmailForgetPassword
+             */
+            ReqEmailForgetPassword.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqEmailForgetPassword)
+                    return object;
+                var message = new $root.proto.ReqEmailForgetPassword();
+                if (object.email != null)
+                    message.email = String(object.email);
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ReqEmailForgetPassword message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {proto.ReqEmailForgetPassword} message ReqEmailForgetPassword
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqEmailForgetPassword.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.email = "";
+                if (message.email != null && message.hasOwnProperty("email"))
+                    object.email = message.email;
+                return object;
+            };
+    
+            /**
+             * Converts this ReqEmailForgetPassword to JSON.
+             * @function toJSON
+             * @memberof proto.ReqEmailForgetPassword
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqEmailForgetPassword.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqEmailForgetPassword
+             * @function getTypeUrl
+             * @memberof proto.ReqEmailForgetPassword
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqEmailForgetPassword.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqEmailForgetPassword";
+            };
+    
+            return ReqEmailForgetPassword;
+        })();
+    
+        proto.ReqRecoverPassword = (function() {
+    
+            /**
+             * Properties of a ReqRecoverPassword.
+             * @memberof proto
+             * @interface IReqRecoverPassword
+             * @property {string|null} [password] ReqRecoverPassword password
+             * @property {string|null} [token] ReqRecoverPassword token
+             * @property {string|null} [email] ReqRecoverPassword email
+             */
+    
+            /**
+             * Constructs a new ReqRecoverPassword.
+             * @memberof proto
+             * @classdesc Represents a ReqRecoverPassword.
+             * @implements IReqRecoverPassword
+             * @constructor
+             * @param {proto.IReqRecoverPassword=} [properties] Properties to set
+             */
+            function ReqRecoverPassword(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ReqRecoverPassword password.
+             * @member {string} password
+             * @memberof proto.ReqRecoverPassword
+             * @instance
+             */
+            ReqRecoverPassword.prototype.password = "";
+    
+            /**
+             * ReqRecoverPassword token.
+             * @member {string} token
+             * @memberof proto.ReqRecoverPassword
+             * @instance
+             */
+            ReqRecoverPassword.prototype.token = "";
+    
+            /**
+             * ReqRecoverPassword email.
+             * @member {string} email
+             * @memberof proto.ReqRecoverPassword
+             * @instance
+             */
+            ReqRecoverPassword.prototype.email = "";
+    
+            /**
+             * Creates a new ReqRecoverPassword instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {proto.IReqRecoverPassword=} [properties] Properties to set
+             * @returns {proto.ReqRecoverPassword} ReqRecoverPassword instance
+             */
+            ReqRecoverPassword.create = function create(properties) {
+                return new ReqRecoverPassword(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqRecoverPassword message. Does not implicitly {@link proto.ReqRecoverPassword.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {proto.IReqRecoverPassword} message ReqRecoverPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqRecoverPassword.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.password != null && Object.hasOwnProperty.call(message, "password"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.password);
+                if (message.token != null && Object.hasOwnProperty.call(message, "token"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.token);
+                if (message.email != null && Object.hasOwnProperty.call(message, "email"))
+                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.email);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqRecoverPassword message, length delimited. Does not implicitly {@link proto.ReqRecoverPassword.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {proto.IReqRecoverPassword} message ReqRecoverPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqRecoverPassword.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqRecoverPassword message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqRecoverPassword} ReqRecoverPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqRecoverPassword.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqRecoverPassword();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.password = reader.string();
+                            break;
+                        }
+                    case 2: {
+                            message.token = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.email = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqRecoverPassword message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqRecoverPassword} ReqRecoverPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqRecoverPassword.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqRecoverPassword message.
+             * @function verify
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqRecoverPassword.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.password != null && message.hasOwnProperty("password"))
+                    if (!$util.isString(message.password))
+                        return "password: string expected";
+                if (message.token != null && message.hasOwnProperty("token"))
+                    if (!$util.isString(message.token))
+                        return "token: string expected";
+                if (message.email != null && message.hasOwnProperty("email"))
+                    if (!$util.isString(message.email))
+                        return "email: string expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ReqRecoverPassword message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqRecoverPassword} ReqRecoverPassword
+             */
+            ReqRecoverPassword.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqRecoverPassword)
+                    return object;
+                var message = new $root.proto.ReqRecoverPassword();
+                if (object.password != null)
+                    message.password = String(object.password);
+                if (object.token != null)
+                    message.token = String(object.token);
+                if (object.email != null)
+                    message.email = String(object.email);
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ReqRecoverPassword message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {proto.ReqRecoverPassword} message ReqRecoverPassword
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqRecoverPassword.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.password = "";
+                    object.token = "";
+                    object.email = "";
+                }
+                if (message.password != null && message.hasOwnProperty("password"))
+                    object.password = message.password;
+                if (message.token != null && message.hasOwnProperty("token"))
+                    object.token = message.token;
+                if (message.email != null && message.hasOwnProperty("email"))
+                    object.email = message.email;
+                return object;
+            };
+    
+            /**
+             * Converts this ReqRecoverPassword to JSON.
+             * @function toJSON
+             * @memberof proto.ReqRecoverPassword
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqRecoverPassword.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqRecoverPassword
+             * @function getTypeUrl
+             * @memberof proto.ReqRecoverPassword
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqRecoverPassword.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqRecoverPassword";
+            };
+    
+            return ReqRecoverPassword;
+        })();
+    
+        proto.ResRecoverPassword = (function() {
+    
+            /**
+             * Properties of a ResRecoverPassword.
+             * @memberof proto
+             * @interface IResRecoverPassword
+             * @property {number|null} [status] ResRecoverPassword status
+             */
+    
+            /**
+             * Constructs a new ResRecoverPassword.
+             * @memberof proto
+             * @classdesc Represents a ResRecoverPassword.
+             * @implements IResRecoverPassword
+             * @constructor
+             * @param {proto.IResRecoverPassword=} [properties] Properties to set
+             */
+            function ResRecoverPassword(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResRecoverPassword status.
+             * @member {number} status
+             * @memberof proto.ResRecoverPassword
+             * @instance
+             */
+            ResRecoverPassword.prototype.status = 0;
+    
+            /**
+             * Creates a new ResRecoverPassword instance using the specified properties.
+             * @function create
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {proto.IResRecoverPassword=} [properties] Properties to set
+             * @returns {proto.ResRecoverPassword} ResRecoverPassword instance
+             */
+            ResRecoverPassword.create = function create(properties) {
+                return new ResRecoverPassword(properties);
+            };
+    
+            /**
+             * Encodes the specified ResRecoverPassword message. Does not implicitly {@link proto.ResRecoverPassword.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {proto.IResRecoverPassword} message ResRecoverPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResRecoverPassword.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResRecoverPassword message, length delimited. Does not implicitly {@link proto.ResRecoverPassword.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {proto.IResRecoverPassword} message ResRecoverPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResRecoverPassword.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResRecoverPassword message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResRecoverPassword} ResRecoverPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResRecoverPassword.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResRecoverPassword();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.status = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResRecoverPassword message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResRecoverPassword} ResRecoverPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResRecoverPassword.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResRecoverPassword message.
+             * @function verify
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResRecoverPassword.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ResRecoverPassword message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResRecoverPassword} ResRecoverPassword
+             */
+            ResRecoverPassword.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResRecoverPassword)
+                    return object;
+                var message = new $root.proto.ResRecoverPassword();
+                if (object.status != null)
+                    message.status = object.status | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResRecoverPassword message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {proto.ResRecoverPassword} message ResRecoverPassword
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResRecoverPassword.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.status = 0;
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                return object;
+            };
+    
+            /**
+             * Converts this ResRecoverPassword to JSON.
+             * @function toJSON
+             * @memberof proto.ResRecoverPassword
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResRecoverPassword.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResRecoverPassword
+             * @function getTypeUrl
+             * @memberof proto.ResRecoverPassword
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResRecoverPassword.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResRecoverPassword";
+            };
+    
+            return ResRecoverPassword;
+        })();
+    
+        proto.ResEmailForgetPassword = (function() {
+    
+            /**
+             * Properties of a ResEmailForgetPassword.
+             * @memberof proto
+             * @interface IResEmailForgetPassword
+             * @property {number|null} [status] ResEmailForgetPassword status
+             */
+    
+            /**
+             * Constructs a new ResEmailForgetPassword.
+             * @memberof proto
+             * @classdesc Represents a ResEmailForgetPassword.
+             * @implements IResEmailForgetPassword
+             * @constructor
+             * @param {proto.IResEmailForgetPassword=} [properties] Properties to set
+             */
+            function ResEmailForgetPassword(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResEmailForgetPassword status.
+             * @member {number} status
+             * @memberof proto.ResEmailForgetPassword
+             * @instance
+             */
+            ResEmailForgetPassword.prototype.status = 0;
+    
+            /**
+             * Creates a new ResEmailForgetPassword instance using the specified properties.
+             * @function create
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {proto.IResEmailForgetPassword=} [properties] Properties to set
+             * @returns {proto.ResEmailForgetPassword} ResEmailForgetPassword instance
+             */
+            ResEmailForgetPassword.create = function create(properties) {
+                return new ResEmailForgetPassword(properties);
+            };
+    
+            /**
+             * Encodes the specified ResEmailForgetPassword message. Does not implicitly {@link proto.ResEmailForgetPassword.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {proto.IResEmailForgetPassword} message ResEmailForgetPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResEmailForgetPassword.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResEmailForgetPassword message, length delimited. Does not implicitly {@link proto.ResEmailForgetPassword.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {proto.IResEmailForgetPassword} message ResEmailForgetPassword message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResEmailForgetPassword.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResEmailForgetPassword message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResEmailForgetPassword} ResEmailForgetPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResEmailForgetPassword.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResEmailForgetPassword();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.status = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResEmailForgetPassword message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResEmailForgetPassword} ResEmailForgetPassword
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResEmailForgetPassword.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResEmailForgetPassword message.
+             * @function verify
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResEmailForgetPassword.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ResEmailForgetPassword message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResEmailForgetPassword} ResEmailForgetPassword
+             */
+            ResEmailForgetPassword.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResEmailForgetPassword)
+                    return object;
+                var message = new $root.proto.ResEmailForgetPassword();
+                if (object.status != null)
+                    message.status = object.status | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResEmailForgetPassword message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {proto.ResEmailForgetPassword} message ResEmailForgetPassword
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResEmailForgetPassword.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.status = 0;
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                return object;
+            };
+    
+            /**
+             * Converts this ResEmailForgetPassword to JSON.
+             * @function toJSON
+             * @memberof proto.ResEmailForgetPassword
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResEmailForgetPassword.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResEmailForgetPassword
+             * @function getTypeUrl
+             * @memberof proto.ResEmailForgetPassword
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResEmailForgetPassword.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResEmailForgetPassword";
+            };
+    
+            return ResEmailForgetPassword;
+        })();
+    
+        proto.ReqLoadFriend = (function() {
+    
+            /**
+             * Properties of a ReqLoadFriend.
+             * @memberof proto
+             * @interface IReqLoadFriend
+             * @property {number|null} [status] ReqLoadFriend status
+             */
+    
+            /**
+             * Constructs a new ReqLoadFriend.
+             * @memberof proto
+             * @classdesc Represents a ReqLoadFriend.
+             * @implements IReqLoadFriend
+             * @constructor
+             * @param {proto.IReqLoadFriend=} [properties] Properties to set
+             */
+            function ReqLoadFriend(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ReqLoadFriend status.
+             * @member {number} status
+             * @memberof proto.ReqLoadFriend
+             * @instance
+             */
+            ReqLoadFriend.prototype.status = 0;
+    
+            /**
+             * Creates a new ReqLoadFriend instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqLoadFriend
+             * @static
+             * @param {proto.IReqLoadFriend=} [properties] Properties to set
+             * @returns {proto.ReqLoadFriend} ReqLoadFriend instance
+             */
+            ReqLoadFriend.create = function create(properties) {
+                return new ReqLoadFriend(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqLoadFriend message. Does not implicitly {@link proto.ReqLoadFriend.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqLoadFriend
+             * @static
+             * @param {proto.IReqLoadFriend} message ReqLoadFriend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqLoadFriend.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.status);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqLoadFriend message, length delimited. Does not implicitly {@link proto.ReqLoadFriend.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqLoadFriend
+             * @static
+             * @param {proto.IReqLoadFriend} message ReqLoadFriend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqLoadFriend.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqLoadFriend message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqLoadFriend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqLoadFriend} ReqLoadFriend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqLoadFriend.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqLoadFriend();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.status = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqLoadFriend message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqLoadFriend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqLoadFriend} ReqLoadFriend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqLoadFriend.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqLoadFriend message.
+             * @function verify
+             * @memberof proto.ReqLoadFriend
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqLoadFriend.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ReqLoadFriend message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqLoadFriend
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqLoadFriend} ReqLoadFriend
+             */
+            ReqLoadFriend.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqLoadFriend)
+                    return object;
+                var message = new $root.proto.ReqLoadFriend();
+                if (object.status != null)
+                    message.status = object.status | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ReqLoadFriend message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqLoadFriend
+             * @static
+             * @param {proto.ReqLoadFriend} message ReqLoadFriend
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqLoadFriend.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.status = 0;
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                return object;
+            };
+    
+            /**
+             * Converts this ReqLoadFriend to JSON.
+             * @function toJSON
+             * @memberof proto.ReqLoadFriend
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqLoadFriend.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqLoadFriend
+             * @function getTypeUrl
+             * @memberof proto.ReqLoadFriend
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqLoadFriend.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqLoadFriend";
+            };
+    
+            return ReqLoadFriend;
+        })();
+    
+        proto.Friend = (function() {
+    
+            /**
+             * Properties of a Friend.
+             * @memberof proto
+             * @interface IFriend
+             * @property {number|null} [id] Friend id
+             * @property {string|null} [name] Friend name
+             * @property {number|null} [level] Friend level
+             * @property {string|null} [character] Friend character
+             */
+    
+            /**
+             * Constructs a new Friend.
+             * @memberof proto
+             * @classdesc Represents a Friend.
+             * @implements IFriend
+             * @constructor
+             * @param {proto.IFriend=} [properties] Properties to set
+             */
+            function Friend(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * Friend id.
+             * @member {number} id
+             * @memberof proto.Friend
+             * @instance
+             */
+            Friend.prototype.id = 0;
+    
+            /**
+             * Friend name.
+             * @member {string} name
+             * @memberof proto.Friend
+             * @instance
+             */
+            Friend.prototype.name = "";
+    
+            /**
+             * Friend level.
+             * @member {number} level
+             * @memberof proto.Friend
+             * @instance
+             */
+            Friend.prototype.level = 0;
+    
+            /**
+             * Friend character.
+             * @member {string} character
+             * @memberof proto.Friend
+             * @instance
+             */
+            Friend.prototype.character = "";
+    
+            /**
+             * Creates a new Friend instance using the specified properties.
+             * @function create
+             * @memberof proto.Friend
+             * @static
+             * @param {proto.IFriend=} [properties] Properties to set
+             * @returns {proto.Friend} Friend instance
+             */
+            Friend.create = function create(properties) {
+                return new Friend(properties);
+            };
+    
+            /**
+             * Encodes the specified Friend message. Does not implicitly {@link proto.Friend.verify|verify} messages.
+             * @function encode
+             * @memberof proto.Friend
+             * @static
+             * @param {proto.IFriend} message Friend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Friend.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.id != null && Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.id);
+                if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
+                if (message.level != null && Object.hasOwnProperty.call(message, "level"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.level);
+                if (message.character != null && Object.hasOwnProperty.call(message, "character"))
+                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.character);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified Friend message, length delimited. Does not implicitly {@link proto.Friend.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.Friend
+             * @static
+             * @param {proto.IFriend} message Friend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Friend.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a Friend message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.Friend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.Friend} Friend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Friend.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.Friend();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.id = reader.int32();
+                            break;
+                        }
+                    case 2: {
+                            message.name = reader.string();
+                            break;
+                        }
+                    case 3: {
+                            message.level = reader.int32();
+                            break;
+                        }
+                    case 4: {
+                            message.character = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a Friend message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.Friend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.Friend} Friend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Friend.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a Friend message.
+             * @function verify
+             * @memberof proto.Friend
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Friend.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.id != null && message.hasOwnProperty("id"))
+                    if (!$util.isInteger(message.id))
+                        return "id: integer expected";
+                if (message.name != null && message.hasOwnProperty("name"))
+                    if (!$util.isString(message.name))
+                        return "name: string expected";
+                if (message.level != null && message.hasOwnProperty("level"))
+                    if (!$util.isInteger(message.level))
+                        return "level: integer expected";
+                if (message.character != null && message.hasOwnProperty("character"))
+                    if (!$util.isString(message.character))
+                        return "character: string expected";
+                return null;
+            };
+    
+            /**
+             * Creates a Friend message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.Friend
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.Friend} Friend
+             */
+            Friend.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.Friend)
+                    return object;
+                var message = new $root.proto.Friend();
+                if (object.id != null)
+                    message.id = object.id | 0;
+                if (object.name != null)
+                    message.name = String(object.name);
+                if (object.level != null)
+                    message.level = object.level | 0;
+                if (object.character != null)
+                    message.character = String(object.character);
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a Friend message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.Friend
+             * @static
+             * @param {proto.Friend} message Friend
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Friend.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults) {
+                    object.id = 0;
+                    object.name = "";
+                    object.level = 0;
+                    object.character = "";
+                }
+                if (message.id != null && message.hasOwnProperty("id"))
+                    object.id = message.id;
+                if (message.name != null && message.hasOwnProperty("name"))
+                    object.name = message.name;
+                if (message.level != null && message.hasOwnProperty("level"))
+                    object.level = message.level;
+                if (message.character != null && message.hasOwnProperty("character"))
+                    object.character = message.character;
+                return object;
+            };
+    
+            /**
+             * Converts this Friend to JSON.
+             * @function toJSON
+             * @memberof proto.Friend
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Friend.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for Friend
+             * @function getTypeUrl
+             * @memberof proto.Friend
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            Friend.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.Friend";
+            };
+    
+            return Friend;
+        })();
+    
+        proto.ResLoadFriendList = (function() {
+    
+            /**
+             * Properties of a ResLoadFriendList.
+             * @memberof proto
+             * @interface IResLoadFriendList
+             * @property {Array.<proto.IFriend>|null} [friends] ResLoadFriendList friends
+             * @property {number|null} [status] ResLoadFriendList status
+             */
+    
+            /**
+             * Constructs a new ResLoadFriendList.
+             * @memberof proto
+             * @classdesc Represents a ResLoadFriendList.
+             * @implements IResLoadFriendList
+             * @constructor
+             * @param {proto.IResLoadFriendList=} [properties] Properties to set
+             */
+            function ResLoadFriendList(properties) {
+                this.friends = [];
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResLoadFriendList friends.
+             * @member {Array.<proto.IFriend>} friends
+             * @memberof proto.ResLoadFriendList
+             * @instance
+             */
+            ResLoadFriendList.prototype.friends = $util.emptyArray;
+    
+            /**
+             * ResLoadFriendList status.
+             * @member {number} status
+             * @memberof proto.ResLoadFriendList
+             * @instance
+             */
+            ResLoadFriendList.prototype.status = 0;
+    
+            /**
+             * Creates a new ResLoadFriendList instance using the specified properties.
+             * @function create
+             * @memberof proto.ResLoadFriendList
+             * @static
+             * @param {proto.IResLoadFriendList=} [properties] Properties to set
+             * @returns {proto.ResLoadFriendList} ResLoadFriendList instance
+             */
+            ResLoadFriendList.create = function create(properties) {
+                return new ResLoadFriendList(properties);
+            };
+    
+            /**
+             * Encodes the specified ResLoadFriendList message. Does not implicitly {@link proto.ResLoadFriendList.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResLoadFriendList
+             * @static
+             * @param {proto.IResLoadFriendList} message ResLoadFriendList message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResLoadFriendList.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.friends != null && message.friends.length)
+                    for (var i = 0; i < message.friends.length; ++i)
+                        $root.proto.Friend.encode(message.friends[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                if (message.status != null && Object.hasOwnProperty.call(message, "status"))
+                    writer.uint32(/* id 2, wireType 0 =*/16).int32(message.status);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResLoadFriendList message, length delimited. Does not implicitly {@link proto.ResLoadFriendList.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResLoadFriendList
+             * @static
+             * @param {proto.IResLoadFriendList} message ResLoadFriendList message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResLoadFriendList.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResLoadFriendList message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResLoadFriendList
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResLoadFriendList} ResLoadFriendList
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResLoadFriendList.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResLoadFriendList();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            if (!(message.friends && message.friends.length))
+                                message.friends = [];
+                            message.friends.push($root.proto.Friend.decode(reader, reader.uint32()));
+                            break;
+                        }
+                    case 2: {
+                            message.status = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResLoadFriendList message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResLoadFriendList
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResLoadFriendList} ResLoadFriendList
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResLoadFriendList.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResLoadFriendList message.
+             * @function verify
+             * @memberof proto.ResLoadFriendList
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResLoadFriendList.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.friends != null && message.hasOwnProperty("friends")) {
+                    if (!Array.isArray(message.friends))
+                        return "friends: array expected";
+                    for (var i = 0; i < message.friends.length; ++i) {
+                        var error = $root.proto.Friend.verify(message.friends[i]);
+                        if (error)
+                            return "friends." + error;
+                    }
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    if (!$util.isInteger(message.status))
+                        return "status: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ResLoadFriendList message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResLoadFriendList
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResLoadFriendList} ResLoadFriendList
+             */
+            ResLoadFriendList.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResLoadFriendList)
+                    return object;
+                var message = new $root.proto.ResLoadFriendList();
+                if (object.friends) {
+                    if (!Array.isArray(object.friends))
+                        throw TypeError(".proto.ResLoadFriendList.friends: array expected");
+                    message.friends = [];
+                    for (var i = 0; i < object.friends.length; ++i) {
+                        if (typeof object.friends[i] !== "object")
+                            throw TypeError(".proto.ResLoadFriendList.friends: object expected");
+                        message.friends[i] = $root.proto.Friend.fromObject(object.friends[i]);
+                    }
+                }
+                if (object.status != null)
+                    message.status = object.status | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResLoadFriendList message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResLoadFriendList
+             * @static
+             * @param {proto.ResLoadFriendList} message ResLoadFriendList
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResLoadFriendList.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.arrays || options.defaults)
+                    object.friends = [];
+                if (options.defaults)
+                    object.status = 0;
+                if (message.friends && message.friends.length) {
+                    object.friends = [];
+                    for (var j = 0; j < message.friends.length; ++j)
+                        object.friends[j] = $root.proto.Friend.toObject(message.friends[j], options);
+                }
+                if (message.status != null && message.hasOwnProperty("status"))
+                    object.status = message.status;
+                return object;
+            };
+    
+            /**
+             * Converts this ResLoadFriendList to JSON.
+             * @function toJSON
+             * @memberof proto.ResLoadFriendList
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResLoadFriendList.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResLoadFriendList
+             * @function getTypeUrl
+             * @memberof proto.ResLoadFriendList
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResLoadFriendList.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResLoadFriendList";
+            };
+    
+            return ResLoadFriendList;
+        })();
+    
+        proto.ReqFindFriend = (function() {
+    
+            /**
+             * Properties of a ReqFindFriend.
+             * @memberof proto
+             * @interface IReqFindFriend
+             * @property {string|null} [username] ReqFindFriend username
+             */
+    
+            /**
+             * Constructs a new ReqFindFriend.
+             * @memberof proto
+             * @classdesc Represents a ReqFindFriend.
+             * @implements IReqFindFriend
+             * @constructor
+             * @param {proto.IReqFindFriend=} [properties] Properties to set
+             */
+            function ReqFindFriend(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ReqFindFriend username.
+             * @member {string} username
+             * @memberof proto.ReqFindFriend
+             * @instance
+             */
+            ReqFindFriend.prototype.username = "";
+    
+            /**
+             * Creates a new ReqFindFriend instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqFindFriend
+             * @static
+             * @param {proto.IReqFindFriend=} [properties] Properties to set
+             * @returns {proto.ReqFindFriend} ReqFindFriend instance
+             */
+            ReqFindFriend.create = function create(properties) {
+                return new ReqFindFriend(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqFindFriend message. Does not implicitly {@link proto.ReqFindFriend.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqFindFriend
+             * @static
+             * @param {proto.IReqFindFriend} message ReqFindFriend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqFindFriend.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.username != null && Object.hasOwnProperty.call(message, "username"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.username);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqFindFriend message, length delimited. Does not implicitly {@link proto.ReqFindFriend.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqFindFriend
+             * @static
+             * @param {proto.IReqFindFriend} message ReqFindFriend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqFindFriend.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqFindFriend message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqFindFriend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqFindFriend} ReqFindFriend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqFindFriend.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqFindFriend();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.username = reader.string();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqFindFriend message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqFindFriend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqFindFriend} ReqFindFriend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqFindFriend.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqFindFriend message.
+             * @function verify
+             * @memberof proto.ReqFindFriend
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqFindFriend.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.username != null && message.hasOwnProperty("username"))
+                    if (!$util.isString(message.username))
+                        return "username: string expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ReqFindFriend message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqFindFriend
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqFindFriend} ReqFindFriend
+             */
+            ReqFindFriend.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqFindFriend)
+                    return object;
+                var message = new $root.proto.ReqFindFriend();
+                if (object.username != null)
+                    message.username = String(object.username);
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ReqFindFriend message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqFindFriend
+             * @static
+             * @param {proto.ReqFindFriend} message ReqFindFriend
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqFindFriend.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.username = "";
+                if (message.username != null && message.hasOwnProperty("username"))
+                    object.username = message.username;
+                return object;
+            };
+    
+            /**
+             * Converts this ReqFindFriend to JSON.
+             * @function toJSON
+             * @memberof proto.ReqFindFriend
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqFindFriend.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqFindFriend
+             * @function getTypeUrl
+             * @memberof proto.ReqFindFriend
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqFindFriend.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqFindFriend";
+            };
+    
+            return ReqFindFriend;
+        })();
+    
+        proto.ResFindFriend = (function() {
+    
+            /**
+             * Properties of a ResFindFriend.
+             * @memberof proto
+             * @interface IResFindFriend
+             * @property {proto.IFriend|null} [friend] ResFindFriend friend
+             */
+    
+            /**
+             * Constructs a new ResFindFriend.
+             * @memberof proto
+             * @classdesc Represents a ResFindFriend.
+             * @implements IResFindFriend
+             * @constructor
+             * @param {proto.IResFindFriend=} [properties] Properties to set
+             */
+            function ResFindFriend(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResFindFriend friend.
+             * @member {proto.IFriend|null|undefined} friend
+             * @memberof proto.ResFindFriend
+             * @instance
+             */
+            ResFindFriend.prototype.friend = null;
+    
+            /**
+             * Creates a new ResFindFriend instance using the specified properties.
+             * @function create
+             * @memberof proto.ResFindFriend
+             * @static
+             * @param {proto.IResFindFriend=} [properties] Properties to set
+             * @returns {proto.ResFindFriend} ResFindFriend instance
+             */
+            ResFindFriend.create = function create(properties) {
+                return new ResFindFriend(properties);
+            };
+    
+            /**
+             * Encodes the specified ResFindFriend message. Does not implicitly {@link proto.ResFindFriend.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResFindFriend
+             * @static
+             * @param {proto.IResFindFriend} message ResFindFriend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResFindFriend.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.friend != null && Object.hasOwnProperty.call(message, "friend"))
+                    $root.proto.Friend.encode(message.friend, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResFindFriend message, length delimited. Does not implicitly {@link proto.ResFindFriend.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResFindFriend
+             * @static
+             * @param {proto.IResFindFriend} message ResFindFriend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResFindFriend.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResFindFriend message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResFindFriend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResFindFriend} ResFindFriend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResFindFriend.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResFindFriend();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.friend = $root.proto.Friend.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResFindFriend message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResFindFriend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResFindFriend} ResFindFriend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResFindFriend.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResFindFriend message.
+             * @function verify
+             * @memberof proto.ResFindFriend
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResFindFriend.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.friend != null && message.hasOwnProperty("friend")) {
+                    var error = $root.proto.Friend.verify(message.friend);
+                    if (error)
+                        return "friend." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a ResFindFriend message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResFindFriend
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResFindFriend} ResFindFriend
+             */
+            ResFindFriend.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResFindFriend)
+                    return object;
+                var message = new $root.proto.ResFindFriend();
+                if (object.friend != null) {
+                    if (typeof object.friend !== "object")
+                        throw TypeError(".proto.ResFindFriend.friend: object expected");
+                    message.friend = $root.proto.Friend.fromObject(object.friend);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResFindFriend message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResFindFriend
+             * @static
+             * @param {proto.ResFindFriend} message ResFindFriend
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResFindFriend.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.friend = null;
+                if (message.friend != null && message.hasOwnProperty("friend"))
+                    object.friend = $root.proto.Friend.toObject(message.friend, options);
+                return object;
+            };
+    
+            /**
+             * Converts this ResFindFriend to JSON.
+             * @function toJSON
+             * @memberof proto.ResFindFriend
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResFindFriend.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResFindFriend
+             * @function getTypeUrl
+             * @memberof proto.ResFindFriend
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResFindFriend.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResFindFriend";
+            };
+    
+            return ResFindFriend;
+        })();
+    
+        proto.ReqAddFriend = (function() {
+    
+            /**
+             * Properties of a ReqAddFriend.
+             * @memberof proto
+             * @interface IReqAddFriend
+             * @property {number|null} [receiverId] ReqAddFriend receiverId
+             */
+    
+            /**
+             * Constructs a new ReqAddFriend.
+             * @memberof proto
+             * @classdesc Represents a ReqAddFriend.
+             * @implements IReqAddFriend
+             * @constructor
+             * @param {proto.IReqAddFriend=} [properties] Properties to set
+             */
+            function ReqAddFriend(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ReqAddFriend receiverId.
+             * @member {number} receiverId
+             * @memberof proto.ReqAddFriend
+             * @instance
+             */
+            ReqAddFriend.prototype.receiverId = 0;
+    
+            /**
+             * Creates a new ReqAddFriend instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqAddFriend
+             * @static
+             * @param {proto.IReqAddFriend=} [properties] Properties to set
+             * @returns {proto.ReqAddFriend} ReqAddFriend instance
+             */
+            ReqAddFriend.create = function create(properties) {
+                return new ReqAddFriend(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqAddFriend message. Does not implicitly {@link proto.ReqAddFriend.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqAddFriend
+             * @static
+             * @param {proto.IReqAddFriend} message ReqAddFriend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqAddFriend.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.receiverId != null && Object.hasOwnProperty.call(message, "receiverId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.receiverId);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqAddFriend message, length delimited. Does not implicitly {@link proto.ReqAddFriend.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqAddFriend
+             * @static
+             * @param {proto.IReqAddFriend} message ReqAddFriend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqAddFriend.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqAddFriend message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqAddFriend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqAddFriend} ReqAddFriend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqAddFriend.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqAddFriend();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.receiverId = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqAddFriend message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqAddFriend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqAddFriend} ReqAddFriend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqAddFriend.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqAddFriend message.
+             * @function verify
+             * @memberof proto.ReqAddFriend
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqAddFriend.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.receiverId != null && message.hasOwnProperty("receiverId"))
+                    if (!$util.isInteger(message.receiverId))
+                        return "receiverId: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ReqAddFriend message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqAddFriend
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqAddFriend} ReqAddFriend
+             */
+            ReqAddFriend.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqAddFriend)
+                    return object;
+                var message = new $root.proto.ReqAddFriend();
+                if (object.receiverId != null)
+                    message.receiverId = object.receiverId | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ReqAddFriend message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqAddFriend
+             * @static
+             * @param {proto.ReqAddFriend} message ReqAddFriend
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqAddFriend.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.receiverId = 0;
+                if (message.receiverId != null && message.hasOwnProperty("receiverId"))
+                    object.receiverId = message.receiverId;
+                return object;
+            };
+    
+            /**
+             * Converts this ReqAddFriend to JSON.
+             * @function toJSON
+             * @memberof proto.ReqAddFriend
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqAddFriend.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqAddFriend
+             * @function getTypeUrl
+             * @memberof proto.ReqAddFriend
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqAddFriend.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqAddFriend";
+            };
+    
+            return ReqAddFriend;
+        })();
+    
+        proto.ResAddFriend = (function() {
+    
+            /**
+             * Properties of a ResAddFriend.
+             * @memberof proto
+             * @interface IResAddFriend
+             * @property {proto.IFriend|null} [sender] ResAddFriend sender
+             */
+    
+            /**
+             * Constructs a new ResAddFriend.
+             * @memberof proto
+             * @classdesc Represents a ResAddFriend.
+             * @implements IResAddFriend
+             * @constructor
+             * @param {proto.IResAddFriend=} [properties] Properties to set
+             */
+            function ResAddFriend(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResAddFriend sender.
+             * @member {proto.IFriend|null|undefined} sender
+             * @memberof proto.ResAddFriend
+             * @instance
+             */
+            ResAddFriend.prototype.sender = null;
+    
+            /**
+             * Creates a new ResAddFriend instance using the specified properties.
+             * @function create
+             * @memberof proto.ResAddFriend
+             * @static
+             * @param {proto.IResAddFriend=} [properties] Properties to set
+             * @returns {proto.ResAddFriend} ResAddFriend instance
+             */
+            ResAddFriend.create = function create(properties) {
+                return new ResAddFriend(properties);
+            };
+    
+            /**
+             * Encodes the specified ResAddFriend message. Does not implicitly {@link proto.ResAddFriend.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResAddFriend
+             * @static
+             * @param {proto.IResAddFriend} message ResAddFriend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResAddFriend.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.sender != null && Object.hasOwnProperty.call(message, "sender"))
+                    $root.proto.Friend.encode(message.sender, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResAddFriend message, length delimited. Does not implicitly {@link proto.ResAddFriend.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResAddFriend
+             * @static
+             * @param {proto.IResAddFriend} message ResAddFriend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResAddFriend.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResAddFriend message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResAddFriend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResAddFriend} ResAddFriend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResAddFriend.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResAddFriend();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.sender = $root.proto.Friend.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResAddFriend message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResAddFriend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResAddFriend} ResAddFriend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResAddFriend.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResAddFriend message.
+             * @function verify
+             * @memberof proto.ResAddFriend
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResAddFriend.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.sender != null && message.hasOwnProperty("sender")) {
+                    var error = $root.proto.Friend.verify(message.sender);
+                    if (error)
+                        return "sender." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a ResAddFriend message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResAddFriend
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResAddFriend} ResAddFriend
+             */
+            ResAddFriend.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResAddFriend)
+                    return object;
+                var message = new $root.proto.ResAddFriend();
+                if (object.sender != null) {
+                    if (typeof object.sender !== "object")
+                        throw TypeError(".proto.ResAddFriend.sender: object expected");
+                    message.sender = $root.proto.Friend.fromObject(object.sender);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResAddFriend message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResAddFriend
+             * @static
+             * @param {proto.ResAddFriend} message ResAddFriend
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResAddFriend.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.sender = null;
+                if (message.sender != null && message.hasOwnProperty("sender"))
+                    object.sender = $root.proto.Friend.toObject(message.sender, options);
+                return object;
+            };
+    
+            /**
+             * Converts this ResAddFriend to JSON.
+             * @function toJSON
+             * @memberof proto.ResAddFriend
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResAddFriend.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResAddFriend
+             * @function getTypeUrl
+             * @memberof proto.ResAddFriend
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResAddFriend.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResAddFriend";
+            };
+    
+            return ResAddFriend;
+        })();
+    
+        proto.ReqAcceptFriend = (function() {
+    
+            /**
+             * Properties of a ReqAcceptFriend.
+             * @memberof proto
+             * @interface IReqAcceptFriend
+             * @property {number|null} [senderId] ReqAcceptFriend senderId
+             */
+    
+            /**
+             * Constructs a new ReqAcceptFriend.
+             * @memberof proto
+             * @classdesc Represents a ReqAcceptFriend.
+             * @implements IReqAcceptFriend
+             * @constructor
+             * @param {proto.IReqAcceptFriend=} [properties] Properties to set
+             */
+            function ReqAcceptFriend(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ReqAcceptFriend senderId.
+             * @member {number} senderId
+             * @memberof proto.ReqAcceptFriend
+             * @instance
+             */
+            ReqAcceptFriend.prototype.senderId = 0;
+    
+            /**
+             * Creates a new ReqAcceptFriend instance using the specified properties.
+             * @function create
+             * @memberof proto.ReqAcceptFriend
+             * @static
+             * @param {proto.IReqAcceptFriend=} [properties] Properties to set
+             * @returns {proto.ReqAcceptFriend} ReqAcceptFriend instance
+             */
+            ReqAcceptFriend.create = function create(properties) {
+                return new ReqAcceptFriend(properties);
+            };
+    
+            /**
+             * Encodes the specified ReqAcceptFriend message. Does not implicitly {@link proto.ReqAcceptFriend.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ReqAcceptFriend
+             * @static
+             * @param {proto.IReqAcceptFriend} message ReqAcceptFriend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqAcceptFriend.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.senderId != null && Object.hasOwnProperty.call(message, "senderId"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.senderId);
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ReqAcceptFriend message, length delimited. Does not implicitly {@link proto.ReqAcceptFriend.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ReqAcceptFriend
+             * @static
+             * @param {proto.IReqAcceptFriend} message ReqAcceptFriend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ReqAcceptFriend.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ReqAcceptFriend message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ReqAcceptFriend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ReqAcceptFriend} ReqAcceptFriend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqAcceptFriend.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ReqAcceptFriend();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.senderId = reader.int32();
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ReqAcceptFriend message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ReqAcceptFriend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ReqAcceptFriend} ReqAcceptFriend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ReqAcceptFriend.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ReqAcceptFriend message.
+             * @function verify
+             * @memberof proto.ReqAcceptFriend
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ReqAcceptFriend.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.senderId != null && message.hasOwnProperty("senderId"))
+                    if (!$util.isInteger(message.senderId))
+                        return "senderId: integer expected";
+                return null;
+            };
+    
+            /**
+             * Creates a ReqAcceptFriend message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ReqAcceptFriend
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ReqAcceptFriend} ReqAcceptFriend
+             */
+            ReqAcceptFriend.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ReqAcceptFriend)
+                    return object;
+                var message = new $root.proto.ReqAcceptFriend();
+                if (object.senderId != null)
+                    message.senderId = object.senderId | 0;
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ReqAcceptFriend message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ReqAcceptFriend
+             * @static
+             * @param {proto.ReqAcceptFriend} message ReqAcceptFriend
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ReqAcceptFriend.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.senderId = 0;
+                if (message.senderId != null && message.hasOwnProperty("senderId"))
+                    object.senderId = message.senderId;
+                return object;
+            };
+    
+            /**
+             * Converts this ReqAcceptFriend to JSON.
+             * @function toJSON
+             * @memberof proto.ReqAcceptFriend
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ReqAcceptFriend.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ReqAcceptFriend
+             * @function getTypeUrl
+             * @memberof proto.ReqAcceptFriend
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ReqAcceptFriend.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ReqAcceptFriend";
+            };
+    
+            return ReqAcceptFriend;
+        })();
+    
+        proto.ResAcceptFriend = (function() {
+    
+            /**
+             * Properties of a ResAcceptFriend.
+             * @memberof proto
+             * @interface IResAcceptFriend
+             * @property {proto.IFriend|null} [receiver] ResAcceptFriend receiver
+             */
+    
+            /**
+             * Constructs a new ResAcceptFriend.
+             * @memberof proto
+             * @classdesc Represents a ResAcceptFriend.
+             * @implements IResAcceptFriend
+             * @constructor
+             * @param {proto.IResAcceptFriend=} [properties] Properties to set
+             */
+            function ResAcceptFriend(properties) {
+                if (properties)
+                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null)
+                            this[keys[i]] = properties[keys[i]];
+            }
+    
+            /**
+             * ResAcceptFriend receiver.
+             * @member {proto.IFriend|null|undefined} receiver
+             * @memberof proto.ResAcceptFriend
+             * @instance
+             */
+            ResAcceptFriend.prototype.receiver = null;
+    
+            /**
+             * Creates a new ResAcceptFriend instance using the specified properties.
+             * @function create
+             * @memberof proto.ResAcceptFriend
+             * @static
+             * @param {proto.IResAcceptFriend=} [properties] Properties to set
+             * @returns {proto.ResAcceptFriend} ResAcceptFriend instance
+             */
+            ResAcceptFriend.create = function create(properties) {
+                return new ResAcceptFriend(properties);
+            };
+    
+            /**
+             * Encodes the specified ResAcceptFriend message. Does not implicitly {@link proto.ResAcceptFriend.verify|verify} messages.
+             * @function encode
+             * @memberof proto.ResAcceptFriend
+             * @static
+             * @param {proto.IResAcceptFriend} message ResAcceptFriend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResAcceptFriend.encode = function encode(message, writer) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (message.receiver != null && Object.hasOwnProperty.call(message, "receiver"))
+                    $root.proto.Friend.encode(message.receiver, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                return writer;
+            };
+    
+            /**
+             * Encodes the specified ResAcceptFriend message, length delimited. Does not implicitly {@link proto.ResAcceptFriend.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof proto.ResAcceptFriend
+             * @static
+             * @param {proto.IResAcceptFriend} message ResAcceptFriend message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            ResAcceptFriend.encodeDelimited = function encodeDelimited(message, writer) {
+                return this.encode(message, writer).ldelim();
+            };
+    
+            /**
+             * Decodes a ResAcceptFriend message from the specified reader or buffer.
+             * @function decode
+             * @memberof proto.ResAcceptFriend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {proto.ResAcceptFriend} ResAcceptFriend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResAcceptFriend.decode = function decode(reader, length) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.proto.ResAcceptFriend();
+                while (reader.pos < end) {
+                    var tag = reader.uint32();
+                    switch (tag >>> 3) {
+                    case 1: {
+                            message.receiver = $root.proto.Friend.decode(reader, reader.uint32());
+                            break;
+                        }
+                    default:
+                        reader.skipType(tag & 7);
+                        break;
+                    }
+                }
+                return message;
+            };
+    
+            /**
+             * Decodes a ResAcceptFriend message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof proto.ResAcceptFriend
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {proto.ResAcceptFriend} ResAcceptFriend
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            ResAcceptFriend.decodeDelimited = function decodeDelimited(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.uint32());
+            };
+    
+            /**
+             * Verifies a ResAcceptFriend message.
+             * @function verify
+             * @memberof proto.ResAcceptFriend
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            ResAcceptFriend.verify = function verify(message) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (message.receiver != null && message.hasOwnProperty("receiver")) {
+                    var error = $root.proto.Friend.verify(message.receiver);
+                    if (error)
+                        return "receiver." + error;
+                }
+                return null;
+            };
+    
+            /**
+             * Creates a ResAcceptFriend message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof proto.ResAcceptFriend
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {proto.ResAcceptFriend} ResAcceptFriend
+             */
+            ResAcceptFriend.fromObject = function fromObject(object) {
+                if (object instanceof $root.proto.ResAcceptFriend)
+                    return object;
+                var message = new $root.proto.ResAcceptFriend();
+                if (object.receiver != null) {
+                    if (typeof object.receiver !== "object")
+                        throw TypeError(".proto.ResAcceptFriend.receiver: object expected");
+                    message.receiver = $root.proto.Friend.fromObject(object.receiver);
+                }
+                return message;
+            };
+    
+            /**
+             * Creates a plain object from a ResAcceptFriend message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof proto.ResAcceptFriend
+             * @static
+             * @param {proto.ResAcceptFriend} message ResAcceptFriend
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            ResAcceptFriend.toObject = function toObject(message, options) {
+                if (!options)
+                    options = {};
+                var object = {};
+                if (options.defaults)
+                    object.receiver = null;
+                if (message.receiver != null && message.hasOwnProperty("receiver"))
+                    object.receiver = $root.proto.Friend.toObject(message.receiver, options);
+                return object;
+            };
+    
+            /**
+             * Converts this ResAcceptFriend to JSON.
+             * @function toJSON
+             * @memberof proto.ResAcceptFriend
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            ResAcceptFriend.prototype.toJSON = function toJSON() {
+                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+            };
+    
+            /**
+             * Gets the default type url for ResAcceptFriend
+             * @function getTypeUrl
+             * @memberof proto.ResAcceptFriend
+             * @static
+             * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+             * @returns {string} The default type url
+             */
+            ResAcceptFriend.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+                if (typeUrlPrefix === undefined) {
+                    typeUrlPrefix = "type.googleapis.com";
+                }
+                return typeUrlPrefix + "/proto.ResAcceptFriend";
+            };
+    
+            return ResAcceptFriend;
         })();
     
         return proto;

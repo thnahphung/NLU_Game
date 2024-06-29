@@ -2,6 +2,9 @@ package vn.edu.nlu.fit.nlugame.layer2.dao.bean;
 
 import lombok.*;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
+
+import java.sql.Timestamp;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -45,4 +48,8 @@ public class UserBean {
     private long gold;
     @ColumnName("is_new_account")
     private int isNewAccount;
+    @ColumnName("password_recovery_time")
+    private Timestamp passwordRecoveryTime;
+    @ColumnName("password_recovery_token")
+    private String passwordRecoveryToken;
 }

@@ -203,7 +203,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 490.4654510556622,
+    "_orthoHeight": 379.0921409214092,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -13412,6 +13412,8 @@
     "playerLayer": {
       "__id__": 7
     },
+    "buildingSystemPrefab": null,
+    "buildingFarmPrefab": [],
     "_id": "3c8HIImW9EkqcsaLw45J8k"
   },
   {

@@ -26,12 +26,17 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupSetting: Prefab;
   @property(Prefab) private prefabTransitionScene: Prefab;
   @property(Prefab) private buttonBuilding: Prefab = null;
+  @property(Prefab) private prefabPopupConnectionNotify: Prefab = null;
+  @property(Prefab) private prefabPopupFriend: Prefab = null;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
   private _popupOption: PopupOption;
   private _popup: Node;
   private _buttonBuilding: Node;
+  public _popupConnectionNotify: Node;
+  //Lock button
+  private isLocked: boolean = false; 
 
   public static me(): UICanvas {
     return UICanvas._instance;
@@ -67,11 +72,27 @@ export class UICanvas extends Component {
     this._popupMessage.getComponent(PopupComponent).show();
   }
 
+  showPopupConnectionNotify() {
+    this._popupConnectionNotify = instantiate(this.prefabPopupConnectionNotify);
+    this.node.getChildByName("PopupLayer").addChild(this._popupConnectionNotify);
+    this._popupConnectionNotify.getComponent(PopupComponent).show();
+  }
+
+  closePopupConnectionNotify() {
+    if(this._popupConnectionNotify == null) return; 
+      this._popupConnectionNotify.destroy();
+      this._popupConnectionNotify = null;
+  }
+
   public getJoyStick(): Joystick {
     return this.joystick.getComponent(Joystick);
   }
 
   showPopup(popupName: POPUP, handleNode?: Node, lable?: string) {
+    if (this.isLocked) {
+            return;
+    }
+    this.isLocked = true
     switch (popupName) {
       case POPUP.POPUP_OPTION:
         if (this.node.getChildByName("BotMid").getChildByName("PopupOption")) {
@@ -89,13 +110,26 @@ export class UICanvas extends Component {
         this._popupOption.node.getComponent(PopupComponent).show();
         return;
       case POPUP.POPUP_SETTING:
+        if (this.node.getChildByName("PopupLayer").getChildByName("PopupSetting")) {
+          return;
+        }
         this._popup = instantiate(this.prefabPopupSetting);
+        this.node.getChildByName("PopupLayer").addChild(this._popup);
+        break;
+      case POPUP.POPUP_FRIEND:
+        if (this.node.getChildByName("PopupLayer").getChildByName("PopupFriend")) {
+          return;
+        }
+        this._popup = instantiate(this.prefabPopupFriend);
         this.node.getChildByName("PopupLayer").addChild(this._popup);
         break;
       default:
         return;
     }
     this._popup.getComponent(PopupComponent).show();
+    this.scheduleOnce(() => {
+            this.isLocked = false;
+    }, 1);
   }
 
   showButton(buttonName: BUTTON) {
@@ -153,6 +187,10 @@ export class UICanvas extends Component {
 
   onTouchSetting(): void {
     this.showPopup(POPUP.POPUP_SETTING);
+  }
+
+  onTouchFriend(): void {
+    this.showPopup(POPUP.POPUP_FRIEND);
   }
 
   transitScene(sceneName: string) {

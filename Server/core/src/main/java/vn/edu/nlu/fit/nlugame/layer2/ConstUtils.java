@@ -42,4 +42,20 @@ public class ConstUtils {
             return value;
         }
     }
+
+    public enum STATUS_FRIEND {
+        PENDING(1),
+        ACCEPTED(2),
+        REJECTED(3);
+
+        private final int value;
+
+        STATUS_FRIEND(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
 }

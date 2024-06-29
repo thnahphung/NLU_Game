@@ -4,8 +4,9 @@ import { PopupComponent } from "../Controller/PopupComponent";
 import DataSender from "../Utils/DataSender";
 import { StorageManager } from "../Manager/StorageManger";
 import GlobalData from "../Utils/GlobalData";
-import { LOCAL_STORAGE, POPUP, POPUP_MESSAGE } from "../Utils/Const";
+import { LOCAL_STORAGE, POPUP } from "../Utils/Const";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
+import { t } from "../../../extensions/i18n/assets/LanguageData";
 const { ccclass, property } = _decorator;
 
 @ccclass("AuthenScene")
@@ -30,6 +31,10 @@ export class AuthenScene extends AbsScene {
   // Khai bao setting
   @property(Prefab)
   public popupSetting: Prefab = null;
+  // Khai bao forget password
+  @property(Node)
+  public popupForgetPassword: Node = null;
+
   public popupLoadingNode: Node = null;
 
   protected onLoad(): void {
@@ -58,12 +63,18 @@ export class AuthenScene extends AbsScene {
       if (packet.resRegister) {
         this.onRegisterMsgHandler(packet.resRegister);
       }
+      if (packet.resEmailForgetPassword) {
+        this.onCheckEmailForgetHandler(packet.resEmailForgetPassword);
+      }
+      if (packet.resRecoverPassword) {
+        this.onRecoverPasswordHandler(packet.resRecoverPassword);
+      }
     });
   }
 
   onLoginMsgHandler(resLogin: proto.IResLogin) {
     if (resLogin.status === 400) {
-      UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_400);
+      UICanvas.me().showPopupMessage(t('label_text.login_failed_400'));
       return;
     }
     if (resLogin.status === 401) {
@@ -72,15 +83,15 @@ export class AuthenScene extends AbsScene {
       return;
     }
     if (resLogin.status === 402) {
-      UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_402);
+      UICanvas.me().showPopupMessage(t('label_text.login_failed_402'));
       return;
     }
     if (resLogin.status === 403) {
-      UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGIN_FAILED_403);
+      UICanvas.me().showPopupMessage(t('label_text.login_failed_403'));
       return;
     }
     if (resLogin.status === 500) {
-      UICanvas.me().showPopupMessage(POPUP_MESSAGE.SERVER_ERROR);
+      UICanvas.me().showPopupMessage(t('label_text.login_failed_500'));
       return;
     }
     if (resLogin.status === 200) {
@@ -95,20 +106,40 @@ export class AuthenScene extends AbsScene {
 
   onRegisterMsgHandler(resRegister: proto.IResRegister) {
     if (resRegister.status === 400) {
-      UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_400);
+      UICanvas.me().showPopupMessage(t('label_text.register_failed_400'));
     } else if (resRegister.status === 401) {
-      UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_401);
+      UICanvas.me().showPopupMessage(t('label_text.register_failed_401'));
     } else if (resRegister.status === 403) {
-      UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_403);
+      UICanvas.me().showPopupMessage(t('label_text.register_failed_403'));
     } else if (resRegister.status === 402) {
-      UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_FAILED_402);
+      UICanvas.me().showPopupMessage(t('label_text.register_failed_402'));
     } else if (resRegister.status === 500) {
-      UICanvas.me().showPopupMessage(POPUP_MESSAGE.SERVER_ERROR);
+      UICanvas.me().showPopupMessage(t('label_text.server_error'));
     } else if (resRegister.status === 200) {
-      UICanvas.me().showPopupMessage(POPUP_MESSAGE.REGISTER_SUCCESS_200);
+      UICanvas.me().showPopupMessage(t('label_text.register_success_200'));
     }
   }
 
+  onCheckEmailForgetHandler(resEmailForgetPassword: proto.IResEmailForgetPassword) {
+    if (resEmailForgetPassword.status === 400) {
+      UICanvas.me().showPopupMessage(t('label_text.forget_password_failed_400'));
+    }else{
+      this.popupForgetPassword.getChildByName("Form1").active = false;
+      this.popupForgetPassword.getChildByName("Form2").active = true;
+    }
+  }
+
+  onRecoverPasswordHandler(resRecoverPassword: proto.IResRecoverPassword) {
+    if (resRecoverPassword.status === 402) {
+      UICanvas.me().showPopupMessage(t('label_text.recover_password_failed_token_402'));
+    } else if (resRecoverPassword.status === 403) {
+      UICanvas.me().showPopupMessage(t('label_text.recover_password_failed_time_403'));
+    } else if (resRecoverPassword.status === 500){
+      UICanvas.me().showPopupMessage(t('label_text.recover_password_failed_500'));
+    } else if (resRecoverPassword.status === 200){
+      UICanvas.me().showPopupMessage(t('label_text.recover_password_success'));
+    }
+  }
   onClickSignIn() {
     this.popupGeneral.active = false;
     this.popupSignIn.getComponent(PopupComponent).show();
@@ -123,9 +154,22 @@ export class AuthenScene extends AbsScene {
     UICanvas.me().showPopup(POPUP.POPUP_SETTING);
   }
 
+  onClickForgetPassword() {
+    this.popupGeneral.active = false;
+    this.popupSignIn.active = false;
+    this.popupForgetPassword.getComponent(PopupComponent).show();
+    this.popupForgetPassword.getChildByName("Form1").active = true;
+    this.popupForgetPassword.getChildByName("Form2").active = false;
+  }
+
   onClickBack() {
     this.popupSignIn.getComponent(PopupComponent).hide();
     this.popupSignUp.getComponent(PopupComponent).hide();
     this.popupGeneral.active = true;
+  }
+
+  onClickBackLogin(){
+    this.popupForgetPassword.getComponent(PopupComponent).hide();
+    this.popupSignIn.getComponent(PopupComponent).show();
   }
 }

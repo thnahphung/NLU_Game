@@ -34,6 +34,18 @@ message Packet {
     ResLoadItemsOfFarm resLoadItemsOfFarm = 24;
     ReqBuyBuilding reqBuyBuilding = 25;
     ResBuyBuilding resBuyBuilding = 26;
+    ReqEmailForgetPassword reqEmailForgetPassword = 27;
+    ReqRecoverPassword reqRecoverPassword = 28;
+    ResRecoverPassword resRecoverPassword = 29;
+    ResEmailForgetPassword resEmailForgetPassword = 30;
+    ReqLoadFriend reqLoadFriend = 31;
+    ResLoadFriendList resLoadFriendList = 32;
+    ReqFindFriend reqFindFriend = 33;
+    ResFindFriend resFindFriend = 34;
+    ReqAddFriend reqAddFriend = 35;
+    ResAddFriend resAddFriend = 36;
+    ReqAcceptFriend reqAcceptFriend = 37; 
+    ResAcceptFriend resAcceptFriend = 38;
   }
 }
 
@@ -267,3 +279,62 @@ message ResBuyBuilding {
   string uuid = 1;
   Building building = 2;
 }
+
+message ReqEmailForgetPassword {
+  string email = 1;
+}
+
+message ReqRecoverPassword {
+  string password = 1;
+  string token = 2;
+  string email = 3;
+}
+
+message ResRecoverPassword {
+  int32 status = 1;
+}
+
+message ResEmailForgetPassword {
+  int32 status = 1;
+}
+
+message ReqLoadFriend {
+  int32 status = 1;
+}
+
+message Friend {
+  int32 id = 1;
+  string name = 2;
+  int32 level = 3;
+  string character = 4;
+}
+
+message ResLoadFriendList {
+  repeated Friend friends = 1;
+  int32 status = 2;
+}
+
+message ReqFindFriend {
+  string username = 1;
+}
+
+message ResFindFriend {
+  Friend friend = 1;
+}
+
+message ReqAddFriend {
+  int32 receiverId = 1;
+}
+
+message ResAddFriend {
+  Friend sender = 1;
+}
+
+message ReqAcceptFriend {
+  int32 senderId = 1;
+}
+
+message ResAcceptFriend {
+  Friend receiver = 1;
+}
+
