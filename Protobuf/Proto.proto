@@ -1,6 +1,6 @@
 syntax = "proto3";
-package proto;
 
+package proto;
 option java_package = "vn.edu.nlu.fit.nlugame.layer2.proto";
 
 message PacketWrapper {
@@ -46,6 +46,11 @@ message Packet {
     ResAddFriend resAddFriend = 36;
     ReqAcceptFriend reqAcceptFriend = 37; 
     ResAcceptFriend resAcceptFriend = 38;
+    ReqTilledLand reqTilledLand = 39;
+    ReqLoadCommonCrops reqLoadCommonCrops = 40;
+    ResLoadCommonCrops resLoadCommonCrops = 41;
+    ReqSow reqSow = 42;
+    ResSow resSow = 43;
   }
 }
 
@@ -227,6 +232,7 @@ message TillLand {
   int32 index = 2;
   bool statusTilled = 3;
   int32 plantingLandId = 4;
+  Crop crop = 5;
 }
 
 message FarmBuilding {
@@ -256,6 +262,7 @@ message BuildingItems {
 
 message ResLoadItemsOfFarm {
   BuildingItems buildingItems = 1;
+  Crops crops = 2;
 }
 
 //message ReqSow {
@@ -338,3 +345,98 @@ message ResAcceptFriend {
   Friend receiver = 1;
 }
 
+message ReqTilledLand {
+  TillLands tillLands = 1;
+}
+
+message fertilized {
+  int32 id = 1;
+  int32 ecffectiveTime = 2;
+  int32 ecffectiveValue = 3;
+  string function = 4;
+  int32 noGrowthItemId = 5;
+}
+
+message Crops {
+  repeated Crop crops = 1;
+}
+
+message CommonGrowthItem {
+  int32 id = 1;
+  string name = 2;
+  int64 price = 3;
+  int64 salePrice = 4;
+  int32 experienceReceive = 5;
+  string description = 6;
+  string weatherRequire = 7;
+  string seasonRequire = 8;
+  int32 timePregant = 9;
+  int32 timeGrowth = 10;
+  string type = 11;
+}
+
+message PropertyGrowthItems {
+  int32 id = 1;
+  int32 currentDiseaseId = 2;
+  int64 diseaseRate = 3;
+  bool isDisease = 4;
+  int32 startTimeDisease = 5;
+  int64 health = 6;
+  int32 stage = 7;
+  int32 startDate = 8;
+  int32 growthItemId = 9; 
+}
+
+message PropertyCrop {
+  int32 id = 1;
+  int32 harvestYield = 2;
+  bool statusWatered = 3;
+  bool statusFertilized = 4;
+  int32 tillLandId = 5;
+  int32 timeFertilized = 6;
+  int32 fertilizerId = 7;
+  int32 propertyGrowthItemId = 8;
+}
+
+message Crop {
+  CommonGrowthItem CommonGrowthItem = 1;
+  PropertyGrowthItems propertyGrowthItems = 2;
+  PropertyCrop propertyCrop = 3;
+  TillLand tillLand = 4;
+  CommonRisingTimes CommonRisingTimes = 5;
+}
+
+message CommonRisingTime {
+  int32 id = 1;
+  int32 stage = 2;
+  int32 time = 3;
+  int32 price = 4;
+  int32 growthItemId = 5;
+}
+
+message CommonRisingTimes {
+  repeated CommonRisingTime commonRisingTime = 1;
+}
+
+message ReqLoadCommonCrops {}
+
+message ResLoadCommonCrops {
+  repeated CommonGrowthItem commonGrowthItem = 1;
+}
+
+message SowingInformation{
+  TillLand tillLand = 1;
+  CommonGrowthItem commonGrowthItem = 2;
+}
+
+message SowingInformations {
+  repeated SowingInformation sowingInformation = 1;
+}
+
+message ReqSow {
+  SowingInformations sowingInformations = 1;
+}
+
+message ResSow {
+  Crops crops = 1;
+}

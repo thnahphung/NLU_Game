@@ -51,6 +51,19 @@ public class TillLandDAO extends BaseDAO{
                 .list());
     }
 
+    public static void updateTillLand(int id, boolean statusTilled) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("update " + TABLE_NAME + " set status_tilled = :statusTilled where id = :id")
+                    .bind("statusTilled", statusTilled ? 1 : 0)
+                    .bind("id", id)
+                    .execute();
+        });
+    }
+
     public static void main(String[] args) {
         TillLandDAO.insertTillLand(42);
 //        for(Proto.TillLand tillLand : TillLandDAO.getListTillLandByPlantingLandId(1)) {

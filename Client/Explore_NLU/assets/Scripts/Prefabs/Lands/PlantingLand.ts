@@ -1,4 +1,4 @@
-import { _decorator, BlockInputEvents, Button, Component, EventTouch, find, Node } from 'cc';
+import { _decorator, BlockInputEvents, Button, Component, EventTouch, find, Node, UITransform, Vec3 } from 'cc';
 import { COATING, CUSTOM_EVENT, POPUP } from '../../Utils/Const';
 import GlobalData from '../../Utils/GlobalData';
 import { CoatingComponent } from '../../Controller/CoatingComponent';
@@ -12,6 +12,7 @@ export class PlantingLand extends Component {
     }
 
     private handleGetMenuTool(): void {
+        console.log("click PlantingLand")
         if(this.node.getComponent(BlockInputEvents)) return;
         if(GlobalData.me().getMoveBuildingStatus() || GlobalData.me().getSowStatus()) return;
         const menuToolNode = this.getMenuToolNode();
@@ -20,6 +21,15 @@ export class PlantingLand extends Component {
         CoatingComponent.me().setCoating(COATING.TILL, this.node.parent, menuToolNode);
         CoatingComponent.me().showCoating(COATING.TILL);
         CoatingComponent.me().autoOff(COATING.TILL);
+        let childrenMenu = menuToolNode.getChildByName("MenuToolContent").children;
+        for (let i = 0; i < childrenMenu.length; i++) {
+            const name = childrenMenu[i].name;
+            if(name != "Pickaxe"){
+                childrenMenu[i].active = false;
+            }else{
+                childrenMenu[i].active = true;
+            }
+        }
     }
 
     private getMenuToolNode(): Node {

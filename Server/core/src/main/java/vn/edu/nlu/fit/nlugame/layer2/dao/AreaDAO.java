@@ -3,6 +3,7 @@ package vn.edu.nlu.fit.nlugame.layer2.dao;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.ABuilding;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.AreaBean;
+import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 public class AreaDAO extends BaseDAO {
     private static final String TABLE_NAME = "areas";
@@ -36,5 +37,19 @@ public class AreaDAO extends BaseDAO {
                 .bind("typeArea", typeArea)
                 .mapToBean(AreaBean.class).stream().findFirst().orElse(null));
     }
-
+    public static Proto.Area loadAreaProtoByUserId(int userId) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(handle -> handle.createQuery("select id, user_id, type_area, status from " + TABLE_NAME + " where user_id = :userId")
+                .bind("userId", userId)
+                .map((rs, ctx) -> Proto.Area.newBuilder()
+                        .setAreaId(rs.getInt("id"))
+                        .setUserId(rs.getInt("user_id"))
+                        .setTypeArea(rs.getString("type_area"))
+                        .setStatus(rs.getInt("status"))
+                        .build())
+                .stream().findFirst().orElse(null));
+    }
 }

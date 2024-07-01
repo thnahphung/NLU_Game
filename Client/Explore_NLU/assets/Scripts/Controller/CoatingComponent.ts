@@ -34,6 +34,16 @@ export class CoatingComponent extends Component {
     if (!coatingModel) return;
 
     const nodeCoating = coatingModel.getNodeCoating();
+
+    let nodeCoatingChildren = nodeCoating.children;
+
+    for (let i = 0; i < nodeCoatingChildren.length; i++) {
+      if(nodeCoatingChildren[i].name == "CoatingPanel"){
+        nodeCoatingChildren[i].destroy();
+        break;
+      } 
+    }
+
     if (nodeCoating.getChildByName("CoatingPanel")) {
       nodeCoating.getChildByName("CoatingPanel").active = true;
       return;
@@ -112,6 +122,9 @@ export class CoatingComponent extends Component {
       console.log("offAllCoating", key);
       this.off(key);
     });
+    GlobalData.me().setSowStatus(false);
+    GlobalData.me().setHarvestStatus(false);
+    GlobalData.me().setTillStatus(false);
   }
 }
 
