@@ -214,6 +214,21 @@ export namespace proto {
 
         /** Packet resAcceptFriend */
         resAcceptFriend?: (proto.IResAcceptFriend|null);
+
+        /** Packet reqTilledLand */
+        reqTilledLand?: (proto.IReqTilledLand|null);
+
+        /** Packet reqLoadCommonCrops */
+        reqLoadCommonCrops?: (proto.IReqLoadCommonCrops|null);
+
+        /** Packet resLoadCommonCrops */
+        resLoadCommonCrops?: (proto.IResLoadCommonCrops|null);
+
+        /** Packet reqSow */
+        reqSow?: (proto.IReqSow|null);
+
+        /** Packet resSow */
+        resSow?: (proto.IResSow|null);
     }
 
     /** Represents a Packet. */
@@ -336,8 +351,23 @@ export namespace proto {
         /** Packet resAcceptFriend. */
         public resAcceptFriend?: (proto.IResAcceptFriend|null);
 
+        /** Packet reqTilledLand. */
+        public reqTilledLand?: (proto.IReqTilledLand|null);
+
+        /** Packet reqLoadCommonCrops. */
+        public reqLoadCommonCrops?: (proto.IReqLoadCommonCrops|null);
+
+        /** Packet resLoadCommonCrops. */
+        public resLoadCommonCrops?: (proto.IResLoadCommonCrops|null);
+
+        /** Packet reqSow. */
+        public reqSow?: (proto.IReqSow|null);
+
+        /** Packet resSow. */
+        public resSow?: (proto.IResSow|null);
+
         /** Packet data. */
-        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|"reqEmailForgetPassword"|"reqRecoverPassword"|"resRecoverPassword"|"resEmailForgetPassword"|"reqLoadFriend"|"resLoadFriendList"|"reqFindFriend"|"resFindFriend"|"reqAddFriend"|"resAddFriend"|"reqAcceptFriend"|"resAcceptFriend");
+        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|"reqEmailForgetPassword"|"reqRecoverPassword"|"resRecoverPassword"|"resEmailForgetPassword"|"reqLoadFriend"|"resLoadFriendList"|"reqFindFriend"|"resFindFriend"|"reqAddFriend"|"resAddFriend"|"reqAcceptFriend"|"resAcceptFriend"|"reqTilledLand"|"reqLoadCommonCrops"|"resLoadCommonCrops"|"reqSow"|"resSow");
 
         /**
          * Creates a new Packet instance using the specified properties.
@@ -3526,6 +3556,9 @@ export namespace proto {
 
         /** TillLand plantingLandId */
         plantingLandId?: (number|null);
+
+        /** TillLand crop */
+        crop?: (proto.ICrop|null);
     }
 
     /** Represents a TillLand. */
@@ -3548,6 +3581,9 @@ export namespace proto {
 
         /** TillLand plantingLandId. */
         public plantingLandId: number;
+
+        /** TillLand crop. */
+        public crop?: (proto.ICrop|null);
 
         /**
          * Creates a new TillLand instance using the specified properties.
@@ -4144,6 +4180,9 @@ export namespace proto {
 
         /** ResLoadItemsOfFarm buildingItems */
         buildingItems?: (proto.IBuildingItems|null);
+
+        /** ResLoadItemsOfFarm crops */
+        crops?: (proto.ICrops|null);
     }
 
     /** Represents a ResLoadItemsOfFarm. */
@@ -4157,6 +4196,9 @@ export namespace proto {
 
         /** ResLoadItemsOfFarm buildingItems. */
         public buildingItems?: (proto.IBuildingItems|null);
+
+        /** ResLoadItemsOfFarm crops. */
+        public crops?: (proto.ICrops|null);
 
         /**
          * Creates a new ResLoadItemsOfFarm instance using the specified properties.
@@ -5757,6 +5799,1683 @@ export namespace proto {
 
         /**
          * Gets the default type url for ResAcceptFriend
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ReqTilledLand. */
+    interface IReqTilledLand {
+
+        /** ReqTilledLand tillLands */
+        tillLands?: (proto.ITillLands|null);
+    }
+
+    /** Represents a ReqTilledLand. */
+    class ReqTilledLand implements IReqTilledLand {
+
+        /**
+         * Constructs a new ReqTilledLand.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IReqTilledLand);
+
+        /** ReqTilledLand tillLands. */
+        public tillLands?: (proto.ITillLands|null);
+
+        /**
+         * Creates a new ReqTilledLand instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReqTilledLand instance
+         */
+        public static create(properties?: proto.IReqTilledLand): proto.ReqTilledLand;
+
+        /**
+         * Encodes the specified ReqTilledLand message. Does not implicitly {@link proto.ReqTilledLand.verify|verify} messages.
+         * @param message ReqTilledLand message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IReqTilledLand, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReqTilledLand message, length delimited. Does not implicitly {@link proto.ReqTilledLand.verify|verify} messages.
+         * @param message ReqTilledLand message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IReqTilledLand, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReqTilledLand message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReqTilledLand
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ReqTilledLand;
+
+        /**
+         * Decodes a ReqTilledLand message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReqTilledLand
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ReqTilledLand;
+
+        /**
+         * Verifies a ReqTilledLand message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReqTilledLand message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReqTilledLand
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ReqTilledLand;
+
+        /**
+         * Creates a plain object from a ReqTilledLand message. Also converts values to other types if specified.
+         * @param message ReqTilledLand
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ReqTilledLand, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReqTilledLand to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReqTilledLand
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a fertilized. */
+    interface Ifertilized {
+
+        /** fertilized id */
+        id?: (number|null);
+
+        /** fertilized ecffectiveTime */
+        ecffectiveTime?: (number|null);
+
+        /** fertilized ecffectiveValue */
+        ecffectiveValue?: (number|null);
+
+        /** fertilized function */
+        "function"?: (string|null);
+
+        /** fertilized noGrowthItemId */
+        noGrowthItemId?: (number|null);
+    }
+
+    /** Represents a fertilized. */
+    class fertilized implements Ifertilized {
+
+        /**
+         * Constructs a new fertilized.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.Ifertilized);
+
+        /** fertilized id. */
+        public id: number;
+
+        /** fertilized ecffectiveTime. */
+        public ecffectiveTime: number;
+
+        /** fertilized ecffectiveValue. */
+        public ecffectiveValue: number;
+
+        /** fertilized function. */
+        public function: string;
+
+        /** fertilized noGrowthItemId. */
+        public noGrowthItemId: number;
+
+        /**
+         * Creates a new fertilized instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns fertilized instance
+         */
+        public static create(properties?: proto.Ifertilized): proto.fertilized;
+
+        /**
+         * Encodes the specified fertilized message. Does not implicitly {@link proto.fertilized.verify|verify} messages.
+         * @param message fertilized message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.Ifertilized, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified fertilized message, length delimited. Does not implicitly {@link proto.fertilized.verify|verify} messages.
+         * @param message fertilized message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.Ifertilized, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a fertilized message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns fertilized
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.fertilized;
+
+        /**
+         * Decodes a fertilized message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns fertilized
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.fertilized;
+
+        /**
+         * Verifies a fertilized message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a fertilized message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns fertilized
+         */
+        public static fromObject(object: { [k: string]: any }): proto.fertilized;
+
+        /**
+         * Creates a plain object from a fertilized message. Also converts values to other types if specified.
+         * @param message fertilized
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.fertilized, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this fertilized to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for fertilized
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a Crops. */
+    interface ICrops {
+
+        /** Crops crops */
+        crops?: (proto.ICrop[]|null);
+    }
+
+    /** Represents a Crops. */
+    class Crops implements ICrops {
+
+        /**
+         * Constructs a new Crops.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.ICrops);
+
+        /** Crops crops. */
+        public crops: proto.ICrop[];
+
+        /**
+         * Creates a new Crops instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Crops instance
+         */
+        public static create(properties?: proto.ICrops): proto.Crops;
+
+        /**
+         * Encodes the specified Crops message. Does not implicitly {@link proto.Crops.verify|verify} messages.
+         * @param message Crops message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.ICrops, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Crops message, length delimited. Does not implicitly {@link proto.Crops.verify|verify} messages.
+         * @param message Crops message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.ICrops, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Crops message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Crops
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.Crops;
+
+        /**
+         * Decodes a Crops message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Crops
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.Crops;
+
+        /**
+         * Verifies a Crops message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Crops message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Crops
+         */
+        public static fromObject(object: { [k: string]: any }): proto.Crops;
+
+        /**
+         * Creates a plain object from a Crops message. Also converts values to other types if specified.
+         * @param message Crops
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.Crops, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Crops to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Crops
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a CommonGrowthItem. */
+    interface ICommonGrowthItem {
+
+        /** CommonGrowthItem id */
+        id?: (number|null);
+
+        /** CommonGrowthItem name */
+        name?: (string|null);
+
+        /** CommonGrowthItem price */
+        price?: (number|Long|null);
+
+        /** CommonGrowthItem salePrice */
+        salePrice?: (number|Long|null);
+
+        /** CommonGrowthItem experienceReceive */
+        experienceReceive?: (number|null);
+
+        /** CommonGrowthItem description */
+        description?: (string|null);
+
+        /** CommonGrowthItem weatherRequire */
+        weatherRequire?: (string|null);
+
+        /** CommonGrowthItem seasonRequire */
+        seasonRequire?: (string|null);
+
+        /** CommonGrowthItem timePregant */
+        timePregant?: (number|null);
+
+        /** CommonGrowthItem timeGrowth */
+        timeGrowth?: (number|null);
+
+        /** CommonGrowthItem type */
+        type?: (string|null);
+    }
+
+    /** Represents a CommonGrowthItem. */
+    class CommonGrowthItem implements ICommonGrowthItem {
+
+        /**
+         * Constructs a new CommonGrowthItem.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.ICommonGrowthItem);
+
+        /** CommonGrowthItem id. */
+        public id: number;
+
+        /** CommonGrowthItem name. */
+        public name: string;
+
+        /** CommonGrowthItem price. */
+        public price: (number|Long);
+
+        /** CommonGrowthItem salePrice. */
+        public salePrice: (number|Long);
+
+        /** CommonGrowthItem experienceReceive. */
+        public experienceReceive: number;
+
+        /** CommonGrowthItem description. */
+        public description: string;
+
+        /** CommonGrowthItem weatherRequire. */
+        public weatherRequire: string;
+
+        /** CommonGrowthItem seasonRequire. */
+        public seasonRequire: string;
+
+        /** CommonGrowthItem timePregant. */
+        public timePregant: number;
+
+        /** CommonGrowthItem timeGrowth. */
+        public timeGrowth: number;
+
+        /** CommonGrowthItem type. */
+        public type: string;
+
+        /**
+         * Creates a new CommonGrowthItem instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CommonGrowthItem instance
+         */
+        public static create(properties?: proto.ICommonGrowthItem): proto.CommonGrowthItem;
+
+        /**
+         * Encodes the specified CommonGrowthItem message. Does not implicitly {@link proto.CommonGrowthItem.verify|verify} messages.
+         * @param message CommonGrowthItem message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.ICommonGrowthItem, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CommonGrowthItem message, length delimited. Does not implicitly {@link proto.CommonGrowthItem.verify|verify} messages.
+         * @param message CommonGrowthItem message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.ICommonGrowthItem, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CommonGrowthItem message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CommonGrowthItem
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.CommonGrowthItem;
+
+        /**
+         * Decodes a CommonGrowthItem message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CommonGrowthItem
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.CommonGrowthItem;
+
+        /**
+         * Verifies a CommonGrowthItem message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CommonGrowthItem message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CommonGrowthItem
+         */
+        public static fromObject(object: { [k: string]: any }): proto.CommonGrowthItem;
+
+        /**
+         * Creates a plain object from a CommonGrowthItem message. Also converts values to other types if specified.
+         * @param message CommonGrowthItem
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.CommonGrowthItem, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CommonGrowthItem to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for CommonGrowthItem
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a PropertyGrowthItems. */
+    interface IPropertyGrowthItems {
+
+        /** PropertyGrowthItems id */
+        id?: (number|null);
+
+        /** PropertyGrowthItems currentDiseaseId */
+        currentDiseaseId?: (number|null);
+
+        /** PropertyGrowthItems diseaseRate */
+        diseaseRate?: (number|Long|null);
+
+        /** PropertyGrowthItems isDisease */
+        isDisease?: (boolean|null);
+
+        /** PropertyGrowthItems startTimeDisease */
+        startTimeDisease?: (number|null);
+
+        /** PropertyGrowthItems health */
+        health?: (number|Long|null);
+
+        /** PropertyGrowthItems stage */
+        stage?: (number|null);
+
+        /** PropertyGrowthItems startDate */
+        startDate?: (number|null);
+
+        /** PropertyGrowthItems growthItemId */
+        growthItemId?: (number|null);
+    }
+
+    /** Represents a PropertyGrowthItems. */
+    class PropertyGrowthItems implements IPropertyGrowthItems {
+
+        /**
+         * Constructs a new PropertyGrowthItems.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IPropertyGrowthItems);
+
+        /** PropertyGrowthItems id. */
+        public id: number;
+
+        /** PropertyGrowthItems currentDiseaseId. */
+        public currentDiseaseId: number;
+
+        /** PropertyGrowthItems diseaseRate. */
+        public diseaseRate: (number|Long);
+
+        /** PropertyGrowthItems isDisease. */
+        public isDisease: boolean;
+
+        /** PropertyGrowthItems startTimeDisease. */
+        public startTimeDisease: number;
+
+        /** PropertyGrowthItems health. */
+        public health: (number|Long);
+
+        /** PropertyGrowthItems stage. */
+        public stage: number;
+
+        /** PropertyGrowthItems startDate. */
+        public startDate: number;
+
+        /** PropertyGrowthItems growthItemId. */
+        public growthItemId: number;
+
+        /**
+         * Creates a new PropertyGrowthItems instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns PropertyGrowthItems instance
+         */
+        public static create(properties?: proto.IPropertyGrowthItems): proto.PropertyGrowthItems;
+
+        /**
+         * Encodes the specified PropertyGrowthItems message. Does not implicitly {@link proto.PropertyGrowthItems.verify|verify} messages.
+         * @param message PropertyGrowthItems message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IPropertyGrowthItems, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified PropertyGrowthItems message, length delimited. Does not implicitly {@link proto.PropertyGrowthItems.verify|verify} messages.
+         * @param message PropertyGrowthItems message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IPropertyGrowthItems, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a PropertyGrowthItems message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PropertyGrowthItems
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.PropertyGrowthItems;
+
+        /**
+         * Decodes a PropertyGrowthItems message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns PropertyGrowthItems
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.PropertyGrowthItems;
+
+        /**
+         * Verifies a PropertyGrowthItems message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a PropertyGrowthItems message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns PropertyGrowthItems
+         */
+        public static fromObject(object: { [k: string]: any }): proto.PropertyGrowthItems;
+
+        /**
+         * Creates a plain object from a PropertyGrowthItems message. Also converts values to other types if specified.
+         * @param message PropertyGrowthItems
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.PropertyGrowthItems, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this PropertyGrowthItems to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for PropertyGrowthItems
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a PropertyCrop. */
+    interface IPropertyCrop {
+
+        /** PropertyCrop id */
+        id?: (number|null);
+
+        /** PropertyCrop harvestYield */
+        harvestYield?: (number|null);
+
+        /** PropertyCrop statusWatered */
+        statusWatered?: (boolean|null);
+
+        /** PropertyCrop statusFertilized */
+        statusFertilized?: (boolean|null);
+
+        /** PropertyCrop tillLandId */
+        tillLandId?: (number|null);
+
+        /** PropertyCrop timeFertilized */
+        timeFertilized?: (number|null);
+
+        /** PropertyCrop fertilizerId */
+        fertilizerId?: (number|null);
+
+        /** PropertyCrop propertyGrowthItemId */
+        propertyGrowthItemId?: (number|null);
+    }
+
+    /** Represents a PropertyCrop. */
+    class PropertyCrop implements IPropertyCrop {
+
+        /**
+         * Constructs a new PropertyCrop.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IPropertyCrop);
+
+        /** PropertyCrop id. */
+        public id: number;
+
+        /** PropertyCrop harvestYield. */
+        public harvestYield: number;
+
+        /** PropertyCrop statusWatered. */
+        public statusWatered: boolean;
+
+        /** PropertyCrop statusFertilized. */
+        public statusFertilized: boolean;
+
+        /** PropertyCrop tillLandId. */
+        public tillLandId: number;
+
+        /** PropertyCrop timeFertilized. */
+        public timeFertilized: number;
+
+        /** PropertyCrop fertilizerId. */
+        public fertilizerId: number;
+
+        /** PropertyCrop propertyGrowthItemId. */
+        public propertyGrowthItemId: number;
+
+        /**
+         * Creates a new PropertyCrop instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns PropertyCrop instance
+         */
+        public static create(properties?: proto.IPropertyCrop): proto.PropertyCrop;
+
+        /**
+         * Encodes the specified PropertyCrop message. Does not implicitly {@link proto.PropertyCrop.verify|verify} messages.
+         * @param message PropertyCrop message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IPropertyCrop, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified PropertyCrop message, length delimited. Does not implicitly {@link proto.PropertyCrop.verify|verify} messages.
+         * @param message PropertyCrop message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IPropertyCrop, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a PropertyCrop message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns PropertyCrop
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.PropertyCrop;
+
+        /**
+         * Decodes a PropertyCrop message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns PropertyCrop
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.PropertyCrop;
+
+        /**
+         * Verifies a PropertyCrop message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a PropertyCrop message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns PropertyCrop
+         */
+        public static fromObject(object: { [k: string]: any }): proto.PropertyCrop;
+
+        /**
+         * Creates a plain object from a PropertyCrop message. Also converts values to other types if specified.
+         * @param message PropertyCrop
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.PropertyCrop, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this PropertyCrop to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for PropertyCrop
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a Crop. */
+    interface ICrop {
+
+        /** Crop CommonGrowthItem */
+        CommonGrowthItem?: (proto.ICommonGrowthItem|null);
+
+        /** Crop propertyGrowthItems */
+        propertyGrowthItems?: (proto.IPropertyGrowthItems|null);
+
+        /** Crop propertyCrop */
+        propertyCrop?: (proto.IPropertyCrop|null);
+
+        /** Crop tillLand */
+        tillLand?: (proto.ITillLand|null);
+
+        /** Crop CommonRisingTimes */
+        CommonRisingTimes?: (proto.ICommonRisingTimes|null);
+    }
+
+    /** Represents a Crop. */
+    class Crop implements ICrop {
+
+        /**
+         * Constructs a new Crop.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.ICrop);
+
+        /** Crop CommonGrowthItem. */
+        public CommonGrowthItem?: (proto.ICommonGrowthItem|null);
+
+        /** Crop propertyGrowthItems. */
+        public propertyGrowthItems?: (proto.IPropertyGrowthItems|null);
+
+        /** Crop propertyCrop. */
+        public propertyCrop?: (proto.IPropertyCrop|null);
+
+        /** Crop tillLand. */
+        public tillLand?: (proto.ITillLand|null);
+
+        /** Crop CommonRisingTimes. */
+        public CommonRisingTimes?: (proto.ICommonRisingTimes|null);
+
+        /**
+         * Creates a new Crop instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Crop instance
+         */
+        public static create(properties?: proto.ICrop): proto.Crop;
+
+        /**
+         * Encodes the specified Crop message. Does not implicitly {@link proto.Crop.verify|verify} messages.
+         * @param message Crop message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.ICrop, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Crop message, length delimited. Does not implicitly {@link proto.Crop.verify|verify} messages.
+         * @param message Crop message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.ICrop, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a Crop message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Crop
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.Crop;
+
+        /**
+         * Decodes a Crop message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Crop
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.Crop;
+
+        /**
+         * Verifies a Crop message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a Crop message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Crop
+         */
+        public static fromObject(object: { [k: string]: any }): proto.Crop;
+
+        /**
+         * Creates a plain object from a Crop message. Also converts values to other types if specified.
+         * @param message Crop
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.Crop, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this Crop to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for Crop
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a CommonRisingTime. */
+    interface ICommonRisingTime {
+
+        /** CommonRisingTime id */
+        id?: (number|null);
+
+        /** CommonRisingTime stage */
+        stage?: (number|null);
+
+        /** CommonRisingTime time */
+        time?: (number|null);
+
+        /** CommonRisingTime price */
+        price?: (number|null);
+
+        /** CommonRisingTime growthItemId */
+        growthItemId?: (number|null);
+    }
+
+    /** Represents a CommonRisingTime. */
+    class CommonRisingTime implements ICommonRisingTime {
+
+        /**
+         * Constructs a new CommonRisingTime.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.ICommonRisingTime);
+
+        /** CommonRisingTime id. */
+        public id: number;
+
+        /** CommonRisingTime stage. */
+        public stage: number;
+
+        /** CommonRisingTime time. */
+        public time: number;
+
+        /** CommonRisingTime price. */
+        public price: number;
+
+        /** CommonRisingTime growthItemId. */
+        public growthItemId: number;
+
+        /**
+         * Creates a new CommonRisingTime instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CommonRisingTime instance
+         */
+        public static create(properties?: proto.ICommonRisingTime): proto.CommonRisingTime;
+
+        /**
+         * Encodes the specified CommonRisingTime message. Does not implicitly {@link proto.CommonRisingTime.verify|verify} messages.
+         * @param message CommonRisingTime message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.ICommonRisingTime, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CommonRisingTime message, length delimited. Does not implicitly {@link proto.CommonRisingTime.verify|verify} messages.
+         * @param message CommonRisingTime message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.ICommonRisingTime, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CommonRisingTime message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CommonRisingTime
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.CommonRisingTime;
+
+        /**
+         * Decodes a CommonRisingTime message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CommonRisingTime
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.CommonRisingTime;
+
+        /**
+         * Verifies a CommonRisingTime message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CommonRisingTime message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CommonRisingTime
+         */
+        public static fromObject(object: { [k: string]: any }): proto.CommonRisingTime;
+
+        /**
+         * Creates a plain object from a CommonRisingTime message. Also converts values to other types if specified.
+         * @param message CommonRisingTime
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.CommonRisingTime, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CommonRisingTime to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for CommonRisingTime
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a CommonRisingTimes. */
+    interface ICommonRisingTimes {
+
+        /** CommonRisingTimes commonRisingTime */
+        commonRisingTime?: (proto.ICommonRisingTime[]|null);
+    }
+
+    /** Represents a CommonRisingTimes. */
+    class CommonRisingTimes implements ICommonRisingTimes {
+
+        /**
+         * Constructs a new CommonRisingTimes.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.ICommonRisingTimes);
+
+        /** CommonRisingTimes commonRisingTime. */
+        public commonRisingTime: proto.ICommonRisingTime[];
+
+        /**
+         * Creates a new CommonRisingTimes instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns CommonRisingTimes instance
+         */
+        public static create(properties?: proto.ICommonRisingTimes): proto.CommonRisingTimes;
+
+        /**
+         * Encodes the specified CommonRisingTimes message. Does not implicitly {@link proto.CommonRisingTimes.verify|verify} messages.
+         * @param message CommonRisingTimes message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.ICommonRisingTimes, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified CommonRisingTimes message, length delimited. Does not implicitly {@link proto.CommonRisingTimes.verify|verify} messages.
+         * @param message CommonRisingTimes message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.ICommonRisingTimes, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a CommonRisingTimes message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns CommonRisingTimes
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.CommonRisingTimes;
+
+        /**
+         * Decodes a CommonRisingTimes message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns CommonRisingTimes
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.CommonRisingTimes;
+
+        /**
+         * Verifies a CommonRisingTimes message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a CommonRisingTimes message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns CommonRisingTimes
+         */
+        public static fromObject(object: { [k: string]: any }): proto.CommonRisingTimes;
+
+        /**
+         * Creates a plain object from a CommonRisingTimes message. Also converts values to other types if specified.
+         * @param message CommonRisingTimes
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.CommonRisingTimes, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this CommonRisingTimes to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for CommonRisingTimes
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ReqLoadCommonCrops. */
+    interface IReqLoadCommonCrops {
+    }
+
+    /** Represents a ReqLoadCommonCrops. */
+    class ReqLoadCommonCrops implements IReqLoadCommonCrops {
+
+        /**
+         * Constructs a new ReqLoadCommonCrops.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IReqLoadCommonCrops);
+
+        /**
+         * Creates a new ReqLoadCommonCrops instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReqLoadCommonCrops instance
+         */
+        public static create(properties?: proto.IReqLoadCommonCrops): proto.ReqLoadCommonCrops;
+
+        /**
+         * Encodes the specified ReqLoadCommonCrops message. Does not implicitly {@link proto.ReqLoadCommonCrops.verify|verify} messages.
+         * @param message ReqLoadCommonCrops message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IReqLoadCommonCrops, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReqLoadCommonCrops message, length delimited. Does not implicitly {@link proto.ReqLoadCommonCrops.verify|verify} messages.
+         * @param message ReqLoadCommonCrops message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IReqLoadCommonCrops, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReqLoadCommonCrops message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReqLoadCommonCrops
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ReqLoadCommonCrops;
+
+        /**
+         * Decodes a ReqLoadCommonCrops message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReqLoadCommonCrops
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ReqLoadCommonCrops;
+
+        /**
+         * Verifies a ReqLoadCommonCrops message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReqLoadCommonCrops message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReqLoadCommonCrops
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ReqLoadCommonCrops;
+
+        /**
+         * Creates a plain object from a ReqLoadCommonCrops message. Also converts values to other types if specified.
+         * @param message ReqLoadCommonCrops
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ReqLoadCommonCrops, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReqLoadCommonCrops to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReqLoadCommonCrops
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ResLoadCommonCrops. */
+    interface IResLoadCommonCrops {
+
+        /** ResLoadCommonCrops commonGrowthItem */
+        commonGrowthItem?: (proto.ICommonGrowthItem[]|null);
+    }
+
+    /** Represents a ResLoadCommonCrops. */
+    class ResLoadCommonCrops implements IResLoadCommonCrops {
+
+        /**
+         * Constructs a new ResLoadCommonCrops.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IResLoadCommonCrops);
+
+        /** ResLoadCommonCrops commonGrowthItem. */
+        public commonGrowthItem: proto.ICommonGrowthItem[];
+
+        /**
+         * Creates a new ResLoadCommonCrops instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ResLoadCommonCrops instance
+         */
+        public static create(properties?: proto.IResLoadCommonCrops): proto.ResLoadCommonCrops;
+
+        /**
+         * Encodes the specified ResLoadCommonCrops message. Does not implicitly {@link proto.ResLoadCommonCrops.verify|verify} messages.
+         * @param message ResLoadCommonCrops message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IResLoadCommonCrops, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ResLoadCommonCrops message, length delimited. Does not implicitly {@link proto.ResLoadCommonCrops.verify|verify} messages.
+         * @param message ResLoadCommonCrops message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IResLoadCommonCrops, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ResLoadCommonCrops message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ResLoadCommonCrops
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResLoadCommonCrops;
+
+        /**
+         * Decodes a ResLoadCommonCrops message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ResLoadCommonCrops
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResLoadCommonCrops;
+
+        /**
+         * Verifies a ResLoadCommonCrops message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ResLoadCommonCrops message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ResLoadCommonCrops
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ResLoadCommonCrops;
+
+        /**
+         * Creates a plain object from a ResLoadCommonCrops message. Also converts values to other types if specified.
+         * @param message ResLoadCommonCrops
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ResLoadCommonCrops, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ResLoadCommonCrops to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ResLoadCommonCrops
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a SowingInformation. */
+    interface ISowingInformation {
+
+        /** SowingInformation tillLand */
+        tillLand?: (proto.ITillLand|null);
+
+        /** SowingInformation commonGrowthItem */
+        commonGrowthItem?: (proto.ICommonGrowthItem|null);
+    }
+
+    /** Represents a SowingInformation. */
+    class SowingInformation implements ISowingInformation {
+
+        /**
+         * Constructs a new SowingInformation.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.ISowingInformation);
+
+        /** SowingInformation tillLand. */
+        public tillLand?: (proto.ITillLand|null);
+
+        /** SowingInformation commonGrowthItem. */
+        public commonGrowthItem?: (proto.ICommonGrowthItem|null);
+
+        /**
+         * Creates a new SowingInformation instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SowingInformation instance
+         */
+        public static create(properties?: proto.ISowingInformation): proto.SowingInformation;
+
+        /**
+         * Encodes the specified SowingInformation message. Does not implicitly {@link proto.SowingInformation.verify|verify} messages.
+         * @param message SowingInformation message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.ISowingInformation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SowingInformation message, length delimited. Does not implicitly {@link proto.SowingInformation.verify|verify} messages.
+         * @param message SowingInformation message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.ISowingInformation, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SowingInformation message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SowingInformation
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.SowingInformation;
+
+        /**
+         * Decodes a SowingInformation message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SowingInformation
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.SowingInformation;
+
+        /**
+         * Verifies a SowingInformation message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SowingInformation message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SowingInformation
+         */
+        public static fromObject(object: { [k: string]: any }): proto.SowingInformation;
+
+        /**
+         * Creates a plain object from a SowingInformation message. Also converts values to other types if specified.
+         * @param message SowingInformation
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.SowingInformation, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SowingInformation to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SowingInformation
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a SowingInformations. */
+    interface ISowingInformations {
+
+        /** SowingInformations sowingInformation */
+        sowingInformation?: (proto.ISowingInformation[]|null);
+    }
+
+    /** Represents a SowingInformations. */
+    class SowingInformations implements ISowingInformations {
+
+        /**
+         * Constructs a new SowingInformations.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.ISowingInformations);
+
+        /** SowingInformations sowingInformation. */
+        public sowingInformation: proto.ISowingInformation[];
+
+        /**
+         * Creates a new SowingInformations instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns SowingInformations instance
+         */
+        public static create(properties?: proto.ISowingInformations): proto.SowingInformations;
+
+        /**
+         * Encodes the specified SowingInformations message. Does not implicitly {@link proto.SowingInformations.verify|verify} messages.
+         * @param message SowingInformations message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.ISowingInformations, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified SowingInformations message, length delimited. Does not implicitly {@link proto.SowingInformations.verify|verify} messages.
+         * @param message SowingInformations message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.ISowingInformations, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a SowingInformations message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns SowingInformations
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.SowingInformations;
+
+        /**
+         * Decodes a SowingInformations message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns SowingInformations
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.SowingInformations;
+
+        /**
+         * Verifies a SowingInformations message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a SowingInformations message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns SowingInformations
+         */
+        public static fromObject(object: { [k: string]: any }): proto.SowingInformations;
+
+        /**
+         * Creates a plain object from a SowingInformations message. Also converts values to other types if specified.
+         * @param message SowingInformations
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.SowingInformations, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this SowingInformations to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for SowingInformations
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ReqSow. */
+    interface IReqSow {
+
+        /** ReqSow sowingInformations */
+        sowingInformations?: (proto.ISowingInformations|null);
+    }
+
+    /** Represents a ReqSow. */
+    class ReqSow implements IReqSow {
+
+        /**
+         * Constructs a new ReqSow.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IReqSow);
+
+        /** ReqSow sowingInformations. */
+        public sowingInformations?: (proto.ISowingInformations|null);
+
+        /**
+         * Creates a new ReqSow instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ReqSow instance
+         */
+        public static create(properties?: proto.IReqSow): proto.ReqSow;
+
+        /**
+         * Encodes the specified ReqSow message. Does not implicitly {@link proto.ReqSow.verify|verify} messages.
+         * @param message ReqSow message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IReqSow, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ReqSow message, length delimited. Does not implicitly {@link proto.ReqSow.verify|verify} messages.
+         * @param message ReqSow message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IReqSow, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ReqSow message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ReqSow
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ReqSow;
+
+        /**
+         * Decodes a ReqSow message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ReqSow
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ReqSow;
+
+        /**
+         * Verifies a ReqSow message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ReqSow message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ReqSow
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ReqSow;
+
+        /**
+         * Creates a plain object from a ReqSow message. Also converts values to other types if specified.
+         * @param message ReqSow
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ReqSow, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ReqSow to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ReqSow
+         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns The default type url
+         */
+        public static getTypeUrl(typeUrlPrefix?: string): string;
+    }
+
+    /** Properties of a ResSow. */
+    interface IResSow {
+
+        /** ResSow crops */
+        crops?: (proto.ICrops|null);
+    }
+
+    /** Represents a ResSow. */
+    class ResSow implements IResSow {
+
+        /**
+         * Constructs a new ResSow.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: proto.IResSow);
+
+        /** ResSow crops. */
+        public crops?: (proto.ICrops|null);
+
+        /**
+         * Creates a new ResSow instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns ResSow instance
+         */
+        public static create(properties?: proto.IResSow): proto.ResSow;
+
+        /**
+         * Encodes the specified ResSow message. Does not implicitly {@link proto.ResSow.verify|verify} messages.
+         * @param message ResSow message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: proto.IResSow, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified ResSow message, length delimited. Does not implicitly {@link proto.ResSow.verify|verify} messages.
+         * @param message ResSow message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: proto.IResSow, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a ResSow message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns ResSow
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResSow;
+
+        /**
+         * Decodes a ResSow message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns ResSow
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResSow;
+
+        /**
+         * Verifies a ResSow message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a ResSow message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns ResSow
+         */
+        public static fromObject(object: { [k: string]: any }): proto.ResSow;
+
+        /**
+         * Creates a plain object from a ResSow message. Also converts values to other types if specified.
+         * @param message ResSow
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: proto.ResSow, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this ResSow to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+
+        /**
+         * Gets the default type url for ResSow
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */

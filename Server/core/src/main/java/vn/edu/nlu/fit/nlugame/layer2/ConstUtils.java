@@ -7,7 +7,8 @@ public class ConstUtils {
         STONE("STONE"),
         ROOT("ROOT"),
         HOUSE("HOUSE"),
-        PLANTING_LAND("PLANTING_LAND");
+        PLANTING_LAND("PLANTING_LAND"),
+        CROP("CROP");
         private final String value;
 
         TYPE_ITEM(String value) {

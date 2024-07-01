@@ -3,12 +3,14 @@ import GlobalData from '../../Utils/GlobalData';
 import { CoatingComponent } from '../../Controller/CoatingComponent';
 import { COATING, SEED_BAG } from '../../Utils/Const';
 import { Crop } from '../Crop/Crop';
+import { SeedBag } from '../Tools/SeedBag';
 const { ccclass, property } = _decorator;
 
 @ccclass('TilledLand')
 export class TilledLand extends Component {
     public tillLandProto : proto.ITillLand = null;
-    private seedNode: Node = null;
+    public seedNode: Node = null;
+    private isTilled = false;
     public isSown = false;
     @property(Prefab)
     private ricePrefab: Prefab = null;
@@ -37,6 +39,7 @@ export class TilledLand extends Component {
             if(GlobalData.me().getSowStatus()){
                 return;
             }
+            if(this.isTilled) return;
             this.handleTillLand();
             GlobalData.me().setTilledStatus(true);
         }
@@ -46,15 +49,31 @@ export class TilledLand extends Component {
                 return;
             }
             if(!this.node.getComponent(Sprite).enabled || this.isSown) return;
-            let seedBag = otherCollider.node.name;
+            let seedBag = otherCollider.node.getComponent(SeedBag).commonGrowthItemProto;
             this.handleSow(seedBag);
             //console.log("Sow...", otherCollider.node.name);
         }
     }
 
-    private handleSow(seed: string):void {
+    private handleSow(seedBag: proto.ICommonGrowthItem):void {
         this.isSown = true;
+        let seed = seedBag.name;
         GlobalData.me().setSownStatus(true);
+        let sowingInformation = new proto.SowingInformation();
+        this.handleDisplayCropsToLand(seed);
+        //this.node.off(Node.EventType.TOUCH_END, this.handleTouchTilledLand, this);
+        //this.node.getComponent(Collider2D).enabled = false;
+        sowingInformation.commonGrowthItem = seedBag;
+        sowingInformation.tillLand = this.tillLandProto;
+        if(GlobalData.me().getSowingInformations() == null){
+            let sowingInformations = new proto.SowingInformations();
+            GlobalData.me().setSowingInformations(sowingInformations);
+        }
+        GlobalData.me().getSowingInformations().sowingInformation.push(sowingInformation);
+    }
+
+    public handleDisplayCropsToLand(seed: string): void {
+        console.log("Seed: ", seed);
         switch(seed){
             case SEED_BAG.RICE:
                 this.seedNode = instantiate(this.ricePrefab);
@@ -74,14 +93,30 @@ export class TilledLand extends Component {
         }
         let plantingLand = this.node.getParent().getParent();
         this.seedNode.getComponent(Crop).plantingLand = plantingLand;
-        this.seedNode.getComponent(Crop).tileLand = this.node;
+        this.seedNode.getComponent(Crop).tilledLand = this.node;
         this.seedNode.setPosition(this.node.position.x + plantingLand.position.x, this.node.position.y + plantingLand.position.y - 5, 0);
         this.getMidLayer()?.addChild(this.seedNode);
-        //this.node.off(Node.EventType.TOUCH_END, this.handleTouchTilledLand, this);
-        //this.node.getComponent(Collider2D).enabled = false;
     }
 
     public handleTillLand(): void {
+        this.isTilled = true;
+        this.node.getComponent(Sprite).enabled = true;
+        this.node.getComponent(BlockInputEvents).enabled = true;
+        // Node begin listening sowing
+        this.listenSow();
+
+        // Save data
+        console.log("Till Land...", this.tillLandProto)
+        this.tillLandProto.statusTilled = true;
+        if(GlobalData.me().getTilledLandListProto() == null) {
+            let listTilledLand = new proto.TillLands();
+            GlobalData.me().setTilledLandListProto(listTilledLand)
+        }
+        GlobalData.me().getTilledLandListProto().tillLand.push(this.tillLandProto);
+    }
+
+    public handleTilledLand(): void {
+        this.isTilled = true;
         this.node.getComponent(Sprite).enabled = true;
         this.node.getComponent(BlockInputEvents).enabled = true;
         // Node begin listening sowing
@@ -100,6 +135,7 @@ export class TilledLand extends Component {
     }
 
     private showMenuSeedNode(): void {
+        CoatingComponent.me().offAllCoating();
         if(GlobalData.me().getSowStatus()){
             return;
         }
@@ -110,7 +146,7 @@ export class TilledLand extends Component {
         menuSeedNode.setPosition(plantingLandPanel.getPosition().x, plantingLandPanel.getPosition().y + 145, 0);
         menuSeedNode.active = true;
 
-        CoatingComponent.me().setCoating(COATING.SEED, plantingLandPanel.parent, menuSeedNode);
+        CoatingComponent.me().setCoating(COATING.SEED, this.node, menuSeedNode);
         CoatingComponent.me().showCoating(COATING.SEED);
         CoatingComponent.me().autoOff(COATING.SEED);
     }

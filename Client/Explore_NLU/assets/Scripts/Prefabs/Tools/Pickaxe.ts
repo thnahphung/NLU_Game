@@ -3,6 +3,7 @@ import AbsTool from './AbsTool';
 import GlobalData from '../../Utils/GlobalData';
 import { CoatingComponent } from '../../Controller/CoatingComponent';
 import { COATING } from '../../Utils/Const';
+import DataSender from '../../Utils/DataSender';
 const { ccclass } = _decorator;
 
 @ccclass('Pickaxe')
@@ -40,6 +41,7 @@ export class Pickaxe extends AbsTool {
             CoatingComponent.me().off(COATING.MOVE);
         }
         GlobalData.me().setTilledStatus(false);
+        this.handleTilledLand();
     }
 
     handleOnTouchCancel(event: EventTouch): void {
@@ -52,6 +54,15 @@ export class Pickaxe extends AbsTool {
         GlobalData.me().setTilledStatus(false);
     }
     
+    handleTilledLand(): void {
+        if(GlobalData.me().getTilledLandListProto().tillLand == null || GlobalData.me().getTilledLandListProto().tillLand.length == 0){
+            console.log("Null land tilled")
+            return;
+        }
+        console.log("Save land tilled")
+        DataSender.sendReqTilledLand(GlobalData.me().getTilledLandListProto());
+        GlobalData.me().setTilledLandListProto(null);
+    }
 }
 
 

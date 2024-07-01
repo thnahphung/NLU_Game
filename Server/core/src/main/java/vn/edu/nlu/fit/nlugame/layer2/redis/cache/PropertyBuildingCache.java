@@ -3,18 +3,16 @@ package vn.edu.nlu.fit.nlugame.layer2.redis.cache;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import vn.edu.nlu.fit.nlugame.layer2.CompressUtils;
-import vn.edu.nlu.fit.nlugame.layer2.dao.bean.PropertyBuildingBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.RedisClusterHelper;
-import vn.edu.nlu.fit.nlugame.layer2.redis.context.PropertyBuildingContext;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class PropertyBuildingCache extends RedisClusterHelper implements ICache<PropertyBuildingContext>{
+public class PropertyBuildingCache extends RedisClusterHelper implements ICache<Proto.PropertyBuilding>{
     private static final PropertyBuildingCache instance = new PropertyBuildingCache();
     private static final String PROPERTY_BUILDING_KEY = "property_building:";
-    private static final Cache<String, PropertyBuildingContext> propertyBuildingMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(30, TimeUnit.MINUTES).build();
+    private static final Cache<String, Proto.PropertyBuilding> propertyBuildingMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(30, TimeUnit.MINUTES).build();
 
     private PropertyBuildingCache() {
     }
@@ -30,7 +28,7 @@ public class PropertyBuildingCache extends RedisClusterHelper implements ICache<
     // property_building_area1 -> 2, PropertyBuildingContext(id=2, positionX=2.0, positionY=3.0, currentLevel=3, areaId=1, commonBuildingId=2, upgradeId=1)
     // property_building_area2 -> 1, PropertyBuildingContext(id=1, positionX=1.0, positionY=3.0, currentLevel=3, areaId=2, commonBuildingId=1, upgradeId=1)
     @Override
-    public boolean add(String key, PropertyBuildingContext value) {
+    public boolean add(String key, Proto.PropertyBuilding value) {
         if(value == null) {
             return false;
         }
@@ -40,31 +38,31 @@ public class PropertyBuildingCache extends RedisClusterHelper implements ICache<
     }
 
     @Override
-    public boolean add(PropertyBuildingContext value) {
+    public boolean add(Proto.PropertyBuilding value) {
         if(value == null) {
             return false;
         }
-        String keyArea = value.getPropertyBuildingBean().getAreaId() +"_"+ value.getPropertyBuildingBean().getId();
+        String keyArea = value.getAreaId() +"_"+ value.getId();
         this.add(keyArea, value);
         return false;
     }
 
     @Override
-    public PropertyBuildingContext get(String key) {
-        PropertyBuildingContext propertyBuildingContext = propertyBuildingMap.getIfPresent(key);
+    public Proto.PropertyBuilding get(String key) {
+        Proto.PropertyBuilding propertyBuildingContext = propertyBuildingMap.getIfPresent(key);
         return propertyBuildingContext;
     }
 
     @Override
-    public List<PropertyBuildingContext> getAll() {
+    public List<Proto.PropertyBuilding> getAll() {
         return new ArrayList<>(propertyBuildingMap.asMap().values());
     }
 
-    public List<PropertyBuildingContext> getAll(int areaId) {
+    public List<Proto.PropertyBuilding> getAll(int areaId) {
         System.out.println("getAll from cache local");
-        List<PropertyBuildingContext> result = new ArrayList<>();
+        List<Proto.PropertyBuilding> result = new ArrayList<>();
         propertyBuildingMap.asMap().forEach((k, v) -> {
-            if(v.getPropertyBuildingBean().getAreaId() == areaId) {
+            if(v.getAreaId() == areaId) {
                 result.add(v);
             }
         });
@@ -77,8 +75,8 @@ public class PropertyBuildingCache extends RedisClusterHelper implements ICache<
     }
 
     @Override
-    public PropertyBuildingContext remove(String key) {
-        PropertyBuildingContext propertyBuildingContext = propertyBuildingMap.getIfPresent(key);
+    public Proto.PropertyBuilding remove(String key) {
+        Proto.PropertyBuilding propertyBuildingContext = propertyBuildingMap.getIfPresent(key);
         if(propertyBuildingContext != null) {
             getConnection().hdel(PROPERTY_BUILDING_KEY.getBytes(), key.getBytes());
             propertyBuildingMap.invalidate(key);
@@ -98,22 +96,22 @@ public class PropertyBuildingCache extends RedisClusterHelper implements ICache<
     }
 
     @Override
-    public String getKey(PropertyBuildingContext value) {
-        return value.getPropertyBuildingBean().getAreaId() +"_"+ value.getPropertyBuildingBean().getId();
+    public String getKey(Proto.PropertyBuilding value) {
+        return value.getAreaId() +"_"+ value.getId();
     }
 
-    public void addPropertyBuilding(PropertyBuildingContext propertyBuildingContext) {
-        String key = PROPERTY_BUILDING_KEY + propertyBuildingContext.getPropertyBuildingBean().getAreaId();
-        getConnection().hset(key.getBytes(), String.valueOf(propertyBuildingContext.getPropertyBuildingBean().getId()).getBytes(), CompressUtils.compress(propertyBuildingContext));
+    public void addPropertyBuilding(Proto.PropertyBuilding propertyBuildingContext) {
+        String key = PROPERTY_BUILDING_KEY + propertyBuildingContext.getAreaId();
+        getConnection().hset(key.getBytes(), String.valueOf(propertyBuildingContext.getId()).getBytes(), CompressUtils.compress(propertyBuildingContext));
     }
 
-    public PropertyBuildingContext getPropertyBuilding(int id, int areaId) {
+    public Proto.PropertyBuilding getPropertyBuilding(int id, int areaId) {
         String key = PROPERTY_BUILDING_KEY + areaId;
-        PropertyBuildingContext propertyBuildingContext = propertyBuildingMap.getIfPresent(key);
+        Proto.PropertyBuilding propertyBuildingContext = propertyBuildingMap.getIfPresent(key);
         if(propertyBuildingContext == null) {
             byte[] bytes = getConnection().hget(key.getBytes(), String.valueOf(id).getBytes());
             if(bytes != null) {
-                propertyBuildingContext = CompressUtils.decompress(bytes, PropertyBuildingContext.class);
+                propertyBuildingContext = CompressUtils.decompress(bytes, Proto.PropertyBuilding.class);
                 if(propertyBuildingContext != null) {
                     propertyBuildingMap.put(key, propertyBuildingContext);
                 }
@@ -122,12 +120,12 @@ public class PropertyBuildingCache extends RedisClusterHelper implements ICache<
         return propertyBuildingContext;
     }
 
-    public Map<String, PropertyBuildingContext> getAllPropertyBuilding(int areaId) {
+    public Map<String, Proto.PropertyBuilding> getAllPropertyBuilding(int areaId) {
         String key = PROPERTY_BUILDING_KEY + areaId;
         Map<byte[], byte[]> propertyBuildingMap = getConnection().hgetAll(key.getBytes());
-        Map<String, PropertyBuildingContext> result = new HashMap<>();
+        Map<String, Proto.PropertyBuilding> result = new HashMap<>();
         propertyBuildingMap.forEach((k, v) -> {
-            PropertyBuildingContext propertyBuildingContext = CompressUtils.decompress(v, PropertyBuildingContext.class);
+            Proto.PropertyBuilding propertyBuildingContext = CompressUtils.decompress(v, Proto.PropertyBuilding.class);
             result.put(new String(k), propertyBuildingContext);
         });
         return result;
@@ -139,8 +137,8 @@ public class PropertyBuildingCache extends RedisClusterHelper implements ICache<
         Map<byte[], byte[]> propertyBuildingMap = getConnection().hgetAll(key.getBytes());
         List<Proto.PropertyBuilding> result = new ArrayList<>();
         propertyBuildingMap.forEach((k, v) -> {
-            PropertyBuildingContext propertyBuildingContext = CompressUtils.decompress(v, PropertyBuildingContext.class);
-            result.add(propertyBuildingContext.getPropertyBuildingBean());
+            Proto.PropertyBuilding propertyBuildingContext = CompressUtils.decompress(v, Proto.PropertyBuilding.class);
+            result.add(propertyBuildingContext);
         });
         return result;
     }

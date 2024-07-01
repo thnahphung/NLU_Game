@@ -3,10 +3,12 @@ import AbsTool from './AbsTool';
 import GlobalData from '../../Utils/GlobalData';
 import { CoatingComponent } from '../../Controller/CoatingComponent';
 import { COATING } from '../../Utils/Const';
+import DataSender from '../../Utils/DataSender';
 const { ccclass } = _decorator;
 
 @ccclass('SeedBag')
 export class SeedBag extends AbsTool {
+    public commonGrowthItemProto: proto.ICommonGrowthItem = null;
 
     start(): void {
         super.start()
@@ -24,6 +26,7 @@ export class SeedBag extends AbsTool {
     handleOnTouchEnd(event: EventTouch): void {
         super.handleOnTouchEnd(event)
         this.handleStopSow();
+        this.handleSendRequestSow();
     }
 
     handleOnTouchCancel(event: EventTouch): void {
@@ -37,6 +40,14 @@ export class SeedBag extends AbsTool {
             CoatingComponent.me().off(COATING.SEED);
         }
         GlobalData.me().setSownStatus(false);
+    }
+
+    handleSendRequestSow(): void {
+        console.log("Send request sow...", GlobalData.me().getSowingInformations().sowingInformation);
+        //send request sow
+        DataSender.sendReqSow(GlobalData.me().getSowingInformations());
+        //clear data
+        GlobalData.me().setSowingInformations(null);
     }
 
 }

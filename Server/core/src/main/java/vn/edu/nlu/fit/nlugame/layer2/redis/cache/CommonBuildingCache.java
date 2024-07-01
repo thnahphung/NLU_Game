@@ -4,18 +4,16 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import vn.edu.nlu.fit.nlugame.layer2.CompressUtils;
 import vn.edu.nlu.fit.nlugame.layer2.ConstUtils;
-import vn.edu.nlu.fit.nlugame.layer2.dao.bean.CommonBuildingBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.RedisClusterHelper;
-import vn.edu.nlu.fit.nlugame.layer2.redis.context.CommonBuildingContext;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class CommonBuildingCache extends RedisClusterHelper implements ICache<CommonBuildingContext>{
+public class CommonBuildingCache extends RedisClusterHelper implements ICache<Proto.BuildingBase>{
     private static final CommonBuildingCache instance = new CommonBuildingCache();
     private static final String COMMON_BUILDING_KEY = "common_building";
-    private static final Cache<String, CommonBuildingContext> commonBuildingMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.HOURS).build();
+    private static final Cache<String, Proto.BuildingBase> commonBuildingMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.HOURS).build();
 
     private CommonBuildingCache() {
     }
@@ -25,7 +23,7 @@ public class CommonBuildingCache extends RedisClusterHelper implements ICache<Co
     }
 
     @Override
-    public boolean add(String key, CommonBuildingContext value) {
+    public boolean add(String key, Proto.BuildingBase value) {
         if(value == null) {
             return false;
         }
@@ -34,17 +32,17 @@ public class CommonBuildingCache extends RedisClusterHelper implements ICache<Co
     }
 
     @Override
-    public boolean add(CommonBuildingContext value) {
+    public boolean add(Proto.BuildingBase value) {
         if(value == null) {
             return false;
         }
-        commonBuildingMap.put(String.valueOf(value.getBuildingBaseBean().getId()), value);
+        commonBuildingMap.put(String.valueOf(value.getId()), value);
         return false;
     }
 
     @Override
-    public CommonBuildingContext get(String key) {
-        CommonBuildingContext commonBuildingContext = commonBuildingMap.getIfPresent(key);
+    public Proto.BuildingBase get(String key) {
+        Proto.BuildingBase commonBuildingContext = commonBuildingMap.getIfPresent(key);
         if(commonBuildingContext == null) {
             commonBuildingContext = getCommonBuilding(Integer.parseInt(key));
             if(commonBuildingContext != null) {
@@ -55,7 +53,7 @@ public class CommonBuildingCache extends RedisClusterHelper implements ICache<Co
     }
 
     @Override
-    public List<CommonBuildingContext> getAll() {
+    public List<Proto.BuildingBase> getAll() {
         return new ArrayList<>(commonBuildingMap.asMap().values());
     }
 
@@ -65,8 +63,8 @@ public class CommonBuildingCache extends RedisClusterHelper implements ICache<Co
     }
 
     @Override
-    public CommonBuildingContext remove(String key) {
-        CommonBuildingContext commonBuildingContext = commonBuildingMap.getIfPresent(key);
+    public Proto.BuildingBase remove(String key) {
+        Proto.BuildingBase commonBuildingContext = commonBuildingMap.getIfPresent(key);
         if(commonBuildingContext != null) {
             getConnection().hdel(COMMON_BUILDING_KEY.getBytes(), key.getBytes());
             commonBuildingMap.invalidate(key);
@@ -86,20 +84,20 @@ public class CommonBuildingCache extends RedisClusterHelper implements ICache<Co
     }
 
     @Override
-    public String getKey(CommonBuildingContext value) {
-        return String.valueOf(value.getBuildingBaseBean().getId());
+    public String getKey(Proto.BuildingBase value) {
+        return String.valueOf(value);
     }
 
-    public void addCommonBuilding(CommonBuildingContext commonBuildingContext) {
-        getConnection().hset(COMMON_BUILDING_KEY.getBytes(), String.valueOf(commonBuildingContext.getBuildingBaseBean().getId()).getBytes(), CompressUtils.compress(commonBuildingContext));
+    public void addCommonBuilding(Proto.BuildingBase commonBuilding) {
+        getConnection().hset(COMMON_BUILDING_KEY.getBytes(), String.valueOf(commonBuilding.getId()).getBytes(), CompressUtils.compress(commonBuilding));
     }
 
-    public CommonBuildingContext getCommonBuilding(int id) {
-        CommonBuildingContext commonBuildingContext = commonBuildingMap.getIfPresent(String.valueOf(id));
+    public Proto.BuildingBase getCommonBuilding(int id) {
+        Proto.BuildingBase commonBuildingContext = commonBuildingMap.getIfPresent(String.valueOf(id));
         if(commonBuildingContext == null) {
             byte[] bytes = getConnection().hget(COMMON_BUILDING_KEY.getBytes(), String.valueOf(id).getBytes());
             if(bytes != null) {
-                commonBuildingContext = CompressUtils.decompress(bytes, CommonBuildingContext.class);
+                commonBuildingContext = CompressUtils.decompress(bytes, Proto.BuildingBase.class);
                 if(commonBuildingContext != null) {
                     commonBuildingMap.put(String.valueOf(id), commonBuildingContext);
                 }
@@ -108,11 +106,11 @@ public class CommonBuildingCache extends RedisClusterHelper implements ICache<Co
         return commonBuildingContext;
     }
 
-    public Map<String, CommonBuildingContext> getAllCommonBuilding() {
+    public Map<String, Proto.BuildingBase> getAllCommonBuilding() {
         Map<byte[], byte[]> commonBuildingMap = getConnection().hgetAll(COMMON_BUILDING_KEY.getBytes());
-        Map<String, CommonBuildingContext> result = new HashMap<>();
+        Map<String, Proto.BuildingBase> result = new HashMap<>();
         commonBuildingMap.forEach((k, v) -> {
-            CommonBuildingContext commonBuildingContext = CompressUtils.decompress(v, CommonBuildingContext.class);
+            Proto.BuildingBase commonBuildingContext = CompressUtils.decompress(v, Proto.BuildingBase.class);
             result.put(new String(k), commonBuildingContext);
         });
         return result;
@@ -122,31 +120,15 @@ public class CommonBuildingCache extends RedisClusterHelper implements ICache<Co
         Map<byte[], byte[]> commonBuildingMap = getConnection().hgetAll(COMMON_BUILDING_KEY.getBytes());
         List<Proto.BuildingBase> result = new ArrayList<>();
         commonBuildingMap.forEach((k, v) -> {
-            CommonBuildingContext commonBuildingContext = CompressUtils.decompress(v, CommonBuildingContext.class);
-            result.add(commonBuildingContext.getBuildingBaseBean());
+            Proto.BuildingBase commonBuildingContext = CompressUtils.decompress(v, Proto.BuildingBase.class);
+            result.add(commonBuildingContext);
         });
         return result;
     }
 
     public int getIdBuildingByType(ConstUtils.TYPE_ITEM typeItem) {
-        CommonBuildingContext commonBuildingContext = commonBuildingMap.asMap().values().stream().filter(context -> context.getBuildingBaseBean().getType().equals(typeItem.getValue())).findFirst().orElse(null);
-        if(commonBuildingContext == null) return 0;
-        return commonBuildingContext.getBuildingBaseBean().getId();
-    }
-
-    public static void main(String[] args) {
-        CommonBuildingContext commonBuildingContext1 = new CommonBuildingContext();
-        Proto.BuildingBase.Builder p = Proto.BuildingBase.newBuilder().setId(1).setType("TREE");
-        commonBuildingContext1.setBuildingBaseBean(p.build());
-
-        CommonBuildingContext commonBuildingContext2 = new CommonBuildingContext();
-        Proto.BuildingBase.Builder p2 = Proto.BuildingBase.newBuilder().setId(2).setType("PLANTING_LAND");
-        commonBuildingContext2.setBuildingBaseBean(p2.build());
-
-        CommonBuildingCache.me().add(commonBuildingContext1);
-
-        CommonBuildingCache.me().add(commonBuildingContext2);
-
-        System.out.println(CommonBuildingCache.me().getIdBuildingByType(ConstUtils.TYPE_ITEM.PLANTING_LAND));
+        Proto.BuildingBase commonBuilding = commonBuildingMap.asMap().values().stream().filter(context -> context.getType().equals(typeItem.getValue())).findFirst().orElse(null);
+        if(commonBuilding == null) return 0;
+        return commonBuilding.getId();
     }
 }
