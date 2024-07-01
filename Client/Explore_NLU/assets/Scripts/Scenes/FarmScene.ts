@@ -17,6 +17,8 @@ import { PlantingLand } from "../Prefabs/Lands/PlantingLand";
 import { TilledLand } from "../Prefabs/Lands/TilledLand";
 import GlobalData from "../Utils/GlobalData";
 import { CoatingComponent } from "../Controller/CoatingComponent";
+import { SeedBag } from "../Prefabs/Tools/SeedBag";
+import { Crop } from "../Prefabs/Crop/Crop";
 const { ccclass, property } = _decorator;
 
 @ccclass('FarmScene')
@@ -28,8 +30,16 @@ export class FarmScene extends AbsScene {
   private buildingSystem: Node = null;
 
   private buildingProtos: proto.IBuilding[] = [];
+  private cropsProto: proto.ICrops = null;
   @property([Prefab])
   private buildingFarmPrefab: Prefab[] = [];
+
+  protected onLoad(): void {
+    this.loadCommonCrop();
+    // Load information of farm
+    this.loadFarm();
+  }
+
   protected start(): void{
     super.start();
         // Open building function
@@ -37,10 +47,6 @@ export class FarmScene extends AbsScene {
     UICanvas.me()
       .getButton(BUTTON.UI_BUTTON_BUILDING)
       .on(Node.EventType.TOUCH_END, this.onClickBuilding, this);
-  }
-  protected onLoad(): void {
-    // Load information of farm
-    this.loadFarm();
   }
 
   onMessageHandler(packets: proto.IPacketWrapper): void {
@@ -51,6 +57,13 @@ export class FarmScene extends AbsScene {
       if (packet.resBuyBuilding) {
         this.handleResBuyBuilding(packet.resBuyBuilding);
       }
+      if (packet.resLoadCommonCrops) {
+        this.handleResLoadCommonCrop(packet.resLoadCommonCrops);
+      }
+      if (packet.resSow) {
+        console.log("Sow success");
+        this.handleResSow(packet.resSow);
+      }
     });
   }
 
@@ -60,6 +73,7 @@ export class FarmScene extends AbsScene {
     resLoadItemsOfFarm.buildingItems.building.forEach((building) => {
       this.buildingProtos.push(building);
     });
+    this.cropsProto = resLoadItemsOfFarm.crops;
     this.loadBasicItemsToUI();
   }
 
@@ -87,6 +101,50 @@ export class FarmScene extends AbsScene {
         plantingLand.removeComponent(BlockInputEvents);
     });
   }
+
+  handleResLoadCommonCrop(resLoadCommonCrops: proto.IResLoadCommonCrops): void {
+    console.log(resLoadCommonCrops);
+    let menuSeenContent = this.getMenuSeenContent();
+    resLoadCommonCrops.commonGrowthItem.forEach((commonGrowthItem) => {
+      menuSeenContent.getChildByName(commonGrowthItem.name).getComponent(SeedBag).commonGrowthItemProto = commonGrowthItem;
+    });
+  }
+
+  handleResSow(resSow: proto.IResSow): void {
+    let plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
+    let plantingLands = plantingLandPanel.children;
+    plantingLands.forEach((plantingLand: Node) => {
+      let tilledLands = plantingLand.getChildByName("TilledLandPanel").children;
+      tilledLands.forEach((tilledLand: Node) => {
+        let cropProto = resSow.crops.crops.filter((crop) => crop.tillLand.id == tilledLand.getComponent(TilledLand).tillLandProto.id)[0];
+        if (cropProto) {
+          tilledLand.getComponent(TilledLand).seedNode.getComponent(Crop).cropProto = cropProto;
+        }
+      });
+    });
+  }
+
+  handleDisplayCropsToUI(crops: proto.ICrops): void {
+    let plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
+    let plantingLands = plantingLandPanel.children;
+    plantingLands.forEach((plantingLand: Node) => {
+    let tilledLands = plantingLand.getChildByName("TilledLandPanel").children;
+    tilledLands.forEach((tilledLand: Node) => {
+        let cropProto = crops.crops.filter((crop) => {
+          return crop.tillLand.id == tilledLand.getComponent(TilledLand).tillLandProto.id;
+        })[0];
+        if (cropProto) {
+          tilledLand.getComponent(TilledLand).handleDisplayCropsToLand(cropProto.CommonGrowthItem.name);
+          if(!tilledLand || !tilledLand.getComponent(TilledLand).seedNode) {
+            console.log("TilledLand or seedNode is null", tilledLand);
+            return;
+          }
+          tilledLand.getComponent(TilledLand).seedNode.getComponent(Crop).cropProto = cropProto;
+        }
+      });
+    });
+  }
+
   private loadFarm() {
     // basic items
     this.loadItemsOfFarm();
@@ -224,6 +282,7 @@ export class FarmScene extends AbsScene {
         }
       }
     });
+    this.handleDisplayCropsToUI(this.cropsProto);
   }
 
   public onClickBuilding(): void {
@@ -258,6 +317,14 @@ export class FarmScene extends AbsScene {
 
   protected onDestroy(): void {
     UICanvas.me().hideButton(BUTTON.UI_BUTTON_BUILDING);
+  }
+
+  private loadCommonCrop(): void {
+    DataSender.sendReqLoadCommonCrop();
+  }
+
+  private getMenuSeenContent(){
+    return find('Canvas/PopupGameLayer/MenuSeedPanel/MenuSeenContent');
   }
 }
 

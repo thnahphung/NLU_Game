@@ -7,21 +7,25 @@ const { ccclass, property } = _decorator;
 
 @ccclass('Crop')
 export class Crop extends Component {
+    // Node đất trồng
     public plantingLand: Node = null;
+    // Node đất đã cày
     public tilledLand: Node = null;
     // Giai đoạn phát triển hiện tại
     private currentStage:number = 0;
     // Thời gian đã trôi qua
     private elapsedTime:number = 0;
     // Thời gian (giây) cho mỗi giai đoạn phát triển
-    // private seedTime:number = 4;
-    // private sproutTime:number = 5;
-    // private smallTreeTime:number = 5;
     private seedTime:number = 1;
     private sproutTime:number = 1;
     private smallTreeTime:number = 1;
+    // Trạng thái cây đã thu hoạch
     private isHarvested:boolean = false;
+    // Thời gian hiệu ứng thu hoạch
     private effectHarvestTime: number = 0;
+    // Proto information của cây trồng
+    public cropProto: proto.ICrop = null;
+    // Sprite của các giai đoạn phát triển
     @property(SpriteFrame)
     public seedSprite: SpriteFrame
     @property(SpriteFrame)
@@ -32,6 +36,7 @@ export class Crop extends Component {
     public bigTreeSprite: SpriteFrame
     @property(SpriteFrame)
     public harvestSprite: SpriteFrame
+
     protected onLoad(): void {
         this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame = this.seedSprite;
     }
@@ -105,8 +110,28 @@ export class Crop extends Component {
     }
 
     update(deltaTime: number) {
-         this.elapsedTime += deltaTime;
+        // Kiểm tra và cập nhật hiệu ứng khi đã thu hoạch
+        if(this.isHarvested){
+            this.effectHarvestTime += deltaTime;
+            if(this.effectHarvestTime >= 1){
+                this.node.destroy();
+            }
+        }
         // Kiểm tra và cập nhật giai đoạn phát triển
+        if(!this.cropProto || !this.cropProto.CommonRisingTimes || !this.cropProto.CommonRisingTimes.commonRisingTime || this.cropProto.CommonRisingTimes.commonRisingTime.length == 0) {
+            return;
+        }
+            // Lấy ra các giai đoạn phát triển của cây
+        this.cropProto.CommonRisingTimes.commonRisingTime.forEach((risingTime) => {
+            if(risingTime.stage === 1){
+                this.seedTime = risingTime.time;
+            }else if(risingTime.stage === 2){
+                this.sproutTime = risingTime.time;
+            }else if(risingTime.stage === 3){
+                this.smallTreeTime = risingTime.time;
+            }
+        });
+        this.elapsedTime += deltaTime;
         if (this.currentStage === 0 && this.elapsedTime >= this.seedTime) {
             this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame = this.sproutSprite;
             this.currentStage = 1;
@@ -126,12 +151,6 @@ export class Crop extends Component {
                     collider2D.enabled = true;
                     collider2D.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this)
                 }
-            }
-        }
-        if(this.isHarvested){
-            this.effectHarvestTime += deltaTime;
-            if(this.effectHarvestTime >= 1){
-                this.node.destroy();
             }
         }
     }

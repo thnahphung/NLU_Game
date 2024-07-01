@@ -1,14 +1,7 @@
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
-
 package proto;
-
 option java_package = "vn.edu.nlu.fit.nlugame.layer2.proto";
-
-message MyMessage {
-    google.protobuf.Timestamp my_field = 1;
-}
 
 message PacketWrapper {
   repeated Packet packet = 1;
@@ -54,6 +47,10 @@ message Packet {
     ReqAcceptFriend reqAcceptFriend = 37; 
     ResAcceptFriend resAcceptFriend = 38;
     ReqTilledLand reqTilledLand = 39;
+    ReqLoadCommonCrops reqLoadCommonCrops = 40;
+    ResLoadCommonCrops resLoadCommonCrops = 41;
+    ReqSow reqSow = 42;
+    ResSow resSow = 43;
   }
 }
 
@@ -235,6 +232,7 @@ message TillLand {
   int32 index = 2;
   bool statusTilled = 3;
   int32 plantingLandId = 4;
+  Crop crop = 5;
 }
 
 message FarmBuilding {
@@ -392,16 +390,53 @@ message PropertyGrowthItems {
 message PropertyCrop {
   int32 id = 1;
   int32 harvestYield = 2;
-  int32 statusWatered = 3;
-  int32 statusFertilized = 4;
+  bool statusWatered = 3;
+  bool statusFertilized = 4;
   int32 tillLandId = 5;
   int32 timeFertilized = 6;
   int32 fertilizerId = 7;
-  int32 property_growth_item_id = 8;
+  int32 propertyGrowthItemId = 8;
 }
 
 message Crop {
   CommonGrowthItem CommonGrowthItem = 1;
   PropertyGrowthItems propertyGrowthItems = 2;
   PropertyCrop propertyCrop = 3;
+  TillLand tillLand = 4;
+  CommonRisingTimes CommonRisingTimes = 5;
+}
+
+message CommonRisingTime {
+  int32 id = 1;
+  int32 stage = 2;
+  int32 time = 3;
+  int32 price = 4;
+  int32 growthItemId = 5;
+}
+
+message CommonRisingTimes {
+  repeated CommonRisingTime commonRisingTime = 1;
+}
+
+message ReqLoadCommonCrops {}
+
+message ResLoadCommonCrops {
+  repeated CommonGrowthItem commonGrowthItem = 1;
+}
+
+message SowingInformation{
+  TillLand tillLand = 1;
+  CommonGrowthItem commonGrowthItem = 2;
+}
+
+message SowingInformations {
+  repeated SowingInformation sowingInformation = 1;
+}
+
+message ReqSow {
+  SowingInformations sowingInformations = 1;
+}
+
+message ResSow {
+  Crops crops = 1;
 }

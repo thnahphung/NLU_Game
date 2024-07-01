@@ -2,11 +2,11 @@ package vn.edu.nlu.fit.nlugame.layer0.handler;
 
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.Session;
-import vn.edu.nlu.fit.nlugame.layer1.AgriculturalService;
+import vn.edu.nlu.fit.nlugame.layer1.FarmService;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
-public class AgriculturalHandler implements Subscriber{
-    AgriculturalService agriculturalService = AgriculturalService.me();
+public class FarmHandler implements Subscriber{
+    FarmService farmService = FarmService.me();
     @Override
     public void onOpen(Session session, String... params) {
 
@@ -17,10 +17,19 @@ public class AgriculturalHandler implements Subscriber{
         packetWrapper.getPacketList().forEach(packet -> {
             switch (packet.getDataCase()) {
                 case REQBUYBUILDING:
-                    agriculturalService.handleBuyBuilding(session, packet.getReqBuyBuilding());
+                    farmService.handleBuyBuilding(session, packet.getReqBuyBuilding());
                     break;
                 case REQTILLEDLAND:
-                    agriculturalService.handleTilledLand(session, packet.getReqTilledLand());
+                    farmService.handleTilledLand(session, packet.getReqTilledLand());
+                    break;
+                case REQLOADCOMMONCROPS:
+                    farmService.handleLoadCommonCrops(session);
+                    break;
+                case REQSOW:
+                    farmService.handleSow(session, packet.getReqSow());
+                    break;
+                case REQLOADITEMSOFFARM:
+                    farmService.loadItems(session);
                     break;
             }
         });

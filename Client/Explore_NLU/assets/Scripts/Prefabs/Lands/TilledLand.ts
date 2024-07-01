@@ -3,12 +3,13 @@ import GlobalData from '../../Utils/GlobalData';
 import { CoatingComponent } from '../../Controller/CoatingComponent';
 import { COATING, SEED_BAG } from '../../Utils/Const';
 import { Crop } from '../Crop/Crop';
+import { SeedBag } from '../Tools/SeedBag';
 const { ccclass, property } = _decorator;
 
 @ccclass('TilledLand')
 export class TilledLand extends Component {
     public tillLandProto : proto.ITillLand = null;
-    private seedNode: Node = null;
+    public seedNode: Node = null;
     private isTilled = false;
     public isSown = false;
     @property(Prefab)
@@ -48,15 +49,31 @@ export class TilledLand extends Component {
                 return;
             }
             if(!this.node.getComponent(Sprite).enabled || this.isSown) return;
-            let seedBag = otherCollider.node.name;
+            let seedBag = otherCollider.node.getComponent(SeedBag).commonGrowthItemProto;
             this.handleSow(seedBag);
             //console.log("Sow...", otherCollider.node.name);
         }
     }
 
-    private handleSow(seed: string):void {
+    private handleSow(seedBag: proto.ICommonGrowthItem):void {
         this.isSown = true;
+        let seed = seedBag.name;
         GlobalData.me().setSownStatus(true);
+        let sowingInformation = new proto.SowingInformation();
+        this.handleDisplayCropsToLand(seed);
+        //this.node.off(Node.EventType.TOUCH_END, this.handleTouchTilledLand, this);
+        //this.node.getComponent(Collider2D).enabled = false;
+        sowingInformation.commonGrowthItem = seedBag;
+        sowingInformation.tillLand = this.tillLandProto;
+        if(GlobalData.me().getSowingInformations() == null){
+            let sowingInformations = new proto.SowingInformations();
+            GlobalData.me().setSowingInformations(sowingInformations);
+        }
+        GlobalData.me().getSowingInformations().sowingInformation.push(sowingInformation);
+    }
+
+    public handleDisplayCropsToLand(seed: string): void {
+        console.log("Seed: ", seed);
         switch(seed){
             case SEED_BAG.RICE:
                 this.seedNode = instantiate(this.ricePrefab);
@@ -79,8 +96,6 @@ export class TilledLand extends Component {
         this.seedNode.getComponent(Crop).tilledLand = this.node;
         this.seedNode.setPosition(this.node.position.x + plantingLand.position.x, this.node.position.y + plantingLand.position.y - 5, 0);
         this.getMidLayer()?.addChild(this.seedNode);
-        //this.node.off(Node.EventType.TOUCH_END, this.handleTouchTilledLand, this);
-        //this.node.getComponent(Collider2D).enabled = false;
     }
 
     public handleTillLand(): void {

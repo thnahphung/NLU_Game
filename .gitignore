@@ -36,3 +36,6 @@ target/*.properties
 /Protobuf/my/*
 /Protobuf/compile-proto/compiled.d.ts
 /Protobuf/compile-proto/compiled.js
+# Proto Files
+Client/Explore_NLU/assets/Scripts/Proto/
+Server/core/src/main/java/vn/edu/nlu/fit/nlugame/layer2/proto/Proto.java

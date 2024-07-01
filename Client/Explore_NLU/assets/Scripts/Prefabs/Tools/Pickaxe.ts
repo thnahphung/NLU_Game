@@ -61,6 +61,7 @@ export class Pickaxe extends AbsTool {
         }
         console.log("Save land tilled")
         DataSender.sendReqTilledLand(GlobalData.me().getTilledLandListProto());
+        GlobalData.me().setTilledLandListProto(null);
     }
 }
 

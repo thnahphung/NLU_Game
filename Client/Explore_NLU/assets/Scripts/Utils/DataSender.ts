@@ -175,4 +175,20 @@ export default class DataSender {
     packet.reqTilledLand = reqTilledLand;
     WS.send(packet);
   }
+
+  public static sendReqLoadCommonCrop() {
+    let reqLoadCommonCrop = new proto.ReqLoadCommonCrops();
+    let packet = new proto.Packet();
+    packet.reqLoadCommonCrops = reqLoadCommonCrop;
+    WS.send(packet);
+  }
+
+  public static sendReqSow(sowingInformations: proto.SowingInformations) {
+    let reqSow = new proto.ReqSow();
+    reqSow.sowingInformations = sowingInformations;
+    let packet = new proto.Packet();
+    packet.reqSow = reqSow;
+    WS.send(packet);
+  }
+
 }

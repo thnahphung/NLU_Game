@@ -827,13 +827,6 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "sceneName": "KiotScene",
-    "positionCharacter": {
-      "__type__": "cc.Vec3",
-      "x": 3280.126,
-      "y": 175.304,
-      "z": 0
-    },
     "_id": "bfl0JBGedHT4e+jiTSooHI"
   },
   {

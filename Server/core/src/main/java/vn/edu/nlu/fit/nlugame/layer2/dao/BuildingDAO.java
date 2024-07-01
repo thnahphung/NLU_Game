@@ -75,9 +75,8 @@ public class BuildingDAO extends BaseDAO {
                 .executeAndReturnGeneratedKeys("id")
                 .mapTo(Integer.class)
                 .findFirst().orElse(0));
-        CommonBuildingContext commonBuildingContext = CommonBuildingCache.me().get(String.valueOf(building.getCommonBuildingId()));
-        if(commonBuildingContext != null) base = commonBuildingContext.getBuildingBaseBean();
-        if(commonBuildingContext == null || base == null) base = BuildingDAO.getBaseBuildingById(building.getCommonBuildingId());
+        base = CommonBuildingCache.me().get(String.valueOf(building.getCommonBuildingId()));
+        if(base == null) base = BuildingDAO.getBaseBuildingById(building.getCommonBuildingId());
         plantingLandBuilder.setBase(Proto.BuildingBase.newBuilder().setId(base.getId()).setName(base.getName()).setType(base.getType()).setDescription(base.getDescription()).setMaxLevel(1).build());
         plantingLandBuilder.setPropertyBuilding(Proto.PropertyBuilding.newBuilder().setId(idInsert).setAreaId(building.getAreaId()).setCommonBuildingId(building.getCommonBuildingId()).setCurrentLevel(1).setPositionX(building.getPositionX()).setPositionY(building.getPositionY()).build());
         return plantingLandBuilder;
@@ -184,9 +183,5 @@ public class BuildingDAO extends BaseDAO {
                 .bind("type", type.getValue())
                 .mapTo(Integer.class)
                 .findFirst().orElse(0));
-    }
-
-    public static void main(String[] args) {
-        System.out.println(getBaseBuildingById(23));
     }
 }

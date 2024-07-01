@@ -10,7 +10,6 @@ public class GameStateJob implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         try {
-            System.out.println("GameStateJob");
             GameStateService.me().gameState();
         } catch (Exception e) {
             e.printStackTrace();
