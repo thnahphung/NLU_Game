@@ -144,18 +144,6 @@ public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area> 
         return result;
     }
 
-    public ArrayList<String> getListPlayerIdInArea(String areaId) {
-        List<byte[]> area = getConnection().hvals((PLAYERS_AREA_KEY + areaId).getBytes());
-        ArrayList<String> result = new ArrayList<>();
-        if (area == null) {
-            return result;
-        }
-        for (byte[] playerId : area) {
-            result.add(new String(playerId));
-        }
-        return result;
-    }
-
     public Proto.Area removeArea(String key) {
         byte[] area = getConnection().hget(AREA_KEY.getBytes(), String.valueOf(key).getBytes());
         if (area == null) return null;

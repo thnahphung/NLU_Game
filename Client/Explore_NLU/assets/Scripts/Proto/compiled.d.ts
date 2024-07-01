@@ -149,9 +149,6 @@ export namespace proto {
         /** Packet reqPlayerJoinAreaCommon */
         reqPlayerJoinAreaCommon?: (proto.IReqPlayerJoinAreaCommon|null);
 
-        /** Packet resPlayerJoinAreaCommon */
-        resPlayerJoinAreaCommon?: (proto.IResPlayerJoinAreaCommon|null);
-
         /** Packet reqPlayerJoinArea */
         reqPlayerJoinArea?: (proto.IReqPlayerJoinArea|null);
 
@@ -273,9 +270,6 @@ export namespace proto {
         /** Packet reqPlayerJoinAreaCommon. */
         public reqPlayerJoinAreaCommon?: (proto.IReqPlayerJoinAreaCommon|null);
 
-        /** Packet resPlayerJoinAreaCommon. */
-        public resPlayerJoinAreaCommon?: (proto.IResPlayerJoinAreaCommon|null);
-
         /** Packet reqPlayerJoinArea. */
         public reqPlayerJoinArea?: (proto.IReqPlayerJoinArea|null);
 
@@ -343,7 +337,7 @@ export namespace proto {
         public resAcceptFriend?: (proto.IResAcceptFriend|null);
 
         /** Packet data. */
-        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"resPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|"reqEmailForgetPassword"|"reqRecoverPassword"|"resRecoverPassword"|"resEmailForgetPassword"|"reqLoadFriend"|"resLoadFriendList"|"reqFindFriend"|"resFindFriend"|"reqAddFriend"|"resAddFriend"|"reqAcceptFriend"|"resAcceptFriend");
+        public data?: ("reqLogin"|"reqRelogin"|"resLogin"|"reqLogout"|"resLogout"|"reqForgotPassword"|"resForgotPassword"|"reqRegister"|"resRegister"|"reqUpdateUserInfo"|"reqLoadCharacters"|"resLoadCharacters"|"reqPickCharacter"|"resPickCharacter"|"reqPlayerJoinAreaCommon"|"reqPlayerJoinArea"|"resPlayerJoinArea"|"resOtherPlayerJoinArea"|"reqMoving"|"resMoving"|"resOtherPlayerLeaveArea"|"reqLoadItemsOfFarm"|"resLoadItemsOfFarm"|"reqBuyBuilding"|"resBuyBuilding"|"reqEmailForgetPassword"|"reqRecoverPassword"|"resRecoverPassword"|"resEmailForgetPassword"|"reqLoadFriend"|"resLoadFriendList"|"reqFindFriend"|"resFindFriend"|"reqAddFriend"|"resAddFriend"|"reqAcceptFriend"|"resAcceptFriend");
 
         /**
          * Creates a new Packet instance using the specified properties.
@@ -728,11 +722,11 @@ export namespace proto {
         /** Area typeArea */
         typeArea?: (string|null);
 
-        /** Area position */
-        position?: (proto.IPosition|null);
-
         /** Area status */
         status?: (number|null);
+
+        /** Area userId */
+        userId?: (number|null);
     }
 
     /** Represents an Area. */
@@ -750,11 +744,11 @@ export namespace proto {
         /** Area typeArea. */
         public typeArea: string;
 
-        /** Area position. */
-        public position?: (proto.IPosition|null);
-
         /** Area status. */
         public status: number;
+
+        /** Area userId. */
+        public userId: number;
 
         /**
          * Creates a new Area instance using the specified properties.
@@ -2445,9 +2439,6 @@ export namespace proto {
 
         /** ReqPlayerJoinAreaCommon areaCommonId */
         areaCommonId?: (number|null);
-
-        /** ReqPlayerJoinAreaCommon position */
-        position?: (proto.IPosition|null);
     }
 
     /** Represents a ReqPlayerJoinAreaCommon. */
@@ -2461,9 +2452,6 @@ export namespace proto {
 
         /** ReqPlayerJoinAreaCommon areaCommonId. */
         public areaCommonId: number;
-
-        /** ReqPlayerJoinAreaCommon position. */
-        public position?: (proto.IPosition|null);
 
         /**
          * Creates a new ReqPlayerJoinAreaCommon instance using the specified properties.
@@ -2537,133 +2525,6 @@ export namespace proto {
 
         /**
          * Gets the default type url for ReqPlayerJoinAreaCommon
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a ResPlayerJoinAreaCommon. */
-    interface IResPlayerJoinAreaCommon {
-
-        /** ResPlayerJoinAreaCommon areaCommonId */
-        areaCommonId?: (number|null);
-
-        /** ResPlayerJoinAreaCommon area */
-        area?: (proto.IArea|null);
-
-        /** ResPlayerJoinAreaCommon users */
-        users?: (proto.IUser[]|null);
-
-        /** ResPlayerJoinAreaCommon status */
-        status?: (number|null);
-
-        /** ResPlayerJoinAreaCommon areaState */
-        areaState?: (number|null);
-
-        /** ResPlayerJoinAreaCommon position */
-        position?: (proto.IPosition|null);
-    }
-
-    /** Represents a ResPlayerJoinAreaCommon. */
-    class ResPlayerJoinAreaCommon implements IResPlayerJoinAreaCommon {
-
-        /**
-         * Constructs a new ResPlayerJoinAreaCommon.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: proto.IResPlayerJoinAreaCommon);
-
-        /** ResPlayerJoinAreaCommon areaCommonId. */
-        public areaCommonId: number;
-
-        /** ResPlayerJoinAreaCommon area. */
-        public area?: (proto.IArea|null);
-
-        /** ResPlayerJoinAreaCommon users. */
-        public users: proto.IUser[];
-
-        /** ResPlayerJoinAreaCommon status. */
-        public status: number;
-
-        /** ResPlayerJoinAreaCommon areaState. */
-        public areaState: number;
-
-        /** ResPlayerJoinAreaCommon position. */
-        public position?: (proto.IPosition|null);
-
-        /**
-         * Creates a new ResPlayerJoinAreaCommon instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns ResPlayerJoinAreaCommon instance
-         */
-        public static create(properties?: proto.IResPlayerJoinAreaCommon): proto.ResPlayerJoinAreaCommon;
-
-        /**
-         * Encodes the specified ResPlayerJoinAreaCommon message. Does not implicitly {@link proto.ResPlayerJoinAreaCommon.verify|verify} messages.
-         * @param message ResPlayerJoinAreaCommon message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: proto.IResPlayerJoinAreaCommon, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified ResPlayerJoinAreaCommon message, length delimited. Does not implicitly {@link proto.ResPlayerJoinAreaCommon.verify|verify} messages.
-         * @param message ResPlayerJoinAreaCommon message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: proto.IResPlayerJoinAreaCommon, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a ResPlayerJoinAreaCommon message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns ResPlayerJoinAreaCommon
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): proto.ResPlayerJoinAreaCommon;
-
-        /**
-         * Decodes a ResPlayerJoinAreaCommon message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns ResPlayerJoinAreaCommon
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): proto.ResPlayerJoinAreaCommon;
-
-        /**
-         * Verifies a ResPlayerJoinAreaCommon message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a ResPlayerJoinAreaCommon message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns ResPlayerJoinAreaCommon
-         */
-        public static fromObject(object: { [k: string]: any }): proto.ResPlayerJoinAreaCommon;
-
-        /**
-         * Creates a plain object from a ResPlayerJoinAreaCommon message. Also converts values to other types if specified.
-         * @param message ResPlayerJoinAreaCommon
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: proto.ResPlayerJoinAreaCommon, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this ResPlayerJoinAreaCommon to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for ResPlayerJoinAreaCommon
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -2779,8 +2640,8 @@ export namespace proto {
         /** ResPlayerJoinArea status */
         status?: (number|null);
 
-        /** ResPlayerJoinArea position */
-        position?: (proto.IPosition|null);
+        /** ResPlayerJoinArea oldAreaType */
+        oldAreaType?: (string|null);
     }
 
     /** Represents a ResPlayerJoinArea. */
@@ -2801,8 +2662,8 @@ export namespace proto {
         /** ResPlayerJoinArea status. */
         public status: number;
 
-        /** ResPlayerJoinArea position. */
-        public position?: (proto.IPosition|null);
+        /** ResPlayerJoinArea oldAreaType. */
+        public oldAreaType: string;
 
         /**
          * Creates a new ResPlayerJoinArea instance using the specified properties.

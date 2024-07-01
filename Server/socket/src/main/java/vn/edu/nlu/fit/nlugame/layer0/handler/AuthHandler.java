@@ -61,13 +61,13 @@ public class AuthHandler implements Subscriber {
 
     public void login(Session session, Proto.Packet packet) {
         UserBean userLoginBean = authService.checkLogin(session, packet.getReqLogin());
-        if (userLoginBean == null) return;
+        if (userLoginBean == null || userLoginBean.getHasCharacter() == 0) return;
         areaService.joinAreaLogin(userLoginBean.getId(), session);
     }
 
     public void reLogin(Session session, Proto.Packet packet) {
         UserBean userRelogin = authService.checkReLogin(session, packet.getReqRelogin());
-        if (userRelogin == null) return;
+        if (userRelogin == null || userRelogin.getHasCharacter() == 0) return;
         areaService.joinAreaLogin(userRelogin.getId(), session);
     }
 

@@ -31,8 +31,8 @@ export class CharacterMovement extends Component {
 
   private setVelocity() {
     this.characterInfo.getRigidBody().linearVelocity = new Vec2(
-      this.direction.x * this.characterInfo.getSpeed() * game.deltaTime,
-      this.direction.y * this.characterInfo.getSpeed() * game.deltaTime
+      this.direction.x * this.characterInfo.getSpeed(),
+      this.direction.y * this.characterInfo.getSpeed()
     );
   }
 
