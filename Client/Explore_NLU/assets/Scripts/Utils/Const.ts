@@ -42,8 +42,8 @@ export enum SCENES_COMMON {
   NONE = 0,
   KIOT = 5,
   PHUONG_VI = 6,
-  // CAM_TU = "CamTuScene",
-  // RANG_DONG = "RangDongScene",
+  CAM_TU = 7,
+  RANG_DONG = 8,
 }
 
 Enum(SCENES_COMMON);
@@ -65,7 +65,7 @@ export const SETTING_AREA = [
     spawnPos: [
       {
         oldSceneName: SCENES.KIOT,
-        spawnPos: new Vec3(-626, -555, 0),
+        spawnPos: new Vec3(-430, -540, 0),
       },
     ],
   },
@@ -122,11 +122,11 @@ export const SETTING_AREA = [
     spawnPos: [
       {
         oldSceneName: SCENES.CAM_TU,
-        spawnPos: new Vec3(3610, 580, 0),
+        spawnPos: new Vec3(-780, 96, 0),
       },
       {
         oldSceneName: SCENES.RANG_DONG,
-        spawnPos: new Vec3(3280, 175, 0),
+        spawnPos: new Vec3(742, 1180, 0),
       },
       {
         oldSceneName: SCENES.KIOT,

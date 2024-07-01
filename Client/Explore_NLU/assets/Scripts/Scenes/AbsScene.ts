@@ -23,6 +23,8 @@ export default class AbsScene extends Component {
     this.createOtherPlayer();
   }
 
+  protected update(dt: number): void {}
+
   onMessageHandler(packets: proto.IPacketWrapper) {
     //TODO: xử lý chung như thông báo...
   }

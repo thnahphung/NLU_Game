@@ -7,8 +7,14 @@ const { ccclass, property } = _decorator;
 
 @ccclass("VeterinarianScene")
 export class VeterinarianScene extends AbsScene {
-  protected start(): void {
+  protected onLoad(): void {
+    super.onLoad();
+  }
+  start() {
     super.start();
   }
-  update(deltaTime: number) {}
+
+  update(deltaTime: number) {
+    super.update(deltaTime);
+  }
 }

@@ -1,9 +1,9 @@
-import { _decorator, Component, game, Node, PhysicsSystem2D } from "cc";
+import { _decorator, Component, Node } from "cc";
 import AbsScene from "./AbsScene";
 const { ccclass, property } = _decorator;
 
-@ccclass("KiotScene")
-export class KiotScene extends AbsScene {
+@ccclass("PhuongViScene")
+export class PhuongViScene extends AbsScene {
   protected onLoad(): void {
     super.onLoad();
   }
