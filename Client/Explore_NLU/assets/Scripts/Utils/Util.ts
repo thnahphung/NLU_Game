@@ -26,11 +26,10 @@ export class Util {
           }
         }
       }
-    } else {
-      for (const setting of SETTING_AREA) {
-        if (setting.sceneName === sceneName) {
-          return setting.spawnPos[0].spawnPos;
-        }
+    }
+    for (const setting of SETTING_AREA) {
+      if (setting.sceneName === sceneName) {
+        return setting.spawnPos[0].spawnPos;
       }
     }
   }

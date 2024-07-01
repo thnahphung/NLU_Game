@@ -106,11 +106,12 @@ export class Cage extends Component {
       .on(Button.EventType.CLICK, this.onClickShowPopupCageInformation, this);
     CoatingComponent.me().setCoating(
       COATING.FEED,
-      this.node.parent,
+      this.getCoatingLayer(),
       this.menuNode
     );
     CoatingComponent.me().showCoating(COATING.FEED);
     CoatingComponent.me().autoOff(COATING.FEED, () => {
+      console.log("autoOff");
       this.menuNode
         .getChildByName("InformationButton")
         .off(
@@ -119,10 +120,6 @@ export class Cage extends Component {
           this
         );
     });
-  }
-
-  public getCageInformation(): Node {
-    return find("Canvas/PopupGameLayer/MenuLayer/CageInformation");
   }
 
   public onClickShowPopupCageInformation(): void {
@@ -149,7 +146,15 @@ export class Cage extends Component {
     });
   }
 
+  public getCageInformation(): Node {
+    return find("Canvas/PopupGameLayer/MenuLayer/CageInformation");
+  }
+
   public getPopupCageInformation(): Node {
     return find("Canvas/PopupGameLayer/PopupCageInformation");
+  }
+
+  public getCoatingLayer(): Node {
+    return find("Canvas/PopupGameLayer/CoatingLayer");
   }
 }

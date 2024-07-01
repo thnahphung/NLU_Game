@@ -38,7 +38,8 @@ export class AuthenScene extends AbsScene {
   public popupLoadingNode: Node = null;
 
   protected onLoad(): void {
-    GlobalData.me().setMobileDevice(sys.isMobile || sys.isNative);
+    // GlobalData.me().setMobileDevice(sys.isMobile || sys.isNative);
+    super.onLoad();
 
     this.popupLoadingNode = instantiate(this.popupLoading);
     this.popupLoadingNode.active = false;
@@ -74,7 +75,7 @@ export class AuthenScene extends AbsScene {
 
   onLoginMsgHandler(resLogin: proto.IResLogin) {
     if (resLogin.status === 400) {
-      UICanvas.me().showPopupMessage(t('label_text.login_failed_400'));
+      UICanvas.me().showPopupMessage(t("label_text.login_failed_400"));
       return;
     }
     if (resLogin.status === 401) {
@@ -83,21 +84,27 @@ export class AuthenScene extends AbsScene {
       return;
     }
     if (resLogin.status === 402) {
-      UICanvas.me().showPopupMessage(t('label_text.login_failed_402'));
+      UICanvas.me().showPopupMessage(t("label_text.login_failed_402"));
       return;
     }
     if (resLogin.status === 403) {
-      UICanvas.me().showPopupMessage(t('label_text.login_failed_403'));
+      UICanvas.me().showPopupMessage(t("label_text.login_failed_403"));
       return;
     }
     if (resLogin.status === 500) {
-      UICanvas.me().showPopupMessage(t('label_text.login_failed_500'));
+      UICanvas.me().showPopupMessage(t("label_text.login_failed_500"));
       return;
     }
     if (resLogin.status === 200) {
       //RememberLogin
-      StorageManager.me().saveItem(LOCAL_STORAGE.USERNAME, resLogin.user.username);
-      StorageManager.me().saveItem(LOCAL_STORAGE.AUTO_LOGIN, this.rememberMe.isChecked);
+      StorageManager.me().saveItem(
+        LOCAL_STORAGE.USERNAME,
+        resLogin.user.username
+      );
+      StorageManager.me().saveItem(
+        LOCAL_STORAGE.AUTO_LOGIN,
+        this.rememberMe.isChecked
+      );
       StorageManager.me().saveItem(LOCAL_STORAGE.TOKEN, resLogin.token);
       GlobalData.me().setMainUser(resLogin.user);
       GlobalData.me().setIsUserOffline(false);
@@ -106,24 +113,28 @@ export class AuthenScene extends AbsScene {
 
   onRegisterMsgHandler(resRegister: proto.IResRegister) {
     if (resRegister.status === 400) {
-      UICanvas.me().showPopupMessage(t('label_text.register_failed_400'));
+      UICanvas.me().showPopupMessage(t("label_text.register_failed_400"));
     } else if (resRegister.status === 401) {
-      UICanvas.me().showPopupMessage(t('label_text.register_failed_401'));
+      UICanvas.me().showPopupMessage(t("label_text.register_failed_401"));
     } else if (resRegister.status === 403) {
-      UICanvas.me().showPopupMessage(t('label_text.register_failed_403'));
+      UICanvas.me().showPopupMessage(t("label_text.register_failed_403"));
     } else if (resRegister.status === 402) {
-      UICanvas.me().showPopupMessage(t('label_text.register_failed_402'));
+      UICanvas.me().showPopupMessage(t("label_text.register_failed_402"));
     } else if (resRegister.status === 500) {
-      UICanvas.me().showPopupMessage(t('label_text.server_error'));
+      UICanvas.me().showPopupMessage(t("label_text.server_error"));
     } else if (resRegister.status === 200) {
-      UICanvas.me().showPopupMessage(t('label_text.register_success_200'));
+      UICanvas.me().showPopupMessage(t("label_text.register_success_200"));
     }
   }
 
-  onCheckEmailForgetHandler(resEmailForgetPassword: proto.IResEmailForgetPassword) {
+  onCheckEmailForgetHandler(
+    resEmailForgetPassword: proto.IResEmailForgetPassword
+  ) {
     if (resEmailForgetPassword.status === 400) {
-      UICanvas.me().showPopupMessage(t('label_text.forget_password_failed_400'));
-    }else{
+      UICanvas.me().showPopupMessage(
+        t("label_text.forget_password_failed_400")
+      );
+    } else {
       this.popupForgetPassword.getChildByName("Form1").active = false;
       this.popupForgetPassword.getChildByName("Form2").active = true;
     }
@@ -131,13 +142,19 @@ export class AuthenScene extends AbsScene {
 
   onRecoverPasswordHandler(resRecoverPassword: proto.IResRecoverPassword) {
     if (resRecoverPassword.status === 402) {
-      UICanvas.me().showPopupMessage(t('label_text.recover_password_failed_token_402'));
+      UICanvas.me().showPopupMessage(
+        t("label_text.recover_password_failed_token_402")
+      );
     } else if (resRecoverPassword.status === 403) {
-      UICanvas.me().showPopupMessage(t('label_text.recover_password_failed_time_403'));
-    } else if (resRecoverPassword.status === 500){
-      UICanvas.me().showPopupMessage(t('label_text.recover_password_failed_500'));
-    } else if (resRecoverPassword.status === 200){
-      UICanvas.me().showPopupMessage(t('label_text.recover_password_success'));
+      UICanvas.me().showPopupMessage(
+        t("label_text.recover_password_failed_time_403")
+      );
+    } else if (resRecoverPassword.status === 500) {
+      UICanvas.me().showPopupMessage(
+        t("label_text.recover_password_failed_500")
+      );
+    } else if (resRecoverPassword.status === 200) {
+      UICanvas.me().showPopupMessage(t("label_text.recover_password_success"));
     }
   }
   onClickSignIn() {
@@ -168,7 +185,7 @@ export class AuthenScene extends AbsScene {
     this.popupGeneral.active = true;
   }
 
-  onClickBackLogin(){
+  onClickBackLogin() {
     this.popupForgetPassword.getComponent(PopupComponent).hide();
     this.popupSignIn.getComponent(PopupComponent).show();
   }

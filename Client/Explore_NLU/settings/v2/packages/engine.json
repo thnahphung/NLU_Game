@@ -95,10 +95,10 @@
         "_value": true
       },
       "websocket": {
-        "_value": false
+        "_value": true
       },
       "websocket-server": {
-        "_value": false
+        "_value": true
       },
       "terrain": {
         "_value": false
@@ -139,6 +139,8 @@
       "tween",
       "ui",
       "video",
+      "websocket",
+      "websocket-server",
       "webview"
     ],
     "noDeprecatedFeatures": {
