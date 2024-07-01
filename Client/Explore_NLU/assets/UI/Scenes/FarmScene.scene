@@ -197,7 +197,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 379.0921409214092,
+    "_orthoHeight": 554.8514344262295,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -827,6 +827,7 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "areaCommonId": 5,
     "_id": "bfl0JBGedHT4e+jiTSooHI"
   },
   {

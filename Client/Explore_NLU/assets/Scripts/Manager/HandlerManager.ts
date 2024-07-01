@@ -16,7 +16,7 @@ export class HandlerManager {
   }
 
   unRegisterHandler(handle: AbsHandler) {
-    const index = this.handles.findIndex(h => h === handle);
+    const index = this.handles.findIndex((h) => h === handle);
     if (index !== -1) {
       this.handles.splice(index, 1);
     }
@@ -24,7 +24,6 @@ export class HandlerManager {
 
   onMessage(packets: proto.IPacketWrapper) {
     this.handles?.forEach((handle) => {
-      console.log("HandlerManager onMessage: ", handle)
       handle.onMessageHandler(packets);
     });
   }
