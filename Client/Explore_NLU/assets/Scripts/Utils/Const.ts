@@ -83,7 +83,7 @@ export const SETTING_AREA = [
     spawnPos: [
       {
         oldSceneName: SCENES.CAM_TU,
-        spawnPos: new Vec3(0, 0, 0),
+        spawnPos: new Vec3(520, -286, 0),
       },
     ],
   },
@@ -140,6 +140,10 @@ export const SETTING_AREA = [
       {
         oldSceneName: SCENES.PHUONG_VI,
         spawnPos: new Vec3(145, -1236, 0),
+      },
+      {
+        oldSceneName: SCENES.MECHANICAL,
+        spawnPos: new Vec3(-1030, -578, 0),
       },
     ],
   },
