@@ -4,14 +4,14 @@ import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 import javax.mail.Authenticator;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class DataSenderUtils {
     public static void sendResponse(Session session, Proto.Packet packet) {
-        System.out.println("send response: " + packet.toString());
+        System.out.println("Send response: " + packet.toString());
         Proto.PacketWrapper packets = Proto.PacketWrapper.newBuilder().addPacket(packet).build();
-        if (session != null && session.isOpen())
-            session.getAsyncRemote().sendObject(packets);
+        if (session != null && session.isOpen()) session.getAsyncRemote().sendObject(packets);
     }
 
     public static void sendMail(String to, String subject, String content) {
@@ -45,6 +45,13 @@ public class DataSenderUtils {
             javax.mail.Transport.send(message);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void sendResponseManySession(ArrayList<String> listSession, Proto.Packet packet) {
+        for (String sessionId : listSession) {
+            Session sessionInArea = SessionManage.me().get(sessionId);
+            sendResponse(sessionInArea, packet);
         }
     }
 }

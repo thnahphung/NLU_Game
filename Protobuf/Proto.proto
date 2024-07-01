@@ -313,7 +313,7 @@ message Friend {
   int32 id = 1;
   string name = 2;
   int32 level = 3;
-  string character = 4;
+  Character character = 4;
 }
 
 message ResLoadFriendList {
