@@ -57,6 +57,8 @@ export class PickCharacterScene extends AbsScene {
             if (packet.resPickCharacter) {
                 if (packet.resPickCharacter.status == 500) {
                     UICanvas.me().showPopupMessage(t('label_text.pick_character_402'));
+                } if (packet.resPickCharacter.status == 400) {
+                    UICanvas.me().showPopupMessage(t('label_text.pick_character_400'));
                 } else {
                     console.log(packet.resPickCharacter.user);
                     GlobalData.me().setMainUser(packet.resPickCharacter.user);

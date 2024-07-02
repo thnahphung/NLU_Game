@@ -168,6 +168,7 @@ message ReqPickCharacter {
 
 message ResPickCharacter {
   int32 status = 1; 
+  User user = 2;
 }
 
 message ReqPlayerJoinAreaCommon{

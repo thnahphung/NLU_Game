@@ -43,6 +43,11 @@ public class CharacterService {
     public UserBean pickCharacter(Session session, Proto.ReqPickCharacter reqPickCharacter) {
         int characterId = reqPickCharacter.getCharacterId();
         String playerName = reqPickCharacter.getPlayerName();
+        //Check player name exist
+        if (UserDAO.checkPlayerNameExist(playerName)) {
+            sendResponse(session, Proto.Packet.newBuilder().setResPickCharacter(Proto.ResPickCharacter.newBuilder().setStatus(400)).build());
+            return null;
+        }
         SessionID sessionID = SessionID.of(session);
         UserBean userLoginBean = new UserBean();
         String typeArea = "";

@@ -54,8 +54,8 @@ public class UserDAO extends BaseDAO {
         }
         try {
             Integer count = jdbi.withHandle(h -> h.createUpdate(
-                            "insert into " + TABLE_NAME + " (username, password, email, level, active) " +
-                                    "values (:username, :password, :email, :level, :active)")
+                            "insert into " + TABLE_NAME + " (username, password, email, level, active, is_new_account) " +
+                                    "values (:username, :password, :email, :level, :active, 1)")
                     .bind("username", username)
                     .bind("password", pass)
                     .bind("email", email)
@@ -217,5 +217,15 @@ public class UserDAO extends BaseDAO {
                 .bind("characterId", characterId)
                 .bind("id", userId)
                 .execute());
+    }
+
+    public static boolean checkPlayerNameExist(String playerName) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return false;
+        }
+        return jdbi.withHandle(h -> h.createQuery("select count(*) from " + TABLE_NAME + " where player_name = :playerName")
+                .bind("playerName", playerName)
+                .mapTo(Integer.class).one() > 0);
     }
 }

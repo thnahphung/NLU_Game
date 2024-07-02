@@ -113,6 +113,7 @@ export const languages = {
     pick_character_402: "Chọn nhân vật thất bại, vui lòng thử lại!",
     pick_character_403: "Tải nhân vật thất bại!",
     pick_character_404: "Tên không được để trống!",
+    pick_character_400: "Tên này đã được sử dụng, vui lòng chọn tên khác!",
   },
 };
 
