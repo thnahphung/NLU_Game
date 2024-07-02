@@ -1,10 +1,10 @@
 package vn.edu.nlu.fit.nlugame.layer2.dao;
 
 import org.jdbi.v3.core.Jdbi;
-import vn.edu.nlu.fit.nlugame.layer2.dao.bean.CharacterBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class FriendshipDAO {
     private static final String TABLE_NAME = "friendships";
@@ -13,6 +13,25 @@ public class FriendshipDAO {
         Jdbi jdbi = BaseDAO.getJdbi();
         if (jdbi == null) {
             return ;
+        }
+        AtomicInteger count = new AtomicInteger();
+        // Check if the request already exists => set status = 1
+        jdbi.useHandle(handle -> {
+             count.set(handle.createQuery("select count(*) from " + TABLE_NAME + " where user_id = :senderId and friend_id = :receiverId")
+                     .bind("senderId", senderId)
+                     .bind("receiverId", receiverId)
+                     .mapTo(Integer.class)
+                     .one());
+            if (count.get() > 0) {
+                handle.createUpdate("update " + TABLE_NAME + " set status = 1 where user_id = :senderId and friend_id = :receiverId")
+                        .bind("senderId", senderId)
+                        .bind("receiverId", receiverId)
+                        .execute();
+            }
+        });
+        if (count.get() > 0) {
+            System.out.println("Friend request already exists");
+            return;
         }
         jdbi.withHandle(handle -> handle.createUpdate("insert into " + TABLE_NAME + " (user_id, friend_id, status, create_at) values (:senderId, :receiverId, 1, now())")
                 .bind("senderId", senderId)

@@ -1,4 +1,4 @@
-import { _decorator, find, Label, Node, SpriteFrame } from 'cc';
+import { _decorator, find, Label, Node, Sprite, SpriteFrame } from 'cc';
 import { UICanvas } from '../../MainUI/UICanvas';
 import { t } from '../../../../../extensions/i18n/assets/LanguageData';
 import DataSender from '../../../Utils/DataSender';
@@ -7,6 +7,11 @@ const { ccclass, property } = _decorator;
 
 @ccclass('AddFriendItem')
 export class AddFriendItem extends AbsFriendItem {
+    @property(Sprite)
+    private normalSpriteButton: Sprite = null;
+    @property(Sprite)
+    private sentSpriteButton: Sprite = null;
+    private isSent: boolean = false;
     start() {
         super.start();
     }
@@ -36,8 +41,12 @@ export class AddFriendItem extends AbsFriendItem {
     }
 
     onClickAddNewFriend():void {
+        if(this.isSent) return;
         if(this.friendId && this.friendId !== "") {
             DataSender.sendReqAddFriend(Number.parseInt(this.friendId));
+            this.normalSpriteButton.node.active = false;
+            this.sentSpriteButton.node.active = true;
+            this.isSent = true;
         }else{
             UICanvas.me().showPopupMessage(t("label_text.error_common"));
         }
