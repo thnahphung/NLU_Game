@@ -6,6 +6,7 @@ import {
   Label,
   Node,
   Prefab,
+  ScrollView,
   Sprite,
   SpriteFrame,
 } from "cc";
@@ -56,6 +57,8 @@ export class PopupFriend extends AbsHandler {
   public scrollViewSuggestFriend: Node = null;
   @property(Prefab)
   public addFriendItemPrefab: Prefab = null;
+  @property(Sprite)
+  public addFriendNotify: Sprite = null;
 
   @property(SpriteFrame)
   protected characterSprite: SpriteFrame[] = [];
@@ -113,7 +116,6 @@ export class PopupFriend extends AbsHandler {
   }
 
   onClickAddFriend() {
-    console.log("Add friend");
     this.btnListFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
     this.btnAddFriend.getComponent(Sprite).spriteFrame = this.btnPressedSprite;
     this.btnRequestFriend.getComponent(Sprite).spriteFrame =
@@ -141,6 +143,7 @@ export class PopupFriend extends AbsHandler {
       DataSender.sendReqLoadFriend(1);
       this.requestFriendListLoaded = true;
     }
+    this.addFriendNotify.node.active = false;
   }
 
   onClickFindFriend() {
@@ -225,7 +228,7 @@ export class PopupFriend extends AbsHandler {
         friendComponent.setFriendCharacterProto(friend.character);
         friendComponent.setFriendDetailNode(this.friendDetailNode);
         this.scrollViewListFriend.addChild(friendItem);
-
+        this.scrollViewListFriend.parent.parent.getComponent(ScrollView).scrollToTop();
         if (
           GlobalData.me().getMainUserFriends() == null ||
           GlobalData.me().getMainUserFriends().length == 0
@@ -235,6 +238,7 @@ export class PopupFriend extends AbsHandler {
       }
 
       if (status == 1) {
+        this.scrollViewRequestFriend.removeAllChildren();
         const friendItem = instantiate(this.friendItemRequestPrefab);
         friendItem.getComponent(ReqAddFriendItem).scrollListFriend =
           this.scrollViewListFriend;
@@ -246,6 +250,7 @@ export class PopupFriend extends AbsHandler {
         friendComponent.setFriendCharacterProto(friend.character);
         friendComponent.setFriendDetailNode(this.friendDetailNode);
         this.scrollViewRequestFriend.addChild(friendItem);
+        this.scrollViewRequestFriend.parent.parent.getComponent(ScrollView).scrollToTop();
       }
 
       if (status == 4) {
@@ -257,6 +262,7 @@ export class PopupFriend extends AbsHandler {
         addFriendComponent.setFriendId(friend.id.toString());
         addFriendComponent.setFriendCharacterProto(friend.character);
         this.scrollViewSuggestFriend.addChild(addFriendItem);
+        this.scrollViewSuggestFriend.parent.parent.getComponent(ScrollView).scrollToTop();
       }
     });
   }
@@ -286,6 +292,7 @@ export class PopupFriend extends AbsHandler {
     friendComponent.setFriendId(sender.id.toString());
     friendComponent.setFriendCharacterProto(sender.character);
     this.scrollViewRequestFriend.addChild(friendItem);
+    this.addFriendNotify.node.active = true;
   }
 
 }
