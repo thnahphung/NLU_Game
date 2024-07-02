@@ -21,6 +21,15 @@ export class TransitScene extends Component {
   private areaCommonId: SCENES_COMMON;
 
   start() {
+    if (GlobalData.me().getMainUser() == null) return;
+    if (
+      this.areaCommonId === SCENES_COMMON.ME &&
+      this.node.name !== GlobalData.me().getMainArea().typeArea
+    ) {
+      this.node.active = false;
+      return;
+    }
+
     let collider = this.node.getComponent(Collider2D);
     if (collider !== null) {
       collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
@@ -38,9 +47,10 @@ export class TransitScene extends Component {
     ) {
       return;
     }
-    console.log("onBeginContact", this.areaCommonId);
-    if (this.areaCommonId == SCENES_COMMON.NONE) return;
-    console.log("send", this.areaCommonId);
+    if (this.areaCommonId == SCENES_COMMON.ME) {
+      DataSender.sendReqPlayerJoinArea(GlobalData.me().getMainUser().userId);
+      return;
+    }
     DataSender.sendReqPlayerJoinAreaCommon(this.areaCommonId);
   }
 }

@@ -150,7 +150,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 397.75515743756785,
+    "_orthoHeight": 485.6378205128205,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -1287,7 +1287,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 76.64,
+      "width": 77.87,
       "height": 47.88
     },
     "_anchorPoint": {
@@ -1332,7 +1332,7 @@
     "_overflow": 0,
     "_enableWrapText": true,
     "_font": {
-      "__uuid__": "0a94ae91-c300-4974-89ba-2fe8bcb158ee",
+      "__uuid__": "2128c535-bc67-4037-921f-4bf62496f249",
       "__expectedType__": "cc.TTFFont"
     },
     "_isSystemFontUsed": false,
@@ -8006,10 +8006,21 @@
     "__prefab": {
       "__id__": 357
     },
+    "userName": {
+      "__id__": 38
+    },
+    "userLevel": {
+      "__id__": 50
+    },
+    "userExp": {
+      "__id__": 64
+    },
+    "userGold": {
+      "__id__": 263
+    },
     "joystick": {
       "__id__": 211
     },
-    "addToRootNode": true,
     "prefabPopupMessage": {
       "__uuid__": "a55639b8-331a-4818-a0e8-bbaea33e698f",
       "__expectedType__": "cc.Prefab"

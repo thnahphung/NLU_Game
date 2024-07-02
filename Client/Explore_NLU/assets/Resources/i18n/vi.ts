@@ -109,6 +109,12 @@ export const languages = {
     btn_friend_request_add: "Lời mời",
     friend_request_list: "Danh sách lời mời",
     friend_already_exist: "Bạn bè đã tồn tại!",
+    phuong_vi: "Phượng Vĩ",
+    cam_tu: "Cẩm Tú",
+    rang_dong: "Rạng Đông",
+    kiot: "Kiot",
+    highway_1a: "Quốc lộ 1A",
+    home: "Nhà",
   },
 };
 

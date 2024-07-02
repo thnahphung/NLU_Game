@@ -24,7 +24,7 @@ export default class GlobalData {
   private isHarvest: boolean = false;
   private isHarvested: boolean = false;
   private tilledLandListProto: proto.ITillLands = null;
-  private sowingInformations: proto.SowingInformations = null; 
+  private sowingInformations: proto.SowingInformations = null;
   /* END AGRI */
 
   private positionCharacter: Vec3 = null;
@@ -137,6 +137,7 @@ export default class GlobalData {
 
   /*===== AREA =====*/
   private area: proto.IArea = null;
+  private mainArea: proto.IArea = null;
 
   public setArea(area: proto.IArea) {
     this.area = area;
@@ -144,6 +145,14 @@ export default class GlobalData {
 
   public getArea() {
     return this.area;
+  }
+
+  public setMainArea(area: proto.IArea) {
+    this.mainArea = area;
+  }
+
+  public getMainArea() {
+    return this.mainArea;
   }
   /*===== END AREA =====*/
 
@@ -250,5 +259,6 @@ export default class GlobalData {
     this.isHarvest = false;
     this.isHarvested = false;
     this.positionCharacter = null;
+    this.mainArea = null;
   }
 }

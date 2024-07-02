@@ -88,7 +88,7 @@ export const languages = {
     forget_password_failed_400: "Email has not been registered!",
     forget_password_failed_401: "Email cannot be empty!",
     forget_password_failed_403: "Invalid email!",
-    find_friend : "Enter your friend's username",
+    find_friend: "Enter your friend's username",
     btn_friend_list: "List friend",
     btn_friend_add: "Add friend",
     btn_friend_visiting: "Visit house",
@@ -104,6 +104,13 @@ export const languages = {
     btn_friend_request_add: "Request",
     friend_request_list: "Request list",
     friend_already_exist: "Friend already exists!",
+    //Area Name
+    phuong_vi: "Phuong Vi",
+    cam_tu: "Cam Tu",
+    kiot: "Kiot",
+    rang_dong: "Rang Dong",
+    highway_1a: "Highway 1A",
+    home: "Home",
   },
 };
 
