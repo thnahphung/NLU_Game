@@ -69,7 +69,13 @@ export class ReqAddFriendItem extends AbsFriendItem {
     }
 
     onClickRejectFriend() {
-        console.log("Reject friend");
+        let friend = new proto.Friend();
+        friend.id = Number.parseInt(this.friendId);
+        friend.name = this.friendName;
+        friend.character = this.friendCharacterProto;
+        friend.level = Number.parseInt(this.friendLevel);
+        DataSender.sendReqRejectFriend(Number.parseInt(this.friendId));
+        this.node.destroy();
     }
 }
 

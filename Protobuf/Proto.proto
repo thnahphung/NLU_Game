@@ -51,6 +51,8 @@ message Packet {
     ResLoadCommonCrops resLoadCommonCrops = 41;
     ReqSow reqSow = 42;
     ResSow resSow = 43;
+    ReqRejectFriend reqRejectFriend= 44;
+    ResRejectFriend resRejectFriend= 45;
   }
 }
 
@@ -439,4 +441,12 @@ message ReqSow {
 
 message ResSow {
   Crops crops = 1;
+}
+
+message ReqRejectFriend {
+  int32 senderId = 1;
+}
+
+message ResRejectFriend {
+  Friend receiver = 1;
 }

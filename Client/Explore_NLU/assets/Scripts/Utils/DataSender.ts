@@ -191,4 +191,12 @@ export default class DataSender {
     WS.send(packet);
   }
 
+  public static sendReqRejectFriend(senderId: number) {
+    let reqRejectFriend = new proto.ReqRejectFriend();
+    reqRejectFriend.senderId = senderId;
+    let packet = new proto.Packet();
+    packet.reqRejectFriend = reqRejectFriend;
+    WS.send(packet);
+  }
+
 }

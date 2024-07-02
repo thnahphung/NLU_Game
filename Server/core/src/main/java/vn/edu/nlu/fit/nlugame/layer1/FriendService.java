@@ -134,4 +134,10 @@ public class FriendService {
         }
         DataSenderUtils.sendResponse(sessionSender, Proto.Packet.newBuilder().setResAcceptFriend(Proto.ResAcceptFriend.newBuilder().setReceiver(receiver)).build());
     }
+
+    public void rejectFriend(Session session, Proto.ReqRejectFriend reqRejectFriend) {
+        int senderId = reqRejectFriend.getSenderId();
+        int receiverId = SessionCache.me().getUserID(SessionID.of(session));
+        FriendshipDAO.rejectFriendRequest(senderId, receiverId);
+    }
 }
