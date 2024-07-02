@@ -1,9 +1,10 @@
 import { EditBox, Label, Node, Prefab, Sprite, _decorator, find, instantiate, resources } from 'cc';
 import AbsScene from './AbsScene';
-import { WS } from '../Socket/WS';
 import DataSender from '../Utils/DataSender';
 import { t } from '../../../extensions/i18n/assets/LanguageData';
-import { TransitionScenePrefab } from '../Prefabs/TransitionScene/TransitionScenePrefab';
+import { CharacterIntro } from '../Prefabs/Character/CharacterIntro';
+import { UICanvas } from '../Prefabs/MainUI/UICanvas';
+import GlobalData from '../Utils/GlobalData';
 const { ccclass, property } = _decorator;
 
 @ccclass('PickCharacterScene')
@@ -16,10 +17,8 @@ export class PickCharacterScene extends AbsScene {
     public namePlayerPanel: Node = null!;
     @property(EditBox)
     public editboxNamePlayer: EditBox = null!;
-    // Khai bao transitScreen
     @property(Prefab)
     public transitScreen: Prefab = null;
-
     private characterPicked: string = '';
     start() {
     }
@@ -35,7 +34,7 @@ export class PickCharacterScene extends AbsScene {
             let resLoadCharacters = packet.resLoadCharacters;
             if (resLoadCharacters) {
                 if(resLoadCharacters.character == null || resLoadCharacters.character.length == 0){
-                    confirm('Không có nhân vật');
+                    UICanvas.me().showPopupMessage(t('label_text.pick_character_403'));
                     return;
                 }
                 resLoadCharacters.character.forEach((character) => {
@@ -43,45 +42,27 @@ export class PickCharacterScene extends AbsScene {
                     let characterID = "" + character.id;
                     let code = character.code;
                     const characterPrefab = instantiate(this.characterPrefab);
-                    switch (code) {
-                        case "KSNN":
-                            characterPrefab.getChildByName("nameLable").getComponent(Label).string = t("label_text.character_name_agricultural");
-                            break;
-                        case "KSCN":
-                            characterPrefab.getChildByName("nameLable").getComponent(Label).string = t("label_text.character_name_animal_husbandry");
-                            break;
-                        case "KSCK":
-                            characterPrefab.getChildByName("nameLable").getComponent(Label).string = t("label_text.character_name_mechanical");
-                            break;
-                        case "BSTY":
-                            characterPrefab.getChildByName("nameLable").getComponent(Label).string = t("label_text.character_name_veterinarian");
-                            break;
-                        default:
-                                characterPrefab.getChildByName("nameLable").getComponent(Label).string = "Loading...";
-                    }
-                    characterPrefab.getChildByName("code").getComponent(Label).string = characterID;
-                    characterPrefab.on(Node.EventType.MOUSE_DOWN, () => {
-                        this.onClickCharacter(characterID);
-                    });
-                    characterPrefab.on(Node.EventType.TOUCH_END, () => {
-                        this.onClickCharacter(characterID);
-                    });
+                    const chacracterComponent = characterPrefab.getComponent(CharacterIntro);
+                    chacracterComponent.setCharacterCode(code);
+                    chacracterComponent.setNameByCode(code);
+                    chacracterComponent.setCharacterSpriteFrame(code);
+                    chacracterComponent.setCharacterName(character.name);
+                    chacracterComponent.setCharacterID(characterID);
+                    characterPrefab.on(Node.EventType.MOUSE_DOWN, () => {this.onClickCharacter(characterID)});
+                    characterPrefab.on(Node.EventType.TOUCH_END, () => {this.onClickCharacter(characterID)});
                     this.characterPanel.addChild(characterPrefab);
                 });
             }
 
             if (packet.resPickCharacter) {
                 if (packet.resPickCharacter.status == 500) {
-                    confirm('Chọn nhân vật thất bại, vui lòng thử lại!');
-                } 
-                if(packet.resPickCharacter.status == 200) {
-                    let transitScreenNode = instantiate(this.transitScreen);
-                    transitScreenNode
-                    .getComponent(TransitionScenePrefab)
-                    .setSceneName("KiotScene");
-                    this.node.addChild(transitScreenNode);
+                    UICanvas.me().showPopupMessage(t('label_text.pick_character_402'));
+                } else {
+                    console.log(packet.resPickCharacter.user);
+                    GlobalData.me().setMainUser(packet.resPickCharacter.user);
                 }
             }
+            
         });
     }
 
@@ -91,7 +72,7 @@ export class PickCharacterScene extends AbsScene {
 
     onClickPickCharacter() {
         if (this.characterPicked == '') {
-            confirm('Chưa chọn nhân vật');
+            UICanvas.me().showPopupMessage(t('label_text.pick_character_401'));
             return;
         }
         this.namePlayerPanel.active = true;
@@ -102,31 +83,33 @@ export class PickCharacterScene extends AbsScene {
     }
 
     onClickConfirmPickCharacter() {
-        if(this.editboxNamePlayer.string == '') return;
+        if(this.editboxNamePlayer.string == '') {
+            UICanvas.me().showPopupMessage(t('label_text.pick_character_404'));
+            return;
+        }
         DataSender.sendReqPickCharacter(Number.parseInt(this.characterPicked), this.editboxNamePlayer.string);
-        console.log('onClickConfirmPickCharacter: ', this.characterPicked);
-        console.log('editboxNamePlayer: ', this.editboxNamePlayer.string);
     }
 
     onClickCharacter(characterId: string) {
-        let nodeCharacterPanel = find("Canvas/PickCharacter/CharacterPanel");
-        if (nodeCharacterPanel) {
+        if (this.characterPanel) {
             this.characterPicked = characterId;
-            this.resetGrayscale(nodeCharacterPanel);
-            nodeCharacterPanel.children.forEach((node) => {
-                if (node.getChildByName("code").getComponent(Label).string != characterId) {
-                    node.getChildByName("sprite").getComponent(Sprite).grayscale = true;
-                    node.getChildByName("bg").getComponent(Sprite).grayscale = true;
+            this.resetGrayscale();
+            this.characterPanel.children.forEach((node) => {
+                const characterCompoponent = node.getComponent(CharacterIntro);
+                if(characterCompoponent.getCharacterID() == characterId) {
+                    characterCompoponent.getCharacterBG().getComponent(Sprite).grayscale = false;
+                    characterCompoponent.getCharacterSprite().getComponent(Sprite).grayscale = false;
                 }
             });
         }
     }
 
-    resetGrayscale(nodeCharacterPanel : Node) {
-        if (nodeCharacterPanel) {
-            nodeCharacterPanel.children.forEach((node) => {
-                node.getChildByName("sprite").getComponent(Sprite).grayscale = false;
-                node.getChildByName("bg").getComponent(Sprite).grayscale = false;
+    resetGrayscale() {
+        if (this.characterPanel) {
+            this.characterPanel.children.forEach((node) => {
+                const characterCompoponent = node.getComponent(CharacterIntro);
+                characterCompoponent.getCharacterBG().getComponent(Sprite).grayscale = true;
+                characterCompoponent.getCharacterSprite().getComponent(Sprite).grayscale = true;
             });
         }
     }

@@ -1,10 +1,13 @@
 package vn.edu.nlu.fit.nlugame.layer1;
 
 import jakarta.websocket.Session;
+import vn.edu.nlu.fit.nlugame.layer2.ConstUtils;
+import vn.edu.nlu.fit.nlugame.layer2.dao.AreaDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.CharacterDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.PlayerDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.UserDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.CharacterBean;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.UserBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.SessionCache;
@@ -37,21 +40,70 @@ public class CharacterService {
         }
         sendResponse(session, Proto.Packet.newBuilder().setResLoadCharacters(builder).build());
     }
-    public void pickCharacter(Session session, Proto.ReqPickCharacter reqPickCharacter) {
+    public UserBean pickCharacter(Session session, Proto.ReqPickCharacter reqPickCharacter) {
         int characterId = reqPickCharacter.getCharacterId();
         String playerName = reqPickCharacter.getPlayerName();
         SessionID sessionID = SessionID.of(session);
+        UserBean userLoginBean = new UserBean();
+        String typeArea = "";
         int userId = SessionCache.me().getUserID(sessionID);
-        if (userId == -1) {
+        // Check user login
+        if (userId < 1) {
             System.out.println("Error: User not login");
-            sendResponse(session, Proto.Packet.newBuilder().setResPickCharacter(Proto.ResPickCharacter.newBuilder().setStatus(401)).build());
-            return;
+            sendResponse(session, Proto.Packet.newBuilder().setResPickCharacter(Proto.ResPickCharacter.newBuilder().setStatus(500)).build());
+            return null;
         }
-        int resultInsert = PlayerDAO.insertPlayer(playerName, userId, characterId, 0);
+        if (characterId < 1 || playerName.trim().equals("")) {
+            System.out.println("Error: Invalid character id or player name");
+            sendResponse(session, Proto.Packet.newBuilder().setResPickCharacter(Proto.ResPickCharacter.newBuilder().setStatus(500)).build());
+            return null;
+        }
+
+        Proto.Character character = CharacterDAO.loadCharacterProtoById(characterId);
+
+        switch (character.getCode()) {
+            case "BSTY":
+                typeArea = ConstUtils.TYPE_AREA.VETERNARIAN_SCENE.getValue();
+                break;
+            case "KSCK":
+                typeArea = ConstUtils.TYPE_AREA.MECHANICAL_SCENE.getValue();
+                break;
+            case "KSNN":
+                typeArea = ConstUtils.TYPE_AREA.FARM_SCENE.getValue();
+                break;
+            case "KSCN":
+                typeArea = ConstUtils.TYPE_AREA.ANIMAL_HUSBANDRY_SCENE.getValue();
+                break;
+            default:
+                System.out.println("Error: Invalid character code");
+        }
+
+        // Update player name
+        UserDAO.updatePlayerName(userId, playerName);
+        //update has character
+        UserDAO.updateHasCharacter(userId, 1);
+        UserDAO.updateCharacterId(userId, characterId);
+
+        userLoginBean = UserDAO.selectUser(userId);
+
+        Proto.User.Builder userProto = Proto.User.newBuilder()
+                .setUserId(userLoginBean.getId())
+                .setUsername(userLoginBean.getUsername())
+                .setHasCharacter(userLoginBean.getHasCharacter())
+                .setCharacterId(userLoginBean.getCharacterId())
+                .setLevel(userLoginBean.getLevel())
+                .setIsNewAccount(userLoginBean.getIsNewAccount())
+                .setEmail(userLoginBean.getEmail())
+                .setPlayerName(userLoginBean.getPlayerName())
+                .setGold(userLoginBean.getGold())
+                .setCharacter(character);
+
+        int resultInsert =  AreaDAO.insertArea(userId, typeArea);
+        System.out.println("userLoginBean pick: "+userLoginBean);
         if(resultInsert == 200) {
-            UserDAO.updateHasCharacter(userId, 1);
+            sendResponse(session, Proto.Packet.newBuilder().setResPickCharacter(Proto.ResPickCharacter.newBuilder().setStatus(resultInsert).setUser(userProto)).build());
         }
-        sendResponse(session, Proto.Packet.newBuilder().setResPickCharacter(Proto.ResPickCharacter.newBuilder().setStatus(resultInsert)).build());
+        return userLoginBean;
     }
 
     private void sendResponse(Session session, Proto.Packet packet) {

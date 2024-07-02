@@ -25,6 +25,7 @@ public class SessionHandler implements Subscriber {
     @Override
     public void onError(Session session, Throwable throwable) {
         System.out.println("Error session: " + session.getId() + " Error: " + throwable.getMessage());
+        SessionService.me().onClose(session);
     }
 
     @Override

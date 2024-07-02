@@ -72,7 +72,7 @@ public class UserDAO extends BaseDAO {
         if (jdbi == null) {
             return null;
         }
-        return jdbi.withHandle(h -> h.createQuery("select id,username,player_name,gender,email,active,relogin_token,character_id,level  from " + TABLE_NAME + " where id = :id")
+        return jdbi.withHandle(h -> h.createQuery("select id,username,player_name,gender,email,active,relogin_token,character_id,level,has_character  from " + TABLE_NAME + " where id = :id")
                 .bind("id", userId)
                 .mapToBean(UserBean.class).stream().findFirst().orElse(null));
     }
@@ -196,7 +196,26 @@ public class UserDAO extends BaseDAO {
                 .bind("email", email)
                 .execute());
     }
-    public static void main(String[] args) {
-        System.out.println(checkForgetPasswordToken("minhtrongvtctp@gmail.com", "Yx1yxa"));
+
+    public static void updatePlayerName(int userId, String playerName) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return;
+        }
+        jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set player_name = :playerName where id = :id")
+                .bind("playerName", playerName)
+                .bind("id", userId)
+                .execute());
+    }
+
+    public static void updateCharacterId(int userId, int characterId) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return;
+        }
+        jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set character_id = :characterId where id = :id")
+                .bind("characterId", characterId)
+                .bind("id", userId)
+                .execute());
     }
 }

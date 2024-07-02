@@ -52,4 +52,23 @@ public class AreaDAO extends BaseDAO {
                         .build())
                 .stream().findFirst().orElse(null));
     }
+
+    public static int insertArea(int userId, String typeArea) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return 500;
+        }
+        try {
+            Integer result = jdbi.withHandle(h -> h.createUpdate(
+                            "insert into " + TABLE_NAME + " (user_id, type_area, status) " +
+                                    "values (:user_id, :type_area, 1)")
+                    .bind("user_id", userId)
+                    .bind("type_area", typeArea)
+                    .execute());
+            return result == 1 ? 200 : 500;
+        } catch (Exception e) {
+            System.out.println("Error: Insert area failed: " + e);
+            return 500;
+        }
+    }
 }

@@ -104,6 +104,10 @@ export const languages = {
     btn_friend_request_add: "Request",
     friend_request_list: "Request list",
     friend_already_exist: "Friend already exists!",
+    pick_character_401: "Please pick a character!",
+    pick_character_402: "Pick character failed, please try again!",
+    pick_character_403: "Failed to load character!",
+    pick_character_404: "Please enter your name!",
   },
 };
 

@@ -38,6 +38,7 @@ export class TransitionScenePrefab extends Component {
   }
 
   private updateProgress(progress: number) {
+    if(this.progressBar == null) return;
     this.progressBar.getComponent(ProgressBar).progress = progress;
     this.loadingLabel.getComponent(Label).string =
       Math.floor(progress * 100) + "%";
