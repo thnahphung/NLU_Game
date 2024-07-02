@@ -1,10 +1,11 @@
-import { _decorator, Button, find, Label, Node } from "cc";
+import { _decorator, Button, find, Label, Node, SpriteFrame } from "cc";
 import { AbsFriendItem } from "./AbsFriendItem";
-import DataSender from "../../../Utils/DataSender";
+import { FriendDetailItem } from "./FriendDetailItem";
 const { ccclass, property } = _decorator;
 
 @ccclass("FriendListItem")
 export class FriendListItem extends AbsFriendItem {
+  private friendDetailNode: Node = null;
   start() {
     super.start();
     this.node.on(
@@ -14,46 +15,44 @@ export class FriendListItem extends AbsFriendItem {
     );
   }
 
+  public setFriendName(name: string) {
+    super.setFriendName(name);
+  }
+
+  public setFriendCareer(career: string) {
+    super.setFriendCareer(career);
+  }
+
+  public setFriendLevel(level: string) {
+    super.setFriendLevel(level);
+  }
+
+  public setFriendId(id: string) {
+    super.setFriendId(id);
+  }
+
+  public setAvatarSprite(spriteFrame: SpriteFrame) {
+    super.setFriendAvatar(spriteFrame);
+  }
+
+  public setFriendCharacterProto(characterProto: proto.ICharacter) {
+    super.setFriendCharacterProto(characterProto);
+  }
+
+  public setFriendDetailNode(node: Node) {
+    this.friendDetailNode = node;
+  }
+
   private handleTouchFriendListItem(): void {
-    console.log("Touch friend list item");
-    this.openFriendDetail().active = true;
-    this.openFriendDetail().getChildByName("Modal").active = true;
-    this.openFriendDetail()
-      .getChildByName("Content")
-      .getChildByName("BotInfo")
-      .getChildByName("AddFriendButton").active = false;
-
-    const content = this.openFriendDetail()
-      .getChildByName("Content")
-      .getChildByName("TopInfo")
-      .getChildByName("ValueInfo");
-    content.getChildByName("NameLabel").getComponent(Label).string =
-      this.friendName;
-    content.getChildByName("CareerLabel").getComponent(Label).string =
-      this.friendCareer;
-    content.getChildByName("LevelLabel").getComponent(Label).string =
-      this.friendLevel;
-    content.getChildByName("IdLabel").getComponent(Label).string =
-      this.friendId;
-
-    const visitButton = this.openFriendDetail()
-      .getChildByName("Content")
-      .getChildByName("BotInfo")
-      .getChildByName("VisitingButton")
-      .getComponent(Button);
-    visitButton.node.on(
-      Button.EventType.CLICK,
-      () => this.onClickVisitFriend(Number(this.friendId)),
-      this
-    );
-  }
-
-  onClickVisitFriend(id: number) {
-    DataSender.sendReqPlayerJoinArea(id);
-  }
-
-  private openFriendDetail(): Node {
-    const modal = find("UICanvas/PopupLayer/PopupFriend/PopupInfoFriendDetail");
-    return modal;
+    const friendDetailNodeComponent = this.friendDetailNode.getComponent(FriendDetailItem);
+    friendDetailNodeComponent.setFriendName(this.friendName);
+    friendDetailNodeComponent.setFriendCareer(this.friendCareer);
+    friendDetailNodeComponent.setFriendLevel(this.friendLevel);
+    friendDetailNodeComponent.setFriendId(this.friendId);
+    friendDetailNodeComponent.setAvatarSprite(this.avatarSprite.spriteFrame);
+    friendDetailNodeComponent.setFriendCharacterProto(this.friendCharacterProto);
+    friendDetailNodeComponent.getAddFriendButton().active = false;
+    friendDetailNodeComponent.getModalNode().active = true;
+    this.friendDetailNode.active = true;
   }
 }

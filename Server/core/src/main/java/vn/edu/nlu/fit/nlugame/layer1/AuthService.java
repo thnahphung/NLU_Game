@@ -3,6 +3,7 @@ package vn.edu.nlu.fit.nlugame.layer1;
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer2.DataSenderUtils;
 import vn.edu.nlu.fit.nlugame.layer2.RandomUtils;
+import vn.edu.nlu.fit.nlugame.layer2.SessionManage;
 import vn.edu.nlu.fit.nlugame.layer2.dao.CharacterDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.UserDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.CharacterBean;
@@ -11,6 +12,7 @@ import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.SessionCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.UserCache;
+import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
 import javax.mail.Authenticator;
 import java.util.Properties;
@@ -75,7 +77,7 @@ public class AuthService {
                 .setGold(userLoginBean.getGold())
 
                 .build();
-        if (checkLoginOtherDevice(userProto)) {
+        if (checkLoginOtherDevice(userProto, session)) {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(403)).build());
             return null;
         }
@@ -116,9 +118,11 @@ public class AuthService {
         UserBean userLoginBean = UserDAO.getUserLogin(reqRelogin.getUsername());
         //Check null param
         if (userLoginBean == null || reqRelogin.getToken() == null) {
+            System.out.println("Error: User not login");
             result = false;
         }
         if (!reqRelogin.getToken().equals(userLoginBean.getReLoginToken())) {
+            System.out.println("Error: Invalid token");
             result = false;
         }
         //Check login other device
@@ -133,7 +137,8 @@ public class AuthService {
                 .setPlayerName(userLoginBean.getPlayerName() == null ? "" : userLoginBean.getPlayerName())
                 .setGold(userLoginBean.getGold())
                 .build();
-        if (checkLoginOtherDevice(userProto)) {
+        if (checkLoginOtherDevice(userProto, session)) {
+            System.out.println("Error: User login on another device");
             result = false;
         }
         if (!result) {
@@ -169,7 +174,14 @@ public class AuthService {
         UserDAO.updatePassword(reqForgotPassword.getEmail(), reqForgotPassword.getPassword());
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResRecoverPassword(Proto.ResRecoverPassword.newBuilder().setStatus(200)).build());
     }
-    private boolean checkLoginOtherDevice(Proto.User user) {
+    private boolean checkLoginOtherDevice(Proto.User user, Session session) {
+        SessionID sessionID = SessionID.of(session);
+        UserContext userContext = UserCache.me().getUserContextOnline(user.getUserId());
+        System.out.println(userContext + " " + sessionID + " " + user.getUserId());
+        // Kiem tra user hien tai co phai la user da dang nhap khong
+        if(userContext != null && userContext.getSessionID().equals(sessionID.getSessionId())){
+            return false;
+        }
         return UserCache.me().getUserOnline(user.getUserId()) != null;
     }
 
@@ -189,8 +201,5 @@ public class AuthService {
         Proto.Packet.Builder builder = Proto.Packet.newBuilder().setResRegister(resRegister);
 
         DataSenderUtils.sendResponse(session, builder.build());
-    }
-    public static void main(String[] args) {
-        System.out.println(UUID.randomUUID().toString());
     }
 }

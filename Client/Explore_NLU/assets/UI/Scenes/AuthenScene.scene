@@ -3147,7 +3147,7 @@
       "b": 105,
       "a": 255
     },
-    "_string": "Xác nhận mật khẩu",
+    "_string": "Nhập lại mật khẩu",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
     "_actualFontSize": 20,
@@ -3175,7 +3175,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "key": "label_text.authen_forgot_password",
+    "key": "label_text.authen_confirm_password",
     "_id": "f9MKb6oYJJ569hNpSU8Yz8"
   },
   {
@@ -4718,7 +4718,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -371.4,
+      "x": -583.9,
       "y": 208.8,
       "z": 0
     },
@@ -7837,7 +7837,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 379.0921409214092,
+    "_orthoHeight": 416.3244047619048,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -11142,7 +11142,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 379.0921409214092,
+    "_orthoHeight": 416.3244047619048,
     "_near": 0,
     "_far": 1000,
     "_color": {

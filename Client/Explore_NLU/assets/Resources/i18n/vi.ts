@@ -109,6 +109,11 @@ export const languages = {
     btn_friend_request_add: "Lời mời",
     friend_request_list: "Danh sách lời mời",
     friend_already_exist: "Bạn bè đã tồn tại!",
+    pick_character_401: "Vui lòng chọn nhân vật!",
+    pick_character_402: "Chọn nhân vật thất bại, vui lòng thử lại!",
+    pick_character_403: "Tải nhân vật thất bại!",
+    pick_character_404: "Tên không được để trống!",
+    pick_character_400: "Tên này đã được sử dụng, vui lòng chọn tên khác!",
   },
 };
 

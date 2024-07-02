@@ -1,12 +1,12 @@
 import {
   _decorator,
   Button,
-  Component,
   EditBox,
   instantiate,
   Label,
   Node,
   Prefab,
+  ScrollView,
   Sprite,
   SpriteFrame,
 } from "cc";
@@ -18,6 +18,9 @@ import { UICanvas } from "../MainUI/UICanvas";
 import { t } from "../../../../extensions/i18n/assets/LanguageData";
 import GlobalData from "../../Utils/GlobalData";
 import { ReqAddFriendItem } from "./ItemPopup/ReqAddFriendItem";
+import { FriendListItem } from "./ItemPopup/FriendListItem";
+import { AddFriendItem } from "./ItemPopup/AddFriendItem";
+import { FriendDetailItem } from "./ItemPopup/FriendDetailItem";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupFriend")
@@ -34,8 +37,6 @@ export class PopupFriend extends AbsHandler {
   public listFriendNode: Node = null;
   @property(Node)
   public addFriendNode: Node = null;
-  @property(Node)
-  public friendDetailModal: Node = null;
   @property(Node)
   public friendDetailNode: Node = null;
   @property(EditBox)
@@ -56,15 +57,11 @@ export class PopupFriend extends AbsHandler {
   public scrollViewSuggestFriend: Node = null;
   @property(Prefab)
   public addFriendItemPrefab: Prefab = null;
+  @property(Sprite)
+  public addFriendNotify: Sprite = null;
 
   @property(SpriteFrame)
-  protected bstySprite: SpriteFrame;
-  @property(SpriteFrame)
-  protected ksckSprite: SpriteFrame;
-  @property(SpriteFrame)
-  protected ksnnSprite: SpriteFrame;
-  @property(SpriteFrame)
-  protected kschSprite: SpriteFrame;
+  protected characterSprite: SpriteFrame[] = [];
 
   private requestFriendListLoaded: boolean = false;
   private suggestFriendListLoaded: boolean = false;
@@ -77,28 +74,13 @@ export class PopupFriend extends AbsHandler {
     this.listFriendNode.active = true;
     this.addFriendNode.active = false;
     this.onLoadListFriend();
-    this.friendDetailModal.on(
-      Node.EventType.TOUCH_END,
-      this.onCloseFriendDetailModal,
-      this
-    );
+
   }
 
   onMessageHandler(packetWrapper: proto.IPacketWrapper): void {
     packetWrapper.packet.forEach((packet) => {
       if (packet.resFindFriend) {
-        if (!packet.resFindFriend.friend) {
-          UICanvas.me().showPopupMessage(t("label_text.friend_not_found"));
-          return;
-        }
-        this.showInfoFriendPopupDetail(
-          packet.resFindFriend.friend.id,
-          packet.resFindFriend.friend.name,
-          packet.resFindFriend.friend.character,
-          packet.resFindFriend.friend.level
-        );
-        this.friendDetailNode.active = true;
-        this.friendDetailModal.active = true;
+        this.onHandleResFindFriend(packet.resFindFriend);
       }
 
       if (packet.resLoadFriendList) {
@@ -127,15 +109,13 @@ export class PopupFriend extends AbsHandler {
     console.log("List friend");
     this.btnListFriend.getComponent(Sprite).spriteFrame = this.btnPressedSprite;
     this.btnAddFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
-    this.btnRequestFriend.getComponent(Sprite).spriteFrame =
-      this.btnNormalSprite;
+    this.btnRequestFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
     this.listFriendNode.active = true;
     this.addFriendNode.active = false;
     this.requestFriendNode.active = false;
   }
 
   onClickAddFriend() {
-    console.log("Add friend");
     this.btnListFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
     this.btnAddFriend.getComponent(Sprite).spriteFrame = this.btnPressedSprite;
     this.btnRequestFriend.getComponent(Sprite).spriteFrame =
@@ -163,15 +143,7 @@ export class PopupFriend extends AbsHandler {
       DataSender.sendReqLoadFriend(1);
       this.requestFriendListLoaded = true;
     }
-  }
-
-  onClickAcceptFriend() {
-    console.log("Accept friend");
-  }
-
-  onCloseFriendDetailModal() {
-    this.friendDetailModal.active = false;
-    this.friendDetailNode.active = false;
+    this.addFriendNotify.node.active = false;
   }
 
   onClickFindFriend() {
@@ -202,69 +174,22 @@ export class PopupFriend extends AbsHandler {
   showInfoFriendPopupDetail(
     id: number,
     name: string,
-    career: string,
+    career: proto.ICharacter,
     level: number
   ) {
-    const labelContent = this.friendDetailNode
-      .getChildByName("Content")
-      .getChildByName("TopInfo")
-      .getChildByName("ValueInfo");
-    labelContent.getChildByName("IdLabel").getComponent(Label).string =
-      id.toString();
-    labelContent.getChildByName("NameLabel").getComponent(Label).string = name;
-    labelContent.getChildByName("CareerLabel").getComponent(Label).string =
-      career;
-    labelContent.getChildByName("LevelLabel").getComponent(Label).string =
-      level.toString();
-    let sprite = this.friendDetailNode
-      .getChildByName("Content")
-      .getChildByName("TopInfo")
-      .getChildByName("Avatar")
-      .getChildByName("Sprite")
-      .getComponent(Sprite);
-    if (career.trim() == "Bác sĩ thú y") {
-      sprite.spriteFrame = this.bstySprite;
-    } else if (career.trim() == "Kỹ sư cơ khí") {
-      sprite.spriteFrame = this.ksckSprite;
-    } else if (career.trim() == "Kỹ sư nông nghiệp") {
-      sprite.spriteFrame = this.ksnnSprite;
-    } else if (career.trim() == "Kỹ sư chăn nuôi") {
-      sprite.spriteFrame = this.kschSprite;
-    }
-    const visitButton = this.friendDetailNode
-      .getChildByName("Content")
-      .getChildByName("BotInfo")
-      .getChildByName("VisitingButton")
-      .getComponent(Button);
-    console.log(visitButton);
-    visitButton.node.on(
-      Button.EventType.CLICK,
-      () => this.onClickVisitFriend(id),
-      this
-    );
+    const friendDetailNodeComponent = this.friendDetailNode.getComponent(FriendDetailItem);
+    friendDetailNodeComponent.setFriendName(name);
+    friendDetailNodeComponent.setFriendCareer(career.name);
+    friendDetailNodeComponent.setFriendLevel(level.toString());
+    friendDetailNodeComponent.setFriendId(id.toString());
+    friendDetailNodeComponent.setFriendCharacterProto(career);
+    friendDetailNodeComponent.getModalNode().active = true;
+    friendDetailNodeComponent.getAddFriendButton().active = true;
+    this.friendDetailNode.active = true;
   }
 
   protected onDestroy(): void {
     HandlerManager.me().unRegisterHandler(this);
-  }
-
-  onClickVisitFriend(id: number) {
-    console.log("Visit friend", id);
-  }
-
-  onClickAddNewFriend(): void {
-    const labelContent = this.friendDetailNode
-      .getChildByName("Content")
-      .getChildByName("TopInfo")
-      .getChildByName("ValueInfo");
-    const friendId = labelContent
-      .getChildByName("IdLabel")
-      .getComponent(Label).string;
-    if (friendId) {
-      DataSender.sendReqAddFriend(Number.parseInt(friendId));
-    } else {
-      UICanvas.me().showPopupMessage(t("label_text.error_common"));
-    }
   }
 
   onLoadListFriend(): void {
@@ -272,27 +197,38 @@ export class PopupFriend extends AbsHandler {
     DataSender.sendReqLoadFriend(2);
   }
 
+  onHandleResFindFriend(resFindFriend: proto.IResFindFriend): void {
+    if (!resFindFriend.friend) {
+      UICanvas.me().showPopupMessage(t("label_text.friend_not_found"));
+      return;
+    }
+    this.showInfoFriendPopupDetail(
+      resFindFriend.friend.id,
+      resFindFriend.friend.name,
+      resFindFriend.friend.character,
+      resFindFriend.friend.level
+    );
+  }
+
   onLoadFriendListHandle(resLoadFriendList: proto.IResLoadFriendList): void {
-    console.log("Load friend list success");
     const listFriend = resLoadFriendList.friends;
     const status = resLoadFriendList.status;
     if (listFriend.length == 0) {
       return;
     }
     listFriend.forEach((friend) => {
+        const career = friend.character.name;
       if (status == 2) {
         const friendItem = instantiate(this.friendItemPrefab);
-        const labelInfo = friendItem.getChildByName("ValueInfo");
-        labelInfo.getChildByName("NameLabel").getComponent(Label).string =
-          friend.name;
-        labelInfo.getChildByName("CareerLabel").getComponent(Label).string =
-          friend.character;
-        labelInfo.getChildByName("LevelLabel").getComponent(Label).string =
-          friend.level.toString();
-        labelInfo.getChildByName("IdLabel").getComponent(Label).string =
-          friend.id.toString();
+        const friendComponent = friendItem.getComponent(FriendListItem);
+        friendComponent.setFriendName(friend.name);
+        friendComponent.setFriendCareer(career);
+        friendComponent.setFriendLevel(friend.level.toString());
+        friendComponent.setFriendId(friend.id.toString());
+        friendComponent.setFriendCharacterProto(friend.character);
+        friendComponent.setFriendDetailNode(this.friendDetailNode);
         this.scrollViewListFriend.addChild(friendItem);
-
+        this.scrollViewListFriend.parent.parent.getComponent(ScrollView).scrollToTop();
         if (
           GlobalData.me().getMainUserFriends() == null ||
           GlobalData.me().getMainUserFriends().length == 0
@@ -302,50 +238,45 @@ export class PopupFriend extends AbsHandler {
       }
 
       if (status == 1) {
+        this.scrollViewRequestFriend.removeAllChildren();
         const friendItem = instantiate(this.friendItemRequestPrefab);
         friendItem.getComponent(ReqAddFriendItem).scrollListFriend =
           this.scrollViewListFriend;
-        const labelInfo = friendItem.getChildByName("ValueInfo");
-        labelInfo.getChildByName("NameLabel").getComponent(Label).string =
-          friend.name;
-        labelInfo.getChildByName("CareerLabel").getComponent(Label).string =
-          friend.character;
-        labelInfo.getChildByName("LevelLabel").getComponent(Label).string =
-          friend.level.toString();
-        labelInfo.getChildByName("IdLabel").getComponent(Label).string =
-          friend.id.toString();
+        const friendComponent = friendItem.getComponent(ReqAddFriendItem);
+        friendComponent.setFriendName(friend.name);
+        friendComponent.setFriendCareer(career);
+        friendComponent.setFriendLevel(friend.level.toString());
+        friendComponent.setFriendId(friend.id.toString());
+        friendComponent.setFriendCharacterProto(friend.character);
+        friendComponent.setFriendDetailNode(this.friendDetailNode);
         this.scrollViewRequestFriend.addChild(friendItem);
+        this.scrollViewRequestFriend.parent.parent.getComponent(ScrollView).scrollToTop();
       }
 
       if (status == 4) {
         const addFriendItem = instantiate(this.addFriendItemPrefab);
-        const labelInfo = addFriendItem.getChildByName("ValueInfo");
-        labelInfo.getChildByName("NameLabel").getComponent(Label).string =
-          friend.name;
-        labelInfo.getChildByName("CareerLabel").getComponent(Label).string =
-          friend.character;
-        labelInfo.getChildByName("LevelLabel").getComponent(Label).string =
-          friend.level.toString();
-        labelInfo.getChildByName("IdLabel").getComponent(Label).string =
-          friend.id.toString();
+        const addFriendComponent = addFriendItem.getComponent(AddFriendItem);
+        addFriendComponent.setFriendName(friend.name);
+        addFriendComponent.setFriendCareer(career);
+        addFriendComponent.setFriendLevel(friend.level.toString());
+        addFriendComponent.setFriendId(friend.id.toString());
+        addFriendComponent.setFriendCharacterProto(friend.character);
         this.scrollViewSuggestFriend.addChild(addFriendItem);
+        this.scrollViewSuggestFriend.parent.parent.getComponent(ScrollView).scrollToTop();
       }
     });
   }
 
   onAcceptedFriendHandle(resAcceptFriend: proto.IResAcceptFriend): void {
-    console.log("Accept friend success");
     const friend = resAcceptFriend.receiver;
     const friendItem = instantiate(this.friendItemPrefab);
-    const labelInfo = friendItem.getChildByName("ValueInfo");
-    labelInfo.getChildByName("NameLabel").getComponent(Label).string =
-      friend.name;
-    labelInfo.getChildByName("CareerLabel").getComponent(Label).string =
-      friend.character;
-    labelInfo.getChildByName("LevelLabel").getComponent(Label).string =
-      friend.level.toString();
-    labelInfo.getChildByName("IdLabel").getComponent(Label).string =
-      friend.id.toString();
+    const friendComponent = friendItem.getComponent(FriendListItem);
+    friendComponent.setFriendName(friend.name);
+    friendComponent.setFriendCareer(friend.character.name);
+    friendComponent.setFriendLevel(friend.level.toString());
+    friendComponent.setFriendId(friend.id.toString());
+    friendComponent.setFriendCharacterProto(friend.character);
+    friendComponent.setFriendDetailNode(this.friendDetailNode);
     this.scrollViewListFriend.addChild(friendItem);
     GlobalData.me().getMainUserFriends().push(friend);
   }
@@ -353,17 +284,15 @@ export class PopupFriend extends AbsHandler {
   onRequestAddFriendHandle(resAddFriend: proto.IResAddFriend): void {
     const sender = resAddFriend.sender;
     const friendItem = instantiate(this.friendItemRequestPrefab);
-    friendItem.getComponent(ReqAddFriendItem).scrollListFriend =
-      this.scrollViewListFriend;
-    const labelInfo = friendItem.getChildByName("ValueInfo");
-    labelInfo.getChildByName("NameLabel").getComponent(Label).string =
-      sender.name;
-    labelInfo.getChildByName("CareerLabel").getComponent(Label).string =
-      sender.character;
-    labelInfo.getChildByName("LevelLabel").getComponent(Label).string =
-      sender.level.toString();
-    labelInfo.getChildByName("IdLabel").getComponent(Label).string =
-      sender.id.toString();
+    friendItem.getComponent(ReqAddFriendItem).scrollListFriend = this.scrollViewListFriend;
+    const friendComponent = friendItem.getComponent(ReqAddFriendItem);
+    friendComponent.setFriendName(sender.name);
+    friendComponent.setFriendCareer(sender.character.name);
+    friendComponent.setFriendLevel(sender.level.toString());
+    friendComponent.setFriendId(sender.id.toString());
+    friendComponent.setFriendCharacterProto(sender.character);
     this.scrollViewRequestFriend.addChild(friendItem);
+    this.addFriendNotify.node.active = true;
   }
+
 }

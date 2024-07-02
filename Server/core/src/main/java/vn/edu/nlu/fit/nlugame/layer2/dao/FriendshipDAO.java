@@ -1,10 +1,10 @@
 package vn.edu.nlu.fit.nlugame.layer2.dao;
 
 import org.jdbi.v3.core.Jdbi;
-import vn.edu.nlu.fit.nlugame.layer2.dao.bean.CharacterBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class FriendshipDAO {
     private static final String TABLE_NAME = "friendships";
@@ -13,6 +13,25 @@ public class FriendshipDAO {
         Jdbi jdbi = BaseDAO.getJdbi();
         if (jdbi == null) {
             return ;
+        }
+        AtomicInteger count = new AtomicInteger();
+        // Check if the request already exists => set status = 1
+        jdbi.useHandle(handle -> {
+             count.set(handle.createQuery("select count(*) from " + TABLE_NAME + " where user_id = :senderId and friend_id = :receiverId")
+                     .bind("senderId", senderId)
+                     .bind("receiverId", receiverId)
+                     .mapTo(Integer.class)
+                     .one());
+            if (count.get() > 0) {
+                handle.createUpdate("update " + TABLE_NAME + " set status = 1 where user_id = :senderId and friend_id = :receiverId")
+                        .bind("senderId", senderId)
+                        .bind("receiverId", receiverId)
+                        .execute();
+            }
+        });
+        if (count.get() > 0) {
+            System.out.println("Friend request already exists");
+            return;
         }
         jdbi.withHandle(handle -> handle.createUpdate("insert into " + TABLE_NAME + " (user_id, friend_id, status, create_at) values (:senderId, :receiverId, 1, now())")
                 .bind("senderId", senderId)
@@ -61,17 +80,15 @@ public class FriendshipDAO {
                 .bind("userId", userId)
                 .bind("status", status)
                 .map((rs, ctx) -> {
-                    String characterName = "The user has not selected a character";
-                    CharacterBean characterBean = CharacterDAO.loadCharacterById(rs.getInt("character_id"));
-                    if(characterBean !=  null){
-                        characterName = characterBean.getName();
+                    Proto.Character character = CharacterDAO.loadCharacterProtoById(rs.getInt("character_id"));
+                    if(character ==  null){
+                        character = Proto.Character.newBuilder().setName("The user has not selected a character").build();
                     }
-
                     return Proto.Friend.newBuilder()
                             .setId(rs.getInt("id"))
                             .setName(rs.getString("player_name"))
                             .setLevel(rs.getInt("level"))
-                            .setCharacter(characterName)
+                            .setCharacter(character)
                             .build();
                 })
                 .list());
@@ -85,17 +102,15 @@ public class FriendshipDAO {
         return jdbi.withHandle(handle -> handle.createQuery("SELECT U.id, U.player_name, U.level, U.character_id FROM Users U WHERE U.id != :userId AND U.id NOT IN (SELECT F.friend_id FROM Friendships F WHERE F.user_id  = :userId UNION SELECT F.user_id FROM Friendships F WHERE F.friend_id = :userId) ORDER BY RAND() LIMIT 10")
                 .bind("userId", userId)
                 .map((rs, ctx) -> {
-                    String characterName = "The user has not selected a character";
-                    CharacterBean characterBean = CharacterDAO.loadCharacterById(rs.getInt("character_id"));
-                    if(characterBean !=  null){
-                        characterName = characterBean.getName();
+                    Proto.Character character = CharacterDAO.loadCharacterProtoById(rs.getInt("character_id"));
+                    if(character ==  null){
+                        character = Proto.Character.newBuilder().setName("The user has not selected a character").build();
                     }
-
                     return Proto.Friend.newBuilder()
                             .setId(rs.getInt("id"))
                             .setName(rs.getString("player_name"))
                             .setLevel(rs.getInt("level"))
-                            .setCharacter(characterName)
+                            .setCharacter(character)
                             .build();
                 })
                 .list());

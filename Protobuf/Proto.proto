@@ -51,6 +51,8 @@ message Packet {
     ResLoadCommonCrops resLoadCommonCrops = 41;
     ReqSow reqSow = 42;
     ResSow resSow = 43;
+    ReqRejectFriend reqRejectFriend= 44;
+    ResRejectFriend resRejectFriend= 45;
   }
 }
 
@@ -166,6 +168,7 @@ message ReqPickCharacter {
 
 message ResPickCharacter {
   int32 status = 1; 
+  User user = 2;
 }
 
 message ReqPlayerJoinAreaCommon{
@@ -313,7 +316,7 @@ message Friend {
   int32 id = 1;
   string name = 2;
   int32 level = 3;
-  string character = 4;
+  Character character = 4;
 }
 
 message ResLoadFriendList {
@@ -439,4 +442,12 @@ message ReqSow {
 
 message ResSow {
   Crops crops = 1;
+}
+
+message ReqRejectFriend {
+  int32 senderId = 1;
+}
+
+message ResRejectFriend {
+  Friend receiver = 1;
 }
