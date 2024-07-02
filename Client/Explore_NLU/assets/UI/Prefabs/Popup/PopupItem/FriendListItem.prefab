@@ -977,7 +977,7 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 45,
+      "x": 75,
       "y": 0,
       "z": 0
     },
@@ -1026,7 +1026,7 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 38.73,
+      "x": 68.72999999999999,
       "y": 19.29,
       "z": 0
     },
@@ -1159,7 +1159,7 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 70.83,
+      "x": 100.83,
       "y": -2.1300000000000026,
       "z": 0
     },
@@ -1292,7 +1292,7 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 20.78,
+      "x": 50.78,
       "y": -23.550000000000004,
       "z": 0
     },
@@ -1549,7 +1549,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 150,
+      "width": 210,
       "height": 60
     },
     "_anchorPoint": {
@@ -1625,7 +1625,7 @@
         "__id__": 75
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 89
@@ -2164,21 +2164,38 @@
     "__prefab": {
       "__id__": 99
     },
-    "bstySprite": {
-      "__uuid__": "ae8a9453-356a-44e4-8b4c-588e860303ab@f9941",
-      "__expectedType__": "cc.SpriteFrame"
+    "characterSprite": [
+      {
+        "__uuid__": "ae8a9453-356a-44e4-8b4c-588e860303ab@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "a14121f4-9e57-4b84-ae1a-1dacd35446a0@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "dd7b8b3e-86cf-41ee-af96-2e65dcb7df2f@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "f78c6be7-f288-465e-a7ac-0816e5a2be87@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      }
+    ],
+    "nameLabel": {
+      "__id__": 48
     },
-    "ksckSprite": {
-      "__uuid__": "a14121f4-9e57-4b84-ae1a-1dacd35446a0@f9941",
-      "__expectedType__": "cc.SpriteFrame"
+    "careerLabel": {
+      "__id__": 60
     },
-    "ksnnSprite": {
-      "__uuid__": "f78c6be7-f288-465e-a7ac-0816e5a2be87@f9941",
-      "__expectedType__": "cc.SpriteFrame"
+    "levelLabel": {
+      "__id__": 54
     },
-    "kschSprite": {
-      "__uuid__": "dd7b8b3e-86cf-41ee-af96-2e65dcb7df2f@f9941",
-      "__expectedType__": "cc.SpriteFrame"
+    "idLabel": {
+      "__id__": 66
+    },
+    "avatarSprite": {
+      "__id__": 6
     },
     "_id": ""
   },

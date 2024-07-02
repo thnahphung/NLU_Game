@@ -2,11 +2,14 @@ package vn.edu.nlu.fit.nlugame.layer0.handler;
 
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.Session;
+import vn.edu.nlu.fit.nlugame.layer1.AreaService;
 import vn.edu.nlu.fit.nlugame.layer1.CharacterService;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.UserBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 public class CharacterHandler implements Subscriber{
-
+    CharacterService characterService = CharacterService.me();
+    private final AreaService areaService = AreaService.me();
     @Override
     public void onOpen(Session session, String... params) {
 
@@ -20,10 +23,16 @@ public class CharacterHandler implements Subscriber{
                     CharacterService.me().loadCharactes(session);
                     break;
                 case REQPICKCHARACTER:
-                    CharacterService.me().pickCharacter(session, packet.getReqPickCharacter());
+                    pickCharacter(session, packet);
                     break;
             }
         });
+    }
+
+    public void pickCharacter(Session session, Proto.Packet packet) {
+        UserBean userLoginBean = characterService.pickCharacter(session, packet.getReqPickCharacter());
+        if (userLoginBean == null || userLoginBean.getHasCharacter() == 0) return;
+        areaService.joinAreaLogin(userLoginBean.getId(), session);
     }
 
     @Override

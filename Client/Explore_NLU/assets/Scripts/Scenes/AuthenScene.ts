@@ -4,7 +4,7 @@ import { PopupComponent } from "../Controller/PopupComponent";
 import DataSender from "../Utils/DataSender";
 import { StorageManager } from "../Manager/StorageManger";
 import GlobalData from "../Utils/GlobalData";
-import { LOCAL_STORAGE, POPUP } from "../Utils/Const";
+import { LOCAL_STORAGE, POPUP, SCENES } from "../Utils/Const";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
 import { t } from "../../../extensions/i18n/assets/LanguageData";
 const { ccclass, property } = _decorator;
@@ -108,6 +108,9 @@ export class AuthenScene extends AbsScene {
       StorageManager.me().saveItem(LOCAL_STORAGE.TOKEN, resLogin.token);
       GlobalData.me().setMainUser(resLogin.user);
       GlobalData.me().setIsUserOffline(false);
+      const userProto = resLogin.user;
+      const hasCharacter = userProto.hasCharacter;
+      if(hasCharacter == 0) UICanvas.me().transitScene(SCENES.PICK_CHARACTER);
     }
   }
 

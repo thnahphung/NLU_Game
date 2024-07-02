@@ -28,6 +28,9 @@ public class FriendHandler implements Subscriber{
                 case REQACCEPTFRIEND:
                     friendService.acceptFriend(session, packet.getReqAcceptFriend());
                     break;
+                case REQREJECTFRIEND:
+                    friendService.rejectFriend(session, packet.getReqRejectFriend());
+                    break;
             }
         });
     }

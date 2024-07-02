@@ -54,8 +54,8 @@ public class UserDAO extends BaseDAO {
         }
         try {
             Integer count = jdbi.withHandle(h -> h.createUpdate(
-                            "insert into " + TABLE_NAME + " (username, password, email, level,experience_points, active) " +
-                                    "values (:username, :password, :email, :level, :active)")
+                            "insert into " + TABLE_NAME + " (username, password, email, level,experience_points, active, is_new_account) " +
+                                    "values (:username, :password, :email, :level, :active, 1)")
                     .bind("username", username)
                     .bind("password", pass)
                     .bind("email", email)
@@ -74,7 +74,7 @@ public class UserDAO extends BaseDAO {
         if (jdbi == null) {
             return null;
         }
-        return jdbi.withHandle(h -> h.createQuery("select id,username,player_name,gender,email,active,relogin_token,character_id,level,experience_points  from " + TABLE_NAME + " where id = :id")
+        return jdbi.withHandle(h -> h.createQuery("select id,username,player_name,gender,email,active,relogin_token,character_id,level,has_character,experience_points  from " + TABLE_NAME + " where id = :id")
                 .bind("id", userId)
                 .mapToBean(UserBean.class).stream().findFirst().orElse(null));
     }
@@ -202,4 +202,35 @@ public class UserDAO extends BaseDAO {
                 .execute());
     }
 
+    public static void updatePlayerName(int userId, String playerName) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return;
+        }
+        jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set player_name = :playerName where id = :id")
+                .bind("playerName", playerName)
+                .bind("id", userId)
+                .execute());
+    }
+
+    public static void updateCharacterId(int userId, int characterId) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return;
+        }
+        jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set character_id = :characterId where id = :id")
+                .bind("characterId", characterId)
+                .bind("id", userId)
+                .execute());
+    }
+
+    public static boolean checkPlayerNameExist(String playerName) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return false;
+        }
+        return jdbi.withHandle(h -> h.createQuery("select count(*) from " + TABLE_NAME + " where player_name = :playerName")
+                .bind("playerName", playerName)
+                .mapTo(Integer.class).one() > 0);
+    }
 }

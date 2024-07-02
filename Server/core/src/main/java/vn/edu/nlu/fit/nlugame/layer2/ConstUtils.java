@@ -59,4 +59,21 @@ public class ConstUtils {
             return value;
         }
     }
+
+    public enum TYPE_AREA {
+        FARM_SCENE("FarmScene"),
+        ANIMAL_HUSBANDRY_SCENE("AnimalHusbandryScene"),
+        VETERNARIAN_SCENE("VeterinarianScene"),
+        MECHANICAL_SCENE("MechanicalScene");
+
+        private final String value;
+
+        TYPE_AREA(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
 }

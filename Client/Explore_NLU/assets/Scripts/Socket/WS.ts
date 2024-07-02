@@ -1,7 +1,9 @@
+import { UI } from "../../../extensions/i18n/@types/editor/ui-kit";
 import { wsConfig } from "../Config/Config";
 import { HandlerManager } from "../Manager/HandlerManager";
 import { SceneManager } from "../Manager/SceneManager";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
+import { SCENES } from "../Utils/Const";
 export class WS {
   private static _instance: WS = null;
   private _ws: WebSocket;
@@ -74,9 +76,12 @@ export class WS {
 
   public checkAndReconnect() {
     let now = new Date().getTime();
-    if (this._ws && (this._ws.readyState == WebSocket.OPEN || now - this.connectFailLastTime < 3000)) {
+    if (this._ws && (this._ws.readyState == WebSocket.OPEN || now - this.connectFailLastTime < 10000)) {
       if(this._ws.readyState == WebSocket.OPEN){
-        UICanvas.me().closePopupConnectionNotify();
+        if(UICanvas.me()._popupConnectionNotify) {
+          UICanvas.me().closePopupConnectionNotify();
+          UICanvas.me().transitScene(SCENES.AUTHEN);
+        }
       }
       return;
     }
