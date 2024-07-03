@@ -61,18 +61,15 @@ message User {
   int32 userId = 1;
   string username = 2;
   string playerName = 3;
-  int32 gender = 4;
-  int32 sponsor = 5;
   string email = 6;
   string phone = 7;
   int64 gold = 8;
-  int64 diamond = 9;
   int32 level = 10;
+  int32 experiencePoints = 15;
   int32 hasCharacter = 11;
   int32 characterId = 12;
-  int32 areaId = 13;
   int32 isNewAccount = 14;
-  Character character = 15;
+  Character character = 16;
 }
 
 message Character {

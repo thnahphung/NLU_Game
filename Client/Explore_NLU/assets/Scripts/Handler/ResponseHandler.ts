@@ -54,7 +54,6 @@ export class ResponseHandler extends AbsHandler {
   }
 
   onJoinAreaHandler(packet: proto.IPacket) {
-    console.log("onJoinAreaHandler", packet.resPlayerJoinArea);
     if (GlobalData.me().getMainUser() == null) return;
     const position = Util.getSpawnPosScene(
       packet.resPlayerJoinArea.area.typeArea,
@@ -67,6 +66,13 @@ export class ResponseHandler extends AbsHandler {
       GlobalData.me().getMainUserNode().destroy();
     }
     GlobalData.me().setArea(packet.resPlayerJoinArea.area);
+    if (
+      GlobalData.me().getMainArea() == null &&
+      packet.resPlayerJoinArea.area.userId ==
+        GlobalData.me().getMainUser().userId
+    ) {
+      GlobalData.me().setMainArea(packet.resPlayerJoinArea.area);
+    }
     const otherUser = packet.resPlayerJoinArea.users.filter(
       (user) => user.userId != GlobalData.me().getMainUser().userId
     );

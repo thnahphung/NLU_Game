@@ -36,14 +36,16 @@ export enum SCENES {
   PHUONG_VI = "PhuongViScene",
   CAM_TU = "CamTuScene",
   RANG_DONG = "RangDongScene",
+  QUOC_LO_1A = "QuocLo1AScene",
 }
 
 export enum SCENES_COMMON {
-  NONE = 0,
+  ME = 0,
   KIOT = 5,
   PHUONG_VI = 6,
   CAM_TU = 7,
   RANG_DONG = 8,
+  QUOC_LO_1A = 9,
 }
 
 Enum(SCENES_COMMON);
@@ -64,7 +66,7 @@ export const SETTING_AREA = [
     sceneName: SCENES.VETERINARIAN,
     spawnPos: [
       {
-        oldSceneName: SCENES.KIOT,
+        oldSceneName: SCENES.QUOC_LO_1A,
         spawnPos: new Vec3(-430, -540, 0),
       },
     ],
@@ -112,7 +114,7 @@ export const SETTING_AREA = [
         spawnPos: new Vec3(1960, -515, 0),
       },
       {
-        oldSceneName: SCENES.VETERINARIAN,
+        oldSceneName: SCENES.QUOC_LO_1A,
         spawnPos: new Vec3(-3447, -262, 0),
       },
     ],
@@ -153,6 +155,19 @@ export const SETTING_AREA = [
       {
         oldSceneName: SCENES.PHUONG_VI,
         spawnPos: new Vec3(-144, -857, 0),
+      },
+    ],
+  },
+  {
+    sceneName: SCENES.QUOC_LO_1A,
+    spawnPos: [
+      {
+        oldSceneName: SCENES.KIOT,
+        spawnPos: new Vec3(-614, 454, 0),
+      },
+      {
+        oldSceneName: SCENES.VETERINARIAN,
+        spawnPos: new Vec3(-1024, -464, 0),
       },
     ],
   },

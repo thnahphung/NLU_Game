@@ -35,7 +35,8 @@ public class AreaService {
         int userId = SessionCache.me().getUserID(SessionID.of(session));
         Proto.Area areaProto = getAreaByUserId(reqJoinArea.getUserTargetId());
         if (areaProto == null) return;
-        joinArea(userId, areaLeaved.getTypeArea(), areaProto, session);
+        String typeArea = areaLeaved == null ? "" : areaLeaved.getTypeArea();
+        joinArea(userId, typeArea, areaProto, session);
     }
 
     public void joinAreaLogin(int userId, Session session) {
@@ -49,7 +50,8 @@ public class AreaService {
         int userId = SessionCache.me().getUserID(SessionID.of(session));
         Proto.Area areaProto = getAreaByAreaId(reqPlayerJoinAreaCommon.getAreaCommonId());
         if (areaProto == null) return;
-        joinArea(userId, areaLeaved.getTypeArea(), areaProto, session);
+        String typeArea = areaLeaved == null ? "" : areaLeaved.getTypeArea();
+        joinArea(userId, typeArea, areaProto, session);
     }
 
     public void joinArea(int userId, String oldAreaType, Proto.Area areaProto, Session session) {
@@ -92,6 +94,7 @@ public class AreaService {
                     .setAreaId(areaBean.getId())
                     .setTypeArea(areaBean.getTypeArea())
                     .setStatus(areaBean.getStatus())
+                    .setUserId(areaBean.getUserId())
                     .build();
             AreaCache.me().add(areaProto);
         }
@@ -108,6 +111,7 @@ public class AreaService {
                     .setAreaId(areaBean.getId())
                     .setTypeArea(areaBean.getTypeArea())
                     .setStatus(areaBean.getStatus())
+                    .setUserId(areaBean.getUserId())
                     .build();
             AreaCache.me().add(areaProto);
         }
