@@ -4,6 +4,7 @@ import jakarta.websocket.CloseReason;
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer1.AreaService;
 import vn.edu.nlu.fit.nlugame.layer1.AuthService;
+import vn.edu.nlu.fit.nlugame.layer1.GameStateService;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.UserBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
@@ -11,6 +12,7 @@ public class AuthHandler implements Subscriber {
 
     private final AuthService authService = AuthService.me();
     private final AreaService areaService = AreaService.me();
+    private final GameStateService gameStateService = GameStateService.me();
 
     @Override
     public void onOpen(Session session, String... params) {
@@ -61,12 +63,14 @@ public class AuthHandler implements Subscriber {
 
     public void login(Session session, Proto.Packet packet) {
         UserBean userLoginBean = authService.checkLogin(session, packet.getReqLogin());
+        gameStateService.sendGameStateLogin(session);
         if (userLoginBean == null || userLoginBean.getHasCharacter() == 0) return;
         areaService.joinAreaLogin(userLoginBean.getId(), session);
     }
 
     public void reLogin(Session session, Proto.Packet packet) {
         UserBean userRelogin = authService.checkReLogin(session, packet.getReqRelogin());
+        gameStateService.sendGameStateLogin(session);
         if (userRelogin == null || userRelogin.getHasCharacter() == 0) return;
         areaService.joinAreaLogin(userRelogin.getId(), session);
     }

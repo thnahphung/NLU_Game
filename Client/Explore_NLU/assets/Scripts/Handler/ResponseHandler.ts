@@ -127,6 +127,5 @@ export class ResponseHandler extends AbsHandler {
 
   onGameStateHandler(packet: proto.IPacket) {
     GlobalData.me().setGameState(packet.resGameState.gameState);
-    console.log("Game State: ", GlobalData.me().getGameState());
   }
 }

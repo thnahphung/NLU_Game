@@ -1,5 +1,6 @@
 package vn.edu.nlu.fit.nlugame.layer1;
 
+import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer2.DataSenderUtils;
 import vn.edu.nlu.fit.nlugame.layer2.dao.GameStateDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.GameStateBean;
@@ -20,7 +21,7 @@ public class GameStateService {
         return install;
     }
 
-    public void gameState() {
+    public void updateGameState() {
         GameStateDAO.me().updateTimeGame();
         Map<String, UserContext> userContexts = UserCache.me().getAllUserOnline();
         ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(new ArrayList<>(userContexts.keySet()));
@@ -35,6 +36,22 @@ public class GameStateService {
                 .setGameState(gameStateProto)
                 .build();
         DataSenderUtils.sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder()
+                .setResGameState(resGameState)
+                .build());
+    }
+
+    public void sendGameStateLogin(Session session){
+        GameStateBean gameState = GameStateDAO.me().getGameState();
+        Proto.GameState gameStateProto = Proto.GameState.newBuilder()
+                .setTimesOfDay(gameState.getTimesOfDay())
+                .setCurrentDate(gameState.getCurrentDate())
+                .setCurrentWeather(gameState.getCurrentWeather())
+                .setCurrentSeason(gameState.getCurrentSeason())
+                .build();
+        Proto.ResGameState resGameState = Proto.ResGameState.newBuilder()
+                .setGameState(gameStateProto)
+                .build();
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder()
                 .setResGameState(resGameState)
                 .build());
     }
