@@ -47,7 +47,7 @@ public class DataSenderUtils {
         }
     }
 
-    public void sendResponseManySession(ArrayList<String> listSession, Proto.Packet packet) {
+    public static void sendResponseManySession(ArrayList<String> listSession, Proto.Packet packet) {
         for (String sessionId : listSession) {
             Session sessionInArea = SessionManage.me().get(sessionId);
             sendResponse(sessionInArea, packet);
