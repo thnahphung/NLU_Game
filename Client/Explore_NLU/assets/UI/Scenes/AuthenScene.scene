@@ -11286,8 +11286,11 @@
     },
     "_enabled": true,
     "__prefab": null,
+    "userName": null,
+    "userLevel": null,
+    "userExp": null,
+    "userGold": null,
     "joystick": null,
-    "addToRootNode": false,
     "prefabPopupMessage": {
       "__uuid__": "a55639b8-331a-4818-a0e8-bbaea33e698f",
       "__expectedType__": "cc.Prefab"

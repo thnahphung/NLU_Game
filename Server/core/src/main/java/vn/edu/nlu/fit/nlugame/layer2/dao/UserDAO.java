@@ -55,7 +55,7 @@ public class UserDAO extends BaseDAO {
         try {
             Integer count = jdbi.withHandle(h -> h.createUpdate(
                             "insert into " + TABLE_NAME + " (username, password, email, level,experience_points, active, is_new_account) " +
-                                    "values (:username, :password, :email, :level, :active, 1)")
+                                    "values (:username, :password, :email, :level, :experience_points, :active, 1)")
                     .bind("username", username)
                     .bind("password", pass)
                     .bind("email", email)

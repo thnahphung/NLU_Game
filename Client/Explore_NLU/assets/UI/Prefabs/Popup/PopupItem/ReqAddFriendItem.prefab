@@ -428,8 +428,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -26.665,
-      "y": 19.29,
+      "x": -27.055,
+      "y": 19.92,
       "z": 0
     },
     "_lrot": {
@@ -441,8 +441,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.5,
+      "y": 0.5,
       "z": 1
     },
     "_mobility": 0,
@@ -468,8 +468,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 26.67,
-      "height": 21.42
+      "width": 51.78,
+      "height": 40.32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -506,14 +506,17 @@
     "_string": "Tên",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 15,
-    "_fontSize": 15,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
     "_fontFamily": "Arial",
-    "_lineHeight": 17,
+    "_lineHeight": 32,
     "_overflow": 0,
     "_enableWrapText": true,
-    "_font": null,
-    "_isSystemFontUsed": true,
+    "_font": {
+      "__uuid__": "f2b7d486-ea14-4fe5-9940-f3fc4a0eeeb1",
+      "__expectedType__": "cc.TTFFont"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_isItalic": false,
     "_isBold": true,
@@ -582,8 +585,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -14.585,
-      "y": -2.1300000000000026,
+      "x": -14.620000000000001,
+      "y": -0.240000000000002,
       "z": 0
     },
     "_lrot": {
@@ -595,8 +598,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.5,
+      "y": 0.5,
       "z": 1
     },
     "_mobility": 0,
@@ -622,8 +625,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.83,
-      "height": 21.42
+      "width": 101.52,
+      "height": 40.32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -660,14 +663,17 @@
     "_string": "Cấp độ",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 15,
-    "_fontSize": 15,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
     "_fontFamily": "Arial",
-    "_lineHeight": 17,
+    "_lineHeight": 32,
     "_overflow": 0,
     "_enableWrapText": true,
-    "_font": null,
-    "_isSystemFontUsed": true,
+    "_font": {
+      "__uuid__": "f2b7d486-ea14-4fe5-9940-f3fc4a0eeeb1",
+      "__expectedType__": "cc.TTFFont"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_isItalic": false,
     "_isBold": true,
@@ -736,8 +742,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -21.25,
-      "y": -23.550000000000004,
+      "x": -20.9125,
+      "y": -20.4,
       "z": 0
     },
     "_lrot": {
@@ -749,8 +755,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.5,
+      "y": 0.5,
       "z": 1
     },
     "_mobility": 0,
@@ -776,8 +782,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 37.5,
-      "height": 21.42
+      "width": 76.35,
+      "height": 40.32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -814,14 +820,17 @@
     "_string": "Nghề",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 15,
-    "_fontSize": 15,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
     "_fontFamily": "Arial",
-    "_lineHeight": 17,
+    "_lineHeight": 32,
     "_overflow": 0,
     "_enableWrapText": true,
-    "_font": null,
-    "_isSystemFontUsed": true,
+    "_font": {
+      "__uuid__": "f2b7d486-ea14-4fe5-9940-f3fc4a0eeeb1",
+      "__expectedType__": "cc.TTFFont"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_isItalic": false,
     "_isBold": true,
@@ -921,7 +930,7 @@
     "_horizontalDirection": 0,
     "_constraint": 1,
     "_constraintNum": 3,
-    "_affectedByScale": false,
+    "_affectedByScale": true,
     "_isAlign": false,
     "_id": ""
   },
@@ -1026,8 +1035,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 13.729999999999997,
-      "y": 19.29,
+      "x": 13.520000000000003,
+      "y": 19.92,
       "z": 0
     },
     "_lrot": {
@@ -1039,8 +1048,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.5,
+      "y": 0.5,
       "z": 1
     },
     "_mobility": 0,
@@ -1066,8 +1075,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 72.54,
-      "height": 21.42
+      "width": 145.92,
+      "height": 40.32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1096,22 +1105,25 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
+      "r": 62,
+      "g": 136,
+      "b": 77,
       "a": 255
     },
     "_string": "Username",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 15,
-    "_fontSize": 15,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
     "_fontFamily": "Arial",
-    "_lineHeight": 17,
+    "_lineHeight": 32,
     "_overflow": 0,
     "_enableWrapText": true,
-    "_font": null,
-    "_isSystemFontUsed": true,
+    "_font": {
+      "__uuid__": "f2b7d486-ea14-4fe5-9940-f3fc4a0eeeb1",
+      "__expectedType__": "cc.TTFFont"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_isItalic": false,
     "_isBold": true,
@@ -1159,8 +1171,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 45.83,
-      "y": -2.1300000000000026,
+      "x": 45.5,
+      "y": -0.240000000000002,
       "z": 0
     },
     "_lrot": {
@@ -1172,8 +1184,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.5,
+      "y": 0.5,
       "z": 1
     },
     "_mobility": 0,
@@ -1199,8 +1211,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 8.34,
-      "height": 21.42
+      "width": 18,
+      "height": 40.32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1237,14 +1249,17 @@
     "_string": "5",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 15,
-    "_fontSize": 15,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
     "_fontFamily": "Arial",
-    "_lineHeight": 17,
+    "_lineHeight": 32,
     "_overflow": 0,
     "_enableWrapText": true,
-    "_font": null,
-    "_isSystemFontUsed": true,
+    "_font": {
+      "__uuid__": "0a94ae91-c300-4974-89ba-2fe8bcb158ee",
+      "__expectedType__": "cc.TTFFont"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_isItalic": false,
     "_isBold": true,
@@ -1292,8 +1307,8 @@
     },
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -4.219999999999999,
-      "y": -23.550000000000004,
+      "x": -3.1599999999999966,
+      "y": -20.4,
       "z": 0
     },
     "_lrot": {
@@ -1305,8 +1320,8 @@
     },
     "_lscale": {
       "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
+      "x": 0.5,
+      "y": 0.5,
       "z": 1
     },
     "_mobility": 0,
@@ -1332,8 +1347,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 108.44,
-      "height": 21.42
+      "width": 212.64,
+      "height": 40.32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1370,14 +1385,17 @@
     "_string": "Kỹ sư chăn nuôi",
     "_horizontalAlign": 0,
     "_verticalAlign": 1,
-    "_actualFontSize": 15,
-    "_fontSize": 15,
+    "_actualFontSize": 30,
+    "_fontSize": 30,
     "_fontFamily": "Arial",
-    "_lineHeight": 17,
+    "_lineHeight": 32,
     "_overflow": 0,
     "_enableWrapText": true,
-    "_font": null,
-    "_isSystemFontUsed": true,
+    "_font": {
+      "__uuid__": "0a94ae91-c300-4974-89ba-2fe8bcb158ee",
+      "__expectedType__": "cc.TTFFont"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_isItalic": false,
     "_isBold": false,
@@ -1592,7 +1610,7 @@
     "_horizontalDirection": 1,
     "_constraint": 1,
     "_constraintNum": 3,
-    "_affectedByScale": false,
+    "_affectedByScale": true,
     "_isAlign": false,
     "_id": ""
   },

@@ -116,11 +116,9 @@ public class AuthService {
         UserBean userLoginBean = UserDAO.getUserLogin(reqRelogin.getUsername());
         //Check null param
         if (userLoginBean == null || reqRelogin.getToken() == null) {
-            System.out.println("Error: User not login");
             result = false;
         }
         if (!reqRelogin.getToken().equals(userLoginBean.getReLoginToken())) {
-            System.out.println("Error: Invalid token");
             result = false;
         }
         //Check login other device
@@ -137,14 +135,12 @@ public class AuthService {
                 .setGold(userLoginBean.getGold())
                 .build();
         if (checkLoginOtherDevice(userProto, session)) {
-            System.out.println("Error: User login on another device");
             result = false;
         }
         if (!result) {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(401).build()).build());
             return null;
         }
-        System.out.println("Relogin success: " + result);
         loginSuccess(session, userProto);
         return userLoginBean;
     }
@@ -177,7 +173,6 @@ public class AuthService {
     private boolean checkLoginOtherDevice(Proto.User user, Session session) {
         SessionID sessionID = SessionID.of(session);
         UserContext userContext = UserCache.me().getUserContextOnline(user.getUserId());
-        System.out.println(userContext + " " + sessionID + " " + user.getUserId());
         // Kiem tra user hien tai co phai la user da dang nhap khong
         if(userContext != null && userContext.getSessionID().equals(sessionID.getSessionId())){
             return false;
