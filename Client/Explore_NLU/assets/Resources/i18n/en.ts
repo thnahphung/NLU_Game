@@ -109,6 +109,8 @@ export const languages = {
     pick_character_403: "Failed to load character!",
     pick_character_404: "Please enter your name!",
     pick_character_400: "This name already exists, please choose another name",
+    pick_character_enter_name: "Enter your name",
+    pick_character_header_name: "What's your name",
     //Area Name
     phuong_vi: "Phuong Vi",
     cam_tu: "Cam Tu",

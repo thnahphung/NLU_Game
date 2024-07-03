@@ -5,6 +5,7 @@ import { t } from '../../../extensions/i18n/assets/LanguageData';
 import { CharacterIntro } from '../Prefabs/Character/CharacterIntro';
 import { UICanvas } from '../Prefabs/MainUI/UICanvas';
 import GlobalData from '../Utils/GlobalData';
+import { PopupComponent } from '../Controller/PopupComponent';
 const { ccclass, property } = _decorator;
 
 @ccclass('PickCharacterScene')
@@ -78,11 +79,11 @@ export class PickCharacterScene extends AbsScene {
             UICanvas.me().showPopupMessage(t('label_text.pick_character_401'));
             return;
         }
-        this.namePlayerPanel.active = true;
+        this.namePlayerPanel.getComponent(PopupComponent).show();
     }
 
     onClickCancelPickCharacter() {
-        this.namePlayerPanel.active = false;
+        this.namePlayerPanel.getComponent(PopupComponent).hide();
     }
 
     onClickConfirmPickCharacter() {
