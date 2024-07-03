@@ -200,7 +200,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 358.311987704918,
+    "_orthoHeight": 506.60348360655735,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -843,7 +843,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "KiotScene",
+    "_name": "QuocLo1AScene",
     "_objFlags": 0,
     "_parent": {
       "__id__": 22
@@ -924,7 +924,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "areaCommonId": 5,
+    "areaCommonId": 9,
     "_id": "f2heRPewxJUatYeuYHsSlA"
   },
   {

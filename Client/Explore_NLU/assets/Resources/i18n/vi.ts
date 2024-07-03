@@ -114,6 +114,13 @@ export const languages = {
     pick_character_403: "Tải nhân vật thất bại!",
     pick_character_404: "Tên không được để trống!",
     pick_character_400: "Tên này đã được sử dụng, vui lòng chọn tên khác!",
+    //Area Name
+    phuong_vi: "Phượng Vĩ",
+    cam_tu: "Cẩm Tú",
+    rang_dong: "Rạng Đông",
+    kiot: "Kiot",
+    highway_1a: "Quốc lộ 1A",
+    home: "Nhà",
   },
 };
 

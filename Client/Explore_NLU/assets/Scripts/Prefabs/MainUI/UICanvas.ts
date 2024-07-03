@@ -4,8 +4,10 @@ import {
   Component,
   director,
   instantiate,
+  Label,
   Node,
   Prefab,
+  ProgressBar,
   sys,
 } from "cc";
 import GlobalData from "../../Utils/GlobalData";
@@ -19,8 +21,13 @@ const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
 export class UICanvas extends Component {
+  @property(Label) private userName: Label = null;
+  @property(Label) private userLevel: Label = null;
+  @property(ProgressBar) private userExp: ProgressBar = null;
+  @property(Label) private userGold: Label = null;
+
   @property(Node) private joystick: Node = null;
-  @property public addToRootNode: boolean = true;
+
   @property(Prefab) private prefabPopupMessage: Prefab;
   @property(Prefab) private prefabPopupOption: Prefab;
   @property(Prefab) private prefabPopupSetting: Prefab;
@@ -51,6 +58,16 @@ export class UICanvas extends Component {
     if (GlobalData.me().isMobileDevice()) {
       this.joystick.active = true;
     }
+    this.loadUserInfo();
+  }
+
+  loadUserInfo() {
+    if (GlobalData.me().getMainUser() == null) return;
+    let mainUser = GlobalData.me().getMainUser();
+    this.userName.string = mainUser.username;
+    this.userLevel.string = "Lv " + mainUser.level.toString() + ": ";
+    this.userExp.progress = mainUser.experiencePoints / 100;
+    this.userGold.string = mainUser.gold.toString();
   }
 
   showPopupMessage(message: string) {

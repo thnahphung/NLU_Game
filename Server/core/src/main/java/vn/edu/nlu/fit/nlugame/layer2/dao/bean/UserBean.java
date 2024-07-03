@@ -19,7 +19,7 @@ public class UserBean {
     @ColumnName("password")
     private String password;
     @ColumnName("player_name")
-    private String playerName ;
+    private String playerName;
     @ColumnName("gender")
     private int gender;
     @ColumnName("sponsor")
@@ -31,9 +31,9 @@ public class UserBean {
     @ColumnName("active")
     private int active;
     @ColumnName("re_login_token")
-    private String reLoginToken ;
+    private String reLoginToken;
     @ColumnName("email_code")
-    private String emailCode ;
+    private String emailCode;
     @ColumnName("email_code_time")
     private long emailCodeTime;
     @ColumnName("is_email_verified")
@@ -44,6 +44,8 @@ public class UserBean {
     private int characterId;
     @ColumnName("level")
     private int level;
+    @ColumnName("experience_points")
+    private int experiencePoints;
     @ColumnName("gold")
     private long gold;
     @ColumnName("is_new_account")

@@ -14,8 +14,6 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.cache.SessionCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.UserCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
-import javax.mail.Authenticator;
-import java.util.Properties;
 import java.util.UUID;
 
 public class AuthService {
@@ -68,14 +66,14 @@ public class AuthService {
         Proto.User userProto = Proto.User.newBuilder()
                 .setUserId(userLoginBean.getId())
                 .setUsername(userLoginBean.getUsername())
+                .setPlayerName(userLoginBean.getPlayerName() == null ? "" : userLoginBean.getPlayerName())
+                .setEmail(userLoginBean.getEmail() == null ? "" : userLoginBean.getEmail())
+                .setGold(userLoginBean.getGold())
+                .setLevel(userLoginBean.getLevel())
+                .setExperiencePoints(userLoginBean.getExperiencePoints())
                 .setHasCharacter(userLoginBean.getHasCharacter())
                 .setCharacterId(userLoginBean.getCharacterId())
-                .setLevel(userLoginBean.getLevel())
                 .setIsNewAccount(userLoginBean.getIsNewAccount())
-                .setEmail(userLoginBean.getEmail() == null ? "" : userLoginBean.getEmail())
-                .setPlayerName(userLoginBean.getPlayerName() == null ? "" : userLoginBean.getPlayerName())
-                .setGold(userLoginBean.getGold())
-
                 .build();
         if (checkLoginOtherDevice(userProto, session)) {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(403)).build());
@@ -132,6 +130,7 @@ public class AuthService {
                 .setHasCharacter(userLoginBean.getHasCharacter())
                 .setCharacterId(userLoginBean.getCharacterId())
                 .setLevel(userLoginBean.getLevel())
+                .setExperiencePoints(userLoginBean.getExperiencePoints())
                 .setIsNewAccount(userLoginBean.getIsNewAccount())
                 .setEmail(userLoginBean.getEmail() == null ? "" : userLoginBean.getEmail())
                 .setPlayerName(userLoginBean.getPlayerName() == null ? "" : userLoginBean.getPlayerName())
@@ -151,23 +150,24 @@ public class AuthService {
     }
 
     public void sendEmailForgetPassword(Session session, Proto.ReqEmailForgetPassword reqEmailForgetPassword) {
-        if(!UserDAO.checkEmailExist(reqEmailForgetPassword.getEmail())){
+        if (!UserDAO.checkEmailExist(reqEmailForgetPassword.getEmail())) {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResEmailForgetPassword(Proto.ResEmailForgetPassword.newBuilder().setStatus(400)).build());
             return;
-        }else {
+        } else {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResEmailForgetPassword(Proto.ResEmailForgetPassword.newBuilder().setStatus(200)).build());
         }
 
         String token = RandomUtils.generateToken();
         String to = reqEmailForgetPassword.getEmail();
         String subject = "Recover your password";
-        String text = "Your token is: <b>" + token + "</b>" + "<br><br>The token will be expired in 5 minutes. Please use this token to reset your password!." ;
+        String text = "Your token is: <b>" + token + "</b>" + "<br><br>The token will be expired in 5 minutes. Please use this token to reset your password!.";
         UserDAO.saveResetTokenToDatabase(reqEmailForgetPassword.getEmail(), token);
         DataSenderUtils.sendMail(to, subject, text);
     }
+
     public void checkRecoverPassword(Session session, Proto.ReqRecoverPassword reqForgotPassword) {
         int status = UserDAO.checkForgetPasswordToken(reqForgotPassword.getEmail(), reqForgotPassword.getToken());
-        if(status != 200){
+        if (status != 200) {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResRecoverPassword(Proto.ResRecoverPassword.newBuilder().setStatus(status)).build());
             return;
         }
