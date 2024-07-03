@@ -44,6 +44,18 @@ export default class GlobalData {
     this.isUserOffline = isOffline;
   }
 
+  /*===== GAME STATE =====*/
+  private gameState: proto.IGameState = null;
+
+  public setGameState(gameState: proto.IGameState) {
+    this.gameState = gameState;
+  }
+
+  public getGameState() {
+    return this.gameState;
+  }
+  /*===== END GAME STATE =====*/
+
   /*===== MAIN USER =====*/
   private mainUser: proto.IUser = null;
   private mainUserNode: Node = null;

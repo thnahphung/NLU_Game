@@ -67,8 +67,8 @@ export class WS {
     this._ws.onclose = this.onClose;
     this._ws.onerror = this.onError;
 
-    if(this._ws.readyState == WebSocket.CONNECTING) {
-      if(UICanvas.me()._popupConnectionNotify == null) {
+    if (this._ws.readyState == WebSocket.CONNECTING) {
+      if (UICanvas.me()._popupConnectionNotify == null) {
         UICanvas.me().showPopupConnectionNotify();
       }
     }
@@ -76,11 +76,15 @@ export class WS {
 
   public checkAndReconnect() {
     let now = new Date().getTime();
-    if (this._ws && (this._ws.readyState == WebSocket.OPEN || now - this.connectFailLastTime < 10000)) {
-      if(this._ws.readyState == WebSocket.OPEN){
-        if(UICanvas.me()._popupConnectionNotify) {
+    if (
+      this._ws &&
+      (this._ws.readyState == WebSocket.OPEN ||
+        now - this.connectFailLastTime < 10000)
+    ) {
+      if (this._ws.readyState == WebSocket.OPEN) {
+        if (UICanvas.me()._popupConnectionNotify) {
           UICanvas.me().closePopupConnectionNotify();
-          UICanvas.me().transitScene(SCENES.AUTHEN);
+          //   UICanvas.me().transitScene(SCENES.AUTHEN);
         }
       }
       return;
