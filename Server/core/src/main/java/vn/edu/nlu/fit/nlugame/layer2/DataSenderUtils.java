@@ -9,7 +9,6 @@ import java.util.Properties;
 
 public class DataSenderUtils {
     public static void sendResponse(Session session, Proto.Packet packet) {
-        System.out.println("Send response: " + packet.toString());
         Proto.PacketWrapper packets = Proto.PacketWrapper.newBuilder().addPacket(packet).build();
         if (session != null && session.isOpen()) session.getAsyncRemote().sendObject(packets);
     }
