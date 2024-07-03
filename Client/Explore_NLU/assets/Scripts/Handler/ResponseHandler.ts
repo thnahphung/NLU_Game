@@ -41,6 +41,9 @@ export class ResponseHandler extends AbsHandler {
       if (packet.resOtherPlayerLeaveArea) {
         this.onOtherPlayerLeaveAreaHandler(packet);
       }
+      if (packet.resGameState) {
+        this.onGameStateHandler(packet);
+      }
     });
   }
 
@@ -97,6 +100,7 @@ export class ResponseHandler extends AbsHandler {
   }
 
   onOtherPlayerJoinAreaHandler(packet: proto.IPacket) {
+    // if (PlayerManager.me() == null) return;
     const scene = director.getScene();
     const canvas = scene.getChildByName("Canvas");
     const otherUserNode = PlayerManager.me().createCharacter(
@@ -119,5 +123,10 @@ export class ResponseHandler extends AbsHandler {
     GlobalData.me().removeOtherUser(packet.resOtherPlayerLeaveArea.userId);
     GlobalData.me().removeOtherUsersNode(packet.resOtherPlayerLeaveArea.userId);
     // playerNode.destroy();
+  }
+
+  onGameStateHandler(packet: proto.IPacket) {
+    GlobalData.me().setGameState(packet.resGameState.gameState);
+    console.log("Game State: ", GlobalData.me().getGameState());
   }
 }

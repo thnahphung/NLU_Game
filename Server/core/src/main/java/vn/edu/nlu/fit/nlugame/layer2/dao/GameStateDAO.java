@@ -6,8 +6,9 @@ import vn.edu.nlu.fit.nlugame.layer2.dao.bean.GameStateBean;
 public class GameStateDAO extends BaseDAO {
     private static final GameStateDAO install = new GameStateDAO();
     private static final int TIME_INCREMENT = 1; // Increment time by 1 game hour
-    private static final int MINUTES_PER_DAY  = 24;
+    private static final int MINUTES_PER_DAY = 24;
     private static final int TIME_UNIT_MINUTES = 12; // Real-time minutes per game hour
+
     private GameStateDAO() {
     }
 
@@ -34,7 +35,7 @@ public class GameStateDAO extends BaseDAO {
                         String currentWeather = gameState.getCurrentWeather();
                         String currentSeason = gameState.getCurrentSeason();
                         timesOfDay += TIME_INCREMENT;
-                        if (timesOfDay > MINUTES_PER_DAY ) {
+                        if (timesOfDay > MINUTES_PER_DAY) {
                             timesOfDay = 1;
                             currentDate += 1;
                         }
@@ -60,5 +61,13 @@ public class GameStateDAO extends BaseDAO {
                 .stream()
                 .findFirst()
                 .orElse(-1));
+    }
+
+    public GameStateBean getGameState() {
+        return getJdbi().withHandle(handle -> handle.createQuery("SELECT * FROM game_state WHERE id = 1")
+                .mapToBean(GameStateBean.class)
+                .stream()
+                .findFirst()
+                .orElse(null));
     }
 }
