@@ -108,6 +108,7 @@ public class CharacterService {
         if(resultInsert == 200) {
             sendResponse(session, Proto.Packet.newBuilder().setResPickCharacter(Proto.ResPickCharacter.newBuilder().setStatus(resultInsert).setUser(userProto)).build());
         }
+        UserCache.me().addUserOnline(userProto.build(), SessionID.of(session).getSessionId());
         return userLoginBean;
     }
 

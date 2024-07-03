@@ -1,3 +1,4 @@
+import { director } from "cc";
 import { UI } from "../../../extensions/i18n/@types/editor/ui-kit";
 import { wsConfig } from "../Config/Config";
 import { HandlerManager } from "../Manager/HandlerManager";
@@ -84,7 +85,9 @@ export class WS {
       if (this._ws.readyState == WebSocket.OPEN) {
         if (UICanvas.me()._popupConnectionNotify) {
           UICanvas.me().closePopupConnectionNotify();
-          //   UICanvas.me().transitScene(SCENES.AUTHEN);
+          const sceneName = director.getScene().name;
+          if (sceneName == SCENES.AUTHEN) return;
+          UICanvas.me().transitScene(SCENES.AUTHEN);
         }
       }
       return;
