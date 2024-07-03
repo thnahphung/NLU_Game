@@ -62,7 +62,6 @@ export class UICanvas extends Component {
   }
 
   loadUserInfo() {
-    console.log(director.getScene().name !== SCENES.PICK_CHARACTER.toString());
     if (
       GlobalData.me().getMainUser() == null ||
       director.getScene().name === SCENES.PICK_CHARACTER.toString()
