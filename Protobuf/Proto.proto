@@ -53,6 +53,7 @@ message Packet {
     ResSow resSow = 43;
     ReqRejectFriend reqRejectFriend= 44;
     ResRejectFriend resRejectFriend= 45;
+    ResGameState resGameState = 46;
   }
 }
 
@@ -89,6 +90,13 @@ message Area{
 message Position{
   float x = 1;
   float y = 2;
+}
+
+message GameState{
+  int32 currentDate =1;
+  int32 timesOfDay = 2;
+  string currentWeather = 3;
+  string currentSeason = 4;
 }
 // Bean end ====================================================
 
@@ -447,4 +455,8 @@ message ReqRejectFriend {
 
 message ResRejectFriend {
   Friend receiver = 1;
+}
+
+message ResGameState{
+  GameState gameState = 1;
 }

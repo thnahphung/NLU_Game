@@ -163,8 +163,9 @@ public class AreaService {
             session.getAsyncRemote().sendObject(packets);
     }
 
-    private void sendResponseManySession(ArrayList<String> listSession, Proto.Packet packet) {
-        for (String sessionId : listSession) {
+    private void sendResponseManySession(ArrayList<String> listSessionId, Proto.Packet packet) {
+        if(listSessionId.size() == 0) return;
+        for (String sessionId : listSessionId) {
             Session sessionInArea = SessionManage.me().get(sessionId);
             sendResponse(sessionInArea, packet);
         }

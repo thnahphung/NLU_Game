@@ -30,8 +30,9 @@ Client/Explore_NLU/assets/Test.meta
 Client/Explore_NLU/assets/Scripts/Config/Config.ts
 target/*.properties
 *.iml
-# /Redis/Window/redis/*/*.aof
-# /Redis/Window/redis/*/*.conf
+/Redis/Window/redis/*/*.aof
+/Redis/Window/redis/*/*.conf
+/Redis/Window/redis/*/*.rdb
 /Redis/Window - run/*
 /Protobuf/my/*
 /Protobuf/compile-proto/compiled.d.ts

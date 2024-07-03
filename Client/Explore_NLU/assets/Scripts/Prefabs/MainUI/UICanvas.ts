@@ -13,7 +13,7 @@ import {
 import GlobalData from "../../Utils/GlobalData";
 import { PopupMessage } from "../Popup/PopupMessage";
 import { PopupComponent } from "../../Controller/PopupComponent";
-import { BUTTON, POPUP } from "../../Utils/Const";
+import { BUTTON, POPUP, SCENES } from "../../Utils/Const";
 import { PopupOption } from "../Popup/PopupOption";
 import { TransitionScenePrefab } from "../TransitionScene/TransitionScenePrefab";
 import { Joystick } from "../Joystick/Joystick";
@@ -62,7 +62,12 @@ export class UICanvas extends Component {
   }
 
   loadUserInfo() {
-    if (GlobalData.me().getMainUser() == null) return;
+    console.log(director.getScene().name !== SCENES.PICK_CHARACTER.toString());
+    if (
+      GlobalData.me().getMainUser() == null ||
+      director.getScene().name === SCENES.PICK_CHARACTER.toString()
+    )
+      return;
     let mainUser = GlobalData.me().getMainUser();
     this.userName.string = mainUser.username;
     this.userLevel.string = "Lv " + mainUser.level.toString() + ": ";
