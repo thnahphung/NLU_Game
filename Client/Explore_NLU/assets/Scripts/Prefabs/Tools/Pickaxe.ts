@@ -41,7 +41,7 @@ export class Pickaxe extends AbsTool {
             CoatingComponent.me().off(COATING.MOVE);
         }
         GlobalData.me().setTilledStatus(false);
-        this.handleTilledLand();
+        this.scheduleOnce(this.handleTilledLand, 0.1);
     }
 
     handleOnTouchCancel(event: EventTouch): void {
@@ -55,7 +55,7 @@ export class Pickaxe extends AbsTool {
     }
     
     handleTilledLand(): void {
-        if(GlobalData.me().getTilledLandListProto().tillLand == null || GlobalData.me().getTilledLandListProto().tillLand.length == 0){
+        if(GlobalData.me().getTilledLandListProto() == null || GlobalData.me().getTilledLandListProto().tillLand == null || GlobalData.me().getTilledLandListProto().tillLand.length == 0){
             console.log("Null land tilled")
             return;
         }

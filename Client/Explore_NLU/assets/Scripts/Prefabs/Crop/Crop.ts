@@ -1,8 +1,9 @@
 import { _decorator, BoxCollider2D, Collider2D, Component, Contact2DType, find, Node, RigidBody2D, Sprite, SpriteFrame, tween, Vec3 } from 'cc';
 import GlobalData from '../../Utils/GlobalData';
 import { CoatingComponent } from '../../Controller/CoatingComponent';
-import { COATING } from '../../Utils/Const';
+import { COATING, TYPE_TOOL } from '../../Utils/Const';
 import { TilledLand } from '../Lands/TilledLand';
+import { Menu } from '../Menu/Menu';
 const { ccclass, property } = _decorator;
 
 @ccclass('Crop')
@@ -36,9 +37,11 @@ export class Crop extends Component {
     public bigTreeSprite: SpriteFrame
     @property(SpriteFrame)
     public harvestSprite: SpriteFrame
+    @property(Sprite)
+    public sprite: Sprite = null;
 
     protected onLoad(): void {
-        this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame = this.seedSprite;
+        this.setSpriteFrame(this.seedSprite);
     }
 
     protected start(): void {
@@ -46,38 +49,44 @@ export class Crop extends Component {
         this.node.on(Node.EventType.TOUCH_END, this.handleTouchCrop, this);
     }
 
+    public setSpriteFrame(spriteFrame: SpriteFrame): void {
+        this.getSprite().getComponent(Sprite).spriteFrame = spriteFrame;
+    }
+
+    public getSpriteFrame(): SpriteFrame {
+        return this.getSprite().getComponent(Sprite).spriteFrame;
+    }
+
+    public getSprite(): Sprite {
+        return this.sprite;
+    }
+
+
     private handleTouchCrop(): void {
-        let spriteStatus = this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame.name
+        let spriteStatus = this.getSpriteFrame().name
         if(spriteStatus == "rice-level4-v1" || spriteStatus == "cabbage-level4-v1" || spriteStatus == "carrot-level4-v1" || spriteStatus == "cucumber-level4-v1"  || spriteStatus == "pumpkin-level4-v1"){
             this.showMenuTool();
         }else{
             return;
         }
     }
+
     private showMenuTool(): void {
         CoatingComponent.me().offAllCoating();
         if(GlobalData.me().getHarvestStatus()){
             return;
         }
         GlobalData.me().setHarvestStatus(true);
-        var menuSeedNode = this.getMenuToolNode();
-        menuSeedNode.setPosition(this.plantingLand.getPosition().x, this.plantingLand.getPosition().y + 145, 0);
-        menuSeedNode.active = true;
-        let menuModalPanel = menuSeedNode.getChildByName("MenuToolModal");
-        console.log(menuModalPanel)
-        CoatingComponent.me().setCoating(COATING.HARVEST, menuModalPanel, menuSeedNode);
+        // Hiển thị menu công cụ
+        const menuToolNode = this.getMenuToolNode();
+        const menuToolComponent = menuToolNode.getComponent(Menu);
+        menuToolNode.setPosition(this.plantingLand.getPosition().x, this.plantingLand.getPosition().y + 145, 0);
+        menuToolNode.active = true;
+        let menuModalPanel = menuToolComponent.getMenuModalNode();
+        CoatingComponent.me().setCoating(COATING.HARVEST, menuModalPanel, menuToolNode);
         CoatingComponent.me().showCoating(COATING.HARVEST);
         CoatingComponent.me().autoOff(COATING.HARVEST);
-
-        let childrenMenu = menuSeedNode.getChildByName("MenuToolContent").children;
-        for (let i = 0; i < childrenMenu.length; i++) {
-            const name = childrenMenu[i].name;
-            if(name != "Sickle"){
-                childrenMenu[i].active = false;
-            }else{
-                childrenMenu[i].active = true;
-            }
-        }
+        menuToolComponent.showOneItemMenu(TYPE_TOOL.SICKLE);
     }
 
     private getMenuToolNode(): Node {
@@ -85,7 +94,7 @@ export class Crop extends Component {
     }
 
     private onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D) {
-        if(otherCollider.node.name === "Sickle"){
+        if(otherCollider.node.name === TYPE_TOOL.SICKLE){
             this.handleHarvest();
         }else{
             return;
@@ -93,32 +102,44 @@ export class Crop extends Component {
     }
 
     private handleHarvest(): void {
+        // Xử lý khi người dùng thu hoạch cây
         this.node.off(Node.EventType.TOUCH_END, this.handleTouchCrop, this);
         this.node.getComponent(Collider2D).enabled = false;
         this.node.scale = new Vec3(0, 0, 0);
         this.node.setPosition(this.node.getPosition().x, this.node.getPosition().y + 10, 0);
-        this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame = this.harvestSprite;
+        this.setSpriteFrame(this.harvestSprite) ;
         this.tilledLand.getComponent(TilledLand).isSown = false;
         this.isHarvested = true;
-        GlobalData.me().setHarvestedStatus(false);
+        GlobalData.me().setHarvestedStatus(true);
+        this.handlePushInformationHarvest();
         tween(this.node)
-        .call(() => {
-            this.node.active = true;
-        })
-        .to(0.5, { scale: new Vec3(1, 1, 1) }, { easing: "backOut" })
+            .call(() => {
+                this.node.active = true;
+            })
+            .to(0.5, { scale: new Vec3(1, 1, 1) }, { easing: "backOut" })
+            .call(() => {
+                this.node.destroy();
+            })
         .start();
     }
 
-    update(deltaTime: number) {
-        // Kiểm tra và cập nhật hiệu ứng khi đã thu hoạch
-        if(this.isHarvested){
-            this.effectHarvestTime += deltaTime;
-            if(this.effectHarvestTime >= 1){
-                this.node.destroy();
-            }
+    private handlePushInformationHarvest(): void {
+        if(GlobalData.me().getHarvestingInformations() == null) {
+            let harvestingInformations = new proto.HarvestingInformations();
+            harvestingInformations.crop = [];
+            GlobalData.me().setHarvestingInformations(harvestingInformations);
         }
+        this.cropProto.CommonRisingTimes = new proto.CommonRisingTimes();
+        GlobalData.me().getHarvestingInformations().crop.push(this.cropProto);
+    }
+
+    update(deltaTime: number) {
         // Kiểm tra và cập nhật giai đoạn phát triển
-        if(!this.cropProto || !this.cropProto.CommonRisingTimes || !this.cropProto.CommonRisingTimes.commonRisingTime || this.cropProto.CommonRisingTimes.commonRisingTime.length == 0) {
+        if(!this.cropProto || !this.cropProto.CommonRisingTimes 
+            || !this.cropProto.CommonRisingTimes.commonRisingTime 
+            || this.cropProto.CommonRisingTimes.commonRisingTime.length == 0
+            || this.isHarvested
+        ) {
             return;
         }
             // Lấy ra các giai đoạn phát triển của cây
@@ -133,13 +154,13 @@ export class Crop extends Component {
         });
         this.elapsedTime += deltaTime;
         if (this.currentStage === 0 && this.elapsedTime >= this.seedTime) {
-            this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame = this.sproutSprite;
+            this.setSpriteFrame(this.sproutSprite);
             this.currentStage = 1;
         } else if (this.currentStage === 1 && this.elapsedTime >= this.seedTime + this.sproutTime) {
-            this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame = this.smallTreeSprite;
+            this.setSpriteFrame(this.smallTreeSprite);
             this.currentStage = 2;
         } else if (this.currentStage === 2 && this.elapsedTime >= this.seedTime + this.sproutTime + this.smallTreeTime) {
-            this.node.getChildByName("Sprite").getComponent(Sprite).spriteFrame = this.bigTreeSprite;
+            this.setSpriteFrame(this.bigTreeSprite);
             this.currentStage = 3;
             const collider = this.node.getComponent(BoxCollider2D);
             const rigidBody = this.node.getComponent(RigidBody2D);

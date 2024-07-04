@@ -266,3 +266,10 @@ export enum WEATHER {
   RAIN = "RAIN",
   SUNNY = "SUNNY",
 }
+
+export enum TYPE_TOOL {
+  SICKLE = "Sickle",
+  PICKAXE = "Pickaxe",
+  HAMMER = "Hammer",
+  SEED_BAG = "SeedBag",
+}

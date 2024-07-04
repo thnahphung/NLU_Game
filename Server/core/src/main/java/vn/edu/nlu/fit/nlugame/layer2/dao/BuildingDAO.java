@@ -148,7 +148,6 @@ public class BuildingDAO extends BaseDAO {
             throw new RuntimeException("Cannot connect to database");
         }
         int plantingLandId = getIdBuildingByType(ConstUtils.TYPE_ITEM.PLANTING_LAND);
-        System.out.println(plantingLandId);
         if(plantingLandId == 0) {
             return new ArrayList<>();
         }

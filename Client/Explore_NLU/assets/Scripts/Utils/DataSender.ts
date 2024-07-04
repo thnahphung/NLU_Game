@@ -199,4 +199,11 @@ export default class DataSender {
     WS.send(packet);
   }
 
+  public static sendReqHarvest(harvestingInformations: proto.HarvestingInformations) {  
+    let reqHarvest = new proto.ReqHarvest();
+    reqHarvest.harvestingInformations = harvestingInformations;
+    let packet = new proto.Packet();
+    packet.reqHarvest = reqHarvest;
+    WS.send(packet);
+  }
 }

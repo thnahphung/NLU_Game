@@ -54,6 +54,8 @@ message Packet {
     ReqRejectFriend reqRejectFriend= 44;
     ResRejectFriend resRejectFriend= 45;
     ResGameState resGameState = 46;
+    ReqHarvest reqHarvest = 47;
+    ResHarvest resHarvest = 48;
   }
 }
 
@@ -459,4 +461,16 @@ message ResRejectFriend {
 
 message ResGameState{
   GameState gameState = 1;
+}
+
+message HarvestingInformations {
+  repeated Crop crop = 1;
+}
+
+message ReqHarvest {
+   HarvestingInformations harvestingInformations = 1;
+}
+
+message ResHarvest {
+   HarvestingInformations harvestingInformations = 1;
 }

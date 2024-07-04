@@ -172,7 +172,6 @@ public class FarmService {
         int userId = SessionCache.me().getUserID(SessionID.of(session));
         //TODO: cache area
         AreaBean areaBean = AreaDAO.loadAreaByUserId(userId);
-        System.out.println(areaBean);
         int areaId = areaBean.getId();
         Proto.BuildingItems farmItems = null;
         if (isUserNewAccount(userId)) {
@@ -335,5 +334,8 @@ public class FarmService {
             PropertyBuildingCache.me().addPropertyBuilding(item);
             PropertyBuildingCache.me().add(item);
         });
+    }
+
+    public void handleHarvest(Session session, Proto.ReqHarvest reqHarvest) {
     }
 }

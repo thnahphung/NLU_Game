@@ -94,17 +94,12 @@ public class ItemDAO extends BaseDAO {
             //get from redis
         if(commonRisingTimesList == null || commonRisingTimesList.size() == 0){
             commonRisingTimesList = CommonRisingTimeCache.me().getCommonRisingTimesFromRedisByItemId(commonGrowthItemId);
-        }else{
-            System.out.println("get from local success" + commonRisingTimesList);
         }
             //get from database
         if(commonRisingTimesList == null|| commonRisingTimesList.size() == 0) {
             commonRisingTimesList = CommonRisingTimeDAO.getCommonRisingTimesByItemId(commonGrowthItemId);
             List<Proto.CommonRisingTime> finalCommonRisingTimesList = commonRisingTimesList;
             ThreadManage.me().execute(() -> finalCommonRisingTimesList.forEach(commonRisingTime -> CommonRisingTimeCache.me().add(commonRisingTime)));
-            System.out.println("get from database success"  + commonRisingTimesList);
-        }else {
-            System.out.println("get from redis success" + commonRisingTimesList);
         }
         commonRisingTimes.addAllCommonRisingTime(commonRisingTimesList);
         //set crop

@@ -27,12 +27,13 @@ export class FarmScene extends AbsScene {
   @property(Prefab)
   public buildingSystemPrefab: Prefab = null;
 
-  private buildingSystem: Node = null;
-
-  private buildingProtos: proto.IBuilding[] = [];
-  private cropsProto: proto.ICrops = null;
   @property([Prefab])
   private buildingFarmPrefab: Prefab[] = [];
+
+  private buildingSystem: Node = null;
+  private buildingProtos: proto.IBuilding[] = [];
+  private cropsProto: proto.ICrops = null;
+
 
   protected onLoad(): void {
     this.loadCommonCrop();
@@ -103,7 +104,6 @@ export class FarmScene extends AbsScene {
   }
 
   handleResLoadCommonCrop(resLoadCommonCrops: proto.IResLoadCommonCrops): void {
-    console.log(resLoadCommonCrops);
     let menuSeenContent = this.getMenuSeenContent();
     resLoadCommonCrops.commonGrowthItem.forEach((commonGrowthItem) => {
       menuSeenContent.getChildByName(commonGrowthItem.name).getComponent(SeedBag).commonGrowthItemProto = commonGrowthItem;
@@ -136,7 +136,6 @@ export class FarmScene extends AbsScene {
         if (cropProto) {
           tilledLand.getComponent(TilledLand).handleDisplayCropsToLand(cropProto.CommonGrowthItem.name);
           if(!tilledLand || !tilledLand.getComponent(TilledLand).seedNode) {
-            console.log("TilledLand or seedNode is null", tilledLand);
             return;
           }
           tilledLand.getComponent(TilledLand).seedNode.getComponent(Crop).cropProto = cropProto;

@@ -59,7 +59,6 @@ public class PropertyBuildingCache extends RedisClusterHelper implements ICache<
     }
 
     public List<Proto.PropertyBuilding> getAll(int areaId) {
-        System.out.println("getAll from cache local");
         List<Proto.PropertyBuilding> result = new ArrayList<>();
         propertyBuildingMap.asMap().forEach((k, v) -> {
             if(v.getAreaId() == areaId) {
@@ -132,7 +131,6 @@ public class PropertyBuildingCache extends RedisClusterHelper implements ICache<
     }
 
     public List<Proto.PropertyBuilding> getAllPropertyBuildingBeanByAreaId(int areaId) {
-        System.out.println("getAllPropertyBuilding from cache redis");
         String key = PROPERTY_BUILDING_KEY + areaId;
         Map<byte[], byte[]> propertyBuildingMap = getConnection().hgetAll(key.getBytes());
         List<Proto.PropertyBuilding> result = new ArrayList<>();
