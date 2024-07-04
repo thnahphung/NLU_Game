@@ -4,51 +4,49 @@ import org.jdbi.v3.core.Jdbi;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.GameStateBean;
 
 public class GameStateDAO extends BaseDAO {
-    private static final GameStateDAO install = new GameStateDAO();
-    private static final int TIME_INCREMENT = 1; // Increment time by 1 game hour
-    private static final int MINUTES_PER_DAY = 24;
-    private static final int TIME_UNIT_MINUTES = 12; // Real-time minutes per game hour
+    private static final String TABLE_NAME = "game_state";
 
-    private GameStateDAO() {
-    }
-
-    public static GameStateDAO me() {
-        return install;
-    }
-
-    public void updateTimeGame() {
+    public static int insertGameState(GameStateBean gameStateBean) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
-            return;
+            return 402;
         }
-
-        String selectQuery = "SELECT `current_date`, times_of_day, current_weather, current_season FROM game_state WHERE id = 1";
-
-        jdbi.useHandle(handle -> {
-            handle.createQuery(selectQuery)
-                    .mapToBean(GameStateBean.class)
-                    .stream()
-                    .findFirst()
-                    .ifPresent(gameState -> {
-                        int timesOfDay = gameState.getTimesOfDay();
-                        int currentDate = gameState.getCurrentDate();
-                        String currentWeather = gameState.getCurrentWeather();
-                        String currentSeason = gameState.getCurrentSeason();
-                        timesOfDay += TIME_INCREMENT;
-                        if (timesOfDay > MINUTES_PER_DAY) {
-                            timesOfDay = 1;
-                            currentDate += 1;
-                        }
-                        String updateQuery = "UPDATE game_state SET times_of_day = :newTimesOfDay, `current_date` = :newDay WHERE id = 1";
-                        handle.createUpdate(updateQuery)
-                                .bind("newTimesOfDay", timesOfDay)
-                                .bind("newDay", currentDate)
-                                .execute();
-                    });
-        });
+        try {
+            Integer count = jdbi.withHandle(h -> h.createUpdate(
+                            "insert into " + TABLE_NAME + " (`current_date`,current_weather, current_season, times_of_day, times_of_season) " +
+                                    "values (:current_date,:current_weather, :current_season, :times_of_day, :times_of_season)")
+                    .bind("current_date", gameStateBean.getCurrentDate())
+                    .bind("current_weather", gameStateBean.getCurrentWeather())
+                    .bind("current_season", gameStateBean.getCurrentSeason())
+                    .bind("times_of_day", gameStateBean.getTimesOfDay())
+                    .bind("times_of_season", gameStateBean.getTimesOfSeason())
+                    .execute());
+            return count == 1 ? 200 : 400;
+        } catch (Exception e) {
+            System.out.println("Error insert game state: " + e.getMessage());
+            return 500;
+        }
     }
 
-    public int getDate() {
+    public static int updateTimeOfDay(int id, int timeOfDay) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return 402;
+        }
+        try {
+            Integer count = jdbi.withHandle(h -> h.createUpdate(
+                            "update " + TABLE_NAME + " set times_of_day = :times_of_day where id = :id")
+                    .bind("times_of_day", timeOfDay)
+                    .bind("id", id)
+                    .execute());
+            return count == 1 ? 200 : 400;
+        } catch (Exception e) {
+            System.out.println("Error update time of day: " + e.getMessage());
+            return 500;
+        }
+    }
+
+    public static int getDate() {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             return -1;
@@ -63,8 +61,10 @@ public class GameStateDAO extends BaseDAO {
                 .orElse(-1));
     }
 
-    public GameStateBean getGameState() {
-        return getJdbi().withHandle(handle -> handle.createQuery("SELECT * FROM game_state WHERE id = 1")
+    public static GameStateBean getLastGameState() {
+        return getJdbi().withHandle(handle -> handle.createQuery(
+                        "SELECT id, `current_date`,current_weather, current_season, times_of_day, times_of_season " +
+                                "FROM " + TABLE_NAME + " ORDER BY `current_date` DESC LIMIT 1")
                 .mapToBean(GameStateBean.class)
                 .stream()
                 .findFirst()

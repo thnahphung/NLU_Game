@@ -17,7 +17,9 @@ public class GameStateBean {
     @ColumnName("times_of_day")
     private int timesOfDay;
     @ColumnName("current_weather")
-    private String currentWeather;
+    private int currentWeather;
     @ColumnName("current_season")
-    private String currentSeason;
+    private int currentSeason;
+    @ColumnName("times_of_season")
+    private int timesOfSeason;
 }

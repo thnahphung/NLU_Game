@@ -121,6 +121,11 @@ export const languages = {
     kiot: "Kiot",
     highway_1a: "Quốc lộ 1A",
     home: "Nhà",
+    //Season
+    spring: "Xuân",
+    summer: "Hạ",
+    autumn: "Thu",
+    winter: "Đông",
   },
 };
 

@@ -93,10 +93,22 @@ message Position{
 }
 
 message GameState{
-  int32 currentDate =1;
-  int32 timesOfDay = 2;
-  string currentWeather = 3;
-  string currentSeason = 4;
+  int32 id = 1;
+  int32 currentDate =2;
+  int32 timesOfDay = 3;
+  int32 currentWeather = 4;
+  int32 currentSeason = 5;
+  int32 timesOfSeason = 6;
+  enum Weather{
+    SUNNY = 0;
+    RAINY = 1;
+  }
+  enum Season{
+    SPRING = 0;
+    SUMMER = 1;
+    AUTUMN = 2;
+    WINTER = 3;
+  }
 }
 // Bean end ====================================================
 
