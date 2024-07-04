@@ -10,7 +10,7 @@ import {
   UIOpacity,
 } from "cc";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
-import { BUTTON } from "../Utils/Const";
+import { BUTTON, TYPE_ITEM } from "../Utils/Const";
 import AbsScene from "../Scenes/AbsScene";
 import DataSender from "../Utils/DataSender";
 import { PlantingLand } from "../Prefabs/Lands/PlantingLand";
@@ -19,6 +19,7 @@ import GlobalData from "../Utils/GlobalData";
 import { CoatingComponent } from "../Controller/CoatingComponent";
 import { SeedBag } from "../Prefabs/Tools/SeedBag";
 import { Crop } from "../Prefabs/Crop/Crop";
+import { Menu } from "../Prefabs/Menu/Menu";
 const { ccclass, property } = _decorator;
 
 @ccclass('FarmScene')
@@ -62,8 +63,24 @@ export class FarmScene extends AbsScene {
         this.handleResLoadCommonCrop(packet.resLoadCommonCrops);
       }
       if (packet.resSow) {
-        console.log("Sow success");
         this.handleResSow(packet.resSow);
+      }
+      if(packet.resLoadItemsOfWarehouse){
+        this.handleResLoadItemsOfWarehouse(packet.resLoadItemsOfWarehouse);
+      }
+    });
+  }
+
+  handleResLoadItemsOfWarehouse(resLoadItemsOfWarehouse: proto.IResLoadItemsOfWarehouse): void {
+    console.log(resLoadItemsOfWarehouse);
+    const menuSeedComponent = this.getMenuSeed().getComponent(Menu);
+    resLoadItemsOfWarehouse.warehouseItems.warehouseItem.forEach((warehouseItem) => {
+      const item = warehouseItem.noGrowthItem;
+      if(!item) return;
+      if(item.type == TYPE_ITEM.SEED) {
+        const seedBag = menuSeedComponent.getMenuItemNode(warehouseItem.noGrowthItem.name);
+        seedBag.getComponent(SeedBag).setQuantityLabel(warehouseItem.quantity);
+        seedBag.getComponent(SeedBag).setNoGrowItemSeedBag(warehouseItem.noGrowthItem);
       }
     });
   }
@@ -147,6 +164,7 @@ export class FarmScene extends AbsScene {
   private loadFarm() {
     // basic items
     this.loadItemsOfFarm();
+    this.loadWarehouseItems();
   }
 
   private loadItemsOfFarm(): void {
@@ -155,6 +173,10 @@ export class FarmScene extends AbsScene {
     } else {
       DataSender.sendReqLoadItemsOfFarm();
     }
+  }
+
+  private loadWarehouseItems(){
+    DataSender.sendReqLoadItemsOfWarehouse();
   }
 
   private async loadItemsOfFarmOffline(): Promise<void> {
@@ -323,7 +345,11 @@ export class FarmScene extends AbsScene {
   }
 
   private getMenuSeenContent(){
-    return find('Canvas/PopupGameLayer/MenuSeedPanel/MenuSeenContent');
+    return find('Canvas/PopupGameLayer/MenuSeedPanel/MenuSeedContent');
+  }
+
+  private getMenuSeed(){
+    return find('Canvas/PopupGameLayer/MenuSeedPanel');
   }
 }
 

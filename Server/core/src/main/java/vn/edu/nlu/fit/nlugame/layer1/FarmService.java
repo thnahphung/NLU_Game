@@ -92,17 +92,26 @@ public class FarmService {
 
     public void handleSow(Session session, Proto.ReqSow reqSow) {
         // Save crop database
+        int quantityCrops = reqSow.getSowingInformations().getSowingInformationList().size();
         Proto.Crops.Builder crops = Proto.Crops.newBuilder();
-        reqSow.getSowingInformations().getSowingInformationList().forEach(sowingInformation -> {
+        if(quantityCrops > 0) reqSow.getSowingInformations().getSowingInformationList().forEach(sowingInformation -> {
             Proto.TillLand tillLand = sowingInformation.getTillLand();
             Proto.CommonGrowthItem commonGrowthItem = sowingInformation.getCommonGrowthItem();
             Proto.Crop cropProto = ItemDAO.sowSeed(tillLand, commonGrowthItem);
             crops.addCrops(cropProto);
         });
+
+        ThreadManage.me().execute(() -> {
+            // Handle after sow
+                // Update quantity item in warehouse
+            int userId = SessionCache.me().getUserID(SessionID.of(session));
+            WarehouseDAO.updateReduceQuantityItem(userId, reqSow.getSeedBagId(), quantityCrops);
+        });
+
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResSow(Proto.ResSow.newBuilder().setCrops(crops)).build());
     }
 
-    public void loadItems(Session session) {
+    public void loadItemsOfFarm(Session session) {
         // Load building items
         Proto.BuildingItems farmItems = loadBuildings(session);
         // Load crops
@@ -112,6 +121,17 @@ public class FarmService {
         resLoadItemsOfFarm.setBuildingItems(farmItems);
         resLoadItemsOfFarm.setCrops(crops);
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadItemsOfFarm(resLoadItemsOfFarm).build());
+    }
+
+    public void loadItemsOfWarehouse(Session session) {
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        List<Proto.WarehouseItem> warehouseItemList= WarehouseDAO.getAllUserItemInWarehouse(userId);
+        if (warehouseItemList == null || warehouseItemList.isEmpty()) {
+            return;
+        }
+        Proto.WarehouseItems warehouseItems = Proto.WarehouseItems.newBuilder().addAllWarehouseItem(warehouseItemList).build();
+        Proto.Packet packet = Proto.Packet.newBuilder().setResLoadItemsOfWarehouse(Proto.ResLoadItemsOfWarehouse.newBuilder().setWarehouseItems(warehouseItems)) .build();
+        DataSenderUtils.sendResponse(session, packet);
     }
 
     private Proto.Crops loadCrops(Proto.BuildingItems farmItems) {

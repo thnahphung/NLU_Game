@@ -49,31 +49,35 @@ export class TilledLand extends Component {
                 return;
             }
             if(!this.node.getComponent(Sprite).enabled || this.isSown) return;
-            let seedBag = otherCollider.node.getComponent(SeedBag).commonGrowthItemProto;
+            let seedBag = otherCollider.node.getComponent(SeedBag);
             this.handleSow(seedBag);
-            //console.log("Sow...", otherCollider.node.name);
         }
     }
 
-    private handleSow(seedBag: proto.ICommonGrowthItem):void {
+    private handleSow(seedBag: SeedBag):void {
+        let seedItem = seedBag.getCommonGrowthItemProto().name;
+        //Trừ hạt giống và kiểm tra số lượng hạt giống còn lại
+        if(seedBag.getQuantity() == 0) return;
+        seedBag.setQuantityLabel(seedBag.getQuantity() - 1);
         this.isSown = true;
-        let seed = seedBag.name;
         GlobalData.me().setSownStatus(true);
+        //Hiển thị cây trồng lên đất
+        this.handleDisplayCropsToLand(seedItem);
+        //Gửi thông tin gieo hạt này
         let sowingInformation = new proto.SowingInformation();
-        this.handleDisplayCropsToLand(seed);
-        //this.node.off(Node.EventType.TOUCH_END, this.handleTouchTilledLand, this);
-        //this.node.getComponent(Collider2D).enabled = false;
-        sowingInformation.commonGrowthItem = seedBag;
+        sowingInformation.commonGrowthItem = seedBag.getCommonGrowthItemProto();
         sowingInformation.tillLand = this.tillLandProto;
+        this.handleSendSowInformation(sowingInformation);
+    }
+
+    private handleSendSowInformation(sowingInformation: proto.ISowingInformation): void {
         if(GlobalData.me().getSowingInformations() == null){
             let sowingInformations = new proto.SowingInformations();
             GlobalData.me().setSowingInformations(sowingInformations);
         }
         GlobalData.me().getSowingInformations().sowingInformation.push(sowingInformation);
     }
-
     public handleDisplayCropsToLand(seed: string): void {
-        console.log("Seed: ", seed);
         switch(seed){
             case SEED_BAG.RICE:
                 this.seedNode = instantiate(this.ricePrefab);
@@ -104,9 +108,7 @@ export class TilledLand extends Component {
         this.node.getComponent(BlockInputEvents).enabled = true;
         // Node begin listening sowing
         this.listenSow();
-
         // Save data
-        console.log("Till Land...", this.tillLandProto)
         this.tillLandProto.statusTilled = true;
         if(GlobalData.me().getTilledLandListProto() == null) {
             let listTilledLand = new proto.TillLands();
