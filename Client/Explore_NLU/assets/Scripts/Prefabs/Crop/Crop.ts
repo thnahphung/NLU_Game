@@ -23,7 +23,7 @@ export class Crop extends Component {
     // Trạng thái cây đã thu hoạch
     private isHarvested:boolean = false;
     // Thời gian hiệu ứng thu hoạch
-    private effectHarvestTime: number = 0;
+    private effectHarvestTime: number = 0.5;
     // Proto information của cây trồng
     public cropProto: proto.ICrop = null;
     // Sprite của các giai đoạn phát triển
@@ -116,7 +116,7 @@ export class Crop extends Component {
             .call(() => {
                 this.node.active = true;
             })
-            .to(0.5, { scale: new Vec3(1, 1, 1) }, { easing: "backOut" })
+            .to(this.effectHarvestTime, { scale: new Vec3(1, 1, 1) }, { easing: "backOut" })
             .call(() => {
                 this.node.destroy();
             })

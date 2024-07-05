@@ -62,7 +62,7 @@ export class TilledLand extends Component {
         this.isSown = true;
         GlobalData.me().setSownStatus(true);
         //Hiển thị cây trồng lên đất
-        this.handleDisplayCropsToLand(seedItem);
+        this.handleDisplayCropsToLand(seedItem); 
         //Gửi thông tin gieo hạt này
         let sowingInformation = new proto.SowingInformation();
         sowingInformation.commonGrowthItem = seedBag.getCommonGrowthItemProto();

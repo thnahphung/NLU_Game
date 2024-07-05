@@ -233,4 +233,49 @@ public class UserDAO extends BaseDAO {
                 .bind("playerName", playerName)
                 .mapTo(Integer.class).one() > 0);
     }
+
+    public static void updateGold(int userId, int gold) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return;
+        }
+        jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set gold = :gold where id = :id")
+                .bind("gold", gold)
+                .bind("id", userId)
+                .execute());
+    }
+
+    public static void updateLevel(int userId, int level) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return;
+        }
+        jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set level = :level where id = :id")
+                .bind("level", level)
+                .bind("id", userId)
+                .execute());
+    }
+
+    public static void updateExperiencePoints(int userId, int experiencePoints) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return;
+        }
+        jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set experience_points = :experiencePoints where id = :id")
+                .bind("experiencePoints", experiencePoints)
+                .bind("id", userId)
+                .execute());
+    }
+
+    public static void updateUserExpAndGold(int userId, int experiencePoints, int gold) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return;
+        }
+        jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set experience_points = :experiencePoints, gold = :gold where id = :id")
+                .bind("experiencePoints", experiencePoints)
+                .bind("gold", gold)
+                .bind("id", userId)
+                .execute());
+    }
 }

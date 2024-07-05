@@ -144,12 +144,15 @@ public class FarmService {
                 Proto.PropertyBuilding propertyBuilding = plantingLandBuilding.getPropertyBuilding();
                 Proto.TillLands tillLands = plantingLandBuilding.getTillLands();
                 tillLands.getTillLandList().forEach(tillLand -> {
-                    //get crop of till land
+                    // Get crops of till land
                     Proto.Crop.Builder crop = Proto.Crop.newBuilder();
+                    // Get property crop
                     Proto.PropertyCrop propertyCrop = ItemDAO.getPropertyCropsByTilledLandId(tillLand.getId());
                     if(propertyCrop == null) return;
+                    // Get property growth item
                     Proto.PropertyGrowthItems propertyGrowthItems = ItemDAO.getPropertyGrowthItemById(propertyCrop.getPropertyGrowthItemId());
                     if(propertyGrowthItems == null) return;
+                    // Get common growth item
                     Proto.CommonGrowthItem commonGrowthItem = CommonGrowthItemCache.me().get(String.valueOf(propertyGrowthItems.getGrowthItemId()));
                     if(commonGrowthItem == null) {
                         commonGrowthItem = ItemDAO.getCommonGrowthItemById(propertyGrowthItems.getGrowthItemId());
@@ -159,6 +162,7 @@ public class FarmService {
                             CommonGrowthItemCache.me().addCommonGrowthItemToRedis(String.valueOf(finalCommonGrowthItem.getId()), finalCommonGrowthItem);
                         });
                     }
+                    // Get development times of crop
                     Proto.CommonRisingTimes.Builder commonRisingTimes = Proto.CommonRisingTimes.newBuilder();
                     if(commonGrowthItem == null) return;
                     List<Proto.CommonRisingTime> commonRisingTimeList = CommonRisingTimeCache.me().getCommonRisingTimesByItemId(commonGrowthItem.getId());
@@ -179,6 +183,7 @@ public class FarmService {
                     crop.setPropertyCrop(propertyCrop);
                     crop.setCommonGrowthItem(commonGrowthItem);
                     crop.setCommonRisingTimes(commonRisingTimes);
+                    crop.setPropertyGrowthItems(propertyGrowthItems);
                     crop.setTillLand(tillLand);
                     crops.addCrops(crop);
                 });
@@ -357,5 +362,12 @@ public class FarmService {
     }
 
     public void handleHarvest(Session session, Proto.ReqHarvest reqHarvest) {
+        reqHarvest.getHarvestingInformations().getCropList().forEach(crop -> {
+            // Handling of harvested crops
+                // Delete crop from database -> database optimization
+            int propertyCropId = crop.getPropertyCrop().getId();
+            int propertyItemID = crop.getPropertyGrowthItems().getId();
+            ItemDAO.deleteHarvestedCrop(propertyCropId, propertyItemID);
+        });
     }
 }

@@ -7,6 +7,8 @@ const { ccclass, property } = _decorator;
 
 @ccclass('PlantingLand')
 export class PlantingLand extends Component {
+    @property(Node)
+    private tilledLandPanel: Node = null;
     public plantingLandProto: proto.IPlantingLandBuilding = null;
     protected onLoad(): void {
         this.node.on(Node.EventType.TOUCH_START, this.handleGetMenuTool, this);
@@ -29,6 +31,13 @@ export class PlantingLand extends Component {
         return find('Canvas/PopupGameLayer/MenuToolPanel');
     }
 
+    public getTilledLandPanel(): Node {
+        return this.tilledLandPanel;
+    }
+
+    public setTilledLandPanel(tilledLandPanel: Node): void {
+        this.tilledLandPanel = tilledLandPanel;
+    }
 }
 
 

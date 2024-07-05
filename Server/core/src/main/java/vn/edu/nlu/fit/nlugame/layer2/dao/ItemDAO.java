@@ -170,4 +170,18 @@ public class ItemDAO extends BaseDAO {
                         .setGrowthItemId(rs.getInt("growth_item_id"))
                         .build()).findOne().orElse(null));
     }
+
+    public static void deleteHarvestedCrop(int propertyCropId, int propertyItemID) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        jdbi.useHandle(handle -> handle.createUpdate("DELETE FROM " + TABLE_PROPERTY_CROP + " WHERE id = :id")
+                .bind("id", propertyCropId)
+                .execute());
+
+        jdbi.useHandle(handle -> handle.createUpdate("DELETE FROM " + TABLE_PROPERTY_GROWTH_ITEM + " WHERE id = :id")
+                .bind("id", propertyItemID)
+                .execute());
+    }
 }
