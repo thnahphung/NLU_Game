@@ -17,7 +17,7 @@ export class LightManager extends Component {
   start() {
     this.uiOpacity = this.node.getComponent(UIOpacity);
     this.currentTimeOfDay = GlobalData.me()?.getGameState().timesOfDay;
-    this.changeBrightness();
+    this.changeBrightness(false);
   }
 
   update(deltaTime: number) {
@@ -27,27 +27,39 @@ export class LightManager extends Component {
     this.changeBrightness();
   }
 
-  changeBrightness() {
+  changeBrightness(isSmooth: boolean = true) {
+    let opacity = 0;
     if (this.currentTimeOfDay >= 7 && this.currentTimeOfDay <= 15) {
-      this.smoothChangeBrightness(0);
+      opacity = 0;
     } else if (this.currentTimeOfDay >= 16 && this.currentTimeOfDay <= 17) {
-      this.smoothChangeBrightness(70);
+      opacity = 70;
     } else if (this.currentTimeOfDay >= 18 && this.currentTimeOfDay <= 19) {
-      this.smoothChangeBrightness(140);
+      opacity = 140;
     } else if (this.currentTimeOfDay >= 20 && this.currentTimeOfDay <= 21) {
-      this.smoothChangeBrightness(200);
+      opacity = 200;
     } else if (this.currentTimeOfDay >= 22 && this.currentTimeOfDay <= 24) {
-      this.smoothChangeBrightness(255);
+      opacity = 255;
     } else if (this.currentTimeOfDay >= 1 && this.currentTimeOfDay <= 2) {
-      this.smoothChangeBrightness(200);
+      opacity = 200;
     } else if (this.currentTimeOfDay >= 3 && this.currentTimeOfDay <= 4) {
-      this.smoothChangeBrightness(140);
+      opacity = 140;
     } else if (this.currentTimeOfDay >= 5 && this.currentTimeOfDay <= 6) {
-      this.smoothChangeBrightness(60);
+      opacity = 60;
     }
+    if (
+      GlobalData.me()?.getGameState().currentWeather ==
+      proto.GameState.Weather.RAINY
+    ) {
+      opacity += 50;
+    }
+    this.smoothChangeBrightness(opacity, isSmooth);
   }
 
-  smoothChangeBrightness(alpha: number) {
+  smoothChangeBrightness(alpha: number, isSmooth: boolean = true) {
+    if (!isSmooth) {
+      this.uiOpacity.opacity = alpha;
+      return;
+    }
     tween(this.uiOpacity)
       .to(5, { opacity: alpha }, { easing: "smooth" })
       .start();
