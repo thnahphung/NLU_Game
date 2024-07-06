@@ -34,7 +34,7 @@ public class ItemDAO extends BaseDAO {
                         .build()).list());
     }
 
-    public static Proto.Crop sowSeed(Proto.TillLand tillLand, Proto.CommonGrowthItem commonGrowthItem) {
+    public static Proto.Crop sowSeed(Proto.TillLand tillLand, Proto.CommonGrowthItem commonGrowthItem, int startDate) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
@@ -53,7 +53,7 @@ public class ItemDAO extends BaseDAO {
                 .bind("startTimeDisease", 0)
                 .bind("health", 100)
                 .bind("stage", 0)
-                .bind("startDate", 1)
+                .bind("startDate", startDate)
                 .bind("growthItemId", commonGrowthItemId)
                 .executeAndReturnGeneratedKeys("id").mapTo(Integer.class).one());
         //insert table PropertyCrop
