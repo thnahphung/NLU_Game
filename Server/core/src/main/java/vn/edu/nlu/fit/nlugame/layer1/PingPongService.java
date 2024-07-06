@@ -24,7 +24,7 @@ public class PingPongService {
             try {
                 if (session != null && session.isOpen())
                     session.getAsyncRemote().sendPing(ByteBuffer.wrap("ping".getBytes()));
-                System.out.println("pingPongJob:  " + sessionId);
+                //System.out.println("pingPongJob:  " + sessionId);
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -260,9 +260,23 @@ export enum TYPE_ITEM {
   HOUSE = "HOUSE",
   ROOT = "ROOT",
   PLANTING_LAND = "PLANTING_LAND",
+  SEED = "SEED",
 }
 
 export enum WEATHER {
   RAIN = "RAIN",
   SUNNY = "SUNNY",
+}
+
+export enum TYPE_TOOL {
+  SICKLE = "Sickle",
+  PICKAXE = "Pickaxe",
+  HAMMER = "Hammer",
+  SEED_BAG = "SeedBag",
+}
+
+export enum REWARD_ICONS {
+  GOLD = "icon-gold",
+  EXPERIENCE_POINT = "icon-experience",
+  SEED_BAG = "seed-bag",
 }

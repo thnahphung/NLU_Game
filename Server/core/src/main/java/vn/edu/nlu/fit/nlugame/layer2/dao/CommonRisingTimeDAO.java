@@ -7,7 +7,6 @@ import java.util.List;
 public class CommonRisingTimeDAO extends BaseDAO{
     private static final String TABLE_NAME = "common_rising_times";
     public static List<Proto.CommonRisingTime> getCommonRisingTimesByItemId(int commonGrowthItemId) {
-        System.out.println("getCommonRisingTimesByItemId from database:" + commonGrowthItemId);
         return getJdbi().withHandle(handle -> handle.createQuery("SELECT id, time, stage, price, growth_item_id FROM " + TABLE_NAME + " WHERE growth_item_id = :commonGrowthItemId")
                 .bind("commonGrowthItemId", commonGrowthItemId)
                 .map((rs, ctx) -> Proto.CommonRisingTime.newBuilder()

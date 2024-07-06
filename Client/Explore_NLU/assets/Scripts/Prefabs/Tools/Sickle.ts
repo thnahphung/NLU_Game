@@ -3,6 +3,7 @@ import AbsTool from './AbsTool';
 import GlobalData from '../../Utils/GlobalData';
 import { CoatingComponent } from '../../Controller/CoatingComponent';
 import { COATING } from '../../Utils/Const';
+import DataSender from '../../Utils/DataSender';
 const { ccclass, property } = _decorator;
 
 @ccclass('Sickle')
@@ -34,6 +35,7 @@ export class Sickle extends AbsTool {
     handleOnTouchEnd(event: EventTouch): void {
         super.handleOnTouchEnd(event)
         this.handleCheckHarvest();
+        this.scheduleOnce(this.handleSendRequestHarvest, 0.1);
     }
 
     handleOnTouchCancel(event: EventTouch): void {
@@ -42,12 +44,22 @@ export class Sickle extends AbsTool {
     }
 
     private handleCheckHarvest(): void {
-        GlobalData.me().setHarvestedStatus(false);
+        GlobalData.me().setHarvestStatus(false);
         if(GlobalData.me().getHarvestedStatus()){
             CoatingComponent.me().off(COATING.HARVEST);
             return;
         }
         GlobalData.me().setHarvestedStatus(false);
+    }
+
+    handleSendRequestHarvest(): void {
+        if(GlobalData.me().getHarvestingInformations() == null || GlobalData.me().getHarvestingInformations().crop.length == 0){
+            return;
+        }
+        //send request harvest
+        DataSender.sendReqHarvest(GlobalData.me().getHarvestingInformations());
+        //clear data
+        GlobalData.me().setHarvestingInformations(null);
     }
 }
 

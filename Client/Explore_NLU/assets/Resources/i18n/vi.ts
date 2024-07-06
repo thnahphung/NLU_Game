@@ -114,6 +114,8 @@ export const languages = {
     pick_character_403: "Tải nhân vật thất bại!",
     pick_character_404: "Tên không được để trống!",
     pick_character_400: "Tên này đã được sử dụng, vui lòng chọn tên khác!",
+    pick_character_enter_name: "Nhập tên của bạn",
+    pick_character_header_name: "Chúng tôi có thể gọi bạn là",
     //Area Name
     phuong_vi: "Phượng Vĩ",
     cam_tu: "Cẩm Tú",
@@ -126,6 +128,9 @@ export const languages = {
     summer: "Hạ",
     autumn: "Thu",
     winter: "Đông",
+    //Button common
+    btn_comfirm: "Xác nhận",
+    btn_cancel: "Hủy",
   },
 };
 

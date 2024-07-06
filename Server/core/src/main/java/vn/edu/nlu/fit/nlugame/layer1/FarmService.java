@@ -17,7 +17,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class FarmService {
     private static final FarmService instance = new FarmService();
@@ -92,17 +95,26 @@ public class FarmService {
 
     public void handleSow(Session session, Proto.ReqSow reqSow) {
         // Save crop database
+        int quantityCrops = reqSow.getSowingInformations().getSowingInformationList().size();
         Proto.Crops.Builder crops = Proto.Crops.newBuilder();
-        reqSow.getSowingInformations().getSowingInformationList().forEach(sowingInformation -> {
+        if(quantityCrops > 0) reqSow.getSowingInformations().getSowingInformationList().forEach(sowingInformation -> {
             Proto.TillLand tillLand = sowingInformation.getTillLand();
             Proto.CommonGrowthItem commonGrowthItem = sowingInformation.getCommonGrowthItem();
             Proto.Crop cropProto = ItemDAO.sowSeed(tillLand, commonGrowthItem);
             crops.addCrops(cropProto);
         });
+
+        ThreadManage.me().execute(() -> {
+            // Handle after sow
+                // Update quantity item in warehouse
+            int userId = SessionCache.me().getUserID(SessionID.of(session));
+            WarehouseDAO.updateReduceQuantityItem(userId, reqSow.getSeedBagId(), quantityCrops);
+        });
+
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResSow(Proto.ResSow.newBuilder().setCrops(crops)).build());
     }
 
-    public void loadItems(Session session) {
+    public void loadItemsOfFarm(Session session) {
         // Load building items
         Proto.BuildingItems farmItems = loadBuildings(session);
         // Load crops
@@ -112,6 +124,17 @@ public class FarmService {
         resLoadItemsOfFarm.setBuildingItems(farmItems);
         resLoadItemsOfFarm.setCrops(crops);
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadItemsOfFarm(resLoadItemsOfFarm).build());
+    }
+
+    public void loadItemsOfWarehouse(Session session) {
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        List<Proto.WarehouseItem> warehouseItemList= WarehouseDAO.getAllUserItemInWarehouse(userId);
+        if (warehouseItemList == null || warehouseItemList.isEmpty()) {
+            return;
+        }
+        Proto.WarehouseItems warehouseItems = Proto.WarehouseItems.newBuilder().addAllWarehouseItem(warehouseItemList).build();
+        Proto.Packet packet = Proto.Packet.newBuilder().setResLoadItemsOfWarehouse(Proto.ResLoadItemsOfWarehouse.newBuilder().setWarehouseItems(warehouseItems)) .build();
+        DataSenderUtils.sendResponse(session, packet);
     }
 
     private Proto.Crops loadCrops(Proto.BuildingItems farmItems) {
@@ -124,12 +147,15 @@ public class FarmService {
                 Proto.PropertyBuilding propertyBuilding = plantingLandBuilding.getPropertyBuilding();
                 Proto.TillLands tillLands = plantingLandBuilding.getTillLands();
                 tillLands.getTillLandList().forEach(tillLand -> {
-                    //get crop of till land
+                    // Get crops of till land
                     Proto.Crop.Builder crop = Proto.Crop.newBuilder();
+                    // Get property crop
                     Proto.PropertyCrop propertyCrop = ItemDAO.getPropertyCropsByTilledLandId(tillLand.getId());
                     if(propertyCrop == null) return;
+                    // Get property growth item
                     Proto.PropertyGrowthItems propertyGrowthItems = ItemDAO.getPropertyGrowthItemById(propertyCrop.getPropertyGrowthItemId());
                     if(propertyGrowthItems == null) return;
+                    // Get common growth item
                     Proto.CommonGrowthItem commonGrowthItem = CommonGrowthItemCache.me().get(String.valueOf(propertyGrowthItems.getGrowthItemId()));
                     if(commonGrowthItem == null) {
                         commonGrowthItem = ItemDAO.getCommonGrowthItemById(propertyGrowthItems.getGrowthItemId());
@@ -139,6 +165,7 @@ public class FarmService {
                             CommonGrowthItemCache.me().addCommonGrowthItemToRedis(String.valueOf(finalCommonGrowthItem.getId()), finalCommonGrowthItem);
                         });
                     }
+                    // Get development times of crop
                     Proto.CommonRisingTimes.Builder commonRisingTimes = Proto.CommonRisingTimes.newBuilder();
                     if(commonGrowthItem == null) return;
                     List<Proto.CommonRisingTime> commonRisingTimeList = CommonRisingTimeCache.me().getCommonRisingTimesByItemId(commonGrowthItem.getId());
@@ -159,6 +186,7 @@ public class FarmService {
                     crop.setPropertyCrop(propertyCrop);
                     crop.setCommonGrowthItem(commonGrowthItem);
                     crop.setCommonRisingTimes(commonRisingTimes);
+                    crop.setPropertyGrowthItems(propertyGrowthItems);
                     crop.setTillLand(tillLand);
                     crops.addCrops(crop);
                 });
@@ -172,7 +200,6 @@ public class FarmService {
         int userId = SessionCache.me().getUserID(SessionID.of(session));
         //TODO: cache area
         AreaBean areaBean = AreaDAO.loadAreaByUserId(userId);
-        System.out.println(areaBean);
         int areaId = areaBean.getId();
         Proto.BuildingItems farmItems = null;
         if (isUserNewAccount(userId)) {
@@ -335,5 +362,53 @@ public class FarmService {
             PropertyBuildingCache.me().addPropertyBuilding(item);
             PropertyBuildingCache.me().add(item);
         });
+    }
+
+    public void handleHarvest(Session session, Proto.ReqHarvest reqHarvest) {
+        AtomicInteger rewardExpQuantity = new AtomicInteger();
+        List<Proto.Crop> cropList = reqHarvest.getHarvestingInformations().getCropList();
+        Map<String, Integer> mapQuantityOfTypeCrops = new HashMap<>();
+        if(cropList == null || cropList.isEmpty()) return;
+        cropList.forEach(crop -> {
+            // Handling of harvested crops
+                // Delete crop from database -> database optimization
+            int propertyCropId = crop.getPropertyCrop().getId();
+            int propertyItemID = crop.getPropertyGrowthItems().getId();
+            ItemDAO.deleteHarvestedCrop(propertyCropId, propertyItemID);
+            // Reward for user
+            rewardExpQuantity.addAndGet(crop.getCommonGrowthItem().getExperienceReceive());
+            String cropName = crop.getCommonGrowthItem().getName();
+            if(mapQuantityOfTypeCrops.containsKey(cropName)){
+                mapQuantityOfTypeCrops.put(cropName, mapQuantityOfTypeCrops.get(cropName) + 1);
+            } else {
+                mapQuantityOfTypeCrops.put(cropName, 1);
+            }
+        });
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        Proto.ResHarvest.Builder resHarvest = Proto.ResHarvest.newBuilder();
+        Proto.Rewards.Builder rewards = Proto.Rewards.newBuilder();
+        // Update quantity item in warehouse => for type crop in mapQuantityOfTypeCrops
+        System.out.println(rewardExpQuantity.get());
+        mapQuantityOfTypeCrops.forEach((key, value) -> {
+            System.out.println("Key: " + key + " Value: " + value);
+            // Update quantity item
+            int noGrowthItemId = WarehouseDAO.getNoGrowthItemId(ConstUtils.TYPE_ITEM.SEED.getValue(), key);
+            WarehouseDAO.updateIncreaseQuantityItem(userId, noGrowthItemId, value);
+            // Create reward
+            Proto.Reward.Builder rewardSeedBag = Proto.Reward.newBuilder();
+            rewardSeedBag.setName(ConstUtils.REWARDS.fromValue(key).getValue());
+            rewardSeedBag.setQuantity(rewardExpQuantity.get());
+            rewards.addReward(rewardSeedBag);
+        });
+
+        UserDAO.updateExperiencePoints(userId, rewardExpQuantity.get());
+
+        Proto.Reward.Builder rewardExp = Proto.Reward.newBuilder();
+        rewardExp.setName(ConstUtils.REWARDS.EXPERIENCE.getValue());
+        rewardExp.setQuantity(rewardExpQuantity.get());
+        rewards.addReward(rewardExp);
+
+        resHarvest.setRewards(rewards);
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResHarvest(resHarvest).build());
     }
 }

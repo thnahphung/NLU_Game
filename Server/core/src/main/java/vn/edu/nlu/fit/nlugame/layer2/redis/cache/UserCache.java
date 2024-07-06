@@ -118,7 +118,6 @@ public class UserCache extends RedisClusterHelper implements ICache<UserContext>
         userMap.forEach((k, v) -> {
             UserContext userContext = CompressUtils.decompress(v, UserContext.class);
             result.put(new String(k), userContext);
-            System.out.println(userContext.getUser().getUserId());
         });
         return result;
     }

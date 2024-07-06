@@ -1,10 +1,11 @@
-import { EditBox, Label, Node, Prefab, Sprite, _decorator, find, instantiate, resources } from 'cc';
+import { EditBox, Label, Node, Prefab, Sprite, Vec3, _decorator, find, instantiate, resources, tween } from 'cc';
 import AbsScene from './AbsScene';
 import DataSender from '../Utils/DataSender';
 import { t } from '../../../extensions/i18n/assets/LanguageData';
 import { CharacterIntro } from '../Prefabs/Character/CharacterIntro';
 import { UICanvas } from '../Prefabs/MainUI/UICanvas';
 import GlobalData from '../Utils/GlobalData';
+import { PopupComponent } from '../Controller/PopupComponent';
 const { ccclass, property } = _decorator;
 
 @ccclass('PickCharacterScene')
@@ -28,44 +29,45 @@ export class PickCharacterScene extends AbsScene {
     }
 
     onMessageHandler(packetWrapper: proto.IPacketWrapper): void {
-        //confirm('PickCharacterScene.onMessageHandler');
-        super.onMessageHandler(packetWrapper);
         packetWrapper.packet.forEach((packet) => {
-            let resLoadCharacters = packet.resLoadCharacters;
-            if (resLoadCharacters) {
-                if(resLoadCharacters.character == null || resLoadCharacters.character.length == 0){
+            if (packet.resLoadCharacters) {
+                this.handleResLoadCharacters(packet.resLoadCharacters);
+            }
+            if (packet.resPickCharacter) {
+                this.handleResPickCharacter(packet.resPickCharacter);
+            }
+        });
+    }
+
+    handleResLoadCharacters(resLoadCharacters: proto.IResLoadCharacters){
+        if(resLoadCharacters.character == null || resLoadCharacters.character.length == 0){
                     UICanvas.me().showPopupMessage(t('label_text.pick_character_403'));
                     return;
-                }
-                resLoadCharacters.character.forEach((character) => {
-                    console.log(character);
-                    let characterID = "" + character.id;
-                    let code = character.code;
-                    const characterPrefab = instantiate(this.characterPrefab);
-                    const chacracterComponent = characterPrefab.getComponent(CharacterIntro);
-                    chacracterComponent.setCharacterCode(code);
-                    chacracterComponent.setNameByCode(code);
-                    chacracterComponent.setCharacterSpriteFrame(code);
-                    chacracterComponent.setCharacterName(character.name);
-                    chacracterComponent.setCharacterID(characterID);
-                    characterPrefab.on(Node.EventType.MOUSE_DOWN, () => {this.onClickCharacter(characterID)});
-                    characterPrefab.on(Node.EventType.TOUCH_END, () => {this.onClickCharacter(characterID)});
-                    this.characterPanel.addChild(characterPrefab);
-                });
-            }
-
-            if (packet.resPickCharacter) {
-                if (packet.resPickCharacter.status == 500) {
-                    UICanvas.me().showPopupMessage(t('label_text.pick_character_402'));
-                } if (packet.resPickCharacter.status == 400) {
-                    UICanvas.me().showPopupMessage(t('label_text.pick_character_400'));
-                } else {
-                    console.log(packet.resPickCharacter.user);
-                    GlobalData.me().setMainUser(packet.resPickCharacter.user);
-                }
-            }
-            
+        }
+        resLoadCharacters.character.forEach((character) => {
+            let characterID = character.id.toString();
+            let code = character.code;
+            const characterPrefab = instantiate(this.characterPrefab);
+            const chacracterComponent = characterPrefab.getComponent(CharacterIntro);
+            chacracterComponent.setCharacterCode(code);
+            chacracterComponent.setNameByCode(code);
+            chacracterComponent.setCharacterSpriteFrame(code);
+            chacracterComponent.setCharacterName(character.name);
+            chacracterComponent.setCharacterID(characterID);
+            characterPrefab.on(Node.EventType.MOUSE_DOWN, () => {this.onClickCharacter(characterID)});
+            characterPrefab.on(Node.EventType.TOUCH_END, () => {this.onClickCharacter(characterID)});
+            this.characterPanel.addChild(characterPrefab);
         });
+    }
+
+    handleResPickCharacter(resPickCharacter: proto.IResPickCharacter){
+        if (resPickCharacter.status == 500) {
+            UICanvas.me().showPopupMessage(t('label_text.pick_character_402'));
+        } if (resPickCharacter.status == 400) {
+            UICanvas.me().showPopupMessage(t('label_text.pick_character_400'));
+        } else {
+            GlobalData.me().setMainUser(resPickCharacter.user);
+        }
     }
 
     loadCharacters() {
@@ -77,11 +79,11 @@ export class PickCharacterScene extends AbsScene {
             UICanvas.me().showPopupMessage(t('label_text.pick_character_401'));
             return;
         }
-        this.namePlayerPanel.active = true;
+        this.namePlayerPanel.getComponent(PopupComponent).show();
     }
 
     onClickCancelPickCharacter() {
-        this.namePlayerPanel.active = false;
+        this.namePlayerPanel.getComponent(PopupComponent).hide();
     }
 
     onClickConfirmPickCharacter() {
@@ -95,23 +97,28 @@ export class PickCharacterScene extends AbsScene {
     onClickCharacter(characterId: string) {
         if (this.characterPanel) {
             this.characterPicked = characterId;
-            this.resetGrayscale();
             this.characterPanel.children.forEach((node) => {
                 const characterCompoponent = node.getComponent(CharacterIntro);
                 if(characterCompoponent.getCharacterID() == characterId) {
+                    this.resetGrayscale(node);
                     characterCompoponent.getCharacterBG().getComponent(Sprite).grayscale = false;
                     characterCompoponent.getCharacterSprite().getComponent(Sprite).grayscale = false;
+                    tween(node)
+                    .to(0.3, { scale: new Vec3(1.1, 1.1, 1.1) }, { easing: "backOut" })
+                    .start();
                 }
             });
         }
     }
 
-    resetGrayscale() {
+    resetGrayscale(nodeReset: Node) {
         if (this.characterPanel) {
             this.characterPanel.children.forEach((node) => {
+                if(node == nodeReset) return;
                 const characterCompoponent = node.getComponent(CharacterIntro);
                 characterCompoponent.getCharacterBG().getComponent(Sprite).grayscale = true;
                 characterCompoponent.getCharacterSprite().getComponent(Sprite).grayscale = true;
+                node.scale = new Vec3(1, 1, 1)
             });
         }
     }

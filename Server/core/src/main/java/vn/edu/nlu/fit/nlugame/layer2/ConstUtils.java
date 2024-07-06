@@ -8,7 +8,8 @@ public class ConstUtils {
         ROOT("ROOT"),
         HOUSE("HOUSE"),
         PLANTING_LAND("PLANTING_LAND"),
-        CROP("CROP");
+        CROP("CROP"),
+        SEED("SEED");
         private final String value;
 
         TYPE_ITEM(String value) {
@@ -74,6 +75,35 @@ public class ConstUtils {
 
         public String getValue() {
             return value;
+        }
+    }
+
+    public enum REWARDS {
+        EXPERIENCE("Experience"),
+        GOLD("Gold"),
+        RICE_BAG("Rice"),
+        CARROT_BAG("Carrot"),
+        CABBAGE_BAG("Cabbage"),
+        CUCUMBER_BAG("Cucumber"),
+        PUMPKIN_BAG("Pumpkin");
+
+        public final String value;
+
+        REWARDS(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public static REWARDS fromValue(String value) {
+            for (REWARDS reward : values()) {
+                if (reward.getValue().equals(value)) {
+                    return reward;
+                }
+            }
+            return null;
         }
     }
 }
