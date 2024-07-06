@@ -183,9 +183,10 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqSow(sowingInformations: proto.SowingInformations) {
+  public static sendReqSow(sowingInformations: proto.SowingInformations, seedBagId: number) {
     let reqSow = new proto.ReqSow();
     reqSow.sowingInformations = sowingInformations;
+    reqSow.seedBagId = seedBagId;
     let packet = new proto.Packet();
     packet.reqSow = reqSow;
     WS.send(packet);
@@ -199,4 +200,18 @@ export default class DataSender {
     WS.send(packet);
   }
 
+  public static sendReqHarvest(harvestingInformations: proto.HarvestingInformations) {  
+    let reqHarvest = new proto.ReqHarvest();
+    reqHarvest.harvestingInformations = harvestingInformations;
+    let packet = new proto.Packet();
+    packet.reqHarvest = reqHarvest;
+    WS.send(packet);
+  }
+
+  public static sendReqLoadItemsOfWarehouse() {
+    let reqLoadItemsOfWarehouse = new proto.ReqLoadItemsOfWarehouse();
+    let packet = new proto.Packet();
+    packet.reqLoadItemsOfWarehouse = reqLoadItemsOfWarehouse;
+    WS.send(packet);
+  }
 }

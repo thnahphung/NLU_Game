@@ -1,41 +1,43 @@
-import { _decorator, BlockInputEvents, Button, Component, EventTouch, find, Node, UITransform, Vec3 } from 'cc';
-import { COATING, CUSTOM_EVENT, POPUP } from '../../Utils/Const';
+import { _decorator, BlockInputEvents, Component, find, Node} from 'cc';
+import { COATING, TYPE_TOOL } from '../../Utils/Const';
 import GlobalData from '../../Utils/GlobalData';
 import { CoatingComponent } from '../../Controller/CoatingComponent';
+import { Menu } from '../Menu/Menu';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlantingLand')
 export class PlantingLand extends Component {
+    @property(Node)
+    private tilledLandPanel: Node = null;
     public plantingLandProto: proto.IPlantingLandBuilding = null;
     protected onLoad(): void {
         this.node.on(Node.EventType.TOUCH_START, this.handleGetMenuTool, this);
     }
 
     private handleGetMenuTool(): void {
-        console.log("click PlantingLand")
         if(this.node.getComponent(BlockInputEvents)) return;
         if(GlobalData.me().getMoveBuildingStatus() || GlobalData.me().getSowStatus()) return;
         const menuToolNode = this.getMenuToolNode();
+        const menuToolComponent = menuToolNode.getComponent(Menu);
         menuToolNode.setPosition(this.node.getPosition().x, this.node.getPosition().y + 125, 0);
         menuToolNode.active = true;
         CoatingComponent.me().setCoating(COATING.TILL, this.node.parent, menuToolNode);
         CoatingComponent.me().showCoating(COATING.TILL);
         CoatingComponent.me().autoOff(COATING.TILL);
-        let childrenMenu = menuToolNode.getChildByName("MenuToolContent").children;
-        for (let i = 0; i < childrenMenu.length; i++) {
-            const name = childrenMenu[i].name;
-            if(name != "Pickaxe"){
-                childrenMenu[i].active = false;
-            }else{
-                childrenMenu[i].active = true;
-            }
-        }
+        menuToolComponent.showOneItemMenu(TYPE_TOOL.PICKAXE);
     }
 
     private getMenuToolNode(): Node {
         return find('Canvas/PopupGameLayer/MenuToolPanel');
     }
 
+    public getTilledLandPanel(): Node {
+        return this.tilledLandPanel;
+    }
+
+    public setTilledLandPanel(tilledLandPanel: Node): void {
+        this.tilledLandPanel = tilledLandPanel;
+    }
 }
 
 

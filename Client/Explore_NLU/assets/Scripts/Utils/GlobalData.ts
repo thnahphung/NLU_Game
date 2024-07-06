@@ -25,6 +25,7 @@ export default class GlobalData {
   private isHarvested: boolean = false;
   private tilledLandListProto: proto.ITillLands = null;
   private sowingInformations: proto.SowingInformations = null;
+  private harvestingInformations: proto.HarvestingInformations = null;
   /* END AGRI */
 
   private positionCharacter: Vec3 = null;
@@ -235,6 +236,14 @@ export default class GlobalData {
 
   public getSowingInformations() {
     return this.sowingInformations;
+  }
+
+  public setHarvestingInformations(harvestingInformations: proto.HarvestingInformations) {
+    this.harvestingInformations = harvestingInformations;
+  }
+
+  public getHarvestingInformations() {
+    return this.harvestingInformations;
   }
   /* END Agricultural engineer */
 

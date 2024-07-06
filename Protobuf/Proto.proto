@@ -54,6 +54,10 @@ message Packet {
     ReqRejectFriend reqRejectFriend= 44;
     ResRejectFriend resRejectFriend= 45;
     ResGameState resGameState = 46;
+    ReqHarvest reqHarvest = 47;
+    ResHarvest resHarvest = 48;
+    ReqLoadItemsOfWarehouse reqLoadItemsOfWarehouse = 49;
+    ResLoadItemsOfWarehouse resLoadItemsOfWarehouse = 50;
   }
 }
 
@@ -273,14 +277,6 @@ message ResLoadItemsOfFarm {
   Crops crops = 2;
 }
 
-//message ReqSow {
-//  int32 
-//}
-
-//message Planting {
-//  int32 nameSeed;
-//}
-
 message ReqBuyBuilding {
   string typeBuilding = 1;
   int32 positionX = 2;
@@ -443,6 +439,7 @@ message SowingInformations {
 
 message ReqSow {
   SowingInformations sowingInformations = 1;
+  int32 seedBagId = 2;
 }
 
 message ResSow {
@@ -459,4 +456,55 @@ message ResRejectFriend {
 
 message ResGameState{
   GameState gameState = 1;
+}
+
+message HarvestingInformations {
+  repeated Crop crop = 1;
+}
+
+message ReqHarvest {
+   HarvestingInformations harvestingInformations = 1;
+}
+
+message ResHarvest {
+   Rewards rewards = 1;
+   int32 seedBagId = 2;
+}
+
+message ReqLoadItemsOfWarehouse{
+
+}
+
+message ResLoadItemsOfWarehouse {
+   WarehouseItems warehouseItems = 1;
+}
+
+message WarehouseItems {
+   repeated WarehouseItem warehouseItem = 1;
+}
+
+message WarehouseItem {
+   int32 userId = 1;
+   NoGrowthItem noGrowthItem = 2;
+   int32 quantity = 3;
+}
+
+message NoGrowthItem {
+  int32 id = 1;
+  string name = 2;
+  int64 price = 3;
+  int64 salePrice = 4;
+  int32 experienceReceive = 5;
+  string description = 6;
+  string type = 7;
+  int32 status = 8;
+}
+
+message Reward {
+  string name = 1;
+  int32 quantity = 2;
+}
+
+message Rewards {
+  repeated Reward reward = 1;
 }

@@ -94,17 +94,12 @@ public class ItemDAO extends BaseDAO {
             //get from redis
         if(commonRisingTimesList == null || commonRisingTimesList.size() == 0){
             commonRisingTimesList = CommonRisingTimeCache.me().getCommonRisingTimesFromRedisByItemId(commonGrowthItemId);
-        }else{
-            System.out.println("get from local success" + commonRisingTimesList);
         }
             //get from database
         if(commonRisingTimesList == null|| commonRisingTimesList.size() == 0) {
             commonRisingTimesList = CommonRisingTimeDAO.getCommonRisingTimesByItemId(commonGrowthItemId);
             List<Proto.CommonRisingTime> finalCommonRisingTimesList = commonRisingTimesList;
             ThreadManage.me().execute(() -> finalCommonRisingTimesList.forEach(commonRisingTime -> CommonRisingTimeCache.me().add(commonRisingTime)));
-            System.out.println("get from database success"  + commonRisingTimesList);
-        }else {
-            System.out.println("get from redis success" + commonRisingTimesList);
         }
         commonRisingTimes.addAllCommonRisingTime(commonRisingTimesList);
         //set crop
@@ -174,5 +169,19 @@ public class ItemDAO extends BaseDAO {
                         .setStartDate(rs.getInt("start_date"))
                         .setGrowthItemId(rs.getInt("growth_item_id"))
                         .build()).findOne().orElse(null));
+    }
+
+    public static void deleteHarvestedCrop(int propertyCropId, int propertyItemID) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        jdbi.useHandle(handle -> handle.createUpdate("DELETE FROM " + TABLE_PROPERTY_CROP + " WHERE id = :id")
+                .bind("id", propertyCropId)
+                .execute());
+
+        jdbi.useHandle(handle -> handle.createUpdate("DELETE FROM " + TABLE_PROPERTY_GROWTH_ITEM + " WHERE id = :id")
+                .bind("id", propertyItemID)
+                .execute());
     }
 }

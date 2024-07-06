@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "48d096fa-76ff-41c7-b444-d5b9109f3fcd",
+  "uuid": "bae9f644-42a5-4427-b7d4-b083e2c0b0cf",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "PlantingLand"
+    "syncNodeName": "RewardEffect"
   }
 }
