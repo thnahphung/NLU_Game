@@ -150,7 +150,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 416.3244047619048,
+    "_orthoHeight": 469.9700239808153,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -8166,6 +8166,10 @@
     },
     "prefabRewardEffect": {
       "__uuid__": "bae9f644-42a5-4427-b7d4-b083e2c0b0cf",
+      "__expectedType__": "cc.Prefab"
+    },
+    "prefabPopupShop": {
+      "__uuid__": "ce7eb3cf-5d7f-4308-8ed0-7ffc961b1919",
       "__expectedType__": "cc.Prefab"
     },
     "_id": ""

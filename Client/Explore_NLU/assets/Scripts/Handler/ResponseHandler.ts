@@ -6,9 +6,7 @@ import { HandlerManager } from "../Manager/HandlerManager";
 import { Util } from "../Utils/Util";
 import AbsScene from "../Scenes/AbsScene";
 import { PlayerManager } from "../Manager/PlayerManager";
-import { CHARACTERS } from "../Utils/Const";
 import { Character } from "../Prefabs/Character/Character";
-import { user } from "../../../extensions/i18n/@types/editor/i18n/languages/en";
 const { ccclass, property } = _decorator;
 
 @ccclass("ResponseHandler")

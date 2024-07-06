@@ -123,6 +123,17 @@ export const languages = {
     summer: "Summer",
     autumn: "Autumn",
     winter: "Winter",
+    //Shop Name
+    crop_shop: "Crop Shop",
+    //Crop Name
+    rice_seed_bag: "Rice Seed Bag",
+    cabbage_seed_bag: "Cabbage Seed Bag",
+    carrot_seed_bag: "Carrot Seed Bag",
+    cucumber_seed_bag: "Cucumber Seed Bag",
+    pumpkin_seed_bag: "Pumpkin Seed Bag",
+    // Animal Name
+    calf_item: "Calf",
+    chick_item: "Chick",
   },
 };
 

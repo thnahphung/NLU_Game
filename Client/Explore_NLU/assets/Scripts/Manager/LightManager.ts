@@ -16,12 +16,12 @@ export class LightManager extends Component {
   private uiOpacity: UIOpacity;
   start() {
     this.uiOpacity = this.node.getComponent(UIOpacity);
-    this.currentTimeOfDay = GlobalData.me()?.getGameState().timesOfDay;
+    this.currentTimeOfDay = GlobalData.me()?.getGameState()?.timesOfDay;
     this.changeBrightness(false);
   }
 
   update(deltaTime: number) {
-    if (this.currentTimeOfDay == GlobalData.me()?.getGameState().timesOfDay)
+    if (this.currentTimeOfDay == GlobalData.me()?.getGameState()?.timesOfDay)
       return;
     this.currentTimeOfDay = GlobalData.me()?.getGameState().timesOfDay;
     this.changeBrightness();
@@ -47,7 +47,7 @@ export class LightManager extends Component {
       opacity = 60;
     }
     if (
-      GlobalData.me()?.getGameState().currentWeather ==
+      GlobalData.me()?.getGameState()?.currentWeather ==
       proto.GameState.Weather.RAINY
     ) {
       opacity += 50;

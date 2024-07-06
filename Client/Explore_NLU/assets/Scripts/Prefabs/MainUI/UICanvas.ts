@@ -19,6 +19,7 @@ import { PopupOption } from "../Popup/PopupOption";
 import { TransitionScenePrefab } from "../TransitionScene/TransitionScenePrefab";
 import { Joystick } from "../Joystick/Joystick";
 import { RewardEffect } from "../Reward/RewardEffect";
+import { PopupShop } from "../Popup/PopupShop";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -38,6 +39,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupConnectionNotify: Prefab = null;
   @property(Prefab) private prefabPopupFriend: Prefab = null;
   @property(Prefab) private prefabRewardEffect: Node = null;
+  @property(Prefab) private prefabPopupShop: Prefab;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -145,10 +147,21 @@ export class UICanvas extends Component {
       default:
         return;
     }
-    this._popup.getComponent(PopupComponent).show();
+    this._popup?.getComponent(PopupComponent).show();
     this.scheduleOnce(() => {
       this.isLocked = false;
     }, 1);
+  }
+
+  showPopupShop(type: proto.ShopItem.TYPE_SHOP): Node {
+    if (this.node.getChildByName("PopupLayer").getChildByName("PopupShop")) {
+      return;
+    }
+    let popupShopNode = instantiate(this.prefabPopupShop);
+    popupShopNode.getComponent(PopupShop).init(type);
+    this.node.getChildByName("PopupLayer").addChild(popupShopNode);
+    popupShopNode.getComponent(PopupComponent).show();
+    return popupShopNode;
   }
 
   showButton(buttonName: BUTTON) {
@@ -220,18 +233,20 @@ export class UICanvas extends Component {
     this.node.getChildByName("PopupLayer").addChild(transitScreenNode);
   }
 
-  showRewardEffect(name: string, quantity: number, reward: REWARD_ICONS){
-    let rewardEffect = instantiate(this.prefabRewardEffect)
+  showRewardEffect(name: string, quantity: number, reward: REWARD_ICONS) {
+    let rewardEffect = instantiate(this.prefabRewardEffect);
     rewardEffect.getComponent(RewardEffect).setReward(name, quantity, reward);
     this.node.addChild(rewardEffect);
   }
 
-  showListRewardEffect(listReward: {name: string, quantity: number, reward: REWARD_ICONS}[]){
+  showListRewardEffect(
+    listReward: { name: string; quantity: number; reward: REWARD_ICONS }[]
+  ) {
     listReward.forEach((reward, index) => {
       console.log(reward.name, reward.quantity, reward.reward);
       this.scheduleOnce(() => {
         this.showRewardEffect(reward.name, reward.quantity, reward.reward);
-      }, index * 0.5)
-    })
+      }, index * 0.5);
+    });
   }
 }
