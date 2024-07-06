@@ -1,5 +1,6 @@
 import {
   _decorator,
+  Animation,
   Button,
   Component,
   director,

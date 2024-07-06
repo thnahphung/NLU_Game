@@ -118,6 +118,11 @@ export const languages = {
     rang_dong: "Rang Dong",
     highway_1a: "Highway 1A",
     home: "Home",
+    //Season
+    spring: "Spring",
+    summer: "Summer",
+    autumn: "Autumn",
+    winter: "Winter",
   },
 };
 
