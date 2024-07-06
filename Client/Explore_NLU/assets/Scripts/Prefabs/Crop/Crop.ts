@@ -4,6 +4,7 @@ import { CoatingComponent } from '../../Controller/CoatingComponent';
 import { COATING, TYPE_TOOL } from '../../Utils/Const';
 import { TilledLand } from '../Lands/TilledLand';
 import { Menu } from '../Menu/Menu';
+import { UICanvas } from '../MainUI/UICanvas';
 const { ccclass, property } = _decorator;
 
 @ccclass('Crop')
@@ -66,8 +67,6 @@ export class Crop extends Component {
         let spriteStatus = this.getSpriteFrame().name
         if(spriteStatus == "rice-level4-v1" || spriteStatus == "cabbage-level4-v1" || spriteStatus == "carrot-level4-v1" || spriteStatus == "cucumber-level4-v1"  || spriteStatus == "pumpkin-level4-v1"){
             this.showMenuTool();
-        }else{
-            return;
         }
     }
 

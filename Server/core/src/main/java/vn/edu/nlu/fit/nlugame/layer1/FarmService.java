@@ -17,7 +17,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class FarmService {
     private static final FarmService instance = new FarmService();
@@ -362,12 +365,50 @@ public class FarmService {
     }
 
     public void handleHarvest(Session session, Proto.ReqHarvest reqHarvest) {
-        reqHarvest.getHarvestingInformations().getCropList().forEach(crop -> {
+        AtomicInteger rewardExpQuantity = new AtomicInteger();
+        List<Proto.Crop> cropList = reqHarvest.getHarvestingInformations().getCropList();
+        Map<String, Integer> mapQuantityOfTypeCrops = new HashMap<>();
+        if(cropList == null || cropList.isEmpty()) return;
+        cropList.forEach(crop -> {
             // Handling of harvested crops
                 // Delete crop from database -> database optimization
             int propertyCropId = crop.getPropertyCrop().getId();
             int propertyItemID = crop.getPropertyGrowthItems().getId();
             ItemDAO.deleteHarvestedCrop(propertyCropId, propertyItemID);
+            // Reward for user
+            rewardExpQuantity.addAndGet(crop.getCommonGrowthItem().getExperienceReceive());
+            String cropName = crop.getCommonGrowthItem().getName();
+            if(mapQuantityOfTypeCrops.containsKey(cropName)){
+                mapQuantityOfTypeCrops.put(cropName, mapQuantityOfTypeCrops.get(cropName) + 1);
+            } else {
+                mapQuantityOfTypeCrops.put(cropName, 1);
+            }
         });
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        Proto.ResHarvest.Builder resHarvest = Proto.ResHarvest.newBuilder();
+        Proto.Rewards.Builder rewards = Proto.Rewards.newBuilder();
+        // Update quantity item in warehouse => for type crop in mapQuantityOfTypeCrops
+        System.out.println(rewardExpQuantity.get());
+        mapQuantityOfTypeCrops.forEach((key, value) -> {
+            System.out.println("Key: " + key + " Value: " + value);
+            // Update quantity item
+            int noGrowthItemId = WarehouseDAO.getNoGrowthItemId(ConstUtils.TYPE_ITEM.SEED.getValue(), key);
+            WarehouseDAO.updateIncreaseQuantityItem(userId, noGrowthItemId, value);
+            // Create reward
+            Proto.Reward.Builder rewardSeedBag = Proto.Reward.newBuilder();
+            rewardSeedBag.setName(ConstUtils.REWARDS.fromValue(key).getValue());
+            rewardSeedBag.setQuantity(rewardExpQuantity.get());
+            rewards.addReward(rewardSeedBag);
+        });
+
+        UserDAO.updateExperiencePoints(userId, rewardExpQuantity.get());
+
+        Proto.Reward.Builder rewardExp = Proto.Reward.newBuilder();
+        rewardExp.setName(ConstUtils.REWARDS.EXPERIENCE.getValue());
+        rewardExp.setQuantity(rewardExpQuantity.get());
+        rewards.addReward(rewardExp);
+
+        resHarvest.setRewards(rewards);
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResHarvest(resHarvest).build());
     }
 }

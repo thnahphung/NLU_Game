@@ -78,6 +78,7 @@ export class TilledLand extends Component {
         GlobalData.me().getSowingInformations().sowingInformation.push(sowingInformation);
     }
     public handleDisplayCropsToLand(seed: string): void {
+        this.isSown = true;
         switch(seed){
             case SEED_BAG.RICE:
                 this.seedNode = instantiate(this.ricePrefab);

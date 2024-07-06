@@ -13,10 +13,11 @@ import {
 import GlobalData from "../../Utils/GlobalData";
 import { PopupMessage } from "../Popup/PopupMessage";
 import { PopupComponent } from "../../Controller/PopupComponent";
-import { BUTTON, POPUP, SCENES } from "../../Utils/Const";
+import { BUTTON, POPUP, REWARD_ICONS, SCENES } from "../../Utils/Const";
 import { PopupOption } from "../Popup/PopupOption";
 import { TransitionScenePrefab } from "../TransitionScene/TransitionScenePrefab";
 import { Joystick } from "../Joystick/Joystick";
+import { RewardEffect } from "../Reward/RewardEffect";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -35,6 +36,7 @@ export class UICanvas extends Component {
   @property(Prefab) private buttonBuilding: Prefab = null;
   @property(Prefab) private prefabPopupConnectionNotify: Prefab = null;
   @property(Prefab) private prefabPopupFriend: Prefab = null;
+  @property(Prefab) private prefabRewardEffect: Node = null;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -215,5 +217,20 @@ export class UICanvas extends Component {
       .getComponent(TransitionScenePrefab)
       .setSceneName(sceneName);
     this.node.getChildByName("PopupLayer").addChild(transitScreenNode);
+  }
+
+  showRewardEffect(name: string, quantity: number, reward: REWARD_ICONS){
+    let rewardEffect = instantiate(this.prefabRewardEffect)
+    rewardEffect.getComponent(RewardEffect).setReward(name, quantity, reward);
+    this.node.addChild(rewardEffect);
+  }
+
+  showListRewardEffect(listReward: {name: string, quantity: number, reward: REWARD_ICONS}[]){
+    listReward.forEach((reward, index) => {
+      console.log(reward.name, reward.quantity, reward.reward);
+      this.scheduleOnce(() => {
+        this.showRewardEffect(reward.name, reward.quantity, reward.reward);
+      }, index * 0.5)
+    })
   }
 }

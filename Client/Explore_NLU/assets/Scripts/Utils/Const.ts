@@ -274,3 +274,9 @@ export enum TYPE_TOOL {
   HAMMER = "Hammer",
   SEED_BAG = "SeedBag",
 }
+
+export enum REWARD_ICONS {
+  GOLD = "icon-gold",
+  EXPERIENCE_POINT = "icon-experience",
+  SEED_BAG = "seed-bag",
+}

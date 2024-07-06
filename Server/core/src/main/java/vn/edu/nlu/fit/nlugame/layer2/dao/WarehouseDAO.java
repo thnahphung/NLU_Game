@@ -1,6 +1,7 @@
 package vn.edu.nlu.fit.nlugame.layer2.dao;
 
 import org.jdbi.v3.core.Jdbi;
+import vn.edu.nlu.fit.nlugame.layer2.ConstUtils;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 import java.util.List;
@@ -75,7 +76,30 @@ public class WarehouseDAO extends BaseDAO{
                     .execute();
         });
     }
-    public static void main(String[] args) {
-        updateReduceQuantityItem(6, 1, 1);
+
+    public static void updateIncreaseQuantityItem(int userId, int noGrowItemId, int quantityIncrease) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("update warehouse_items set quantity = quantity + :quantityIncrease where user_id = :userId and no_growth_item_id = :noGrowItemId")
+                    .bind("quantityIncrease", quantityIncrease)
+                    .bind("userId", userId)
+                    .bind("noGrowItemId", noGrowItemId)
+                    .execute();
+        });
+    }
+
+    public static int getNoGrowthItemId(String typeItem, String nameItem) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        return getJdbi().withHandle(h -> h.createQuery("select id from no_growth_items where type = :typeItem and `name` = :nameItem")
+                .bind("typeItem", typeItem)
+                .bind("nameItem", nameItem)
+                .mapTo(Integer.class)
+                .stream().findFirst().orElse(null));
     }
 }

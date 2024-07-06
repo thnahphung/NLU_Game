@@ -10,7 +10,7 @@ import {
   UIOpacity,
 } from "cc";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
-import { BUTTON, TYPE_ITEM } from "../Utils/Const";
+import { BUTTON, REWARD_ICONS, SEED_BAG, TYPE_ITEM } from "../Utils/Const";
 import AbsScene from "../Scenes/AbsScene";
 import DataSender from "../Utils/DataSender";
 import { PlantingLand } from "../Prefabs/Lands/PlantingLand";
@@ -68,7 +68,28 @@ export class FarmScene extends AbsScene {
       if(packet.resLoadItemsOfWarehouse){
         this.handleResLoadItemsOfWarehouse(packet.resLoadItemsOfWarehouse);
       }
+      if(packet.resHarvest){
+        this.handleResHarvest(packet.resHarvest);
+      }
     });
+  }
+
+  handleResHarvest(resHarvest: proto.IResHarvest): void {
+    const rewards = [];
+    resHarvest.rewards.reward.forEach((rewardProto) => {
+      let typeReward = REWARD_ICONS.EXPERIENCE_POINT;
+      if(rewardProto.name == "Experience") {
+        typeReward = REWARD_ICONS.EXPERIENCE_POINT;
+      } else {
+        typeReward = REWARD_ICONS.SEED_BAG;
+      }
+      rewards.push({
+        name: rewardProto.name,
+        quantity: rewardProto.quantity,
+        reward: typeReward,
+      });
+    });
+    UICanvas.me().showListRewardEffect(rewards);
   }
 
   handleResLoadItemsOfWarehouse(resLoadItemsOfWarehouse: proto.IResLoadItemsOfWarehouse): void {
@@ -139,7 +160,6 @@ export class FarmScene extends AbsScene {
       let tilledLands = plantingLandComponent.getTilledLandPanel().children;
       tilledLands.forEach((tilledLand: Node) => {
         let cropProto = resSow.crops.crops.filter((crop) => crop.tillLand.id == tilledLand.getComponent(TilledLand).tillLandProto.id)[0];
-        console.log(cropProto);
         // Nếu ô đất đã cày và đã gieo hạt
         if (cropProto) {
           tilledLand.getComponent(TilledLand).seedNode.getComponent(Crop).cropProto = cropProto;
@@ -279,7 +299,6 @@ export class FarmScene extends AbsScene {
               // Hiển thị cây trồng lên đất
               let cropProto = this.cropsProto.crops.filter((crop) => {return crop.tillLand.id == tillLandComponent.tillLandProto.id})[0];
               if (cropProto) {
-                console.log(cropProto);
                 tillLandComponent.handleDisplayCropsToLand(cropProto.CommonGrowthItem.name);
                 if(!tillLand || !tillLandComponent.seedNode) return;
                 tillLandComponent.seedNode.getComponent(Crop).cropProto = cropProto;

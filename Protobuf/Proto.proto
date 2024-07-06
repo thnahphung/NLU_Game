@@ -467,7 +467,8 @@ message ReqHarvest {
 }
 
 message ResHarvest {
-   HarvestingInformations harvestingInformations = 1;
+   Rewards rewards = 1;
+   int32 seedBagId = 2;
 }
 
 message ReqLoadItemsOfWarehouse{
@@ -497,4 +498,13 @@ message NoGrowthItem {
   string description = 6;
   string type = 7;
   int32 status = 8;
+}
+
+message Reward {
+  string name = 1;
+  int32 quantity = 2;
+}
+
+message Rewards {
+  repeated Reward reward = 1;
 }
