@@ -1,6 +1,7 @@
 import { Component } from "cc";
 import { WS } from "../Socket/WS";
 import { CHARACTER_STATE } from "./Const";
+import { Shop } from "../Prefabs/Building/Shop";
 
 export default class DataSender {
   public static sendReqSignIn(username: string, pass: string) {
@@ -126,7 +127,11 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqRecoverPassword(email: string, newPassword: string, token: string) {
+  public static sendReqRecoverPassword(
+    email: string,
+    newPassword: string,
+    token: string
+  ) {
     let reqRecoverPassword = new proto.ReqRecoverPassword();
     reqRecoverPassword.password = newPassword;
     reqRecoverPassword.token = token;
@@ -183,7 +188,10 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqSow(sowingInformations: proto.SowingInformations, seedBagId: number) {
+  public static sendReqSow(
+    sowingInformations: proto.SowingInformations,
+    seedBagId: number
+  ) {
     let reqSow = new proto.ReqSow();
     reqSow.sowingInformations = sowingInformations;
     reqSow.seedBagId = seedBagId;
@@ -200,7 +208,9 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqHarvest(harvestingInformations: proto.HarvestingInformations) {  
+  public static sendReqHarvest(
+    harvestingInformations: proto.HarvestingInformations
+  ) {
     let reqHarvest = new proto.ReqHarvest();
     reqHarvest.harvestingInformations = harvestingInformations;
     let packet = new proto.Packet();
@@ -212,6 +222,14 @@ export default class DataSender {
     let reqLoadItemsOfWarehouse = new proto.ReqLoadItemsOfWarehouse();
     let packet = new proto.Packet();
     packet.reqLoadItemsOfWarehouse = reqLoadItemsOfWarehouse;
+    WS.send(packet);
+  }
+
+  public static sendReqLoadShop(type: number | proto.ShopItem.TYPE_SHOP) {
+    let reqLoadShop = new proto.ReqLoadShop();
+    reqLoadShop.type = type;
+    let packet = new proto.Packet();
+    packet.reqLoadShop = reqLoadShop;
     WS.send(packet);
   }
 }

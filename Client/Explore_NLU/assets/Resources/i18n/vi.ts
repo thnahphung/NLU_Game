@@ -131,6 +131,17 @@ export const languages = {
     //Button common
     btn_comfirm: "Xác nhận",
     btn_cancel: "Hủy",
+    //Shop Name
+    crop_shop: "Cây Trồng",
+    //Crop Name
+    rice_seed_bag: "Túi Hạt Lúa",
+    cabbage_seed_bag: "Túi Hạt Bắp Cải",
+    carrot_seed_bag: "Túi Hạt Cà Rốt",
+    cucumber_seed_bag: "Túi Hạt Dưa Chuột",
+    pumpkin_seed_bag: "Túi Hạt Bí Ngô",
+    // Animal Name
+    calf_item: "Bò Con",
+    chick_item: "Gà Con",
   },
 };
 

@@ -8,13 +8,13 @@ export class Clock extends Component {
   @property([SpriteFrame]) clockSpriteFrames: SpriteFrame[] = [];
 
   start() {
-    this.currentTimeOfDay = GlobalData.me()?.getGameState().timesOfDay;
+    this.currentTimeOfDay = GlobalData.me()?.getGameState()?.timesOfDay;
     this.node.getComponent(Sprite).spriteFrame =
       this.clockSpriteFrames[this.calculateTime(this.currentTimeOfDay) - 1];
   }
 
   update(deltaTime: number) {
-    if (this.currentTimeOfDay != GlobalData.me()?.getGameState().timesOfDay) {
+    if (this.currentTimeOfDay != GlobalData.me()?.getGameState()?.timesOfDay) {
       this.currentTimeOfDay = GlobalData.me().getGameState().timesOfDay;
       this.node.getComponent(Sprite).spriteFrame =
         this.clockSpriteFrames[this.calculateTime(this.currentTimeOfDay) - 1];
