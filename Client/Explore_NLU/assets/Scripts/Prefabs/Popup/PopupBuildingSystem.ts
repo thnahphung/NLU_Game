@@ -69,7 +69,7 @@ export class PopupBuildingSystem extends Component {
         lastNode.position.z
       );
     } else {
-      plantingLand.setPosition(0, -100, 0);
+      plantingLand.setPosition(0, -140, 0);
     }
 
     plantingPanel.addChild(plantingLand);

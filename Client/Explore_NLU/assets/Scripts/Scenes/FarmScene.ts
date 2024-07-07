@@ -283,6 +283,7 @@ export class FarmScene extends AbsScene {
       for (let prefab of this.buildingFarmPrefab) {
         if (nameBuilding.toUpperCase() == prefab.name.toUpperCase()) {
           itemprefab = instantiate(prefab);
+          itemprefab.setPosition(positionX, positionY);
           if (building.plantingLandBuilding) { // Nếu là đất trồng
             let component = itemprefab.getComponent(PlantingLand);
             // Lưu thông tin của đất trồng vào component
@@ -310,7 +311,6 @@ export class FarmScene extends AbsScene {
       }
 
       if (itemprefab) {
-        itemprefab.setPosition(positionX, positionY);
         if (building.plantingLandBuilding) {
           plantingLayer.addChild(itemprefab);
         } else {

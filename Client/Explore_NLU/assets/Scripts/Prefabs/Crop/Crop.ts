@@ -28,6 +28,9 @@ export class Crop extends Component {
     // Proto information của cây trồng
     public cropProto: proto.ICrop = null;
     // Sprite của các giai đoạn phát triển
+    private checkTime = 0;
+    private isCheckedRisingTime = false;
+    private isLoadedDevelopedTime = false;
     @property(SpriteFrame)
     public seedSprite: SpriteFrame
     @property(SpriteFrame)
@@ -48,6 +51,9 @@ export class Crop extends Component {
     protected start(): void {
         // Đặt sprite ban đầu là hạt giống
         this.node.on(Node.EventType.TOUCH_END, this.handleTouchCrop, this);
+        // Đưa cây đến giai đoạn đã phát triển của cây
+        this.checkTime = GlobalData.me().getGameState().currentDate;
+        this.elapsedTime = this.cropProto.propertyGrowthItems.developedDays;
     }
 
     public setSpriteFrame(spriteFrame: SpriteFrame): void {
@@ -132,16 +138,9 @@ export class Crop extends Component {
         GlobalData.me().getHarvestingInformations().crop.push(this.cropProto);
     }
 
-    update(deltaTime: number) {
-        // Kiểm tra và cập nhật giai đoạn phát triển
-        if(!this.cropProto || !this.cropProto.CommonRisingTimes 
-            || !this.cropProto.CommonRisingTimes.commonRisingTime 
-            || this.cropProto.CommonRisingTimes.commonRisingTime.length == 0
-            || this.isHarvested
-        ) {
-            return;
-        }
-            // Lấy ra các giai đoạn phát triển của cây
+    setupRisingTime(): void {
+        if(this.isCheckedRisingTime) return;
+        // Lấy ra các giai đoạn phát triển của cây
         this.cropProto.CommonRisingTimes.commonRisingTime.forEach((risingTime) => {
             if(risingTime.stage === 1){
                 this.seedTime = risingTime.time;
@@ -151,14 +150,41 @@ export class Crop extends Component {
                 this.smallTreeTime = risingTime.time;
             }
         });
-        this.elapsedTime += deltaTime;
+        this.isCheckedRisingTime = true;
+    }
+
+    update(deltaTime: number) {
+        // Kiểm tra và cập nhật giai đoạn phát triển
+        if(!this.cropProto || !this.cropProto.CommonRisingTimes 
+            || !this.cropProto.CommonRisingTimes.commonRisingTime 
+            || this.cropProto.CommonRisingTimes.commonRisingTime.length == 0
+            || this.isHarvested
+        ) {
+            return;
+        }
+        // Cài đặt thời gian phát triển của cây
+        this.setupRisingTime();
+        // Cập nhật thời gian trôi qua
+        let currentDay = GlobalData.me().getGameState().currentDate;
+        if(this.checkTime != 0 && this.checkTime < currentDay) {
+            // Nếu qua ngày mới thì cập nhật thời gian trôi qua
+            this.checkTime = currentDay;
+            this.elapsedTime += 1;
+        }else{
+            // Nếu chưa qua ngày mới thì không cập nhật thời gian trôi qua
+            if(this.isLoadedDevelopedTime) return;
+        }
+        this.isLoadedDevelopedTime = true;
+        // Cập nhật giai đoạn phát triển
         if (this.currentStage === 0 && this.elapsedTime >= this.seedTime) {
             this.setSpriteFrame(this.sproutSprite);
             this.currentStage = 1;
-        } else if (this.currentStage === 1 && this.elapsedTime >= this.seedTime + this.sproutTime) {
+        } 
+        if (this.currentStage === 1 && this.elapsedTime >= this.sproutTime) {
             this.setSpriteFrame(this.smallTreeSprite);
             this.currentStage = 2;
-        } else if (this.currentStage === 2 && this.elapsedTime >= this.seedTime + this.sproutTime + this.smallTreeTime) {
+        }
+        if (this.currentStage === 2 && this.elapsedTime >= this.smallTreeTime) {
             this.setSpriteFrame(this.bigTreeSprite);
             this.currentStage = 3;
             const collider = this.node.getComponent(BoxCollider2D);

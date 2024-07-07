@@ -1,6 +1,6 @@
-import { Component } from "cc";
 import { WS } from "../Socket/WS";
 import { CHARACTER_STATE } from "./Const";
+import GlobalData from "./GlobalData";
 
 export default class DataSender {
   public static sendReqSignIn(username: string, pass: string) {
@@ -187,6 +187,7 @@ export default class DataSender {
     let reqSow = new proto.ReqSow();
     reqSow.sowingInformations = sowingInformations;
     reqSow.seedBagId = seedBagId;
+    reqSow.gameState = GlobalData.me().getGameState();
     let packet = new proto.Packet();
     packet.reqSow = reqSow;
     WS.send(packet);

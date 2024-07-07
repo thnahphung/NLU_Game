@@ -1,14 +1,13 @@
 package vn.edu.nlu.fit.nlugame.layer2.dao;
 
 import org.jdbi.v3.core.Jdbi;
-import vn.edu.nlu.fit.nlugame.layer2.ConstUtils;
 import vn.edu.nlu.fit.nlugame.layer2.ThreadManage;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.CommonRisingTimeCache;
 
 import java.util.List;
 
-public class ItemDAO extends BaseDAO {
+public class CommonGrowthItemDAO extends BaseDAO {
     private static final String TABLE_COMMON_GROWTH_ITEM = "common_growth_items";
     private static final String TABLE_PROPERTY_GROWTH_ITEM = "property_growth_items";
     private static final String TABLE_PROPERTY_CROP = "property_crops";
@@ -17,7 +16,7 @@ public class ItemDAO extends BaseDAO {
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
         }
-        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM " + TABLE_COMMON_GROWTH_ITEM + " WHERE type = :type")
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT id, name, description, type, price, sale_price, experience_receive, weather_require, season_require, time_pregant, time_growth FROM " + TABLE_COMMON_GROWTH_ITEM + " WHERE type = :type")
                 .bind("type", type)
                 .map((rs, ctx) -> Proto.CommonGrowthItem.newBuilder()
                         .setId(rs.getInt("id"))
@@ -46,7 +45,7 @@ public class ItemDAO extends BaseDAO {
         // insert table property_growth_items
            //TODO: set startDate
         int commonGrowthItemId = commonGrowthItem.getId();
-        int propertyGrowItemId = jdbi.withHandle(handle -> handle.createUpdate("INSERT INTO " +TABLE_PROPERTY_GROWTH_ITEM +" (current_disease_id, disease_rate, is_disease, start_time_disease, health, stage, start_date, growth_item_id) VALUES (:currentDiseaseId, :diseaseRate, :isDisease, :startTimeDisease, :health, :stage, :startDate, :growthItemId)")
+        int propertyGrowItemId = jdbi.withHandle(handle -> handle.createUpdate("INSERT INTO " +TABLE_PROPERTY_GROWTH_ITEM +" (current_disease_id, disease_rate, is_disease, start_time_disease, health, stage, start_date, developed_days, growth_item_id) VALUES (:currentDiseaseId, :diseaseRate, :isDisease, :startTimeDisease, :health, :stage, :startDate, 0,:growthItemId)")
                 .bind("currentDiseaseId", 0)
                 .bind("diseaseRate", 0)
                 .bind("isDisease", false)
@@ -74,8 +73,9 @@ public class ItemDAO extends BaseDAO {
         propertyGrowthItems.setStartTimeDisease(0);
         propertyGrowthItems.setHealth(100);
         propertyGrowthItems.setStage(0);
+        propertyGrowthItems.setDevelopedDays(0);
         //TODO: set startDate vs fertilized
-        propertyGrowthItems.setStartDate(1);
+        propertyGrowthItems.setStartDate(startDate);
 
         //set propertyCrop
         propertyCrop.setId(propertyCropId);
@@ -117,7 +117,7 @@ public class ItemDAO extends BaseDAO {
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
         }
-        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM " + TABLE_PROPERTY_CROP + " WHERE till_land_id = :tillLandId")
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT id, harvest_yield, status_watered, status_fertilized, till_land_id, time_fertilized, fertilizer_id, property_growth_item_id FROM " + TABLE_PROPERTY_CROP + " WHERE till_land_id = :tillLandId")
                 .bind("tillLandId", tilledLandId)
                 .map((rs, ctx) -> Proto.PropertyCrop.newBuilder()
                         .setId(rs.getInt("id"))
@@ -135,7 +135,7 @@ public class ItemDAO extends BaseDAO {
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
         }
-        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM " + TABLE_COMMON_GROWTH_ITEM + " WHERE id = :id")
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT id, name, description, price, sale_price, experience_receive, weather_require, season_require, time_pregant, time_growth  FROM " + TABLE_COMMON_GROWTH_ITEM + " WHERE id = :id")
                 .bind("id", commonGrowthItemId)
                 .map((rs, ctx) -> Proto.CommonGrowthItem.newBuilder()
                         .setId(rs.getInt("id"))
@@ -156,7 +156,7 @@ public class ItemDAO extends BaseDAO {
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
         }
-        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM " + TABLE_PROPERTY_GROWTH_ITEM + " WHERE id = :id")
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT id, current_disease_id, disease_rate, is_disease, start_time_disease, health, stage, start_date, growth_item_id, developed_days FROM " + TABLE_PROPERTY_GROWTH_ITEM + " WHERE id = :id")
                 .bind("id", propertyGrowthItemId)
                 .map((rs, ctx) -> Proto.PropertyGrowthItems.newBuilder()
                         .setId(rs.getInt("id"))
@@ -168,6 +168,7 @@ public class ItemDAO extends BaseDAO {
                         .setStage(rs.getInt("stage"))
                         .setStartDate(rs.getInt("start_date"))
                         .setGrowthItemId(rs.getInt("growth_item_id"))
+                        .setDevelopedDays(rs.getInt("developed_days"))
                         .build()).findOne().orElse(null));
     }
 
@@ -182,6 +183,15 @@ public class ItemDAO extends BaseDAO {
 
         jdbi.useHandle(handle -> handle.createUpdate("DELETE FROM " + TABLE_PROPERTY_GROWTH_ITEM + " WHERE id = :id")
                 .bind("id", propertyItemID)
+                .execute());
+    }
+
+    public static void updateIncreateDevelopedDays() {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        jdbi.useHandle(handle -> handle.createUpdate("UPDATE property_growth_items set developed_days = developed_days + 1 WHERE is_disease = false")
                 .execute());
     }
 }

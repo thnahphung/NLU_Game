@@ -401,6 +401,7 @@ message PropertyGrowthItems {
   int32 stage = 7;
   int32 startDate = 8;
   int32 growthItemId = 9; 
+  int32 developedDays = 10;
 }
 
 message PropertyCrop {
@@ -452,6 +453,7 @@ message SowingInformations {
 message ReqSow {
   SowingInformations sowingInformations = 1;
   int32 seedBagId = 2;
+  GameState gameState = 3;
 }
 
 message ResSow {
