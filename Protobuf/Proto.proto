@@ -58,6 +58,8 @@ message Packet {
     ResHarvest resHarvest = 48;
     ReqLoadItemsOfWarehouse reqLoadItemsOfWarehouse = 49;
     ResLoadItemsOfWarehouse resLoadItemsOfWarehouse = 50;
+    ReqLoadShop reqLoadShop = 51;
+    ResLoadShop resLoadShop = 52;
   }
 }
 
@@ -113,6 +115,144 @@ message GameState{
     AUTUMN = 2;
     WINTER = 3;
   }
+}
+
+message NoGrowthItem {
+  int32 id = 1;
+  string name = 2;
+  int32 price = 3;
+  int32 salePrice = 4;
+  int32 experienceReceive = 5;
+  string type = 7;
+  string description = 6;
+  int32 status = 8;
+}
+
+message ShopItem {
+  int32 id = 1;
+  int32 price = 2;
+  string description = 3;
+  int32 type = 4;
+  int32 status = 5;
+  int32 noGrowthItemId = 6;
+  NoGrowthItem noGrowthItem = 7;
+
+  enum TYPE_SHOP {
+    CROP = 0;
+    ANIMAL = 1;
+  }
+}
+message Reward {
+  string name = 1;
+  int32 quantity = 2;
+}
+
+
+message CommonGrowthItem {
+  int32 id = 1;
+  string name = 2;
+  int64 price = 3;
+  int64 salePrice = 4;
+  int32 experienceReceive = 5;
+  string description = 6;
+  string weatherRequire = 7;
+  string seasonRequire = 8;
+  int32 timePregant = 9;
+  int32 timeGrowth = 10;
+  string type = 11;
+}
+
+message PropertyGrowthItems {
+  int32 id = 1;
+  int32 currentDiseaseId = 2;
+  int64 diseaseRate = 3;
+  bool isDisease = 4;
+  int32 startTimeDisease = 5;
+  int64 health = 6;
+  int32 stage = 7;
+  int32 startDate = 8;
+  int32 growthItemId = 9;
+  int32 developedDays = 10;
+}
+
+message PropertyCrop {
+  int32 id = 1;
+  int32 harvestYield = 2;
+  bool statusWatered = 3;
+  bool statusFertilized = 4;
+  int32 tillLandId = 5;
+  int32 timeFertilized = 6;
+  int32 fertilizerId = 7;
+  int32 propertyGrowthItemId = 8;
+}
+
+message Crop {
+  CommonGrowthItem CommonGrowthItem = 1;
+  PropertyGrowthItems propertyGrowthItems = 2;
+  PropertyCrop propertyCrop = 3;
+  TillLand tillLand = 4;
+  CommonRisingTimes CommonRisingTimes = 5;
+}
+
+message CommonRisingTime {
+  int32 id = 1;
+  int32 stage = 2;
+  int32 time = 3;
+  int32 price = 4;
+  int32 growthItemId = 5;
+}
+
+
+message BuildingBase {
+  int32 id = 1;
+  string name = 2;
+  int64 price = 3;
+  string description = 4;
+  string type = 5;
+  int32 maxLevel = 6;
+}
+
+message PropertyBuilding {
+  int32 id = 1;
+  int64 positionX = 2;
+  int64 positionY = 3;
+  int32 upgradeId = 4;
+  int32 areaId = 5;
+  int32 commonBuildingId = 6;
+  int32 currentLevel = 7;
+}
+
+message TillLand {
+  int32 id = 1;
+  int32 index = 2;
+  bool statusTilled = 3;
+  int32 plantingLandId = 4;
+  Crop crop = 5;
+}
+
+message FarmBuilding {
+  BuildingBase base = 1;
+  PropertyBuilding propertyBuilding = 2;
+}
+
+message PlantingLandBuilding {
+  BuildingBase base = 1;
+  PropertyBuilding propertyBuilding = 2;
+  TillLands tillLands = 3;
+}
+
+message Building {
+  oneof data {
+     FarmBuilding farmBuilding = 1;
+     PlantingLandBuilding plantingLandBuilding = 2;
+  }
+}
+
+message Friend {
+  int32 id = 1;
+  string name = 2;
+  int32 level = 3;
+  Character character = 4;
 }
 // Bean end ====================================================
 
@@ -232,52 +372,8 @@ message ReqLoadItemsOfFarm {
 
 }
 
-message BuildingBase {
-  int32 id = 1;
-  string name = 2;
-  int64 price = 3;
-  string description = 4;
-  string type = 5;
-  int32 maxLevel = 6;
-}
-
-message PropertyBuilding {
-  int32 id = 1;
-  int64 positionX = 2;
-  int64 positionY = 3;
-  int32 upgradeId = 4;
-  int32 areaId = 5;
-  int32 commonBuildingId = 6;
-  int32 currentLevel = 7;
-}
-
-message TillLand {
-  int32 id = 1;
-  int32 index = 2;
-  bool statusTilled = 3;
-  int32 plantingLandId = 4;
-  Crop crop = 5;
-}
-
-message FarmBuilding {
-  BuildingBase base = 1;
-  PropertyBuilding propertyBuilding = 2;
-}
-
-message PlantingLandBuilding {
-  BuildingBase base = 1;
-  PropertyBuilding propertyBuilding = 2;
-  TillLands tillLands = 3;
-}
 message TillLands {
   repeated TillLand tillLand = 3;
-}
-
-message Building {
-  oneof data {
-     FarmBuilding farmBuilding = 1;
-     PlantingLandBuilding plantingLandBuilding = 2;
-  }
 }
 
 message BuildingItems {
@@ -325,13 +421,6 @@ message ReqLoadFriend {
   int32 status = 1;
 }
 
-message Friend {
-  int32 id = 1;
-  string name = 2;
-  int32 level = 3;
-  Character character = 4;
-}
-
 message ResLoadFriendList {
   repeated Friend friends = 1;
   int32 status = 2;
@@ -365,7 +454,7 @@ message ReqTilledLand {
   TillLands tillLands = 1;
 }
 
-message fertilized {
+message Fertilized {
   int32 id = 1;
   int32 ecffectiveTime = 2;
   int32 ecffectiveValue = 3;
@@ -377,59 +466,6 @@ message Crops {
   repeated Crop crops = 1;
 }
 
-message CommonGrowthItem {
-  int32 id = 1;
-  string name = 2;
-  int64 price = 3;
-  int64 salePrice = 4;
-  int32 experienceReceive = 5;
-  string description = 6;
-  string weatherRequire = 7;
-  string seasonRequire = 8;
-  int32 timePregant = 9;
-  int32 timeGrowth = 10;
-  string type = 11;
-}
-
-message PropertyGrowthItems {
-  int32 id = 1;
-  int32 currentDiseaseId = 2;
-  int64 diseaseRate = 3;
-  bool isDisease = 4;
-  int32 startTimeDisease = 5;
-  int64 health = 6;
-  int32 stage = 7;
-  int32 startDate = 8;
-  int32 growthItemId = 9; 
-  int32 developedDays = 10;
-}
-
-message PropertyCrop {
-  int32 id = 1;
-  int32 harvestYield = 2;
-  bool statusWatered = 3;
-  bool statusFertilized = 4;
-  int32 tillLandId = 5;
-  int32 timeFertilized = 6;
-  int32 fertilizerId = 7;
-  int32 propertyGrowthItemId = 8;
-}
-
-message Crop {
-  CommonGrowthItem CommonGrowthItem = 1;
-  PropertyGrowthItems propertyGrowthItems = 2;
-  PropertyCrop propertyCrop = 3;
-  TillLand tillLand = 4;
-  CommonRisingTimes CommonRisingTimes = 5;
-}
-
-message CommonRisingTime {
-  int32 id = 1;
-  int32 stage = 2;
-  int32 time = 3;
-  int32 price = 4;
-  int32 growthItemId = 5;
-}
 
 message CommonRisingTimes {
   repeated CommonRisingTime commonRisingTime = 1;
@@ -503,22 +539,14 @@ message WarehouseItem {
    int32 quantity = 3;
 }
 
-message NoGrowthItem {
-  int32 id = 1;
-  string name = 2;
-  int64 price = 3;
-  int64 salePrice = 4;
-  int32 experienceReceive = 5;
-  string description = 6;
-  string type = 7;
-  int32 status = 8;
-}
-
-message Reward {
-  string name = 1;
-  int32 quantity = 2;
-}
-
 message Rewards {
   repeated Reward reward = 1;
+}
+
+message ReqLoadShop {
+  int32 type = 1;
+}
+
+message ResLoadShop {
+  repeated ShopItem shopItems = 1;
 }
