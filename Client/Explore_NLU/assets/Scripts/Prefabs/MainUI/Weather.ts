@@ -19,8 +19,10 @@ export class Weather extends Component {
   }
 
   updateWeather() {
-    if (this.currentWeather != GlobalData.me()?.getGameState().currentWeather) {
-      this.currentWeather = GlobalData.me()?.getGameState().currentWeather;
+    if (
+      this.currentWeather != GlobalData.me()?.getGameState()?.currentWeather
+    ) {
+      this.currentWeather = GlobalData.me()?.getGameState()?.currentWeather;
       if (this.currentWeather == proto.GameState.Weather.SUNNY) {
         this.animation.stop();
         this.uiOpacity.opacity = 0;
