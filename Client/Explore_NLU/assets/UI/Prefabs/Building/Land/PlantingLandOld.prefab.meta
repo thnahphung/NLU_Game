@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "04b6e065-619c-44ac-897e-28a843eb0bef",
+  "uuid": "2b88545c-9b1c-4e72-a512-33062e570415",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "PlantingLand"
+    "syncNodeName": "PlantingLandOld"
   }
 }

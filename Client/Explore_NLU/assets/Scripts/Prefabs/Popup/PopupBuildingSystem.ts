@@ -63,13 +63,22 @@ export class PopupBuildingSystem extends Component {
     const lastNode = plantingPanel.children[plantingPanel.children.length - 1];
 
     if (lastNode) {
-      plantingLand.setPosition(
-        lastNode.position.x + 50 + PLANTING_LAND.WIDTH,
-        lastNode.position.y,
-        lastNode.position.z
-      );
+      if (plantingPanel.children.length == 5) {
+        const fistNode = plantingPanel.children[0];
+          plantingLand.setPosition(
+          fistNode.position.x,
+          fistNode.position.y - 200,
+          fistNode.position.z
+        );
+      }else {
+        plantingLand.setPosition(
+          lastNode.position.x + 25 + PLANTING_LAND.WIDTH,
+          lastNode.position.y,
+          lastNode.position.z
+        );
+      }
     } else {
-      plantingLand.setPosition(0, -140, 0);
+      plantingLand.setPosition(18, -130, 0);
     }
 
     plantingPanel.addChild(plantingLand);
@@ -85,7 +94,7 @@ export class PopupBuildingSystem extends Component {
   }
 
   private showPopupOption(): void {
-    UICanvas.me().showPopup(POPUP.POPUP_OPTION, this.handleNode, "Mua: 10G");
+    UICanvas.me().showPopupOption(this.handleNode, "Mua: 10G");
     this.handleNode.on(
       CUSTOM_EVENT.LISTEN_CANCEL,
       this.handleClickCancel,
@@ -111,7 +120,7 @@ export class PopupBuildingSystem extends Component {
     this.node.destroy();
     const plantingPanel = find("Canvas/BackgroundLayers/PlantingPanel");
     const buildingNumber = plantingPanel.children.length;
-    if (buildingNumber >= 4) {
+    if (buildingNumber >= 10) {
       this.handleNode.destroy();
       let mainCharacter = find("Canvas/ObjectLayers/MidLayer/CharacterKSNN");
       this.cameraFollowTarget(mainCharacter);
@@ -127,7 +136,6 @@ export class PopupBuildingSystem extends Component {
       this.typeBuilding,
       this.handleNode.position.x,
       this.handleNode.position.y,
-      1,
       1
     );
   }

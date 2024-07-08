@@ -773,8 +773,8 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -178.855,
-      "y": -456.231,
+      "x": -189.832,
+      "y": -466.11,
       "z": 0
     },
     "_lrot": {
@@ -855,7 +855,7 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 200,
+      "width": 140,
       "height": 50
     },
     "_id": "49k3NnwudLlIGt5MlO2qkP"
@@ -1264,7 +1264,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 416.988,
-      "y": -40,
+      "y": -18.45,
       "z": 0
     },
     "_lrot": {
@@ -1458,7 +1458,7 @@
     "_lscale": {
       "__type__": "cc.Vec3",
       "x": 1,
-      "y": 0.9,
+      "y": 1,
       "z": 1
     },
     "_mobility": 0,
@@ -1638,7 +1638,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 416.988,
-      "y": -425,
+      "y": -450.25,
       "z": 0
     },
     "_lrot": {
@@ -2435,7 +2435,7 @@
       "__id__": 2
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 76
@@ -3976,7 +3976,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Rice",
+    "_name": "rice-seed-bag",
     "_objFlags": 0,
     "_parent": {
       "__id__": 120
@@ -4478,7 +4478,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Cabbage",
+    "_name": "cabbage-seed-bag",
     "_objFlags": 0,
     "_parent": {
       "__id__": 120
@@ -4980,7 +4980,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Carrot",
+    "_name": "carrot-seed-bag",
     "_objFlags": 0,
     "_parent": {
       "__id__": 120
@@ -5482,7 +5482,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Cucumber",
+    "_name": "cucumber-seed-bag",
     "_objFlags": 0,
     "_parent": {
       "__id__": 120
@@ -5984,7 +5984,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Pumpkin",
+    "_name": "pumpkin-seed-bag",
     "_objFlags": 0,
     "_parent": {
       "__id__": 120
@@ -6956,7 +6956,7 @@
         "__expectedType__": "cc.Prefab"
       },
       {
-        "__uuid__": "2b88545c-9b1c-4e72-a512-33062e570415",
+        "__uuid__": "04b6e065-619c-44ac-897e-28a843eb0bef",
         "__expectedType__": "cc.Prefab"
       }
     ],

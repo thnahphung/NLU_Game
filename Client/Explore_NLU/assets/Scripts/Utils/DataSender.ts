@@ -105,12 +105,10 @@ export default class DataSender {
     positionX: number,
     positionY: number,
     currentLevel: number,
-    areaId: number
   ) {
     let reqBuyBuilding = new proto.ReqBuyBuilding();
     reqBuyBuilding.uuid = uuid;
     reqBuyBuilding.typeBuilding = type;
-    reqBuyBuilding.areaId = areaId;
     reqBuyBuilding.currentLevel = currentLevel;
     reqBuyBuilding.positionX = positionX;
     reqBuyBuilding.positionY = positionY;

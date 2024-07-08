@@ -35,22 +35,26 @@ public class FarmService {
     public void handleBuyBuilding(Session session, Proto.ReqBuyBuilding reqBuyBuilding){
         String typeBuilding = reqBuyBuilding.getTypeBuilding();
         Proto.Building.Builder buildingResponse = Proto.Building.newBuilder();
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        //TODO: cache area
+        AreaBean areaBean = AreaDAO.loadAreaByUserId(userId);
+        if(areaBean == null) return;
         if(typeBuilding.equals("PLANTING_LAND")){
             //insert planting land
             ABuilding plantingBuilidng = new PlantingLandBuildingBean();
             int idPlantingBuilding = CommonBuildingCache.me().getIdBuildingByType(ConstUtils.TYPE_ITEM.PLANTING_LAND);
             if(idPlantingBuilding == 0) idPlantingBuilding = BuildingDAO.getIdBuildingByType(ConstUtils.TYPE_ITEM.PLANTING_LAND);
             plantingBuilidng.setCommonBuildingId(idPlantingBuilding);
-            plantingBuilidng.setAreaId(reqBuyBuilding.getAreaId());
+            plantingBuilidng.setAreaId(areaBean.getId());
             plantingBuilidng.setPositionX(reqBuyBuilding.getPositionX());
             plantingBuilidng.setPositionY(reqBuyBuilding.getPositionY());
             //set planting land response
             Proto.PlantingLandBuilding.Builder plantingLandBuilding = BuildingDAO.insertPlantingLandInArea(plantingBuilidng);
             //add building cache
                 //redis
-            PropertyBuildingCache.me().addPropertyBuilding(plantingLandBuilding.getPropertyBuilding());
+            //PropertyBuildingCache.me().addPropertyBuilding(plantingLandBuilding.getPropertyBuilding());
                 //local
-            PropertyBuildingCache.me().add(plantingLandBuilding.getPropertyBuilding());
+            //PropertyBuildingCache.me().add(plantingLandBuilding.getPropertyBuilding());
             //set till land
             TillLandDAO.insertTillLand(plantingLandBuilding.getPropertyBuilding().getId());
             List<Proto.TillLand> tillLands = TillLandDAO.getListTillLandByPlantingLandId(plantingLandBuilding.getPropertyBuilding().getId());
@@ -329,7 +333,6 @@ public class FarmService {
             Runnable runnable = () -> addListPropertyBuildingToCache(propertyItemsCache);
             ThreadManage.me().execute(runnable);
         }
-
         for (Proto.PropertyBuilding p : propertyItems) {
             Proto.BuildingBase c = null;
             c = CommonBuildingCache.me().get(String.valueOf(p.getCommonBuildingId()));
@@ -393,12 +396,7 @@ public class FarmService {
         Proto.ResHarvest.Builder resHarvest = Proto.ResHarvest.newBuilder();
         Proto.Rewards.Builder rewards = Proto.Rewards.newBuilder();
         // Update quantity item in warehouse => for type crop in mapQuantityOfTypeCrops
-        System.out.println(rewardExpQuantity.get());
         mapQuantityOfTypeCrops.forEach((key, value) -> {
-            System.out.println("Key: " + key + " Value: " + value);
-            // Update quantity item
-            int noGrowthItemId = WarehouseDAO.getNoGrowthItemId(ConstUtils.TYPE_ITEM.SEED.getValue(), key);
-            WarehouseDAO.updateIncreaseQuantityItem(userId, noGrowthItemId, value);
             // Create reward
             Proto.Reward.Builder rewardSeedBag = Proto.Reward.newBuilder();
             rewardSeedBag.setName(ConstUtils.REWARDS.fromValue(key).getValue());
