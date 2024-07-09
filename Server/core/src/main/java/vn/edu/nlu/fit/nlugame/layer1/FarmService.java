@@ -52,9 +52,9 @@ public class FarmService {
             Proto.PlantingLandBuilding.Builder plantingLandBuilding = BuildingDAO.insertPlantingLandInArea(plantingBuilidng);
             //add building cache
                 //redis
-            //PropertyBuildingCache.me().addPropertyBuilding(plantingLandBuilding.getPropertyBuilding());
+            PropertyBuildingCache.me().addPropertyBuilding(plantingLandBuilding.getPropertyBuilding());
                 //local
-            //PropertyBuildingCache.me().add(plantingLandBuilding.getPropertyBuilding());
+            PropertyBuildingCache.me().add(plantingLandBuilding.getPropertyBuilding());
             //set till land
             TillLandDAO.insertTillLand(plantingLandBuilding.getPropertyBuilding().getId());
             List<Proto.TillLand> tillLands = TillLandDAO.getListTillLandByPlantingLandId(plantingLandBuilding.getPropertyBuilding().getId());

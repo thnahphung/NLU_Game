@@ -60,25 +60,33 @@ export class PopupBuildingSystem extends Component {
     const plantingLand = instantiate(this.plantingLandPrefab);
     const plantingPanel = find("Canvas/BackgroundLayers/PlantingPanel");
 
-    const lastNode = plantingPanel.children[plantingPanel.children.length - 1];
+    let length = plantingPanel.children.length;
 
-    if (lastNode) {
-      if (plantingPanel.children.length == 5) {
-        const fistNode = plantingPanel.children[0];
+    console.log(length);
+
+    if (length > 0) {
+      if (length == 5) {
           plantingLand.setPosition(
-          fistNode.position.x,
-          fistNode.position.y - 200,
-          fistNode.position.z
+          0,
+          -330,
+          0
         );
-      }else {
+      } else if(length > 5) {
+        length = length - 5;
         plantingLand.setPosition(
-          lastNode.position.x + 25 + PLANTING_LAND.WIDTH,
-          lastNode.position.y,
-          lastNode.position.z
+          PLANTING_LAND.WIDTH * length + length * 25,
+          -330,
+          0
+        );
+      } else {
+        plantingLand.setPosition(
+           PLANTING_LAND.WIDTH * length + length * 25,
+          -130,
+          0
         );
       }
     } else {
-      plantingLand.setPosition(18, -130, 0);
+      plantingLand.setPosition(0, -130, 0);
     }
 
     plantingPanel.addChild(plantingLand);
@@ -118,9 +126,9 @@ export class PopupBuildingSystem extends Component {
   private handleClickComplete(event: CustomEvent): void {
     this.hidePopupOption();
     this.node.destroy();
-    const plantingPanel = find("Canvas/BackgroundLayers/PlantingPanel");
-    const buildingNumber = plantingPanel.children.length;
-    if (buildingNumber >= 10) {
+    let plantingPanel = find("Canvas/BackgroundLayers/PlantingPanel");
+    let length = plantingPanel.children.length;
+    if (length > 10) {
       this.handleNode.destroy();
       let mainCharacter = find("Canvas/ObjectLayers/MidLayer/CharacterKSNN");
       this.cameraFollowTarget(mainCharacter);
@@ -130,6 +138,7 @@ export class PopupBuildingSystem extends Component {
       return;
     }
     if (this.handleUserOffline()) return;
+    this.hideEffectNodeIsBuilding(this.handleNode);
     this.cameraFollowTarget(GlobalData.me().getMainUserNode());
     DataSender.sendReqBuyBuilding(
       this.handleNode.uuid,
