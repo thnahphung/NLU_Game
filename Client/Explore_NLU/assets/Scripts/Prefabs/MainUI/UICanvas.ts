@@ -20,6 +20,7 @@ import { TransitionScenePrefab } from "../TransitionScene/TransitionScenePrefab"
 import { Joystick } from "../Joystick/Joystick";
 import { RewardEffect } from "../Reward/RewardEffect";
 import { PopupShop } from "../Popup/PopupShop";
+import { Util } from "../../Utils/Util";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -40,6 +41,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupFriend: Prefab = null;
   @property(Prefab) private prefabRewardEffect: Node = null;
   @property(Prefab) private prefabPopupShop: Prefab;
+  @property(Prefab) private prefabPopupWarehouse: Prefab;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -73,10 +75,16 @@ export class UICanvas extends Component {
     )
       return;
     let mainUser = GlobalData.me().getMainUser();
-    this.userName.string = mainUser.username;
+    this.userName.string = mainUser.playerName;
     this.userLevel.string = "Lv " + mainUser.level.toString() + ": ";
     this.userExp.progress = mainUser.experiencePoints / 100;
-    this.userGold.string = mainUser.gold.toString();
+    this.userGold.string = Util.formatNumber(mainUser.gold);
+  }
+
+  loadGold() {
+    if (GlobalData.me().getMainUser() == null) return;
+    let mainUser = GlobalData.me().getMainUser();
+    this.userGold.string = Util.formatNumber(mainUser.gold);
   }
 
   showPopupMessage(message: string) {
@@ -237,6 +245,23 @@ export class UICanvas extends Component {
     let rewardEffect = instantiate(this.prefabRewardEffect);
     rewardEffect.getComponent(RewardEffect).setReward(name, quantity, reward);
     this.node.addChild(rewardEffect);
+  }
+
+  showPopupWarehouse() {
+    const popup = this.node
+      .getChildByName("PopupLayer")
+      .getChildByName("PopupWarehouse");
+    if (!popup) {
+      let popupWarehouse = instantiate(this.prefabPopupWarehouse);
+      this.node.getChildByName("PopupLayer").addChild(popupWarehouse);
+      popupWarehouse.getComponent(PopupComponent).show();
+      return;
+    }
+    if (popup.active) {
+      popup.getComponent(PopupComponent).hide();
+    } else {
+      popup.getComponent(PopupComponent).show();
+    }
   }
 
   showListRewardEffect(

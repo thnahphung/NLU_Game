@@ -234,7 +234,7 @@ public class UserDAO extends BaseDAO {
                 .mapTo(Integer.class).one() > 0);
     }
 
-    public static void updateGold(int userId, int gold) {
+    public static void updateGold(int userId, long gold) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             return;

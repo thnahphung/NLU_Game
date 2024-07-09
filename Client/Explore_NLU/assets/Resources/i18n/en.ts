@@ -46,6 +46,7 @@ export const languages = {
     btn_event: "Event",
     btn_quest: "Quest",
     btn_friend: "Friend",
+    btn_warehouse: "Warehouse",
     //UI Animal
     animal_type: "Type:",
     animal_age: "Age:",
