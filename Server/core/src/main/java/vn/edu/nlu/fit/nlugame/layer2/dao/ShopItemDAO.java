@@ -8,7 +8,7 @@ public class ShopItemDAO extends BaseDAO {
 
     private static final String TABLE_NAME = "shop_items";
 
-    public static List<ShopItemBean> getShopByType(int type) {
+    public static List<ShopItemBean> getByType(int type) {
         return getJdbi().withHandle(handle ->
                 handle.createQuery("SELECT id, no_growth_item_id, type, status  " +
                                 "FROM " + TABLE_NAME + " WHERE type = :type")
