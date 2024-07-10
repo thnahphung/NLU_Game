@@ -29,6 +29,7 @@ public class UserCache extends RedisClusterHelper implements ICache<UserContext>
     @Override
     public boolean add(String key, UserContext value) {
         userLoginMap.put(key, value);
+        getConnection().hset(USER_KEY.getBytes(), String.valueOf(value.getUser().getUserId()).getBytes(), CompressUtils.compress(value));
         return false;
     }
 
@@ -40,9 +41,9 @@ public class UserCache extends RedisClusterHelper implements ICache<UserContext>
     @Override
     public UserContext get(String key) {
         UserContext userContext = userLoginMap.getIfPresent(key);
-        if(userContext == null) {
+        if (userContext == null) {
             userContext = getUserContextOnline(Integer.parseInt(key));
-            if(userContext != null) {
+            if (userContext != null) {
                 userLoginMap.put(key, userContext);
             }
         }

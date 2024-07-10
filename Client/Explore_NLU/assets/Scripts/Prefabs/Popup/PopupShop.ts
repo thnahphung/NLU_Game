@@ -40,7 +40,6 @@ export class PopupShop extends AbsHandler {
     packets.packet.forEach((packet) => {
       if (packet.resLoadShop) {
         this.onResLoadShopHandler(packet);
-        console.log("onResLoadShopHandler", packet.resLoadShop);
       }
     });
   }
