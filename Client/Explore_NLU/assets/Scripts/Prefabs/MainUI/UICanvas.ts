@@ -21,6 +21,7 @@ import { Joystick } from "../Joystick/Joystick";
 import { RewardEffect } from "../Reward/RewardEffect";
 import { PopupShop } from "../Popup/PopupShop";
 import { Util } from "../../Utils/Util";
+import { Menu } from "../Menu/Menu";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -32,7 +33,8 @@ export class UICanvas extends Component {
 
   @property(Node) private joystick: Node = null;
   @property(Node) private popupMenuAnimalFood: Node = null;
-
+  @property(Node) private popupMenuToolFarm: Node = null;
+  @property(Node) private popupMenuSeedFarm: Node = null;
   @property(Prefab) private prefabPopupMessage: Prefab;
   @property(Prefab) private prefabPopupOption: Prefab;
   @property(Prefab) private prefabPopupSetting: Prefab;
@@ -265,6 +267,41 @@ export class UICanvas extends Component {
       this.popupMenuAnimalFood.active = true;
     }
   }
+
+  showPopupMenuToolFarm(nameTool: string) {
+    if (this?.popupMenuToolFarm) {
+      this.popupMenuToolFarm.active = true;
+      this.popupMenuToolFarm.getComponent(Menu).showOneItemMenu(nameTool);
+    }
+  }
+
+  closePopupMenuToolFarm() {
+    if (this?.popupMenuToolFarm) {
+      this.popupMenuToolFarm.active = false;
+    }
+  }
+
+  showPopupMenuSeedFarm() {
+    if (this?.popupMenuSeedFarm) {
+      this.popupMenuSeedFarm.active = true;
+    }
+  }
+
+  closePopupMenuSeedFarm() {
+    if (this?.popupMenuSeedFarm) {
+      this.popupMenuSeedFarm.active = false;
+    }
+  }
+
+  getMenuSeedFarm(): Node {
+    console.log("UI Canvas: "+this.popupMenuSeedFarm);
+    return this.popupMenuSeedFarm;
+  }
+
+  getMenuToolFarm(): Node {
+    return this.popupMenuToolFarm;
+  }
+
   showPopupOption(handleNode?: Node, lable?: string) {
     if (this.node.getChildByName("BotMid").getChildByName("PopupOption"))
       return;

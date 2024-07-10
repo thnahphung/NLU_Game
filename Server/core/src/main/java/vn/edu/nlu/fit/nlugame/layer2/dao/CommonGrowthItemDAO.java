@@ -2,6 +2,7 @@ package vn.edu.nlu.fit.nlugame.layer2.dao;
 
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.nlu.fit.nlugame.layer2.ThreadManage;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.CommonGrowthItemBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.CommonRisingTimeCache;
 
@@ -135,7 +136,7 @@ public class CommonGrowthItemDAO extends BaseDAO {
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
         }
-        return jdbi.withHandle(handle -> handle.createQuery("SELECT id, name, description, price, sale_price, experience_receive, weather_require, season_require, time_pregant, time_growth  FROM " + TABLE_COMMON_GROWTH_ITEM + " WHERE id = :id")
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT id, name, description, type, price, sale_price, experience_receive, weather_require, season_require, time_pregant, time_growth  FROM " + TABLE_COMMON_GROWTH_ITEM + " WHERE id = :id")
                 .bind("id", commonGrowthItemId)
                 .map((rs, ctx) -> Proto.CommonGrowthItem.newBuilder()
                         .setId(rs.getInt("id"))
@@ -193,5 +194,20 @@ public class CommonGrowthItemDAO extends BaseDAO {
         }
         jdbi.useHandle(handle -> handle.createUpdate("UPDATE property_growth_items set developed_days = developed_days + 1 WHERE is_disease = false")
                 .execute());
+    }
+
+    public static CommonGrowthItemBean getCommonGrowthItemByName(String name) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT id, name, description, type, price, sale_price, experience_receive, weather_require, season_require, time_pregant, time_growth FROM " + TABLE_COMMON_GROWTH_ITEM + " WHERE name = :name")
+                .bind("name", name)
+                .mapToBean(CommonGrowthItemBean.class)
+                .findOne().orElse(null));
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getCommonGrowthItemByName("Cabbage"));
     }
 }

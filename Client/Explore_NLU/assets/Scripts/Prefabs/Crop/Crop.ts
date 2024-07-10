@@ -77,25 +77,9 @@ export class Crop extends Component {
     }
 
     private showMenuTool(): void {
-        CoatingComponent.me().offAllCoating();
-        if(GlobalData.me().getHarvestStatus()){
-            return;
-        }
         GlobalData.me().setHarvestStatus(true);
         // Hiển thị menu công cụ
-        const menuToolNode = this.getMenuToolNode();
-        const menuToolComponent = menuToolNode.getComponent(Menu);
-        menuToolNode.setPosition(this.plantingLand.getPosition().x, this.plantingLand.getPosition().y + 145, 0);
-        menuToolNode.active = true;
-        let menuModalPanel = menuToolComponent.getMenuModalNode();
-        CoatingComponent.me().setCoating(COATING.HARVEST, menuModalPanel, menuToolNode);
-        CoatingComponent.me().showCoating(COATING.HARVEST);
-        CoatingComponent.me().autoOff(COATING.HARVEST);
-        menuToolComponent.showOneItemMenu(TYPE_TOOL.SICKLE);
-    }
-
-    private getMenuToolNode(): Node {
-        return find('Canvas/PopupGameLayer/MenuToolPanel');
+        UICanvas.me().showPopupMenuToolFarm(TYPE_TOOL.SICKLE);
     }
 
     private onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D) {

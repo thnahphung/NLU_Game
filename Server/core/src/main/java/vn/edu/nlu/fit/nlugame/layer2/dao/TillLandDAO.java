@@ -15,9 +15,9 @@ public class TillLandDAO extends BaseDAO{
         }
 
         StringBuilder queryBuilder = new StringBuilder("INSERT INTO " + TABLE_NAME + " (`index`, status_tilled, planting_land_id) VALUES ");
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 20; i++) {
             queryBuilder.append("(:index").append(i).append(", :statusTilled, :plantingLandId)");
-            if (i < 29) {
+            if (i < 19) {
                 queryBuilder.append(", ");
             }
         }
@@ -26,7 +26,7 @@ public class TillLandDAO extends BaseDAO{
 
         jdbi.useHandle(handle -> {
             Update update = handle.createUpdate(query);
-            for (int i = 0; i < 30; i++) {
+            for (int i = 0; i < 20; i++) {
                 update.bind("index" + i, i);
             }
             update.bind("statusTilled", 0);
@@ -52,6 +52,7 @@ public class TillLandDAO extends BaseDAO{
     }
 
     public static void updateTillLand(int id, boolean statusTilled) {
+        System.out.println("updateTillLand: " + id + ", " + statusTilled);
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
