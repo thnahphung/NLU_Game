@@ -43,10 +43,10 @@ export class UICanvas extends Component {
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
-  private _popupOption: PopupOption;
   private _popup: Node;
   private _buttonBuilding: Node;
   public _popupConnectionNotify: Node;
+  private _popupOption: Node;
   //Lock button
   private isLocked: boolean = false;
 
@@ -55,7 +55,6 @@ export class UICanvas extends Component {
   }
 
   protected onLoad(): void {
-    this._popupOption = new PopupOption();
     UICanvas._instance = this;
   }
 
@@ -105,27 +104,12 @@ export class UICanvas extends Component {
     return this.joystick.getComponent(Joystick);
   }
 
-  showPopup(popupName: POPUP, handleNode?: Node, lable?: string) {
+  showPopup(popupName: POPUP) {
     if (this.isLocked) {
       return;
     }
     this.isLocked = true;
     switch (popupName) {
-      case POPUP.POPUP_OPTION:
-        if (this.node.getChildByName("BotMid").getChildByName("PopupOption")) {
-          return;
-        }
-        this._popup = instantiate(this.prefabPopupOption);
-        this._popup.components.find((component) => {
-          if (component instanceof PopupOption) {
-            this._popupOption = component;
-            if (handleNode) this._popupOption.handleNode = handleNode;
-            if (lable) this._popupOption.lableString = lable;
-          }
-        });
-        this.node.getChildByName("BotMid").addChild(this._popupOption.node);
-        this._popupOption.node.getComponent(PopupComponent).show();
-        return;
       case POPUP.POPUP_SETTING:
         if (
           this.node.getChildByName("PopupLayer").getChildByName("PopupSetting")
@@ -203,9 +187,9 @@ export class UICanvas extends Component {
   closePopup(popupName: POPUP) {
     switch (popupName) {
       case POPUP.POPUP_OPTION:
-        if (!this._popupOption || !this._popupOption.node) return;
-        this._popupOption.node.getComponent(PopupComponent).hide();
-        this._popupOption.node.destroy();
+        if (!this._popupOption) return;
+        this._popupOption.getComponent(PopupComponent).hide();
+        this._popupOption.destroy();
         break;
       case POPUP.POPUP_SETTING:
         if (!this._popup) return;
@@ -248,5 +232,15 @@ export class UICanvas extends Component {
         this.showRewardEffect(reward.name, reward.quantity, reward.reward);
       }, index * 0.5);
     });
+  }
+
+  showPopupOption(handleNode?: Node, lable?: string) {
+    if (this.node.getChildByName("BotMid").getChildByName("PopupOption")) return;
+    this._popupOption = instantiate(this.prefabPopupOption);
+    let popupOptionComponent = this._popupOption.getComponent(PopupOption);
+          if (handleNode) popupOptionComponent.handleNode = handleNode;
+          if (lable) popupOptionComponent.lableString = lable;
+    this.node.getChildByName("BotMid").addChild(popupOptionComponent.node);
+    this._popupOption.getComponent(PopupComponent).show();
   }
 }

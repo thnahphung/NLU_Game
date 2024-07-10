@@ -99,6 +99,7 @@ export class FarmScene extends AbsScene {
       if(!item) return;
       if(item.type == TYPE_ITEM.SEED) {
         const seedBag = menuSeedComponent.getMenuItemNode(warehouseItem.noGrowthItem.name);
+        if(!seedBag) return;
         seedBag.getComponent(SeedBag).setQuantityLabel(warehouseItem.quantity);
         seedBag.getComponent(SeedBag).setNoGrowItemSeedBag(warehouseItem.noGrowthItem);
       }
@@ -109,6 +110,7 @@ export class FarmScene extends AbsScene {
     let plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
     plantingLandPanel.removeAllChildren();
     // Load tất cả các item cần hiển thị trên trang trại
+    console.log(resLoadItemsOfFarm);
     resLoadItemsOfFarm.buildingItems.building.forEach((building) => {
       this.buildingProtos.push(building);
     });
@@ -146,7 +148,27 @@ export class FarmScene extends AbsScene {
   handleResLoadCommonCrop(resLoadCommonCrops: proto.IResLoadCommonCrops): void {
     let menuSeenContent = this.getMenuSeenContent();
     resLoadCommonCrops.commonGrowthItem.forEach((commonGrowthItem) => {
-      menuSeenContent.getChildByName(commonGrowthItem.name).getComponent(SeedBag).commonGrowthItemProto = commonGrowthItem;
+      let nameSeed = "";
+      switch (commonGrowthItem.name) {
+        case "Rice":
+          nameSeed = 'rice-seed-bag';
+          break;
+        case "Cabbage":
+          nameSeed = 'cabbage-seed-bag';
+          break;
+        case "Carrot":
+          nameSeed = 'carrot-seed-bag';
+          break;
+        case "Cucumber":
+          nameSeed = 'cucumber-seed-bag';
+          break;
+        case "Pumpkin":
+          nameSeed = 'pumpkin-seed-bag';
+          break;
+        default:
+          return
+      }
+      menuSeenContent.getChildByName(nameSeed).getComponent(SeedBag).commonGrowthItemProto = commonGrowthItem;
     });
   }
 
@@ -283,6 +305,7 @@ export class FarmScene extends AbsScene {
       for (let prefab of this.buildingFarmPrefab) {
         if (nameBuilding.toUpperCase() == prefab.name.toUpperCase()) {
           itemprefab = instantiate(prefab);
+          itemprefab.setPosition(positionX, positionY);
           if (building.plantingLandBuilding) { // Nếu là đất trồng
             let component = itemprefab.getComponent(PlantingLand);
             // Lưu thông tin của đất trồng vào component
@@ -310,7 +333,6 @@ export class FarmScene extends AbsScene {
       }
 
       if (itemprefab) {
-        itemprefab.setPosition(positionX, positionY);
         if (building.plantingLandBuilding) {
           plantingLayer.addChild(itemprefab);
         } else {

@@ -1,6 +1,6 @@
-import { Component } from "cc";
 import { WS } from "../Socket/WS";
 import { CHARACTER_STATE } from "./Const";
+import GlobalData from "./GlobalData";
 import { Shop } from "../Prefabs/Building/Shop";
 
 export default class DataSender {
@@ -105,12 +105,10 @@ export default class DataSender {
     positionX: number,
     positionY: number,
     currentLevel: number,
-    areaId: number
   ) {
     let reqBuyBuilding = new proto.ReqBuyBuilding();
     reqBuyBuilding.uuid = uuid;
     reqBuyBuilding.typeBuilding = type;
-    reqBuyBuilding.areaId = areaId;
     reqBuyBuilding.currentLevel = currentLevel;
     reqBuyBuilding.positionX = positionX;
     reqBuyBuilding.positionY = positionY;
@@ -195,6 +193,7 @@ export default class DataSender {
     let reqSow = new proto.ReqSow();
     reqSow.sowingInformations = sowingInformations;
     reqSow.seedBagId = seedBagId;
+    reqSow.gameState = GlobalData.me().getGameState();
     let packet = new proto.Packet();
     packet.reqSow = reqSow;
     WS.send(packet);
