@@ -31,6 +31,7 @@ export class UICanvas extends Component {
   @property(Label) private userGold: Label = null;
 
   @property(Node) private joystick: Node = null;
+  @property(Node) private popupMenuAnimalFood: Node = null;
 
   @property(Prefab) private prefabPopupMessage: Prefab;
   @property(Prefab) private prefabPopupOption: Prefab;
@@ -273,5 +274,11 @@ export class UICanvas extends Component {
         this.showRewardEffect(reward.name, reward.quantity, reward.reward);
       }, index * 0.5);
     });
+  }
+
+  showPopupMenuInfoAnimalFood() {
+    if (!this.popupMenuAnimalFood.active) {
+      this.popupMenuAnimalFood.active = true;
+    }
   }
 }

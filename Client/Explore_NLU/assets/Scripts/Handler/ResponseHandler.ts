@@ -140,10 +140,8 @@ export class ResponseHandler extends AbsHandler {
   }
 
   onResBuyItemShop(packet: proto.IPacket) {
-    console.log(packet.resBuyItemShop.warehouseItem);
     GlobalData.me().addWarehouseItem(packet.resBuyItemShop.warehouseItem);
     GlobalData.me().getMainUser().gold = packet.resBuyItemShop.gold;
     UICanvas.me().loadGold();
-    console.log(GlobalData.me().getMainUser().gold);
   }
 }
