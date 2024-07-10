@@ -35,13 +35,17 @@ public class FarmService {
     public void handleBuyBuilding(Session session, Proto.ReqBuyBuilding reqBuyBuilding){
         String typeBuilding = reqBuyBuilding.getTypeBuilding();
         Proto.Building.Builder buildingResponse = Proto.Building.newBuilder();
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        //TODO: cache area
+        AreaBean areaBean = AreaDAO.loadAreaByUserId(userId);
+        if(areaBean == null) return;
         if(typeBuilding.equals("PLANTING_LAND")){
             //insert planting land
             ABuilding plantingBuilidng = new PlantingLandBuildingBean();
             int idPlantingBuilding = CommonBuildingCache.me().getIdBuildingByType(ConstUtils.TYPE_ITEM.PLANTING_LAND);
             if(idPlantingBuilding == 0) idPlantingBuilding = BuildingDAO.getIdBuildingByType(ConstUtils.TYPE_ITEM.PLANTING_LAND);
             plantingBuilidng.setCommonBuildingId(idPlantingBuilding);
-            plantingBuilidng.setAreaId(reqBuyBuilding.getAreaId());
+            plantingBuilidng.setAreaId(areaBean.getId());
             plantingBuilidng.setPositionX(reqBuyBuilding.getPositionX());
             plantingBuilidng.setPositionY(reqBuyBuilding.getPositionY());
             //set planting land response
@@ -79,7 +83,7 @@ public class FarmService {
         List<Proto.CommonGrowthItem> commonGrowthItems = null;
         commonGrowthItems = CommonGrowthItemCache.me().getCommonGrowthItemsByType(ConstUtils.TYPE_ITEM.CROP.getValue());
         if(commonGrowthItems == null || commonGrowthItems.isEmpty()) {
-            commonGrowthItems = ItemDAO.getListCommonGrowthItemByType(ConstUtils.TYPE_ITEM.CROP.getValue());
+            commonGrowthItems = CommonGrowthItemDAO.getListCommonGrowthItemByType(ConstUtils.TYPE_ITEM.CROP.getValue());
             List<Proto.CommonGrowthItem> finalCommonGrowthItems = commonGrowthItems;
             ThreadManage.me().execute(() -> {
                 finalCommonGrowthItems.forEach(commonGrowthItem -> {
@@ -94,13 +98,18 @@ public class FarmService {
     }
 
     public void handleSow(Session session, Proto.ReqSow reqSow) {
+        // Get game state
+        Proto.GameState gameState = reqSow.getGameState();
+        int timesOfDay = gameState.getTimesOfDay();
+        int currentDate = gameState.getCurrentDate();
+        int currentSeason = gameState.getCurrentSeason();
         // Save crop database
         int quantityCrops = reqSow.getSowingInformations().getSowingInformationList().size();
         Proto.Crops.Builder crops = Proto.Crops.newBuilder();
         if(quantityCrops > 0) reqSow.getSowingInformations().getSowingInformationList().forEach(sowingInformation -> {
             Proto.TillLand tillLand = sowingInformation.getTillLand();
             Proto.CommonGrowthItem commonGrowthItem = sowingInformation.getCommonGrowthItem();
-            Proto.Crop cropProto = ItemDAO.sowSeed(tillLand, commonGrowthItem);
+            Proto.Crop cropProto = CommonGrowthItemDAO.sowSeed(tillLand, commonGrowthItem, currentDate);
             crops.addCrops(cropProto);
         });
 
@@ -150,15 +159,15 @@ public class FarmService {
                     // Get crops of till land
                     Proto.Crop.Builder crop = Proto.Crop.newBuilder();
                     // Get property crop
-                    Proto.PropertyCrop propertyCrop = ItemDAO.getPropertyCropsByTilledLandId(tillLand.getId());
+                    Proto.PropertyCrop propertyCrop = CommonGrowthItemDAO.getPropertyCropsByTilledLandId(tillLand.getId());
                     if(propertyCrop == null) return;
                     // Get property growth item
-                    Proto.PropertyGrowthItems propertyGrowthItems = ItemDAO.getPropertyGrowthItemById(propertyCrop.getPropertyGrowthItemId());
+                    Proto.PropertyGrowthItems propertyGrowthItems = CommonGrowthItemDAO.getPropertyGrowthItemById(propertyCrop.getPropertyGrowthItemId());
                     if(propertyGrowthItems == null) return;
                     // Get common growth item
                     Proto.CommonGrowthItem commonGrowthItem = CommonGrowthItemCache.me().get(String.valueOf(propertyGrowthItems.getGrowthItemId()));
                     if(commonGrowthItem == null) {
-                        commonGrowthItem = ItemDAO.getCommonGrowthItemById(propertyGrowthItems.getGrowthItemId());
+                        commonGrowthItem = CommonGrowthItemDAO.getCommonGrowthItemById(propertyGrowthItems.getGrowthItemId());
                         Proto.CommonGrowthItem finalCommonGrowthItem = commonGrowthItem;
                         ThreadManage.me().execute(() -> {
                             CommonGrowthItemCache.me().add(finalCommonGrowthItem);
@@ -324,7 +333,6 @@ public class FarmService {
             Runnable runnable = () -> addListPropertyBuildingToCache(propertyItemsCache);
             ThreadManage.me().execute(runnable);
         }
-
         for (Proto.PropertyBuilding p : propertyItems) {
             Proto.BuildingBase c = null;
             c = CommonBuildingCache.me().get(String.valueOf(p.getCommonBuildingId()));
@@ -374,7 +382,7 @@ public class FarmService {
                 // Delete crop from database -> database optimization
             int propertyCropId = crop.getPropertyCrop().getId();
             int propertyItemID = crop.getPropertyGrowthItems().getId();
-            ItemDAO.deleteHarvestedCrop(propertyCropId, propertyItemID);
+            CommonGrowthItemDAO.deleteHarvestedCrop(propertyCropId, propertyItemID);
             // Reward for user
             rewardExpQuantity.addAndGet(crop.getCommonGrowthItem().getExperienceReceive());
             String cropName = crop.getCommonGrowthItem().getName();
@@ -388,12 +396,7 @@ public class FarmService {
         Proto.ResHarvest.Builder resHarvest = Proto.ResHarvest.newBuilder();
         Proto.Rewards.Builder rewards = Proto.Rewards.newBuilder();
         // Update quantity item in warehouse => for type crop in mapQuantityOfTypeCrops
-        System.out.println(rewardExpQuantity.get());
         mapQuantityOfTypeCrops.forEach((key, value) -> {
-            System.out.println("Key: " + key + " Value: " + value);
-            // Update quantity item
-            int noGrowthItemId = WarehouseDAO.getNoGrowthItemId(ConstUtils.TYPE_ITEM.SEED.getValue(), key);
-            WarehouseDAO.updateIncreaseQuantityItem(userId, noGrowthItemId, value);
             // Create reward
             Proto.Reward.Builder rewardSeedBag = Proto.Reward.newBuilder();
             rewardSeedBag.setName(ConstUtils.REWARDS.fromValue(key).getValue());

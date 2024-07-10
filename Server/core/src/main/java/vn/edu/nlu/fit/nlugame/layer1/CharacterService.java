@@ -97,7 +97,7 @@ public class CharacterService {
                 .setHasCharacter(userLoginBean.getHasCharacter())
                 .setCharacterId(userLoginBean.getCharacterId())
                 .setLevel(userLoginBean.getLevel())
-                .setIsNewAccount(userLoginBean.getIsNewAccount())
+                .setIsNewAccount(1)
                 .setEmail(userLoginBean.getEmail())
                 .setPlayerName(userLoginBean.getPlayerName())
                 .setGold(userLoginBean.getGold())

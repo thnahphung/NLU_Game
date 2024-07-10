@@ -45,13 +45,13 @@ public class BuildingDAO extends BaseDAO {
         return building;
     }
 
-    public static void insertBaseBuildingInArea(int area, Proto.FarmBuilding farmBuilding){
+    public static void insertBaseBuildingInArea(int areaId, Proto.FarmBuilding farmBuilding){
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
         }
         jdbi.useHandle(handle -> handle.createUpdate("insert into " + TABLE_PROPERTY_NAME + " (area_id, common_building_id, position_x, position_y, current_level) values (:areaId, :buildingId, :positionX, :positionY, :currentLevel)")
-                .bind("areaId", farmBuilding.getPropertyBuilding().getAreaId())
+                .bind("areaId", areaId)
                 .bind("buildingId", farmBuilding.getPropertyBuilding().getCommonBuildingId())
                 .bind("positionX", farmBuilding.getPropertyBuilding().getPositionX())
                 .bind("positionY", farmBuilding.getPropertyBuilding().getPositionY())

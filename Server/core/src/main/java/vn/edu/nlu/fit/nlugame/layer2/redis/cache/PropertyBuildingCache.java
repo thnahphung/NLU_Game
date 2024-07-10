@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class PropertyBuildingCache extends RedisClusterHelper implements ICache<Proto.PropertyBuilding>{
     private static final PropertyBuildingCache instance = new PropertyBuildingCache();
     private static final String PROPERTY_BUILDING_KEY = "property_building:";
-    private static final Cache<String, Proto.PropertyBuilding> propertyBuildingMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(30, TimeUnit.MINUTES).build();
+    private static final Cache<String, Proto.PropertyBuilding> propertyBuildingMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(5, TimeUnit.MINUTES).build();
 
     private PropertyBuildingCache() {
     }

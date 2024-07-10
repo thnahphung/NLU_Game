@@ -60,16 +60,33 @@ export class PopupBuildingSystem extends Component {
     const plantingLand = instantiate(this.plantingLandPrefab);
     const plantingPanel = find("Canvas/BackgroundLayers/PlantingPanel");
 
-    const lastNode = plantingPanel.children[plantingPanel.children.length - 1];
+    let length = plantingPanel.children.length;
 
-    if (lastNode) {
-      plantingLand.setPosition(
-        lastNode.position.x + 50 + PLANTING_LAND.WIDTH,
-        lastNode.position.y,
-        lastNode.position.z
-      );
+    console.log(length);
+
+    if (length > 0) {
+      if (length == 5) {
+          plantingLand.setPosition(
+          0,
+          -330,
+          0
+        );
+      } else if(length > 5) {
+        length = length - 5;
+        plantingLand.setPosition(
+          PLANTING_LAND.WIDTH * length + length * 25,
+          -330,
+          0
+        );
+      } else {
+        plantingLand.setPosition(
+           PLANTING_LAND.WIDTH * length + length * 25,
+          -130,
+          0
+        );
+      }
     } else {
-      plantingLand.setPosition(0, -100, 0);
+      plantingLand.setPosition(0, -130, 0);
     }
 
     plantingPanel.addChild(plantingLand);
@@ -85,7 +102,7 @@ export class PopupBuildingSystem extends Component {
   }
 
   private showPopupOption(): void {
-    UICanvas.me().showPopup(POPUP.POPUP_OPTION, this.handleNode, "Mua: 10G");
+    UICanvas.me().showPopupOption(this.handleNode, "Mua: 10G");
     this.handleNode.on(
       CUSTOM_EVENT.LISTEN_CANCEL,
       this.handleClickCancel,
@@ -109,9 +126,9 @@ export class PopupBuildingSystem extends Component {
   private handleClickComplete(event: CustomEvent): void {
     this.hidePopupOption();
     this.node.destroy();
-    const plantingPanel = find("Canvas/BackgroundLayers/PlantingPanel");
-    const buildingNumber = plantingPanel.children.length;
-    if (buildingNumber >= 4) {
+    let plantingPanel = find("Canvas/BackgroundLayers/PlantingPanel");
+    let length = plantingPanel.children.length;
+    if (length > 10) {
       this.handleNode.destroy();
       let mainCharacter = find("Canvas/ObjectLayers/MidLayer/CharacterKSNN");
       this.cameraFollowTarget(mainCharacter);
@@ -121,13 +138,13 @@ export class PopupBuildingSystem extends Component {
       return;
     }
     if (this.handleUserOffline()) return;
+    this.hideEffectNodeIsBuilding(this.handleNode);
     this.cameraFollowTarget(GlobalData.me().getMainUserNode());
     DataSender.sendReqBuyBuilding(
       this.handleNode.uuid,
       this.typeBuilding,
       this.handleNode.position.x,
       this.handleNode.position.y,
-      1,
       1
     );
   }

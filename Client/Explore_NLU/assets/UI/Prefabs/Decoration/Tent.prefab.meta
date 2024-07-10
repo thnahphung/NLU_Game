@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "04b6e065-619c-44ac-897e-28a843eb0bef",
+  "uuid": "3fd4698e-d087-4cb0-b7ca-d23f0bb38911",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "PlantingLand"
+    "syncNodeName": "Tent"
   }
 }
