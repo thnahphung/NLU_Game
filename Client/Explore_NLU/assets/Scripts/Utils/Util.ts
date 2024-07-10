@@ -60,4 +60,12 @@ export class Util {
   public static convertDashToUnderscore(str: string): string {
     return str.replace(/-/g, "_");
   }
+
+  public static formatNumber(n: number): string {
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  public static formatAmount(n: number): string {
+    return n > 99 ? "99+" : n.toString();
+  }
 }

@@ -9,7 +9,7 @@ import {
 } from "cc";
 import { Animal } from "./Animal";
 import { ANIMAL, ANIMAL_FOOD, ANIMAL_STATE } from "../../Utils/Const";
-import { MenuItem } from "../Menu/MenuItem";
+import { AbsMenuItem } from "../Menu/AbsMenuItem";
 const { ccclass, property } = _decorator;
 
 @ccclass("AnimalCollider")
@@ -43,8 +43,6 @@ export class AnimalCollider extends Component {
     } else if (this.animalInfo.getCurrentState() === ANIMAL_STATE.IDLE_LEFT) {
       this.animalInfo.setCurrentState(ANIMAL_STATE.EAT_LEFT);
     }
-    otherCollider.getComponent(MenuItem).downAmount();
-    this.animalInfo.setIsHungry(false);
   }
 
   private isCowFood(otherCollider: Node) {
@@ -53,6 +51,7 @@ export class AnimalCollider extends Component {
       otherCollider.name === ANIMAL_FOOD.HAY
     );
   }
+
   private isChickenFood(otherCollider: Node) {
     return (
       this.node.getComponent(Animal).getType() === ANIMAL.CHICKEN &&

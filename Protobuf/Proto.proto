@@ -60,6 +60,8 @@ message Packet {
     ResLoadItemsOfWarehouse resLoadItemsOfWarehouse = 50;
     ReqLoadShop reqLoadShop = 51;
     ResLoadShop resLoadShop = 52;
+    ReqBuyItemShop reqBuyItemShop = 53;
+    ResBuyItemShop resBuyItemShop = 54;
   }
 }
 
@@ -527,6 +529,7 @@ message ReqLoadItemsOfWarehouse{
 
 message ResLoadItemsOfWarehouse {
    WarehouseItems warehouseItems = 1;
+   repeated WarehouseItem listWarehouseItem = 2;
 }
 
 message WarehouseItems {
@@ -535,8 +538,9 @@ message WarehouseItems {
 
 message WarehouseItem {
    int32 userId = 1;
-   NoGrowthItem noGrowthItem = 2;
-   int32 quantity = 3;
+   int32 quantity = 2;
+   int32 noGrowthItemId = 3;
+   NoGrowthItem noGrowthItem = 4;
 }
 
 message Rewards {
@@ -549,4 +553,15 @@ message ReqLoadShop {
 
 message ResLoadShop {
   repeated ShopItem shopItems = 1;
+}
+
+message ReqBuyItemShop {
+  int32 shopItemId = 1;
+  int32 quantity = 2;
+}
+
+message ResBuyItemShop{
+  int32 status = 1;
+  WarehouseItem warehouseItem = 2;
+  int32 gold = 3;
 }

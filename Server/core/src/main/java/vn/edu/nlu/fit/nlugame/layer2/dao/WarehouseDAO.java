@@ -2,12 +2,40 @@ package vn.edu.nlu.fit.nlugame.layer2.dao;
 
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.nlu.fit.nlugame.layer2.ConstUtils;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.WarehouseItemBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 import java.util.List;
 
-public class WarehouseDAO extends BaseDAO{
+public class WarehouseDAO extends BaseDAO {
     private static final String TABLE_NAME = "warehouse_items";
+
+    public static WarehouseItemBean getWarehouseItemUser(int userId, int itemId) {
+        return getJdbi().withHandle(handle -> handle.createQuery("select user_id, no_growth_item_id, quantity from " + TABLE_NAME + " where user_id = :userId and no_growth_item_id = :itemId")
+                .bind("userId", userId)
+                .bind("itemId", itemId)
+                .mapToBean(WarehouseItemBean.class)
+                .stream().findFirst().orElse(null));
+    }
+
+    public static List<WarehouseItemBean> getAllWarehouseItemUser(int userId) {
+        return getJdbi().withHandle(handle -> handle.createQuery("select user_id, no_growth_item_id, quantity from " + TABLE_NAME + " where user_id = :userId")
+                .bind("userId", userId)
+                .mapToBean(WarehouseItemBean.class)
+                .list());
+    }
+
+    public static int insertWarehouseItem(int userId, int itemId, int quantity) {
+        int count = getJdbi().withHandle(handle -> handle.createUpdate("insert into " + TABLE_NAME + "(user_id, no_growth_item_id, quantity) values (:userId, :itemId, :quantity)")
+                .bind("userId", userId)
+                .bind("itemId", itemId)
+                .bind("quantity", quantity)
+                .execute());
+        if (count == 1) {
+            return 200;
+        }
+        return 500;
+    }
 
     public static Proto.WarehouseItem getWarehouseItem(int userId, int itemId) {
         Jdbi jdbi = getJdbi();
@@ -77,18 +105,24 @@ public class WarehouseDAO extends BaseDAO{
         });
     }
 
-    public static void updateIncreaseQuantityItem(int userId, int noGrowItemId, int quantityIncrease) {
+    public static int updateIncreaseQuantityItem(int userId, int noGrowItemId, int quantityIncrease) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
-            throw new RuntimeException("Cannot connect to database");
+            return 402;
         }
-        jdbi.useHandle(handle -> {
-            handle.createUpdate("update warehouse_items set quantity = quantity + :quantityIncrease where user_id = :userId and no_growth_item_id = :noGrowItemId")
-                    .bind("quantityIncrease", quantityIncrease)
-                    .bind("userId", userId)
-                    .bind("noGrowItemId", noGrowItemId)
-                    .execute();
-        });
+        try {
+            jdbi.useHandle(handle -> {
+                handle.createUpdate("update warehouse_items set quantity = quantity + :quantityIncrease where user_id = :userId and no_growth_item_id = :noGrowItemId")
+                        .bind("quantityIncrease", quantityIncrease)
+                        .bind("userId", userId)
+                        .bind("noGrowItemId", noGrowItemId)
+                        .execute();
+            });
+        } catch (Exception e) {
+            System.out.println("Error updateIncreaseQuantityItem: " + e.getMessage());
+            return 500;
+        }
+        return 200;
     }
 
     public static int getNoGrowthItemId(String typeItem, String nameItem) {

@@ -42,6 +42,12 @@ export class ResponseHandler extends AbsHandler {
       if (packet.resGameState) {
         this.onGameStateHandler(packet);
       }
+      if (packet.resLoadItemsOfWarehouse) {
+        this.onLoadWarehouseItemsHandler(packet);
+      }
+      if (packet.resBuyItemShop) {
+        this.onResBuyItemShop(packet);
+      }
     });
   }
 
@@ -125,5 +131,17 @@ export class ResponseHandler extends AbsHandler {
 
   onGameStateHandler(packet: proto.IPacket) {
     GlobalData.me().setGameState(packet.resGameState.gameState);
+  }
+
+  onLoadWarehouseItemsHandler(packet: proto.IPacket) {
+    GlobalData.me().setWarehouseItems(
+      packet.resLoadItemsOfWarehouse.listWarehouseItem
+    );
+  }
+
+  onResBuyItemShop(packet: proto.IPacket) {
+    GlobalData.me().addWarehouseItem(packet.resBuyItemShop.warehouseItem);
+    GlobalData.me().getMainUser().gold = packet.resBuyItemShop.gold;
+    UICanvas.me().loadGold();
   }
 }

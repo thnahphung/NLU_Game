@@ -1,4 +1,10 @@
-import { _decorator, Component, Node } from "cc";
+import {
+  _decorator,
+  Component,
+  EPhysics2DDrawFlags,
+  Node,
+  PhysicsSystem2D,
+} from "cc";
 import { PlayerManager } from "../Manager/PlayerManager";
 import GlobalData from "../Utils/GlobalData";
 import { CHARACTERS } from "../Utils/Const";
