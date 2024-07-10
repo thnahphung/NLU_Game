@@ -11,6 +11,7 @@ import { CoatingComponent } from "../../Controller/CoatingComponent";
 import { COATING } from "../../Utils/Const";
 import { PopupComponent } from "../../Controller/PopupComponent";
 import { PopupCageInformation } from "../Popup/PopupCageInformation";
+import { UICanvas } from "../MainUI/UICanvas";
 const { ccclass, property } = _decorator;
 
 export class CageInfo {
@@ -91,7 +92,11 @@ export class Cage extends Component {
   };
   start() {
     this.menuNode = this.getCageInformation();
-    this.node.on(Node.EventType.TOUCH_START, this.handleGetMenu, this);
+    this.node.on(Node.EventType.TOUCH_START, this.handleGetMenuFood, this);
+  }
+
+  private handleGetMenuFood(): void {
+    UICanvas.me().showPopupMenuInfoAnimalFood();
   }
 
   private handleGetMenu(): void {

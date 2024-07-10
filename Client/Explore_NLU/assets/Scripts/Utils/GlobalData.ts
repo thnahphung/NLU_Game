@@ -57,6 +57,27 @@ export default class GlobalData {
   }
   /*===== END GAME STATE =====*/
 
+  /*WAREHOUSE */
+  private warehouseItems: proto.IWarehouseItem[] = null;
+
+  public setWarehouseItems(warehouseItems: proto.IWarehouseItem[]) {
+    this.warehouseItems = warehouseItems;
+  }
+
+  public getWarehouseItems() {
+    return this.warehouseItems;
+  }
+
+  public addWarehouseItem(newWarehouseItem: proto.IWarehouseItem) {
+    for (let warehouseItem of this.warehouseItems) {
+      if (warehouseItem.noGrowthItemId == newWarehouseItem.noGrowthItemId) {
+        warehouseItem.quantity = newWarehouseItem.quantity;
+        return;
+      }
+    }
+    this.warehouseItems.push(newWarehouseItem);
+  }
+
   /*===== MAIN USER =====*/
   private mainUser: proto.IUser = null;
   private mainUserNode: Node = null;
@@ -238,7 +259,9 @@ export default class GlobalData {
     return this.sowingInformations;
   }
 
-  public setHarvestingInformations(harvestingInformations: proto.HarvestingInformations) {
+  public setHarvestingInformations(
+    harvestingInformations: proto.HarvestingInformations
+  ) {
     this.harvestingInformations = harvestingInformations;
   }
 
@@ -281,5 +304,6 @@ export default class GlobalData {
     this.isHarvested = false;
     this.positionCharacter = null;
     this.mainArea = null;
+    this.warehouseItems = null;
   }
 }

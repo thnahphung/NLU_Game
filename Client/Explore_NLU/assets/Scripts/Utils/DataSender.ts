@@ -231,4 +231,13 @@ export default class DataSender {
     packet.reqLoadShop = reqLoadShop;
     WS.send(packet);
   }
+
+  public static sendReqBuyItemShop(shopItemId: number, quantity: number) {
+    let reqBuyItemShop = new proto.ReqBuyItemShop();
+    reqBuyItemShop.shopItemId = shopItemId;
+    reqBuyItemShop.quantity = quantity;
+    let packet = new proto.Packet();
+    packet.reqBuyItemShop = reqBuyItemShop;
+    WS.send(packet);
+  }
 }

@@ -20,6 +20,9 @@ public class ShopHandler implements Subscriber {
                 case REQLOADSHOP:
                     shopService.loadShop(session, packet.getReqLoadShop());
                     break;
+                case REQBUYITEMSHOP:
+                    shopService.buyItemShop(session, packet.getReqBuyItemShop());
+                    break;
             }
         });
 
