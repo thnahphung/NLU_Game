@@ -1,13 +1,4 @@
-import {
-  _decorator,
-  Component,
-  EPhysics2DDrawFlags,
-  Node,
-  PhysicsSystem2D,
-} from "cc";
-import { PlayerManager } from "../Manager/PlayerManager";
-import GlobalData from "../Utils/GlobalData";
-import { CHARACTERS } from "../Utils/Const";
+import { _decorator, Node } from "cc";
 import AbsScene from "./AbsScene";
 const { ccclass, property } = _decorator;
 
@@ -23,4 +14,6 @@ export class AnimalHusbandryScene extends AbsScene {
   update(deltaTime: number) {
     super.update(deltaTime);
   }
+
+  onClickBuyCage() {}
 }

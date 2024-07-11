@@ -62,6 +62,10 @@ message Packet {
     ResLoadShop resLoadShop = 52;
     ReqBuyItemShop reqBuyItemShop = 53;
     ResBuyItemShop resBuyItemShop = 54;
+    ReqBuyCage reqBuyCage = 55;
+    ResBuyCage resBuyCage = 56;
+    ReqLoadCages reqLoadCages = 57;
+    ResLoadCages resLoadCages = 58;
   }
 }
 
@@ -132,16 +136,16 @@ message NoGrowthItem {
 
 message ShopItem {
   int32 id = 1;
-  int32 price = 2;
-  string description = 3;
-  int32 type = 4;
-  int32 status = 5;
-  int32 noGrowthItemId = 6;
-  NoGrowthItem noGrowthItem = 7;
+  string description = 2;
+  int32 type = 3;
+  int32 status = 4;
+  int32 noGrowthItemId = 5;
+  NoGrowthItem noGrowthItem = 6;
 
   enum TYPE_SHOP {
     CROP = 0;
     ANIMAL = 1;
+    CAGE = 2;
   }
 }
 message Reward {
@@ -222,6 +226,7 @@ message PropertyBuilding {
   int32 areaId = 5;
   int32 commonBuildingId = 6;
   int32 currentLevel = 7;
+  CommonBuilding commonBuilding = 8;
 }
 
 message TillLand {
@@ -256,6 +261,36 @@ message Friend {
   int32 level = 3;
   Character character = 4;
 }
+
+message CommonBuilding {
+  int32 id = 1;
+  string name = 2;
+  string type = 5;
+  int32 maxLevel = 6;
+  string description = 7;
+}
+// Animal Husbandry start =====================================
+message Animal {
+  int32 id = 1;
+  int32 isPregnant = 2;
+  int32 startTimePregnant = 3;
+  int32 endTimePregnant = 4;
+  int32 status = 5;
+  int32 cageId = 6;
+  int32 propertyGrowthItemsId = 7;
+  PropertyGrowthItems propertyGrowthItems = 8;
+  CommonGrowthItem CommonGrowthItem = 10;
+  CommonRisingTimes CommonRisingTimes = 11;
+}
+
+message Cage {
+  PropertyBuilding propertyBuilding = 10;
+  repeated Animal animals = 1;
+}
+
+// Animal Husbandry end =======================================
+
+
 // Bean end ====================================================
 
 message ReqLogin {
@@ -564,4 +599,22 @@ message ResBuyItemShop{
   int32 status = 1;
   WarehouseItem warehouseItem = 2;
   int32 gold = 3;
+}
+
+message ReqBuyCage {
+  int32 shopItemId = 1;
+  int32 index = 2;
+}
+
+message ResBuyCage {
+  int32 status = 1;
+  int32 gold = 2;
+}
+
+message ReqLoadCages {
+  int32 areaId = 1;
+}
+
+message ResLoadCages {
+  repeated Cage cages = 1;
 }

@@ -13,7 +13,19 @@ import java.util.List;
 public class BuildingDAO extends BaseDAO {
     private static final String TABLE_COMMON_NAME = "common_buildings";
     private static final String TABLE_PROPERTY_NAME = "property_buildings";
-    public static void insertBuildingInArea(int areaId, ABuilding building){
+
+    public static PropertyBuildingBean getById(int id) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        return jdbi.withHandle(handle -> handle.createQuery("select id, position_x, position_y, current_level, area_id, common_building_id from " + TABLE_PROPERTY_NAME + " where id = :id")
+                .bind("id", id)
+                .mapToBean(PropertyBuildingBean.class)
+                .findFirst().orElse(null));
+    }
+
+    public static void insertBuildingInArea(int areaId, ABuilding building) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
@@ -27,7 +39,7 @@ public class BuildingDAO extends BaseDAO {
                 .execute());
     }
 
-    public static ABuilding insertBuildingInArea(ABuilding building){
+    public static ABuilding insertBuildingInArea(ABuilding building) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
@@ -45,7 +57,7 @@ public class BuildingDAO extends BaseDAO {
         return building;
     }
 
-    public static void insertBaseBuildingInArea(int areaId, Proto.FarmBuilding farmBuilding){
+    public static void insertBaseBuildingInArea(int areaId, Proto.FarmBuilding farmBuilding) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
@@ -59,7 +71,7 @@ public class BuildingDAO extends BaseDAO {
                 .execute());
     }
 
-    public static Proto.PlantingLandBuilding.Builder insertPlantingLandInArea(ABuilding building){
+    public static Proto.PlantingLandBuilding.Builder insertPlantingLandInArea(ABuilding building) {
         Proto.BuildingBase base = null;
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
@@ -76,13 +88,13 @@ public class BuildingDAO extends BaseDAO {
                 .mapTo(Integer.class)
                 .findFirst().orElse(0));
         base = CommonBuildingCache.me().get(String.valueOf(building.getCommonBuildingId()));
-        if(base == null) base = BuildingDAO.getBaseBuildingById(building.getCommonBuildingId());
+        if (base == null) base = BuildingDAO.getBaseBuildingById(building.getCommonBuildingId());
         plantingLandBuilder.setBase(Proto.BuildingBase.newBuilder().setId(base.getId()).setName(base.getName()).setType(base.getType()).setDescription(base.getDescription()).setMaxLevel(1).build());
         plantingLandBuilder.setPropertyBuilding(Proto.PropertyBuilding.newBuilder().setId(idInsert).setAreaId(building.getAreaId()).setCommonBuildingId(building.getCommonBuildingId()).setCurrentLevel(1).setPositionX(building.getPositionX()).setPositionY(building.getPositionY()).build());
         return plantingLandBuilder;
     }
 
-    public static List<Proto.BuildingBase> getAllCommonBuilding(){
+    public static List<Proto.BuildingBase> getAllCommonBuilding() {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
@@ -97,7 +109,8 @@ public class BuildingDAO extends BaseDAO {
                         .build())
                 .list());
     }
-    public static CommonBuildingBean getCommonBuildingById(int id){
+
+    public static CommonBuildingBean getCommonBuildingById(int id) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
@@ -125,7 +138,7 @@ public class BuildingDAO extends BaseDAO {
                 .findFirst().orElse(null));
     }
 
-    public static List<Proto.PropertyBuilding> getAllPropertyBuildingByAreaId(int areaId){
+    public static List<Proto.PropertyBuilding> getAllPropertyBuildingByAreaId(int areaId) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
@@ -142,13 +155,13 @@ public class BuildingDAO extends BaseDAO {
                         .build()).list());
     }
 
-    public static List<ABuilding> getAllPlantingLandByAreaId(int areaId){
+    public static List<ABuilding> getAllPlantingLandByAreaId(int areaId) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
         }
         int plantingLandId = getIdBuildingByType(ConstUtils.TYPE_ITEM.PLANTING_LAND);
-        if(plantingLandId == 0) {
+        if (plantingLandId == 0) {
             return new ArrayList<>();
         }
         List<PlantingLandBuildingBean> plantingLandBuildings = jdbi.withHandle(handle -> handle.createQuery("select id, position_x, position_y, current_level, area_id, common_building_id from " + TABLE_PROPERTY_NAME + " where area_id = :areaId and common_building_id = :commonBuildingId")
@@ -162,18 +175,19 @@ public class BuildingDAO extends BaseDAO {
         return new ArrayList<>(plantingLandBuildings);
     }
 
-    public static int getIdBuildingByName(String name){
+    public static int getIdBuildingByName(String name) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
         }
-        if(name == null || name.isEmpty()) return 0;
+        if (name == null || name.isEmpty()) return 0;
         return jdbi.withHandle(handle -> handle.createQuery("select id from " + TABLE_COMMON_NAME + " where name = :name")
                 .bind("name", name)
                 .mapTo(Integer.class)
                 .findFirst().orElse(0));
     }
-    public static int getIdBuildingByType(ConstUtils.TYPE_ITEM type){
+
+    public static int getIdBuildingByType(ConstUtils.TYPE_ITEM type) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");

@@ -306,4 +306,16 @@ export default class GlobalData {
     this.mainArea = null;
     this.warehouseItems = null;
   }
+
+  /* START ANIMAL HUSBAND */
+  private pickCageItem: proto.IShopItem = null;
+  public getPickCageItem() {
+    return this.pickCageItem;
+  }
+
+  public setPickCageItem(pickCageItem: proto.IShopItem) {
+    this.pickCageItem = pickCageItem;
+  }
+
+  /* END ANIMAL HUSBAND */
 }

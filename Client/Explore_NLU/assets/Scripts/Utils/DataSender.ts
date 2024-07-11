@@ -104,7 +104,7 @@ export default class DataSender {
     type: string,
     positionX: number,
     positionY: number,
-    currentLevel: number,
+    currentLevel: number
   ) {
     let reqBuyBuilding = new proto.ReqBuyBuilding();
     reqBuyBuilding.uuid = uuid;
@@ -238,6 +238,15 @@ export default class DataSender {
     reqBuyItemShop.quantity = quantity;
     let packet = new proto.Packet();
     packet.reqBuyItemShop = reqBuyItemShop;
+    WS.send(packet);
+  }
+
+  public static sendReqBuyCage(shopItemId: number, index: number) {
+    let reqBuyCage = new proto.ReqBuyCage();
+    reqBuyCage.shopItemId = shopItemId;
+    reqBuyCage.index = index;
+    let packet = new proto.Packet();
+    packet.reqBuyCage = reqBuyCage;
     WS.send(packet);
   }
 }

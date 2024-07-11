@@ -126,6 +126,7 @@ export const languages = {
     winter: "Winter",
     //Shop Name
     crop_shop: "Crop Shop",
+    buy_cage: "Buy Cage",
     //Crop Name
     rice_seed_bag: "Rice Seed Bag",
     cabbage_seed_bag: "Cabbage Seed Bag",
@@ -135,6 +136,9 @@ export const languages = {
     // Animal Name
     calf_item: "Calf",
     chick_item: "Chick",
+    // Cage
+    cage_chicken: "Chicken Coop",
+    cage_cow: "Cow Barn",
   },
 };
 

@@ -43,6 +43,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabRewardEffect: Node = null;
   @property(Prefab) private prefabPopupShop: Prefab;
   @property(Prefab) private prefabPopupWarehouse: Prefab;
+  @property(Prefab) private prefabPopupCageBuilding: Prefab;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -274,5 +275,11 @@ export class UICanvas extends Component {
     if (lable) popupOptionComponent.lableString = lable;
     this.node.getChildByName("BotMid").addChild(popupOptionComponent.node);
     this._popupOption.getComponent(PopupComponent).show();
+  }
+
+  showPopupCageBuilding() {
+    let popupCageBuilding = instantiate(this.prefabPopupCageBuilding);
+    this.node.getChildByName("PopupLayer").addChild(popupCageBuilding);
+    popupCageBuilding.getComponent(PopupComponent).show();
   }
 }
