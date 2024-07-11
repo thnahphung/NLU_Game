@@ -11294,6 +11294,7 @@
     "userExp": null,
     "userGold": null,
     "joystick": null,
+    "popupMenuAnimalFood": null,
     "prefabPopupMessage": {
       "__uuid__": "a55639b8-331a-4818-a0e8-bbaea33e698f",
       "__expectedType__": "cc.Prefab"
@@ -11631,6 +11632,14 @@
       },
       {
         "__uuid__": "3ffed5cd-2f0f-42e6-ac72-c8c0781c1b91@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "e6fa8ff8-1a0b-4d1b-9cb9-54cd2a92225c@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "3a627f1d-2d19-45e5-a3a0-3d6fe33a506f@f9941",
         "__expectedType__": "cc.SpriteFrame"
       }
     ],

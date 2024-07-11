@@ -105,6 +105,7 @@ public class ShopService {
                     .setSalePrice(noGrowthItemBean.getSalePrice())
                     .setType(noGrowthItemBean.getType())
                     .setStatus(noGrowthItemBean.getStatus())
+                    .setDescription(noGrowthItemBean.getDescription())
                     .build();
             NoGrowthItemCache.me().add(noGrowthItemProto);
         }
@@ -148,5 +149,6 @@ public class ShopService {
         }
         return shopItemsProto;
     }
+
 
 }

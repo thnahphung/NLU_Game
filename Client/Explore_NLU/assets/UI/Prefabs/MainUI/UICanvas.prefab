@@ -7479,6 +7479,10 @@
       "__uuid__": "02fc23a5-2195-4751-bbee-699ff19cc389",
       "__expectedType__": "cc.Prefab"
     },
+    "prefabPopupCageBuilding": {
+      "__uuid__": "13d3d72f-ca94-4be4-9eb7-b02fc69daff7",
+      "__expectedType__": "cc.Prefab"
+    },
     "_id": ""
   },
   {
