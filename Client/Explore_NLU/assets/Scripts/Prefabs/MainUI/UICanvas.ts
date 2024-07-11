@@ -53,6 +53,9 @@ export class UICanvas extends Component {
   private _buttonBuilding: Node;
   public _popupConnectionNotify: Node;
   private _popupOption: Node;
+  private _popupSetting: Node;
+  private _popupFriend: Node;
+
   //Lock button
   private isLocked: boolean = false;
 
@@ -116,37 +119,12 @@ export class UICanvas extends Component {
     return this.joystick.getComponent(Joystick);
   }
 
-  showPopup(popupName: POPUP) {
+  private onLocked1s() {
     if (this.isLocked) {
       return;
     }
     this.isLocked = true;
-    switch (popupName) {
-      case POPUP.POPUP_SETTING:
-        if (
-          this.node.getChildByName("PopupLayer").getChildByName("PopupSetting")
-        ) {
-          return;
-        }
-        this._popup = instantiate(this.prefabPopupSetting);
-        this.node.getChildByName("PopupLayer").addChild(this._popup);
-        break;
-      case POPUP.POPUP_FRIEND:
-        if (
-          this.node.getChildByName("PopupLayer").getChildByName("PopupFriend")
-        ) {
-          return;
-        }
-        this._popup = instantiate(this.prefabPopupFriend);
-        this.node.getChildByName("PopupLayer").addChild(this._popup);
-        break;
-      default:
-        return;
-    }
-    this._popup?.getComponent(PopupComponent).show();
-    this.scheduleOnce(() => {
-      this.isLocked = false;
-    }, 1);
+    this.scheduleOnce(() => (this.isLocked = false), 1);
   }
 
   showPopupShop(type: proto.ShopItem.TYPE_SHOP): Node {
@@ -213,14 +191,6 @@ export class UICanvas extends Component {
     }
   }
 
-  onTouchSetting(): void {
-    this.showPopup(POPUP.POPUP_SETTING);
-  }
-
-  onTouchFriend(): void {
-    this.showPopup(POPUP.POPUP_FRIEND);
-  }
-
   transitScene(sceneName: string) {
     let transitScreenNode = instantiate(this.prefabTransitionScene);
     transitScreenNode
@@ -229,7 +199,11 @@ export class UICanvas extends Component {
     this.node.getChildByName("PopupLayer").addChild(transitScreenNode);
   }
 
-  showRewardEffect(name: string, quantity: number, reward: REWARD_ICONS) {
+  showRewardEffect(
+    name: string,
+    quantity: number,
+    reward: REWARD_ICONS | string
+  ) {
     let rewardEffect = instantiate(this.prefabRewardEffect);
     rewardEffect.getComponent(RewardEffect).setReward(name, quantity, reward);
     this.node.addChild(rewardEffect);
@@ -253,10 +227,13 @@ export class UICanvas extends Component {
   }
 
   showListRewardEffect(
-    listReward: { name: string; quantity: number; reward: REWARD_ICONS }[]
+    listReward: {
+      name: string;
+      quantity: number;
+      reward: REWARD_ICONS | string;
+    }[]
   ) {
     listReward.forEach((reward, index) => {
-      console.log(reward.name, reward.quantity, reward.reward);
       this.scheduleOnce(() => {
         this.showRewardEffect(reward.name, reward.quantity, reward.reward);
       }, index * 0.5);
@@ -295,7 +272,6 @@ export class UICanvas extends Component {
   }
 
   getMenuSeedFarm(): Node {
-    console.log("UI Canvas: "+this.popupMenuSeedFarm);
     return this.popupMenuSeedFarm;
   }
 
@@ -318,5 +294,25 @@ export class UICanvas extends Component {
     let popupCageBuilding = instantiate(this.prefabPopupCageBuilding);
     this.node.getChildByName("PopupLayer").addChild(popupCageBuilding);
     popupCageBuilding.getComponent(PopupComponent).show();
+  }
+
+  showPopupSetting() {
+    if (this.node.getChildByName("PopupLayer").getChildByName("PopupSetting")) {
+      return;
+    }
+    this.onLocked1s();
+    this._popupSetting = instantiate(this.prefabPopupSetting);
+    this.node.getChildByName("PopupLayer").addChild(this._popupSetting);
+    this._popupSetting.getComponent(PopupComponent).show();
+  }
+
+  showPopupFriend() {
+    if (this.node.getChildByName("PopupLayer").getChildByName("PopupFriend")) {
+      return;
+    }
+    this.onLocked1s();
+    this._popupFriend = instantiate(this.prefabPopupFriend);
+    this.node.getChildByName("PopupLayer").addChild(this._popupFriend);
+    this._popupFriend.getComponent(PopupComponent).show();
   }
 }

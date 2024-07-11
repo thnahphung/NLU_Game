@@ -5,10 +5,7 @@ import vn.edu.nlu.fit.nlugame.layer2.ConstUtils;
 import vn.edu.nlu.fit.nlugame.layer2.DataSenderUtils;
 import vn.edu.nlu.fit.nlugame.layer2.ThreadManage;
 import vn.edu.nlu.fit.nlugame.layer2.dao.*;
-import vn.edu.nlu.fit.nlugame.layer2.dao.bean.ABuilding;
-import vn.edu.nlu.fit.nlugame.layer2.dao.bean.AreaBean;
-import vn.edu.nlu.fit.nlugame.layer2.dao.bean.CommonGrowthItemBean;
-import vn.edu.nlu.fit.nlugame.layer2.dao.bean.PlantingLandBuildingBean;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.*;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.*;
@@ -353,18 +350,9 @@ public class FarmService {
             ThreadManage.me().execute(runnable);
         }
         //Get propertyItems
-        //Get propertyItems from local
-        propertyItems = PropertyBuildingCache.me().getAll(areaId);
-        //Get propertyItems from redis
-        if (propertyItems == null || propertyItems.isEmpty())
-            propertyItems = PropertyBuildingCache.me().getAllPropertyBuildingBeanByAreaId(areaId);
+        propertyItems = BuildingDAO.getAllPropertyBuildingByAreaId(areaId);
         if (propertyItems == null || propertyItems.isEmpty()) {
-            //Get propertyItems from database
-            propertyItems = BuildingDAO.getAllPropertyBuildingByAreaId(areaId);
-            // Save propertyItems to redis and local
-            List<Proto.PropertyBuilding> propertyItemsCache = propertyItems;
-            Runnable runnable = () -> addListPropertyBuildingToCache(propertyItemsCache);
-            ThreadManage.me().execute(runnable);
+            return null;
         }
         for (Proto.PropertyBuilding p : propertyItems) {
             Proto.BuildingBase c = null;
@@ -428,6 +416,7 @@ public class FarmService {
         int userId = SessionCache.me().getUserID(SessionID.of(session));
         Proto.ResHarvest.Builder resHarvest = Proto.ResHarvest.newBuilder();
         Proto.Rewards.Builder rewards = Proto.Rewards.newBuilder();
+        List<Proto.WarehouseItem> warehouseItemList = new ArrayList<>();
         // Update quantity item in warehouse => for type crop in mapQuantityOfTypeCrops
         mapQuantityOfTypeCrops.forEach((key, value) -> {
             // Create reward
@@ -435,6 +424,31 @@ public class FarmService {
             rewardSeedBag.setName(ConstUtils.REWARDS.fromValue(key).getValue());
             rewardSeedBag.setQuantity(rewardExpQuantity.get());
             rewards.addReward(rewardSeedBag);
+
+            // Harvested products
+            NoGrowthItemBean noGrowthItemBean = NoGrowthItemDAO.getNoGrowthItemByName(key.toLowerCase());
+            WarehouseItemBean warehouseItem = WarehouseDAO.getWarehouseItemUser(userId, noGrowthItemBean.getId());
+            if (warehouseItem == null) {
+                WarehouseDAO.insertWarehouseItem(userId, noGrowthItemBean.getId(), value);
+            } else {
+                WarehouseDAO.updateIncreaseQuantityItem(userId, noGrowthItemBean.getId(), value);
+            }
+            WarehouseItemBean warehouseItemBean = WarehouseDAO.getWarehouseItemBean(userId, noGrowthItemBean.getId());
+            Proto.WarehouseItem.Builder warehouseItemProto = Proto.WarehouseItem.newBuilder()
+                    .setUserId(warehouseItemBean.getUserId())
+                    .setQuantity(warehouseItemBean.getQuantity())
+                    .setNoGrowthItemId(warehouseItemBean.getNoGrowthItemId())
+                    .setNoGrowthItem(Proto.NoGrowthItem.newBuilder()
+                            .setId(warehouseItemBean.getNoGrowthItemId())
+                            .setName(noGrowthItemBean.getName())
+                            .setPrice(noGrowthItemBean.getPrice())
+                            .setSalePrice(noGrowthItemBean.getSalePrice())
+                            .setExperienceReceive(noGrowthItemBean.getExperienceReceive())
+                            .setStatus(noGrowthItemBean.getStatus())
+                            .setType(noGrowthItemBean.getType())
+                            .setDescription(noGrowthItemBean.getDescription())
+                    .build());
+            warehouseItemList.add(warehouseItemProto.build());
         });
 
         UserDAO.updateExperiencePoints(userId, rewardExpQuantity.get());
@@ -446,5 +460,9 @@ public class FarmService {
 
         resHarvest.setRewards(rewards);
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResHarvest(resHarvest).build());
+
+        Proto.ResAddProduct resAddProduct = Proto.ResAddProduct.newBuilder().addAllWarehouseItem(warehouseItemList).build();
+        System.out.println(resAddProduct);
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResAddProduct(resAddProduct).build());
     }
 }

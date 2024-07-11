@@ -133,12 +133,18 @@ export const languages = {
     carrot_seed_bag: "Carrot Seed Bag",
     cucumber_seed_bag: "Cucumber Seed Bag",
     pumpkin_seed_bag: "Pumpkin Seed Bag",
+    rice: "Rice",
+    cabbage: "Cabbage",
+    carrot: "Carrot",
+    cucumber: "Cucumber",
+    pumpkin: "Pumpkin",
     // Animal Name
     calf_item: "Calf",
     chick_item: "Chick",
     // Cage
     cage_chicken: "Chicken Coop",
     cage_cow: "Cow Barn",
+    experience_point: "EXP",
   },
 };
 

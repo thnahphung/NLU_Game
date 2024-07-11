@@ -66,6 +66,7 @@ message Packet {
     ResBuyCage resBuyCage = 56;
     ReqLoadCages reqLoadCages = 57;
     ResLoadCages resLoadCages = 58;
+    ResAddProduct resAddProduct = 59;
   }
 }
 
@@ -613,3 +614,9 @@ message ReqLoadCages {
 message ResLoadCages {
   repeated Cage cages = 1;
 }
+
+message ResAddProduct {
+   repeated WarehouseItem warehouseItem = 1;
+}
+
+
