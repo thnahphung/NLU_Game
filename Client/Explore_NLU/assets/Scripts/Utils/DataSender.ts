@@ -92,8 +92,9 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqLoadItemsOfFarm() {
+  public static sendReqLoadItemsOfFarm(areaId: number) {
     let reqLoadBaseItems = new proto.ReqLoadItemsOfFarm();
+    reqLoadBaseItems.areaId = areaId;
     let packet = new proto.Packet();
     packet.reqLoadItemsOfFarm = reqLoadBaseItems;
     WS.send(packet);
@@ -186,9 +187,7 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqSow(
-    sowingInformation: proto.SowingInformation[],
-  ) {
+  public static sendReqSow(sowingInformation: proto.SowingInformation[]) {
     let reqSow = new proto.ReqSow();
     reqSow.sowingInformation = sowingInformation;
     reqSow.gameState = GlobalData.me().getGameState();

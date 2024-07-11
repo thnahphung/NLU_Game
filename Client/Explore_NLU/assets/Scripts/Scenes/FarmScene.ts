@@ -55,11 +55,11 @@ export class FarmScene extends AbsScene {
 
   private loadFarm() {
     // basic items
-    this.loadItemsOfFarm();
+    this.loadItemsOfFarm(GlobalData.me().getArea().areaId);
   }
 
-  private loadItemsOfFarm(): void {
-    DataSender.sendReqLoadItemsOfFarm();
+  private loadItemsOfFarm(areaId: number): void {
+    DataSender.sendReqLoadItemsOfFarm(areaId);
   }
 
   private loadSeedBag(): void {

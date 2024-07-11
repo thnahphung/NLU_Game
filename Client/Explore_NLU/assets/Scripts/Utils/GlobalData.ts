@@ -177,11 +177,11 @@ export default class GlobalData {
   public setArea(area: proto.IArea) {
     this.area = area;
   }
-
+  // Khu vực đang đứng
   public getArea() {
     return this.area;
   }
-
+  // khu vực nhà của mình
   public setMainArea(area: proto.IArea) {
     this.mainArea = area;
   }

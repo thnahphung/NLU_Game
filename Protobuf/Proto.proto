@@ -407,7 +407,7 @@ message ResMoving{
 }
 
 message ReqLoadItemsOfFarm {
-
+  int32 areaId = 1;
 }
 
 message TillLands {

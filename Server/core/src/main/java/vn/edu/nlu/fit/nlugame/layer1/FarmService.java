@@ -153,9 +153,10 @@ public class FarmService {
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResSow(Proto.ResSow.newBuilder().setCrops(crops)).build());
     }
 
-    public void loadItemsOfFarm(Session session) {
+    public void loadItemsOfFarm(Session session, Proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm) {
         // Load building items
-        Proto.BuildingItems farmItems = loadBuildings(session);
+
+        Proto.BuildingItems farmItems = loadBuildings(session, reqLoadItemsOfFarm);
         // Load crops
         Proto.Crops crops = loadCrops(farmItems);
         // Send response
@@ -234,14 +235,15 @@ public class FarmService {
         return crops.build();
     }
 
-    public Proto.BuildingItems loadBuildings(Session session) {
+    public Proto.BuildingItems loadBuildings(Session session, Proto.ReqLoadItemsOfFarm reqLoadItemsOfFarm) {
         // Check user vua tao account
         int userId = SessionCache.me().getUserID(SessionID.of(session));
         //TODO: cache area
         AreaBean areaBean = AreaDAO.loadAreaByUserId(userId);
         int areaId = areaBean.getId();
+        int areaRequest = reqLoadItemsOfFarm.getAreaId();
         Proto.BuildingItems farmItems = null;
-        if (isUserNewAccount(userId)) {
+        if (isUserNewAccount(userId) && areaRequest == areaId) {
             farmItems = getFarmBaseItems();
             Runnable runnable = () -> {
                 saveBaseItemsOfFarm(areaId, getFarmBaseItems());
@@ -249,7 +251,7 @@ public class FarmService {
             };
             ThreadManage.me().execute(runnable);
         } else {
-            farmItems = getUserItemsOfFarm(areaId);
+            farmItems = getUserItemsOfFarm(areaRequest);
         }
         if (farmItems == null) {
             return null;

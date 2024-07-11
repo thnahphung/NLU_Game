@@ -29,7 +29,7 @@ public class FarmHandler implements Subscriber{
                     farmService.handleSow(session, packet.getReqSow());
                     break;
                 case REQLOADITEMSOFFARM:
-                    farmService.loadItemsOfFarm(session);
+                    farmService.loadItemsOfFarm(session, packet.getReqLoadItemsOfFarm());
                     break;
                 case REQHARVEST:
                     farmService.handleHarvest(session, packet.getReqHarvest());
