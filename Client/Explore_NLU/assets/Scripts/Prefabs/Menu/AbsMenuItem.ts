@@ -32,6 +32,9 @@ export abstract class AbsMenuItem extends Component {
     this.cameraCanvas = find("UICanvas/Camera").getComponent(Camera);
     this.cameraInGame = find("Canvas/Camera").getComponent(Camera);
     this.originalPosition = this.node.getPosition();
+    if(this.node.name == "Pickaxe" || this.node.name == "Sickle"){
+      this.originalPosition = new Vec3(0,0,0);
+    }
     this.node.on(Node.EventType.TOUCH_START, this.handleOnTouchStart, this);
     this.node.on(Node.EventType.TOUCH_MOVE, this.handleOnTouchMove, this);
     this.node.on(Node.EventType.TOUCH_END, this.handleOnTouchEnd, this);
@@ -44,25 +47,25 @@ export abstract class AbsMenuItem extends Component {
     }
   }
 
-  private handleOnTouchStart(event: EventTouch) {
+  protected handleOnTouchStart(event: EventTouch) {
     this.moveNode(event.getLocation());
   }
 
-  private handleOnTouchMove(event: EventTouch) {
+  protected handleOnTouchMove(event: EventTouch) {
     this.moveNode(event.getLocation());
   }
 
-  private handleOnTouchEnd(event: EventTouch) {
+  protected handleOnTouchEnd(event: EventTouch) {
     this.collider.node.active = false;
     this.node.setPosition(this.originalPosition);
   }
 
-  private handleOnTouchCancel(event: EventTouch) {
+  protected handleOnTouchCancel(event: EventTouch) {
     this.collider.node.active = false;
     this.node.setPosition(this.originalPosition);
   }
 
-  private moveNode(location: Vec2) {
+  protected moveNode(location: Vec2) {
     this.moveSprite(location);
     this.moveCollider(location);
   }

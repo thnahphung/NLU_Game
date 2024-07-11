@@ -232,11 +232,11 @@ export enum COATING {
 }
 
 export enum SEED_BAG {
-  RICE = "Rice",
-  CABBAGE = "Cabbage",
-  CARROT = "Carrot",
-  CUCUMBER = "Cucumber",
-  PUMPKIN = "Pumpkin",
+  RICE = "rice-seed-bag",
+  CABBAGE = "cabbage-seed-bag",
+  CARROT = "carrot-seed-bag",
+  CUCUMBER = "cucumber-seed-bag",
+  PUMPKIN = "pumpkin-seed-bag",
 }
 
 export enum PLANTING_LAND {

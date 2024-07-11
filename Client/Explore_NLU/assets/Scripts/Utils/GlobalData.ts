@@ -23,9 +23,10 @@ export default class GlobalData {
   private isSown: boolean = false;
   private isHarvest: boolean = false;
   private isHarvested: boolean = false;
-  private tilledLandListProto: proto.ITillLands = null;
-  private sowingInformations: proto.SowingInformations = null;
+  private tilledLands: proto.ITillLand[] = null;
+  private sowingInformations: proto.SowingInformation[] = null;
   private harvestingInformations: proto.HarvestingInformations = null;
+  private seedBag: Component = null;
   /* END AGRI */
 
   private positionCharacter: Vec3 = null;
@@ -243,15 +244,15 @@ export default class GlobalData {
     return this.isHarvested;
   }
 
-  public setTilledLandListProto(tilledLandListProto: proto.ITillLands) {
-    this.tilledLandListProto = tilledLandListProto;
+  public setTilledLands(tilledLands: proto.ITillLand[]) {
+    this.tilledLands = tilledLands;
   }
 
-  public getTilledLandListProto() {
-    return this.tilledLandListProto;
+  public getTilledLands() {
+    return this.tilledLands;
   }
 
-  public setSowingInformations(sowingInformations: proto.SowingInformations) {
+  public setSowingInformations(sowingInformations: proto.SowingInformation[]) {
     this.sowingInformations = sowingInformations;
   }
 
@@ -267,6 +268,14 @@ export default class GlobalData {
 
   public getHarvestingInformations() {
     return this.harvestingInformations;
+  }
+
+  public setSeedBag(seedBag: Component) {
+    this.seedBag = seedBag;
+  }
+
+  public getSeedBag() {
+    return this.seedBag;
   }
   /* END Agricultural engineer */
 

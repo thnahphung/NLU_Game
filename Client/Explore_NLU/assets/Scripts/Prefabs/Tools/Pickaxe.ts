@@ -1,31 +1,17 @@
-import { _decorator, Component, EventMouse, EventTouch, find, Node } from 'cc';
-import AbsTool from './AbsTool';
+import { _decorator, Collider2D, Component, EventMouse, EventTouch, find, IPhysics2DContact, Node } from 'cc';
 import GlobalData from '../../Utils/GlobalData';
-import { CoatingComponent } from '../../Controller/CoatingComponent';
-import { COATING } from '../../Utils/Const';
 import DataSender from '../../Utils/DataSender';
+import { AbsMenuItem } from '../Menu/AbsMenuItem';
+import { UICanvas } from '../MainUI/UICanvas';
 const { ccclass } = _decorator;
 
 @ccclass('Pickaxe')
-export class Pickaxe extends AbsTool {
+export class Pickaxe extends AbsMenuItem {
     start() {
         super.start()
     }
 
-    handleOnMouseDown(event: EventMouse) {
-        super.handleOnMouseDown(event)
-    }
-
-    handleOnMouseMove(event: EventMouse): void {
-        super.handleOnMouseMove(event)
-    }
-
-    handleOnMouseUp(event: EventMouse): void {
-        super.handleOnMouseUp(event)
-    }
-
     handleOnTouchStart(event: EventTouch): void {
-        GlobalData.me().setTillStatus(true);
         super.handleOnTouchStart(event)
     }
 
@@ -34,34 +20,29 @@ export class Pickaxe extends AbsTool {
     }
 
     handleOnTouchEnd(event: EventTouch): void {
-        GlobalData.me().setTillStatus(false);
         super.handleOnTouchEnd(event)
-        if(GlobalData.me().getTilledStatus()){
-            CoatingComponent.me().off(COATING.TILL);
-            CoatingComponent.me().off(COATING.MOVE);
+        if(GlobalData.me().getTilledStatus()) {
+            this.handleTilledLand()
+            UICanvas.me().closePopupMenuToolFarm();
+            GlobalData.me().setTilledStatus(false);
         }
-        GlobalData.me().setTilledStatus(false);
-        this.scheduleOnce(this.handleTilledLand, 0.1);
     }
 
     handleOnTouchCancel(event: EventTouch): void {
-        GlobalData.me().setTillStatus(false);
         super.handleOnTouchCancel(event)
-        if(GlobalData.me().getTilledStatus()){
-            CoatingComponent.me().off(COATING.TILL);
-            CoatingComponent.me().off(COATING.MOVE);
-        }
         GlobalData.me().setTilledStatus(false);
     }
     
     handleTilledLand(): void {
-        if(GlobalData.me().getTilledLandListProto() == null || GlobalData.me().getTilledLandListProto().tillLand == null || GlobalData.me().getTilledLandListProto().tillLand.length == 0){
-            console.log("Null land tilled")
+        if(GlobalData.me().getTilledLands() == null || GlobalData.me().getTilledLands() == null || GlobalData.me().getTilledLands().length == 0){
             return;
         }
-        console.log("Save land tilled")
-        DataSender.sendReqTilledLand(GlobalData.me().getTilledLandListProto());
-        GlobalData.me().setTilledLandListProto(null);
+        DataSender.sendReqTilledLand(GlobalData.me().getTilledLands());
+        GlobalData.me().setTilledLands(null);
+    }
+
+    onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
+
     }
 }
 

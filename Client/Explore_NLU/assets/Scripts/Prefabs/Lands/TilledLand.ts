@@ -4,6 +4,9 @@ import { CoatingComponent } from '../../Controller/CoatingComponent';
 import { COATING, SEED_BAG } from '../../Utils/Const';
 import { Crop } from '../Crop/Crop';
 import { SeedBag } from '../Tools/SeedBag';
+import { UICanvas } from '../MainUI/UICanvas';
+import { SeedInformation } from '../Crop/SeedInformation';
+import { Menu } from '../Menu/Menu';
 const { ccclass, property } = _decorator;
 
 @ccclass('TilledLand')
@@ -34,65 +37,66 @@ export class TilledLand extends Component {
     onLoad() {
         this.listenSow();
     }
+
     onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null ){
-        if(GlobalData.me().getTillStatus()){
-            if(GlobalData.me().getSowStatus()){
-                return;
-            }
+        if(otherCollider.node.name == "Pickaxe"){
             if(this.isTilled) return;
             this.handleTillLand();
             GlobalData.me().setTilledStatus(true);
         }
-
-        if(GlobalData.me().getSowStatus()){
-            if(GlobalData.me().getTilledStatus()){
-                return;
-            }
-            if(!this.node.getComponent(Sprite).enabled || this.isSown) return;
-            let seedBag = otherCollider.node.getComponent(SeedBag);
+        if(otherCollider.node.name.indexOf("seed") != -1){
+            if(this.node.getComponent(Sprite).enabled == false || this.isSown) return;
+            let seedBag = otherCollider.node.getComponent(SeedInformation);
             this.handleSow(seedBag);
         }
     }
 
-    private handleSow(seedBag: SeedBag):void {
-        let seedItem = seedBag.getCommonGrowthItemProto().name;
+    private handleSow(seedBag: SeedInformation):void {
+        const nameSeed = seedBag.getNoGrowItemSeedBag().name;
         //Trừ hạt giống và kiểm tra số lượng hạt giống còn lại
         if(seedBag.getQuantity() == 0) return;
-        seedBag.setQuantityLabel(seedBag.getQuantity() - 1);
+        seedBag.setQuantity(seedBag.getQuantity() - 1);
+        const menuSeedComponent = UICanvas.me().getMenuSeedFarm().getComponent(Menu);
+        menuSeedComponent.getMenuItemNode(nameSeed).getComponent(SeedBag).setAmount(seedBag.getQuantity());
         this.isSown = true;
         GlobalData.me().setSownStatus(true);
         //Hiển thị cây trồng lên đất
-        this.handleDisplayCropsToLand(seedItem); 
+        this.handleDisplayCropsToLand(nameSeed); 
         //Gửi thông tin gieo hạt này
         let sowingInformation = new proto.SowingInformation();
-        sowingInformation.commonGrowthItem = seedBag.getCommonGrowthItemProto();
+        sowingInformation.noGrowthItem = seedBag.getNoGrowItemSeedBag();
         sowingInformation.tillLand = this.tillLandProto;
         this.handleSendSowInformation(sowingInformation);
     }
 
-    private handleSendSowInformation(sowingInformation: proto.ISowingInformation): void {
+    private handleSendSowInformation(sowingInformation: proto.SowingInformation): void {
         if(GlobalData.me().getSowingInformations() == null){
-            let sowingInformations = new proto.SowingInformations();
+            let sowingInformations = new Array<proto.SowingInformation>();
             GlobalData.me().setSowingInformations(sowingInformations);
         }
-        GlobalData.me().getSowingInformations().sowingInformation.push(sowingInformation);
+        GlobalData.me().getSowingInformations().push(sowingInformation);
     }
     public handleDisplayCropsToLand(seed: string): void {
         this.isSown = true;
         switch(seed){
-            case SEED_BAG.RICE:
+            case SEED_BAG.RICE :
+            case "Rice":
                 this.seedNode = instantiate(this.ricePrefab);
                 break;
-            case SEED_BAG.CABBAGE:
+            case SEED_BAG.CABBAGE :
+            case  "Cabbage":
                 this.seedNode = instantiate(this.cabbagePrefab);
             break;
-            case SEED_BAG.CARROT:
+            case SEED_BAG.CARROT :
+            case  "Carrot":
                 this.seedNode = instantiate(this.carrotPrefab);
             break;
-            case SEED_BAG.CUCUMBER:
+            case SEED_BAG.CUCUMBER :
+            case "Cucumber":
                 this.seedNode = instantiate(this.cucumberPrefab);
             break;
-            case SEED_BAG.PUMPKIN:
+            case SEED_BAG.PUMPKIN :
+            case  "Pumpkin":
                 this.seedNode = instantiate(this.pumkinPrefab);
             break;
         }
@@ -111,11 +115,11 @@ export class TilledLand extends Component {
         this.listenSow();
         // Save data
         this.tillLandProto.statusTilled = true;
-        if(GlobalData.me().getTilledLandListProto() == null) {
-            let listTilledLand = new proto.TillLands();
-            GlobalData.me().setTilledLandListProto(listTilledLand)
+        if(GlobalData.me().getTilledLands() == null) {
+            let listTilledLand = new Array<proto.TillLand>();
+            GlobalData.me().setTilledLands(listTilledLand)
         }
-        GlobalData.me().getTilledLandListProto().tillLand.push(this.tillLandProto);
+        GlobalData.me().getTilledLands().push(this.tillLandProto);
     }
 
     public handleTilledLand(): void {
@@ -138,24 +142,7 @@ export class TilledLand extends Component {
     }
 
     private showMenuSeedNode(): void {
-        CoatingComponent.me().offAllCoating();
-        if(GlobalData.me().getSowStatus()){
-            return;
-        }
-        GlobalData.me().setSowStatus(true);
-        var TilledLandPanel = this.node.getParent();
-        var plantingLandPanel = TilledLandPanel.getParent();
-        var menuSeedNode = this.getMenuSeedNode();
-        menuSeedNode.setPosition(plantingLandPanel.getPosition().x, plantingLandPanel.getPosition().y + 145, 0);
-        menuSeedNode.active = true;
-
-        CoatingComponent.me().setCoating(COATING.SEED, this.node, menuSeedNode);
-        CoatingComponent.me().showCoating(COATING.SEED);
-        CoatingComponent.me().autoOff(COATING.SEED);
-    }
-
-    private getMenuSeedNode(): Node {
-        return find('Canvas/PopupGameLayer/MenuSeedPanel');
+        UICanvas.me().showPopupMenuSeedFarm();
     }
 
     private getMidLayer(): Node {

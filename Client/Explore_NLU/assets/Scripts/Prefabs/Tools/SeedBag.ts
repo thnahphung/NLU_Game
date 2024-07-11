@@ -1,18 +1,13 @@
-import { _decorator, Component, EventTouch, Label, Node } from 'cc';
-import AbsTool from './AbsTool';
+import { _decorator, Collider2D, Component, EventTouch, IPhysics2DContact, Label, Node } from 'cc';
 import GlobalData from '../../Utils/GlobalData';
 import { CoatingComponent } from '../../Controller/CoatingComponent';
 import { COATING } from '../../Utils/Const';
 import DataSender from '../../Utils/DataSender';
+import { AbsMenuItem } from '../Menu/AbsMenuItem';
 const { ccclass, property } = _decorator;
 
 @ccclass('SeedBag')
-export class SeedBag extends AbsTool {
-    @property(Label)
-    private quantityLabel: Label = null;
-    private noGrowItemSeedBag: proto.INoGrowthItem = null;
-    public commonGrowthItemProto: proto.ICommonGrowthItem = null;
-    public quantity: number = 0;
+export class SeedBag extends AbsMenuItem {
     start(): void {
         super.start()
     }
@@ -46,45 +41,15 @@ export class SeedBag extends AbsTool {
     }
 
     handleSendRequestSow(): void {
-        if(GlobalData.me().getSowingInformations() == null || GlobalData.me().getSowingInformations().sowingInformation == null || GlobalData.me().getSowingInformations().sowingInformation.length == 0) return;
+        if(GlobalData.me().getSowingInformations() == null || GlobalData.me().getSowingInformations() == null || GlobalData.me().getSowingInformations().length == 0) return;
         //send request sow
-        DataSender.sendReqSow(GlobalData.me().getSowingInformations(), this.noGrowItemSeedBag.id);
-
+        DataSender.sendReqSow(GlobalData.me().getSowingInformations());
         //clear data
         GlobalData.me().setSowingInformations(null);
     }
 
-    setQuantityLabel(quantity: number): void {
-        this.setQuantity(quantity);
-        if(this.quantity > 99) {
-            this.quantityLabel.string = "  99+";
-        } else{
-            this.quantityLabel.string = this.quantity.toString();
-        }
-    }
+    onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
 
-    getQuantity(): number {
-        return this.quantity;
-    }
-
-    setQuantity(quantity: number): void {
-        this.quantity = quantity;
-    }
-
-    setCommonGrowthItemProto(commonGrowthItemProto: proto.ICommonGrowthItem): void {
-        this.commonGrowthItemProto = commonGrowthItemProto;
-    }
-
-    getCommonGrowthItemProto(): proto.ICommonGrowthItem {
-        return this.commonGrowthItemProto;
-    }
-
-    getNoGrowItemSeedBag(): proto.INoGrowthItem {
-        return this.noGrowItemSeedBag;
-    }
-
-    setNoGrowItemSeedBag(noGrowItemSeedBag: proto.INoGrowthItem): void {
-        this.noGrowItemSeedBag = noGrowItemSeedBag;
     }
 }
 

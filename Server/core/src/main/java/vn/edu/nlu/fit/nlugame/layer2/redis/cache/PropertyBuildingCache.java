@@ -2,6 +2,9 @@ package vn.edu.nlu.fit.nlugame.layer2.redis.cache;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
+import com.github.benmanes.caffeine.cache.RemovalCause;
+import com.github.benmanes.caffeine.cache.RemovalListener;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import vn.edu.nlu.fit.nlugame.layer2.CompressUtils;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.RedisClusterHelper;
@@ -12,7 +15,17 @@ import java.util.concurrent.TimeUnit;
 public class PropertyBuildingCache extends RedisClusterHelper implements ICache<Proto.PropertyBuilding>{
     private static final PropertyBuildingCache instance = new PropertyBuildingCache();
     private static final String PROPERTY_BUILDING_KEY = "property_building:";
-    private static final Cache<String, Proto.PropertyBuilding> propertyBuildingMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(5, TimeUnit.MINUTES).build();
+    private static final Cache<String, Proto.PropertyBuilding> propertyBuildingMap = Caffeine.newBuilder()
+            .maximumSize(1000)
+            .expireAfterAccess(5, TimeUnit.MINUTES)
+            .removalListener(new RemovalListener<Object, Object>() {
+                @Override
+                public void onRemoval(@Nullable Object o, @Nullable Object o2, RemovalCause removalCause) {
+                    if(removalCause == RemovalCause.EXPIRED) {
+                        PropertyBuildingCache.me().clear();
+                    }
+                }
+            }).build();
 
     private PropertyBuildingCache() {
     }
