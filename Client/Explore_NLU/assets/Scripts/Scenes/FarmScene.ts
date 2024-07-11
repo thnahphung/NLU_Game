@@ -10,7 +10,7 @@ import {
   UIOpacity,
 } from "cc";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
-import { BUTTON, REWARD_ICONS, SEED_BAG, TYPE_ITEM } from "../Utils/Const";
+import { BUTTON, REWARD_ICONS, TYPE_ITEM } from "../Utils/Const";
 import AbsScene from "../Scenes/AbsScene";
 import DataSender from "../Utils/DataSender";
 import { PlantingLand } from "../Prefabs/Lands/PlantingLand";
@@ -126,7 +126,7 @@ export class FarmScene extends AbsScene {
         typeReward = REWARD_ICONS.EXPERIENCE_POINT;
       } else {
         typeReward = rewardProto.name.toLowerCase();
-        name = t("label_text."+rewardProto.name.toLowerCase());
+        name = t("label_text." + rewardProto.name.toLowerCase());
       }
       rewards.push({
         name: name,
@@ -164,9 +164,7 @@ export class FarmScene extends AbsScene {
         let tillLands = plantingLandComponent.getTilledLandPanel().children;
         tillLands.forEach((tillLand: Node, index: number) => {
           let tillLandProto =
-            resBuyBuilding.building.plantingLandBuilding.tillLands.tillLand[
-              index
-            ];
+            resBuyBuilding.building.plantingLandBuilding.tillLands[index];
           tillLand.getComponent(TilledLand).tillLandProto = tillLandProto;
         });
       }
@@ -252,11 +250,11 @@ export class FarmScene extends AbsScene {
         plantingLandBuilding.base = base;
         plantingLandBuilding.propertyBuilding = propertyBuilding;
 
-        const tillLands = new proto.TillLands();
+        const tillLands = new Array<proto.TillLand>();
         for (let i = 0; i < 30; i++) {
           const tillLand = new proto.TillLand();
           tillLand.statusTilled = false;
-          tillLands.tillLand.push(tillLand);
+          tillLands.push(tillLand);
         }
         plantingLandBuilding.tillLands = tillLands;
         building.plantingLandBuilding = plantingLandBuilding;
@@ -306,7 +304,7 @@ export class FarmScene extends AbsScene {
             let tillLands = component.getTilledLandPanel().children;
             tillLands.forEach((tillLand: Node, index: number) => {
               let tillLandProto =
-                building.plantingLandBuilding.tillLands.tillLand[index];
+                building.plantingLandBuilding.tillLands[index];
               let tillLandComponent = tillLand.getComponent(TilledLand);
               tillLandComponent.tillLandProto = tillLandProto;
               // Kiểm tra xem ô đất đã cày chưa

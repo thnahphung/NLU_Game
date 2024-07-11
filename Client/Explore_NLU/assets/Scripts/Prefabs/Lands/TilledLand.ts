@@ -4,22 +4,15 @@ import {
   Collider2D,
   Component,
   Contact2DType,
-  EventTouch,
   find,
-  ICollisionEvent,
   instantiate,
   IPhysics2DContact,
   Node,
-  PhysicsSystem2D,
   Prefab,
-  RigidBody,
   Sprite,
-  UITransform,
-  Vec3,
 } from "cc";
 import GlobalData from "../../Utils/GlobalData";
-import { CoatingComponent } from "../../Controller/CoatingComponent";
-import { COATING, SEED_BAG } from "../../Utils/Const";
+import { SEED_BAG } from "../../Utils/Const";
 import { Crop } from "../Crop/Crop";
 import { SeedBag } from "../Tools/SeedBag";
 import { UICanvas } from "../MainUI/UICanvas";

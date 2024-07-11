@@ -34,9 +34,6 @@ public class FarmHandler implements Subscriber{
                 case REQHARVEST:
                     farmService.handleHarvest(session, packet.getReqHarvest());
                     break;
-                case REQLOADITEMSOFWAREHOUSE:
-                    farmService.loadItemsOfWarehouse(session);
-                    break;
             }
         });
     }

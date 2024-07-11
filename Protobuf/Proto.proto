@@ -169,7 +169,7 @@ message CommonGrowthItem {
   string type = 11;
 }
 
-message PropertyGrowthItems {
+message PropertyGrowthItem {
   int32 id = 1;
   int32 currentDiseaseId = 2;
   int64 diseaseRate = 3;
@@ -195,10 +195,10 @@ message PropertyCrop {
 
 message Crop {
   CommonGrowthItem CommonGrowthItem = 1;
-  PropertyGrowthItems propertyGrowthItems = 2;
+  PropertyGrowthItem propertyGrowthItem = 2;
   PropertyCrop propertyCrop = 3;
   TillLand tillLand = 4;
-  CommonRisingTimes CommonRisingTimes = 5;
+  repeated CommonRisingTime CommonRisingTimes = 5;
 }
 
 message CommonRisingTime {
@@ -246,7 +246,7 @@ message FarmBuilding {
 message PlantingLandBuilding {
   BuildingBase base = 1;
   PropertyBuilding propertyBuilding = 2;
-  TillLands tillLands = 3;
+  repeated TillLand tillLands = 3;
 }
 
 message Building {
@@ -279,9 +279,9 @@ message Animal {
   int32 status = 5;
   int32 cageId = 6;
   int32 propertyGrowthItemsId = 7;
-  PropertyGrowthItems propertyGrowthItems = 8;
+  PropertyGrowthItem propertyGrowthItem = 8;
   CommonGrowthItem CommonGrowthItem = 10;
-  CommonRisingTimes CommonRisingTimes = 11;
+  CommonRisingTime CommonRisingTime = 11;
 }
 
 message Cage {
@@ -410,10 +410,6 @@ message ReqLoadItemsOfFarm {
   int32 areaId = 1;
 }
 
-message TillLands {
-  repeated TillLand tillLand = 3;
-}
-
 message BuildingItems {
   repeated Building building = 1;
 }
@@ -504,11 +500,6 @@ message Crops {
   repeated Crop crops = 1;
 }
 
-
-message CommonRisingTimes {
-  repeated CommonRisingTime commonRisingTime = 1;
-}
-
 message ReqLoadCommonCrops {}
 
 message ResLoadCommonCrops {
@@ -541,12 +532,12 @@ message ResGameState{
   GameState gameState = 1;
 }
 
-message HarvestingInformations {
+message HarvestingInformation {
   repeated Crop crop = 1;
 }
 
 message ReqHarvest {
-   HarvestingInformations harvestingInformations = 1;
+   HarvestingInformation harvestingInformation = 1;
 }
 
 message ResHarvest {
@@ -559,7 +550,6 @@ message ReqLoadItemsOfWarehouse{
 }
 
 message ResLoadItemsOfWarehouse {
-   WarehouseItems warehouseItems = 1;
    repeated WarehouseItem listWarehouseItem = 2;
 }
 

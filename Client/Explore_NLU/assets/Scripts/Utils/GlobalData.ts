@@ -25,7 +25,7 @@ export default class GlobalData {
   private isHarvested: boolean = false;
   private tilledLands: proto.ITillLand[] = null;
   private sowingInformations: proto.SowingInformation[] = null;
-  private harvestingInformations: proto.HarvestingInformations = null;
+  private harvestingInformation: proto.HarvestingInformation = null;
   private seedBag: Component = null;
   /* END AGRI */
 
@@ -260,14 +260,14 @@ export default class GlobalData {
     return this.sowingInformations;
   }
 
-  public setHarvestingInformations(
-    harvestingInformations: proto.HarvestingInformations
+  public setHarvestingInformation(
+    harvestingInformations: proto.HarvestingInformation
   ) {
-    this.harvestingInformations = harvestingInformations;
+    this.harvestingInformation = harvestingInformations;
   }
 
-  public getHarvestingInformations() {
-    return this.harvestingInformations;
+  public getHarvestingInformation() {
+    return this.harvestingInformation;
   }
 
   public setSeedBag(seedBag: Component) {

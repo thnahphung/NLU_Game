@@ -205,10 +205,10 @@ export default class DataSender {
   }
 
   public static sendReqHarvest(
-    harvestingInformations: proto.HarvestingInformations
+    harvestingInformation: proto.HarvestingInformation
   ) {
     let reqHarvest = new proto.ReqHarvest();
-    reqHarvest.harvestingInformations = harvestingInformations;
+    reqHarvest.harvestingInformation = harvestingInformation;
     let packet = new proto.Packet();
     packet.reqHarvest = reqHarvest;
     WS.send(packet);
