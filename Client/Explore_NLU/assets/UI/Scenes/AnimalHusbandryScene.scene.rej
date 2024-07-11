@@ -1,0 +1,19 @@
+diff a/Client/Explore_NLU/assets/UI/Scenes/AnimalHusbandryScene.scene b/Client/Explore_NLU/assets/UI/Scenes/AnimalHusbandryScene.scene	(rejected hunks)
+@@ -206,7 +206,7 @@
+     "_priority": 0,
+     "_fov": 45,
+     "_fovAxis": 0,
+-    "_orthoHeight": 468.8669724770642,
++    "_orthoHeight": 548.5686274509804,
+     "_near": 0,
+     "_far": 1000,
+     "_color": {
+@@ -15746,7 +15746,7 @@
+         "__id__": 1045
+       }
+     ],
+-    "_active": false,
++    "_active": true,
+     "_components": [
+       {
+         "__id__": 1082
