@@ -134,6 +134,7 @@ export const languages = {
     btn_cancel: "Hủy",
     //Shop Name
     crop_shop: "Cây Trồng",
+    buy_cage: "Mua Chuồng",
     //Crop Name
     rice_seed_bag: "Túi Hạt Lúa",
     cabbage_seed_bag: "Túi Hạt Bắp Cải",
@@ -143,6 +144,9 @@ export const languages = {
     // Animal Name
     calf_item: "Bò Con",
     chick_item: "Gà Con",
+    // Cage
+    cage_chicken: "Chuồng Gà",
+    cage_cow: "Chuồng Bò",
   },
 };
 

@@ -13,7 +13,6 @@ import { PopupComponent } from "../../Controller/PopupComponent";
 import { CageInfo } from "../Cage/Cage";
 import { ItemPopupAnimal } from "./ItemPopup/ItemPopupAnimal";
 import { PopupYesNo } from "./PopupYesNo";
-import { on } from "events";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupCageInformation")

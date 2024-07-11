@@ -27,8 +27,8 @@ public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area> 
 
     @Override
     public boolean add(String key, Proto.Area value) {
-        addArea(key, value);
-        areaMap.put(key, value);
+        addRedis(key, value);
+        addLocal(key, value);
         return true;
     }
 
@@ -87,8 +87,12 @@ public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area> 
     }
 
 
-    public void addArea(String key, Proto.Area area) {
+    public void addRedis(String key, Proto.Area area) {
         getConnection().hset(AREA_KEY.getBytes(), String.valueOf(key).getBytes(), CompressUtils.compress(area));
+    }
+
+    public void addLocal(String key, Proto.Area area) {
+        areaMap.put(key, area);
     }
 
     public Proto.Area getArea(String key) {

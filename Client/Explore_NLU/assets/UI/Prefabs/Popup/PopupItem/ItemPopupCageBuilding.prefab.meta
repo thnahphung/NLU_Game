@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "8a00690b-e48d-46bb-9917-1b3557c3400c",
+  "uuid": "260507db-ecca-4d3b-b183-2ef9984a36fb",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "PlantingLandOld"
+    "syncNodeName": "ItemPopupCageBuilding"
   }
 }
