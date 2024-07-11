@@ -1,27 +1,16 @@
-import { _decorator, Component, EventMouse, EventTouch, Node } from 'cc';
+import { _decorator, Collider2D, Component, EventMouse, EventTouch, IPhysics2DContact, Node } from 'cc';
 import AbsTool from './AbsTool';
 import GlobalData from '../../Utils/GlobalData';
 import { CoatingComponent } from '../../Controller/CoatingComponent';
 import { COATING } from '../../Utils/Const';
 import DataSender from '../../Utils/DataSender';
+import { AbsMenuItem } from '../Menu/AbsMenuItem';
 const { ccclass, property } = _decorator;
 
 @ccclass('Sickle')
-export class Sickle extends AbsTool {
+export class Sickle extends AbsMenuItem {
     start() {
         super.start()
-    }
-
-     handleOnMouseDown(event: EventMouse) {
-        super.handleOnMouseDown(event)
-    }
-
-    handleOnMouseMove(event: EventMouse): void {
-        super.handleOnMouseMove(event)
-    }
-
-    handleOnMouseUp(event: EventMouse): void {
-        super.handleOnMouseUp(event)
     }
 
     handleOnTouchStart(event: EventTouch): void {
@@ -60,6 +49,11 @@ export class Sickle extends AbsTool {
         DataSender.sendReqHarvest(GlobalData.me().getHarvestingInformations());
         //clear data
         GlobalData.me().setHarvestingInformations(null);
+    }
+
+    
+    onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
+        
     }
 }
 

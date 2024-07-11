@@ -93,6 +93,15 @@ public class CommonGrowthItemCache extends RedisClusterHelper implements ICache<
         return result;
     }
 
+    public Proto.CommonGrowthItem getCommonGrowthItemByName(String name) {
+        for (Proto.CommonGrowthItem commonGrowthItem : commonGrowthItemMap.asMap().values()) {
+            if (commonGrowthItem.getName().equals(name)) {
+                return commonGrowthItem;
+            }
+        }
+        return null;
+    }
+
     public void addCommonGrowthItemToRedis(String key, Proto.CommonGrowthItem commonGrowthItem) {
         getConnection().hset(COMMON_GROWTH_ITEM_KEY.getBytes(), String.valueOf(key).getBytes(), CompressUtils.compress(commonGrowthItem));
     }
@@ -119,5 +128,14 @@ public class CommonGrowthItemCache extends RedisClusterHelper implements ICache<
 
     public void removeCommonGrowthItemFromRedis(String key) {
         getConnection().hdel(COMMON_GROWTH_ITEM_KEY.getBytes(), key.getBytes());
+    }
+
+    public Proto.CommonGrowthItem getCommonGrowthItemByNameFromRedis(String name) {
+        for (Proto.CommonGrowthItem commonGrowthItem : getAllCommonGrowthItemFromRedis()) {
+            if (commonGrowthItem.getName().equals(name)) {
+                return commonGrowthItem;
+            }
+        }
+        return null;
     }
 }

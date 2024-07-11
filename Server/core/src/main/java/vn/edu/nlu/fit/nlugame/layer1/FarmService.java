@@ -7,6 +7,7 @@ import vn.edu.nlu.fit.nlugame.layer2.ThreadManage;
 import vn.edu.nlu.fit.nlugame.layer2.dao.*;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.ABuilding;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.AreaBean;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.CommonGrowthItemBean;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.PlantingLandBuildingBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
@@ -70,12 +71,9 @@ public class FarmService {
     }
 
     public void handleTilledLand(Session session, Proto.ReqTilledLand reqTilledLand) {
-        if(reqTilledLand.getTillLands().getTillLandList() == null || reqTilledLand.getTillLands().getTillLandList() == null || reqTilledLand.getTillLands().getTillLandList().size() == 0) return;
-        Proto.TillLands tillLands = reqTilledLand.getTillLands();
+        if(reqTilledLand.getTillLandList() == null || reqTilledLand.getTillLandList() == null || reqTilledLand.getTillLandList().size() == 0) return;
         //TODO: update status tilled land redis
-        tillLands.getTillLandList().forEach(tillLand -> {
-            TillLandDAO.updateTillLand(tillLand.getId(), tillLand.getStatusTilled());
-        });
+        reqTilledLand.getTillLandList().forEach(tillLand -> TillLandDAO.updateTillLand(tillLand.getId(), tillLand.getStatusTilled()));
     }
 
     public void handleLoadCommonCrops(Session session) {
@@ -104,20 +102,55 @@ public class FarmService {
         int currentDate = gameState.getCurrentDate();
         int currentSeason = gameState.getCurrentSeason();
         // Save crop database
-        int quantityCrops = reqSow.getSowingInformations().getSowingInformationList().size();
+        int quantityCrops = reqSow.getSowingInformationList().size();
         Proto.Crops.Builder crops = Proto.Crops.newBuilder();
-        if(quantityCrops > 0) reqSow.getSowingInformations().getSowingInformationList().forEach(sowingInformation -> {
-            Proto.TillLand tillLand = sowingInformation.getTillLand();
-            Proto.CommonGrowthItem commonGrowthItem = sowingInformation.getCommonGrowthItem();
-            Proto.Crop cropProto = CommonGrowthItemDAO.sowSeed(tillLand, commonGrowthItem, currentDate);
-            crops.addCrops(cropProto);
-        });
+        Proto.NoGrowthItem noGrowthItem = reqSow.getSowingInformationList().get(0).getNoGrowthItem();
+        String nameCommonGrowthItem = "";
+        switch (noGrowthItem.getName()) {
+            case "rice-seed-bag":
+                nameCommonGrowthItem = "Rice";
+                break;
+            case "cabbage-seed-bag":
+                nameCommonGrowthItem = "Cabbage";
+                break;
+            case "carrot-seed-bag":
+                nameCommonGrowthItem = "Carrot";
+                break;
+            case "cucumber-seed-bag":
+                nameCommonGrowthItem = "Cucumber";
+                break;
+            case "pumpkin-seed-bag":
+                nameCommonGrowthItem = "Pumpkin";
+                break;
+            default:
+        }
+        Proto.CommonGrowthItem commonGrowthItem = CommonGrowthItemCache.me().getCommonGrowthItemByName(nameCommonGrowthItem);
+        if(commonGrowthItem == null) commonGrowthItem = CommonGrowthItemCache.me().getCommonGrowthItemByNameFromRedis(nameCommonGrowthItem);
+        if (commonGrowthItem == null) {
+            CommonGrowthItemBean commonGrowthItemBean = CommonGrowthItemDAO.getCommonGrowthItemByName(nameCommonGrowthItem);
+            if(commonGrowthItemBean == null) return;
+            commonGrowthItem = Proto.CommonGrowthItem.newBuilder()
+                    .setId(commonGrowthItemBean.getId())
+                    .setName(commonGrowthItemBean.getName())
+                    .setExperienceReceive(commonGrowthItemBean.getExperienceReceive())
+                    .setPrice(commonGrowthItemBean.getPrice())
+                    .setType(commonGrowthItemBean.getType())
+                    .build();
+        }
+        if(quantityCrops > 0) {
+            Proto.CommonGrowthItem finalCommonGrowthItem = commonGrowthItem;
+            reqSow.getSowingInformationList().forEach(sowingInformation -> {
+                Proto.TillLand tillLand = sowingInformation.getTillLand();
+                Proto.Crop cropProto = CommonGrowthItemDAO.sowSeed(tillLand, finalCommonGrowthItem, currentDate);
+                crops.addCrops(cropProto);
+            });
+        }
 
         ThreadManage.me().execute(() -> {
             // Handle after sow
                 // Update quantity item in warehouse
             int userId = SessionCache.me().getUserID(SessionID.of(session));
-            WarehouseDAO.updateReduceQuantityItem(userId, reqSow.getSeedBagId(), quantityCrops);
+            WarehouseDAO.updateReduceQuantityItem(userId, noGrowthItem.getId(), quantityCrops);
         });
 
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResSow(Proto.ResSow.newBuilder().setCrops(crops)).build());

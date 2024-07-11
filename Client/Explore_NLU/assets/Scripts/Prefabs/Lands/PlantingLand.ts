@@ -1,8 +1,7 @@
 import { _decorator, BlockInputEvents, Component, find, Node} from 'cc';
 import { COATING, TYPE_TOOL } from '../../Utils/Const';
 import GlobalData from '../../Utils/GlobalData';
-import { CoatingComponent } from '../../Controller/CoatingComponent';
-import { Menu } from '../Menu/Menu';
+import { UICanvas } from '../MainUI/UICanvas';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlantingLand')
@@ -17,18 +16,7 @@ export class PlantingLand extends Component {
     private handleGetMenuTool(): void {
         if(this.node.getComponent(BlockInputEvents)) return;
         if(GlobalData.me().getMoveBuildingStatus() || GlobalData.me().getSowStatus()) return;
-        const menuToolNode = this.getMenuToolNode();
-        const menuToolComponent = menuToolNode.getComponent(Menu);
-        menuToolNode.setPosition(this.node.getPosition().x, this.node.getPosition().y + 125, 0);
-        menuToolNode.active = true;
-        CoatingComponent.me().setCoating(COATING.TILL, this.node.parent, menuToolNode);
-        CoatingComponent.me().showCoating(COATING.TILL);
-        CoatingComponent.me().autoOff(COATING.TILL);
-        menuToolComponent.showOneItemMenu(TYPE_TOOL.PICKAXE);
-    }
-
-    private getMenuToolNode(): Node {
-        return find('Canvas/PopupGameLayer/MenuToolPanel');
+        UICanvas.me().showPopupMenuToolFarm(TYPE_TOOL.PICKAXE);
     }
 
     public getTilledLandPanel(): Node {

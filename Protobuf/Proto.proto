@@ -488,7 +488,7 @@ message ResAcceptFriend {
 }
 
 message ReqTilledLand {
-  TillLands tillLands = 1;
+  repeated TillLand tillLand = 1;
 }
 
 message Fertilized {
@@ -516,16 +516,11 @@ message ResLoadCommonCrops {
 
 message SowingInformation{
   TillLand tillLand = 1;
-  CommonGrowthItem commonGrowthItem = 2;
-}
-
-message SowingInformations {
-  repeated SowingInformation sowingInformation = 1;
+  NoGrowthItem noGrowthItem = 2;
 }
 
 message ReqSow {
-  SowingInformations sowingInformations = 1;
-  int32 seedBagId = 2;
+  repeated SowingInformation sowingInformation = 1;
   GameState gameState = 3;
 }
 

@@ -20,6 +20,7 @@ import { CoatingComponent } from "../Controller/CoatingComponent";
 import { SeedBag } from "../Prefabs/Tools/SeedBag";
 import { Crop } from "../Prefabs/Crop/Crop";
 import { Menu } from "../Prefabs/Menu/Menu";
+import { SeedInformation } from "../Prefabs/Crop/SeedInformation";
 const { ccclass, property } = _decorator;
 
 @ccclass('FarmScene')
@@ -27,7 +28,8 @@ export class FarmScene extends AbsScene {
 
   @property(Prefab)
   public buildingSystemPrefab: Prefab = null;
-
+  @property(Node)
+  private seedMenuContent: Node = null;
   @property([Prefab])
   private buildingFarmPrefab: Prefab[] = [];
 
@@ -37,7 +39,6 @@ export class FarmScene extends AbsScene {
 
 
   protected onLoad(): void {
-    this.loadCommonCrop();
     // Load information of farm
     this.loadFarm();
   }
@@ -49,6 +50,30 @@ export class FarmScene extends AbsScene {
     UICanvas.me()
       .getButton(BUTTON.UI_BUTTON_BUILDING)
       .on(Node.EventType.TOUCH_END, this.onClickBuilding, this);
+    
+    this.loadSeedBag();
+  }
+
+  private loadFarm() {
+    // basic items
+    this.loadItemsOfFarm();
+  }
+
+  private loadItemsOfFarm(): void {
+    DataSender.sendReqLoadItemsOfFarm();
+  }
+
+  private loadSeedBag(): void {
+    //load seed bag
+    const menuSeedComponent = UICanvas.me().getMenuSeedFarm().getComponent(Menu);
+    GlobalData.me().getWarehouseItems().forEach((warehouseItem) => {
+      const nameSeed = warehouseItem.noGrowthItem.name;
+      if(warehouseItem.noGrowthItem.type == TYPE_ITEM.SEED) {
+          this.seedMenuContent.getChildByName(nameSeed).getComponent(SeedInformation).setNoGrowItemSeedBag(warehouseItem.noGrowthItem);
+          this.seedMenuContent.getChildByName(nameSeed).getComponent(SeedInformation).setQuantity(warehouseItem.quantity);
+          menuSeedComponent.getMenuItemNode(nameSeed).getComponent(SeedBag).setAmount(warehouseItem.quantity);
+        }
+    });
   }
 
   onMessageHandler(packets: proto.IPacketWrapper): void {
@@ -59,14 +84,8 @@ export class FarmScene extends AbsScene {
       if (packet.resBuyBuilding) {
         this.handleResBuyBuilding(packet.resBuyBuilding);
       }
-      if (packet.resLoadCommonCrops) {
-        this.handleResLoadCommonCrop(packet.resLoadCommonCrops);
-      }
       if (packet.resSow) {
         this.handleResSow(packet.resSow);
-      }
-      if(packet.resLoadItemsOfWarehouse){
-        this.handleResLoadItemsOfWarehouse(packet.resLoadItemsOfWarehouse);
       }
       if(packet.resHarvest){
         this.handleResHarvest(packet.resHarvest);
@@ -92,25 +111,24 @@ export class FarmScene extends AbsScene {
     UICanvas.me().showListRewardEffect(rewards);
   }
 
-  handleResLoadItemsOfWarehouse(resLoadItemsOfWarehouse: proto.IResLoadItemsOfWarehouse): void {
-    const menuSeedComponent = this.getMenuSeed().getComponent(Menu);
-    resLoadItemsOfWarehouse.warehouseItems.warehouseItem.forEach((warehouseItem) => {
-      const item = warehouseItem.noGrowthItem;
-      if(!item) return;
-      if(item.type == TYPE_ITEM.SEED) {
-        const seedBag = menuSeedComponent.getMenuItemNode(warehouseItem.noGrowthItem.name);
-        if(!seedBag) return;
-        seedBag.getComponent(SeedBag).setQuantityLabel(warehouseItem.quantity);
-        seedBag.getComponent(SeedBag).setNoGrowItemSeedBag(warehouseItem.noGrowthItem);
-      }
-    });
-  }
+  // handleResLoadItemsOfWarehouse(resLoadItemsOfWarehouse: proto.IResLoadItemsOfWarehouse): void {
+  //   const menuSeedComponent = UICanvas.me().getMenuSeedFarm().getComponent(Menu);
+  //   resLoadItemsOfWarehouse.warehouseItems.warehouseItem.forEach((warehouseItem) => {
+  //     const item = warehouseItem.noGrowthItem;
+  //     if(!item) return;
+  //     if(item.type == TYPE_ITEM.SEED) {
+  //       const seedBag = menuSeedComponent.getMenuItemNode(warehouseItem.noGrowthItem.name);
+  //       if(!seedBag) return;
+  //       seedBag.getComponent(SeedBag).setQuantityLabel(warehouseItem.quantity);
+  //       seedBag.getComponent(SeedBag).setNoGrowItemSeedBag(warehouseItem.noGrowthItem);
+  //     }
+  //   });
+  // }
 
   onLoadItemsOfFarmMsgHandler(resLoadItemsOfFarm: proto.IResLoadItemsOfFarm): void {
     let plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
     plantingLandPanel.removeAllChildren();
     // Load tất cả các item cần hiển thị trên trang trại
-    console.log(resLoadItemsOfFarm);
     resLoadItemsOfFarm.buildingItems.building.forEach((building) => {
       this.buildingProtos.push(building);
     });
@@ -145,33 +163,6 @@ export class FarmScene extends AbsScene {
     });
   }
 
-  handleResLoadCommonCrop(resLoadCommonCrops: proto.IResLoadCommonCrops): void {
-    let menuSeenContent = this.getMenuSeenContent();
-    resLoadCommonCrops.commonGrowthItem.forEach((commonGrowthItem) => {
-      let nameSeed = "";
-      switch (commonGrowthItem.name) {
-        case "Rice":
-          nameSeed = 'rice-seed-bag';
-          break;
-        case "Cabbage":
-          nameSeed = 'cabbage-seed-bag';
-          break;
-        case "Carrot":
-          nameSeed = 'carrot-seed-bag';
-          break;
-        case "Cucumber":
-          nameSeed = 'cucumber-seed-bag';
-          break;
-        case "Pumpkin":
-          nameSeed = 'pumpkin-seed-bag';
-          break;
-        default:
-          return
-      }
-      menuSeenContent.getChildByName(nameSeed).getComponent(SeedBag).commonGrowthItemProto = commonGrowthItem;
-    });
-  }
-
   handleResSow(resSow: proto.IResSow): void {
     let plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
     let plantingLands = plantingLandPanel.children;
@@ -190,28 +181,9 @@ export class FarmScene extends AbsScene {
     });
   }
 
-  private loadFarm() {
-    // basic items
-    this.loadItemsOfFarm();
-    this.loadWarehouseItems();
-  }
-
-  private loadItemsOfFarm(): void {
-    if (GlobalData.me().getIsUserOffline()) {
-      this.loadItemsOfFarmOffline();
-    } else {
-      DataSender.sendReqLoadItemsOfFarm();
-    }
-  }
-
-  private loadWarehouseItems(){
-    DataSender.sendReqLoadItemsOfWarehouse();
-  }
-
   private async loadItemsOfFarmOffline(): Promise<void> {
     resources.load("CSV/farm_base_item", TextAsset, (err, asset) => {
       if (err) {
-        console.error("File không tồn tại hoặc có lỗi khi load file!", err);
         return;
       }
 
@@ -283,7 +255,6 @@ export class FarmScene extends AbsScene {
     const midLayer = find("Canvas/ObjectLayers/MidLayer");
     const plantingLayer = find("Canvas/BackgroundLayers/PlantingPanel");
     if (this.buildingProtos.length === 0 || !this.buildingProtos) {
-      console.error("No building protos");
       return;
     }
     // Hiển thị item lên trang trại
@@ -379,14 +350,6 @@ export class FarmScene extends AbsScene {
 
   private loadCommonCrop(): void {
     DataSender.sendReqLoadCommonCrop();
-  }
-
-  private getMenuSeenContent(){
-    return find('Canvas/PopupGameLayer/MenuSeedPanel/MenuSeedContent');
-  }
-
-  private getMenuSeed(){
-    return find('Canvas/PopupGameLayer/MenuSeedPanel');
   }
 }
 

@@ -171,9 +171,9 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqTilledLand(tilledLands: proto.ITillLands) {
+  public static sendReqTilledLand(tilledLands: proto.ITillLand[]) {
     let reqTilledLand = new proto.ReqTilledLand();
-    reqTilledLand.tillLands = tilledLands;
+    reqTilledLand.tillLand = tilledLands;
     let packet = new proto.Packet();
     packet.reqTilledLand = reqTilledLand;
     WS.send(packet);
@@ -187,12 +187,10 @@ export default class DataSender {
   }
 
   public static sendReqSow(
-    sowingInformations: proto.SowingInformations,
-    seedBagId: number
+    sowingInformation: proto.SowingInformation[],
   ) {
     let reqSow = new proto.ReqSow();
-    reqSow.sowingInformations = sowingInformations;
-    reqSow.seedBagId = seedBagId;
+    reqSow.sowingInformation = sowingInformation;
     reqSow.gameState = GlobalData.me().getGameState();
     let packet = new proto.Packet();
     packet.reqSow = reqSow;
