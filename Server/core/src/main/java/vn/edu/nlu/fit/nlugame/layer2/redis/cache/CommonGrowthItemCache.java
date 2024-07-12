@@ -138,4 +138,5 @@ public class CommonGrowthItemCache extends RedisClusterHelper implements ICache<
         }
         return null;
     }
+
 }

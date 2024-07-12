@@ -281,7 +281,7 @@ message Animal {
   int32 status = 6;
   int32 cageId = 7;
   int32 propertyGrowthItemsId = 8;
-  PropertyGrowthItems propertyGrowthItems = 9;
+  PropertyGrowthItem propertyGrowthItem = 9;
   CommonGrowthItem commonGrowthItem = 10;
   repeated CommonRisingTime commonRisingTimes = 11;
 }

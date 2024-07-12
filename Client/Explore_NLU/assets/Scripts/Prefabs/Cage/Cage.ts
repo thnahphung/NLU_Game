@@ -42,7 +42,7 @@ export class Cage extends Component {
         Util.removeDash(
           animal.commonGrowthItem.name.toLowerCase() +
             "lv" +
-            animal.propertyGrowthItems.stage
+            animal.propertyGrowthItem.stage
         )
       );
       if (!animalPrefab) return;

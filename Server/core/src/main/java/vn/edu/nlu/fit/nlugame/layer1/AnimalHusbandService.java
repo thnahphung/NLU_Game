@@ -71,19 +71,52 @@ public class AnimalHusbandService {
         List<PropertyAnimalBean> propertyAnimalBeans = PropertyAnimalDAO.getByCageId(cageId);
         List<Proto.Animal> animalsProto = new ArrayList<>();
         for (PropertyAnimalBean propertyAnimalBean : propertyAnimalBeans) {
-            Proto.PropertyGrowthItems propertyGrowthItemsBean = CommonGrowthItemDAO.getPropertyGrowthItemById(propertyAnimalBean.getPropertyGrowthItemId());
-            Proto.CommonGrowthItem commonGrowthItemProto = CommonGrowthItemCache.me().get(String.valueOf(propertyGrowthItemsBean.getGrowthItemId()));
+            PropertyGrowthItemBean propertyGrowthItemBean = PropertyGrowthItemDAO.getPropertyGrowthItemById(propertyAnimalBean.getPropertyGrowthItemId());
+            Proto.PropertyGrowthItem propertyGrowthItemProto = Proto.PropertyGrowthItem.newBuilder()
+                    .setId(propertyGrowthItemBean.getId())
+                    .setCurrentDiseaseId(propertyGrowthItemBean.getCurrentDiseaseId())
+                    .setIsDisease(propertyGrowthItemBean.isDisease())
+                    .setStartTimeDisease(propertyGrowthItemBean.getStartTimeDisease())
+                    .setHealth(propertyGrowthItemBean.getHealth())
+                    .setStage(propertyGrowthItemBean.getStage())
+                    .setStartDate(propertyGrowthItemBean.getStartDate())
+                    .setDevelopedDays(propertyGrowthItemBean.getDevelopedDays())
+                    .setGrowthItemId(propertyGrowthItemBean.getGrowthItemId())
+                    .setGrowthItemId(propertyGrowthItemBean.getGrowthItemId())
+                    .build();
+            Proto.CommonGrowthItem commonGrowthItemProto = CommonGrowthItemCache.me().get(String.valueOf(propertyGrowthItemBean.getGrowthItemId()));
             if (commonGrowthItemProto == null) {
-                commonGrowthItemProto = CommonGrowthItemDAO.getCommonGrowthItemById(propertyGrowthItemsBean.getGrowthItemId());
+                CommonGrowthItemBean commonGrowthItemBean = CommonGrowthItemDAO.getCommonGrowthItemById(propertyGrowthItemBean.getGrowthItemId());
+                commonGrowthItemProto = Proto.CommonGrowthItem.newBuilder()
+                        .setId(commonGrowthItemBean.getId())
+                        .setName(commonGrowthItemBean.getName())
+                        .setDescription(commonGrowthItemBean.getDescription())
+                        .setType(commonGrowthItemBean.getType())
+                        .setPrice(commonGrowthItemBean.getPrice())
+                        .setSalePrice(commonGrowthItemBean.getSalePrice())
+                        .setExperienceReceive(commonGrowthItemBean.getExperienceReceive())
+                        .setWeatherRequire(commonGrowthItemBean.getWeatherRequire())
+                        .setSeasonRequire(commonGrowthItemBean.getSeasonRequire())
+                        .setTimePregant(commonGrowthItemBean.getTimePregant())
+                        .setTimeGrowth(commonGrowthItemBean.getTimeGrowth())
+                        .build();
                 CommonGrowthItemCache.me().add(commonGrowthItemProto);
                 CommonGrowthItemCache.me().addCommonGrowthItemToRedis(String.valueOf(commonGrowthItemProto.getId()), commonGrowthItemProto);
             }
 
-            List<Proto.CommonRisingTime> commonRisingTime = CommonRisingTimeCache.me().getCommonRisingTimesByItemId(commonGrowthItemProto.getId());
-            if (commonRisingTime == null || commonRisingTime.isEmpty()) {
-                commonRisingTime = CommonRisingTimeDAO.getCommonRisingTimesByItemId(commonGrowthItemProto.getId());
-                for (Proto.CommonRisingTime risingTime : commonRisingTime) {
-                    CommonRisingTimeCache.me().add(String.valueOf(risingTime.getId()), risingTime);
+            List<Proto.CommonRisingTime> commonRisingTimesProto = CommonRisingTimeCache.me().getCommonRisingTimesByItemId(commonGrowthItemProto.getId());
+            if (commonRisingTimesProto == null || commonRisingTimesProto.isEmpty()) {
+                List<CommonRisingTimeBean> commonRisingTimeBeans = CommonRisingTimeDAO.getCommonRisingTimesByItemId(commonGrowthItemProto.getId());
+                for (CommonRisingTimeBean commonRisingTimeBean : commonRisingTimeBeans) {
+                    Proto.CommonRisingTime commonRisingTimeProto = Proto.CommonRisingTime.newBuilder()
+                            .setId(commonRisingTimeBean.getId())
+                            .setTime(commonRisingTimeBean.getTime())
+                            .setStage(commonRisingTimeBean.getStage())
+                            .setPrice(commonRisingTimeBean.getPrice())
+                            .setGrowthItemId(commonRisingTimeBean.getGrowthItemId())
+                            .build();
+                    CommonRisingTimeCache.me().add(String.valueOf(commonRisingTimeProto.getId()), commonRisingTimeProto);
+                    CommonRisingTimeCache.me().addCommonRisingTimeToRedis(commonRisingTimeProto);
                 }
             }
 
@@ -96,9 +129,9 @@ public class AnimalHusbandService {
                     .setStatus(propertyAnimalBean.getStatus())
                     .setCageId(propertyAnimalBean.getCageId())
                     .setPropertyGrowthItemsId(propertyAnimalBean.getPropertyGrowthItemId())
-                    .setPropertyGrowthItems(propertyGrowthItemsBean)
+                    .setPropertyGrowthItem(propertyGrowthItemProto)
                     .setCommonGrowthItem(commonGrowthItemProto)
-                    .addAllCommonRisingTimes(commonRisingTime)
+                    .addAllCommonRisingTimes(commonRisingTimesProto)
                     .build();
             animalsProto.add(animal);
         }

@@ -81,7 +81,7 @@ export class Animal extends Component {
   }
 
   public checkDisease() {
-    if (this.animal.propertyGrowthItems.isDisease) {
+    if (this.animal.propertyGrowthItem.isDisease) {
       this.animalSprite.color = new Color("#83FFB5");
     }
   }
@@ -147,19 +147,19 @@ export class Animal extends Component {
     return this.animalInformationLayer;
   }
   public isDiseaseAnimal() {
-    return this.animal.propertyGrowthItems.isDisease;
+    return this.animal.propertyGrowthItem.isDisease;
   }
   public getDaysOld() {
     return (
       GlobalData.me().getGameState().currentDate -
-      this.animal.propertyGrowthItems.startDate
+      this.animal.propertyGrowthItem.startDate
     );
   }
   public getAnimalName() {
     return (
       this.animal.commonGrowthItem.name +
       "-lv" +
-      this.animal.propertyGrowthItems.stage
+      this.animal.propertyGrowthItem.stage
     );
   }
 }
