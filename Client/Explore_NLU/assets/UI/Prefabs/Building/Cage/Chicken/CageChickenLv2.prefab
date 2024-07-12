@@ -762,6 +762,9 @@
       "__uuid__": "5be98888-823f-489f-aeb6-e8afe604ef02",
       "__expectedType__": "cc.Prefab"
     },
+    "animalPanel": {
+      "__id__": 12
+    },
     "_id": ""
   },
   {

@@ -147,8 +147,10 @@ export const languages = {
     cucumber: "Dưa Chuột",
     pumpkin: "Bí Ngô",
     // Animal Name
-    calf_item: "Bò Con",
-    chick_item: "Gà Con",
+    chicken_blue_lv1: "Gà con",
+    chicken_blue_lv2: "Gà lớn",
+    cow_yellow_lv1: "Bò con",
+    cow_yellow_lv2: "Bò lớn",
     // Cage
     cage_chicken: "Chuồng Gà",
     cage_cow: "Chuồng Bò",

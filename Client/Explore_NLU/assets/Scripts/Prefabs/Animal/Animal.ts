@@ -14,6 +14,7 @@ import { AnimalAnimation } from "./AnimalAnimation";
 import { AnimalMovement } from "./AnimalMovement";
 import { ANIMAL, ANIMAL_STATE } from "../../Utils/Const";
 import { PopupInformationAnimal } from "../Popup/PopupInformationAnimal";
+import GlobalData from "../../Utils/GlobalData";
 const { ccclass, property } = _decorator;
 
 @ccclass("Animal")
@@ -21,14 +22,12 @@ export class Animal extends Component {
   @property private type: ANIMAL = ANIMAL.COW;
   @property private currentState: ANIMAL_STATE = ANIMAL_STATE.IDLE_RIGHT;
   @property private speed: number = 100;
-  @property private isHungry: boolean = false;
-  @property private isPregnant: boolean = false;
-  @property private isDisease: boolean = false;
-  @property private daysOld: number = 0;
-  @property private animalName: string = "";
+  // @property private isDisease: boolean = false;
 
   @property maxMovingDistanceX: Vec2 = new Vec2(0, 0);
   @property maxMovingDistanceY: Vec2 = new Vec2(0, 0);
+
+  private animal: proto.IAnimal;
 
   private animalAnimation: AnimalAnimation;
   private animalMovement: AnimalMovement;
@@ -44,11 +43,7 @@ export class Animal extends Component {
   private emoteLayer: Node;
   private animalInformationLayer: Node;
 
-  protected onLoad(): void {
-    this.init();
-  }
-
-  init() {
+  protected start(): void {
     this.animalAnimation = this.node.getComponent(AnimalAnimation);
     this.animalMovement = this.node.getComponent(AnimalMovement);
     this.animation = this.node.getComponent(Animation);
@@ -64,6 +59,10 @@ export class Animal extends Component {
 
     this.addPopupToLayer();
     this.createMaxMovingDistance();
+  }
+
+  init(animal: proto.IAnimal) {
+    this.animal = animal;
   }
 
   public createMaxMovingDistance() {
@@ -82,7 +81,7 @@ export class Animal extends Component {
   }
 
   public checkDisease() {
-    if (this.isDisease) {
+    if (this.animal.propertyGrowthItem.isDisease) {
       this.animalSprite.color = new Color("#83FFB5");
     }
   }
@@ -124,10 +123,7 @@ export class Animal extends Component {
     return this.collider;
   }
   public isHungryAnimal() {
-    return this.isHungry;
-  }
-  public setIsHungry(isHungry: boolean) {
-    this.isHungry = isHungry;
+    return this.animal.isHungry > 0;
   }
   public getType() {
     return this.type;
@@ -136,7 +132,7 @@ export class Animal extends Component {
     return this.emoteAnimation;
   }
   public isPregnantAnimal() {
-    return this.isPregnant;
+    return this.animal.isPregnant > 0;
   }
   public getEmoteLayer() {
     return this.emoteLayer;
@@ -151,12 +147,19 @@ export class Animal extends Component {
     return this.animalInformationLayer;
   }
   public isDiseaseAnimal() {
-    return this.isDisease;
+    return this.animal.propertyGrowthItem.isDisease;
   }
   public getDaysOld() {
-    return this.daysOld;
+    return (
+      GlobalData.me().getGameState().currentDate -
+      this.animal.propertyGrowthItem.startDate
+    );
   }
   public getAnimalName() {
-    return this.animalName;
+    return (
+      this.animal.commonGrowthItem.name +
+      "-lv" +
+      this.animal.propertyGrowthItem.stage
+    );
   }
 }

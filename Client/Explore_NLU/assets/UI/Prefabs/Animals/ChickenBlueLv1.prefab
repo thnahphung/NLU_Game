@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "Chicken",
+    "_name": "ChickenBlueLv1",
     "_objFlags": 0,
     "_native": "",
     "data": {
@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Chicken",
+    "_name": "ChickenBlueLv1",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
@@ -169,7 +169,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "88BGkd2dVH7LemNe0MQ+1c"
+    "fileId": "80xXnAw7tOAaIUcjzPy3np"
   },
   {
     "__type__": "cc.BlockInputEvents",
@@ -186,7 +186,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "67IrldruREt7XLCiKiMBxg"
+    "fileId": "30UvrZ1JRJg6t5+SUAjHWy"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -196,7 +196,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "73ru6exaNK0LR5zYngufiJ",
+    "fileId": "f2d7LP4TxPfLz7xp2leLi2",
     "instance": null,
     "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
@@ -279,7 +279,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "afM4y/j5lJErdmYay2bH5+"
+    "fileId": "f5xQJfkjRKkbpUgdoO1QcQ"
   },
   {
     "__type__": "cc.Animation",
@@ -311,7 +311,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "44yBckxeRGqK0o0buCSEM5"
+    "fileId": "9d0KffFDVAvZeia0VZy9L9"
   },
   {
     "__type__": "cc.Sprite",
@@ -352,7 +352,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "81bV4GTRJNkYt8dfKRBWkW"
+    "fileId": "33lTP+CoxOuIiCmClISNZn"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -362,7 +362,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "39/rSuUJdEoKj9oIpsgBjP",
+    "fileId": "db2yTTCPxGXaV7SHzxIOO/",
     "instance": null,
     "targetOverrides": null,
     "nestedPrefabInstanceRoots": null
@@ -517,7 +517,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "0a285LyalM5L22STDeHwpS"
+    "fileId": "90fZNVCFVPwbBwsDXtikyy"
   },
   {
     "__type__": "cc.Sprite",
@@ -541,7 +541,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "6963af57-9523-4328-8853-6cba9f953e9a@f9941",
+      "__uuid__": "bfa73235-a491-4b68-a368-cea69dc96cd2@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -561,7 +561,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "c7I0O7B8ZNjpqJlhZlzbpx"
+    "fileId": "58awXuQVNP96MqXo3/7On6"
   },
   {
     "__type__": "943aa2MKxdATbNlagHdKHrT",
@@ -577,10 +577,6 @@
     "type": "Chicken",
     "currentState": "idle-right",
     "speed": 100,
-    "isHungry": true,
-    "isPregnant": false,
-    "isDisease": false,
-    "daysOld": 0,
     "maxMovingDistanceX": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -595,7 +591,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "14Tf7GU9lKeaVoKmJJXnih"
+    "fileId": "abxNTiW89KZqGWbQvk8xtE"
   },
   {
     "__type__": "6b6aa0KNExC55YQXOJKRscT",
@@ -613,7 +609,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "822W/W0l9JwJVG+xd4trfk"
+    "fileId": "21LTbzlDhJnr6t6i/1M0S6"
   },
   {
     "__type__": "b201bQ4M15IRpylb7dX1T8x",
@@ -640,7 +636,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "b72OqOVnVBm4J6gnmi+cK+"
+    "fileId": "dfZUt9JN9Kc46JhaRdlPfs"
   },
   {
     "__type__": "d911cGyhzFHgbxnLOTekAYf",
@@ -658,7 +654,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "eeamlEqyxFHJR4nlHM9Hru"
+    "fileId": "d12coUz4lM0KG7za0xhi3N"
   },
   {
     "__type__": "cc.Animation",
@@ -674,39 +670,39 @@
     "playOnLoad": true,
     "_clips": [
       {
-        "__uuid__": "a41cca52-54f1-4040-ae6a-9966e68cc756",
+        "__uuid__": "030abc77-7cba-414c-9873-71e7c17fcafc",
         "__expectedType__": "cc.AnimationClip"
       },
       {
-        "__uuid__": "4be31cdf-d052-4236-ace1-e7f4e67753c5",
+        "__uuid__": "e5864528-e119-4f55-b4d6-c6d0bc0ea9bf",
         "__expectedType__": "cc.AnimationClip"
       },
       {
-        "__uuid__": "3e376f67-f21a-4edb-b216-fded5b3a3789",
+        "__uuid__": "c1d70864-e1ee-4387-ac4a-7e39f40c3137",
         "__expectedType__": "cc.AnimationClip"
       },
       {
-        "__uuid__": "064beb08-2bdf-4a4b-995f-8244bbce5afd",
+        "__uuid__": "7c0d8152-853c-4c3f-b47b-83e7d4a94efb",
         "__expectedType__": "cc.AnimationClip"
       },
       {
-        "__uuid__": "fcffdfc9-32a5-48f6-9763-abfde84e0eda",
+        "__uuid__": "ec4e5f66-b565-4b26-a33f-480c66e01c1f",
         "__expectedType__": "cc.AnimationClip"
       },
       {
-        "__uuid__": "1eab8e94-4018-4043-8e39-602515d7fd83",
+        "__uuid__": "f802cddf-0c5f-4cde-a9f9-fe89fc46746c",
         "__expectedType__": "cc.AnimationClip"
       }
     ],
     "_defaultClip": {
-      "__uuid__": "a41cca52-54f1-4040-ae6a-9966e68cc756",
+      "__uuid__": "030abc77-7cba-414c-9873-71e7c17fcafc",
       "__expectedType__": "cc.AnimationClip"
     },
     "_id": ""
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "bfkLDOw4FJL5CQ5XCoxK/h"
+    "fileId": "72JVogyIxGyYr6FFzS0OSf"
   },
   {
     "__type__": "cc.CircleCollider2D",
@@ -735,7 +731,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "65zPlApYJPj7DpIZgvXxhI"
+    "fileId": "a4SocMxmFP5a7+Ah+8dLfm"
   },
   {
     "__type__": "cc.RigidBody2D",
@@ -768,7 +764,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "14EG8pE3tLqZG/wr0lWqjc"
+    "fileId": "e42A6fbzBMtY3EfzXVDT9v"
   },
   {
     "__type__": "dd06aviyfhDpZjPHxLJD/p+",
@@ -785,7 +781,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "f5M31Or0RAy6bTN4SJQM5T"
+    "fileId": "3cxyaY5NVPtp79nc3irUEc"
   },
   {
     "__type__": "18f41lvIGlLYq/SJ3ESBRcH",
@@ -802,7 +798,7 @@
   },
   {
     "__type__": "cc.CompPrefabInfo",
-    "fileId": "36Lu2OatJGuI6KHelLHyAv"
+    "fileId": "52SzTL3WZPDYDSt8RN9gLH"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -812,8 +808,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "53qtbKkNVJQI2nSphKbY8W",
-    "instance": null,
+    "fileId": "95iMlDd51NqZm+8n2VmdkS",
     "targetOverrides": null,
     "nestedPrefabInstanceRoots": [
       {

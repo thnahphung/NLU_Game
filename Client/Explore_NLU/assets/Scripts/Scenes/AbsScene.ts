@@ -7,7 +7,7 @@ const { ccclass, property } = _decorator;
 
 @ccclass("AbsScene")
 export default class AbsScene extends Component {
-  @property(Node) private playerLayer: Node = null;
+  @property(Node) protected playerLayer: Node = null;
 
   protected onLoad(): void {
     if (sys.isMobile === true || sys.isNative === true) {

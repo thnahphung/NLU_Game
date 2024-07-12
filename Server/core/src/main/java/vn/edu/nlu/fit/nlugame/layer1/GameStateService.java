@@ -4,6 +4,7 @@ import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer2.DataSenderUtils;
 import vn.edu.nlu.fit.nlugame.layer2.dao.CommonGrowthItemDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.GameStateDAO;
+import vn.edu.nlu.fit.nlugame.layer2.dao.PropertyGrowthItemDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.GameStateBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.UserCache;
@@ -54,7 +55,7 @@ public class GameStateService {
             GameStateBean newGameStateBean = createNewDate(lastGameState);
             code = GameStateDAO.insertGameState(newGameStateBean);
             // Update developed days of growth items
-            CommonGrowthItemDAO.updateIncreateDevelopedDays();
+            PropertyGrowthItemDAO.updateIncreateDevelopedDays();
         }
         if (code == 200) {
             GameStateBean newGameStateBean = GameStateDAO.getLastGameState();

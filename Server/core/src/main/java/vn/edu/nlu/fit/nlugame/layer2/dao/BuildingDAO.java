@@ -14,7 +14,7 @@ public class BuildingDAO extends BaseDAO {
     private static final String TABLE_COMMON_NAME = "common_buildings";
     private static final String TABLE_PROPERTY_NAME = "property_buildings";
 
-    public static PropertyBuildingBean getById(int id) {
+    public static PropertyBuildingBean getPropertyBuildingById(int id) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
@@ -23,6 +23,17 @@ public class BuildingDAO extends BaseDAO {
                 .bind("id", id)
                 .mapToBean(PropertyBuildingBean.class)
                 .findFirst().orElse(null));
+    }
+
+    public static List<PropertyBuildingBean> getPropertyBuildingByAreaId(int areaId) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        return jdbi.withHandle(handle -> handle.createQuery("select id, position_x, position_y, upgrade_id, current_level, area_id, common_building_id from " + TABLE_PROPERTY_NAME + " where area_id = :areaId")
+                .bind("areaId", areaId)
+                .mapToBean(PropertyBuildingBean.class)
+                .list());
     }
 
     public static void insertBuildingInArea(int areaId, ABuilding building) {
@@ -115,7 +126,7 @@ public class BuildingDAO extends BaseDAO {
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
         }
-        return jdbi.withHandle(handle -> handle.createQuery("select id, name, type, max_level, description from from " + TABLE_COMMON_NAME + " where id = :id")
+        return jdbi.withHandle(handle -> handle.createQuery("select id, name, type, max_level, description from " + TABLE_COMMON_NAME + " where id = :id")
                 .bind("id", id)
                 .map((rs, ctx) -> new CommonBuildingBean(rs.getInt("id"), rs.getString("name"), rs.getString("description"), ConstUtils.TYPE_ITEM.valueOf(rs.getString("type")), rs.getInt("max_level")))
                 .findFirst().orElse(null));
