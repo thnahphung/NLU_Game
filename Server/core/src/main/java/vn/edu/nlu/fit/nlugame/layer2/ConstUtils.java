@@ -9,7 +9,9 @@ public class ConstUtils {
         HOUSE("HOUSE"),
         PLANTING_LAND("PLANTING_LAND"),
         CROP("CROP"),
-        SEED("SEED");
+        SEED("SEED"),
+        CAGE("CAGE");
+
         private final String value;
 
         TYPE_ITEM(String value) {

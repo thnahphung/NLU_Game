@@ -326,5 +326,14 @@ export default class GlobalData {
     this.pickCageItem = pickCageItem;
   }
 
+  private cages: proto.ICage[] = null;
+  public getCages() {
+    return this.cages;
+  }
+
+  public setCages(cages: proto.ICage[]) {
+    this.cages = cages;
+  }
+
   /* END ANIMAL HUSBAND */
 }

@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "6b8ef438-e5bf-4ff8-964f-70551244913f",
+  "uuid": "2c9624ef-c51c-46d0-a79b-40a4ab311aec",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "Cow"
+    "syncNodeName": "CowYellowLv1"
   }
 }

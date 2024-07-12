@@ -7840,7 +7840,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 468.8669724770642,
+    "_orthoHeight": 320,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -11145,7 +11145,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 468.8669724770642,
+    "_orthoHeight": 320,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -11295,6 +11295,8 @@
     "userGold": null,
     "joystick": null,
     "popupMenuAnimalFood": null,
+    "popupMenuToolFarm": null,
+    "popupMenuSeedFarm": null,
     "prefabPopupMessage": {
       "__uuid__": "a55639b8-331a-4818-a0e8-bbaea33e698f",
       "__expectedType__": "cc.Prefab"
@@ -11643,7 +11645,24 @@
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
-    "prefabs": [],
+    "animalPrefabs": [
+      {
+        "__uuid__": "2c9624ef-c51c-46d0-a79b-40a4ab311aec",
+        "__expectedType__": "cc.Prefab"
+      },
+      {
+        "__uuid__": "6b8ef438-e5bf-4ff8-964f-70551244913f",
+        "__expectedType__": "cc.Prefab"
+      },
+      {
+        "__uuid__": "eac120cc-7153-43ea-99c5-fe1ff9d6e64c",
+        "__expectedType__": "cc.Prefab"
+      },
+      {
+        "__uuid__": "8a9e2b05-cb17-48ef-8e28-2f2504ee18d6",
+        "__expectedType__": "cc.Prefab"
+      }
+    ],
     "_id": "29/jCnPo9PzJTP8Baex+OK"
   },
   {

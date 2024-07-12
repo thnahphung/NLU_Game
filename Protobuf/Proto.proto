@@ -226,7 +226,15 @@ message PropertyBuilding {
   int32 areaId = 5;
   int32 commonBuildingId = 6;
   int32 currentLevel = 7;
-  CommonBuilding commonBuilding = 8;
+}
+
+message Upgrade{
+  int32 id = 1;
+  string name =2;
+  int32 level = 3;
+  int32 capacity = 4;
+  int32 price = 5;
+  int32 buildingId = 6;
 }
 
 message TillLand {
@@ -262,30 +270,26 @@ message Friend {
   Character character = 4;
 }
 
-message CommonBuilding {
-  int32 id = 1;
-  string name = 2;
-  string type = 5;
-  int32 maxLevel = 6;
-  string description = 7;
-}
 // Animal Husbandry start =====================================
 message Animal {
   int32 id = 1;
   int32 isPregnant = 2;
   int32 startTimePregnant = 3;
   int32 endTimePregnant = 4;
-  int32 status = 5;
-  int32 cageId = 6;
-  int32 propertyGrowthItemsId = 7;
-  PropertyGrowthItems propertyGrowthItems = 8;
-  CommonGrowthItem CommonGrowthItem = 10;
-  CommonRisingTimes CommonRisingTimes = 11;
+  int32 isHungry =5;
+  int32 status = 6;
+  int32 cageId = 7;
+  int32 propertyGrowthItemsId = 8;
+  PropertyGrowthItems propertyGrowthItems = 9;
+  CommonGrowthItem commonGrowthItem = 10;
+  repeated CommonRisingTime commonRisingTimes = 11;
 }
 
 message Cage {
-  PropertyBuilding propertyBuilding = 10;
-  repeated Animal animals = 1;
+  BuildingBase buildingBase = 1;
+  PropertyBuilding propertyBuilding = 2;
+  Upgrade upgrade = 3;
+  repeated Animal animals = 4;
 }
 
 // Animal Husbandry end =======================================

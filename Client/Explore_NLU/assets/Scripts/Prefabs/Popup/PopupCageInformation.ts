@@ -10,9 +10,6 @@ import {
   SpriteFrame,
 } from "cc";
 import { PopupComponent } from "../../Controller/PopupComponent";
-import { CageInfo } from "../Cage/Cage";
-import { ItemPopupAnimal } from "./ItemPopup/ItemPopupAnimal";
-import { PopupYesNo } from "./PopupYesNo";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupCageInformation")
@@ -26,9 +23,9 @@ export class PopupCageInformation extends Component {
 
   private listItemAnimal: Node[] = [];
 
-  private cageInfo: CageInfo;
+  private cageInfo: proto.ICage;
   start() {
-    this.setListAnimal();
+    // this.setListAnimal();
   }
 
   onClickExit() {
@@ -39,29 +36,31 @@ export class PopupCageInformation extends Component {
     }, 300);
   }
 
-  public setInformationCage(cageInfo: CageInfo) {
+  public setInformationCage(cageInfo: proto.ICage) {
     this.cageInfo = cageInfo;
     this.capacityLabel.string =
-      cageInfo.animals.length.toString() + "/" + cageInfo.capacity.toString();
-    this.levelLabel.string = cageInfo.level.toString();
+      cageInfo.animals.length.toString() +
+      "/" +
+      cageInfo.upgrade.capacity.toString();
+    this.levelLabel.string = cageInfo.upgrade.level.toString();
   }
 
-  public setListAnimal() {
-    this.animalsPanel.content.removeAllChildren();
-    this.cageInfo.animals.forEach((animal) => {
-      let item = instantiate(this.itemPopupAnimal);
-      item
-        .getComponent(ItemPopupAnimal)
-        .setAnimalData(animal, this.getAnimalImage(animal.type, false));
-      item.on(
-        Button.EventType.CLICK,
-        (button: Button) => this.onClickItem(button),
-        this
-      );
-      this.animalsPanel.content.addChild(item);
-      this.listItemAnimal.push(item);
-    });
-  }
+  // public setListAnimal() {
+  //   this.animalsPanel.content.removeAllChildren();
+  //   this.cageInfo.animals.forEach((animal) => {
+  //     let item = instantiate(this.itemPopupAnimal);
+  //     item
+  //       .getComponent(ItemPopupAnimal)
+  //       .setAnimalData(animal, this.getAnimalImage(animal.type, false));
+  //     item.on(
+  //       Button.EventType.CLICK,
+  //       (button: Button) => this.onClickItem(button),
+  //       this
+  //     );
+  //     this.animalsPanel.content.addChild(item);
+  //     this.listItemAnimal.push(item);
+  //   });
+  // }
 
   public getCageInfo() {
     return this.cageInfo;
@@ -89,22 +88,22 @@ export class PopupCageInformation extends Component {
   public onClickNoSell() {
     console.log("No");
   }
-  public onClickItem(button: Button) {
-    const popupYesNoNode = instantiate(this.popupYesNo);
-    popupYesNoNode
-      .getComponent(PopupYesNo)
-      .setContent(
-        "Do you want to sell this " +
-          button.getComponent(ItemPopupAnimal).getAnimalData().name +
-          "?"
-      );
-    popupYesNoNode
-      .getComponent(PopupYesNo)
-      .onClickYes(() =>
-        this.onClickSell(button.getComponent(ItemPopupAnimal).getAnimalData())
-      );
-    popupYesNoNode.getComponent(PopupYesNo).onClickNo(this.onClickNoSell);
-    popupYesNoNode.parent = this.node.parent;
-    popupYesNoNode.getComponent(PopupComponent).show();
-  }
+  // public onClickItem(button: Button) {
+  //   const popupYesNoNode = instantiate(this.popupYesNo);
+  //   popupYesNoNode
+  //     .getComponent(PopupYesNo)
+  //     .setContent(
+  //       "Do you want to sell this " +
+  //         button.getComponent(ItemPopupAnimal).getAnimalData().name +
+  //         "?"
+  //     );
+  //   popupYesNoNode
+  //     .getComponent(PopupYesNo)
+  //     .onClickYes(() =>
+  //       this.onClickSell(button.getComponent(ItemPopupAnimal).getAnimalData())
+  //     );
+  //   popupYesNoNode.getComponent(PopupYesNo).onClickNo(this.onClickNoSell);
+  //   popupYesNoNode.parent = this.node.parent;
+  //   popupYesNoNode.getComponent(PopupComponent).show();
+  // }
 }

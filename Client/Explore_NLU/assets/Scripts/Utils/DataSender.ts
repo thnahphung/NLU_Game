@@ -186,9 +186,7 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqSow(
-    sowingInformation: proto.SowingInformation[],
-  ) {
+  public static sendReqSow(sowingInformation: proto.SowingInformation[]) {
     let reqSow = new proto.ReqSow();
     reqSow.sowingInformation = sowingInformation;
     reqSow.gameState = GlobalData.me().getGameState();
@@ -246,5 +244,14 @@ export default class DataSender {
     let packet = new proto.Packet();
     packet.reqBuyCage = reqBuyCage;
     WS.send(packet);
+  }
+
+  public static sendReqLoadCages(areaId: number) {
+    let reqLoadCages = new proto.ReqLoadCages();
+    reqLoadCages.areaId = areaId;
+    let packet = new proto.Packet();
+    packet.reqLoadCages = reqLoadCages;
+    WS.send(packet);
+    console.log("Send Req Load Cages", packet);
   }
 }

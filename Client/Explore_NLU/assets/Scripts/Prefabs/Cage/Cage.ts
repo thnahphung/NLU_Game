@@ -1,10 +1,13 @@
 import {
   _decorator,
   Button,
+  Collider2D,
   Component,
+  EPhysics2DDrawFlags,
   find,
   instantiate,
   Node,
+  PhysicsSystem2D,
   Prefab,
 } from "cc";
 import { CoatingComponent } from "../../Controller/CoatingComponent";
@@ -12,87 +15,41 @@ import { COATING } from "../../Utils/Const";
 import { PopupComponent } from "../../Controller/PopupComponent";
 import { PopupCageInformation } from "../Popup/PopupCageInformation";
 import { UICanvas } from "../MainUI/UICanvas";
+import { ResourceManager } from "../../Manager/ResourceManager";
+import { Animal } from "../Animal/Animal";
+import { Util } from "../../Utils/Util";
 const { ccclass, property } = _decorator;
 
-export class CageInfo {
-  public capacity: number;
-  public level: number;
-  public maxLevel: number;
-  public animals: Array<any>;
-  constructor(
-    capacity: number,
-    level: number,
-    maxLevel: number,
-    animals: Array<string>
-  ) {
-    this.capacity = capacity;
-    this.level = level;
-    this.maxLevel = maxLevel;
-    this.animals = animals;
-  }
-}
 @ccclass("Cage")
 export class Cage extends Component {
   @property(Prefab) private popupCageInformation: Prefab;
+  @property(Node) private animalPanel: Node;
   private menuNode: Node;
-  private cageInfo: CageInfo = {
-    capacity: 6,
-    level: 2,
-    maxLevel: 5,
-    animals: [
-      {
-        id: 5,
-        name: "Gà vàng",
-        type: "chicken",
-        age: 1,
-        isDisease: false,
-        isPregnant: false,
-      },
-      {
-        id: 6,
-        name: "Gà vàng",
-        type: "chicken",
-        age: 1,
-        isDisease: false,
-        isPregnant: true,
-      },
-      {
-        id: 7,
-        name: "Gà vàng",
-        type: "chicken",
-        age: 1,
-        isDisease: false,
-        isPregnant: false,
-      },
-      {
-        id: 8,
-        name: "Gà vàng",
-        type: "chicken",
-        age: 1,
-        isDisease: false,
-        isPregnant: false,
-      },
-      {
-        id: 9,
-        name: "Gà vàng",
-        type: "chicken",
-        age: 1,
-        isDisease: false,
-        isPregnant: false,
-      },
-      {
-        id: 10,
-        name: "Gà vàng",
-        type: "chicken",
-        age: 1,
-        isDisease: false,
-        isPregnant: false,
-      },
-    ],
-  };
+  private cage: proto.ICage;
   start() {
     this.menuNode = this.getCageInformation();
     this.node.on(Node.EventType.TOUCH_START, this.handleGetMenuFood, this);
+    this.loadAnimals();
+  }
+
+  init(cage: proto.ICage) {
+    this.cage = cage;
+  }
+
+  loadAnimals() {
+    this.cage.animals.forEach((animal) => {
+      const animalPrefab: Prefab = ResourceManager.me().getAnimalPrefab(
+        Util.removeDash(
+          animal.commonGrowthItem.name.toLowerCase() +
+            "lv" +
+            animal.propertyGrowthItems.stage
+        )
+      );
+      if (!animalPrefab) return;
+      const animalNode = instantiate(animalPrefab);
+      animalNode.getComponent(Animal).init(animal);
+      this.animalPanel.addChild(animalNode);
+    });
   }
 
   private handleGetMenuFood(): void {
@@ -136,7 +93,7 @@ export class Cage extends Component {
     popupCageInformation = instantiate(this.popupCageInformation);
     popupCageInformation
       .getComponent(PopupCageInformation)
-      .setInformationCage(this.cageInfo);
+      .setInformationCage(this.cage);
     popupCageInformation.parent = find("UICanvas/PopupLayer");
     popupCageInformation.getComponent(PopupComponent).show();
 

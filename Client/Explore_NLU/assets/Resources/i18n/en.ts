@@ -134,8 +134,10 @@ export const languages = {
     cucumber_seed_bag: "Cucumber Seed Bag",
     pumpkin_seed_bag: "Pumpkin Seed Bag",
     // Animal Name
-    calf_item: "Calf",
-    chick_item: "Chick",
+    chicken_blue_lv1: "Chick",
+    chicken_blue_lv2: "Chicken",
+    cow_yellow_lv1: "Calf",
+    cow_yellow_lv2: "Cow",
     // Cage
     cage_chicken: "Chicken Coop",
     cage_cow: "Cow Barn",
