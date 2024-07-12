@@ -5,7 +5,7 @@ const { ccclass, property } = _decorator;
 export class ResourceManager extends Component {
   protected static _instance: ResourceManager;
   @property([SpriteFrame]) private spriteFrames: SpriteFrame[] = [];
-  @property([Prefab]) private prefabs: Prefab[] = [];
+  @property([Prefab]) private animalPrefabs: Prefab[] = [];
 
   protected onLoad(): void {
     if (ResourceManager._instance != null) {
@@ -25,6 +25,15 @@ export class ResourceManager extends Component {
     for (let spriteFrame of this.spriteFrames) {
       if (spriteFrame.name == name) {
         return spriteFrame;
+      }
+    }
+    return null;
+  }
+
+  getAnimalPrefab(name: string): Prefab {
+    for (let prefab of this.animalPrefabs) {
+      if (prefab.name.toLowerCase() == name) {
+        return prefab;
       }
     }
     return null;

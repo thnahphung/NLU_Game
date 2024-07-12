@@ -1,6 +1,7 @@
 import { _decorator, Button, Component, Label, Node, RichText } from "cc";
 import { PopupComponent } from "../../Controller/PopupComponent";
 import { t } from "../../../../extensions/i18n/assets/LanguageData";
+import { Util } from "../../Utils/Util";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupInformationAnimal")
@@ -23,7 +24,10 @@ export class PopupInformationAnimal extends Component {
     disease: boolean,
     pregnant: boolean
   ) {
-    this.nameLabel.string = name;
+    this.nameLabel.string = t(
+      "label_text." + Util.convertDashToUnderscore(name)
+    );
+    console.log("label_text." + Util.convertDashToUnderscore(name));
     this.ageLabel.string =
       age.toString() + " " + t("label_text.animal_age_day");
     this.healthLabel.string = disease

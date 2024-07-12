@@ -246,4 +246,13 @@ export default class DataSender {
     packet.reqBuyCage = reqBuyCage;
     WS.send(packet);
   }
+
+  public static sendReqLoadCages(areaId: number) {
+    let reqLoadCages = new proto.ReqLoadCages();
+    reqLoadCages.areaId = areaId;
+    let packet = new proto.Packet();
+    packet.reqLoadCages = reqLoadCages;
+    WS.send(packet);
+    console.log("Send Req Load Cages", packet);
+  }
 }

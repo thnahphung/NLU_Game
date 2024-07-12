@@ -8,6 +8,7 @@ import {
   SpriteFrame,
 } from "cc";
 import { t } from "../../../../../extensions/i18n/assets/LanguageData";
+import GlobalData from "../../../Utils/GlobalData";
 const { ccclass, property } = _decorator;
 
 @ccclass("ItemPopupAnimal")
@@ -18,19 +19,25 @@ export class ItemPopupAnimal extends Component {
   @property(RichText) private animalDisease: RichText = null;
   @property(Label) private animalPregnant: Label = null;
   @property(SpriteFrame) private listImageAnimal: SpriteFrame[] = [];
-  private animalData: any = null;
+  // private animalData: any = null;
+  private animal: proto.IAnimal;
 
-  public setAnimalData(data: any, image: SpriteFrame) {
-    this.animalData = data;
+  public setAnimalData(animal: proto.IAnimal, image: SpriteFrame) {
+    this.animal = animal;
     this.setAnimalSprite(image);
-    this.setAnimalType(data.name);
-    this.setAnimalAge(data.age);
-    this.setAnimalDisease(data.isDisease);
-    this.setAnimalPregnant(data.isPregnant);
+    this.setAnimalType(animal.commonGrowthItem.name);
+    this.setAnimalAge(
+      (
+        GlobalData.me().getGameState().currentDate -
+        animal.propertyGrowthItems.startDate
+      ).toString()
+    );
+    this.setAnimalDisease(animal.propertyGrowthItems.isDisease);
+    this.setAnimalPregnant(animal.isPregnant > 0);
   }
 
   public getAnimalData() {
-    return this.animalData;
+    return this.animal;
   }
 
   public getAnimalSprite() {
