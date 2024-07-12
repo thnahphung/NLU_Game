@@ -133,6 +133,11 @@ export const languages = {
     carrot_seed_bag: "Carrot Seed Bag",
     cucumber_seed_bag: "Cucumber Seed Bag",
     pumpkin_seed_bag: "Pumpkin Seed Bag",
+    rice: "Rice",
+    cabbage: "Cabbage",
+    carrot: "Carrot",
+    cucumber: "Cucumber",
+    pumpkin: "Pumpkin",
     // Animal Name
     chicken_blue_lv1: "Chick",
     chicken_blue_lv2: "Chicken",
@@ -141,6 +146,12 @@ export const languages = {
     // Cage
     cage_chicken: "Chicken Coop",
     cage_cow: "Cow Barn",
+    // Reward
+    experience_point: "EXP",
+    // Task
+    task_title: "Task",
+    btn_get_reward: "Get",
+    label_reward: "Reward: ",
   },
 };
 

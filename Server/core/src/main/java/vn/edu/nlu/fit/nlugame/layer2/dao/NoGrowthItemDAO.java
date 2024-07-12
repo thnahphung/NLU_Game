@@ -20,4 +20,17 @@ public class NoGrowthItemDAO extends BaseDAO {
                         .orElse(null));
     }
 
+    public static NoGrowthItemBean getNoGrowthItemByName(String name) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT id, name, price, sale_price, experience_receive, type, description, status, create_date  " +
+                                "FROM " + TABLE_NAME + " WHERE name = :name")
+                        .bind("name", name)
+                        .mapToBean(NoGrowthItemBean.class)
+                        .findFirst()
+                        .orElse(null));
+    }
 }

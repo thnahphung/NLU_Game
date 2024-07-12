@@ -10,7 +10,7 @@ import {
   UIOpacity,
 } from "cc";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
-import { BUTTON, REWARD_ICONS, SEED_BAG, TYPE_ITEM } from "../Utils/Const";
+import { BUTTON, REWARD_ICONS, TYPE_ITEM } from "../Utils/Const";
 import AbsScene from "../Scenes/AbsScene";
 import DataSender from "../Utils/DataSender";
 import { PlantingLand } from "../Prefabs/Lands/PlantingLand";
@@ -21,11 +21,11 @@ import { SeedBag } from "../Prefabs/Tools/SeedBag";
 import { Crop } from "../Prefabs/Crop/Crop";
 import { Menu } from "../Prefabs/Menu/Menu";
 import { SeedInformation } from "../Prefabs/Crop/SeedInformation";
+import { t } from "../../../extensions/i18n/assets/LanguageData";
 const { ccclass, property } = _decorator;
 
-@ccclass('FarmScene')
+@ccclass("FarmScene")
 export class FarmScene extends AbsScene {
-
   @property(Prefab)
   public buildingSystemPrefab: Prefab = null;
   @property(Node)
@@ -37,43 +37,55 @@ export class FarmScene extends AbsScene {
   private buildingProtos: proto.IBuilding[] = [];
   private cropsProto: proto.ICrops = null;
 
-
   protected onLoad(): void {
     // Load information of farm
     this.loadFarm();
   }
 
-  protected start(): void{
+  protected start(): void {
     super.start();
-        // Open building function
+    // Open building function
     UICanvas.me().showButton(BUTTON.UI_BUTTON_BUILDING);
     UICanvas.me()
       .getButton(BUTTON.UI_BUTTON_BUILDING)
       .on(Node.EventType.TOUCH_END, this.onClickBuilding, this);
-    
+
     this.loadSeedBag();
   }
 
   private loadFarm() {
     // basic items
-    this.loadItemsOfFarm();
+    this.loadItemsOfFarm(GlobalData.me().getArea().areaId);
   }
 
-  private loadItemsOfFarm(): void {
-    DataSender.sendReqLoadItemsOfFarm();
+  private loadItemsOfFarm(areaId: number): void {
+    DataSender.sendReqLoadItemsOfFarm(areaId);
   }
 
   private loadSeedBag(): void {
     //load seed bag
-    const menuSeedComponent = UICanvas.me().getMenuSeedFarm().getComponent(Menu);
-    GlobalData.me().getWarehouseItems().forEach((warehouseItem) => {
-      const nameSeed = warehouseItem.noGrowthItem.name;
-      if(warehouseItem.noGrowthItem.type == TYPE_ITEM.SEED) {
-          this.seedMenuContent.getChildByName(nameSeed).getComponent(SeedInformation).setNoGrowItemSeedBag(warehouseItem.noGrowthItem);
-          this.seedMenuContent.getChildByName(nameSeed).getComponent(SeedInformation).setQuantity(warehouseItem.quantity);
-          menuSeedComponent.getMenuItemNode(nameSeed).getComponent(SeedBag).setAmount(warehouseItem.quantity);
+    const menuSeedComponent = UICanvas.me()
+      .getMenuSeedFarm()
+      .getComponent(Menu);
+    GlobalData.me()
+      .getWarehouseItems()
+      .forEach((warehouseItem) => {
+        const nameSeed = warehouseItem.noGrowthItem.name;
+        if (warehouseItem.noGrowthItem.type == TYPE_ITEM.SEED) {
+          this.seedMenuContent
+            .getChildByName(nameSeed)
+            .getComponent(SeedInformation)
+            .setNoGrowItemSeedBag(warehouseItem.noGrowthItem);
+          this.seedMenuContent
+            .getChildByName(nameSeed)
+            .getComponent(SeedInformation)
+            .setQuantity(warehouseItem.quantity);
+          menuSeedComponent
+            .getMenuItemNode(nameSeed)
+            .getComponent(SeedBag)
+            .setAmount(warehouseItem.quantity);
         }
-    });
+      });
   }
 
   onMessageHandler(packets: proto.IPacketWrapper): void {
@@ -87,23 +99,37 @@ export class FarmScene extends AbsScene {
       if (packet.resSow) {
         this.handleResSow(packet.resSow);
       }
-      if(packet.resHarvest){
+      if (packet.resHarvest) {
         this.handleResHarvest(packet.resHarvest);
       }
+      if (packet.resAddProduct) {
+        this.handleResAddProduct(packet.resAddProduct);
+      }
+    });
+  }
+
+  handleResAddProduct(resAddProduct: proto.IResAddProduct): void {
+    const warehouseItems = resAddProduct.warehouseItem;
+    if (!warehouseItems || warehouseItems.length == 0) return;
+    warehouseItems.forEach((warehouseItem) => {
+      GlobalData.me().addWarehouseItem(warehouseItem);
     });
   }
 
   handleResHarvest(resHarvest: proto.IResHarvest): void {
     const rewards = [];
     resHarvest.rewards.reward.forEach((rewardProto) => {
-      let typeReward = REWARD_ICONS.EXPERIENCE_POINT;
-      if(rewardProto.name == "Experience") {
+      let typeReward = "";
+      let name = "";
+      if (rewardProto.name == "Experience") {
+        name = t("label_text.experience_point");
         typeReward = REWARD_ICONS.EXPERIENCE_POINT;
       } else {
-        typeReward = REWARD_ICONS.SEED_BAG;
+        typeReward = rewardProto.name.toLowerCase();
+        name = t("label_text." + rewardProto.name.toLowerCase());
       }
       rewards.push({
-        name: rewardProto.name,
+        name: name,
         quantity: rewardProto.quantity,
         reward: typeReward,
       });
@@ -111,21 +137,9 @@ export class FarmScene extends AbsScene {
     UICanvas.me().showListRewardEffect(rewards);
   }
 
-  // handleResLoadItemsOfWarehouse(resLoadItemsOfWarehouse: proto.IResLoadItemsOfWarehouse): void {
-  //   const menuSeedComponent = UICanvas.me().getMenuSeedFarm().getComponent(Menu);
-  //   resLoadItemsOfWarehouse.warehouseItems.warehouseItem.forEach((warehouseItem) => {
-  //     const item = warehouseItem.noGrowthItem;
-  //     if(!item) return;
-  //     if(item.type == TYPE_ITEM.SEED) {
-  //       const seedBag = menuSeedComponent.getMenuItemNode(warehouseItem.noGrowthItem.name);
-  //       if(!seedBag) return;
-  //       seedBag.getComponent(SeedBag).setQuantityLabel(warehouseItem.quantity);
-  //       seedBag.getComponent(SeedBag).setNoGrowItemSeedBag(warehouseItem.noGrowthItem);
-  //     }
-  //   });
-  // }
-
-  onLoadItemsOfFarmMsgHandler(resLoadItemsOfFarm: proto.IResLoadItemsOfFarm): void {
+  onLoadItemsOfFarmMsgHandler(
+    resLoadItemsOfFarm: proto.IResLoadItemsOfFarm
+  ): void {
     let plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
     plantingLandPanel.removeAllChildren();
     // Load tất cả các item cần hiển thị trên trang trại
@@ -150,9 +164,7 @@ export class FarmScene extends AbsScene {
         let tillLands = plantingLandComponent.getTilledLandPanel().children;
         tillLands.forEach((tillLand: Node, index: number) => {
           let tillLandProto =
-            resBuyBuilding.building.plantingLandBuilding.tillLands.tillLand[
-              index
-            ];
+            resBuyBuilding.building.plantingLandBuilding.tillLands[index];
           tillLand.getComponent(TilledLand).tillLandProto = tillLandProto;
         });
       }
@@ -172,10 +184,16 @@ export class FarmScene extends AbsScene {
       let plantingLandComponent = plantingLand.getComponent(PlantingLand);
       let tilledLands = plantingLandComponent.getTilledLandPanel().children;
       tilledLands.forEach((tilledLand: Node) => {
-        let cropProto = resSow.crops.crops.filter((crop) => crop.tillLand.id == tilledLand.getComponent(TilledLand).tillLandProto.id)[0];
+        let cropProto = resSow.crops.crops.filter(
+          (crop) =>
+            crop.tillLand.id ==
+            tilledLand.getComponent(TilledLand).tillLandProto.id
+        )[0];
         // Nếu ô đất đã cày và đã gieo hạt
         if (cropProto) {
-          tilledLand.getComponent(TilledLand).seedNode.getComponent(Crop).cropProto = cropProto;
+          tilledLand
+            .getComponent(TilledLand)
+            .seedNode.getComponent(Crop).cropProto = cropProto;
         }
       });
     });
@@ -232,11 +250,11 @@ export class FarmScene extends AbsScene {
         plantingLandBuilding.base = base;
         plantingLandBuilding.propertyBuilding = propertyBuilding;
 
-        const tillLands = new proto.TillLands();
+        const tillLands = new Array<proto.TillLand>();
         for (let i = 0; i < 30; i++) {
           const tillLand = new proto.TillLand();
           tillLand.statusTilled = false;
-          tillLands.tillLand.push(tillLand);
+          tillLands.push(tillLand);
         }
         plantingLandBuilding.tillLands = tillLands;
         building.plantingLandBuilding = plantingLandBuilding;
@@ -252,7 +270,7 @@ export class FarmScene extends AbsScene {
 
   private loadBasicItemsToUI(): void {
     // Lấy ra các layer cần hiển thị item
-    const midLayer = find("Canvas/ObjectLayers/MidLayer");
+    const midLayer = this.getPlayerLayer();
     const plantingLayer = find("Canvas/BackgroundLayers/PlantingPanel");
     if (this.buildingProtos.length === 0 || !this.buildingProtos) {
       return;
@@ -277,25 +295,33 @@ export class FarmScene extends AbsScene {
         if (nameBuilding.toUpperCase() == prefab.name.toUpperCase()) {
           itemprefab = instantiate(prefab);
           itemprefab.setPosition(positionX, positionY);
-          if (building.plantingLandBuilding) { // Nếu là đất trồng
+          if (building.plantingLandBuilding) {
+            // Nếu là đất trồng
             let component = itemprefab.getComponent(PlantingLand);
             // Lưu thông tin của đất trồng vào component
             component.plantingLandProto = building.plantingLandBuilding;
             // Lưu thông tin của từng ô đất trồng vào component
             let tillLands = component.getTilledLandPanel().children;
             tillLands.forEach((tillLand: Node, index: number) => {
-              let tillLandProto = building.plantingLandBuilding.tillLands.tillLand[index];
+              let tillLandProto =
+                building.plantingLandBuilding.tillLands[index];
               let tillLandComponent = tillLand.getComponent(TilledLand);
               tillLandComponent.tillLandProto = tillLandProto;
               // Kiểm tra xem ô đất đã cày chưa
               let statusTilled = tillLandProto?.statusTilled;
-              if (statusTilled) tillLand.getComponent(TilledLand).handleTilledLand();
+              if (statusTilled)
+                tillLand.getComponent(TilledLand).handleTilledLand();
               // Hiển thị cây trồng lên đất
-              let cropProto = this.cropsProto.crops.filter((crop) => {return crop.tillLand.id == tillLandComponent.tillLandProto.id})[0];
+              let cropProto = this.cropsProto.crops.filter((crop) => {
+                return crop.tillLand.id == tillLandComponent.tillLandProto.id;
+              })[0];
               if (cropProto) {
-                tillLandComponent.handleDisplayCropsToLand(cropProto.CommonGrowthItem.name);
-                if(!tillLand || !tillLandComponent.seedNode) return;
-                tillLandComponent.seedNode.getComponent(Crop).cropProto = cropProto;
+                tillLandComponent.handleDisplayCropsToLand(
+                  cropProto.CommonGrowthItem.name
+                );
+                if (!tillLand || !tillLandComponent.seedNode) return;
+                tillLandComponent.seedNode.getComponent(Crop).cropProto =
+                  cropProto;
               }
             });
           }
@@ -311,7 +337,6 @@ export class FarmScene extends AbsScene {
         }
       }
     });
-
   }
 
   public onClickBuilding(): void {
@@ -352,5 +377,3 @@ export class FarmScene extends AbsScene {
     DataSender.sendReqLoadCommonCrop();
   }
 }
-
-

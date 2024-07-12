@@ -53,7 +53,6 @@ public class ShopService {
         int code;
         if (warehouseItem == null) {
             code = WarehouseDAO.insertWarehouseItem(userId, shopItemProto.getNoGrowthItemId(), reqBuyItemShop.getQuantity());
-            return;
         } else {
             code = WarehouseDAO.updateIncreaseQuantityItem(userId, shopItemProto.getNoGrowthItemId(), reqBuyItemShop.getQuantity());
         }

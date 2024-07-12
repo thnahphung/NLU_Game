@@ -1,5 +1,5 @@
 import { _decorator, BlockInputEvents, Component, find, Node} from 'cc';
-import { COATING, TYPE_TOOL } from '../../Utils/Const';
+import { TYPE_TOOL } from '../../Utils/Const';
 import GlobalData from '../../Utils/GlobalData';
 import { UICanvas } from '../MainUI/UICanvas';
 const { ccclass, property } = _decorator;

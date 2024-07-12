@@ -83,11 +83,11 @@ public class ConstUtils {
     public enum REWARDS {
         EXPERIENCE("Experience"),
         GOLD("Gold"),
-        RICE_BAG("Rice"),
-        CARROT_BAG("Carrot"),
-        CABBAGE_BAG("Cabbage"),
-        CUCUMBER_BAG("Cucumber"),
-        PUMPKIN_BAG("Pumpkin");
+        RICE_BAG("rice"),
+        CARROT_BAG("carrot"),
+        CABBAGE_BAG("cabbage"),
+        CUCUMBER_BAG("cucumber"),
+        PUMPKIN_BAG("pumpkin");
 
         public final String value;
 
