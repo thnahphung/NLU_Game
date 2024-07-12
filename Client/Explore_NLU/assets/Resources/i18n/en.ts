@@ -144,7 +144,12 @@ export const languages = {
     // Cage
     cage_chicken: "Chicken Coop",
     cage_cow: "Cow Barn",
+    // Reward
     experience_point: "EXP",
+    // Task
+    task_title: "Task",
+    btn_get_reward: "Get",
+    label_reward: "Reward: ",
   },
 };
 

@@ -46,6 +46,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupShop: Prefab;
   @property(Prefab) private prefabPopupWarehouse: Prefab;
   @property(Prefab) private prefabPopupCageBuilding: Prefab;
+  @property(Prefab) private prefabPopupTask: Prefab;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -55,6 +56,7 @@ export class UICanvas extends Component {
   private _popupOption: Node;
   private _popupSetting: Node;
   private _popupFriend: Node;
+  private _popupTask: Node;
 
   //Lock button
   private isLocked: boolean = false;
@@ -314,5 +316,15 @@ export class UICanvas extends Component {
     this._popupFriend = instantiate(this.prefabPopupFriend);
     this.node.getChildByName("PopupLayer").addChild(this._popupFriend);
     this._popupFriend.getComponent(PopupComponent).show();
+  }
+
+  showPopupTask() {
+    if (this.node.getChildByName("PopupLayer").getChildByName("PopupTask")) {
+      return;
+    }
+    this.onLocked1s();
+    this._popupTask = instantiate(this.prefabPopupTask);
+    this.node.getChildByName("PopupLayer").addChild(this._popupTask);
+    this._popupTask.getComponent(PopupComponent).show();
   }
 }

@@ -154,6 +154,10 @@ export const languages = {
     cage_cow: "Chuồng Bò",
     // Reward
     experience_point: "Kinh nghiệm",
+    // Task
+    task_title: "Nhiệm vụ",
+    btn_get_reward: "Nhận",
+    label_reward: "Thưởng: ",
   },
 };
 
