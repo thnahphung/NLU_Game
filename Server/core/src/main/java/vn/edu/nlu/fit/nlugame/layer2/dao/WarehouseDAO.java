@@ -64,6 +64,14 @@ public class WarehouseDAO extends BaseDAO {
                 }).stream().findFirst().orElse(null));
     }
 
+    public static WarehouseItemBean getWarehouseItemBean(int userId, int itemId) {
+        return getJdbi().withHandle(handle -> handle.createQuery("select user_id, no_growth_item_id, quantity from " + TABLE_NAME + " where user_id = :userId and no_growth_item_id = :itemId")
+                .bind("userId", userId)
+                .bind("itemId", itemId)
+                .mapToBean(WarehouseItemBean.class)
+                .stream().findFirst().orElse(null));
+    }
+
     public static List<Proto.WarehouseItem> getAllUserItemInWarehouse(int userId) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {

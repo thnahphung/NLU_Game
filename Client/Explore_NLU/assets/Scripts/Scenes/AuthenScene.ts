@@ -110,7 +110,7 @@ export class AuthenScene extends AbsScene {
       GlobalData.me().setIsUserOffline(false);
       const userProto = resLogin.user;
       const hasCharacter = userProto.hasCharacter;
-      if(hasCharacter == 0) UICanvas.me().transitScene(SCENES.PICK_CHARACTER);
+      if (hasCharacter == 0) UICanvas.me().transitScene(SCENES.PICK_CHARACTER);
     }
   }
 
@@ -171,7 +171,7 @@ export class AuthenScene extends AbsScene {
   }
 
   onClickSetting() {
-    UICanvas.me().showPopup(POPUP.POPUP_SETTING);
+    UICanvas.me().showPopupSetting();
   }
 
   onClickForgetPassword() {

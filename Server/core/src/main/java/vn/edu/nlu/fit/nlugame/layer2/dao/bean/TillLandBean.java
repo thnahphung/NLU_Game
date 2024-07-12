@@ -10,5 +10,6 @@ import lombok.*;
 public class TillLandBean {
     private int id;
     private int index;
-    private boolean isTilled;
+    private boolean statusTilled;
+    private int plantingLandId;
 }

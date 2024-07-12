@@ -100,7 +100,7 @@ export class PopupSetting extends AbsHandler {
       UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGOUT_FAILED_401);
       return;
     }
-    GlobalData.me().logout();
+    GlobalData.logout();
     DataSender.sendReqLogout();
   }
 

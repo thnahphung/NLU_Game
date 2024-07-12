@@ -6,8 +6,12 @@ import com.github.benmanes.caffeine.cache.RemovalCause;
 import com.github.benmanes.caffeine.cache.RemovalListener;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import vn.edu.nlu.fit.nlugame.layer2.CompressUtils;
+import vn.edu.nlu.fit.nlugame.layer2.SessionManage;
+import vn.edu.nlu.fit.nlugame.layer2.dao.AreaDAO;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.AreaBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.RedisClusterHelper;
+import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -103,7 +107,6 @@ public class PropertyBuildingCache extends RedisClusterHelper implements ICache<
 
     @Override
     public void clear() {
-        getConnection().del(PROPERTY_BUILDING_KEY.getBytes());
         propertyBuildingMap.invalidateAll();
     }
 
@@ -152,5 +155,10 @@ public class PropertyBuildingCache extends RedisClusterHelper implements ICache<
             result.add(propertyBuildingContext);
         });
         return result;
+    }
+
+    public void clearPropertyBuilding(int areaId) {
+        String key = PROPERTY_BUILDING_KEY + areaId;
+        getConnection().del(key.getBytes());
     }
 }

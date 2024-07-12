@@ -2,6 +2,7 @@ package vn.edu.nlu.fit.nlugame.layer2.dao;
 
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.statement.Update;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.TillLandBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 import java.util.List;
@@ -35,20 +36,14 @@ public class TillLandDAO extends BaseDAO{
         });
     }
 
-    public static List<Proto.TillLand> getListTillLandByPlantingLandId(int plantingLandID) {
+    public static List<TillLandBean> getListTillLandByPlantingLandId(int plantingLandID) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
         }
-        return jdbi.withHandle(handle -> handle.createQuery("select id, `index`, status_tilled, planting_land_id from " + TABLE_NAME + " where planting_land_id = :plantingLandId")
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT id, `index`, status_tilled, planting_land_id FROM " + TABLE_NAME + " WHERE planting_land_id = :plantingLandId")
                 .bind("plantingLandId", plantingLandID)
-                .map((rs, ctx) -> Proto.TillLand.newBuilder()
-                        .setId(rs.getInt("id"))
-                        .setIndex(rs.getInt("index"))
-                        .setStatusTilled(rs.getInt("status_tilled") == 0 ? false : true)
-                        .setPlantingLandId(rs.getInt("planting_land_id"))
-                        .build())
-                .list());
+                .mapToBean(TillLandBean.class).list());
     }
 
     public static void updateTillLand(int id, boolean statusTilled) {

@@ -25,7 +25,7 @@ export default class GlobalData {
   private isHarvested: boolean = false;
   private tilledLands: proto.ITillLand[] = null;
   private sowingInformations: proto.SowingInformation[] = null;
-  private harvestingInformations: proto.HarvestingInformations = null;
+  private harvestingInformation: proto.HarvestingInformation = null;
   private seedBag: Component = null;
   /* END AGRI */
 
@@ -177,11 +177,11 @@ export default class GlobalData {
   public setArea(area: proto.IArea) {
     this.area = area;
   }
-
+  // Khu vực đang đứng
   public getArea() {
     return this.area;
   }
-
+  // khu vực nhà của mình
   public setMainArea(area: proto.IArea) {
     this.mainArea = area;
   }
@@ -260,14 +260,14 @@ export default class GlobalData {
     return this.sowingInformations;
   }
 
-  public setHarvestingInformations(
-    harvestingInformations: proto.HarvestingInformations
+  public setHarvestingInformation(
+    harvestingInformations: proto.HarvestingInformation
   ) {
-    this.harvestingInformations = harvestingInformations;
+    this.harvestingInformation = harvestingInformations;
   }
 
-  public getHarvestingInformations() {
-    return this.harvestingInformations;
+  public getHarvestingInformation() {
+    return this.harvestingInformation;
   }
 
   public setSeedBag(seedBag: Component) {
@@ -297,23 +297,8 @@ export default class GlobalData {
     return this.positionCharacter;
   }
 
-  public logout() {
-    this.mainUser = null;
-    this.mainUserNode = null;
-    this.mainUserPosition = null;
-    this.otherUsers = [];
-    this.otherUsersNode = [];
-    this.area = null;
-    this.isMoveBuilding = false;
-    this.isTill = false;
-    this.isTilled = false;
-    this.isSow = false;
-    this.isSown = false;
-    this.isHarvest = false;
-    this.isHarvested = false;
-    this.positionCharacter = null;
-    this.mainArea = null;
-    this.warehouseItems = null;
+  public static logout() {
+    this.instance = new GlobalData();
   }
 
   /* START ANIMAL HUSBAND */

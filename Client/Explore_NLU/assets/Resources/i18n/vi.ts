@@ -141,12 +141,23 @@ export const languages = {
     carrot_seed_bag: "Túi Hạt Cà Rốt",
     cucumber_seed_bag: "Túi Hạt Dưa Chuột",
     pumpkin_seed_bag: "Túi Hạt Bí Ngô",
+    rice: "Lúa",
+    cabbage: "Bắp Cải",
+    carrot: "Cà Rốt",
+    cucumber: "Dưa Chuột",
+    pumpkin: "Bí Ngô",
     // Animal Name
     calf_item: "Bò Con",
     chick_item: "Gà Con",
     // Cage
     cage_chicken: "Chuồng Gà",
     cage_cow: "Chuồng Bò",
+    // Reward
+    experience_point: "Kinh nghiệm",
+    // Task
+    task_title: "Nhiệm vụ",
+    btn_get_reward: "Nhận",
+    label_reward: "Thưởng: ",
   },
 };
 
