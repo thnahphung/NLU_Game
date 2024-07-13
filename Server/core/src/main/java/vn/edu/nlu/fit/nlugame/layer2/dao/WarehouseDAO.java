@@ -2,6 +2,7 @@ package vn.edu.nlu.fit.nlugame.layer2.dao;
 
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.nlu.fit.nlugame.layer2.ConstUtils;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.NoGrowthItemBean;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.WarehouseItemBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
@@ -14,6 +15,14 @@ public class WarehouseDAO extends BaseDAO {
         return getJdbi().withHandle(handle -> handle.createQuery("select user_id, no_growth_item_id, quantity from " + TABLE_NAME + " where user_id = :userId and no_growth_item_id = :itemId")
                 .bind("userId", userId)
                 .bind("itemId", itemId)
+                .mapToBean(WarehouseItemBean.class)
+                .stream().findFirst().orElse(null));
+    }
+
+    public static WarehouseItemBean getWarehouseItemUserByNoGrowthItemName(int userId, String name) {
+        return getJdbi().withHandle(handle -> handle.createQuery("select w.user_id, w.no_growth_item_id, w.quantity from " + TABLE_NAME + " w join no_growth_items i on w.no_growth_item_id = i.id where w.user_id = :userId and i.`name` = :name")
+                .bind("userId", userId)
+                .bind("name", name)
                 .mapToBean(WarehouseItemBean.class)
                 .stream().findFirst().orElse(null));
     }
@@ -113,6 +122,38 @@ public class WarehouseDAO extends BaseDAO {
         });
     }
 
+    public static int updateReducedQuantityItem(int userId, int noGrowItemId, int quantityReduce) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+
+        return jdbi.withHandle(handle -> {
+            Integer currentQuantity = handle.createQuery("select quantity from warehouse_items where user_id = :userId and no_growth_item_id = :noGrowItemId")
+                    .bind("userId", userId)
+                    .bind("noGrowItemId", noGrowItemId)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0);
+
+            if (currentQuantity < quantityReduce) {
+                return -1;
+            }
+
+            int newQuantity = currentQuantity - quantityReduce;
+
+            handle.createUpdate("update warehouse_items set quantity = :newQuantity where user_id = :userId and no_growth_item_id = :noGrowItemId")
+                    .bind("newQuantity", newQuantity)
+                    .bind("userId", userId)
+                    .bind("noGrowItemId", noGrowItemId)
+                    .execute();
+
+            return newQuantity;
+        });
+    }
+
+
+
     public static int updateIncreaseQuantityItem(int userId, int noGrowItemId, int quantityIncrease) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
@@ -142,6 +183,13 @@ public class WarehouseDAO extends BaseDAO {
                 .bind("typeItem", typeItem)
                 .bind("nameItem", nameItem)
                 .mapTo(Integer.class)
+                .stream().findFirst().orElse(null));
+    }
+
+    public static NoGrowthItemBean getNoGrowthItemByName(String name) {
+        return getJdbi().withHandle(handle -> handle.createQuery("select id, `name`, price, sale_price, experience_receive, `status`, type, description from no_growth_items where `name` = :name")
+                .bind("name", name)
+                .mapToBean(NoGrowthItemBean.class)
                 .stream().findFirst().orElse(null));
     }
 }

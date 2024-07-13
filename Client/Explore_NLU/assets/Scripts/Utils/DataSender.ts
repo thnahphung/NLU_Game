@@ -253,6 +253,21 @@ export default class DataSender {
     let packet = new proto.Packet();
     packet.reqLoadCages = reqLoadCages;
     WS.send(packet);
-    console.log("Send Req Load Cages", packet);
+  }
+
+  public static sendReqAnimalEat(animalId: number) {
+    let reqAnimalEat = new proto.ReqAnimalEat();
+    reqAnimalEat.propertyAnimalId = animalId;
+    let packet = new proto.Packet();
+    packet.reqAnimalEat = reqAnimalEat;
+    WS.send(packet);
+  }
+
+  public static sendReqAddAnimalToCage(cageId: number) {
+    let reqAddAnimalToCage = new proto.ReqAddAnimalToCage();
+    reqAddAnimalToCage.cageId = cageId;
+    let packet = new proto.Packet();
+    packet.reqAddAnimalToCage = reqAddAnimalToCage;
+    WS.send(packet);
   }
 }

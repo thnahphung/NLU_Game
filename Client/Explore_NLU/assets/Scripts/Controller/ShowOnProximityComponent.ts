@@ -29,6 +29,7 @@ export class ShowOnProximityComponent extends Component {
     otherCollider: Collider2D,
     contact: IPhysics2DContact | null
   ) {
+    console.log("onBeginContact", selfCollider, otherCollider);
     if (
       selfCollider.tag != 1 &&
       !otherCollider?.getComponent(Character)?.getIsMainPlayer()

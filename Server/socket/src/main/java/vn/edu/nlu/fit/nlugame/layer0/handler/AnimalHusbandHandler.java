@@ -24,6 +24,12 @@ public class AnimalHusbandHandler implements Subscriber {
                 case REQLOADCAGES:
                     animalHusbandService.loadCages(session, packet.getReqLoadCages());
                     break;
+                case REQANIMALEAT:
+                    animalHusbandService.animalEat(session, packet.getReqAnimalEat());
+                    break;
+                case REQADDANIMALTOCAGE:
+                    animalHusbandService.addAnimalToCage(session, packet.getReqAddAnimalToCage());
+                    break;
             }
         });
     }

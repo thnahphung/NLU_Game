@@ -9,6 +9,8 @@ import {
 } from "cc";
 import { t } from "../../../../../extensions/i18n/assets/LanguageData";
 import GlobalData from "../../../Utils/GlobalData";
+import { ResourceManager } from "../../../Manager/ResourceManager";
+import { Util } from "../../../Utils/Util";
 const { ccclass, property } = _decorator;
 
 @ccclass("ItemPopupAnimal")
@@ -18,22 +20,42 @@ export class ItemPopupAnimal extends Component {
   @property(Label) private animalAge: Label = null;
   @property(RichText) private animalDisease: RichText = null;
   @property(Label) private animalPregnant: Label = null;
-  @property(SpriteFrame) private listImageAnimal: SpriteFrame[] = [];
-  // private animalData: any = null;
   private animal: proto.IAnimal;
 
-  public setAnimalData(animal: proto.IAnimal, image: SpriteFrame) {
+  protected start(): void {
+    this.setAnimalData();
+  }
+
+  init(animal: proto.IAnimal) {
     this.animal = animal;
-    this.setAnimalSprite(image);
-    this.setAnimalType(animal.commonGrowthItem.name);
+  }
+
+  public setAnimalData() {
+    this.setAnimalSprite(
+      ResourceManager.me().getSpriteFrame(
+        this.animal.commonGrowthItem.name +
+          "-lv" +
+          this.animal.propertyGrowthItem.stage
+      )
+    );
+    this.setAnimalType(
+      t(
+        "label_text." +
+          Util.convertDashToUnderscore(
+            this.animal.commonGrowthItem.name +
+              "-lv" +
+              this.animal.propertyGrowthItem.stage
+          )
+      )
+    );
     this.setAnimalAge(
       (
         GlobalData.me().getGameState().currentDate -
-        animal.propertyGrowthItems.startDate
+        this.animal.propertyGrowthItem.startDate
       ).toString()
     );
-    this.setAnimalDisease(animal.propertyGrowthItems.isDisease);
-    this.setAnimalPregnant(animal.isPregnant > 0);
+    this.setAnimalDisease(this.animal.propertyGrowthItem.isDisease);
+    this.setAnimalPregnant(this.animal.isPregnant > 0);
   }
 
   public getAnimalData() {

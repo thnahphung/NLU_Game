@@ -117,6 +117,10 @@ export const languages = {
     pick_character_400: "Tên này đã được sử dụng, vui lòng chọn tên khác!",
     pick_character_enter_name: "Nhập tên của bạn",
     pick_character_header_name: "Chúng tôi có thể gọi bạn là",
+    buy_shop_not_enough_gold: "Bạn không đủ tiền!",
+    animal_eat_not_enough_food: "Không đủ thức ăn!",
+    add_animal_not_enough_capacity: "Chuồng không đủ chỗ!",
+    add_animal_not_enough_animal: "Không đủ động vật tương ứng!",
     //Area Name
     phuong_vi: "Phượng Vĩ",
     cam_tu: "Cẩm Tú",
@@ -134,6 +138,7 @@ export const languages = {
     btn_cancel: "Hủy",
     //Shop Name
     crop_shop: "Cây Trồng",
+    animal_shop: "Động vật",
     buy_cage: "Mua Chuồng",
     //Crop Name
     rice_seed_bag: "Túi Hạt Lúa",
@@ -151,9 +156,14 @@ export const languages = {
     chicken_blue_lv2: "Gà lớn",
     cow_yellow_lv1: "Bò con",
     cow_yellow_lv2: "Bò lớn",
+    //Animal Food
+    hay: "Rơm",
+    paddy_grain: "Lúa",
     // Cage
-    cage_chicken: "Chuồng Gà",
-    cage_cow: "Chuồng Bò",
+    cage_chicken_lv1: "Chuồng Gà Nhỏ",
+    cage_cow_lv1: "Chuồng Bò Bhỏ",
+    cage_chicken_lv2: "Chuồng Gà Lớn",
+    cage_cow_lv2: "Chuồng Bò Lớn",
     // Reward
     experience_point: "Kinh nghiệm",
     // Task

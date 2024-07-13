@@ -46,9 +46,17 @@ public class ShopService {
     public void buyItemShop(Session session, Proto.ReqBuyItemShop reqBuyItemShop) {
         int userId = SessionCache.me().getUserID(SessionID.of(session));
         if (userId == -1) return;
+        UserContext userContext = UserCache.me().get(String.valueOf(userId));
 
         Proto.ShopItem shopItemProto = this.getShopItem(reqBuyItemShop.getShopItemId());
+        Proto.NoGrowthItem noGrowthItem = this.getNoGrowthItem(shopItemProto.getNoGrowthItemId());
         WarehouseItemBean warehouseItem = WarehouseDAO.getWarehouseItemUser(userId, shopItemProto.getNoGrowthItemId());
+
+        if (!isEnoughGold(userContext, noGrowthItem, reqBuyItemShop.getQuantity())) {
+            Proto.ResBuyItemShop resBuyItemShop = Proto.ResBuyItemShop.newBuilder().setStatus(400).build();
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResBuyItemShop(resBuyItemShop).build());
+            return;
+        }
 
         int code;
         if (warehouseItem == null) {
@@ -63,6 +71,11 @@ public class ShopService {
             resBuyItemShop = Proto.ResBuyItemShop.newBuilder().setStatus(code).build();
         }
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResBuyItemShop(resBuyItemShop).build());
+    }
+
+    public boolean isEnoughGold(UserContext userContext, Proto.NoGrowthItem noGrowthItem, int quantity) {
+        long newGold = userContext.getUser().getGold() - (long) noGrowthItem.getPrice() * quantity;
+        return newGold >= 0;
     }
 
     public Proto.ResBuyItemShop buyItemSuccess(int userId, Proto.ShopItem shopItemProto, int quantity) {

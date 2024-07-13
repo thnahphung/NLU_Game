@@ -33,6 +33,14 @@ export class AnimalAnimation extends Component {
     this.animalInfo.getAnimation().play(state);
   }
 
+  playEatAnimation() {
+    if (this.animalInfo.getCurrentState() === ANIMAL_STATE.IDLE_RIGHT) {
+      this.animalInfo.setCurrentState(ANIMAL_STATE.EAT_RIGHT);
+    } else if (this.animalInfo.getCurrentState() === ANIMAL_STATE.IDLE_LEFT) {
+      this.animalInfo.setCurrentState(ANIMAL_STATE.EAT_LEFT);
+    }
+  }
+
   public showEmote() {
     if (this.animationCount % 2 == 0 && this.animalInfo.isHungryAnimal()) {
       this.animalInfo.getEmoteAnimation().play("hungry-emote");
