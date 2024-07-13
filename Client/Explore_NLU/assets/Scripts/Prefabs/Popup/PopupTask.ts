@@ -33,12 +33,11 @@ export class PopupTask extends Component {
     const progressCompletedTasks = [];
     if (!tasks || tasks.length == 0) return;
     for (let item of tasks) {
-      console.log("item", item);
       const itemPopupWarehouse = instantiate(this.prefabItemPopuTask);
       const progress = progressTasks.find(
         (progress) => progress.activityId == item.id
       );
-      console.log("progress", progress);
+      if (!progress) continue;
       itemPopupWarehouse.getComponent(TaskItem).init(item, progress);
       if (progress.progress < item.turn) {
         progressUnfinishedTask.push(itemPopupWarehouse);

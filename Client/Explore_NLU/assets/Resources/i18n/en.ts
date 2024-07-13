@@ -168,6 +168,11 @@ export const languages = {
     task_completed: "Completed",
     buy_item: "Buy 10 item",
     sell_item: "Sell 10 item",
+    visit_kiotscene: "Visit Kiot area",
+    visit_camtuscene: "Visit Cam Tu area",
+    visit_rangdongscene: "Visit Rang Dong area",
+    visit_phuongviscene: "Visit Phuong Vi area",
+    visit_quoclo1ascene: "Visit Quoc Lo 1A area",
   },
 };
 

@@ -174,6 +174,11 @@ export const languages = {
     task_completed: "Hoàn thành",
     buy_item: "Mua 10 sản phẩm ở cửa hàng tại kiot",
     sell_item: "Bán 10 sản phẩm ở cửa hàng tại kiot",
+    visit_kiotscene: "Đến khu Kiot",
+    visit_camtuscene: "Đến khu Cẩm Tú",
+    visit_rangdongscene: "Đến khu Rạng Đông",
+    visit_phuongviscene: "Đến khu Phượng Vĩ",
+    visit_quoclo1ascene: "Đến khu Quốc lộ 1A",
   },
 };
 

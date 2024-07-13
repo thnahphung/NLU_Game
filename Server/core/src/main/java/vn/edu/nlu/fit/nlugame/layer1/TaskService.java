@@ -309,7 +309,28 @@ public class TaskService {
         }
         updateProgressActivityAndSendResponse(session, progressActivityBean);
     }
-
+    public void checkTaskVisitArea(Session session, Proto.Area area) {
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        if (userId == -1) {
+            return;
+        }
+        String typeTask = "visit_" + area.getTypeArea().toLowerCase();
+        ProgressActivityBean progressActivityBean = ProgressActivityDAO.getProgressTaskByCode(userId, typeTask);
+        Proto.Activity activity = ActivityCache.me().get(String.valueOf(progressActivityBean.getActivityId()));
+        if(activity == null) {
+            ActivityBean activityBean = ActivityDAO.getTaskById(progressActivityBean.getActivityId());
+            activity = addActivityToCache(activityBean);
+        };
+        int turn = activity.getTurn();
+        int progress = progressActivityBean.getProgress();
+        int newProgress = progress + 1;
+        if(newProgress >= turn) {
+            progressActivityBean.setProgress(turn);
+        }else{
+            progressActivityBean.setProgress(newProgress);
+        }
+        updateProgressActivityAndSendResponse(session, progressActivityBean);
+    }
     private void updateProgressActivityAndSendResponse(Session session, ProgressActivityBean progressActivityBean) {
         ProgressActivityDAO.updateProgressActivity(progressActivityBean);
         Proto.ProgressActivity progressActivityUpdate = setProtoProgressActivity(ProgressActivityDAO.getProgressActivityById(progressActivityBean.getUserId(), progressActivityBean.getActivityId()));
