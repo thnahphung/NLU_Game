@@ -270,4 +270,16 @@ export default class DataSender {
     packet.reqAddAnimalToCage = reqAddAnimalToCage;
     WS.send(packet);
   }
+
+  public static sendResCompleteTask(
+    task: proto.IActivity,
+    progressTask: proto.IProgressActivity
+  ) {
+    let reqCompleteTask = new proto.ReqCompleteTask();
+    reqCompleteTask.activity = task;
+    reqCompleteTask.progressActivity = progressTask;
+    let packet = new proto.Packet();
+    packet.reqCompleteTask = reqCompleteTask;
+    WS.send(packet);
+  }
 }

@@ -43,9 +43,9 @@ public class ShopService {
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadShop(resLoadShop).build());
     }
 
-    public void buyItemShop(Session session, Proto.ReqBuyItemShop reqBuyItemShop) {
+    public int buyItemShop(Session session, Proto.ReqBuyItemShop reqBuyItemShop) {
         int userId = SessionCache.me().getUserID(SessionID.of(session));
-        if (userId == -1) return;
+        if (userId == -1) return 0;
         UserContext userContext = UserCache.me().get(String.valueOf(userId));
 
         Proto.ShopItem shopItemProto = this.getShopItem(reqBuyItemShop.getShopItemId());
@@ -71,6 +71,8 @@ public class ShopService {
             resBuyItemShop = Proto.ResBuyItemShop.newBuilder().setStatus(code).build();
         }
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResBuyItemShop(resBuyItemShop).build());
+
+        return reqBuyItemShop.getQuantity();
     }
 
     public boolean isEnoughGold(UserContext userContext, Proto.NoGrowthItem noGrowthItem, int quantity) {

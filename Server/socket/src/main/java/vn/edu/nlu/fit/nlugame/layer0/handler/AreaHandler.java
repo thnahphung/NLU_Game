@@ -3,10 +3,12 @@ package vn.edu.nlu.fit.nlugame.layer0.handler;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer1.AreaService;
+import vn.edu.nlu.fit.nlugame.layer1.TaskService;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 public class AreaHandler implements Subscriber {
     AreaService areaService = AreaService.me();
+    TaskService taskService = TaskService.me();
 
     @Override
     public void onOpen(Session session, String... params) {
@@ -21,7 +23,7 @@ public class AreaHandler implements Subscriber {
                     areaService.joinOtherArea(session, packet.getReqPlayerJoinArea());
                     break;
                 case REQPLAYERJOINAREACOMMON:
-                    areaService.joinAreaCommon(session, packet.getReqPlayerJoinAreaCommon());
+                    joinAreaCommon(session, packet.getReqPlayerJoinAreaCommon());
                     break;
                 case REQMOVING:
                     areaService.moving(session, packet.getReqMoving());
@@ -43,5 +45,10 @@ public class AreaHandler implements Subscriber {
     @Override
     public boolean requireLogin() {
         return false;
+    }
+
+    public void joinAreaCommon(Session session, Proto.ReqPlayerJoinAreaCommon reqPlayerJoinAreaCommon) {
+        Proto.Area area = areaService.joinAreaCommon(session, reqPlayerJoinAreaCommon);
+        if (area != null) taskService.checkTaskVisitArea(session, area);
     }
 }
