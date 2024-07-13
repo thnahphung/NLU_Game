@@ -67,6 +67,10 @@ message Packet {
     ReqLoadCages reqLoadCages = 57;
     ResLoadCages resLoadCages = 58;
     ResAddProduct resAddProduct = 59;
+    ResLoadTask resLoadTask = 60;
+    ResUpdateProgressTask resUpdateProgressTask = 61;
+    ReqCompleteTask reqCompleteTask = 62;
+    ResCompleteTask resCompleteTask = 63;
   }
 }
 
@@ -295,6 +299,33 @@ message Cage {
 
 // Animal Husbandry end =======================================
 
+// Activities start =====================================
+message Activity {
+  int32 id = 1;
+  string code = 2;
+  int32 type = 3;
+  int32 minLevel = 4;
+  int32 startDate = 5;
+  int32 endate = 6;
+  int32 characterId = 7; 
+  RewardItem rewardItem = 8;
+  int32 turn = 9;
+}
+
+message RewardItem {
+  int32 activityId = 1;
+  int32 noGrowthItemId = 2;
+  int32 quantity = 3;
+  NoGrowthItem noGrowthItem = 4;
+}
+
+message ProgressActivity {
+  int32 userId = 1;
+  int32 activityId = 2;
+  int32 progress = 3;
+  int32 status = 4;
+}
+// Activities end =======================================
 
 // Bean end ====================================================
 
@@ -613,4 +644,23 @@ message ResAddProduct {
    repeated WarehouseItem warehouseItem = 1;
 }
 
+message ResLoadTask {
+  repeated Activity activities = 1;
+  repeated ProgressActivity progressActivities = 2;
+}
 
+message ResUpdateProgressTask {
+  repeated ProgressActivity progressActivities = 2;
+}
+
+message ReqCompleteTask {
+  Activity activity = 1;
+  ProgressActivity progressActivity = 2;
+}
+
+message ResCompleteTask {
+  ProgressActivity progressActivity = 1;
+  NoGrowthItem noGrowthItem = 2;
+  int64 gold = 3;
+  int32 exp = 4;
+}

@@ -43,9 +43,9 @@ public class ShopService {
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadShop(resLoadShop).build());
     }
 
-    public void buyItemShop(Session session, Proto.ReqBuyItemShop reqBuyItemShop) {
+    public int buyItemShop(Session session, Proto.ReqBuyItemShop reqBuyItemShop) {
         int userId = SessionCache.me().getUserID(SessionID.of(session));
-        if (userId == -1) return;
+        if (userId == -1) return 0;
 
         Proto.ShopItem shopItemProto = this.getShopItem(reqBuyItemShop.getShopItemId());
         WarehouseItemBean warehouseItem = WarehouseDAO.getWarehouseItemUser(userId, shopItemProto.getNoGrowthItemId());
@@ -63,6 +63,8 @@ public class ShopService {
             resBuyItemShop = Proto.ResBuyItemShop.newBuilder().setStatus(code).build();
         }
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResBuyItemShop(resBuyItemShop).build());
+
+        return reqBuyItemShop.getQuantity();
     }
 
     public Proto.ResBuyItemShop buyItemSuccess(int userId, Proto.ShopItem shopItemProto, int quantity) {

@@ -45,13 +45,14 @@ public class AreaService {
         joinArea(userId, "", areaProto, session);
     }
 
-    public void joinAreaCommon(Session session, Proto.ReqPlayerJoinAreaCommon reqPlayerJoinAreaCommon) {
+    public Proto.Area joinAreaCommon(Session session, Proto.ReqPlayerJoinAreaCommon reqPlayerJoinAreaCommon) {
         Proto.Area areaLeaved = leaveArea(session);
         int userId = SessionCache.me().getUserID(SessionID.of(session));
         Proto.Area areaProto = getAreaByAreaId(reqPlayerJoinAreaCommon.getAreaCommonId());
-        if (areaProto == null) return;
+        if (areaProto == null) return null;
         String typeArea = areaLeaved == null ? "" : areaLeaved.getTypeArea();
         joinArea(userId, typeArea, areaProto, session);
+        return areaProto;
     }
 
     public void joinArea(int userId, String oldAreaType, Proto.Area areaProto, Session session) {

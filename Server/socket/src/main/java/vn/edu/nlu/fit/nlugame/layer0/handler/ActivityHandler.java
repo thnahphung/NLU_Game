@@ -2,13 +2,11 @@ package vn.edu.nlu.fit.nlugame.layer0.handler;
 
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.Session;
-import vn.edu.nlu.fit.nlugame.layer1.ShopService;
 import vn.edu.nlu.fit.nlugame.layer1.TaskService;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
-public class ShopHandler implements Subscriber {
-    ShopService shopService = ShopService.me();
-    TaskService taskService = TaskService.me();
+public class ActivityHandler implements Subscriber{
+    private final TaskService taskService = TaskService.me();
 
     @Override
     public void onOpen(Session session, String... params) {
@@ -19,15 +17,11 @@ public class ShopHandler implements Subscriber {
     public void onMessage(Session session, Proto.PacketWrapper packetWrapper) {
         packetWrapper.getPacketList().forEach(packet -> {
             switch (packet.getDataCase()) {
-                case REQLOADSHOP:
-                    shopService.loadShop(session, packet.getReqLoadShop());
-                    break;
-                case REQBUYITEMSHOP:
-                    buyItemShop(session, packet.getReqBuyItemShop());
+                case REQCOMPLETETASK:
+                    taskService.handleCompleteTask(session, packet.getReqCompleteTask());
                     break;
             }
         });
-
     }
 
     @Override
@@ -43,10 +37,5 @@ public class ShopHandler implements Subscriber {
     @Override
     public boolean requireLogin() {
         return false;
-    }
-
-    private void buyItemShop(Session session, Proto.ReqBuyItemShop reqBuyItemShop) {
-       int quantityItem = shopService.buyItemShop(session, reqBuyItemShop);
-       taskService.checkBuyItemTask(session, quantityItem);
     }
 }

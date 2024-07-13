@@ -22,6 +22,7 @@ import { RewardEffect } from "../Reward/RewardEffect";
 import { PopupShop } from "../Popup/PopupShop";
 import { Util } from "../../Utils/Util";
 import { Menu } from "../Menu/Menu";
+import { PopupTask } from "../Popup/PopupTask";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -326,5 +327,11 @@ export class UICanvas extends Component {
     this._popupTask = instantiate(this.prefabPopupTask);
     this.node.getChildByName("PopupLayer").addChild(this._popupTask);
     this._popupTask.getComponent(PopupComponent).show();
+  }
+
+  reloadPopupTask() {
+    if (this._popupTask) {
+      this._popupTask.getComponent(PopupTask).instanceItems();
+    }
   }
 }

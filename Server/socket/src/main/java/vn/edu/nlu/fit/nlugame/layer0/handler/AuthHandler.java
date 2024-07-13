@@ -2,10 +2,7 @@ package vn.edu.nlu.fit.nlugame.layer0.handler;
 
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.Session;
-import vn.edu.nlu.fit.nlugame.layer1.AreaService;
-import vn.edu.nlu.fit.nlugame.layer1.AuthService;
-import vn.edu.nlu.fit.nlugame.layer1.GameStateService;
-import vn.edu.nlu.fit.nlugame.layer1.WarehouseService;
+import vn.edu.nlu.fit.nlugame.layer1.*;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.UserBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
@@ -16,6 +13,7 @@ public class AuthHandler implements Subscriber {
 
     private final WarehouseService warehouseService = WarehouseService.me();
     private final GameStateService gameStateService = GameStateService.me();
+    private final TaskService taskService = TaskService.me();
 
     @Override
     public void onOpen(Session session, String... params) {
@@ -68,6 +66,7 @@ public class AuthHandler implements Subscriber {
         UserBean userLoginBean = authService.checkLogin(session, packet.getReqLogin());
         gameStateService.sendGameStateLogin(session);
         warehouseService.loadWarehouse(session);
+        taskService.loadTask(session);
         if (userLoginBean == null || userLoginBean.getHasCharacter() == 0) return;
         areaService.joinAreaLogin(userLoginBean.getId(), session);
     }
@@ -76,6 +75,7 @@ public class AuthHandler implements Subscriber {
         UserBean userRelogin = authService.checkReLogin(session, packet.getReqRelogin());
         gameStateService.sendGameStateLogin(session);
         warehouseService.loadWarehouse(session);
+        taskService.loadTask(session);
         if (userRelogin == null || userRelogin.getHasCharacter() == 0) return;
         areaService.joinAreaLogin(userRelogin.getId(), session);
     }

@@ -85,6 +85,4 @@ public class NoGrowthItemCache extends RedisClusterHelper implements ICache<Prot
     public void addRedis(String key, Proto.NoGrowthItem value) {
         getConnection().hset(NO_GROWTH_ITEM_KEY.getBytes(), key.getBytes(), CompressUtils.compress(value));
     }
-
-
 }

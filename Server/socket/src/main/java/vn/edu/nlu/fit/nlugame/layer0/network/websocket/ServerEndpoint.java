@@ -23,6 +23,7 @@ public class ServerEndpoint {
         ServerEndpoint.subscribe(new FriendHandler());
         ServerEndpoint.subscribe(new ShopHandler());
         ServerEndpoint.subscribe(new AnimalHusbandHandler());
+        ServerEndpoint.subscribe(new ActivityHandler());
     }
 
     public static void subscribe(Subscriber sub) {
