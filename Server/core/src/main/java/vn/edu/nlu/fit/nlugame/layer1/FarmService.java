@@ -522,11 +522,11 @@ public class FarmService {
         });
     }
 
-    public void handleHarvest(Session session, Proto.ReqHarvest reqHarvest) {
+    public Map<String, Integer> handleHarvest(Session session, Proto.ReqHarvest reqHarvest) {
         AtomicInteger rewardExpQuantity = new AtomicInteger();
         List<Proto.Crop> cropList = reqHarvest.getHarvestingInformation().getCropList();
         Map<String, Integer> mapQuantityOfTypeCrops = new HashMap<>();
-        if(cropList == null || cropList.isEmpty()) return;
+        if(cropList == null || cropList.isEmpty()) return null;
         cropList.forEach(crop -> {
             // Handling of harvested crops
                 // Delete crop from database -> database optimization
@@ -591,10 +591,15 @@ public class FarmService {
 
         Proto.ResAddProduct resAddProduct = Proto.ResAddProduct.newBuilder().addAllWarehouseItem(warehouseItemList).build();
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResAddProduct(resAddProduct).build());
+        return mapQuantityOfTypeCrops;
     }
 
     private void deleteCrop(int propertyCropId, int propertyItemID) {
         PropertyCropDAO.deletePropertyCrop(propertyCropId);
         PropertyGrowthItemDAO.deletePropertyGrowthItem(propertyItemID);
+    }
+
+    private void checkTask(){
+
     }
 }

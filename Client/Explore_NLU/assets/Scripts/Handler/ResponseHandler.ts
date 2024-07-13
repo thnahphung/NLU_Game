@@ -48,6 +48,15 @@ export class ResponseHandler extends AbsHandler {
       if (packet.resBuyItemShop) {
         this.onResBuyItemShop(packet);
       }
+      if (packet.resLoadTask) {
+        this.onResLoadTask(packet);
+      }
+      if (packet.resUpdateProgressTask) {
+        this.onResUpdateProgressTask(packet);
+      }
+      if (packet.resCompleteTask) {
+        this.onResCompleteTask(packet);
+      }
     });
   }
 
@@ -143,5 +152,26 @@ export class ResponseHandler extends AbsHandler {
     GlobalData.me().addWarehouseItem(packet.resBuyItemShop.warehouseItem);
     GlobalData.me().getMainUser().gold = packet.resBuyItemShop.gold;
     UICanvas.me().loadGold();
+  }
+
+  onResLoadTask(packet: proto.IPacket) {
+    GlobalData.me().setTasks(packet.resLoadTask.activities);
+    GlobalData.me().setProgressTasks(packet.resLoadTask.progressActivities);
+  }
+
+  onResUpdateProgressTask(packet: proto.IPacket) {
+    for (let processTask of packet.resUpdateProgressTask.progressActivities)
+      GlobalData.me().updateProgressTask(processTask);
+  }
+
+  onResCompleteTask(packet: proto.IPacket) {
+    const gold = packet.resCompleteTask.gold;
+    const exp = packet.resCompleteTask.exp;
+    GlobalData.me().updateProgressTask(packet.resCompleteTask.progressActivity);
+    if (gold) {
+      GlobalData.me().getMainUser().gold = gold;
+      UICanvas.me().loadGold();
+    }
+    if (exp) GlobalData.me().getMainUser().level = exp;
   }
 }

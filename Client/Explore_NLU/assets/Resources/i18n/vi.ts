@@ -160,6 +160,14 @@ export const languages = {
     task_title: "Nhiệm vụ",
     btn_get_reward: "Nhận",
     label_reward: "Thưởng: ",
+    sow_rice: "Gieo 20 hạt lúa",
+    harvest_rice: "Thu hoạch 20 cây lúa",
+    harvest_cabbage: "Thu hoạch 15 cây bắp cải",
+    harvest_carrot: "Thu hoạch 10 cây cà rốt",
+    harvest_cucumber: "Thu hoạch 8 cây dưa chuột",
+    harvest_pumpkin: "Thu hoạch 5 cây bí ngô",
+    buy_rice: "Mua hạt giống lúa",
+    task_completed: "Hoàn thành",
   },
 };
 

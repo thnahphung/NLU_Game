@@ -47,7 +47,6 @@ public class TillLandDAO extends BaseDAO{
     }
 
     public static void updateTillLand(int id, boolean statusTilled) {
-        System.out.println("updateTillLand: " + id + ", " + statusTilled);
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");

@@ -79,6 +79,47 @@ export default class GlobalData {
     this.warehouseItems.push(newWarehouseItem);
   }
 
+  /*TASK */
+  private tasks: proto.IActivity[] = null;
+  private progressTasks: proto.IProgressActivity[] = null;
+
+  public setTasks(activities: proto.IActivity[]) {
+    this.tasks = activities;
+  }
+
+  public getTasks() {
+    this.sortProgressTasks();
+    return this.tasks;
+  }
+
+  public setProgressTasks(progressActivities: proto.IProgressActivity[]) {
+    this.progressTasks = progressActivities;
+  }
+
+  public getProgressTasks() {
+    return this.progressTasks;
+  }
+
+  public updateProgressTask(progressActivity: proto.IProgressActivity) {
+    for (let i = 0; i < this.progressTasks.length; i++) {
+      if (this.progressTasks[i].activityId === progressActivity.activityId) {
+        this.progressTasks[i] = progressActivity;
+        return;
+      }
+    }
+  }
+
+  public sortProgressTasks() {
+    this.progressTasks.sort((a, b) => {
+      if (a.status === 1 && b.status !== 1) {
+        return 1;
+      }
+      if (a.status !== 1 && b.status === 1) {
+        return -1;
+      }
+      return 0;
+    });
+  }
   /*===== MAIN USER =====*/
   private mainUser: proto.IUser = null;
   private mainUserNode: Node = null;

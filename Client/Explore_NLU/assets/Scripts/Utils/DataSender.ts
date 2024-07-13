@@ -255,4 +255,16 @@ export default class DataSender {
     WS.send(packet);
     console.log("Send Req Load Cages", packet);
   }
+
+  public static sendResCompleteTask(
+    task: proto.IActivity,
+    progressTask: proto.IProgressActivity
+  ) {
+    let reqCompleteTask = new proto.ReqCompleteTask();
+    reqCompleteTask.activity = task;
+    reqCompleteTask.progressActivity = progressTask;
+    let packet = new proto.Packet();
+    packet.reqCompleteTask = reqCompleteTask;
+    WS.send(packet);
+  }
 }

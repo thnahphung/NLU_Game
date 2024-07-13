@@ -152,6 +152,16 @@ export const languages = {
     task_title: "Task",
     btn_get_reward: "Get",
     label_reward: "Reward: ",
+    sow_rice: "Sow 20 rice",
+    buy_rice_seed: "Buy rice seed",
+    harvest_rice: "Harvest 20 rice",
+    harvest_cabbage: "Harvest 15 cabbage",
+    harvest_carrot: "Harvest 10 carrot",
+    harvest_cucumber: "Harvest 8 cucumber",
+    harvest_pumpkin: "Harvest 5 pumpkin",
+    feed_cow: "Feed cow",
+    feed_chicken: "Feed chicken",
+    task_completed: "Completed",
   },
 };
 
