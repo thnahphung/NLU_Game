@@ -117,7 +117,7 @@ public class FarmService {
         DataSenderUtils.sendResponse(session, packet);
     }
 
-    public void handleSow(Session session, Proto.ReqSow reqSow) {
+    public Proto.Crops handleSow(Session session, Proto.ReqSow reqSow) {
         // Get game state
         Proto.GameState gameState = reqSow.getGameState();
         int timesOfDay = gameState.getTimesOfDay();
@@ -125,7 +125,7 @@ public class FarmService {
         int currentSeason = gameState.getCurrentSeason();
         // Save crop database
         int quantityCrops = reqSow.getSowingInformationList().size();
-        if(quantityCrops == 0) return;
+        if(quantityCrops == 0) return null;
         Proto.Crops.Builder crops = Proto.Crops.newBuilder();
         Proto.NoGrowthItem noGrowthItem = reqSow.getSowingInformationList().get(0).getNoGrowthItem();
         // Get common growth item
@@ -134,7 +134,7 @@ public class FarmService {
         if(commonGrowthItem == null) commonGrowthItem = CommonGrowthItemCache.me().getCommonGrowthItemByNameFromRedis(nameCommonGrowthItem);
         if (commonGrowthItem == null) {
             CommonGrowthItemBean commonGrowthItemBean = CommonGrowthItemDAO.getCommonGrowthItemByName(nameCommonGrowthItem);
-            if(commonGrowthItemBean == null) return;
+            if(commonGrowthItemBean == null) return null;
             commonGrowthItem = Proto.CommonGrowthItem.newBuilder()
                     .setId(commonGrowthItemBean.getId())
                     .setName(commonGrowthItemBean.getName())
@@ -159,6 +159,8 @@ public class FarmService {
         });
 
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResSow(Proto.ResSow.newBuilder().setCrops(crops)).build());
+
+        return crops.build();
     }
 
     private Proto.Crop handleSow(Proto.TillLand tillLand, Proto.CommonGrowthItem commonGrowthItem, int startDate){

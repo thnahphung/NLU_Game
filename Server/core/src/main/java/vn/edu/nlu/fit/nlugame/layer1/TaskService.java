@@ -17,6 +17,7 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.cache.UserCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -146,23 +147,7 @@ public class TaskService {
         if(progressActivityBeans == null) return;
         progressActivityBeans.removeIf(progressActivityBean -> progressActivityBean.getStatus() == 1);
         List<Proto.Activity> finalActivityProtos = activityProtos;
-        List<ProgressActivityBean> listUpdateBeans = new ArrayList<>();
-        mapCrop.forEach((key, value) -> {
-            String typeTask = "harvest_" + key;
-            Proto.Activity activity = finalActivityProtos.stream().filter(activityBean -> activityBean.getCode().equals(typeTask)).findFirst().orElse(null);
-            if(activity == null) return;
-            ProgressActivityBean progressActivityBean = progressActivityBeans.stream().filter(progressActivity -> progressActivity.getActivityId() == activity.getId()).findFirst().orElse(null);
-            if(progressActivityBean == null) return;
-            int turn = activity.getTurn();
-            int progress = progressActivityBean.getProgress();
-            int newProgress = progress + value;
-            if(newProgress >= turn) {
-                progressActivityBean.setProgress(turn);
-            }else{
-                progressActivityBean.setProgress(newProgress);
-            }
-            listUpdateBeans.add(progressActivityBean);
-        });
+        List<ProgressActivityBean> listUpdateBeans = setListProgressUpdate(mapCrop, finalActivityProtos, progressActivityBeans, "harvest_");
         ProgressActivityDAO.updateProgressActivities(listUpdateBeans);
         List<Proto.ProgressActivity> progressActivityProtos = setProtoProgressActivities(ProgressActivityDAO.getProgressTaskLikeCode(userId, "harvest"));
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder()
@@ -216,5 +201,61 @@ public class TaskService {
                             .build())
                     .build());
         }
+    }
+
+    public void checkTaskSow(Session session, Proto.Crops crops){
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        if (userId == -1) {
+            return;
+        }
+        List<ProgressActivityBean> progressActivityBeans = ProgressActivityDAO.getProgressTaskLikeCode(userId, "sow");
+        List<Proto.Activity> activityProtos = ActivityCache.me().getAll();
+        if(activityProtos == null || activityProtos.isEmpty()) {
+            List<ActivityBean> activityBeans = ActivityDAO.getTaskByCharacterId(UserCache.me().getUserOnline(userId).getCharacterId());
+            activityProtos = setProtoActivities(activityBeans);
+            addActivitiesToCache(activityProtos);
+        }
+
+        if(progressActivityBeans == null) return;
+        progressActivityBeans.removeIf(progressActivityBean -> progressActivityBean.getStatus() == 1);
+        List<Proto.Activity> finalActivityProtos = activityProtos;
+        Map<String, Integer> mapQuantityOfTypeCrops = new HashMap<>();
+        crops.getCropsList().forEach(crop -> {
+            String cropName = crop.getCommonGrowthItem().getName();
+            if(mapQuantityOfTypeCrops.containsKey(cropName)){
+                mapQuantityOfTypeCrops.put(cropName, mapQuantityOfTypeCrops.get(cropName) + 1);
+            } else {
+                mapQuantityOfTypeCrops.put(cropName, 1);
+            }
+        });
+        List<ProgressActivityBean> listUpdateBeans = setListProgressUpdate(mapQuantityOfTypeCrops, finalActivityProtos, progressActivityBeans, "sow_");
+        ProgressActivityDAO.updateProgressActivities(listUpdateBeans);
+        List<Proto.ProgressActivity> progressActivityProtos = setProtoProgressActivities(ProgressActivityDAO.getProgressTaskLikeCode(userId, "sow"));
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder()
+                .setResUpdateProgressTask(Proto.ResUpdateProgressTask.newBuilder()
+                        .addAllProgressActivities(progressActivityProtos)
+                        .build())
+                .build());
+    }
+
+    private List<ProgressActivityBean> setListProgressUpdate(Map<String, Integer> mapQuantityOfTypeCrops, List<Proto.Activity> finalActivityProtos, List<ProgressActivityBean> progressActivityBeans, String typeTask) {
+        List<ProgressActivityBean> listUpdateBeans = new ArrayList<>();
+        mapQuantityOfTypeCrops.forEach((key, value) -> {
+            String typeTaskItem = typeTask + key;
+            Proto.Activity activity = finalActivityProtos.stream().filter(activityBean -> activityBean.getCode().equals(typeTaskItem)).findFirst().orElse(null);
+            if(activity == null) return;
+            ProgressActivityBean progressActivityBean = progressActivityBeans.stream().filter(progressActivity -> progressActivity.getActivityId() == activity.getId()).findFirst().orElse(null);
+            if(progressActivityBean == null) return;
+            int turn = activity.getTurn();
+            int progress = progressActivityBean.getProgress();
+            int newProgress = progress + value;
+            if(newProgress >= turn) {
+                progressActivityBean.setProgress(turn);
+            }else{
+                progressActivityBean.setProgress(newProgress);
+            }
+            listUpdateBeans.add(progressActivityBean);
+        });
+        return listUpdateBeans;
     }
 }

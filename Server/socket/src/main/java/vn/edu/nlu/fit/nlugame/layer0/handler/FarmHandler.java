@@ -30,7 +30,7 @@ public class FarmHandler implements Subscriber{
                     farmService.handleLoadCommonCrops(session);
                     break;
                 case REQSOW:
-                    farmService.handleSow(session, packet.getReqSow());
+                    handleSow(session, packet.getReqSow());
                     break;
                 case REQLOADITEMSOFFARM:
                     farmService.loadItemsOfFarm(session, packet.getReqLoadItemsOfFarm());
@@ -60,5 +60,10 @@ public class FarmHandler implements Subscriber{
     private void handleHarvest(Session session, Proto.ReqHarvest reqHarvest) {
         Map<String, Integer> mapSeed = farmService.handleHarvest(session, reqHarvest);
         taskService.checkTaskHarvestCrop(session, mapSeed);
+    }
+
+    private void handleSow(Session session, Proto.ReqSow reqSow) {
+        Proto.Crops crops = farmService.handleSow(session, reqSow);
+        taskService.checkTaskSow(session, crops);
     }
 }

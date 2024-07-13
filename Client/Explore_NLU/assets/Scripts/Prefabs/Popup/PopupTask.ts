@@ -31,11 +31,14 @@ export class PopupTask extends Component {
     const progressTasks = GlobalData.me().getProgressTasks();
     const progressUnfinishedTask = [];
     const progressCompletedTasks = [];
+    if (!tasks || tasks.length == 0) return;
     for (let item of tasks) {
+      console.log("item", item);
       const itemPopupWarehouse = instantiate(this.prefabItemPopuTask);
       const progress = progressTasks.find(
         (progress) => progress.activityId == item.id
       );
+      console.log("progress", progress);
       itemPopupWarehouse.getComponent(TaskItem).init(item, progress);
       if (progress.progress < item.turn) {
         progressUnfinishedTask.push(itemPopupWarehouse);
@@ -45,12 +48,14 @@ export class PopupTask extends Component {
         this.scrollView.content.addChild(itemPopupWarehouse);
       }
     }
-    for (let item of progressUnfinishedTask) {
-      this.scrollView.content.addChild(item);
-    }
-    for (let item of progressCompletedTasks) {
-      this.scrollView.content.addChild(item);
-    }
+    if (progressUnfinishedTask)
+      for (let item of progressUnfinishedTask) {
+        this.scrollView.content.addChild(item);
+      }
+    if (progressCompletedTasks)
+      for (let item of progressCompletedTasks) {
+        this.scrollView.content.addChild(item);
+      }
   }
 
   public hidePopup() {
