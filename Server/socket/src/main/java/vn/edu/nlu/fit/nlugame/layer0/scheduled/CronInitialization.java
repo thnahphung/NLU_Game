@@ -20,6 +20,7 @@ public class CronInitialization implements ServletContextListener {
             /* Adding new jobs here*/
             scheduler.scheduleJob(createJob(PingPongJob.class), createDefaultTrigger(PingPongJob.class, "0/10 * * * * ?"));
             scheduler.scheduleJob(createJob(GameStateJob.class), createDefaultTrigger(GameStateJob.class, "0/30 * * * * ?"));
+            scheduler.scheduleJob(createJob(TaskJob.class), createDefaultTrigger(TaskJob.class, "0 0 0 * * ?")); // repeat every day
             scheduler.start();
         } catch (SchedulerException e) {
             throw new RuntimeException(e);

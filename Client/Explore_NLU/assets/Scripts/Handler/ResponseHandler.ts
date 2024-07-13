@@ -157,6 +157,7 @@ export class ResponseHandler extends AbsHandler {
   onResLoadTask(packet: proto.IPacket) {
     GlobalData.me().setTasks(packet.resLoadTask.activities);
     GlobalData.me().setProgressTasks(packet.resLoadTask.progressActivities);
+    UICanvas.me().reloadPopupTask();
   }
 
   onResUpdateProgressTask(packet: proto.IPacket) {

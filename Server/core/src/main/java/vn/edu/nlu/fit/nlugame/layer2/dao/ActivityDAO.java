@@ -29,4 +29,16 @@ public class ActivityDAO extends BaseDAO{
                 .mapToBean(ActivityBean.class)
                 .list());
     }
+
+    public static void updateRepeatTimeActivity() {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return;
+        }
+        jdbi.useHandle(handle -> handle.createUpdate("UPDATE "+ TABLE_NAME +" SET start_date = NOW(), end_date = NOW() + INTERVAL repeat_time DAY WHERE repeat_time > 0;")
+                .execute());
+    }
+
+    public static void main(String[] args) {
+    }
 }

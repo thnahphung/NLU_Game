@@ -33,4 +33,6 @@ public class ActivityBean {
     private int noGrowthItemId;
     @ColumnName("quantity")
     private int quantity;
+    @ColumnName("repeat_time")
+    private int repeatTime;
 }

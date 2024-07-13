@@ -2,6 +2,7 @@ package vn.edu.nlu.fit.nlugame.layer1;
 
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer2.DataSenderUtils;
+import vn.edu.nlu.fit.nlugame.layer2.SessionManage;
 import vn.edu.nlu.fit.nlugame.layer2.ThreadManage;
 import vn.edu.nlu.fit.nlugame.layer2.dao.*;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.ActivityBean;
@@ -16,6 +17,7 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.cache.SessionCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.UserCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -331,6 +333,23 @@ public class TaskService {
         }
         updateProgressActivityAndSendResponse(session, progressActivityBean);
     }
+
+    public void repeatTask() {
+        ActivityDAO.updateRepeatTimeActivity();
+        ProgressActivityDAO.updateResetProgressActivity();
+        //Remove cache
+        ActivityCache.me().clear();
+        //Send response update
+        UserCache.me().getAllUserOnline().forEach((key, userContext) -> {
+            Session session = SessionManage.me().get(userContext.getSessionID());
+            if(session != null && session.isOpen()) {
+                loadTask(session);
+            }else{
+                //TODO: call other server
+            }
+        });
+    }
+
     private void updateProgressActivityAndSendResponse(Session session, ProgressActivityBean progressActivityBean) {
         ProgressActivityDAO.updateProgressActivity(progressActivityBean);
         Proto.ProgressActivity progressActivityUpdate = setProtoProgressActivity(ProgressActivityDAO.getProgressActivityById(progressActivityBean.getUserId(), progressActivityBean.getActivityId()));
@@ -339,5 +358,9 @@ public class TaskService {
 
     private void sendResUpdateProgressTask(Session session, List<Proto.ProgressActivity> progressActivityProtos) {
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResUpdateProgressTask(Proto.ResUpdateProgressTask.newBuilder().addAllProgressActivities(progressActivityProtos).build()).build());
+    }
+
+    public static void main(String[] args) {
+        TaskService.me().repeatTask();
     }
 }

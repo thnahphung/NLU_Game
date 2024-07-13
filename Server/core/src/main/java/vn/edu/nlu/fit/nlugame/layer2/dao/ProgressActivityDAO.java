@@ -105,4 +105,13 @@ public class ProgressActivityDAO extends BaseDAO{
                 .mapToBean(ProgressActivityBean.class)
                 .stream().findFirst().orElse(null));
     }
+
+    public static void updateResetProgressActivity() {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return;
+        }
+        jdbi.withHandle(handle -> handle.createUpdate("UPDATE progress_activities SET progress = 0, status = 0 WHERE activity_id IN (SELECT id FROM activities WHERE repeat_time > 0)")
+                .execute());
+    }
 }

@@ -79,7 +79,8 @@ public class ActivityCache extends RedisClusterHelper implements ICache<Proto.Ac
 
     @Override
     public void clear() {
-
+        activityMap.invalidateAll();
+        removeAllActivityRedis();
     }
 
     @Override
@@ -92,5 +93,8 @@ public class ActivityCache extends RedisClusterHelper implements ICache<Proto.Ac
     }
     public void addActivityRedis(String key, Proto.Activity activity) {
         getConnection().hset(ACTIVITY_KEY.getBytes(), key.getBytes(), CompressUtils.compress(activity));
+    }
+    private void removeAllActivityRedis() {
+        getConnection().del(ACTIVITY_KEY.getBytes());
     }
 }
