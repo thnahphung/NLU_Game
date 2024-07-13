@@ -67,10 +67,14 @@ message Packet {
     ReqLoadCages reqLoadCages = 57;
     ResLoadCages resLoadCages = 58;
     ResAddProduct resAddProduct = 59;
-    ResLoadTask resLoadTask = 60;
-    ResUpdateProgressTask resUpdateProgressTask = 61;
-    ReqCompleteTask reqCompleteTask = 62;
-    ResCompleteTask resCompleteTask = 63;
+    ReqAnimalEat reqAnimalEat = 60;
+    ResAnimalEat resAnimalEat = 61;
+    ReqAddAnimalToCage reqAddAnimalToCage = 62;
+    ResAddAnimalToCage resAddAnimalToCage = 63;
+    ResLoadTask resLoadTask = 64;
+    ResUpdateProgressTask resUpdateProgressTask = 65;
+    ReqCompleteTask reqCompleteTask = 66;
+    ResCompleteTask resCompleteTask = 67;
   }
 }
 
@@ -630,6 +634,7 @@ message ReqBuyCage {
 message ResBuyCage {
   int32 status = 1;
   int32 gold = 2;
+  Cage cage = 3;
 }
 
 message ReqLoadCages {
@@ -644,9 +649,26 @@ message ResAddProduct {
    repeated WarehouseItem warehouseItem = 1;
 }
 
+message ReqAnimalEat {
+  int32 propertyAnimalId = 1;
+}
+message ResAnimalEat {
+  int32 status = 1;
+  WarehouseItem warehouseItem = 2;
+  int32 propertyAnimalId = 3;
+}
+
+message ReqAddAnimalToCage{
+  int32 cageId = 1;
+}
+
+message ResAddAnimalToCage{
+  int32 status =1;
+  Animal animal = 2;
+  WarehouseItem warehouseItem = 3;
+}
 message ResLoadTask {
   repeated Activity activities = 1;
-  repeated ProgressActivity progressActivities = 2;
 }
 
 message ResUpdateProgressTask {

@@ -18,7 +18,7 @@ public class PropertyGrowthItemDAO extends BaseDAO{
                     .bind("isDisease", false)
                     .bind("startTimeDisease", 0)
                     .bind("health", 100)
-                    .bind("stage", 0)
+                    .bind("stage", 1)
                     .bind("startDate", startDate)
                     .bind("growthItemId", commonGrowthItemId)
                     .executeAndReturnGeneratedKeys("id").mapTo(Integer.class).one());

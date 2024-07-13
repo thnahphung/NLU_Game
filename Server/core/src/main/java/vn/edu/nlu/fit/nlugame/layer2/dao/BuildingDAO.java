@@ -19,7 +19,7 @@ public class BuildingDAO extends BaseDAO {
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
         }
-        return jdbi.withHandle(handle -> handle.createQuery("select id, position_x, position_y, current_level, area_id, common_building_id from " + TABLE_PROPERTY_NAME + " where id = :id")
+        return jdbi.withHandle(handle -> handle.createQuery("select id, position_x, position_y, upgrade_id, current_level, area_id, common_building_id from " + TABLE_PROPERTY_NAME + " where id = :id")
                 .bind("id", id)
                 .mapToBean(PropertyBuildingBean.class)
                 .findFirst().orElse(null));
@@ -207,5 +207,46 @@ public class BuildingDAO extends BaseDAO {
                 .bind("type", type.getValue())
                 .mapTo(Integer.class)
                 .findFirst().orElse(0));
+    }
+
+    public static boolean checkBuildingExist(int positionX, int positionY, int areaId) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        return jdbi.withHandle(handle -> handle.createQuery("select count(*) from " + TABLE_PROPERTY_NAME + " where position_x = :positionX and position_y = :positionY and area_id = :areaId")
+                .bind("positionX", positionX)
+                .bind("positionY", positionY)
+                .bind("areaId", areaId)
+                .mapTo(Integer.class)
+                .findFirst().orElse(0) > 0);
+    }
+
+    public static CommonBuildingBean getCommonBuildingByName(String name) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        return jdbi.withHandle(handle -> handle.createQuery("select id, name, type, max_level, description from " + TABLE_COMMON_NAME + " where name = :name")
+                .bind("name", name)
+                .map((rs, ctx) -> new CommonBuildingBean(rs.getInt("id"), rs.getString("name"), rs.getString("description"), ConstUtils.TYPE_ITEM.valueOf(rs.getString("type")), rs.getInt("max_level")))
+                .findFirst().orElse(null));
+    }
+
+    public static int insertPropertyBuilding(PropertyBuildingBean propertyBuilding) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        return jdbi.withHandle(handle -> handle.createUpdate("insert into " + TABLE_PROPERTY_NAME + " (area_id, common_building_id, position_x, position_y, current_level, upgrade_id) values (:areaId, :commonBuildingId, :positionX, :positionY, :currentLevel, :upgradeId)")
+                .bind("areaId", propertyBuilding.getAreaId())
+                .bind("commonBuildingId", propertyBuilding.getCommonBuildingId())
+                .bind("positionX", propertyBuilding.getPositionX())
+                .bind("positionY", propertyBuilding.getPositionY())
+                .bind("currentLevel", propertyBuilding.getCurrentLevel())
+                .bind("upgradeId", propertyBuilding.getUpgradeId())
+                .executeAndReturnGeneratedKeys("id")
+                .mapTo(Integer.class)
+                .findFirst().orElse(-1));
     }
 }

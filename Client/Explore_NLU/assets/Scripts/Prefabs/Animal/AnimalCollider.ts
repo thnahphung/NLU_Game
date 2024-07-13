@@ -20,30 +20,30 @@ export class AnimalCollider extends Component {
 
     let collider = this.animalInfo.getCollider();
     if (collider !== null) {
-      collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
+      // collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
     }
   }
 
-  onBeginContact(
-    selfCollider: Collider2D,
-    otherCollider: Collider2D,
-    contact: IPhysics2DContact | null
-  ) {
-    if (this.animalInfo.isHungryAnimal() === false) return;
-    if (
-      this.isCowFood(otherCollider.node) ||
-      this.isChickenFood(otherCollider.node)
-    ) {
-      this.eat(otherCollider.node);
-    }
-  }
-  private eat(otherCollider: Node) {
-    if (this.animalInfo.getCurrentState() === ANIMAL_STATE.IDLE_RIGHT) {
-      this.animalInfo.setCurrentState(ANIMAL_STATE.EAT_RIGHT);
-    } else if (this.animalInfo.getCurrentState() === ANIMAL_STATE.IDLE_LEFT) {
-      this.animalInfo.setCurrentState(ANIMAL_STATE.EAT_LEFT);
-    }
-  }
+  // onBeginContact(
+  //   selfCollider: Collider2D,
+  //   otherCollider: Collider2D,
+  //   contact: IPhysics2DContact | null
+  // ) {
+  //   if (this.animalInfo.isHungryAnimal() === false) return;
+  //   if (
+  //     this.isCowFood(otherCollider.node) ||
+  //     this.isChickenFood(otherCollider.node)
+  //   ) {
+  //     this.eat(otherCollider.node);
+  //   }
+  // }
+  // private eat(otherCollider: Node) {
+  //   if (this.animalInfo.getCurrentState() === ANIMAL_STATE.IDLE_RIGHT) {
+  //     this.animalInfo.setCurrentState(ANIMAL_STATE.EAT_RIGHT);
+  //   } else if (this.animalInfo.getCurrentState() === ANIMAL_STATE.IDLE_LEFT) {
+  //     this.animalInfo.setCurrentState(ANIMAL_STATE.EAT_LEFT);
+  //   }
+  // }
 
   private isCowFood(otherCollider: Node) {
     return (

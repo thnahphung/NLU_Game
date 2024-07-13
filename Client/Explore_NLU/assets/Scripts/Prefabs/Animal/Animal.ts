@@ -22,7 +22,6 @@ export class Animal extends Component {
   @property private type: ANIMAL = ANIMAL.COW;
   @property private currentState: ANIMAL_STATE = ANIMAL_STATE.IDLE_RIGHT;
   @property private speed: number = 100;
-  // @property private isDisease: boolean = false;
 
   @property maxMovingDistanceX: Vec2 = new Vec2(0, 0);
   @property maxMovingDistanceY: Vec2 = new Vec2(0, 0);
@@ -125,6 +124,9 @@ export class Animal extends Component {
   public isHungryAnimal() {
     return this.animal.isHungry > 0;
   }
+  public setIsHungryAnimal(isHungry: number) {
+    this.animal.isHungry = isHungry;
+  }
   public getType() {
     return this.type;
   }
@@ -161,5 +163,9 @@ export class Animal extends Component {
       "-lv" +
       this.animal.propertyGrowthItem.stage
     );
+  }
+
+  public getAnimal() {
+    return this.animal;
   }
 }

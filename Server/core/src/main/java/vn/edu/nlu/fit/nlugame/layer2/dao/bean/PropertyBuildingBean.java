@@ -1,15 +1,14 @@
 package vn.edu.nlu.fit.nlugame.layer2.dao.bean;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 @NoArgsConstructor
 @Setter
 @Getter
 @ToString
+@Builder
+@AllArgsConstructor
 public class PropertyBuildingBean {
     @ColumnName("id")
     private int id;
