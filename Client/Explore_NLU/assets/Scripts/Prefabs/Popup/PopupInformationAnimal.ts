@@ -27,7 +27,6 @@ export class PopupInformationAnimal extends Component {
     this.nameLabel.string = t(
       "label_text." + Util.convertDashToUnderscore(name)
     );
-    console.log("label_text." + Util.convertDashToUnderscore(name));
     this.ageLabel.string =
       age.toString() + " " + t("label_text.animal_age_day");
     this.healthLabel.string = disease

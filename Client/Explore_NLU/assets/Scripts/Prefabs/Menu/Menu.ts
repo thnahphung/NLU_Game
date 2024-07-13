@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from "cc";
+import { _decorator, Button, Component, Node } from "cc";
 import { TYPE_TOOL } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
@@ -20,6 +20,22 @@ export class Menu extends Component {
   }
   handleOnTouchStartModal() {
     this.node.active = false;
+    const informationButton = this.node
+      .getChildByName("CageInformation")
+      .getChildByName("InformationButton");
+    if (informationButton) {
+      informationButton.targetOff("UICanvas");
+      informationButton.off(Button.EventType.CLICK);
+    }
+
+    const addAnimalButton = this.node
+      .getChildByName("CageInformation")
+      .getChildByName("AddAnimalButton");
+    if (addAnimalButton) {
+      console.log("addAnimalButton", addAnimalButton);
+      addAnimalButton.targetOff("UICanvas");
+      addAnimalButton.off(Button.EventType.CLICK);
+    }
   }
 
   public getMenuModalNode(): Node {

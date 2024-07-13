@@ -10,7 +10,7 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.RedisClusterHelper;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-public class CommonBuildingCache extends RedisClusterHelper implements ICache<Proto.BuildingBase>{
+public class CommonBuildingCache extends RedisClusterHelper implements ICache<Proto.BuildingBase> {
     private static final CommonBuildingCache instance = new CommonBuildingCache();
     private static final String COMMON_BUILDING_KEY = "common_building";
     private static final Cache<String, Proto.BuildingBase> commonBuildingMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.HOURS).build();
@@ -24,7 +24,7 @@ public class CommonBuildingCache extends RedisClusterHelper implements ICache<Pr
 
     @Override
     public boolean add(String key, Proto.BuildingBase value) {
-        if(value == null) {
+        if (value == null) {
             return false;
         }
         commonBuildingMap.put(key, value);
@@ -33,7 +33,7 @@ public class CommonBuildingCache extends RedisClusterHelper implements ICache<Pr
 
     @Override
     public boolean add(Proto.BuildingBase value) {
-        if(value == null) {
+        if (value == null) {
             return false;
         }
         commonBuildingMap.put(String.valueOf(value.getId()), value);
@@ -43,9 +43,9 @@ public class CommonBuildingCache extends RedisClusterHelper implements ICache<Pr
     @Override
     public Proto.BuildingBase get(String key) {
         Proto.BuildingBase commonBuildingContext = commonBuildingMap.getIfPresent(key);
-        if(commonBuildingContext == null) {
+        if (commonBuildingContext == null) {
             commonBuildingContext = getCommonBuilding(Integer.parseInt(key));
-            if(commonBuildingContext != null) {
+            if (commonBuildingContext != null) {
                 commonBuildingMap.put(key, commonBuildingContext);
             }
         }
@@ -65,7 +65,7 @@ public class CommonBuildingCache extends RedisClusterHelper implements ICache<Pr
     @Override
     public Proto.BuildingBase remove(String key) {
         Proto.BuildingBase commonBuildingContext = commonBuildingMap.getIfPresent(key);
-        if(commonBuildingContext != null) {
+        if (commonBuildingContext != null) {
             getConnection().hdel(COMMON_BUILDING_KEY.getBytes(), key.getBytes());
             commonBuildingMap.invalidate(key);
         }
@@ -94,11 +94,11 @@ public class CommonBuildingCache extends RedisClusterHelper implements ICache<Pr
 
     public Proto.BuildingBase getCommonBuilding(int id) {
         Proto.BuildingBase commonBuildingContext = commonBuildingMap.getIfPresent(String.valueOf(id));
-        if(commonBuildingContext == null) {
+        if (commonBuildingContext == null) {
             byte[] bytes = getConnection().hget(COMMON_BUILDING_KEY.getBytes(), String.valueOf(id).getBytes());
-            if(bytes != null) {
+            if (bytes != null) {
                 commonBuildingContext = CompressUtils.decompress(bytes, Proto.BuildingBase.class);
-                if(commonBuildingContext != null) {
+                if (commonBuildingContext != null) {
                     commonBuildingMap.put(String.valueOf(id), commonBuildingContext);
                 }
             }
@@ -128,7 +128,23 @@ public class CommonBuildingCache extends RedisClusterHelper implements ICache<Pr
 
     public int getIdBuildingByType(ConstUtils.TYPE_ITEM typeItem) {
         Proto.BuildingBase commonBuilding = commonBuildingMap.asMap().values().stream().filter(context -> context.getType().equals(typeItem.getValue())).findFirst().orElse(null);
-        if(commonBuilding == null) return 0;
+        if (commonBuilding == null) return 0;
         return commonBuilding.getId();
+    }
+
+    public Proto.BuildingBase getCommonBuildingByName(String name) {
+        Proto.BuildingBase commonBuildingContext = commonBuildingMap.asMap().values().stream().filter(context -> context.getName().equals(name)).findFirst().orElse(null);
+        if (commonBuildingContext == null) {
+            Map<byte[], byte[]> commonBuildingMap = getConnection().hgetAll(COMMON_BUILDING_KEY.getBytes());
+            for (Map.Entry<byte[], byte[]> entry : commonBuildingMap.entrySet()) {
+                Proto.BuildingBase commonBuilding = CompressUtils.decompress(entry.getValue(), Proto.BuildingBase.class);
+                if (commonBuilding.getName().equals(name)) {
+                    commonBuildingContext = commonBuilding;
+                    break;
+                }
+            }
+
+        }
+        return commonBuildingContext;
     }
 }

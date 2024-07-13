@@ -1,14 +1,21 @@
-import { _decorator, Button, Component, instantiate, Node, Prefab } from "cc";
+import {
+  _decorator,
+  Button,
+  Component,
+  Enum,
+  instantiate,
+  Node,
+  Prefab,
+} from "cc";
 import { UICanvas } from "../MainUI/UICanvas";
 import { POPUP } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("Shop")
 export class Shop extends Component {
+  @property private typeShop: number;
+
   onClickButtonInformation() {
-    UICanvas.me().showPopupShop(proto.ShopItem.TYPE_SHOP.CROP);
-  }
-  onClickExit() {
-    console.log("Click exit");
+    UICanvas.me().showPopupShop(this.typeShop);
   }
 }

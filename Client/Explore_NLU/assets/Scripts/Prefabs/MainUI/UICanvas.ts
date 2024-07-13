@@ -4,6 +4,7 @@ import {
   Button,
   Component,
   director,
+  EventHandler,
   instantiate,
   Label,
   Node,
@@ -22,6 +23,7 @@ import { RewardEffect } from "../Reward/RewardEffect";
 import { PopupShop } from "../Popup/PopupShop";
 import { Util } from "../../Utils/Util";
 import { Menu } from "../Menu/Menu";
+import { PopupCageInformation } from "../Popup/PopupCageInformation";
 import { PopupTask } from "../Popup/PopupTask";
 const { ccclass, property } = _decorator;
 
@@ -36,6 +38,7 @@ export class UICanvas extends Component {
   @property(Node) private popupMenuAnimalFood: Node = null;
   @property(Node) private popupMenuToolFarm: Node = null;
   @property(Node) private popupMenuSeedFarm: Node = null;
+
   @property(Prefab) private prefabPopupMessage: Prefab;
   @property(Prefab) private prefabPopupOption: Prefab;
   @property(Prefab) private prefabPopupSetting: Prefab;
@@ -48,6 +51,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupWarehouse: Prefab;
   @property(Prefab) private prefabPopupCageBuilding: Prefab;
   @property(Prefab) private prefabPopupTask: Prefab;
+  @property(Prefab) private prefabPopupCageInformation: Prefab;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -130,7 +134,7 @@ export class UICanvas extends Component {
     this.scheduleOnce(() => (this.isLocked = false), 1);
   }
 
-  showPopupShop(type: proto.ShopItem.TYPE_SHOP): Node {
+  showPopupShop(type: proto.ShopItem.TYPE_SHOP | number): Node {
     if (this.node.getChildByName("PopupLayer").getChildByName("PopupShop")) {
       return;
     }
@@ -243,10 +247,43 @@ export class UICanvas extends Component {
     });
   }
 
-  showPopupMenuInfoAnimalFood() {
+  showPopupMenuInfoAnimalFood(cage: proto.ICage, callback?: Function) {
     if (!this.popupMenuAnimalFood.active) {
+      this.popupMenuAnimalFood
+        .getChildByName("CageInformation")
+        .getChildByName("InformationButton")
+        .once(
+          Button.EventType.CLICK,
+          () => {
+            this.showPopupCageInformation(cage);
+          },
+          "UICanvas"
+        );
+
+      this.popupMenuAnimalFood
+        .getChildByName("CageInformation")
+        .getChildByName("AddAnimalButton")
+        .on(
+          Button.EventType.CLICK,
+          () => {
+            if (callback) {
+              callback();
+            }
+          },
+          "UICanvas"
+        );
       this.popupMenuAnimalFood.active = true;
     }
+  }
+
+  showPopupCageInformation(cage: proto.ICage) {
+    const popupCageInformationNode = instantiate(
+      this.prefabPopupCageInformation
+    );
+    popupCageInformationNode.getComponent(PopupCageInformation).init(cage);
+    this.node.getChildByName("PopupLayer").addChild(popupCageInformationNode);
+    popupCageInformationNode.getComponent(PopupComponent).show();
+    this.popupMenuAnimalFood.active = false;
   }
 
   showPopupMenuToolFarm(nameTool: string) {

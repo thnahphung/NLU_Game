@@ -10,10 +10,14 @@ import {
   SpriteFrame,
 } from "cc";
 import { PopupComponent } from "../../Controller/PopupComponent";
+import { ItemPopupAnimal } from "./ItemPopup/ItemPopupAnimal";
+import { t } from "../../../../extensions/i18n/assets/LanguageData";
+import { Util } from "../../Utils/Util";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupCageInformation")
 export class PopupCageInformation extends Component {
+  @property(Label) private titleLabel: Label;
   @property(Label) private capacityLabel: Label;
   @property(Label) private levelLabel: Label;
   @property(ScrollView) private animalsPanel: ScrollView;
@@ -21,46 +25,47 @@ export class PopupCageInformation extends Component {
   @property(Prefab) private itemPopupAnimal: Prefab;
   @property(Prefab) private popupYesNo: Prefab;
 
-  private listItemAnimal: Node[] = [];
-
   private cageInfo: proto.ICage;
   start() {
-    // this.setListAnimal();
+    this.setInformationCage();
+    this.setListAnimal();
+  }
+
+  init(cage: proto.ICage) {
+    this.cageInfo = cage;
+  }
+
+  reset(cage: proto.ICage) {
+    this.cageInfo = cage;
+    this.setInformationCage();
+    this.setListAnimal();
   }
 
   onClickExit() {
     this.node.getComponent(PopupComponent).hide();
-    let timeoutDestroy = setTimeout(() => {
+    this.scheduleOnce(() => {
       this.node.destroy();
-      clearTimeout(timeoutDestroy);
-    }, 300);
+    }, 0.3);
   }
 
-  public setInformationCage(cageInfo: proto.ICage) {
-    this.cageInfo = cageInfo;
+  public setInformationCage() {
+    this.titleLabel.string = t(
+      "label_text." + Util.convertDashToUnderscore(this.cageInfo.upgrade.name)
+    );
     this.capacityLabel.string =
-      cageInfo.animals.length.toString() +
+      this.cageInfo.animals.length.toString() +
       "/" +
-      cageInfo.upgrade.capacity.toString();
-    this.levelLabel.string = cageInfo.upgrade.level.toString();
+      this.cageInfo.upgrade.capacity.toString();
+    this.levelLabel.string = this.cageInfo.upgrade.level.toString();
   }
 
-  // public setListAnimal() {
-  //   this.animalsPanel.content.removeAllChildren();
-  //   this.cageInfo.animals.forEach((animal) => {
-  //     let item = instantiate(this.itemPopupAnimal);
-  //     item
-  //       .getComponent(ItemPopupAnimal)
-  //       .setAnimalData(animal, this.getAnimalImage(animal.type, false));
-  //     item.on(
-  //       Button.EventType.CLICK,
-  //       (button: Button) => this.onClickItem(button),
-  //       this
-  //     );
-  //     this.animalsPanel.content.addChild(item);
-  //     this.listItemAnimal.push(item);
-  //   });
-  // }
+  public setListAnimal() {
+    this.cageInfo.animals.forEach((animal) => {
+      let item = instantiate(this.itemPopupAnimal);
+      item.getComponent(ItemPopupAnimal).init(animal);
+      this.animalsPanel.content.addChild(item);
+    });
+  }
 
   public getCageInfo() {
     return this.cageInfo;

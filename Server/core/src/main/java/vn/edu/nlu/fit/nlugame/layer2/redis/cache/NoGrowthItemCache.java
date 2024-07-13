@@ -7,6 +7,7 @@ import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.RedisClusterHelper;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -85,4 +86,21 @@ public class NoGrowthItemCache extends RedisClusterHelper implements ICache<Prot
     public void addRedis(String key, Proto.NoGrowthItem value) {
         getConnection().hset(NO_GROWTH_ITEM_KEY.getBytes(), key.getBytes(), CompressUtils.compress(value));
     }
+
+    public Proto.NoGrowthItem getNoGrowthItemByName(String name) {
+        Proto.NoGrowthItem noGrowthItem = noGrowthItemMap.asMap().values().stream().filter(context -> context.getName().equals(name)).findFirst().orElse(null);
+        if (noGrowthItem == null) {
+            Map<byte[], byte[]> noGrowthItemMap = getConnection().hgetAll(NO_GROWTH_ITEM_KEY.getBytes());
+            for (Map.Entry<byte[], byte[]> entry : noGrowthItemMap.entrySet()) {
+                Proto.NoGrowthItem commonBuilding = CompressUtils.decompress(entry.getValue(), Proto.NoGrowthItem.class);
+                if (commonBuilding.getName().equals(name)) {
+                    noGrowthItem = commonBuilding;
+                    break;
+                }
+            }
+
+        }
+        return noGrowthItem;
+    }
+
 }

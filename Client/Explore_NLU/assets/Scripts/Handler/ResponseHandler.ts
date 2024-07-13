@@ -7,6 +7,7 @@ import { Util } from "../Utils/Util";
 import AbsScene from "../Scenes/AbsScene";
 import { PlayerManager } from "../Manager/PlayerManager";
 import { Character } from "../Prefabs/Character/Character";
+import { t } from "../../../extensions/i18n/assets/LanguageData";
 const { ccclass, property } = _decorator;
 
 @ccclass("ResponseHandler")
@@ -149,6 +150,11 @@ export class ResponseHandler extends AbsHandler {
   }
 
   onResBuyItemShop(packet: proto.IPacket) {
+    if (packet.resBuyItemShop.status == 400) {
+      UICanvas.me().showPopupMessage(t("label_text.buy_shop_not_enough_gold"));
+      return;
+    }
+
     GlobalData.me().addWarehouseItem(packet.resBuyItemShop.warehouseItem);
     GlobalData.me().getMainUser().gold = packet.resBuyItemShop.gold;
     UICanvas.me().loadGold();

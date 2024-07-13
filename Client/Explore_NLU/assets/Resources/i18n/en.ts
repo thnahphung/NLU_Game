@@ -112,6 +112,10 @@ export const languages = {
     pick_character_400: "This name already exists, please choose another name",
     pick_character_enter_name: "Enter your name",
     pick_character_header_name: "What's your name",
+    buy_shop_not_enough_gold: "Not enough gold!",
+    animal_eat_not_enough_food: "Not enough food!",
+    add_animal_not_enough_capacity: "Not enough capacity!",
+    add_animal_not_enough_animal: "Not enough animal!",
     //Area Name
     phuong_vi: "Phuong Vi",
     cam_tu: "Cam Tu",
@@ -126,6 +130,7 @@ export const languages = {
     winter: "Winter",
     //Shop Name
     crop_shop: "Crop Shop",
+    animal_shop: "Animal Shop",
     buy_cage: "Buy Cage",
     //Crop Name
     rice_seed_bag: "Rice Seed Bag",
@@ -143,9 +148,14 @@ export const languages = {
     chicken_blue_lv2: "Chicken",
     cow_yellow_lv1: "Calf",
     cow_yellow_lv2: "Cow",
+    // Animal Food
+    hay: "Hay",
+    paddy_grain: "Paddy Grain",
     // Cage
-    cage_chicken: "Chicken Coop",
-    cage_cow: "Cow Barn",
+    cage_chicken_lv1: "Small Chicken Coop",
+    cage_cow_lv1: "Small Cow Barn",
+    cage_chicken_lv2: "Big Chicken Coop",
+    cage_cow_lv2: "Big Cow Barn",
     // Reward
     experience_point: "EXP",
     // Task
