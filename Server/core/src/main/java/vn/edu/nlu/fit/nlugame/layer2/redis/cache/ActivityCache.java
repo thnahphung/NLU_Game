@@ -29,6 +29,7 @@ public class ActivityCache extends RedisClusterHelper implements ICache<Proto.Ac
 
     @Override
     public boolean add(Proto.Activity value) {
+        add(getKey(value), value);
         return false;
     }
 

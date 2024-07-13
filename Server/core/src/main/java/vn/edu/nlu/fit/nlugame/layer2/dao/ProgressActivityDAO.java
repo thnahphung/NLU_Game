@@ -46,6 +46,18 @@ public class ProgressActivityDAO extends BaseDAO{
                 .list());
     }
 
+    public static ProgressActivityBean getProgressTaskByCode(int userId, String code) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT p.user_id, p.activity_id, p.progress, p.status FROM "+TABLE_NAME+" p left join activities a on p.activity_id = a.id WHERE a.code = :code and p.user_id = :userId")
+                .bind("code", code)
+                .bind("userId", userId)
+                .mapToBean(ProgressActivityBean.class)
+                .stream().findFirst().orElse(null));
+    }
+
     public static void updateProgressActivities(List<ProgressActivityBean> progressActivityBeans) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {

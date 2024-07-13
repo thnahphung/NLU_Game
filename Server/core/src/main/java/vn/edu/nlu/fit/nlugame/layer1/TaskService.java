@@ -79,6 +79,40 @@ public class TaskService {
         });
     }
 
+    private Proto.Activity addActivityToCache(ActivityBean activityBean) {
+        Proto.NoGrowthItem noGrowthItem = NoGrowthItemCache.me().get(String.valueOf(activityBean.getNoGrowthItemId()));
+        if(noGrowthItem == null) {
+            NoGrowthItemBean noGrowthItemBean = NoGrowthItemDAO.getNoGrowthItemById(activityBean.getNoGrowthItemId());
+            Proto.NoGrowthItem.Builder noGrowthItemBuilder = Proto.NoGrowthItem.newBuilder()
+                    .setId(noGrowthItemBean.getId())
+                    .setName(noGrowthItemBean.getName())
+                    .setPrice(noGrowthItemBean.getPrice())
+                    .setSalePrice(noGrowthItemBean.getSalePrice())
+                    .setExperienceReceive(noGrowthItemBean.getExperienceReceive())
+                    .setStatus(noGrowthItemBean.getStatus())
+                    .setType(noGrowthItemBean.getType())
+                    .setDescription(noGrowthItemBean.getDescription());
+            NoGrowthItemCache.me().add(noGrowthItemBuilder.build());
+            noGrowthItem = noGrowthItemBuilder.build();
+        }
+        Proto.RewardItem rewardItem = Proto.RewardItem.newBuilder()
+                .setNoGrowthItemId(activityBean.getNoGrowthItemId())
+                .setQuantity(activityBean.getQuantity())
+                .setNoGrowthItem(noGrowthItem)
+                .build();
+        Proto.Activity activity = Proto.Activity.newBuilder()
+                .setId(activityBean.getId())
+                .setCode(activityBean.getCode())
+                .setType(activityBean.getType())
+                .setMinLevel(activityBean.getMinLevel())
+                .setCharacterId(activityBean.getCharacterId())
+                .setTurn(activityBean.getTurn())
+                .setRewardItem(rewardItem)
+                .build();
+        ThreadManage.me().execute(() -> ActivityCache.me().add(activity));
+        return activity;
+    }
+
     private List<Proto.Activity> setProtoActivities(List<ActivityBean> activityBeans) {
         List<Proto.Activity> activityProtos = new ArrayList<>();
         for(ActivityBean activityBean : activityBeans) {
@@ -150,11 +184,7 @@ public class TaskService {
         List<ProgressActivityBean> listUpdateBeans = setListProgressUpdate(mapCrop, finalActivityProtos, progressActivityBeans, "harvest_");
         ProgressActivityDAO.updateProgressActivities(listUpdateBeans);
         List<Proto.ProgressActivity> progressActivityProtos = setProtoProgressActivities(ProgressActivityDAO.getProgressTaskLikeCode(userId, "harvest"));
-        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder()
-                .setResUpdateProgressTask(Proto.ResUpdateProgressTask.newBuilder()
-                        .addAllProgressActivities(progressActivityProtos)
-                        .build())
-                .build());
+        sendResUpdateProgressTask(session, progressActivityProtos);
     }
     public List<Proto.ProgressActivity> setProtoProgressActivities(List<ProgressActivityBean> progressActivityBeans) {
         List<Proto.ProgressActivity> progressActivityProtos = new ArrayList<>();
@@ -231,11 +261,7 @@ public class TaskService {
         List<ProgressActivityBean> listUpdateBeans = setListProgressUpdate(mapQuantityOfTypeCrops, finalActivityProtos, progressActivityBeans, "sow_");
         ProgressActivityDAO.updateProgressActivities(listUpdateBeans);
         List<Proto.ProgressActivity> progressActivityProtos = setProtoProgressActivities(ProgressActivityDAO.getProgressTaskLikeCode(userId, "sow"));
-        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder()
-                .setResUpdateProgressTask(Proto.ResUpdateProgressTask.newBuilder()
-                        .addAllProgressActivities(progressActivityProtos)
-                        .build())
-                .build());
+        sendResUpdateProgressTask(session, progressActivityProtos);
     }
 
     private List<ProgressActivityBean> setListProgressUpdate(Map<String, Integer> mapQuantityOfTypeCrops, List<Proto.Activity> finalActivityProtos, List<ProgressActivityBean> progressActivityBeans, String typeTask) {
@@ -257,5 +283,40 @@ public class TaskService {
             listUpdateBeans.add(progressActivityBean);
         });
         return listUpdateBeans;
+    }
+
+    public void checkBuyItemTask(Session session, int quantity) {
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        if (userId == -1) {
+            return;
+        }
+        ProgressActivityBean progressActivityBean = ProgressActivityDAO.getProgressTaskByCode(userId, "buy_item");
+        if(progressActivityBean == null || progressActivityBean.getStatus() == 1) return;
+
+        Proto.Activity activity = ActivityCache.me().get(String.valueOf(progressActivityBean.getActivityId()));
+        if(activity == null) {
+            ActivityBean activityBean = ActivityDAO.getTaskById(progressActivityBean.getActivityId());
+            activity = addActivityToCache(activityBean);
+        };
+
+        int turn = activity.getTurn();
+        int progress = progressActivityBean.getProgress();
+        int newProgress = progress + quantity;
+        if(newProgress >= turn) {
+            progressActivityBean.setProgress(turn);
+        }else{
+            progressActivityBean.setProgress(newProgress);
+        }
+        updateProgressActivityAndSendResponse(session, progressActivityBean);
+    }
+
+    private void updateProgressActivityAndSendResponse(Session session, ProgressActivityBean progressActivityBean) {
+        ProgressActivityDAO.updateProgressActivity(progressActivityBean);
+        Proto.ProgressActivity progressActivityUpdate = setProtoProgressActivity(ProgressActivityDAO.getProgressActivityById(progressActivityBean.getUserId(), progressActivityBean.getActivityId()));
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResUpdateProgressTask(Proto.ResUpdateProgressTask.newBuilder().addProgressActivities(progressActivityUpdate).build()).build());
+    }
+
+    private void sendResUpdateProgressTask(Session session, List<Proto.ProgressActivity> progressActivityProtos) {
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResUpdateProgressTask(Proto.ResUpdateProgressTask.newBuilder().addAllProgressActivities(progressActivityProtos).build()).build());
     }
 }
