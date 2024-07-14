@@ -38,10 +38,32 @@ export class AnimalHusbandryScene extends AbsScene {
       if (packet.resAddAnimalToCage) {
         this.onAddAnimalToCageHandler(packet);
       }
+      if (packet.resAnimalDisease) {
+        this.onAnimalDiseaseHandle(packet);
+      }
     });
   }
+
+  onAnimalDiseaseHandle(packet: proto.IPacket) {
+    console.log("onAnimalDiseaseHandle", packet);
+    for (let animalDisease of packet.resAnimalDisease.animals) {
+      for (let cageNode of this.cagesNode) {
+        let animalNode = cageNode
+          .getComponent(Cage)
+          .getAnimalById(animalDisease.id);
+
+        if (animalNode) {
+          // animalNode.getComponent()
+        }
+      }
+    }
+
+    for (let cageNode of this.cagesNode) {
+      cageNode.getComponent(Cage).changeAnimalNewDay();
+    }
+  }
+
   onAddAnimalToCageHandler(packet: proto.IPacket) {
-    console.log(packet.resAddAnimalToCage);
     if (packet.resAddAnimalToCage.status == 400) {
       UICanvas.me().showPopupMessage(
         t("label_text.add_animal_not_enough_animal")
@@ -65,7 +87,6 @@ export class AnimalHusbandryScene extends AbsScene {
   }
 
   onBuyCageHandler(packet: proto.IPacket) {
-    console.log(packet.resBuyCage);
     if (packet.resBuyCage.status == 400) {
       UICanvas.me().showPopupMessage(t("label_text.buy_shop_not_enough_gold"));
       return;
@@ -80,6 +101,7 @@ export class AnimalHusbandryScene extends AbsScene {
 
   onLoadCagesHandler(packet: proto.IPacket) {
     this.cages = packet.resLoadCages.cages;
+    console.log("onLoadCagesHandler", this.cages);
     this.createCages();
   }
 

@@ -210,7 +210,6 @@ public class AnimalHusbandService {
                 .addAllCages(cages)
                 .build();
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadCages(resLoadCages).build());
-
     }
 
     public Proto.ShopItem getShopItem(int shopItemId) {
@@ -262,7 +261,7 @@ public class AnimalHusbandService {
             Proto.PropertyGrowthItem propertyGrowthItemProto = Proto.PropertyGrowthItem.newBuilder()
                     .setId(propertyGrowthItemBean.getId())
                     .setCurrentDiseaseId(propertyGrowthItemBean.getCurrentDiseaseId())
-                    .setIsDisease(propertyGrowthItemBean.isDisease())
+                    .setIsDisease(propertyGrowthItemBean.getIsDisease() > 0)
                     .setStartTimeDisease(propertyGrowthItemBean.getStartTimeDisease())
                     .setHealth(propertyGrowthItemBean.getHealth())
                     .setStage(propertyGrowthItemBean.getStage())
@@ -273,7 +272,6 @@ public class AnimalHusbandService {
                     .build();
             Proto.CommonGrowthItem commonGrowthItemProto = this.getCommonGrowthItemById(propertyGrowthItemBean.getGrowthItemId());
             List<Proto.CommonRisingTime> commonRisingTimesProto = getCommonRisingTimeByItemId(commonGrowthItemProto.getId());
-
             Proto.Animal animal = Proto.Animal.newBuilder()
                     .setId(propertyAnimalBean.getId())
                     .setIsPregnant(propertyAnimalBean.getIsPregnant())
@@ -329,6 +327,7 @@ public class AnimalHusbandService {
                         .build();
                 CommonRisingTimeCache.me().add(String.valueOf(commonRisingTimeProto.getId()), commonRisingTimeProto);
                 CommonRisingTimeCache.me().addCommonRisingTimeToRedis(commonRisingTimeProto);
+                commonRisingTimesProto.add(commonRisingTimeProto);
             }
         }
         return commonRisingTimesProto;
@@ -602,7 +601,7 @@ public class AnimalHusbandService {
         Proto.PropertyGrowthItem propertyGrowthItemProto = Proto.PropertyGrowthItem.newBuilder()
                 .setId(propertyGrowthItemBean.getId())
                 .setCurrentDiseaseId(propertyGrowthItemBean.getCurrentDiseaseId())
-                .setIsDisease(propertyGrowthItemBean.isDisease())
+                .setIsDisease(propertyGrowthItemBean.getIsDisease() > 0)
                 .setStartTimeDisease(propertyGrowthItemBean.getStartTimeDisease())
                 .setHealth(propertyGrowthItemBean.getHealth())
                 .setStage(propertyGrowthItemBean.getStage())

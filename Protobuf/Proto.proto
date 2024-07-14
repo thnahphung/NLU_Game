@@ -75,6 +75,7 @@ message Packet {
     ResUpdateProgressTask resUpdateProgressTask = 65;
     ReqCompleteTask reqCompleteTask = 66;
     ResCompleteTask resCompleteTask = 67;
+    ResAnimalDisease resAnimalDisease = 68;
   }
 }
 
@@ -669,6 +670,7 @@ message ResAddAnimalToCage{
 }
 message ResLoadTask {
   repeated Activity activities = 1;
+  repeated ProgressActivity progressActivities = 2;
 }
 
 message ResUpdateProgressTask {
@@ -685,4 +687,8 @@ message ResCompleteTask {
   NoGrowthItem noGrowthItem = 2;
   int64 gold = 3;
   int32 exp = 4;
+}
+
+message ResAnimalDisease{
+  repeated Animal animals = 2;
 }

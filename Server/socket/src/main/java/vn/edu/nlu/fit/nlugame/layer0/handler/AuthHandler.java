@@ -66,7 +66,7 @@ public class AuthHandler implements Subscriber {
         UserBean userLoginBean = authService.checkLogin(session, packet.getReqLogin());
         gameStateService.sendGameStateLogin(session);
         warehouseService.loadWarehouse(session);
-        taskService.loadTask(session);
+//        taskService.loadTask(session);
         if (userLoginBean == null || userLoginBean.getHasCharacter() == 0) return;
         areaService.joinAreaLogin(userLoginBean.getId(), session);
     }
@@ -75,7 +75,7 @@ public class AuthHandler implements Subscriber {
         UserBean userRelogin = authService.checkReLogin(session, packet.getReqRelogin());
         gameStateService.sendGameStateLogin(session);
         warehouseService.loadWarehouse(session);
-        taskService.loadTask(session);
+//        taskService.loadTask(session);
         if (userRelogin == null || userRelogin.getHasCharacter() == 0) return;
         areaService.joinAreaLogin(userRelogin.getId(), session);
     }

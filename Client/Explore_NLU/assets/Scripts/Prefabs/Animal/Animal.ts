@@ -15,6 +15,7 @@ import { AnimalMovement } from "./AnimalMovement";
 import { ANIMAL, ANIMAL_STATE } from "../../Utils/Const";
 import { PopupInformationAnimal } from "../Popup/PopupInformationAnimal";
 import GlobalData from "../../Utils/GlobalData";
+import { Cage } from "../Cage/Cage";
 const { ccclass, property } = _decorator;
 
 @ccclass("Animal")
@@ -22,6 +23,8 @@ export class Animal extends Component {
   @property private type: ANIMAL = ANIMAL.COW;
   @property private currentState: ANIMAL_STATE = ANIMAL_STATE.IDLE_RIGHT;
   @property private speed: number = 100;
+  private maxStage: number = 2;
+  private stage: number = 1;
 
   @property maxMovingDistanceX: Vec2 = new Vec2(0, 0);
   @property maxMovingDistanceY: Vec2 = new Vec2(0, 0);
@@ -77,6 +80,9 @@ export class Animal extends Component {
 
   protected update(dt: number): void {
     this.checkDisease();
+    if (this.canUpdateLevel()) {
+      this.updateLevel();
+    }
   }
 
   public checkDisease() {
@@ -92,6 +98,24 @@ export class Animal extends Component {
       "Canvas/PopupGameLayer/AnimalInformationLayer"
     );
     this.animalInformationLayer.addChild(this.popupInformationAnimal);
+  }
+
+  public clearWhenNewDay() {
+    this.animal.isHungry = 0;
+    this.animal.propertyGrowthItem.developedDays += 1;
+  }
+
+  public updateLevel() {
+    this.node.parent.parent.getComponent(Cage).addAnimal(this.animal);
+    this.node.destroy();
+  }
+
+  public canUpdateLevel() {
+    return (
+      this.stage < this.maxStage &&
+      this.animal.commonRisingTimes.sort((a, b) => a.stage - b.stage)[0].time <=
+        this.animal.propertyGrowthItem.developedDays
+    );
   }
 
   public getSpeed() {
@@ -167,5 +191,13 @@ export class Animal extends Component {
 
   public getAnimal() {
     return this.animal;
+  }
+
+  public getStage() {
+    return this.stage;
+  }
+
+  public setStage(stage: number) {
+    this.stage = stage;
   }
 }

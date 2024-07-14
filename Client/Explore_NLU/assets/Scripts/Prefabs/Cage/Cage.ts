@@ -45,26 +45,20 @@ export class Cage extends Component {
   }
 
   addAnimal(animal: proto.IAnimal) {
-    let stage = animal.propertyGrowthItem.stage;
-    let risingTimes: proto.ICommonRisingTime[] = animal.commonRisingTimes;
-    risingTimes.sort((a, b) => a.stage - b.stage);
-    for (let risingTime of risingTimes) {
-      if (animal.propertyGrowthItem.developedDays >= risingTime.time) {
-        stage = risingTime.stage;
-        break;
-      }
+    let stage = 1;
+    if (
+      animal.commonRisingTimes.sort((a, b) => a.stage - b.stage)[0].time <
+      animal.propertyGrowthItem.developedDays
+    ) {
+      stage = 2;
     }
-
     const animalPrefab: Prefab = ResourceManager.me().getAnimalPrefab(
-      Util.removeDash(
-        animal.commonGrowthItem.name.toLowerCase() +
-          "lv" +
-          animal.propertyGrowthItem.stage
-      )
+      Util.removeDash(animal.commonGrowthItem.name.toLowerCase() + "lv" + stage)
     );
     if (!animalPrefab) return;
     const animalNode = instantiate(animalPrefab);
     animalNode.getComponent(Animal).init(animal);
+    animalNode.getComponent(Animal).setStage(stage);
     this.animalPanel.addChild(animalNode);
   }
 
@@ -120,5 +114,16 @@ export class Cage extends Component {
   }
   public getCage(): proto.ICage {
     return this.cage;
+  }
+
+  public getAnimalById(id: number): Node {
+    return this.animalPanel.children.find((animalNode) => {
+      return animalNode.getComponent(Animal).getAnimal().id === id;
+    });
+  }
+  public changeAnimalNewDay() {
+    this.animalPanel.children.forEach((animalNode) => {
+      animalNode.getComponent(Animal).clearWhenNewDay();
+    });
   }
 }
