@@ -669,6 +669,7 @@ message ResAddAnimalToCage{
 }
 message ResLoadTask {
   repeated Activity activities = 1;
+  repeated ProgressActivity progressActivities = 2;
 }
 
 message ResUpdateProgressTask {
