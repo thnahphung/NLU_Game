@@ -13,9 +13,10 @@ import {
   Vec3,
 } from "cc";
 import GlobalData from "../../Utils/GlobalData";
-import { TYPE_TOOL } from "../../Utils/Const";
+import { AUDIOS, TYPE_TOOL } from "../../Utils/Const";
 import { TilledLand } from "../Lands/TilledLand";
 import { UICanvas } from "../MainUI/UICanvas";
+import { AudioManger } from "../../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("Crop")
@@ -64,7 +65,11 @@ export class Crop extends Component {
     this.node.on(Node.EventType.TOUCH_END, this.handleTouchCrop, this);
     // Đưa cây đến giai đoạn đã phát triển của cây
     this.checkTime = GlobalData.me().getGameState().currentDate;
-    this.elapsedTime = this.cropProto.propertyGrowthItem.developedDays;
+    if (!this.cropProto) {
+      this.elapsedTime = 0;
+    } else {
+      this.elapsedTime = this.cropProto.propertyGrowthItem.developedDays;
+    }
   }
 
   public setSpriteFrame(spriteFrame: SpriteFrame): void {
@@ -107,6 +112,7 @@ export class Crop extends Component {
   }
 
   private handleHarvest(): void {
+    // AudioManger.me().playOneShot(AUDIOS.HARVEST_CROP);
     // Xử lý khi người dùng thu hoạch cây
     this.node.off(Node.EventType.TOUCH_END, this.handleTouchCrop, this);
     this.node.getComponent(Collider2D).enabled = false;

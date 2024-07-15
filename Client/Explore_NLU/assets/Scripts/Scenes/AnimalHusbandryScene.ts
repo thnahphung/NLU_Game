@@ -7,6 +7,8 @@ import { Cage } from "../Prefabs/Cage/Cage";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
 import { t } from "../../../extensions/i18n/assets/LanguageData";
 import { Animal } from "../Prefabs/Animal/Animal";
+import { AudioManger } from "../Manager/AudioManger";
+import { AUDIOS } from "../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("AnimalHusbandryScene")

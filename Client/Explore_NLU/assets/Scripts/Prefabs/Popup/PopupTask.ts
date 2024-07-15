@@ -10,6 +10,8 @@ import {
 import { PopupComponent } from "../../Controller/PopupComponent";
 import GlobalData from "../../Utils/GlobalData";
 import { TaskItem } from "./ItemPopup/TaskItem";
+import { AudioManger } from "../../Manager/AudioManger";
+import { AUDIOS } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupTask")
@@ -58,6 +60,7 @@ export class PopupTask extends Component {
   }
 
   public hidePopup() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.node.getComponent(PopupComponent).hide();
     this.scheduleOnce(() => this.node.destroy(), 0.3);
   }
