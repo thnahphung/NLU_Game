@@ -15,7 +15,7 @@ import {
 import GlobalData from "../../Utils/GlobalData";
 import { PopupMessage } from "../Popup/PopupMessage";
 import { PopupComponent } from "../../Controller/PopupComponent";
-import { BUTTON, POPUP, REWARD_ICONS, SCENES } from "../../Utils/Const";
+import { AUDIOS, BUTTON, POPUP, REWARD_ICONS, SCENES } from "../../Utils/Const";
 import { PopupOption } from "../Popup/PopupOption";
 import { TransitionScenePrefab } from "../TransitionScene/TransitionScenePrefab";
 import { Joystick } from "../Joystick/Joystick";
@@ -27,6 +27,7 @@ import { PopupCageInformation } from "../Popup/PopupCageInformation";
 import { PopupTask } from "../Popup/PopupTask";
 import DataSender from "../../Utils/DataSender";
 import { PopupFactory } from "../Popup/PopupFactory";
+import { AudioManger } from "../../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -258,6 +259,7 @@ export class UICanvas extends Component {
         .once(
           Button.EventType.CLICK,
           () => {
+            AudioManger.me().playOneShot(AUDIOS.CLICK_2);
             this.showPopupCageInformation(cage);
           },
           "UICanvas"
@@ -270,6 +272,7 @@ export class UICanvas extends Component {
           Button.EventType.CLICK,
           () => {
             if (callback) {
+              AudioManger.me().playOneShot(AUDIOS.CLICK_1);
               callback();
             }
           },
@@ -375,14 +378,35 @@ export class UICanvas extends Component {
     }
   }
 
-  onClickGoHome() {
-    DataSender.sendReqPlayerJoinArea(GlobalData.me().getMainUser().userId);
-  }
   showPopupUpgradeMachine() {
     this.popupFactory.getComponent(PopupFactory).showPopupUpgradeMachine();
   }
 
   getPopupFactory(): Node {
     return this.popupFactory;
+  }
+
+  onClickGoHome() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
+    DataSender.sendReqPlayerJoinArea(GlobalData.me().getMainUser().userId);
+  }
+  onClickShowPopupSetting() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
+    this.showPopupSetting();
+  }
+
+  onClickShowPopupFriend() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
+    this.showPopupFriend();
+  }
+
+  onClickShowPopupTask() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
+    this.showPopupTask();
+  }
+
+  onClickShowPopupWarehouse() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
+    this.showPopupWarehouse();
   }
 }

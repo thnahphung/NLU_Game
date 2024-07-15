@@ -179,7 +179,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 416.3244047619048,
+    "_orthoHeight": 441.9906444906445,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -2864,7 +2864,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 416.3244047619048,
+    "_orthoHeight": 441.9906444906445,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -3013,6 +3013,10 @@
     "userExp": null,
     "userGold": null,
     "joystick": null,
+    "popupMenuAnimalFood": null,
+    "popupMenuToolFarm": null,
+    "popupMenuSeedFarm": null,
+    "popupFactory": null,
     "prefabPopupMessage": {
       "__uuid__": "a55639b8-331a-4818-a0e8-bbaea33e698f",
       "__expectedType__": "cc.Prefab"
@@ -3041,6 +3045,7 @@
       "__uuid__": "161233f4-3cd3-464d-84bc-4ff559728225",
       "__expectedType__": "cc.Prefab"
     },
+    "prefabRewardEffect": null,
     "_id": "24udxjaolDtZ5726PKgXl1"
   },
   {

@@ -13,9 +13,10 @@ import {
   Vec3,
 } from "cc";
 import GlobalData from "../../Utils/GlobalData";
-import { TYPE_TOOL } from "../../Utils/Const";
+import { AUDIOS, TYPE_TOOL } from "../../Utils/Const";
 import { TilledLand } from "../Lands/TilledLand";
 import { UICanvas } from "../MainUI/UICanvas";
+import { AudioManger } from "../../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("Crop")
@@ -107,6 +108,7 @@ export class Crop extends Component {
   }
 
   private handleHarvest(): void {
+    AudioManger.me().playOneShot(AUDIOS.HARVEST_CROP);
     // Xử lý khi người dùng thu hoạch cây
     this.node.off(Node.EventType.TOUCH_END, this.handleTouchCrop, this);
     this.node.getComponent(Collider2D).enabled = false;

@@ -4,9 +4,10 @@ import { PopupComponent } from "../Controller/PopupComponent";
 import DataSender from "../Utils/DataSender";
 import { StorageManager } from "../Manager/StorageManger";
 import GlobalData from "../Utils/GlobalData";
-import { LOCAL_STORAGE, POPUP, SCENES } from "../Utils/Const";
+import { AUDIOS, LOCAL_STORAGE, POPUP, SCENES } from "../Utils/Const";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
 import { t } from "../../../extensions/i18n/assets/LanguageData";
+import { AudioManger } from "../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("AuthenScene")
@@ -38,7 +39,6 @@ export class AuthenScene extends AbsScene {
   public popupLoadingNode: Node = null;
 
   protected onLoad(): void {
-    // GlobalData.me().setMobileDevice(sys.isMobile || sys.isNative);
     super.onLoad();
 
     this.popupLoadingNode = instantiate(this.popupLoading);
@@ -52,6 +52,10 @@ export class AuthenScene extends AbsScene {
       DataSender.sendReqRelogin(username, token);
       this.popupLoadingNode.active = true;
     }
+  }
+
+  protected start(): void {
+    AudioManger.me().play(AUDIOS.BACKGROUND, true);
   }
 
   onMessageHandler(packets: proto.IPacketWrapper): void {
@@ -74,6 +78,9 @@ export class AuthenScene extends AbsScene {
   }
 
   onLoginMsgHandler(resLogin: proto.IResLogin) {
+    if (resLogin.status !== 200) {
+      AudioManger.me().playOneShot(AUDIOS.WRONG);
+    }
     if (resLogin.status === 400) {
       UICanvas.me().showPopupMessage(t("label_text.login_failed_400"));
       return;
@@ -115,6 +122,9 @@ export class AuthenScene extends AbsScene {
   }
 
   onRegisterMsgHandler(resRegister: proto.IResRegister) {
+    if (resRegister.status !== 200) {
+      AudioManger.me().playOneShot(AUDIOS.WRONG);
+    }
     if (resRegister.status === 400) {
       UICanvas.me().showPopupMessage(t("label_text.register_failed_400"));
     } else if (resRegister.status === 401) {
@@ -161,20 +171,24 @@ export class AuthenScene extends AbsScene {
     }
   }
   onClickSignIn() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     this.popupGeneral.active = false;
     this.popupSignIn.getComponent(PopupComponent).show();
   }
 
   onClickSignUp() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     this.popupGeneral.active = false;
     this.popupSignUp.getComponent(PopupComponent).show();
   }
 
   onClickSetting() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     UICanvas.me().showPopupSetting();
   }
 
   onClickForgetPassword() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     this.popupGeneral.active = false;
     this.popupSignIn.active = false;
     this.popupForgetPassword.getComponent(PopupComponent).show();
@@ -183,12 +197,14 @@ export class AuthenScene extends AbsScene {
   }
 
   onClickBack() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.popupSignIn.getComponent(PopupComponent).hide();
     this.popupSignUp.getComponent(PopupComponent).hide();
     this.popupGeneral.active = true;
   }
 
   onClickBackLogin() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.popupForgetPassword.getComponent(PopupComponent).hide();
     this.popupSignIn.getComponent(PopupComponent).show();
   }

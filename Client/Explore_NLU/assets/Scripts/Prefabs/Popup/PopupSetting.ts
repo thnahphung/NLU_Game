@@ -1,6 +1,11 @@
 import { _decorator, Label, Node, ProgressBar } from "cc";
 
-import { LOCAL_STORAGE, POPUP_MESSAGE, SCENES } from "../../Utils/Const";
+import {
+  AUDIOS,
+  LOCAL_STORAGE,
+  POPUP_MESSAGE,
+  SCENES,
+} from "../../Utils/Const";
 import DataSender from "../../Utils/DataSender";
 import { init } from "../../../../extensions/i18n/assets/LanguageData";
 import { updateSceneRenderers } from "../../../../extensions/i18n/assets/LanguageData";
@@ -11,6 +16,7 @@ import GlobalData from "../../Utils/GlobalData";
 import { UICanvas } from "../MainUI/UICanvas";
 import { AbsHandler } from "../../Handler/AbsHandler";
 import { HandlerManager } from "../../Manager/HandlerManager";
+import { AudioManger } from "../../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupSetting")
@@ -64,10 +70,12 @@ export class PopupSetting extends AbsHandler {
   }
 
   onChangeLanguage() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_1);
     this.dropdownLanguage.active = !this.dropdownLanguage.active;
   }
 
   onClickLanguage(event) {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_1);
     let language = event.target.name;
     switch (language) {
       case "ButtonEN":
@@ -88,6 +96,7 @@ export class PopupSetting extends AbsHandler {
   }
 
   onClickExitSetting() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.node.getComponent(PopupComponent).hide();
     let timeoutDestroy = setTimeout(() => {
       this.node.destroy();
@@ -96,6 +105,7 @@ export class PopupSetting extends AbsHandler {
   }
 
   onLogout() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     if (GlobalData.me().getMainUser() == null) {
       UICanvas.me().showPopupMessage(POPUP_MESSAGE.LOGOUT_FAILED_401);
       return;

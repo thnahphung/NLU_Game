@@ -12,6 +12,8 @@ import DataSender from "../../Utils/DataSender";
 import { AbsHandler } from "../../Handler/AbsHandler";
 import { ItemPopupShop } from "./ItemPopup/ItemPopupShop";
 import { HandlerManager } from "../../Manager/HandlerManager";
+import { AUDIOS } from "../../Utils/Const";
+import { AudioManger } from "../../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupShop")
@@ -54,6 +56,7 @@ export class PopupShop extends AbsHandler {
   }
 
   public hidePopup() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.node.getComponent(PopupComponent).hide();
     this.scheduleOnce(() => {
       this.node.destroy();
