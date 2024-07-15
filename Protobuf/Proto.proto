@@ -76,6 +76,8 @@ message Packet {
     ReqCompleteTask reqCompleteTask = 66;
     ResCompleteTask resCompleteTask = 67;
     ResAnimalDisease resAnimalDisease = 68;
+    ReqLoadMachines reqLoadMachines = 80;
+    ResLoadMachines resLoadMachines = 81;
   }
 }
 
@@ -691,4 +693,25 @@ message ResCompleteTask {
 
 message ResAnimalDisease{
   repeated Animal animals = 2;
+}
+
+message PropertyMachine {
+  int32 id = 1;
+  int32 speed = 2;
+  int32 durable = 3;
+  int32 power = 4;
+  int32 numberStar = 5;
+  int32 level = 6;
+  int32 value = 7;
+  int32 noGrowthItemId = 8;
+  int32 userId = 9;
+}
+
+message ReqLoadMachines {
+  int32 areaId = 1;
+}
+
+message ResLoadMachines {
+  repeated NoGrowthItem noGrowthItem = 1;
+  repeated PropertyMachine propertyMachines = 2;
 }

@@ -40,5 +40,6 @@ public class ActivityDAO extends BaseDAO{
     }
 
     public static void main(String[] args) {
+        System.out.println(getTaskByCharacterId(3));
     }
 }
