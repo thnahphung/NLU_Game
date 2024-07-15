@@ -24,6 +24,7 @@ public class ServerEndpoint {
         ServerEndpoint.subscribe(new ShopHandler());
         ServerEndpoint.subscribe(new AnimalHusbandHandler());
         ServerEndpoint.subscribe(new ActivityHandler());
+        ServerEndpoint.subscribe(new MechanicalHandler());
     }
 
     public static void subscribe(Subscriber sub) {

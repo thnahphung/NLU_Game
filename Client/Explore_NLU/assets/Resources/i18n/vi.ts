@@ -189,6 +189,12 @@ export const languages = {
     visit_rangdongscene: "Đến khu Rạng Đông",
     visit_phuongviscene: "Đến khu Phượng Vĩ",
     visit_quoclo1ascene: "Đến khu Quốc lộ 1A",
+    // Mechanical
+    bulldozer: "Xe ủi đất",
+    saw_machine: "Máy cưa",
+    harvester: "Máy thu hoạch",
+    fix: "Sửa chữa",
+    up_level: "Nâng bậc",
   },
 };
 

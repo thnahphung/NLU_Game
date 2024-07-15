@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class NoGrowthItemCache extends RedisClusterHelper implements ICache<Proto.NoGrowthItem> {
 
@@ -101,6 +102,20 @@ public class NoGrowthItemCache extends RedisClusterHelper implements ICache<Prot
 
         }
         return noGrowthItem;
+    }
+
+    public List<Proto.NoGrowthItem> getNoGrowthItemByType(String type) {
+        List<Proto.NoGrowthItem> noGrowthItems = noGrowthItemMap.asMap().values().stream().filter(context -> context.getType().equals(type)).collect(Collectors.toList());
+        if(noGrowthItems.isEmpty()){
+            Map<byte[], byte[]> noGrowthItemMap = getConnection().hgetAll(NO_GROWTH_ITEM_KEY.getBytes());
+            for (Map.Entry<byte[], byte[]> entry : noGrowthItemMap.entrySet()) {
+                Proto.NoGrowthItem commonBuilding = CompressUtils.decompress(entry.getValue(), Proto.NoGrowthItem.class);
+                if (commonBuilding.getType().equals(type)) {
+                    noGrowthItems.add(commonBuilding);
+                }
+            }
+        }
+        return noGrowthItems;
     }
 
 }

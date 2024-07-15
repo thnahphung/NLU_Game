@@ -11734,6 +11734,7 @@
     "popupMenuAnimalFood": null,
     "popupMenuToolFarm": null,
     "popupMenuSeedFarm": null,
+    "popupFactory": null,
     "prefabPopupMessage": {
       "__uuid__": "a55639b8-331a-4818-a0e8-bbaea33e698f",
       "__expectedType__": "cc.Prefab"
@@ -12123,6 +12124,18 @@
       },
       {
         "__uuid__": "743f09a3-c67c-4454-8f6c-a65db284b020@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "0f307f96-5979-412c-9848-fb273e7c324a@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "85c7c69e-ca56-412b-a07a-2099d6a35376@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "9243649b-fcf7-46fe-837b-3209b96e4564@f9941",
         "__expectedType__": "cc.SpriteFrame"
       }
     ],
