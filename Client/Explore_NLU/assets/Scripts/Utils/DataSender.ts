@@ -282,4 +282,12 @@ export default class DataSender {
     packet.reqCompleteTask = reqCompleteTask;
     WS.send(packet);
   }
+
+  public static sendLoadMachines(areaId: number) {
+    let reqLoadMachines = new proto.ReqLoadMachines();
+    reqLoadMachines.areaId = areaId;
+    let packet = new proto.Packet();
+    packet.reqLoadMachines = reqLoadMachines;
+    WS.send(packet);
+  }
 }

@@ -55,7 +55,7 @@ public class ShopService {
         if (!isEnoughGold(userContext, noGrowthItem, reqBuyItemShop.getQuantity())) {
             Proto.ResBuyItemShop resBuyItemShop = Proto.ResBuyItemShop.newBuilder().setStatus(400).build();
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResBuyItemShop(resBuyItemShop).build());
-            return;
+            return 0;
         }
 
         int code;

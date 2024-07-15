@@ -25,6 +25,7 @@ import { Util } from "../../Utils/Util";
 import { Menu } from "../Menu/Menu";
 import { PopupCageInformation } from "../Popup/PopupCageInformation";
 import { PopupTask } from "../Popup/PopupTask";
+import { PopupFactory } from "../Popup/PopupFactory";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -38,6 +39,7 @@ export class UICanvas extends Component {
   @property(Node) private popupMenuAnimalFood: Node = null;
   @property(Node) private popupMenuToolFarm: Node = null;
   @property(Node) private popupMenuSeedFarm: Node = null;
+  @property(Node) private popupFactory: Node = null;
 
   @property(Prefab) private prefabPopupMessage: Prefab;
   @property(Prefab) private prefabPopupOption: Prefab;
@@ -370,5 +372,13 @@ export class UICanvas extends Component {
     if (this._popupTask) {
       this._popupTask.getComponent(PopupTask).instanceItems();
     }
+  }
+
+  showPopupUpgradeMachine() {
+    this.popupFactory.getComponent(PopupFactory).showPopupUpgradeMachine();
+  }
+
+  getPopupFactory(): Node {
+    return this.popupFactory;
   }
 }

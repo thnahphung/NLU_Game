@@ -183,6 +183,12 @@ export const languages = {
     visit_rangdongscene: "Visit Rang Dong area",
     visit_phuongviscene: "Visit Phuong Vi area",
     visit_quoclo1ascene: "Visit Quoc Lo 1A area",
+    // Mechanical
+    bulldozer: "Bulldozer",
+    saw_machine: "Saw Machine",
+    harvester: "Harvester",
+    fix: "Fix",
+    up_level: "Up level",
   },
 };
 

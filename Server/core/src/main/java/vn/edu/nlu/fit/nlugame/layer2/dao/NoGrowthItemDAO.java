@@ -47,4 +47,17 @@ public class NoGrowthItemDAO extends BaseDAO {
                         .mapToBean(NoGrowthItemBean.class)
                         .list());
     }
+
+    public static List<NoGrowthItemBean> getNoGrowthItemByType(String type) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT id, name, price, sale_price, experience_receive, type, description, status, create_date " +
+                                "FROM " + TABLE_NAME + " WHERE type = :type")
+                        .bind("type", type)
+                        .mapToBean(NoGrowthItemBean.class)
+                        .list());
+    }
 }
