@@ -195,6 +195,9 @@ export const languages = {
     harvester: "Máy thu hoạch",
     fix: "Sửa chữa",
     up_level: "Nâng bậc",
+    // Help
+    help_title: "Trợ giúp",
+    help_find: "Tìm kiếm",
   },
 };
 
