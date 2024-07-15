@@ -13,8 +13,7 @@ import {
 import { AnimalAnimation } from "./AnimalAnimation";
 import { AnimalMovement } from "./AnimalMovement";
 import { ANIMAL, ANIMAL_STATE } from "../../Utils/Const";
-import { PopupInformationAnimal } from "../Popup/PopupInformationAnimal";
-import GlobalData from "../../Utils/GlobalData";
+import { Cage } from "../Cage/Cage";
 const { ccclass, property } = _decorator;
 
 @ccclass("Animal")
@@ -22,6 +21,8 @@ export class Animal extends Component {
   @property private type: ANIMAL = ANIMAL.COW;
   @property private currentState: ANIMAL_STATE = ANIMAL_STATE.IDLE_RIGHT;
   @property private speed: number = 100;
+  private maxStage: number = 2;
+  private stage: number = 1;
 
   @property maxMovingDistanceX: Vec2 = new Vec2(0, 0);
   @property maxMovingDistanceY: Vec2 = new Vec2(0, 0);
@@ -77,6 +78,9 @@ export class Animal extends Component {
 
   protected update(dt: number): void {
     this.checkDisease();
+    if (this.canUpdateLevel()) {
+      this.updateLevel();
+    }
   }
 
   public checkDisease() {
@@ -92,6 +96,29 @@ export class Animal extends Component {
       "Canvas/PopupGameLayer/AnimalInformationLayer"
     );
     this.animalInformationLayer.addChild(this.popupInformationAnimal);
+  }
+
+  public clearWhenNewDay() {
+    if (
+      !this.animal.propertyGrowthItem.isDisease &&
+      this.animal.isHungry == 0
+    ) {
+      this.animal.propertyGrowthItem.developedDays += 1;
+    }
+    this.animal.isHungry = 1;
+  }
+
+  public updateLevel() {
+    this.node.parent.parent.getComponent(Cage).addAnimal(this.animal);
+    this.node.destroy();
+  }
+
+  public canUpdateLevel() {
+    return (
+      this.stage < this.maxStage &&
+      this.animal.propertyGrowthItem.developedDays >=
+        this.animal.commonRisingTimes.sort((a, b) => a.stage - b.stage)[0].time
+    );
   }
 
   public getSpeed() {
@@ -151,11 +178,11 @@ export class Animal extends Component {
   public isDiseaseAnimal() {
     return this.animal.propertyGrowthItem.isDisease;
   }
+  public setIsDiseaseAnimal(isDisease: boolean) {
+    this.animal.propertyGrowthItem.isDisease = isDisease;
+  }
   public getDaysOld() {
-    return (
-      GlobalData.me().getGameState().currentDate -
-      this.animal.propertyGrowthItem.startDate
-    );
+    return this.animal.propertyGrowthItem.developedDays;
   }
   public getAnimalName() {
     return (
@@ -167,5 +194,13 @@ export class Animal extends Component {
 
   public getAnimal() {
     return this.animal;
+  }
+
+  public getStage() {
+    return this.stage;
+  }
+
+  public setStage(stage: number) {
+    this.stage = stage;
   }
 }
