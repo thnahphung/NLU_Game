@@ -6,6 +6,7 @@ import { Util } from "../Utils/Util";
 import { Cage } from "../Prefabs/Cage/Cage";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
 import { t } from "../../../extensions/i18n/assets/LanguageData";
+import { Animal } from "../Prefabs/Animal/Animal";
 const { ccclass, property } = _decorator;
 
 @ccclass("AnimalHusbandryScene")
@@ -38,10 +39,32 @@ export class AnimalHusbandryScene extends AbsScene {
       if (packet.resAddAnimalToCage) {
         this.onAddAnimalToCageHandler(packet);
       }
+      if (packet.resAnimalDisease) {
+        this.onAnimalDiseaseHandle(packet);
+      }
     });
   }
+
+  onAnimalDiseaseHandle(packet: proto.IPacket) {
+    console.log("onAnimalDiseaseHandle", packet);
+
+    for (let cageNode of this.cagesNode) {
+      cageNode.getComponent(Cage).changeAnimalNewDay();
+    }
+
+    for (let animalDisease of packet.resAnimalDisease.animals) {
+      for (let cageNode of this.cagesNode) {
+        let animalNode = cageNode
+          .getComponent(Cage)
+          .getAnimalById(animalDisease.id);
+        if (animalNode) {
+          animalNode.getComponent(Animal).setIsDiseaseAnimal(true);
+        }
+      }
+    }
+  }
+
   onAddAnimalToCageHandler(packet: proto.IPacket) {
-    console.log(packet.resAddAnimalToCage);
     if (packet.resAddAnimalToCage.status == 400) {
       UICanvas.me().showPopupMessage(
         t("label_text.add_animal_not_enough_animal")
@@ -65,7 +88,6 @@ export class AnimalHusbandryScene extends AbsScene {
   }
 
   onBuyCageHandler(packet: proto.IPacket) {
-    console.log(packet.resBuyCage);
     if (packet.resBuyCage.status == 400) {
       UICanvas.me().showPopupMessage(t("label_text.buy_shop_not_enough_gold"));
       return;

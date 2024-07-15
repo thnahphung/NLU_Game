@@ -19,11 +19,11 @@ export class Calender extends Component {
   }
 
   updateCalender() {
-    if (this.timesOfSeason != GlobalData.me()?.getGameState().timesOfSeason) {
-      this.timesOfSeason = GlobalData.me()?.getGameState().timesOfSeason;
+    if (this.timesOfSeason != GlobalData.me()?.getGameState()?.timesOfSeason) {
+      this.timesOfSeason = GlobalData.me()?.getGameState()?.timesOfSeason;
       this.timesOfSeasonLabel.string = this.timesOfSeason.toString();
     }
-    if (this.currentReason != GlobalData.me()?.getGameState().currentSeason) {
+    if (this.currentReason != GlobalData.me()?.getGameState()?.currentSeason) {
       this.currentReason = GlobalData.me()?.getGameState().currentSeason;
       this.seasonLabel.string = this.getSeasonRichText(this.currentReason);
     }

@@ -1,5 +1,6 @@
 import { _decorator, Component, Label, Node, Sprite } from "cc";
 import { ResourceManager } from "../../../Manager/ResourceManager";
+import { Util } from "../../../Utils/Util";
 const { ccclass, property } = _decorator;
 
 @ccclass("ItemPopupWarehouse")
@@ -22,7 +23,8 @@ export class ItemPopupWarehouse extends Component {
     this.icon.spriteFrame = ResourceManager.me().getSpriteFrame(
       this.warehouseItem.noGrowthItem.name
     );
-    this.quantity.string = this.warehouseItem.quantity.toString();
+    // this.quantity.string = this.warehouseItem.quantity.toString();
+    this.quantity.string = Util.formatAmount(this.warehouseItem.quantity);
   }
 
   public setItem(warehouseItem: proto.IWarehouseItem) {

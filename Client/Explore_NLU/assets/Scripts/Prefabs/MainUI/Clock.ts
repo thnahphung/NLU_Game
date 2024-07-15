@@ -15,7 +15,7 @@ export class Clock extends Component {
 
   update(deltaTime: number) {
     if (this.currentTimeOfDay != GlobalData.me()?.getGameState()?.timesOfDay) {
-      this.currentTimeOfDay = GlobalData.me().getGameState().timesOfDay;
+      this.currentTimeOfDay = GlobalData.me()?.getGameState()?.timesOfDay;
       this.node.getComponent(Sprite).spriteFrame =
         this.clockSpriteFrames[this.calculateTime(this.currentTimeOfDay) - 1];
     }

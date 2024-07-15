@@ -25,6 +25,7 @@ import { Util } from "../../Utils/Util";
 import { Menu } from "../Menu/Menu";
 import { PopupCageInformation } from "../Popup/PopupCageInformation";
 import { PopupTask } from "../Popup/PopupTask";
+import DataSender from "../../Utils/DataSender";
 import { PopupFactory } from "../Popup/PopupFactory";
 const { ccclass, property } = _decorator;
 
@@ -374,6 +375,9 @@ export class UICanvas extends Component {
     }
   }
 
+  onClickGoHome() {
+    DataSender.sendReqPlayerJoinArea(GlobalData.me().getMainUser().userId);
+  }
   showPopupUpgradeMachine() {
     this.popupFactory.getComponent(PopupFactory).showPopupUpgradeMachine();
   }

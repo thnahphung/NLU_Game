@@ -75,6 +75,7 @@ message Packet {
     ResUpdateProgressTask resUpdateProgressTask = 65;
     ReqCompleteTask reqCompleteTask = 66;
     ResCompleteTask resCompleteTask = 67;
+    ResAnimalDisease resAnimalDisease = 68;
     ReqLoadMachines reqLoadMachines = 80;
     ResLoadMachines resLoadMachines = 81;
   }
@@ -688,6 +689,10 @@ message ResCompleteTask {
   NoGrowthItem noGrowthItem = 2;
   int64 gold = 3;
   int32 exp = 4;
+}
+
+message ResAnimalDisease{
+  repeated Animal animals = 2;
 }
 
 message PropertyMachine {

@@ -1,11 +1,23 @@
 package vn.edu.nlu.fit.nlugame.layer2.dao;
 
+import org.jdbi.v3.core.Jdbi;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.PropertyAnimalBean;
 
 import java.util.List;
 
 public class PropertyAnimalDAO extends BaseDAO {
     private static final String TABLE_NAME = "property_animals";
+
+    public static List<PropertyAnimalBean> getAll() {
+        return getJdbi().withHandle(handle -> handle.createQuery("select id, is_pregnant, start_time_pregant, end_time_pregant,is_hungry, status, cage_id, property_growth_item_id from " + TABLE_NAME)
+                .mapToBean(PropertyAnimalBean.class).list());
+    }
+
+    public static List<PropertyAnimalBean> getAllAnimalNotDisease() {
+        return getJdbi().withHandle(handle -> handle.createQuery("select pa.id,pa.is_pregnant, pa.start_time_pregant, pa.end_time_pregant,pa.is_hungry, pa.`status`, pa.cage_id, pa.property_growth_item_id \n" +
+                        "from " + TABLE_NAME + " pa JOIN property_growth_items pg ON pa.property_growth_item_id = pg.id where pg.is_disease = 0")
+                .mapToBean(PropertyAnimalBean.class).list());
+    }
 
     public static PropertyAnimalBean getById(int id) {
         return getJdbi().withHandle(handle -> handle.createQuery("select id, is_pregnant, start_time_pregant, end_time_pregant,is_hungry, status, cage_id, property_growth_item_id from " + TABLE_NAME + " where id = :id")
@@ -53,6 +65,15 @@ public class PropertyAnimalDAO extends BaseDAO {
                 .executeAndReturnGeneratedKeys("id")
                 .mapTo(Integer.class)
                 .findFirst().orElse(-1));
+    }
+
+    public static void updateAllAnimalIsHungry() {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        jdbi.useHandle(handle -> handle.createUpdate("UPDATE  " + TABLE_NAME + " SET  is_hungry =1")
+                .execute());
     }
 
 }

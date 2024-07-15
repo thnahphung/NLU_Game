@@ -17,7 +17,7 @@ public class PropertyGrowthItemBean {
     @ColumnName("disease_rate")
     private int diseaseRate;
     @ColumnName("is_disease")
-    private boolean isDisease;
+    private int isDisease;
     @ColumnName("start_time_disease")
     private int startTimeDisease;
     @ColumnName("health")

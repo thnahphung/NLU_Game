@@ -108,7 +108,102 @@ public class AnimalHusbandService {
                 .setGold((int) newGold)
                 .setCage(cage)
                 .build();
-        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResBuyCage(resBuyCage).build());
+
+        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(areaProto.getAreaId()));
+        ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
+
+        DataSenderUtils.sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResBuyCage(resBuyCage).build());
+    }
+
+    public void animalEat(Session session, Proto.ReqAnimalEat reqAnimalEat) {
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        if (userId == -1) return;
+
+        PropertyAnimalBean propertyAnimalBean = PropertyAnimalDAO.getById(reqAnimalEat.getPropertyAnimalId());
+        if (propertyAnimalBean.getIsHungry() == 0) return;
+
+        PropertyGrowthItemBean propertyGrowthItemBean = PropertyGrowthItemDAO.getPropertyGrowthItemById(propertyAnimalBean.getPropertyGrowthItemId());
+        Proto.CommonGrowthItem commonGrowthItemProto = CommonGrowthItemCache.me().get(String.valueOf(propertyGrowthItemBean.getGrowthItemId()));
+        int newQuantity;
+        WarehouseItemBean warehouseItemBean;
+        if (commonGrowthItemProto == null) {
+            CommonGrowthItemBean commonGrowthItemBean = CommonGrowthItemDAO.getCommonGrowthItemById(propertyGrowthItemBean.getGrowthItemId());
+            warehouseItemBean = getNewQuantityAnimalFood(commonGrowthItemBean.getName(), userId);
+
+        } else {
+            warehouseItemBean = getNewQuantityAnimalFood(commonGrowthItemProto.getName(), userId);
+        }
+
+        if (warehouseItemBean == null) {
+            Proto.ResAnimalEat resAnimalEat = Proto.ResAnimalEat.newBuilder()
+                    .setStatus(400)
+                    .setPropertyAnimalId(reqAnimalEat.getPropertyAnimalId())
+                    .build();
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResAnimalEat(resAnimalEat).build());
+            return;
+        }
+
+        int code = PropertyAnimalDAO.updateIsHungry(reqAnimalEat.getPropertyAnimalId(), 0);
+        if (code != 200) return;
+
+        Proto.NoGrowthItem noGrowthItemProto = getNoGrowthItemById(warehouseItemBean.getNoGrowthItemId());
+        Proto.WarehouseItem warehouseItemProto = Proto.WarehouseItem.newBuilder().
+                setUserId(warehouseItemBean.getUserId())
+                .setNoGrowthItem(noGrowthItemProto)
+                .setQuantity(warehouseItemBean.getQuantity())
+                .setNoGrowthItemId(warehouseItemBean.getNoGrowthItemId())
+                .build();
+
+        Proto.ResAnimalEat resAnimalEat = Proto.ResAnimalEat.newBuilder()
+                .setStatus(200)
+                .setPropertyAnimalId(reqAnimalEat.getPropertyAnimalId())
+                .setWarehouseItem(warehouseItemProto)
+                .build();
+
+        Proto.Area areaProto = getAreaByUserId(userId);
+        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(areaProto.getAreaId()));
+        ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
+        DataSenderUtils.sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResAnimalEat(resAnimalEat).build());
+    }
+
+    public void loadCages(Session session, Proto.ReqLoadCages reqLoadCages) {
+        List<PropertyBuildingBean> propertyBuildingBeans = BuildingDAO.getPropertyBuildingByAreaId(reqLoadCages.getAreaId());
+        List<Proto.Cage> cages = new ArrayList<>();
+
+        for (PropertyBuildingBean propertyBuildingBean : propertyBuildingBeans) {
+            Proto.BuildingBase commonBuildingBaseProto = getCommonBuildingById(propertyBuildingBean.getCommonBuildingId());
+            UpgradeBean upgradeBean = UpgradeDAO.getById(propertyBuildingBean.getUpgradeId());
+            Proto.Upgrade upgradeProto = Proto.Upgrade.newBuilder()
+                    .setId(upgradeBean.getId())
+                    .setName(upgradeBean.getName())
+                    .setLevel(upgradeBean.getLevel())
+                    .setCapacity(upgradeBean.getCapacity())
+                    .setPrice(upgradeBean.getPrice())
+                    .setBuildingId(upgradeBean.getBuildingId())
+                    .build();
+            Proto.PropertyBuilding propertyBuildingProto = Proto.PropertyBuilding.newBuilder()
+                    .setId(propertyBuildingBean.getId())
+                    .setPositionX(propertyBuildingBean.getPositionX())
+                    .setPositionY(propertyBuildingBean.getPositionY())
+                    .setUpgradeId(propertyBuildingBean.getUpgradeId())
+                    .setAreaId(propertyBuildingBean.getAreaId())
+                    .setCommonBuildingId(propertyBuildingBean.getCommonBuildingId())
+                    .setCurrentLevel(propertyBuildingBean.getCurrentLevel())
+                    .build();
+
+            List<Proto.Animal> animalsProto = this.getListAnimalByCageId(propertyBuildingBean.getId());
+            Proto.Cage cage = Proto.Cage.newBuilder()
+                    .setBuildingBase(commonBuildingBaseProto)
+                    .setUpgrade(upgradeProto)
+                    .setPropertyBuilding(propertyBuildingProto)
+                    .addAllAnimals(animalsProto)
+                    .build();
+            cages.add(cage);
+        }
+        Proto.ResLoadCages resLoadCages = Proto.ResLoadCages.newBuilder()
+                .addAllCages(cages)
+                .build();
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadCages(resLoadCages).build());
     }
 
     public boolean isEnoughGold(UserContext userContext, Proto.NoGrowthItem noGrowthItem, int quantity) {
@@ -172,47 +267,6 @@ public class AnimalHusbandService {
         return null;
     }
 
-    public void loadCages(Session session, Proto.ReqLoadCages reqLoadCages) {
-        List<PropertyBuildingBean> propertyBuildingBeans = BuildingDAO.getPropertyBuildingByAreaId(reqLoadCages.getAreaId());
-        List<Proto.Cage> cages = new ArrayList<>();
-
-        for (PropertyBuildingBean propertyBuildingBean : propertyBuildingBeans) {
-            Proto.BuildingBase commonBuildingBaseProto = getCommonBuildingById(propertyBuildingBean.getCommonBuildingId());
-            UpgradeBean upgradeBean = UpgradeDAO.getById(propertyBuildingBean.getUpgradeId());
-            Proto.Upgrade upgradeProto = Proto.Upgrade.newBuilder()
-                    .setId(upgradeBean.getId())
-                    .setName(upgradeBean.getName())
-                    .setLevel(upgradeBean.getLevel())
-                    .setCapacity(upgradeBean.getCapacity())
-                    .setPrice(upgradeBean.getPrice())
-                    .setBuildingId(upgradeBean.getBuildingId())
-                    .build();
-            Proto.PropertyBuilding propertyBuildingProto = Proto.PropertyBuilding.newBuilder()
-                    .setId(propertyBuildingBean.getId())
-                    .setPositionX(propertyBuildingBean.getPositionX())
-                    .setPositionY(propertyBuildingBean.getPositionY())
-                    .setUpgradeId(propertyBuildingBean.getUpgradeId())
-                    .setAreaId(propertyBuildingBean.getAreaId())
-                    .setCommonBuildingId(propertyBuildingBean.getCommonBuildingId())
-                    .setCurrentLevel(propertyBuildingBean.getCurrentLevel())
-                    .build();
-
-            List<Proto.Animal> animalsProto = this.getListAnimalByCageId(propertyBuildingBean.getId());
-            Proto.Cage cage = Proto.Cage.newBuilder()
-                    .setBuildingBase(commonBuildingBaseProto)
-                    .setUpgrade(upgradeProto)
-                    .setPropertyBuilding(propertyBuildingProto)
-                    .addAllAnimals(animalsProto)
-                    .build();
-            cages.add(cage);
-        }
-        Proto.ResLoadCages resLoadCages = Proto.ResLoadCages.newBuilder()
-                .addAllCages(cages)
-                .build();
-        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadCages(resLoadCages).build());
-
-    }
-
     public Proto.ShopItem getShopItem(int shopItemId) {
         Proto.ShopItem shopItemProto = ShopItemCache.me().get(String.valueOf(shopItemId));
         if (shopItemProto == null) {
@@ -262,7 +316,7 @@ public class AnimalHusbandService {
             Proto.PropertyGrowthItem propertyGrowthItemProto = Proto.PropertyGrowthItem.newBuilder()
                     .setId(propertyGrowthItemBean.getId())
                     .setCurrentDiseaseId(propertyGrowthItemBean.getCurrentDiseaseId())
-                    .setIsDisease(propertyGrowthItemBean.isDisease())
+                    .setIsDisease(propertyGrowthItemBean.getIsDisease() > 0)
                     .setStartTimeDisease(propertyGrowthItemBean.getStartTimeDisease())
                     .setHealth(propertyGrowthItemBean.getHealth())
                     .setStage(propertyGrowthItemBean.getStage())
@@ -273,7 +327,6 @@ public class AnimalHusbandService {
                     .build();
             Proto.CommonGrowthItem commonGrowthItemProto = this.getCommonGrowthItemById(propertyGrowthItemBean.getGrowthItemId());
             List<Proto.CommonRisingTime> commonRisingTimesProto = getCommonRisingTimeByItemId(commonGrowthItemProto.getId());
-
             Proto.Animal animal = Proto.Animal.newBuilder()
                     .setId(propertyAnimalBean.getId())
                     .setIsPregnant(propertyAnimalBean.getIsPregnant())
@@ -329,6 +382,7 @@ public class AnimalHusbandService {
                         .build();
                 CommonRisingTimeCache.me().add(String.valueOf(commonRisingTimeProto.getId()), commonRisingTimeProto);
                 CommonRisingTimeCache.me().addCommonRisingTimeToRedis(commonRisingTimeProto);
+                commonRisingTimesProto.add(commonRisingTimeProto);
             }
         }
         return commonRisingTimesProto;
@@ -388,53 +442,6 @@ public class AnimalHusbandService {
         return area;
     }
 
-
-    public void animalEat(Session session, Proto.ReqAnimalEat reqAnimalEat) {
-        int userId = SessionCache.me().getUserID(SessionID.of(session));
-        if (userId == -1) return;
-
-        PropertyAnimalBean propertyAnimalBean = PropertyAnimalDAO.getById(reqAnimalEat.getPropertyAnimalId());
-        if (propertyAnimalBean.getIsHungry() == 0) return;
-
-        PropertyGrowthItemBean propertyGrowthItemBean = PropertyGrowthItemDAO.getPropertyGrowthItemById(propertyAnimalBean.getPropertyGrowthItemId());
-        Proto.CommonGrowthItem commonGrowthItemProto = CommonGrowthItemCache.me().get(String.valueOf(propertyGrowthItemBean.getGrowthItemId()));
-        int newQuantity;
-        WarehouseItemBean warehouseItemBean;
-        if (commonGrowthItemProto == null) {
-            CommonGrowthItemBean commonGrowthItemBean = CommonGrowthItemDAO.getCommonGrowthItemById(propertyGrowthItemBean.getGrowthItemId());
-            warehouseItemBean = getNewQuantityAnimalFood(commonGrowthItemBean.getName(), userId);
-
-        } else {
-            warehouseItemBean = getNewQuantityAnimalFood(commonGrowthItemProto.getName(), userId);
-        }
-
-        if (warehouseItemBean == null) {
-            Proto.ResAnimalEat resAnimalEat = Proto.ResAnimalEat.newBuilder()
-                    .setStatus(400)
-                    .setPropertyAnimalId(reqAnimalEat.getPropertyAnimalId())
-                    .build();
-            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResAnimalEat(resAnimalEat).build());
-            return;
-        }
-
-        int code = PropertyAnimalDAO.updateIsHungry(reqAnimalEat.getPropertyAnimalId(), 0);
-        if (code != 200) return;
-
-        Proto.NoGrowthItem noGrowthItemProto = getNoGrowthItemById(warehouseItemBean.getNoGrowthItemId());
-        Proto.WarehouseItem warehouseItemProto = Proto.WarehouseItem.newBuilder().
-                setUserId(warehouseItemBean.getUserId())
-                .setNoGrowthItem(noGrowthItemProto)
-                .setQuantity(warehouseItemBean.getQuantity())
-                .setNoGrowthItemId(warehouseItemBean.getNoGrowthItemId())
-                .build();
-
-        Proto.ResAnimalEat resAnimalEat = Proto.ResAnimalEat.newBuilder()
-                .setStatus(200)
-                .setPropertyAnimalId(reqAnimalEat.getPropertyAnimalId())
-                .setWarehouseItem(warehouseItemProto)
-                .build();
-        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResAnimalEat(resAnimalEat).build());
-    }
 
     public Proto.NoGrowthItem getNoGrowthItemById(int noGrowthItemId) {
         Proto.NoGrowthItem noGrowthItemProto = NoGrowthItemCache.me().get(String.valueOf(noGrowthItemId));
@@ -532,7 +539,10 @@ public class AnimalHusbandService {
                 .setAnimal(animal)
                 .setWarehouseItem(warehouseItemProto)
                 .build();
-        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResAddAnimalToCage(resAddAnimalToCage).build());
+
+        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(propertyBuildingBean.getAreaId()));
+        ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
+        DataSenderUtils.sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResAddAnimalToCage(resAddAnimalToCage).build());
     }
 
     public Proto.NoGrowthItem getNoGrowthItemByName(String name) {
@@ -602,7 +612,7 @@ public class AnimalHusbandService {
         Proto.PropertyGrowthItem propertyGrowthItemProto = Proto.PropertyGrowthItem.newBuilder()
                 .setId(propertyGrowthItemBean.getId())
                 .setCurrentDiseaseId(propertyGrowthItemBean.getCurrentDiseaseId())
-                .setIsDisease(propertyGrowthItemBean.isDisease())
+                .setIsDisease(propertyGrowthItemBean.getIsDisease() > 0)
                 .setStartTimeDisease(propertyGrowthItemBean.getStartTimeDisease())
                 .setHealth(propertyGrowthItemBean.getHealth())
                 .setStage(propertyGrowthItemBean.getStage())
