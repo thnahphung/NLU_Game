@@ -25,6 +25,7 @@ import { Util } from "../../Utils/Util";
 import { Menu } from "../Menu/Menu";
 import { PopupCageInformation } from "../Popup/PopupCageInformation";
 import { PopupTask } from "../Popup/PopupTask";
+import DataSender from "../../Utils/DataSender";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -370,5 +371,9 @@ export class UICanvas extends Component {
     if (this._popupTask) {
       this._popupTask.getComponent(PopupTask).instanceItems();
     }
+  }
+
+  onClickGoHome() {
+    DataSender.sendReqPlayerJoinArea(GlobalData.me().getMainUser().userId);
   }
 }

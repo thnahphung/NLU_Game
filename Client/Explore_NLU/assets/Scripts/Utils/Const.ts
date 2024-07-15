@@ -103,8 +103,7 @@ export const SETTING_AREA = [
     spawnPos: [
       {
         oldSceneName: SCENES.ANIMAL_HUSBANDRY,
-        // spawnPos: new Vec3(3610, 580, 0),
-        spawnPos: new Vec3(-1345, -270, 0),
+        spawnPos: new Vec3(3610, 580, 0),
       },
       {
         oldSceneName: SCENES.FARM,

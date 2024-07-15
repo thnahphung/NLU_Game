@@ -23,7 +23,7 @@ export class LightManager extends Component {
   update(deltaTime: number) {
     if (this.currentTimeOfDay == GlobalData.me()?.getGameState()?.timesOfDay)
       return;
-    this.currentTimeOfDay = GlobalData.me()?.getGameState().timesOfDay;
+    this.currentTimeOfDay = GlobalData.me()?.getGameState()?.timesOfDay;
     this.changeBrightness();
   }
 

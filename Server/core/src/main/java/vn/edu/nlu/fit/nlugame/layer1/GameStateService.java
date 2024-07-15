@@ -55,6 +55,7 @@ public class GameStateService {
             // Update developed days of growth items
 //            PropertyGrowthItemDAO.updateIncreateDevelopedDays();
             PropertyGrowthItemDAO.updateIncreateAnimalDevelopedDays();
+            PropertyAnimalDAO.updateAllAnimalIsHungry();
             randomAnimalDisease(newGameStateBean);
         }
         if (code == 200) {

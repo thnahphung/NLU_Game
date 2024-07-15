@@ -13,8 +13,6 @@ import {
 import { AnimalAnimation } from "./AnimalAnimation";
 import { AnimalMovement } from "./AnimalMovement";
 import { ANIMAL, ANIMAL_STATE } from "../../Utils/Const";
-import { PopupInformationAnimal } from "../Popup/PopupInformationAnimal";
-import GlobalData from "../../Utils/GlobalData";
 import { Cage } from "../Cage/Cage";
 const { ccclass, property } = _decorator;
 
@@ -101,8 +99,13 @@ export class Animal extends Component {
   }
 
   public clearWhenNewDay() {
-    this.animal.isHungry = 0;
-    this.animal.propertyGrowthItem.developedDays += 1;
+    if (
+      !this.animal.propertyGrowthItem.isDisease &&
+      this.animal.isHungry == 0
+    ) {
+      this.animal.propertyGrowthItem.developedDays += 1;
+    }
+    this.animal.isHungry = 1;
   }
 
   public updateLevel() {
@@ -113,8 +116,8 @@ export class Animal extends Component {
   public canUpdateLevel() {
     return (
       this.stage < this.maxStage &&
-      this.animal.commonRisingTimes.sort((a, b) => a.stage - b.stage)[0].time <=
-        this.animal.propertyGrowthItem.developedDays
+      this.animal.propertyGrowthItem.developedDays >=
+        this.animal.commonRisingTimes.sort((a, b) => a.stage - b.stage)[0].time
     );
   }
 
@@ -175,11 +178,11 @@ export class Animal extends Component {
   public isDiseaseAnimal() {
     return this.animal.propertyGrowthItem.isDisease;
   }
+  public setIsDiseaseAnimal(isDisease: boolean) {
+    this.animal.propertyGrowthItem.isDisease = isDisease;
+  }
   public getDaysOld() {
-    return (
-      GlobalData.me().getGameState().currentDate -
-      this.animal.propertyGrowthItem.startDate
-    );
+    return this.animal.propertyGrowthItem.developedDays;
   }
   public getAnimalName() {
     return (

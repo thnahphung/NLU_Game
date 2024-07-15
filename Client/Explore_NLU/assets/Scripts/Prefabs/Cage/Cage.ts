@@ -47,8 +47,8 @@ export class Cage extends Component {
   addAnimal(animal: proto.IAnimal) {
     let stage = 1;
     if (
-      animal.commonRisingTimes.sort((a, b) => a.stage - b.stage)[0].time <
-      animal.propertyGrowthItem.developedDays
+      animal.propertyGrowthItem.developedDays >=
+      animal.commonRisingTimes.sort((a, b) => a.stage - b.stage)[0].time
     ) {
       stage = 2;
     }
@@ -74,7 +74,6 @@ export class Cage extends Component {
 
   private handleGetMenuFood(): void {
     UICanvas.me().showPopupMenuInfoAnimalFood(this.cage, () => {
-      console.log("showPopupMenuInfoAnimalFood", this.cage.propertyBuilding.id);
       DataSender.sendReqAddAnimalToCage(this.cage.propertyBuilding.id);
     });
   }

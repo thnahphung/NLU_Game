@@ -1,5 +1,6 @@
 package vn.edu.nlu.fit.nlugame.layer2.dao;
 
+import org.jdbi.v3.core.Jdbi;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.PropertyAnimalBean;
 
 import java.util.List;
@@ -64,6 +65,15 @@ public class PropertyAnimalDAO extends BaseDAO {
                 .executeAndReturnGeneratedKeys("id")
                 .mapTo(Integer.class)
                 .findFirst().orElse(-1));
+    }
+
+    public static void updateAllAnimalIsHungry() {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        jdbi.useHandle(handle -> handle.createUpdate("UPDATE  " + TABLE_NAME + " SET  is_hungry =1")
+                .execute());
     }
 
 }
