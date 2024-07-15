@@ -153,7 +153,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 422.6948051948052,
+    "_orthoHeight": 375.02680965147454,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -7972,6 +7972,7 @@
     "popupMenuAnimalFood": null,
     "popupMenuToolFarm": null,
     "popupMenuSeedFarm": null,
+    "popupFactory": null,
     "prefabPopupMessage": {
       "__uuid__": "a55639b8-331a-4818-a0e8-bbaea33e698f",
       "__expectedType__": "cc.Prefab"
@@ -8022,6 +8023,10 @@
     },
     "prefabPopupCageInformation": {
       "__uuid__": "5be98888-823f-489f-aeb6-e8afe604ef02",
+      "__expectedType__": "cc.Prefab"
+    },
+    "prefabPopupHelp": {
+      "__uuid__": "af14055f-4c1c-41d0-b132-c5c8355ea820",
       "__expectedType__": "cc.Prefab"
     },
     "_id": ""

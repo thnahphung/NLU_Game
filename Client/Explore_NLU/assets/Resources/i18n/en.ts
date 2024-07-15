@@ -189,6 +189,9 @@ export const languages = {
     harvester: "Harvester",
     fix: "Fix",
     up_level: "Up level",
+    // Help
+    help_title: "Help",
+    help_find: "Find",
   },
 };
 
