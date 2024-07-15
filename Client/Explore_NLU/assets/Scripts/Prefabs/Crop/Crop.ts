@@ -65,7 +65,11 @@ export class Crop extends Component {
     this.node.on(Node.EventType.TOUCH_END, this.handleTouchCrop, this);
     // Đưa cây đến giai đoạn đã phát triển của cây
     this.checkTime = GlobalData.me().getGameState().currentDate;
-    this.elapsedTime = this.cropProto.propertyGrowthItem.developedDays;
+    if (!this.cropProto) {
+      this.elapsedTime = 0;
+    } else {
+      this.elapsedTime = this.cropProto.propertyGrowthItem.developedDays;
+    }
   }
 
   public setSpriteFrame(spriteFrame: SpriteFrame): void {
@@ -108,7 +112,7 @@ export class Crop extends Component {
   }
 
   private handleHarvest(): void {
-    AudioManger.me().playOneShot(AUDIOS.HARVEST_CROP);
+    // AudioManger.me().playOneShot(AUDIOS.HARVEST_CROP);
     // Xử lý khi người dùng thu hoạch cây
     this.node.off(Node.EventType.TOUCH_END, this.handleTouchCrop, this);
     this.node.getComponent(Collider2D).enabled = false;

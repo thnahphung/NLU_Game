@@ -67,7 +67,8 @@ export class TilledLand extends Component {
   }
 
   private handleSow(seedBag: SeedInformation): void {
-    const nameSeed = seedBag.getNoGrowItemSeedBag().name;
+    const nameSeed = seedBag?.getNoGrowItemSeedBag()?.name;
+    if (!nameSeed) return;
     //Trừ hạt giống và kiểm tra số lượng hạt giống còn lại
     if (seedBag.getQuantity() == 0) return;
     seedBag.setQuantity(seedBag.getQuantity() - 1);

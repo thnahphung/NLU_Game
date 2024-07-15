@@ -1096,7 +1096,7 @@
         "__id__": 66
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 75
@@ -1841,7 +1841,7 @@
     "_backgroundImage": null,
     "_inputFlag": 5,
     "_inputMode": 6,
-    "_maxLength": 20,
+    "_maxLength": 12,
     "_id": "97RESGJFlKvqPg3cEtOhZf"
   },
   {

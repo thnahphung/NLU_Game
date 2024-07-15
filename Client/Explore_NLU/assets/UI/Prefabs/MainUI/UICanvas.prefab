@@ -8044,6 +8044,10 @@
       "__uuid__": "5be98888-823f-489f-aeb6-e8afe604ef02",
       "__expectedType__": "cc.Prefab"
     },
+    "prefabPopupHelp": {
+      "__uuid__": "af14055f-4c1c-41d0-b132-c5c8355ea820",
+      "__expectedType__": "cc.Prefab"
+    },
     "_id": ""
   },
   {

@@ -67,6 +67,7 @@ export class FarmScene extends AbsScene {
     const menuSeedComponent = UICanvas.me()
       .getMenuSeedFarm()
       .getComponent(Menu);
+    console.log(GlobalData.me().getWarehouseItems());
     GlobalData.me()
       .getWarehouseItems()
       .forEach((warehouseItem) => {

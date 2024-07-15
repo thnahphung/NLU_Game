@@ -53,7 +53,7 @@ public class GameStateService {
             GameStateBean newGameStateBean = createNewDate(lastGameState);
             code = GameStateDAO.insertGameState(newGameStateBean);
             // Update developed days of growth items
-//            PropertyGrowthItemDAO.updateIncreateDevelopedDays();
+            PropertyGrowthItemDAO.updateIncreateCropDevelopedDays();
             PropertyGrowthItemDAO.updateIncreateAnimalDevelopedDays();
             PropertyAnimalDAO.updateAllAnimalIsHungry();
             randomAnimalDisease(newGameStateBean);

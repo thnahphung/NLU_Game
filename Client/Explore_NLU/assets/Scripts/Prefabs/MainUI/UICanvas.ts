@@ -56,6 +56,8 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupCageBuilding: Prefab;
   @property(Prefab) private prefabPopupTask: Prefab;
   @property(Prefab) private prefabPopupCageInformation: Prefab;
+  @property(Prefab) private prefabPopupHelp: Prefab;
+  @property(Prefab) private prefabPopupFindTime: Prefab;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -66,9 +68,12 @@ export class UICanvas extends Component {
   private _popupSetting: Node;
   private _popupFriend: Node;
   private _popupTask: Node;
+  private _popupHelp: Node;
+  private _popupFindTime: Node;
 
   //Lock button
   private isLocked: boolean = false;
+  private isLockedOpenPopup: boolean = false;
 
   public static me(): UICanvas {
     return UICanvas._instance;
@@ -408,5 +413,51 @@ export class UICanvas extends Component {
   onClickShowPopupWarehouse() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     this.showPopupWarehouse();
+  }
+  showPopupHelp() {
+    if (this.node.getChildByName("PopupLayer").getChildByName("PopupHelp")) {
+      if (this._popupFindTime && this._popupFindTime.active) return;
+      if (this._popupHelp) {
+        this._popupHelp.active = true;
+      }
+      return;
+    }
+    this.onLocked1s();
+    this._popupHelp = instantiate(this.prefabPopupHelp);
+    this.node.getChildByName("PopupLayer").addChild(this._popupHelp);
+    this._popupHelp.getComponent(PopupComponent).show();
+  }
+
+  closePopupHelp() {
+    if (this._popupHelp) {
+      this._popupHelp.destroy();
+      this._popupHelp = null;
+    }
+  }
+
+  hidePopupHelp() {
+    if (this._popupHelp) {
+      this._popupHelp.active = false;
+    }
+  }
+
+  showPopupFindTime() {
+    if (this.node.getChildByName("TopMid").getChildByName("TopMid")) {
+      return;
+    }
+    this.onLocked1s();
+    this._popupFindTime = instantiate(this.prefabPopupFindTime);
+    this.node.getChildByName("TopMid").addChild(this._popupFindTime);
+  }
+
+  closePopupFindTime() {
+    if (this._popupFindTime) {
+      this._popupFindTime.destroy();
+      this._popupFindTime = null;
+    }
+  }
+
+  getPopupFindTime(): Node {
+    return this._popupFindTime;
   }
 }
