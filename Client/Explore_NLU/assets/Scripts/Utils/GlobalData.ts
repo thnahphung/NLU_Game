@@ -88,7 +88,6 @@ export default class GlobalData {
   }
 
   public getTasks() {
-    this.sortProgressTasks();
     return this.tasks;
   }
 
@@ -109,17 +108,6 @@ export default class GlobalData {
     }
   }
 
-  public sortProgressTasks() {
-    this.progressTasks.sort((a, b) => {
-      if (a.status === 1 && b.status !== 1) {
-        return 1;
-      }
-      if (a.status !== 1 && b.status === 1) {
-        return -1;
-      }
-      return 0;
-    });
-  }
   /*===== MAIN USER =====*/
   private mainUser: proto.IUser = null;
   private mainUserNode: Node = null;
