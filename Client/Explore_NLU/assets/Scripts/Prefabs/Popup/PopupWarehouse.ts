@@ -9,6 +9,8 @@ import {
 import { PopupComponent } from "../../Controller/PopupComponent";
 import GlobalData from "../../Utils/GlobalData";
 import { ItemPopupWarehouse } from "./ItemPopup/ItemPopupWarehouse";
+import { AudioManger } from "../../Manager/AudioManger";
+import { AUDIOS } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupWarehouse")
@@ -31,6 +33,7 @@ export class PopupWarehouse extends Component {
   }
 
   onClickExit() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.node.getComponent(PopupComponent).hide();
   }
 }

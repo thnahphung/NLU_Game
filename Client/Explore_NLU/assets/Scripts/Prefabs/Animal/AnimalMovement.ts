@@ -1,7 +1,8 @@
 import { _decorator, Component, tween, Vec3, math } from "cc";
 import { Animal } from "./Animal";
 import { Util } from "../../Utils/Util";
-import { ANIMAL_STATE } from "../../Utils/Const";
+import { ANIMAL, ANIMAL_STATE, AUDIOS } from "../../Utils/Const";
+import { AudioManger } from "../../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("AnimalMovement")

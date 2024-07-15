@@ -17,6 +17,7 @@ export class AudioManger extends Component {
   protected static _instance: AudioManger;
   private _audioSource: AudioSource;
   private MUSIC_VOLUME_RATE: number = 0.5;
+  private currentMusic: string = "";
 
   public static me(): AudioManger {
     if (this._instance == null) {
@@ -25,25 +26,16 @@ export class AudioManger extends Component {
     return this._instance;
   }
 
-  // constructor() {
-  //   let audioManager = new Node();
-  //   audioManager.name = "__AudioManager__";
-
-  //   //them node vao scene
-  //   director.getScene().addChild(audioManager);
-
-  //   //giu cho node khong bi destroy khi chuyen scene
-  //   director.addPersistRootNode(audioManager);
-
-  //   this._audioSource = audioManager.addComponent(AudioSource);
-  // }
-
   protected onLoad(): void {
     if (AudioManger._instance != null)
       console.log("Only 1 InputManager allow to exist");
     AudioManger._instance = this;
     director.addPersistRootNode(this.node);
+    this._audioSource = this.node.getComponent(AudioSource);
+    console.log("AudioManger start");
   }
+
+  protected start(): void {}
 
   public get audioSource() {
     return this._audioSource;
@@ -78,6 +70,7 @@ export class AudioManger extends Component {
       if (err) {
         console.log(err);
       } else {
+        this.currentMusic = sound;
         this._audioSource.stop();
         this._audioSource.clip = clip;
         this._audioSource.play();
@@ -97,5 +90,9 @@ export class AudioManger extends Component {
 
   resume() {
     this._audioSource.play();
+  }
+
+  public getCurrentMusic() {
+    return this.currentMusic;
   }
 }

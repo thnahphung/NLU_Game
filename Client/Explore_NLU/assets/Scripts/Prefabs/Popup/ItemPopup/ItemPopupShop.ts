@@ -3,6 +3,8 @@ import { t } from "../../../../../extensions/i18n/assets/LanguageData";
 import { Util } from "../../../Utils/Util";
 import { ResourceManager } from "../../../Manager/ResourceManager";
 import DataSender from "../../../Utils/DataSender";
+import { AudioManger } from "../../../Manager/AudioManger";
+import { AUDIOS } from "../../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("ItemPopupShop")
@@ -32,6 +34,7 @@ export class ItemPopupShop extends Component {
   }
 
   onClickBuyItem() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_1);
     DataSender.sendReqBuyItemShop(this.shopItem.noGrowthItemId, 1);
   }
 }

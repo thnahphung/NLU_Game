@@ -57,8 +57,16 @@ export const SETTINGS = {
   DEFAULT_NOTIFICATION: true,
 };
 export const AUDIOS = {
-  CLICK: "Audios/click",
-  BACKGROUND: "Audios/Bg/tungtung",
+  BACKGROUND: "Audios/Background/cute-background-music",
+  CLICK_1: "Audios/Click/click-music-1",
+  CLICK_2: "Audios/Click/click-music-2",
+  CLICK_3: "Audios/Click/click-music-3",
+  LEVEL_UP: "Audios/cute-level-up-music",
+  WRONG: "Audios/wrong-music",
+  COW: "Audios/Animal/cow-sound",
+  CHICKEN: "Audios/Animal/chicken-sound",
+  RAIN: "Audios/rain-sound",
+  HARVEST_CROP: "Audios/harvest-crop",
 };
 
 export const SETTING_AREA = [

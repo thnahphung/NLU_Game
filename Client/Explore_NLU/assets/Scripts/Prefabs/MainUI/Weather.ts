@@ -1,5 +1,7 @@
 import { _decorator, Animation, Component, Node, Sprite, UIOpacity } from "cc";
 import GlobalData from "../../Utils/GlobalData";
+import { AudioManger } from "../../Manager/AudioManger";
+import { AUDIOS } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("Weather")
@@ -26,9 +28,15 @@ export class Weather extends Component {
       if (this.currentWeather == proto.GameState.Weather.SUNNY) {
         this.animation.stop();
         this.uiOpacity.opacity = 0;
+        if (AudioManger.me().getCurrentMusic() != AUDIOS.BACKGROUND) {
+          AudioManger.me().play(AUDIOS.BACKGROUND, true);
+        }
       } else {
         this.uiOpacity.opacity = 255;
         this.animation.play();
+        if (AudioManger.me().getCurrentMusic() != AUDIOS.RAIN) {
+          AudioManger.me().play(AUDIOS.RAIN, true);
+        }
       }
     }
   }

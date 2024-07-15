@@ -37,12 +37,14 @@ public class PropertyGrowthItemDAO extends BaseDAO {
                 .execute());
     }
 
-    public static void updateIncreateDevelopedDays() {
+    public static void updateIncreateCropDevelopedDays() {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
         }
-        jdbi.useHandle(handle -> handle.createUpdate("UPDATE " + TABLE_PROPERTY_GROWTH_ITEM + " set developed_days = developed_days + 1 WHERE is_disease = false")
+        jdbi.useHandle(handle -> handle.createUpdate("UPDATE property_growth_items pg JOIN common_growth_items cg ON pg.growth_item_id = cg.id \n" +
+                        "SET pg.developed_days = pg.developed_days + 1 \n" +
+                        "WHERE cg.type = 'CROP' AND pg.is_disease = 0")
                 .execute());
     }
 

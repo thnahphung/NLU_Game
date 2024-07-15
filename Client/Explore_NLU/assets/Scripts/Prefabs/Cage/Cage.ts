@@ -11,7 +11,7 @@ import {
   Prefab,
 } from "cc";
 import { CoatingComponent } from "../../Controller/CoatingComponent";
-import { COATING } from "../../Utils/Const";
+import { ANIMAL, AUDIOS, COATING } from "../../Utils/Const";
 import { PopupComponent } from "../../Controller/PopupComponent";
 import { PopupCageInformation } from "../Popup/PopupCageInformation";
 import { UICanvas } from "../MainUI/UICanvas";
@@ -20,6 +20,7 @@ import { Animal } from "../Animal/Animal";
 import { Util } from "../../Utils/Util";
 import { AnimalAnimation } from "../Animal/AnimalAnimation";
 import DataSender from "../../Utils/DataSender";
+import { AudioManger } from "../../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("Cage")
@@ -28,10 +29,20 @@ export class Cage extends Component {
   @property(Node) private animalPanel: Node;
   private menuNode: Node;
   private cage: proto.ICage;
+
+  private interval = 0;
+
   start() {
+    this.interval = Util.randomInRange(5, 15);
+    this.schedule(this.playAnimalSound, this.interval);
+
     this.menuNode = this.getCageInformation();
     this.node.on(Node.EventType.TOUCH_START, this.handleGetMenuFood, this);
     this.loadAnimals();
+  }
+
+  protected onDestroy(): void {
+    this.unschedule(this.playAnimalSound);
   }
 
   init(cage: proto.ICage) {
@@ -73,6 +84,7 @@ export class Cage extends Component {
   }
 
   private handleGetMenuFood(): void {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     UICanvas.me().showPopupMenuInfoAnimalFood(this.cage, () => {
       DataSender.sendReqAddAnimalToCage(this.cage.propertyBuilding.id);
     });
@@ -120,9 +132,22 @@ export class Cage extends Component {
       return animalNode.getComponent(Animal).getAnimal().id === id;
     });
   }
+
   public changeAnimalNewDay() {
     this.animalPanel.children.forEach((animalNode) => {
       animalNode.getComponent(Animal).clearWhenNewDay();
     });
+  }
+
+  public playAnimalSound() {
+    if (!this.node) return;
+
+    const animal = this.animalPanel.children[0]?.getComponent(Animal);
+    if (!animal) return;
+    if (animal.getType() === ANIMAL.COW) {
+      AudioManger.me().playOneShot(AUDIOS.COW);
+    } else if (animal.getType() === ANIMAL.CHICKEN) {
+      AudioManger.me().playOneShot(AUDIOS.CHICKEN);
+    }
   }
 }
