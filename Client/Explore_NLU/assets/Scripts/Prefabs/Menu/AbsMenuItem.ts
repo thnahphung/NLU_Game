@@ -32,15 +32,17 @@ export abstract class AbsMenuItem extends Component {
     this.cameraCanvas = find("UICanvas/Camera").getComponent(Camera);
     this.cameraInGame = find("Canvas/Camera").getComponent(Camera);
     this.originalPosition = this.node.getPosition();
-    if(this.node.name == "Pickaxe" || this.node.name == "Sickle"){
-      this.originalPosition = new Vec3(0,0,0);
+    if (this.node.name == "Pickaxe" || this.node.name == "Sickle") {
+      this.originalPosition = new Vec3(0, 0, 0);
     }
     this.node.on(Node.EventType.TOUCH_START, this.handleOnTouchStart, this);
     this.node.on(Node.EventType.TOUCH_MOVE, this.handleOnTouchMove, this);
     this.node.on(Node.EventType.TOUCH_END, this.handleOnTouchEnd, this);
     this.node.on(Node.EventType.TOUCH_CANCEL, this.handleOnTouchCancel, this);
 
-    this.amountLabel.string = this.amount.toString();
+    if (this.amountLabel) {
+      this.amountLabel.string = this.amount.toString();
+    }
 
     if (this.collider !== null) {
       this.collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);

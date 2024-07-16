@@ -15,8 +15,9 @@ const { ccclass, property } = _decorator;
 @ccclass("AudioManger")
 export class AudioManger extends Component {
   protected static _instance: AudioManger;
-  private _audioSource: AudioSource;
-  private MUSIC_VOLUME_RATE: number = 0.5;
+  @property(AudioSource) private audioMusic: AudioSource;
+  @property(AudioSource) private audioSound: AudioSource;
+  private MUSIC_VOLUME_RATE: number = 1;
   private currentMusic: string = "";
 
   public static me(): AudioManger {
@@ -31,30 +32,22 @@ export class AudioManger extends Component {
       console.log("Only 1 InputManager allow to exist");
     AudioManger._instance = this;
     director.addPersistRootNode(this.node);
-    this._audioSource = this.node.getComponent(AudioSource);
-    console.log("AudioManger start");
+    this.audioMusic = this.node.getComponent(AudioSource);
   }
 
   protected start(): void {}
-
-  public get audioSource() {
-    return this._audioSource;
-  }
 
   //phat am thanh 1 lan cho cac am thanh ngan
   //vi du: click, pop up, ...
   playOneShot(sound: string) {
     const musicVolume =
-      parseFloat(StorageManager.me().getItem("MUSIC")) ||
-      SETTINGS.DEFAULT_EFFECT;
+      parseFloat(StorageManager.me().getItem("SOUND")) ||
+      SETTINGS.DEFAULT_SOUND;
     resources.load(sound, (err, clip: AudioClip) => {
       if (err) {
         console.log(err);
       } else {
-        this._audioSource.playOneShot(
-          clip,
-          musicVolume * this.MUSIC_VOLUME_RATE
-        );
+        this.audioSound.playOneShot(clip, musicVolume * this.MUSIC_VOLUME_RATE);
       }
     });
   }
@@ -65,34 +58,41 @@ export class AudioManger extends Component {
     const musicVolume =
       parseFloat(StorageManager.me().getItem("MUSIC")) ||
       SETTINGS.DEFAULT_MUSIC;
-    console.debug("musicVolume", musicVolume);
     resources.load(sound, (err, clip: AudioClip) => {
       if (err) {
         console.log(err);
       } else {
         this.currentMusic = sound;
-        this._audioSource.stop();
-        this._audioSource.clip = clip;
-        this._audioSource.play();
-        this.audioSource.volume = musicVolume * this.MUSIC_VOLUME_RATE;
-        this.audioSource.loop = loop;
+        this.audioMusic.stop();
+        this.audioMusic.clip = clip;
+        this.audioMusic.play();
+        this.audioMusic.volume = musicVolume * this.MUSIC_VOLUME_RATE;
+        this.audioMusic.loop = loop;
       }
     });
   }
 
   stop() {
-    this._audioSource.stop();
+    this.audioMusic.stop();
   }
 
   pause() {
-    this._audioSource.pause();
+    this.audioMusic.pause();
   }
 
   resume() {
-    this._audioSource.play();
+    this.audioMusic.play();
   }
 
   public getCurrentMusic() {
     return this.currentMusic;
+  }
+
+  public getAudioMusic() {
+    return this.audioMusic;
+  }
+
+  public getAudioSound() {
+    return this.audioSound;
   }
 }

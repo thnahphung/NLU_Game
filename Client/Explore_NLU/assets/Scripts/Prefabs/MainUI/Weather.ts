@@ -21,6 +21,7 @@ export class Weather extends Component {
   }
 
   updateWeather() {
+    if (GlobalData.me()?.getGameState() == null) return;
     if (
       this.currentWeather != GlobalData.me()?.getGameState()?.currentWeather
     ) {

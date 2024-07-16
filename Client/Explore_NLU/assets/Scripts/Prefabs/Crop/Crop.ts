@@ -112,7 +112,7 @@ export class Crop extends Component {
   }
 
   private handleHarvest(): void {
-    // AudioManger.me().playOneShot(AUDIOS.HARVEST_CROP);
+    AudioManger.me().playOneShot(AUDIOS.HARVEST_CROP);
     // Xử lý khi người dùng thu hoạch cây
     this.node.off(Node.EventType.TOUCH_END, this.handleTouchCrop, this);
     this.node.getComponent(Collider2D).enabled = false;

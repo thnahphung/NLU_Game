@@ -1,10 +1,11 @@
-import { _decorator, Label, Node, ProgressBar } from "cc";
+import { _decorator, Label, math, Node, ProgressBar, Slider } from "cc";
 
 import {
   AUDIOS,
   LOCAL_STORAGE,
   POPUP_MESSAGE,
   SCENES,
+  SETTINGS,
 } from "../../Utils/Const";
 import DataSender from "../../Utils/DataSender";
 import { init } from "../../../../extensions/i18n/assets/LanguageData";
@@ -39,6 +40,28 @@ export class PopupSetting extends AbsHandler {
     HandlerManager.me().registerHandler(this);
   }
 
+  protected start(): void {
+    this.setUpSlider();
+  }
+
+  public setUpSlider() {
+    this.progressBarMusic.progress =
+      parseFloat(StorageManager.me().getItem("MUSIC")) ||
+      SETTINGS.DEFAULT_MUSIC;
+
+    this.progressBarMusic.getComponent(Slider).progress =
+      parseFloat(StorageManager.me().getItem("MUSIC")) ||
+      SETTINGS.DEFAULT_MUSIC;
+
+    this.progressBarSound.progress =
+      parseFloat(StorageManager.me().getItem("SOUND")) ||
+      SETTINGS.DEFAULT_SOUND;
+
+    this.progressBarSound.getComponent(Slider).progress =
+      parseFloat(StorageManager.me().getItem("SOUND")) ||
+      SETTINGS.DEFAULT_MUSIC;
+  }
+
   onMessageHandler(packetWrapper: proto.IPacketWrapper): void {
     packetWrapper.packet.forEach((packet) => {
       if (packet.resLogout) {
@@ -59,14 +82,19 @@ export class PopupSetting extends AbsHandler {
     });
   }
 
-  onChangeMusic(event) {
-    let progress = event.progress;
+  onChangeMusic(slider: Slider, customEventData: string) {
+    let progress = slider.progress;
+    progress = math.clamp(progress, 0.000001, 1);
     this.progressBarMusic.progress = progress;
+    StorageManager.me().saveItem("MUSIC", progress);
+    AudioManger.me().getAudioMusic().volume = progress;
   }
 
-  onChangeSound(event) {
-    let progress = event.progress;
+  onChangeSound(slider: Slider, customEventData: string) {
+    let progress = slider.progress;
+    progress = math.clamp(progress, 0.000001, 1);
     this.progressBarSound.progress = progress;
+    StorageManager.me().saveItem("SOUND", progress);
   }
 
   onChangeLanguage() {
