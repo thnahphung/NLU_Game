@@ -290,4 +290,12 @@ export default class DataSender {
     packet.reqLoadMachines = reqLoadMachines;
     WS.send(packet);
   }
+
+  public static sendReqLoadDetailDisease(diseaseId: number) {
+    let reqLoadDetailDisease = new proto.ReqLoadDetailDisease();
+    reqLoadDetailDisease.diseaseId = diseaseId;
+    let packet = new proto.Packet();
+    packet.reqLoadDetailDisease = reqLoadDetailDisease;
+    WS.send(packet);
+  }
 }

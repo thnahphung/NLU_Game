@@ -198,6 +198,14 @@ export const languages = {
     // Help
     help_title: "Trợ giúp",
     help_find: "Tìm kiếm",
+    //Sysptom
+    sysptoms_high_fever: "Sốt cao",
+    sysptoms_difficulty_breathing: "Khó thở",
+    sysptoms_blackened_skin: "Da đen",
+    sysptoms_diarrhea: "Tiêu chảy",
+    sysptoms_fever: "Sốt",
+    sysptoms_dehydration: "Mất nước",
+    sysptoms_severe_diarrhea: "Tiêu chảy nặng",
   },
 };
 

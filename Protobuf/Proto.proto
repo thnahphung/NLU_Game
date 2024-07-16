@@ -76,8 +76,11 @@ message Packet {
     ReqCompleteTask reqCompleteTask = 66;
     ResCompleteTask resCompleteTask = 67;
     ResAnimalDisease resAnimalDisease = 68;
+    ReqLoadDetailDisease reqLoadDetailDisease = 69;
+    ResLoadDetailDisease resLoadDetailDisease = 70;
     ReqLoadMachines reqLoadMachines = 80;
     ResLoadMachines resLoadMachines = 81;
+
   }
 }
 
@@ -302,6 +305,12 @@ message Cage {
   PropertyBuilding propertyBuilding = 2;
   Upgrade upgrade = 3;
   repeated Animal animals = 4;
+}
+
+message Sysptom {
+  int32 id = 1;
+  string description = 2;
+  int32 diseaseId = 3;
 }
 
 // Animal Husbandry end =======================================
@@ -714,4 +723,12 @@ message ReqLoadMachines {
 message ResLoadMachines {
   repeated NoGrowthItem noGrowthItem = 1;
   repeated PropertyMachine propertyMachines = 2;
+}
+
+message ReqLoadDetailDisease{
+  int32 diseaseId = 1;
+}
+
+message ResLoadDetailDisease{
+  repeated Sysptom sysptoms = 1;
 }

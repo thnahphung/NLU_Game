@@ -12,12 +12,13 @@ import {
   Sprite,
 } from "cc";
 import GlobalData from "../../Utils/GlobalData";
-import { SEED_BAG } from "../../Utils/Const";
+import { AUDIOS, SEED_BAG } from "../../Utils/Const";
 import { Crop } from "../Crop/Crop";
 import { SeedBag } from "../Tools/SeedBag";
 import { UICanvas } from "../MainUI/UICanvas";
 import { SeedInformation } from "../Crop/SeedInformation";
 import { Menu } from "../Menu/Menu";
+import { AudioManger } from "../../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("TilledLand")
@@ -166,6 +167,7 @@ export class TilledLand extends Component {
   }
 
   private handleTouchTilledLand(): void {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     this.showMenuSeedNode();
   }
 

@@ -110,6 +110,9 @@ export class UICanvas extends Component {
   }
 
   showPopupMessage(message: string) {
+    if (this.node.getChildByName("PopupLayer").getChildByName("PopupMessage")) {
+      return;
+    }
     this._popupMessage = instantiate(this.prefabPopupMessage);
     this._popupMessage.setPosition(-100, 120);
     this._popupMessage.getComponent(PopupMessage).setMessage(message);
@@ -413,6 +416,11 @@ export class UICanvas extends Component {
   onClickShowPopupWarehouse() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     this.showPopupWarehouse();
+  }
+
+  onClickShowPopupCageBuilding() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
+    this.showPopupCageBuilding();
   }
   showPopupHelp() {
     if (this.node.getChildByName("PopupLayer").getChildByName("PopupHelp")) {

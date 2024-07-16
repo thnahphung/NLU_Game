@@ -46,7 +46,8 @@ export class AnimalInformation extends Component {
         this.animalInfo.getAnimalName(),
         this.animalInfo.getDaysOld(),
         this.animalInfo.isDiseaseAnimal(),
-        this.animalInfo.isPregnantAnimal()
+        this.animalInfo.isPregnantAnimal(),
+        this.animalInfo.getAnimal().propertyGrowthItem.currentDiseaseId
       );
   }
 }

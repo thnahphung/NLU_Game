@@ -13,6 +13,8 @@ import { PopupComponent } from "../../Controller/PopupComponent";
 import { ItemPopupAnimal } from "./ItemPopup/ItemPopupAnimal";
 import { t } from "../../../../extensions/i18n/assets/LanguageData";
 import { Util } from "../../Utils/Util";
+import { AudioManger } from "../../Manager/AudioManger";
+import { AUDIOS } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupCageInformation")
@@ -42,6 +44,7 @@ export class PopupCageInformation extends Component {
   }
 
   onClickExit() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.node.getComponent(PopupComponent).hide();
     this.scheduleOnce(() => {
       this.node.destroy();
