@@ -21,6 +21,8 @@ import { ReqAddFriendItem } from "./ItemPopup/ReqAddFriendItem";
 import { FriendListItem } from "./ItemPopup/FriendListItem";
 import { AddFriendItem } from "./ItemPopup/AddFriendItem";
 import { FriendDetailItem } from "./ItemPopup/FriendDetailItem";
+import { AudioManger } from "../../Manager/AudioManger";
+import { AUDIOS } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupFriend")
@@ -74,7 +76,6 @@ export class PopupFriend extends AbsHandler {
     this.listFriendNode.active = true;
     this.addFriendNode.active = false;
     this.onLoadListFriend();
-
   }
 
   onMessageHandler(packetWrapper: proto.IPacketWrapper): void {
@@ -98,6 +99,7 @@ export class PopupFriend extends AbsHandler {
   }
 
   onClickExitPopup() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.node.getComponent(PopupComponent).hide();
     let timeoutDestroy = setTimeout(() => {
       this.node.destroy();
@@ -106,16 +108,18 @@ export class PopupFriend extends AbsHandler {
   }
 
   onClickListFriend() {
-    console.log("List friend");
+    AudioManger.me().playOneShot(AUDIOS.CLICK_1);
     this.btnListFriend.getComponent(Sprite).spriteFrame = this.btnPressedSprite;
     this.btnAddFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
-    this.btnRequestFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
+    this.btnRequestFriend.getComponent(Sprite).spriteFrame =
+      this.btnNormalSprite;
     this.listFriendNode.active = true;
     this.addFriendNode.active = false;
     this.requestFriendNode.active = false;
   }
 
   onClickAddFriend() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_1);
     this.btnListFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
     this.btnAddFriend.getComponent(Sprite).spriteFrame = this.btnPressedSprite;
     this.btnRequestFriend.getComponent(Sprite).spriteFrame =
@@ -130,7 +134,7 @@ export class PopupFriend extends AbsHandler {
   }
 
   onClickRequestFriend() {
-    console.log("Request friend");
+    AudioManger.me().playOneShot(AUDIOS.CLICK_1);
     this.btnRequestFriend.getComponent(Sprite).spriteFrame =
       this.btnPressedSprite;
     this.btnListFriend.getComponent(Sprite).spriteFrame = this.btnNormalSprite;
@@ -148,21 +152,24 @@ export class PopupFriend extends AbsHandler {
 
   onClickFindFriend() {
     if (this.friendName.string == "") {
+      AudioManger.me().playOneShot(AUDIOS.WRONG);
       UICanvas.me().showPopupMessage(t("label_text.friend_name_empty"));
       return;
     }
     if (
       this.friendName.string.trim() == GlobalData.me().getMainUser().playerName
     ) {
+      AudioManger.me().playOneShot(AUDIOS.WRONG);
       UICanvas.me().showPopupMessage(t("label_text.friend_name_invalid"));
       return;
     }
-
+    AudioManger.me().playOneShot(AUDIOS.CLICK_1);
     if (GlobalData.me().getMainUserFriends() != null) {
       for (let i = 0; i < GlobalData.me().getMainUserFriends().length; i++) {
         if (
           GlobalData.me().getMainUserFriends()[i].name == this.friendName.string
         ) {
+          AudioManger.me().playOneShot(AUDIOS.WRONG);
           UICanvas.me().showPopupMessage(t("label_text.friend_already_exist"));
           return;
         }
@@ -177,7 +184,8 @@ export class PopupFriend extends AbsHandler {
     career: proto.ICharacter,
     level: number
   ) {
-    const friendDetailNodeComponent = this.friendDetailNode.getComponent(FriendDetailItem);
+    const friendDetailNodeComponent =
+      this.friendDetailNode.getComponent(FriendDetailItem);
     friendDetailNodeComponent.setFriendName(name);
     friendDetailNodeComponent.setFriendCareer(career.name);
     friendDetailNodeComponent.setFriendLevel(level.toString());
@@ -199,6 +207,7 @@ export class PopupFriend extends AbsHandler {
 
   onHandleResFindFriend(resFindFriend: proto.IResFindFriend): void {
     if (!resFindFriend.friend) {
+      AudioManger.me().playOneShot(AUDIOS.WRONG);
       UICanvas.me().showPopupMessage(t("label_text.friend_not_found"));
       return;
     }
@@ -217,7 +226,7 @@ export class PopupFriend extends AbsHandler {
       return;
     }
     listFriend.forEach((friend) => {
-        const career = friend.character.name;
+      const career = friend.character.name;
       if (status == 2) {
         const friendItem = instantiate(this.friendItemPrefab);
         const friendComponent = friendItem.getComponent(FriendListItem);
@@ -228,7 +237,9 @@ export class PopupFriend extends AbsHandler {
         friendComponent.setFriendCharacterProto(friend.character);
         friendComponent.setFriendDetailNode(this.friendDetailNode);
         this.scrollViewListFriend.addChild(friendItem);
-        this.scrollViewListFriend.parent.parent.getComponent(ScrollView).scrollToTop();
+        this.scrollViewListFriend.parent.parent
+          .getComponent(ScrollView)
+          .scrollToTop();
         if (
           GlobalData.me().getMainUserFriends() == null ||
           GlobalData.me().getMainUserFriends().length == 0
@@ -250,7 +261,9 @@ export class PopupFriend extends AbsHandler {
         friendComponent.setFriendCharacterProto(friend.character);
         friendComponent.setFriendDetailNode(this.friendDetailNode);
         this.scrollViewRequestFriend.addChild(friendItem);
-        this.scrollViewRequestFriend.parent.parent.getComponent(ScrollView).scrollToTop();
+        this.scrollViewRequestFriend.parent.parent
+          .getComponent(ScrollView)
+          .scrollToTop();
       }
 
       if (status == 4) {
@@ -262,7 +275,9 @@ export class PopupFriend extends AbsHandler {
         addFriendComponent.setFriendId(friend.id.toString());
         addFriendComponent.setFriendCharacterProto(friend.character);
         this.scrollViewSuggestFriend.addChild(addFriendItem);
-        this.scrollViewSuggestFriend.parent.parent.getComponent(ScrollView).scrollToTop();
+        this.scrollViewSuggestFriend.parent.parent
+          .getComponent(ScrollView)
+          .scrollToTop();
       }
     });
   }
@@ -284,7 +299,8 @@ export class PopupFriend extends AbsHandler {
   onRequestAddFriendHandle(resAddFriend: proto.IResAddFriend): void {
     const sender = resAddFriend.sender;
     const friendItem = instantiate(this.friendItemRequestPrefab);
-    friendItem.getComponent(ReqAddFriendItem).scrollListFriend = this.scrollViewListFriend;
+    friendItem.getComponent(ReqAddFriendItem).scrollListFriend =
+      this.scrollViewListFriend;
     const friendComponent = friendItem.getComponent(ReqAddFriendItem);
     friendComponent.setFriendName(sender.name);
     friendComponent.setFriendCareer(sender.character.name);
@@ -294,5 +310,4 @@ export class PopupFriend extends AbsHandler {
     this.scrollViewRequestFriend.addChild(friendItem);
     this.addFriendNotify.node.active = true;
   }
-
 }

@@ -1,6 +1,8 @@
 import { _decorator, Button, Component, Label, Node, Touch } from "cc";
 import { t } from "../../../../../extensions/i18n/assets/LanguageData";
 import DataSender from "../../../Utils/DataSender";
+import { AudioManger } from "../../../Manager/AudioManger";
+import { AUDIOS } from "../../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("TaskItem")
@@ -58,6 +60,7 @@ export class TaskItem extends Component {
 
   onBtnProgressClick() {
     // Get reward
+    AudioManger.me().playOneShot(AUDIOS.LEVEL_UP);
     DataSender.sendResCompleteTask(this.task, this.progressTask);
     this.setProgressTaskComoleted();
   }

@@ -1,6 +1,8 @@
 import { _decorator, Button, find, Label, Node, SpriteFrame } from "cc";
 import { AbsFriendItem } from "./AbsFriendItem";
 import { FriendDetailItem } from "./FriendDetailItem";
+import { AudioManger } from "../../../Manager/AudioManger";
+import { AUDIOS } from "../../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("FriendListItem")
@@ -44,13 +46,17 @@ export class FriendListItem extends AbsFriendItem {
   }
 
   private handleTouchFriendListItem(): void {
-    const friendDetailNodeComponent = this.friendDetailNode.getComponent(FriendDetailItem);
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
+    const friendDetailNodeComponent =
+      this.friendDetailNode.getComponent(FriendDetailItem);
     friendDetailNodeComponent.setFriendName(this.friendName);
     friendDetailNodeComponent.setFriendCareer(this.friendCareer);
     friendDetailNodeComponent.setFriendLevel(this.friendLevel);
     friendDetailNodeComponent.setFriendId(this.friendId);
     friendDetailNodeComponent.setAvatarSprite(this.avatarSprite.spriteFrame);
-    friendDetailNodeComponent.setFriendCharacterProto(this.friendCharacterProto);
+    friendDetailNodeComponent.setFriendCharacterProto(
+      this.friendCharacterProto
+    );
     friendDetailNodeComponent.getAddFriendButton().active = false;
     friendDetailNodeComponent.getModalNode().active = true;
     this.friendDetailNode.active = true;
