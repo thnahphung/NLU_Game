@@ -200,6 +200,9 @@ export const languages = {
     sysptoms_fever: "Fever",
     sysptoms_dehydration: "Dehydration",
     sysptoms_severe_diarrhea: "Severe diarrhea",
+    // Building system
+    building_land: "Plating Land",
+    building_housing: "Housing",
   },
 };
 

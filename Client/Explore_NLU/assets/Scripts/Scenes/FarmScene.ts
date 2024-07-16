@@ -67,7 +67,6 @@ export class FarmScene extends AbsScene {
     const menuSeedComponent = UICanvas.me()
       .getMenuSeedFarm()
       .getComponent(Menu);
-    console.log(GlobalData.me().getWarehouseItems());
     GlobalData.me()
       .getWarehouseItems()
       .forEach((warehouseItem) => {
@@ -154,10 +153,17 @@ export class FarmScene extends AbsScene {
   }
 
   handleResBuyBuilding(resBuyBuilding: proto.IResBuyBuilding): void {
+    if (resBuyBuilding.status == 400) {
+      UICanvas.me().showPopupMessage("Không đủ tiền mua đất trồng!");
+    }
     let plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
     let plantingLands = plantingLandPanel.children;
-    plantingLands.forEach((plantingLand: Node) => {
+    for (let plantingLand of plantingLands) {
       if (plantingLand.uuid == resBuyBuilding.uuid) {
+        if (resBuyBuilding.status == 400) {
+          plantingLand.destroy();
+          return;
+        }
         let plantingLandComponent = plantingLand.getComponent(PlantingLand);
         plantingLandComponent.plantingLandProto =
           resBuyBuilding.building.plantingLandBuilding;
@@ -168,12 +174,18 @@ export class FarmScene extends AbsScene {
             resBuyBuilding.building.plantingLandBuilding.tillLands[index];
           tillLand.getComponent(TilledLand).tillLandProto = tillLandProto;
         });
+        if (plantingLand.getComponent(UIOpacity))
+          plantingLand.removeComponent(UIOpacity);
+        if (plantingLand.getComponent(BlockInputEvents))
+          plantingLand.removeComponent(BlockInputEvents);
+        break;
       }
-      if (plantingLand.getComponent(UIOpacity))
-        plantingLand.removeComponent(UIOpacity);
-      if (plantingLand.getComponent(BlockInputEvents))
-        plantingLand.removeComponent(BlockInputEvents);
-    });
+    }
+    const gold = resBuyBuilding.gold;
+    if (gold) {
+      GlobalData.me().getMainUser().gold = gold;
+      UICanvas.me().loadGold();
+    }
   }
 
   handleResSow(resSow: proto.IResSow): void {

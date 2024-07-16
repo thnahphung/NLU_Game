@@ -206,6 +206,9 @@ export const languages = {
     sysptoms_fever: "Sốt",
     sysptoms_dehydration: "Mất nước",
     sysptoms_severe_diarrhea: "Tiêu chảy nặng",
+    // Building system
+    building_land: "Đất trồng",
+    building_housing: "Nhà",
   },
 };
 

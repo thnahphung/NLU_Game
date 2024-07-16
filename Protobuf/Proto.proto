@@ -161,6 +161,7 @@ message ShopItem {
     CROP = 0;
     ANIMAL = 1;
     CAGE = 2;
+    FARM_ITEM = 3;
   }
 }
 message Reward {
@@ -482,6 +483,8 @@ message ReqBuyBuilding {
 message ResBuyBuilding {
   string uuid = 1;
   Building building = 2;
+  int32 status = 3;
+  int32 gold = 4;
 }
 
 message ReqEmailForgetPassword {

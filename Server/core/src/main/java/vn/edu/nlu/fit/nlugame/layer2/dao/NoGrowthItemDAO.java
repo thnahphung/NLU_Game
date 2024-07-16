@@ -60,4 +60,8 @@ public class NoGrowthItemDAO extends BaseDAO {
                         .mapToBean(NoGrowthItemBean.class)
                         .list());
     }
+
+    public static void main(String[] args) {
+        System.out.println(getNoGrowthItemByName("planting-land"));
+    }
 }
