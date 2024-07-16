@@ -6,7 +6,7 @@ export class ResourceManager extends Component {
   protected static _instance: ResourceManager;
   @property([SpriteFrame]) private spriteFrames: SpriteFrame[] = [];
   @property([Prefab]) private animalPrefabs: Prefab[] = [];
-
+  @property([SpriteFrame]) private characterFrames: SpriteFrame[] = [];
   protected onLoad(): void {
     if (ResourceManager._instance != null) {
       console.log("Only 1 ResourceManager allow to exist");
@@ -34,6 +34,15 @@ export class ResourceManager extends Component {
     for (let prefab of this.animalPrefabs) {
       if (prefab.name.toLowerCase() == name) {
         return prefab;
+      }
+    }
+    return null;
+  }
+
+  getChacracterFrame(name: string): SpriteFrame {
+    for (let spriteFrame of this.characterFrames) {
+      if (spriteFrame.name == name) {
+        return spriteFrame;
       }
     }
     return null;

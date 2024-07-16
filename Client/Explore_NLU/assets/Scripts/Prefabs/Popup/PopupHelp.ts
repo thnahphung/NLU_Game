@@ -1,11 +1,19 @@
-import { _decorator, Component, Node } from "cc";
+import { _decorator, Component, Node, Sprite } from "cc";
 import { PopupComponent } from "../../Controller/PopupComponent";
 import { UICanvas } from "../MainUI/UICanvas";
+import GlobalData from "../../Utils/GlobalData";
+import { ResourceManager } from "../../Manager/ResourceManager";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupHelp")
 export class PopupHelp extends Component {
-  start() {}
+  @property(Sprite)
+  private spriteMainUser: Sprite = null;
+  @property(Sprite)
+  private spriteFindUser: Sprite = null;
+  start() {
+    this.spriteMainUser.spriteFrame = UICanvas.me().getMainUserAvatar();
+  }
 
   onClickExitPopup() {
     this.node.getComponent(PopupComponent).hide();

@@ -198,6 +198,11 @@ export const languages = {
     // Help
     help_title: "Trợ giúp",
     help_find: "Tìm kiếm",
+    //Aid
+    aid_title: "Nhờ hỗ trợ",
+    aid_status: "Trạng thái",
+    aid_invite_random: "Mời ngẫu nhiên",
+    aid_invite_friend: "Mời bạn bè",
     // Building system
     building_land: "Đất trồng",
     building_housing: "Nhà",

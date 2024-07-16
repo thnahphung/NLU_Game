@@ -192,6 +192,11 @@ export const languages = {
     // Help
     help_title: "Help",
     help_find: "Find",
+    //Aid
+    aid_title: "Aid",
+    aid_status: "Status",
+    aid_invite_random: "Invite random",
+    aid_invite_friend: "Invite friend",
     // Building system
     building_land: "Plating Land",
     building_housing: "Housing",

@@ -718,3 +718,4 @@ message ResLoadMachines {
   repeated NoGrowthItem noGrowthItem = 1;
   repeated PropertyMachine propertyMachines = 2;
 }
+

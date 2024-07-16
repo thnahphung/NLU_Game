@@ -1,5 +1,7 @@
 import { _decorator, Component, Label, Node } from "cc";
 import { UICanvas } from "../MainUI/UICanvas";
+import { AudioManger } from "../../Manager/AudioManger";
+import { AUDIOS } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupFindTime")
@@ -12,11 +14,11 @@ export class PopupFindTime extends Component {
   }
 
   onClickExitPopup() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     UICanvas.me().showPopupHelp();
     this.node.destroy();
   }
-  // Tăng từng giây bắt đầu từ 0:0
-  // Kiểm tra nếu quá 5 phút thì ngưng tăng
+  // Tăng từng giây bắt đầu từ 0:0 tối đa là 5 phút
   risingTime() {
     let time = 0;
     this.schedule(() => {
