@@ -192,6 +192,9 @@ export const languages = {
     // Help
     help_title: "Help",
     help_find: "Find",
+    // Building system
+    building_land: "Plating Land",
+    building_housing: "Housing",
   },
 };
 

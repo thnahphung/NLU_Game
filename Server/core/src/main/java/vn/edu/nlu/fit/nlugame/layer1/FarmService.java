@@ -10,6 +10,7 @@ import vn.edu.nlu.fit.nlugame.layer2.dao.bean.*;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.*;
+import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,8 +38,31 @@ public class FarmService {
         int userId = SessionCache.me().getUserID(SessionID.of(session));
         //TODO: cache area
         AreaBean areaBean = AreaDAO.loadAreaByUserId(userId);
+        UserContext userContext = UserCache.me().get(String.valueOf(userId));
+        long userGold = userContext.getUser().getGold();
         if (areaBean == null) return;
+        Proto.ResBuyBuilding.Builder resBuyBuilding = Proto.ResBuyBuilding.newBuilder();
+        long newGold = 0;
         if (typeBuilding.equals("PLANTING_LAND")) {
+            NoGrowthItemBean noGrowthItemBean = NoGrowthItemDAO.getNoGrowthItemByName("planting-land");
+            Proto.NoGrowthItem noGrowthItem = Proto.NoGrowthItem.newBuilder()
+                    .setId(noGrowthItemBean.getId())
+                    .setName(noGrowthItemBean.getName())
+                    .setPrice(noGrowthItemBean.getPrice())
+                    .setSalePrice(noGrowthItemBean.getSalePrice())
+                    .setExperienceReceive(noGrowthItemBean.getExperienceReceive())
+                    .setType(noGrowthItemBean.getType())
+                    .setDescription(noGrowthItemBean.getDescription())
+                    .build();
+
+            int buildingPrice = noGrowthItemBean.getPrice();
+            if(userGold < buildingPrice) {
+                resBuyBuilding = Proto.ResBuyBuilding.newBuilder();
+                resBuyBuilding.setStatus(400);
+                resBuyBuilding.setUuid(reqBuyBuilding.getUuid());
+                DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResBuyBuilding(resBuyBuilding).build());
+                return;
+            }
             //insert planting land
             ABuilding plantingBuilidng = new PlantingLandBuildingBean();
             int idPlantingBuilding = CommonBuildingCache.me().getIdBuildingByType(ConstUtils.TYPE_ITEM.PLANTING_LAND);
@@ -70,13 +94,21 @@ public class FarmService {
             });
             plantingLandBuilding.addAllTillLands(tillLands);
             buildingResponse.setPlantingLandBuilding(plantingLandBuilding);
+            newGold = this.updateUserGoldBuyItem(userContext, noGrowthItem, 1);
         }
-        Proto.ResBuyBuilding.Builder resBuyBuilding = Proto.ResBuyBuilding.newBuilder();
+        resBuyBuilding.setGold((int) newGold);
         resBuyBuilding.setUuid(reqBuyBuilding.getUuid());
         resBuyBuilding.setBuilding(buildingResponse);
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResBuyBuilding(resBuyBuilding).build());
     }
-
+    public long updateUserGoldBuyItem(UserContext userContext, Proto.NoGrowthItem noGrowthItem, int quantity) {
+        long newGold = userContext.getUser().getGold() - (long) noGrowthItem.getPrice() * quantity;
+        UserDAO.updateGold(userContext.getUser().getUserId(), newGold);
+        Proto.User newUserContext = userContext.getUser().toBuilder().setGold(newGold).build();
+        userContext.setUser(newUserContext);
+        UserCache.me().add(String.valueOf(userContext.getUser().getUserId()), userContext);
+        return newGold;
+    }
     public void handleTilledLand(Session session, Proto.ReqTilledLand reqTilledLand) {
         if (reqTilledLand.getTillLandList() == null || reqTilledLand.getTillLandList() == null || reqTilledLand.getTillLandList().size() == 0)
             return;

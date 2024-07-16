@@ -198,6 +198,9 @@ export const languages = {
     // Help
     help_title: "Trợ giúp",
     help_find: "Tìm kiếm",
+    // Building system
+    building_land: "Đất trồng",
+    building_housing: "Nhà",
   },
 };
 

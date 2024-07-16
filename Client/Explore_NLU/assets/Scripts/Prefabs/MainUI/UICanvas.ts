@@ -336,7 +336,7 @@ export class UICanvas extends Component {
     this._popupOption = instantiate(this.prefabPopupOption);
     let popupOptionComponent = this._popupOption.getComponent(PopupOption);
     if (handleNode) popupOptionComponent.handleNode = handleNode;
-    if (lable) popupOptionComponent.lableString = lable;
+    if (lable) popupOptionComponent.labelString = lable;
     this.node.getChildByName("BotMid").addChild(popupOptionComponent.node);
     this._popupOption.getComponent(PopupComponent).show();
   }

@@ -218,6 +218,10 @@ export default class GlobalData {
   public getMainArea() {
     return this.mainArea;
   }
+
+  public isMainArea() {
+    return this.area.areaId == this.mainArea.areaId;
+  }
   /*===== END AREA =====*/
 
   /* MAIN PLAYER */
