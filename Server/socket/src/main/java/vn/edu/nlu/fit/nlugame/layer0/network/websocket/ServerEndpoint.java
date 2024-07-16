@@ -2,6 +2,7 @@ package vn.edu.nlu.fit.nlugame.layer0.network.websocket;
 
 import jakarta.websocket.*;
 import vn.edu.nlu.fit.nlugame.layer0.handler.*;
+import vn.edu.nlu.fit.nlugame.layer1.TaskService;
 import vn.edu.nlu.fit.nlugame.layer2.ThreadManage;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.RedisClusterHelper;
@@ -25,6 +26,7 @@ public class ServerEndpoint {
         ServerEndpoint.subscribe(new AnimalHusbandHandler());
         ServerEndpoint.subscribe(new ActivityHandler());
         ServerEndpoint.subscribe(new MechanicalHandler());
+        TaskService.me().repeatTask();
     }
 
     public static void subscribe(Subscriber sub) {

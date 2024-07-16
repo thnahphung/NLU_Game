@@ -2,9 +2,11 @@ import {
   _decorator,
   BlockInputEvents,
   Button,
+  Color,
   Component,
   find,
   instantiate,
+  LabelComponent,
   Node,
   Prefab,
   UIOpacity,
@@ -14,10 +16,14 @@ import { CameraFollow } from "../Camera/CameraFollow";
 import { UICanvas } from "../MainUI/UICanvas";
 import GlobalData from "../../Utils/GlobalData";
 import DataSender from "../../Utils/DataSender";
+import { AbsHandler } from "../../Handler/AbsHandler";
+import { HandlerManager } from "../../Manager/HandlerManager";
+import { ItemPopupBuildingSystem } from "./ItemPopup/ItemPopupBuildingSystem";
+import { t } from "../../../../extensions/i18n/assets/LanguageData";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupBuildingSystem")
-export class PopupBuildingSystem extends Component {
+export class PopupBuildingSystem extends AbsHandler {
   @property(Button)
   public buttonPlantingLand: Button = null;
   @property(Button)
@@ -26,52 +32,71 @@ export class PopupBuildingSystem extends Component {
   public buttonWarehouse: Button = null;
   @property(Button)
   public buttonTree: Button = null;
-
   @property(Prefab)
   public plantingLandPrefab: Prefab = null;
 
   private handleNode: Node = null;
   private typeBuilding: string = null;
 
+  protected onLoad(): void {
+    HandlerManager.me().registerHandler(this);
+    DataSender.sendReqLoadShop(proto.ShopItem.TYPE_SHOP.FARM_ITEM);
+  }
+
   start() {
-    this.buttonPlantingLand.node.on(
-      Node.EventType.TOUCH_END,
-      this.handlePlantingBuilding,
-      this
-    );
-    this.buttHouse.node.on(
-      Node.EventType.TOUCH_END,
-      this.handleHouseBuilding,
-      this
-    );
-    this.buttonWarehouse.node.on(
-      Node.EventType.TOUCH_END,
-      this.handleWarehouseBuilding,
-      this
-    );
-    this.buttonTree.node.on(
-      Node.EventType.TOUCH_END,
-      this.handleTreeBuilding,
-      this
-    );
+    const userGold = GlobalData.me().getMainUser()?.gold;
+    if (userGold && userGold >= 1000) {
+      this.buttonPlantingLand.node.on(
+        Node.EventType.TOUCH_END,
+        this.handlePlantingBuilding,
+        this
+      );
+    } else {
+      this.buttonPlantingLand.node
+        .getComponent(ItemPopupBuildingSystem)
+        .getPriceLabel()
+        .getComponent(LabelComponent).color = new Color(255, 0, 0);
+      this.buttonPlantingLand.node.on(
+        Node.EventType.TOUCH_END,
+        this.handleNoEnoughGold,
+        this
+      );
+    }
+    this.buttHouse.node.getComponent(Button).interactable = false;
+  }
+
+  onMessageHandler(packetWrapper: proto.IPacketWrapper): void {
+    packetWrapper.packet.forEach((packet) => {
+      if (packet.resLoadShop) {
+        packet.resLoadShop.shopItems.forEach((shopItem) => {
+          if (shopItem.type == proto.ShopItem.TYPE_SHOP.FARM_ITEM) {
+            if (shopItem.noGrowthItem.name == "planting-land") {
+              const itemPopupBuildingSystem =
+                this.buttonPlantingLand.node.getComponent(
+                  ItemPopupBuildingSystem
+                );
+              itemPopupBuildingSystem.setName(
+                t("label_text." + "building_land")
+              );
+              itemPopupBuildingSystem.setPrice(shopItem.noGrowthItem.price);
+            }
+          }
+        });
+      }
+    });
   }
 
   private handlePlantingBuilding(event: Event, customEventData: string) {
+    if (!GlobalData.me().isMainArea()) return;
     const plantingLand = instantiate(this.plantingLandPrefab);
     const plantingPanel = find("Canvas/BackgroundLayers/PlantingPanel");
 
     let length = plantingPanel.children.length;
 
-    console.log(length);
-
     if (length > 0) {
       if (length == 5) {
-          plantingLand.setPosition(
-          0,
-          -330,
-          0
-        );
-      } else if(length > 5) {
+        plantingLand.setPosition(0, -330, 0);
+      } else if (length > 5) {
         length = length - 5;
         plantingLand.setPosition(
           PLANTING_LAND.WIDTH * length + length * 25,
@@ -80,7 +105,7 @@ export class PopupBuildingSystem extends Component {
         );
       } else {
         plantingLand.setPosition(
-           PLANTING_LAND.WIDTH * length + length * 25,
+          PLANTING_LAND.WIDTH * length + length * 25,
           -130,
           0
         );
@@ -98,11 +123,11 @@ export class PopupBuildingSystem extends Component {
     this.handleNode = plantingLand;
     this.typeBuilding = "PLANTING_LAND";
     this.effectNodeIsBuilding(this.handleNode);
-    this.showPopupOption();
+    this.showPopupOption("Mua: 1000G");
   }
 
-  private showPopupOption(): void {
-    UICanvas.me().showPopupOption(this.handleNode, "Mua: 10G");
+  private showPopupOption(title: string): void {
+    UICanvas.me().showPopupOption(this.handleNode, title);
     this.handleNode.on(
       CUSTOM_EVENT.LISTEN_CANCEL,
       this.handleClickCancel,
@@ -138,6 +163,7 @@ export class PopupBuildingSystem extends Component {
       return;
     }
     if (this.handleUserOffline()) return;
+
     this.hideEffectNodeIsBuilding(this.handleNode);
     this.cameraFollowTarget(GlobalData.me().getMainUserNode());
     DataSender.sendReqBuyBuilding(
@@ -184,18 +210,6 @@ export class PopupBuildingSystem extends Component {
     );
   }
 
-  private handleHouseBuilding(event: Event, customEventData: string) {
-    console.log("House");
-  }
-
-  private handleWarehouseBuilding(event: Event, customEventData: string) {
-    console.log("Warehouse");
-  }
-
-  private handleTreeBuilding(event: Event, customEventData: string) {
-    console.log("Tree");
-  }
-
   private cameraFollowTarget(target: Node): void {
     let CameraFollowComponent =
       find("Canvas/Camera").getComponent(CameraFollow);
@@ -207,5 +221,15 @@ export class PopupBuildingSystem extends Component {
     childrenCanvas.forEach((child: Node) => {
       if (child.name !== "Camera") child.active = true;
     });
+  }
+
+  handleNoEnoughGold(): void {
+    this.openUICanvas();
+    UICanvas.me().showPopupMessage("Không đủ vàng!");
+    this.node.destroy();
+  }
+
+  protected onDestroy(): void {
+    HandlerManager.me().unRegisterHandler(this);
   }
 }
