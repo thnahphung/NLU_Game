@@ -222,6 +222,69 @@ public class AnimalHusbandService {
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadDetailDisease(resLoadDetailDisease).build());
     }
 
+    public void sellAnimal(Session session, Proto.ReqSellAnimal reqSellAnimal) {
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        if (userId == -1) return;
+
+        int userOfAnimalId = PropertyAnimalDAO.getUserIdOfAnimal(reqSellAnimal.getAnimalId());
+        if (userOfAnimalId != userId) return;
+
+        PropertyAnimalBean propertyAnimalBean = PropertyAnimalDAO.getById(reqSellAnimal.getAnimalId());
+        PropertyGrowthItemBean propertyGrowthItemBean = PropertyGrowthItemDAO.getPropertyGrowthItemById(propertyAnimalBean.getPropertyGrowthItemId());
+        Proto.PropertyGrowthItem propertyGrowthItemProto = Proto.PropertyGrowthItem.newBuilder()
+                .setId(propertyGrowthItemBean.getId())
+                .setCurrentDiseaseId(propertyGrowthItemBean.getCurrentDiseaseId())
+                .setIsDisease(propertyGrowthItemBean.getIsDisease() > 0)
+                .setStartTimeDisease(propertyGrowthItemBean.getStartTimeDisease())
+                .setHealth(propertyGrowthItemBean.getHealth())
+                .setStage(propertyGrowthItemBean.getStage())
+                .setStartDate(propertyGrowthItemBean.getStartDate())
+                .setDevelopedDays(propertyGrowthItemBean.getDevelopedDays())
+                .setGrowthItemId(propertyGrowthItemBean.getGrowthItemId())
+                .setGrowthItemId(propertyGrowthItemBean.getGrowthItemId())
+                .build();
+        Proto.CommonGrowthItem commonGrowthItemProto = this.getCommonGrowthItemById(propertyGrowthItemBean.getGrowthItemId());
+        List<Proto.CommonRisingTime> commonRisingTimesProto = getCommonRisingTimeByItemId(commonGrowthItemProto.getId());
+        if (propertyGrowthItemProto.getDevelopedDays() <= commonRisingTimesProto.get(0).getTime()) {
+            Proto.ResSellAnimal resSellAnimal = Proto.ResSellAnimal.newBuilder()
+                    .setStatus(400)
+                    .build();
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResSellAnimal(resSellAnimal).build());
+            return;
+        }
+
+        if (propertyGrowthItemProto.getIsDisease()) {
+            Proto.ResSellAnimal resSellAnimal = Proto.ResSellAnimal.newBuilder()
+                    .setStatus(402)
+                    .build();
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResSellAnimal(resSellAnimal).build());
+            return;
+        }
+
+        PropertyAnimalDAO.deleteAnimal(reqSellAnimal.getAnimalId());
+        PropertyGrowthItemDAO.deletePropertyGrowthItem(propertyGrowthItemBean.getId());
+
+        //update user gold
+        UserContext userContext = UserCache.me().get(String.valueOf(userId));
+        long newGold = userContext.getUser().getGold() + commonGrowthItemProto.getSalePrice();
+        UserDAO.updateGold(userContext.getUser().getUserId(), newGold);
+        Proto.User newUserContext = userContext.getUser().toBuilder().setGold(newGold).build();
+        userContext.setUser(newUserContext);
+        UserCache.me().add(String.valueOf(userContext.getUser().getUserId()), userContext);
+
+        Proto.ResSellAnimal resSellAnimal = Proto.ResSellAnimal.newBuilder()
+                .setStatus(200)
+                .setAnimalId(propertyAnimalBean.getId())
+                .setCageId(propertyAnimalBean.getCageId())
+                .setGold((int) newGold)
+                .build();
+
+        Proto.Area areaProto = getAreaByUserId(userId);
+        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(areaProto.getAreaId()));
+        ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
+        DataSenderUtils.sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResSellAnimal(resSellAnimal).build());
+    }
+
     public boolean isEnoughGold(UserContext userContext, Proto.NoGrowthItem noGrowthItem, int quantity) {
         long newGold = userContext.getUser().getGold() - (long) noGrowthItem.getPrice() * quantity;
         return newGold >= 0;

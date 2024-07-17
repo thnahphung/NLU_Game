@@ -108,4 +108,11 @@ public class ConstUtils {
             return null;
         }
     }
+
+    public static final String GOOGLE_CLIENT_ID = "437772553970-vklbe77ufknniqm86875t6hhv8765k3j.apps.googleusercontent.com";
+    public static final String GOOGLE_CLIENT_SECRET = "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";
+    public static final String GOOGLE_REDIRECT_URI = "http://localhost:8080/socket/oauth2callback";
+    public static final String GOOGLE_GRANT_TYPE = "authorization_code";
+    public static final String GOOGLE_LINK_GET_TOKEN = "https://accounts.google.com/o/oauth2/token";
+    public static final String GOOGLE_LINK_GET_USER_INFO = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=";
 }

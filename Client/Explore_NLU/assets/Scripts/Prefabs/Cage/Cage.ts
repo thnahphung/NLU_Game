@@ -28,7 +28,7 @@ export class Cage extends Component {
   @property(Prefab) private popupCageInformation: Prefab;
   @property(Node) private animalPanel: Node;
   private menuNode: Node;
-  private cage: proto.ICage;
+  private cageData: proto.ICage;
 
   private interval = 0;
 
@@ -46,11 +46,11 @@ export class Cage extends Component {
   }
 
   init(cage: proto.ICage) {
-    this.cage = cage;
+    this.cageData = cage;
   }
 
   loadAnimals() {
-    this.cage.animals.forEach((animal) => {
+    this.cageData.animals.forEach((animal) => {
       this.addAnimal(animal);
     });
   }
@@ -85,8 +85,8 @@ export class Cage extends Component {
 
   private handleGetMenuFood(): void {
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);
-    UICanvas.me().showPopupMenuInfoAnimalFood(this.cage, () => {
-      DataSender.sendReqAddAnimalToCage(this.cage.propertyBuilding.id);
+    UICanvas.me().showPopupMenuInfoAnimalFood(this.cageData, () => {
+      DataSender.sendReqAddAnimalToCage(this.cageData.propertyBuilding.id);
     });
   }
 
@@ -97,7 +97,7 @@ export class Cage extends Component {
       return;
     }
     popupCageInformation = instantiate(this.popupCageInformation);
-    popupCageInformation.getComponent(PopupCageInformation).init(this.cage);
+    popupCageInformation.getComponent(PopupCageInformation).init(this.cageData);
     popupCageInformation.parent = find("UICanvas/PopupLayer");
     popupCageInformation.getComponent(PopupComponent).show();
 
@@ -124,7 +124,7 @@ export class Cage extends Component {
     return find("Canvas/PopupGameLayer/CoatingLayer");
   }
   public getCage(): proto.ICage {
-    return this.cage;
+    return this.cageData;
   }
 
   public getAnimalById(id: number): Node {
@@ -148,6 +148,31 @@ export class Cage extends Component {
       AudioManger.me().playOneShot(AUDIOS.COW);
     } else if (animal.getType() === ANIMAL.CHICKEN) {
       AudioManger.me().playOneShot(AUDIOS.CHICKEN);
+    }
+  }
+
+  public getAnimalsData() {
+    return this.cageData.animals;
+  }
+
+  public addAnimalData(animal: proto.IAnimal) {
+    this.cageData.animals.push(animal);
+  }
+
+  public deleteAnimalById(animalId: number) {
+    this.cageData.animals = this.cageData.animals.filter(
+      (animal) => animal.id !== animalId
+    );
+    this.animalPanel.children.forEach((animalNode) => {
+      if (animalNode.getComponent(Animal).getAnimal().id === animalId) {
+        animalNode.destroy();
+      }
+    });
+    const popupCageInformation = UICanvas.me().getPopupCageInformation();
+    if (popupCageInformation) {
+      popupCageInformation
+        .getComponent(PopupCageInformation)
+        .deleteItemByAnimalId(animalId);
     }
   }
 }

@@ -22,21 +22,6 @@ export class Menu extends Component {
   handleOnTouchStartModal() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.node.active = false;
-    const informationButton = this.node
-      ?.getChildByName("CageInformation")
-      ?.getChildByName("InformationButton");
-    if (informationButton) {
-      informationButton.targetOff("UICanvas");
-      informationButton.off(Button.EventType.CLICK);
-    }
-
-    const addAnimalButton = this.node
-      ?.getChildByName("CageInformation")
-      ?.getChildByName("AddAnimalButton");
-    if (addAnimalButton) {
-      addAnimalButton.targetOff("UICanvas");
-      addAnimalButton.off(Button.EventType.CLICK);
-    }
   }
 
   public getMenuModalNode(): Node {
@@ -64,6 +49,24 @@ export class Menu extends Component {
       } else {
         menuItem.active = true;
       }
+    }
+  }
+
+  protected onDisable(): void {
+    const informationButton = this.node
+      ?.getChildByName("CageInformation")
+      ?.getChildByName("InformationButton");
+    if (informationButton) {
+      informationButton.targetOff("UICanvas");
+      informationButton.off(Button.EventType.CLICK);
+    }
+
+    const addAnimalButton = this.node
+      ?.getChildByName("CageInformation")
+      ?.getChildByName("AddAnimalButton");
+    if (addAnimalButton) {
+      addAnimalButton.targetOff("UICanvas");
+      addAnimalButton.off(Button.EventType.CLICK);
     }
   }
 }
