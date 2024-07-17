@@ -59,6 +59,7 @@ export class Character extends Component {
       this.node.setPosition(GlobalData.me().getPositionCharacter());
       this.isChangeScene = true;
     }
+
   }
 
   protected update(dt: number): void {

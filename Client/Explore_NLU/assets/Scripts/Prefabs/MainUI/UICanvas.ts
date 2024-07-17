@@ -10,6 +10,8 @@ import {
   Node,
   Prefab,
   ProgressBar,
+  Sprite,
+  SpriteFrame,
   sys,
 } from "cc";
 import GlobalData from "../../Utils/GlobalData";
@@ -28,6 +30,7 @@ import { PopupTask } from "../Popup/PopupTask";
 import DataSender from "../../Utils/DataSender";
 import { PopupFactory } from "../Popup/PopupFactory";
 import { AudioManger } from "../../Manager/AudioManger";
+import { ResourceManager } from "../../Manager/ResourceManager";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -36,13 +39,12 @@ export class UICanvas extends Component {
   @property(Label) private userLevel: Label = null;
   @property(ProgressBar) private userExp: ProgressBar = null;
   @property(Label) private userGold: Label = null;
-
+  @property(Sprite) private userAvatar: Sprite = null;
   @property(Node) private joystick: Node = null;
   @property(Node) private popupMenuAnimalFood: Node = null;
   @property(Node) private popupMenuToolFarm: Node = null;
   @property(Node) private popupMenuSeedFarm: Node = null;
   @property(Node) private popupFactory: Node = null;
-
   @property(Prefab) private prefabPopupMessage: Prefab;
   @property(Prefab) private prefabPopupOption: Prefab;
   @property(Prefab) private prefabPopupSetting: Prefab;
@@ -58,6 +60,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupCageInformation: Prefab;
   @property(Prefab) private prefabPopupHelp: Prefab;
   @property(Prefab) private prefabPopupFindTime: Prefab;
+  @property(Prefab) private prefabPopupAid: Prefab;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -71,6 +74,7 @@ export class UICanvas extends Component {
   private _popupHelp: Node;
   private _popupFindTime: Node;
   private _popupCageInformation: Node;
+  private _popupAid: Node;
 
   //Lock button
   private isLocked: boolean = false;
@@ -102,6 +106,13 @@ export class UICanvas extends Component {
     this.userLevel.string = "Lv " + mainUser.level.toString() + ": ";
     this.userExp.progress = mainUser.experiencePoints / 100;
     this.userGold.string = Util.formatNumber(mainUser.gold);
+    this.userAvatar.spriteFrame = ResourceManager.me().getChacracterFrame(
+      mainUser.character.code
+    );
+  }
+
+  getMainUserAvatar(): SpriteFrame {
+    return this.userAvatar.spriteFrame;
   }
 
   loadGold() {
@@ -158,32 +169,10 @@ export class UICanvas extends Component {
     return popupShopNode;
   }
 
-  showButton(buttonName: BUTTON) {
-    switch (buttonName) {
-      case BUTTON.UI_BUTTON_BUILDING:
-        this._buttonBuilding = instantiate(this.buttonBuilding);
-        this.node.getChildByName("BotRight").addChild(this._buttonBuilding);
-        break;
-      default:
-        return;
-    }
-    this._buttonBuilding.getComponent(PopupComponent).show();
-  }
-
   getButton(buttonName: BUTTON): Node {
     switch (buttonName) {
       case BUTTON.UI_BUTTON_BUILDING:
         return this._buttonBuilding;
-      default:
-        return;
-    }
-  }
-
-  hideButton(buttonName: BUTTON) {
-    switch (buttonName) {
-      case BUTTON.UI_BUTTON_BUILDING:
-        this._buttonBuilding.destroy();
-        break;
       default:
         return;
     }
@@ -473,5 +462,23 @@ export class UICanvas extends Component {
 
   getPopupFindTime(): Node {
     return this._popupFindTime;
+  }
+
+  showPopupAid() {
+    if (this.node.getChildByName("PopupLayer").getChildByName("PopupAid")) {
+      if (this._popupFindTime && this._popupFindTime.active) return;
+      if (this._popupAid) {
+        this._popupAid.active = true;
+      }
+      return;
+    }
+    this.onLocked1s();
+    this._popupAid = instantiate(this.prefabPopupAid);
+    this.node.getChildByName("PopupLayer").addChild(this._popupAid);
+    this._popupAid.getComponent(PopupComponent).show();
+  }
+
+  getPopupSupport(): Node {
+    return this._popupHelp;
   }
 }

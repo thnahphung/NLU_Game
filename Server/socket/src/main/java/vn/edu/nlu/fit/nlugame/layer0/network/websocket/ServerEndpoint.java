@@ -26,6 +26,7 @@ public class ServerEndpoint {
         ServerEndpoint.subscribe(new AnimalHusbandHandler());
         ServerEndpoint.subscribe(new ActivityHandler());
         ServerEndpoint.subscribe(new MechanicalHandler());
+        ServerEndpoint.subscribe(new SupportingHandler());
         TaskService.me().repeatTask();
     }
 

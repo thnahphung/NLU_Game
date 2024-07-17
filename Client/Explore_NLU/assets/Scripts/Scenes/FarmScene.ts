@@ -44,12 +44,6 @@ export class FarmScene extends AbsScene {
 
   protected start(): void {
     super.start();
-    // Open building function
-    UICanvas.me().showButton(BUTTON.UI_BUTTON_BUILDING);
-    UICanvas.me()
-      .getButton(BUTTON.UI_BUTTON_BUILDING)
-      .on(Node.EventType.TOUCH_END, this.onClickBuilding, this);
-
     this.loadSeedBag();
   }
 
@@ -108,7 +102,7 @@ export class FarmScene extends AbsScene {
     });
   }
 
-  handleResAddProduct(resAddProduct: proto.IResAddProduct): void {
+  private handleResAddProduct(resAddProduct: proto.IResAddProduct): void {
     const warehouseItems = resAddProduct.warehouseItem;
     if (!warehouseItems || warehouseItems.length == 0) return;
     warehouseItems.forEach((warehouseItem) => {
@@ -116,7 +110,7 @@ export class FarmScene extends AbsScene {
     });
   }
 
-  handleResHarvest(resHarvest: proto.IResHarvest): void {
+  private handleResHarvest(resHarvest: proto.IResHarvest): void {
     const rewards = [];
     resHarvest.rewards.reward.forEach((rewardProto) => {
       let typeReward = "";
@@ -152,7 +146,7 @@ export class FarmScene extends AbsScene {
     this.loadBasicItemsToUI();
   }
 
-  handleResBuyBuilding(resBuyBuilding: proto.IResBuyBuilding): void {
+  private handleResBuyBuilding(resBuyBuilding: proto.IResBuyBuilding): void {
     if (resBuyBuilding.status == 400) {
       UICanvas.me().showPopupMessage("Không đủ tiền mua đất trồng!");
     }
@@ -188,7 +182,7 @@ export class FarmScene extends AbsScene {
     }
   }
 
-  handleResSow(resSow: proto.IResSow): void {
+  private handleResSow(resSow: proto.IResSow): void {
     let plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
     let plantingLands = plantingLandPanel.children;
     // Lấy ra tất cả mảnh đất trồng
@@ -352,7 +346,7 @@ export class FarmScene extends AbsScene {
     });
   }
 
-  public onClickBuilding(): void {
+  private onClickBuilding(): void {
     CoatingComponent.me().offAllCoating();
     if (find("Canvas/GameManager/PopupBuildingSystem")) return;
     this.buildingSystem = instantiate(this.buildingSystemPrefab);
@@ -368,14 +362,14 @@ export class FarmScene extends AbsScene {
     this.openUICanvas();
   }
 
-  hiddenUICanvas(): void {
+  private hiddenUICanvas(): void {
     const childrenCanvas = find("UICanvas").children;
     childrenCanvas.forEach((child: Node) => {
       if (child.name !== "Camera") child.active = false;
     });
   }
 
-  openUICanvas(): void {
+  private openUICanvas(): void {
     const childrenCanvas = find("UICanvas").children;
     childrenCanvas.forEach((child: Node) => {
       if (child.name !== "Camera") child.active = true;

@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "af14055f-4c1c-41d0-b132-c5c8355ea820",
+  "uuid": "edc7ba56-ac9d-4f8e-972d-404873d50567",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "PopupHelp"
+    "syncNodeName": "PopupAid"
   }
 }
