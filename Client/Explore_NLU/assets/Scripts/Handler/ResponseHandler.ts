@@ -8,6 +8,10 @@ import AbsScene from "../Scenes/AbsScene";
 import { PlayerManager } from "../Manager/PlayerManager";
 import { Character } from "../Prefabs/Character/Character";
 import { t } from "../../../extensions/i18n/assets/LanguageData";
+import { PopupSupport } from "../Prefabs/Popup/PopupSupport";
+import { PopupFindTime } from "../Prefabs/Popup/PopupFindTime";
+import DataSender from "../Utils/DataSender";
+import { CHARACTERS } from "../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("ResponseHandler")
@@ -57,6 +61,9 @@ export class ResponseHandler extends AbsHandler {
       }
       if (packet.resCompleteTask) {
         this.onResCompleteTask(packet);
+      }
+      if (packet.resMatchmaking) {
+        this.onResMatchmaking(packet);
       }
     });
   }
@@ -180,5 +187,25 @@ export class ResponseHandler extends AbsHandler {
       UICanvas.me().loadGold();
     }
     if (exp) GlobalData.me().getMainUser().level = exp;
+  }
+
+  onResMatchmaking(packet: proto.IPacket) {
+    console.log("onResMatchmaking", packet.resMatchmaking);
+    let matchmakedUser = packet.resMatchmaking.matchmakedUser;
+    let popupSupport = UICanvas.me().getPopupSupport();
+    let popupSupportComponent = popupSupport.getComponent(PopupSupport);
+    popupSupportComponent.setMatchmakedUser(matchmakedUser);
+    UICanvas.me().closePopupFindTime();
+    popupSupportComponent.showPopup();
+    // Join area
+    let code = GlobalData.me().getMainUser().character.code;
+    this.scheduleOnce(() => {
+      if (code == CHARACTERS.BSTY || code == CHARACTERS.KSCK) {
+        DataSender.sendReqPlayerJoinArea(matchmakedUser.userId);
+      }
+    }, 3);
+    if (code == CHARACTERS.KSCN || code == CHARACTERS.KSNN) {
+      popupSupportComponent.setMatchmakingOK();
+    }
   }
 }

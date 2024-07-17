@@ -192,11 +192,13 @@ export const languages = {
     // Help
     help_title: "Help",
     help_find: "Find",
+    help_match_ok: "Engineer is coming...",
     //Aid
     aid_title: "Aid",
     aid_status: "Status",
     aid_invite_random: "Invite random",
     aid_invite_friend: "Invite friend",
+    help_agricultural: "Agricultural help",
     // Building system
     building_land: "Plating Land",
     building_housing: "Housing",

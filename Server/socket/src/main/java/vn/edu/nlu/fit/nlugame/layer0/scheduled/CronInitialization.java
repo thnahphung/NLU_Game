@@ -9,7 +9,6 @@ import vn.edu.nlu.fit.nlugame.layer0.scheduled.jobs.*;
 @WebListener
 public class CronInitialization implements ServletContextListener {
     private final Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
-
     public CronInitialization() throws SchedulerException {
     }
 
@@ -21,6 +20,7 @@ public class CronInitialization implements ServletContextListener {
             scheduler.scheduleJob(createJob(PingPongJob.class), createDefaultTrigger(PingPongJob.class, "0/10 * * * * ?"));
             scheduler.scheduleJob(createJob(GameStateJob.class), createDefaultTrigger(GameStateJob.class, "0/4 * * * * ?"));
             scheduler.scheduleJob(createJob(TaskJob.class), createDefaultTrigger(TaskJob.class, "0 0 0 * * ?")); // repeat every day
+            scheduler.scheduleJob(createJob(MatchmakingJob.class), createDefaultTrigger(MatchmakingJob.class, "0/2 * * * * ?"));
             scheduler.start();
         } catch (SchedulerException e) {
             throw new RuntimeException(e);

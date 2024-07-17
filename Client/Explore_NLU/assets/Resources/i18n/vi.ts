@@ -198,6 +198,8 @@ export const languages = {
     // Help
     help_title: "Trợ giúp",
     help_find: "Tìm kiếm",
+    help_match_ok: "Kỹ sư đang đến...",
+    help_agricultural: "Trợ giúp nông nghiệp",
     //Aid
     aid_title: "Nhờ hỗ trợ",
     aid_status: "Trạng thái",

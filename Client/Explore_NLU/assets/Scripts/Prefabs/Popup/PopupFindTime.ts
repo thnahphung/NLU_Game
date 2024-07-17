@@ -2,19 +2,21 @@ import { _decorator, Component, Label, Node } from "cc";
 import { UICanvas } from "../MainUI/UICanvas";
 import { AudioManger } from "../../Manager/AudioManger";
 import { AUDIOS } from "../../Utils/Const";
+import DataSender from "../../Utils/DataSender";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupFindTime")
 export class PopupFindTime extends Component {
   @property(Label)
   private labelTime: Label = null;
-  start() {
+  onEnable() {
     this.labelTime.string = "0:0";
     this.risingTime();
   }
 
   onClickExitPopup() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_3);
+    DataSender.sendReqStopSupportFind();
     UICanvas.me().showPopupHelp();
     this.node.destroy();
   }

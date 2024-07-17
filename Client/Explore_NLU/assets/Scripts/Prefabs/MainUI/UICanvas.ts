@@ -452,7 +452,7 @@ export class UICanvas extends Component {
 
   showPopupAid() {
     if (this.node.getChildByName("PopupLayer").getChildByName("PopupAid")) {
-      if (this._popupAid && this._popupAid.active) return;
+      if (this._popupFindTime && this._popupFindTime.active) return;
       if (this._popupAid) {
         this._popupAid.active = true;
       }
@@ -462,5 +462,9 @@ export class UICanvas extends Component {
     this._popupAid = instantiate(this.prefabPopupAid);
     this.node.getChildByName("PopupLayer").addChild(this._popupAid);
     this._popupAid.getComponent(PopupComponent).show();
+  }
+
+  getPopupSupport(): Node {
+    return this._popupHelp;
   }
 }
