@@ -3,6 +3,8 @@ import DataSender from "../../Utils/DataSender";
 import GlobalData from "../../Utils/GlobalData";
 import { Animal } from "../Animal/Animal";
 import { AnimalHusbandryScene } from "../../Scenes/AnimalHusbandryScene";
+import { AudioManger } from "../../Manager/AudioManger";
+import { AUDIOS } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("LandPurchase")
@@ -33,7 +35,7 @@ export class LandPurchase extends Component {
   }
 
   onClickBuyCage(event: Event, customEventData: string) {
-    console.log("Buy cage", customEventData);
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     DataSender.sendReqBuyCage(
       GlobalData.me()?.getPickCageItem().id,
       parseInt(customEventData)

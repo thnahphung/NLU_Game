@@ -302,6 +302,13 @@ export default class DataSender {
     let reqStopSupportFind = new proto.ReqStopSupportFind();
     let packet = new proto.Packet();
     packet.reqStopSupportFind = reqStopSupportFind;
+  }
+  
+  public static sendReqLoadDetailDisease(diseaseId: number) {
+    let reqLoadDetailDisease = new proto.ReqLoadDetailDisease();
+    reqLoadDetailDisease.diseaseId = diseaseId;
+    let packet = new proto.Packet();
+    packet.reqLoadDetailDisease = reqLoadDetailDisease;
     WS.send(packet);
   }
 }

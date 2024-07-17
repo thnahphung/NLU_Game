@@ -199,6 +199,14 @@ export const languages = {
     aid_invite_random: "Invite random",
     aid_invite_friend: "Invite friend",
     help_agricultural: "Agricultural help",
+    //Sysptom
+    sysptoms_high_fever: "High fever",
+    sysptoms_difficulty_breathing: "Difficulty breathing",
+    sysptoms_blackened_skin: "Blackened skin",
+    sysptoms_diarrhea: "Diarrhea",
+    sysptoms_fever: "Fever",
+    sysptoms_dehydration: "Dehydration",
+    sysptoms_severe_diarrhea: "Severe diarrhea",
     // Building system
     building_land: "Plating Land",
     building_housing: "Housing",

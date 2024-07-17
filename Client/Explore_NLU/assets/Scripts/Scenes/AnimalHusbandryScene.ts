@@ -48,8 +48,6 @@ export class AnimalHusbandryScene extends AbsScene {
   }
 
   onAnimalDiseaseHandle(packet: proto.IPacket) {
-    console.log("onAnimalDiseaseHandle", packet);
-
     for (let cageNode of this.cagesNode) {
       cageNode.getComponent(Cage).changeAnimalNewDay();
     }
@@ -68,12 +66,14 @@ export class AnimalHusbandryScene extends AbsScene {
 
   onAddAnimalToCageHandler(packet: proto.IPacket) {
     if (packet.resAddAnimalToCage.status == 400) {
+      AudioManger.me().playOneShot(AUDIOS.WRONG);
       UICanvas.me().showPopupMessage(
         t("label_text.add_animal_not_enough_animal")
       );
       return;
     }
     if (packet.resAddAnimalToCage.status == 401) {
+      AudioManger.me().playOneShot(AUDIOS.WRONG);
       UICanvas.me().showPopupMessage(
         t("label_text.add_animal_not_enough_capacity")
       );
@@ -91,6 +91,7 @@ export class AnimalHusbandryScene extends AbsScene {
 
   onBuyCageHandler(packet: proto.IPacket) {
     if (packet.resBuyCage.status == 400) {
+      AudioManger.me().playOneShot(AUDIOS.WRONG);
       UICanvas.me().showPopupMessage(t("label_text.buy_shop_not_enough_gold"));
       return;
     }
@@ -109,7 +110,9 @@ export class AnimalHusbandryScene extends AbsScene {
 
   onAnimalEatHandle(packet: proto.IPacket) {
     if (packet.resAnimalEat.status == 400) {
-      UICanvas.me().showPopupMessage("label_text.animal_eat_not_enough_food");
+      UICanvas.me().showPopupMessage(
+        t("label_text.animal_eat_not_enough_food")
+      );
       return;
     }
     GlobalData.me().addWarehouseItem(packet.resAnimalEat.warehouseItem);

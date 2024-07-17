@@ -11,7 +11,6 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.*;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
-import javax.xml.crypto.Data;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -204,6 +203,23 @@ public class AnimalHusbandService {
                 .addAllCages(cages)
                 .build();
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadCages(resLoadCages).build());
+    }
+
+    public void loadDetailDisease(Session session, Proto.ReqLoadDetailDisease reqLoadDetailDisease) {
+        List<SysptomBean> sysptomBeans = SysptomDAO.getSysptomsByDiseaseId(reqLoadDetailDisease.getDiseaseId());
+        List<Proto.Sysptom> sysptomsProto = new ArrayList<>();
+        for (SysptomBean sysptomBean : sysptomBeans) {
+            Proto.Sysptom sysptomProto = Proto.Sysptom.newBuilder()
+                    .setId(sysptomBean.getId())
+                    .setDescription(sysptomBean.getDescription())
+                    .setDiseaseId(sysptomBean.getDiseaseId())
+                    .build();
+            sysptomsProto.add(sysptomProto);
+        }
+        Proto.ResLoadDetailDisease resLoadDetailDisease = Proto.ResLoadDetailDisease.newBuilder()
+                .addAllSysptoms(sysptomsProto)
+                .build();
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadDetailDisease(resLoadDetailDisease).build());
     }
 
     public boolean isEnoughGold(UserContext userContext, Proto.NoGrowthItem noGrowthItem, int quantity) {
@@ -638,4 +654,6 @@ public class AnimalHusbandService {
                 .addAllCommonRisingTimes(commonRisingTimesProto)
                 .build();
     }
+
+
 }

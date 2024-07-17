@@ -205,6 +205,14 @@ export const languages = {
     aid_status: "Trạng thái",
     aid_invite_random: "Mời ngẫu nhiên",
     aid_invite_friend: "Mời bạn bè",
+    //Sysptom
+    sysptoms_high_fever: "Sốt cao",
+    sysptoms_difficulty_breathing: "Khó thở",
+    sysptoms_blackened_skin: "Da đen",
+    sysptoms_diarrhea: "Tiêu chảy",
+    sysptoms_fever: "Sốt",
+    sysptoms_dehydration: "Mất nước",
+    sysptoms_severe_diarrhea: "Tiêu chảy nặng",
     // Building system
     building_land: "Đất trồng",
     building_housing: "Nhà",

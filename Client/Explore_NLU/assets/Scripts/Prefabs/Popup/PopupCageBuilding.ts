@@ -4,6 +4,8 @@ import { PopupComponent } from "../../Controller/PopupComponent";
 import { AbsHandler } from "../../Handler/AbsHandler";
 import { ItemPopupCageBuilding } from "./ItemPopup/ItemPopupCageBuilding";
 import { HandlerManager } from "../../Manager/HandlerManager";
+import { AudioManger } from "../../Manager/AudioManger";
+import { AUDIOS } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupCageBuilding")
@@ -23,6 +25,7 @@ export class PopupCageBuilding extends AbsHandler {
   }
 
   public hidePopup() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.node.getComponent(PopupComponent).hide();
     this.scheduleOnce(() => {
       this.node.destroy();
