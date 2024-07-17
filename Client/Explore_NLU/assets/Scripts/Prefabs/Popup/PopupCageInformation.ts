@@ -15,6 +15,8 @@ import { t } from "../../../../extensions/i18n/assets/LanguageData";
 import { Util } from "../../Utils/Util";
 import { AudioManger } from "../../Manager/AudioManger";
 import { AUDIOS } from "../../Utils/Const";
+import { PopupYesNo } from "./PopupYesNo";
+import DataSender from "../../Utils/DataSender";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupCageInformation")
@@ -67,6 +69,9 @@ export class PopupCageInformation extends Component {
       let item = instantiate(this.itemPopupAnimal);
       item.getComponent(ItemPopupAnimal).init(animal);
       this.animalsPanel.content.addChild(item);
+      item.on(Button.EventType.CLICK, () => {
+        this.onClickItem(animal);
+      });
     });
   }
 
@@ -89,29 +94,36 @@ export class PopupCageInformation extends Component {
     console.log("Upgrade cage");
   }
 
-  public onClickSell(animalData: any) {
-    console.log("Sell with price: " + animalData.id.toString() + " coins");
+  public onClickSell(animalData: proto.IAnimal) {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
+    DataSender.sendReqSellAnimal(animalData.id);
   }
 
   public onClickNoSell() {
-    console.log("No");
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
   }
-  // public onClickItem(button: Button) {
-  //   const popupYesNoNode = instantiate(this.popupYesNo);
-  //   popupYesNoNode
-  //     .getComponent(PopupYesNo)
-  //     .setContent(
-  //       "Do you want to sell this " +
-  //         button.getComponent(ItemPopupAnimal).getAnimalData().name +
-  //         "?"
-  //     );
-  //   popupYesNoNode
-  //     .getComponent(PopupYesNo)
-  //     .onClickYes(() =>
-  //       this.onClickSell(button.getComponent(ItemPopupAnimal).getAnimalData())
-  //     );
-  //   popupYesNoNode.getComponent(PopupYesNo).onClickNo(this.onClickNoSell);
-  //   popupYesNoNode.parent = this.node.parent;
-  //   popupYesNoNode.getComponent(PopupComponent).show();
-  // }
+
+  public onClickItem(animalData: proto.IAnimal) {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
+    const popupYesNoNode = instantiate(this.popupYesNo);
+    popupYesNoNode
+      .getComponent(PopupYesNo)
+      .setContent(
+        t("label_text.you_definitely_want_to_sell_this_animal_right")
+      );
+    popupYesNoNode
+      .getComponent(PopupYesNo)
+      .onClickYes(() => this.onClickSell(animalData));
+    popupYesNoNode.getComponent(PopupYesNo).onClickNo(this.onClickNoSell);
+    popupYesNoNode.parent = this.node.parent;
+    popupYesNoNode.getComponent(PopupComponent).show();
+  }
+
+  public deleteItemByAnimalId(animalId: number) {
+    this.animalsPanel.content.children.forEach((item) => {
+      if (item.getComponent(ItemPopupAnimal).getAnimalData().id == animalId) {
+        item.destroy();
+      }
+    });
+  }
 }

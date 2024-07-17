@@ -17,7 +17,7 @@ public class GameStateService {
     private static final int MINUTES_PER_DAY = 24;
     private static final int TOTAL_DAYS_PER_SEASON = 120;
     private static final int TOTAL_SEASON = 3;
-    private static final float DISEASE_RATE = 0.2f;
+    private static final float DISEASE_RATE = 0.1f;
 
     private GameStateService() {
     }

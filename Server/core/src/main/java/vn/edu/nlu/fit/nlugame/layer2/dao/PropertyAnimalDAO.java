@@ -76,4 +76,21 @@ public class PropertyAnimalDAO extends BaseDAO {
                 .execute());
     }
 
+    public static int getUserIdOfAnimal(int animalId) {
+        if (getJdbi() == null) {
+            return -1;
+        }
+        return getJdbi().withHandle(handle -> handle.createQuery("SELECT a.user_id FROM " + TABLE_NAME + " pa JOIN property_buildings pb ON pa.cage_id = pb.id JOIN areas a ON pb.area_id = a.id WHERE pa.id = :animalId")
+                .bind("animalId", animalId)
+                .mapTo(Integer.class).one());
+    }
+
+    public static int deleteAnimal(int animalId) {
+        if (getJdbi() == null) {
+            return -1;
+        }
+        return getJdbi().withHandle(handle -> handle.createUpdate("DELETE FROM " + TABLE_NAME + " WHERE id = :animalId")
+                .bind("animalId", animalId)
+                .execute());
+    }
 }

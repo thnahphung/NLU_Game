@@ -44,7 +44,31 @@ export class AnimalHusbandryScene extends AbsScene {
       if (packet.resAnimalDisease) {
         this.onAnimalDiseaseHandle(packet);
       }
+      if (packet.resSellAnimal) {
+        this.onSellAnimalHandler(packet);
+      }
     });
+  }
+  onSellAnimalHandler(packet: proto.IPacket) {
+    if (packet.resSellAnimal.status == 400) {
+      UICanvas.me().showPopupMessage(t("label_text.sell_animal_400"));
+      return;
+    }
+
+    if (packet.resSellAnimal.status == 402) {
+      UICanvas.me().showPopupMessage(t("label_text.sell_animal_402"));
+      return;
+    }
+
+    GlobalData.me().getMainUser().gold = packet.resSellAnimal.gold;
+    UICanvas.me().loadGold();
+
+    const cageNode = this.cagesNode.find(
+      (cage) =>
+        cage.getComponent(Cage).getCage().propertyBuilding.id ==
+        packet.resSellAnimal.cageId
+    );
+    cageNode.getComponent(Cage).deleteAnimalById(packet.resSellAnimal.animalId);
   }
 
   onAnimalDiseaseHandle(packet: proto.IPacket) {
@@ -84,8 +108,12 @@ export class AnimalHusbandryScene extends AbsScene {
       if (
         cageNode.getComponent(Cage).getCage().propertyBuilding.id ==
         packet.resAddAnimalToCage.animal.cageId
-      )
+      ) {
+        cageNode
+          .getComponent(Cage)
+          .addAnimalData(packet.resAddAnimalToCage.animal);
         cageNode.getComponent(Cage).addAnimal(packet.resAddAnimalToCage.animal);
+      }
     }
   }
 

@@ -116,6 +116,10 @@ export const languages = {
     animal_eat_not_enough_food: "Not enough food!",
     add_animal_not_enough_capacity: "Not enough capacity!",
     add_animal_not_enough_animal: "Not enough animal!",
+    you_definitely_want_to_sell_this_animal_right:
+      "You definitely want to sell this animal, right?",
+    sell_animal_400: "This animal is still young, it cannot be sold yet",
+    sell_animal_402: "The animal is disease, it cannot be sold",
     //Area Name
     phuong_vi: "Phuong Vi",
     cam_tu: "Cam Tu",
