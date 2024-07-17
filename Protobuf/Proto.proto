@@ -80,7 +80,10 @@ message Packet {
     ResLoadDetailDisease resLoadDetailDisease = 70;
     ReqLoadMachines reqLoadMachines = 80;
     ResLoadMachines resLoadMachines = 81;
-
+    ReqSupportFind ReqSupportFind = 83;
+    ResSupportFind resSupportFind = 84;
+    ResMatchmaking resMatchmaking = 85;
+    ReqStopSupportFind reqStopSupportFind = 86;
   }
 }
 
@@ -727,6 +730,25 @@ message ResLoadMachines {
   repeated NoGrowthItem noGrowthItem = 1;
   repeated PropertyMachine propertyMachines = 2;
 }
+
+message ReqSupportFind {
+}
+
+message ReqStopSupportFind {
+}
+
+message ResSupportFind {
+  int32 status = 1;
+}
+
+message ResNeedSupportFind {
+  int32 status = 1;
+}
+
+message ResMatchmaking {
+  User matchmakedUser = 1;
+}
+
 
 message ReqLoadDetailDisease{
   int32 diseaseId = 1;

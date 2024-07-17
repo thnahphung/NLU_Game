@@ -8280,7 +8280,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 441.9906444906445,
+    "_orthoHeight": 447.43297587131366,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -11585,7 +11585,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 441.9906444906445,
+    "_orthoHeight": 447.43297587131366,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -12158,6 +12158,24 @@
       {
         "__uuid__": "8a9e2b05-cb17-48ef-8e28-2f2504ee18d6",
         "__expectedType__": "cc.Prefab"
+      }
+    ],
+    "characterFrames": [
+      {
+        "__uuid__": "ae8a9453-356a-44e4-8b4c-588e860303ab@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "a14121f4-9e57-4b84-ae1a-1dacd35446a0@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "dd7b8b3e-86cf-41ee-af96-2e65dcb7df2f@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "f78c6be7-f288-465e-a7ac-0816e5a2be87@f9941",
+        "__expectedType__": "cc.SpriteFrame"
       }
     ],
     "_id": "29/jCnPo9PzJTP8Baex+OK"

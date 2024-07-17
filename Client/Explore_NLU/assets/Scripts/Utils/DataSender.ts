@@ -291,6 +291,19 @@ export default class DataSender {
     WS.send(packet);
   }
 
+  public static sedReqSupportFind() {
+    let reqSupportFind = new proto.ReqSupportFind();
+    let packet = new proto.Packet();
+    packet.ReqSupportFind = reqSupportFind;
+    WS.send(packet);
+  }
+
+  public static sendReqStopSupportFind() {
+    let reqStopSupportFind = new proto.ReqStopSupportFind();
+    let packet = new proto.Packet();
+    packet.reqStopSupportFind = reqStopSupportFind;
+  }
+  
   public static sendReqLoadDetailDisease(diseaseId: number) {
     let reqLoadDetailDisease = new proto.ReqLoadDetailDisease();
     reqLoadDetailDisease.diseaseId = diseaseId;
