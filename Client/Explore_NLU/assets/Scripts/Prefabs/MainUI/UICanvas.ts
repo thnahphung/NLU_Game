@@ -73,6 +73,7 @@ export class UICanvas extends Component {
   private _popupTask: Node;
   private _popupHelp: Node;
   private _popupFindTime: Node;
+  private _popupCageInformation: Node;
   private _popupAid: Node;
 
   //Lock button
@@ -287,6 +288,11 @@ export class UICanvas extends Component {
     this.node.getChildByName("PopupLayer").addChild(popupCageInformationNode);
     popupCageInformationNode.getComponent(PopupComponent).show();
     this.popupMenuAnimalFood.active = false;
+    this._popupCageInformation = popupCageInformationNode;
+  }
+
+  public getPopupCageInformation(): Node {
+    return this._popupCageInformation;
   }
 
   showPopupMenuToolFarm(nameTool: string) {

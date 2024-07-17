@@ -311,4 +311,12 @@ export default class DataSender {
     packet.reqLoadDetailDisease = reqLoadDetailDisease;
     WS.send(packet);
   }
+
+  public static sendReqSellAnimal(animalId: number) {
+    let reqSaleAnimal = new proto.ReqSellAnimal();
+    reqSaleAnimal.animalId = animalId;
+    let packet = new proto.Packet();
+    packet.reqSellAnimal = reqSaleAnimal;
+    WS.send(packet);
+  }
 }

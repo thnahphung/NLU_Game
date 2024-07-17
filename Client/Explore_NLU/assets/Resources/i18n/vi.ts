@@ -121,6 +121,11 @@ export const languages = {
     animal_eat_not_enough_food: "Không đủ thức ăn!",
     add_animal_not_enough_capacity: "Chuồng không đủ chỗ!",
     add_animal_not_enough_animal: "Không đủ động vật tương ứng!",
+    you_definitely_want_to_sell_this_animal_right:
+      "Bạn có chắc chắn muốn bán con vật này không?",
+    sell_animal_400: "Con vật còn nhỏ, chưa thể bán.",
+    sell_animal_402: "Con vật đang bị bệnh, không thể bán.",
+
     //Area Name
     phuong_vi: "Phượng Vĩ",
     cam_tu: "Cẩm Tú",
@@ -161,7 +166,7 @@ export const languages = {
     paddy_grain: "Lúa",
     // Cage
     cage_chicken_lv1: "Chuồng Gà Nhỏ",
-    cage_cow_lv1: "Chuồng Bò Bhỏ",
+    cage_cow_lv1: "Chuồng Bò Nhỏ",
     cage_chicken_lv2: "Chuồng Gà Lớn",
     cage_cow_lv2: "Chuồng Bò Lớn",
     // Reward
