@@ -5,6 +5,8 @@ import { ResourceManager } from "../../../Manager/ResourceManager";
 import GlobalData from "../../../Utils/GlobalData";
 import { PopupCageBuilding } from "../PopupCageBuilding";
 import { LandPurchase } from "../../MainUI/LandPurchase";
+import { AudioManger } from "../../../Manager/AudioManger";
+import { AUDIOS } from "../../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("ItemPopupCageBuilding")
@@ -36,6 +38,7 @@ export class ItemPopupCageBuilding extends Component {
   }
 
   public onClickItem() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     GlobalData.me().setPickCageItem(this.cageItem);
     this.node.parent.parent.getComponent(PopupCageBuilding).hidePopup();
     this.landPurchaseLayer.showLandPurchaseLayer();

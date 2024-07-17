@@ -192,6 +192,14 @@ export const languages = {
     // Help
     help_title: "Help",
     help_find: "Find",
+    //Sysptom
+    sysptoms_high_fever: "High fever",
+    sysptoms_difficulty_breathing: "Difficulty breathing",
+    sysptoms_blackened_skin: "Blackened skin",
+    sysptoms_diarrhea: "Diarrhea",
+    sysptoms_fever: "Fever",
+    sysptoms_dehydration: "Dehydration",
+    sysptoms_severe_diarrhea: "Severe diarrhea",
     // Building system
     building_land: "Plating Land",
     building_housing: "Housing",

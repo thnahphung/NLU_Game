@@ -85,6 +85,7 @@ export class Crop extends Component {
   }
 
   private handleTouchCrop(): void {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     let spriteStatus = this.getSpriteFrame().name;
     if (
       spriteStatus == "rice-level4-v1" ||
