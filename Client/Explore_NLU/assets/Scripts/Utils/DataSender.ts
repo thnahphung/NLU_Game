@@ -338,4 +338,11 @@ export default class DataSender {
     packet.reqLoginGoogle = reqLoginGoogle;
     WS.send(packet);
   }
+
+  public static sendPong() {
+    let reqPong = new proto.ReqPong();
+    let packet = new proto.Packet();
+    packet.reqPong = reqPong;
+    WS.send(packet);
+  }
 }

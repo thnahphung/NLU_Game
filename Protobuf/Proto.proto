@@ -90,6 +90,7 @@ message Packet {
     ResMatchmaking resMatchmaking = 85;
     ReqStopSupportFind reqStopSupportFind = 86;
     ResTillLand resTillLand = 87;
+    ReqPong reqPong = 88;
   }
 }
 
@@ -790,8 +791,11 @@ message ResLoginGoogleSuccess{
   string email =2;
   string name = 3;
 }
+
 message ResTillLand{
   int32 mainUserId = 1;
   int32 areaId = 2;
   repeated TillLand tillLands = 3;
 }
+
+message ReqPong {}

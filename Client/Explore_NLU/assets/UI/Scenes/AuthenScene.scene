@@ -8280,7 +8280,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 507.23376623376623,
+    "_orthoHeight": 395.841935483871,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -11588,7 +11588,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 507.23376623376623,
+    "_orthoHeight": 395.841935483871,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -11666,7 +11666,7 @@
       "__id__": 324
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 329
@@ -11735,7 +11735,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "_url": "https://cocos.com",
+    "_url": "",
     "webviewEvents": [],
     "_id": "41mk2QUDZI04gRzc+CnWxa"
   },

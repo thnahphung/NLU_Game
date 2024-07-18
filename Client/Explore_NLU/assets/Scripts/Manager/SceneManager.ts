@@ -41,6 +41,10 @@ export class SceneManager {
         this.getSceneComponents().forEach((c: any) => c.onError ? c.onError(event) : null);
     }
 
+    onPing(event: any) {
+        this.getSceneComponents().forEach((c: any) => c.onPing ? c.onPing(event) : null);
+    }
+
     private getSceneComponents() {
         let node = find("Canvas");
         //Lấy ra toàn bộ component của các node con của Canvas

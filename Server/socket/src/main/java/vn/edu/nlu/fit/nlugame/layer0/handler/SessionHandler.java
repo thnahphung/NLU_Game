@@ -3,6 +3,7 @@ package vn.edu.nlu.fit.nlugame.layer0.handler;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer1.AreaService;
+import vn.edu.nlu.fit.nlugame.layer1.PingPongService;
 import vn.edu.nlu.fit.nlugame.layer1.SessionService;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
@@ -11,11 +12,18 @@ public class SessionHandler implements Subscriber {
     @Override
     public void onOpen(Session session, String... params) {
         SessionService.me().onOpen(session, params);
+        PingPongService.me().handleReqPong(session);
     }
 
     @Override
-    public void onMessage(Session session, Proto.PacketWrapper message) {
-
+    public void onMessage(Session session, Proto.PacketWrapper packet) {
+        packet.getPacketList().forEach(p -> {
+            switch (p.getDataCase()) {
+                case REQPONG:
+                    PingPongService.me().handleReqPong(session);
+                    break;
+            }
+        });
     }
 
     @Override
