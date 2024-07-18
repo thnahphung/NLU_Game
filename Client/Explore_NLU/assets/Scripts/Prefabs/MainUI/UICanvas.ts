@@ -13,6 +13,7 @@ import {
   Sprite,
   SpriteFrame,
   sys,
+  WebView,
 } from "cc";
 import GlobalData from "../../Utils/GlobalData";
 import { PopupMessage } from "../Popup/PopupMessage";
@@ -61,6 +62,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupHelp: Prefab;
   @property(Prefab) private prefabPopupFindTime: Prefab;
   @property(Prefab) private prefabPopupAid: Prefab;
+  @property(WebView) private webView: WebView;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -480,5 +482,9 @@ export class UICanvas extends Component {
 
   getPopupSupport(): Node {
     return this._popupHelp;
+  }
+
+  getWebView(): WebView {
+    return this.webView;
   }
 }

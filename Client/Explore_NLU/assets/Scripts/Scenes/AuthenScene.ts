@@ -74,7 +74,17 @@ export class AuthenScene extends AbsScene {
       if (packet.resRecoverPassword) {
         this.onRecoverPasswordHandler(packet.resRecoverPassword);
       }
+      if (packet.resLoginGoogle) {
+        this.onLoginGoogleHandler(packet.resLoginGoogle);
+      }
     });
+  }
+
+  onLoginGoogleHandler(resLoginGoogle: proto.IResLoginGoogle) {
+    console.log(resLoginGoogle);
+    // open(resLoginGoogle.url);
+    UICanvas.me().getWebView().node.active = true;
+    UICanvas.me().getWebView().url = resLoginGoogle.url;
   }
 
   onLoginMsgHandler(resLogin: proto.IResLogin) {
@@ -112,6 +122,7 @@ export class AuthenScene extends AbsScene {
         LOCAL_STORAGE.AUTO_LOGIN,
         this.rememberMe.isChecked
       );
+      UICanvas.me().getWebView().node.active = false;
       StorageManager.me().saveItem(LOCAL_STORAGE.TOKEN, resLogin.token);
       GlobalData.me().setMainUser(resLogin.user);
       GlobalData.me().setIsUserOffline(false);

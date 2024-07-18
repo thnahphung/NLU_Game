@@ -331,4 +331,11 @@ export default class DataSender {
     packet.reqSellAnimal = reqSaleAnimal;
     WS.send(packet);
   }
+
+  public static sendReqLoginGoogle() {
+    let reqLoginGoogle = new proto.ReqLoginGoogle();
+    let packet = new proto.Packet();
+    packet.reqLoginGoogle = reqLoginGoogle;
+    WS.send(packet);
+  }
 }

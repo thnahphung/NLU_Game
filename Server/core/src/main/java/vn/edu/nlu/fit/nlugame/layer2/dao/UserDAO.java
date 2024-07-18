@@ -25,6 +25,19 @@ public class UserDAO extends BaseDAO {
 
     }
 
+    public static UserBean getUserByEmail(String email) {
+        if (email == null || email.isEmpty()) {
+            return null;
+        }
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(h -> h.createQuery("select id,username,password,player_name,gender,gold,level,experience_points,email,active,relogin_token,character_id,has_character,is_new_account from " + TABLE_NAME + " where email = :email")
+                .bind("email", email)
+                .mapToBean(UserBean.class).stream().findFirst().orElse(null));
+    }
+
     public static int checkUserRegister(String username, String email) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
@@ -58,6 +71,28 @@ public class UserDAO extends BaseDAO {
                                     "values (:username, :password, :email, :level, :experience_points, :active, 1)")
                     .bind("username", username)
                     .bind("password", pass)
+                    .bind("email", email)
+                    .bind("level", 1)
+                    .bind("experience_points", 0)
+                    .bind("active", 1)
+                    .execute());
+            return count == 1 ? 200 : 500;
+        } catch (Exception e) {
+            return 500;
+        }
+    }
+
+    public static int insertRegisterGoogle(String email) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return 500;
+        }
+        try {
+            Integer count = jdbi.withHandle(h -> h.createUpdate(
+                            "insert into " + TABLE_NAME + " (username, password , email, level, experience_points, active, is_new_account) " +
+                                    "values (:username, :password ,:email, :level, :experience_points, :active, 1)")
+                    .bind("username", "")
+                    .bind("password", "")
                     .bind("email", email)
                     .bind("level", 1)
                     .bind("experience_points", 0)
