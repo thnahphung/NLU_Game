@@ -99,6 +99,42 @@ export class FarmScene extends AbsScene {
       if (packet.resAddProduct) {
         this.handleResAddProduct(packet.resAddProduct);
       }
+      if (packet.resTillLand) {
+        this.handleResTillLand(packet.resTillLand);
+      }
+    });
+  }
+
+  private handleResTillLand(resTillLand: proto.IResTillLand): void {
+    if (resTillLand.mainUserId == GlobalData.me().getMainUser().userId) return;
+    const tillLandResProtos = resTillLand.tillLands;
+    const plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
+    const plantingLands = plantingLandPanel.children;
+    // Chỉ lấy những mảnh đất trồng cần xử lý
+    let filteredPlantingLands: Node[] = plantingLands.filter((plantingLand) =>
+      tillLandResProtos.some(
+        (tillLandProto) =>
+          tillLandProto.plantingLandId ===
+          plantingLand.getComponent(PlantingLand).plantingLandProto
+            .propertyBuilding.id
+      )
+    );
+
+    filteredPlantingLands.forEach((plantingLand: Node) => {
+      let component = plantingLand.getComponent(PlantingLand);
+      let tillLands = component.getTilledLandPanel().children;
+      tillLands.forEach((tillLand: Node) => {
+        let tillLandProtos = tillLand
+          .getComponent(TilledLand)
+          .getTillLandProto();
+        // Xử lý cày đất
+        let tillLandResProto = tillLandResProtos.find((tillLand) => {
+          return tillLand.id == tillLandProtos.id;
+        });
+        if (tillLandResProto) {
+          tillLand.getComponent(TilledLand).handleTilledLand();
+        }
+      });
     });
   }
 
@@ -111,8 +147,17 @@ export class FarmScene extends AbsScene {
   }
 
   private handleResHarvest(resHarvest: proto.IResHarvest): void {
+    const crops = resHarvest.crops;
+    const mainUserId = resHarvest.mainUserId;
+    if (GlobalData.me().getMainUser().userId == mainUserId) {
+      this.displayReward(resHarvest.rewards);
+    }
+    this.deleteCropFromLand(crops);
+  }
+
+  private displayReward(rewardProtos: proto.IReward[]): void {
     const rewards = [];
-    resHarvest.rewards.reward.forEach((rewardProto) => {
+    rewardProtos.forEach((rewardProto) => {
       let typeReward = "";
       let name = "";
       if (rewardProto.name == "Experience") {
@@ -129,6 +174,36 @@ export class FarmScene extends AbsScene {
       });
     });
     UICanvas.me().showListRewardEffect(rewards);
+  }
+
+  private deleteCropFromLand(crops: proto.ICrop[]): void {
+    const plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
+    const plantingLands = plantingLandPanel.children;
+    // Chỉ lấy những mảnh đất trồng có cây trồng cần xóa
+    let filteredPlantingLands: Node[] = plantingLands.filter((plantingLand) =>
+      crops.some(
+        (crop) =>
+          crop.tillLand.plantingLandId ===
+          plantingLand.getComponent(PlantingLand).plantingLandProto
+            .propertyBuilding.id
+      )
+    );
+    filteredPlantingLands.forEach((plantingLand: Node) => {
+      let component = plantingLand.getComponent(PlantingLand);
+      let tillLands = component.getTilledLandPanel().children;
+      tillLands.forEach((tillLand: Node) => {
+        let tillLandProto = tillLand
+          .getComponent(TilledLand)
+          .getTillLandProto();
+        // Xóa cây trồng
+        let cropProto = crops.filter((crop) => {
+          return crop.tillLand.id == tillLandProto.id;
+        })[0];
+        if (cropProto) {
+          tillLand.getComponent(TilledLand).deleteCrop();
+        }
+      });
+    });
   }
 
   onLoadItemsOfFarmMsgHandler(
@@ -166,7 +241,7 @@ export class FarmScene extends AbsScene {
         tillLands.forEach((tillLand: Node, index: number) => {
           let tillLandProto =
             resBuyBuilding.building.plantingLandBuilding.tillLands[index];
-          tillLand.getComponent(TilledLand).tillLandProto = tillLandProto;
+          tillLand.getComponent(TilledLand).setTillLandProto(tillLandProto);
         });
         if (plantingLand.getComponent(UIOpacity))
           plantingLand.removeComponent(UIOpacity);
@@ -191,16 +266,18 @@ export class FarmScene extends AbsScene {
       let plantingLandComponent = plantingLand.getComponent(PlantingLand);
       let tilledLands = plantingLandComponent.getTilledLandPanel().children;
       tilledLands.forEach((tilledLand: Node) => {
+        let tillLandComponent = tilledLand.getComponent(TilledLand);
         let cropProto = resSow.crops.crops.filter(
-          (crop) =>
-            crop.tillLand.id ==
-            tilledLand.getComponent(TilledLand).tillLandProto.id
+          (crop) => crop.tillLand.id == tillLandComponent.getTillLandProto().id
         )[0];
         // Nếu ô đất đã cày và đã gieo hạt
         if (cropProto) {
-          tilledLand
-            .getComponent(TilledLand)
-            .seedNode.getComponent(Crop).cropProto = cropProto;
+          if (resSow.mainUserId != GlobalData.me().getMainUser().userId) {
+            tillLandComponent.handleDisplayCropsToLand(
+              cropProto.CommonGrowthItem.name
+            );
+          }
+          tillLandComponent.seedNode.getComponent(Crop).setCropProto(cropProto);
         }
       });
     });
@@ -306,21 +383,24 @@ export class FarmScene extends AbsScene {
             // Nếu là đất trồng
             let component = itemprefab.getComponent(PlantingLand);
             // Lưu thông tin của đất trồng vào component
-            component.plantingLandProto = building.plantingLandBuilding;
+            component.setPlantingLandProto(building.plantingLandBuilding);
             // Lưu thông tin của từng ô đất trồng vào component
             let tillLands = component.getTilledLandPanel().children;
             tillLands.forEach((tillLand: Node, index: number) => {
-              let tillLandProto =
-                building.plantingLandBuilding.tillLands[index];
+              let tillLandProto = building.plantingLandBuilding.tillLands.find(
+                (tillLand) => tillLand.index == index
+              );
               let tillLandComponent = tillLand.getComponent(TilledLand);
-              tillLandComponent.tillLandProto = tillLandProto;
+              tillLandComponent.setTillLandProto(tillLandProto);
               // Kiểm tra xem ô đất đã cày chưa
               let statusTilled = tillLandProto?.statusTilled;
               if (statusTilled)
                 tillLand.getComponent(TilledLand).handleTilledLand();
               // Hiển thị cây trồng lên đất
               let cropProto = this.cropsProto.crops.filter((crop) => {
-                return crop.tillLand.id == tillLandComponent.tillLandProto.id;
+                return (
+                  crop.tillLand.id == tillLandComponent.getTillLandProto().id
+                );
               })[0];
               if (cropProto) {
                 tillLandComponent.handleDisplayCropsToLand(
@@ -374,13 +454,5 @@ export class FarmScene extends AbsScene {
     childrenCanvas.forEach((child: Node) => {
       if (child.name !== "Camera") child.active = true;
     });
-  }
-
-  protected onDestroy(): void {
-    UICanvas.me().hideButton(BUTTON.UI_BUTTON_BUILDING);
-  }
-
-  private loadCommonCrop(): void {
-    DataSender.sendReqLoadCommonCrop();
   }
 }

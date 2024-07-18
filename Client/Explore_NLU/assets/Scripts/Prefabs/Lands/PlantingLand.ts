@@ -26,6 +26,14 @@ export class PlantingLand extends Component {
     public setTilledLandPanel(tilledLandPanel: Node): void {
         this.tilledLandPanel = tilledLandPanel;
     }
+
+    getPlantingLandProto(): proto.IPlantingLandBuilding {
+        return this.plantingLandProto;
+    }
+
+    setPlantingLandProto(plantingLandProto: proto.IPlantingLandBuilding): void {
+        this.plantingLandProto = plantingLandProto;
+    }
 }
 
 

@@ -172,9 +172,15 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqTilledLand(tilledLands: proto.ITillLand[]) {
+  public static sendReqTilledLand(
+    tilledLands: proto.ITillLand[],
+    areaId: number,
+    mainUserId: number
+  ) {
     let reqTilledLand = new proto.ReqTilledLand();
     reqTilledLand.tillLand = tilledLands;
+    reqTilledLand.areaId = areaId;
+    reqTilledLand.mainUserId = mainUserId;
     let packet = new proto.Packet();
     packet.reqTilledLand = reqTilledLand;
     WS.send(packet);
@@ -187,10 +193,16 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqSow(sowingInformation: proto.SowingInformation[]) {
+  public static sendReqSow(
+    sowingInformation: proto.SowingInformation[],
+    areaId: number,
+    mainUserId: number
+  ) {
     let reqSow = new proto.ReqSow();
     reqSow.sowingInformation = sowingInformation;
     reqSow.gameState = GlobalData.me().getGameState();
+    reqSow.areaId = areaId;
+    reqSow.mainUserId = mainUserId;
     let packet = new proto.Packet();
     packet.reqSow = reqSow;
     WS.send(packet);
@@ -303,7 +315,7 @@ export default class DataSender {
     let packet = new proto.Packet();
     packet.reqStopSupportFind = reqStopSupportFind;
   }
-  
+
   public static sendReqLoadDetailDisease(diseaseId: number) {
     let reqLoadDetailDisease = new proto.ReqLoadDetailDisease();
     reqLoadDetailDisease.diseaseId = diseaseId;

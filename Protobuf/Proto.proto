@@ -86,6 +86,7 @@ message Packet {
     ResSupportFind resSupportFind = 84;
     ResMatchmaking resMatchmaking = 85;
     ReqStopSupportFind reqStopSupportFind = 86;
+    ResTillLand resTillLand = 87;
   }
 }
 
@@ -544,7 +545,9 @@ message ResAcceptFriend {
 }
 
 message ReqTilledLand {
-  repeated TillLand tillLand = 1;
+  int32 mainUserId = 1;
+  int32 areaId = 2;
+  repeated TillLand tillLand = 3;
 }
 
 message Fertilized {
@@ -571,12 +574,16 @@ message SowingInformation{
 }
 
 message ReqSow {
-  repeated SowingInformation sowingInformation = 1;
-  GameState gameState = 3;
+  int32 mainUserId = 1;
+  int32 areaId = 2;
+  repeated SowingInformation sowingInformation = 3;
+  GameState gameState = 4;
 }
 
 message ResSow {
   Crops crops = 1;
+  int32 mainUserId = 2;
+  int32 areaId = 3;
 }
 
 message ReqRejectFriend {
@@ -600,8 +607,10 @@ message ReqHarvest {
 }
 
 message ResHarvest {
-   Rewards rewards = 1;
+   repeated Reward rewards = 1;
    int32 seedBagId = 2;
+   int32 mainUserId = 3;
+   repeated Crop crops = 4;
 }
 
 message ReqLoadItemsOfWarehouse{
@@ -621,10 +630,6 @@ message WarehouseItem {
    int32 quantity = 2;
    int32 noGrowthItemId = 3;
    NoGrowthItem noGrowthItem = 4;
-}
-
-message Rewards {
-  repeated Reward reward = 1;
 }
 
 message ReqLoadShop {
@@ -769,4 +774,10 @@ message ResSellAnimal {
   int32 animalId =2;
   int32 cageId = 3;
   int32 gold = 4;
+}
+
+message ResTillLand{
+  int32 mainUserId = 1;
+  int32 areaId = 2;
+  repeated TillLand tillLands = 3;
 }
