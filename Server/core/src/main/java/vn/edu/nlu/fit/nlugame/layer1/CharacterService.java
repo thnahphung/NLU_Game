@@ -17,29 +17,31 @@ import java.util.List;
 
 public class CharacterService {
     private static final CharacterService instance = new CharacterService();
+
     public static CharacterService me() {
         return instance;
     }
+
     public void loadCharactes(Session session) {
         List<CharacterBean> characters = CharacterDAO.loadAllCharacter();
         Proto.ResLoadCharacters.Builder builder = Proto.ResLoadCharacters.newBuilder();
-        if(characters == null) {
-            System.out.println("Error: Load character failed");
+        if (characters == null) {
             sendResponse(session, Proto.Packet.newBuilder().setResLoadCharacters(builder).build());
             return;
         }
         for (CharacterBean character : characters) {
             builder.addCharacter(
-                     Proto.Character.newBuilder()
-                    .setId(character.getId())
-                    .setName(character.getName())
-                    .setCode(character.getCode())
-                    .setDescription(character.getDescription() == null ? "" : character.getDescription())
-                    .build()
+                    Proto.Character.newBuilder()
+                            .setId(character.getId())
+                            .setName(character.getName())
+                            .setCode(character.getCode())
+                            .setDescription(character.getDescription() == null ? "" : character.getDescription())
+                            .build()
             );
         }
         sendResponse(session, Proto.Packet.newBuilder().setResLoadCharacters(builder).build());
     }
+
     public UserBean pickCharacter(Session session, Proto.ReqPickCharacter reqPickCharacter) {
         int characterId = reqPickCharacter.getCharacterId();
         String playerName = reqPickCharacter.getPlayerName();
@@ -93,7 +95,7 @@ public class CharacterService {
 
         Proto.User.Builder userProto = Proto.User.newBuilder()
                 .setUserId(userLoginBean.getId())
-                .setUsername(userLoginBean.getUsername())
+                .setUsername(userLoginBean.getUsername() == null ? "" : userLoginBean.getUsername())
                 .setHasCharacter(userLoginBean.getHasCharacter())
                 .setCharacterId(userLoginBean.getCharacterId())
                 .setLevel(userLoginBean.getLevel())
@@ -103,9 +105,9 @@ public class CharacterService {
                 .setGold(userLoginBean.getGold())
                 .setCharacter(character);
 
-        int resultInsert =  AreaDAO.insertArea(userId, typeArea);
-        System.out.println("userLoginBean pick: "+userLoginBean);
-        if(resultInsert == 200) {
+        int resultInsert = AreaDAO.insertArea(userId, typeArea);
+        System.out.println("userLoginBean pick: " + userLoginBean);
+        if (resultInsert == 200) {
             sendResponse(session, Proto.Packet.newBuilder().setResPickCharacter(Proto.ResPickCharacter.newBuilder().setStatus(resultInsert).setUser(userProto)).build());
         }
         UserCache.me().addUserOnline(userProto.build(), SessionID.of(session).getSessionId());

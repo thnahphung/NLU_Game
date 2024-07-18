@@ -1,6 +1,14 @@
 package vn.edu.nlu.fit.nlugame.layer1;
 
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
+import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
 import jakarta.websocket.Session;
+import vn.edu.nlu.fit.nlugame.layer2.ConstUtils;
 import vn.edu.nlu.fit.nlugame.layer2.DataSenderUtils;
 import vn.edu.nlu.fit.nlugame.layer2.RandomUtils;
 import vn.edu.nlu.fit.nlugame.layer2.SessionManage;
@@ -8,12 +16,15 @@ import vn.edu.nlu.fit.nlugame.layer2.dao.CharacterDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.UserDAO;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.CharacterBean;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.UserBean;
+import vn.edu.nlu.fit.nlugame.layer2.google.dto.GoogleDTO;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.SessionCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.UserCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.UUID;
 
 public class AuthService {
@@ -28,6 +39,7 @@ public class AuthService {
     public static AuthService me() {
         return instance;
     }
+
 
     public void register(Session session, Proto.ReqRegister reqRegister) {
         //Check require field username, password
@@ -47,6 +59,9 @@ public class AuthService {
     }
 
     public UserBean checkLogin(Session session, Proto.ReqLogin reqLogin) {
+        if (reqLogin.getUsername().trim().equals("") || reqLogin.getPassword().trim().equals("")) {
+            return null;
+        }
         Proto.Packet.Builder packetBuilder = Proto.Packet.newBuilder();
         Proto.ResLogin.Builder resLoginBuilder = Proto.ResLogin.newBuilder();
         UserBean userLoginBean = UserDAO.getUserLogin(reqLogin.getUsername());
@@ -170,11 +185,12 @@ public class AuthService {
         UserDAO.updatePassword(reqForgotPassword.getEmail(), reqForgotPassword.getPassword());
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResRecoverPassword(Proto.ResRecoverPassword.newBuilder().setStatus(200)).build());
     }
+
     private boolean checkLoginOtherDevice(Proto.User user, Session session) {
         SessionID sessionID = SessionID.of(session);
         UserContext userContext = UserCache.me().getUserContextOnline(user.getUserId());
         // Kiem tra user hien tai co phai la user da dang nhap khong
-        if(userContext != null && userContext.getSessionID().equals(sessionID.getSessionId())){
+        if (userContext != null && userContext.getSessionID().equals(sessionID.getSessionId())) {
             return false;
         }
         return UserCache.me().getUserOnline(user.getUserId()) != null;
@@ -196,5 +212,47 @@ public class AuthService {
         Proto.Packet.Builder builder = Proto.Packet.newBuilder().setResRegister(resRegister);
 
         DataSenderUtils.sendResponse(session, builder.build());
+    }
+
+    public void loginGoogle(Session session, Proto.ReqLoginGoogle reqLoginGoogle) {
+        String sessionId = SessionID.of(session).getSessionId();
+        String responseURI = "http://localhost:8080/socket/oauth2callback";
+        String responseType = "code";
+        String responseScope = "profile email";
+        String url = "https://accounts.google.com/o/oauth2/auth?" +
+                "client_id=" + ConstUtils.GOOGLE_CLIENT_ID +
+                "&redirect_uri=" + ConstUtils.GOOGLE_REDIRECT_URI +
+                "&response_type=" + responseType +
+                "&scope=" + responseScope +
+                "&state=" + sessionId;
+
+        Proto.ResLoginGoogle resLoginGoogle = Proto.ResLoginGoogle.newBuilder().setUrl(url).build();
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoginGoogle(resLoginGoogle).build());
+    }
+
+    public UserBean loginGoogleSuccess(Session session, GoogleDTO googleDTO) {
+        UserBean userLoginBean = UserDAO.getUserByEmail(googleDTO.getEmail());
+        if (userLoginBean == null) {
+            int statusInsertUser = UserDAO.insertRegisterGoogle(googleDTO.getEmail());
+            if (statusInsertUser != 200) {
+                return null;
+            }
+            userLoginBean = UserDAO.getUserByEmail(googleDTO.getEmail());
+        }
+
+        Proto.User userProto = Proto.User.newBuilder()
+                .setUserId(userLoginBean.getId())
+                .setUsername(userLoginBean.getUsername() == null ? "" : userLoginBean.getUsername())
+                .setPlayerName(userLoginBean.getPlayerName() == null ? "" : userLoginBean.getPlayerName())
+                .setEmail(userLoginBean.getEmail() == null ? "" : userLoginBean.getEmail())
+                .setGold(userLoginBean.getGold())
+                .setLevel(userLoginBean.getLevel())
+                .setExperiencePoints(userLoginBean.getExperiencePoints())
+                .setHasCharacter(userLoginBean.getHasCharacter())
+                .setCharacterId(userLoginBean.getCharacterId())
+                .setIsNewAccount(userLoginBean.getIsNewAccount())
+                .build();
+        this.loginSuccess(session, userProto);
+        return userLoginBean;
     }
 }
