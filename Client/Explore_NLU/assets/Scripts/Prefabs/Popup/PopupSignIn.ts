@@ -41,5 +41,6 @@ export class PopupSignIn extends Component {
 
   onClickSignInGoogle() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);
+    DataSender.sendReqLoginGoogle();
   }
 }

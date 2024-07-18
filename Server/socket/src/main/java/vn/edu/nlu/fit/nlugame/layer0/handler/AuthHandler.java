@@ -43,6 +43,9 @@ public class AuthHandler implements Subscriber {
                 case REQRECOVERPASSWORD:
                     authService.checkRecoverPassword(session, packet.getReqRecoverPassword());
                     break;
+                case REQLOGINGOOGLE:
+                    authService.loginGoogle(session, packet.getReqLoginGoogle());
+                    break;
             }
         });
     }
@@ -64,19 +67,21 @@ public class AuthHandler implements Subscriber {
 
     public void login(Session session, Proto.Packet packet) {
         UserBean userLoginBean = authService.checkLogin(session, packet.getReqLogin());
+        if (userLoginBean == null) return;
         gameStateService.sendGameStateLogin(session);
         warehouseService.loadWarehouse(session);
         taskService.loadTask(session);
-        if (userLoginBean == null || userLoginBean.getHasCharacter() == 0) return;
+        if (userLoginBean.getHasCharacter() == 0) return;
         areaService.joinAreaLogin(userLoginBean.getId(), session);
     }
 
     public void reLogin(Session session, Proto.Packet packet) {
         UserBean userRelogin = authService.checkReLogin(session, packet.getReqRelogin());
+        if (userRelogin == null) return;
         gameStateService.sendGameStateLogin(session);
         warehouseService.loadWarehouse(session);
         taskService.loadTask(session);
-        if (userRelogin == null || userRelogin.getHasCharacter() == 0) return;
+        if (userRelogin.getHasCharacter() == 0) return;
         areaService.joinAreaLogin(userRelogin.getId(), session);
     }
 

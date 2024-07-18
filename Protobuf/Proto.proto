@@ -80,6 +80,9 @@ message Packet {
     ResLoadDetailDisease resLoadDetailDisease = 70;
     ReqSellAnimal reqSellAnimal = 71;
     ResSellAnimal resSellAnimal = 72;
+    ReqLoginGoogle reqLoginGoogle = 73;
+    ResLoginGoogle resLoginGoogle = 74;
+    ResLoginGoogleSuccess resLoginGoogleSuccess = 75;
     ReqLoadMachines reqLoadMachines = 80;
     ResLoadMachines resLoadMachines = 81;
     ReqSupportFind ReqSupportFind = 83;
@@ -769,4 +772,16 @@ message ResSellAnimal {
   int32 animalId =2;
   int32 cageId = 3;
   int32 gold = 4;
+}
+
+message ReqLoginGoogle{}
+
+message ResLoginGoogle{
+  string url =1;
+}
+
+message ResLoginGoogleSuccess{
+  int32 status = 1;
+  string email =2;
+  string name = 3;
 }

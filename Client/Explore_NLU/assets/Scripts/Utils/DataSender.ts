@@ -303,7 +303,7 @@ export default class DataSender {
     let packet = new proto.Packet();
     packet.reqStopSupportFind = reqStopSupportFind;
   }
-  
+
   public static sendReqLoadDetailDisease(diseaseId: number) {
     let reqLoadDetailDisease = new proto.ReqLoadDetailDisease();
     reqLoadDetailDisease.diseaseId = diseaseId;
@@ -317,6 +317,13 @@ export default class DataSender {
     reqSaleAnimal.animalId = animalId;
     let packet = new proto.Packet();
     packet.reqSellAnimal = reqSaleAnimal;
+    WS.send(packet);
+  }
+
+  public static sendReqLoginGoogle() {
+    let reqLoginGoogle = new proto.ReqLoginGoogle();
+    let packet = new proto.Packet();
+    packet.reqLoginGoogle = reqLoginGoogle;
     WS.send(packet);
   }
 }
