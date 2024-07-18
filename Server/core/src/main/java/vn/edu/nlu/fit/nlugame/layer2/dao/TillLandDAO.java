@@ -1,6 +1,7 @@
 package vn.edu.nlu.fit.nlugame.layer2.dao;
 
 import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.core.statement.PreparedBatch;
 import org.jdbi.v3.core.statement.Update;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.TillLandBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
@@ -59,6 +60,22 @@ public class TillLandDAO extends BaseDAO{
         });
     }
 
+    public static void updateTillLands(List<TillLandBean> landBeans) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        jdbi.useHandle(handle -> {
+            PreparedBatch batch = handle.prepareBatch(
+                    "UPDATE " + TABLE_NAME + " SET status_tilled = :statusTilled WHERE id = :id");
+            for (TillLandBean bean : landBeans) {
+                batch.bind("statusTilled", bean.isStatusTilled() ? 1 : 0)
+                        .bind("id", bean.getId())
+                        .add();
+            }
+            batch.execute();
+        });
+    }
     public static void main(String[] args) {
         TillLandDAO.insertTillLand(42);
 //        for(Proto.TillLand tillLand : TillLandDAO.getListTillLandByPlantingLandId(1)) {

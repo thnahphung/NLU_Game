@@ -217,4 +217,28 @@ export class Crop extends Component {
       }
     }
   }
+
+  public setTilledLand(tilledLand: Node): void {
+    this.tilledLand = tilledLand;
+  }
+
+  public getTilledLand(): Node {
+    return this.tilledLand;
+  }
+
+  public setPlantingLand(plantingLand: Node): void {
+    this.plantingLand = plantingLand;
+  }
+
+  public getPlantingLand(): Node {
+    return this.plantingLand;
+  }
+
+  public setCropProto(cropProto: proto.ICrop): void {
+    this.cropProto = cropProto;
+  }
+
+  public getCropProto(): proto.ICrop {
+    return this.cropProto;
+  }
 }

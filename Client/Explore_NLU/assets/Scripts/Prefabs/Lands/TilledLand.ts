@@ -23,7 +23,7 @@ const { ccclass, property } = _decorator;
 
 @ccclass("TilledLand")
 export class TilledLand extends Component {
-  public tillLandProto: proto.ITillLand = null;
+  private tillLandProto: proto.ITillLand = null;
   public seedNode: Node = null;
   private isTilled = false;
   public isSown = false;
@@ -136,6 +136,20 @@ export class TilledLand extends Component {
     this.getMidLayer()?.addChild(this.seedNode);
   }
 
+  public deleteCrop(): void {
+    if (this.seedNode) this.seedNode.destroy();
+    this.resetTillLand();
+  }
+
+  public resetTillLand(): void {
+    this.isTilled = false;
+    this.isSown = false;
+    this.tillLandProto.crop = null;
+    this.node.getComponent(Sprite).enabled = false;
+    this.node.getComponent(BlockInputEvents).enabled = false;
+    this.node.off(Node.EventType.TOUCH_END, this.handleTouchTilledLand, this);
+  }
+
   public handleTillLand(): void {
     this.isTilled = true;
     this.node.getComponent(Sprite).enabled = true;
@@ -178,7 +192,16 @@ export class TilledLand extends Component {
   private getMidLayer(): Node {
     return find("Canvas/ObjectLayers/MidLayer");
   }
+
   protected onDestroy(): void {
     this.node.off(Node.EventType.TOUCH_END, this.handleTouchTilledLand, this);
+  }
+
+  public getTillLandProto(): proto.ITillLand {
+    return this.tillLandProto;
+  }
+
+  public setTillLandProto(tillLandProto: proto.ITillLand): void {
+    this.tillLandProto = tillLandProto;
   }
 }

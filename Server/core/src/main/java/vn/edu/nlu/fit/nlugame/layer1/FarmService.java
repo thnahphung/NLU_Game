@@ -112,8 +112,22 @@ public class FarmService {
     public void handleTilledLand(Session session, Proto.ReqTilledLand reqTilledLand) {
         if (reqTilledLand.getTillLandList() == null || reqTilledLand.getTillLandList() == null || reqTilledLand.getTillLandList().size() == 0)
             return;
-        //TODO: update status tilled land redis
-        reqTilledLand.getTillLandList().forEach(tillLand -> TillLandDAO.updateTillLand(tillLand.getId(), tillLand.getStatusTilled()));
+        updateStatusTilledLands(reqTilledLand.getTillLandList());
+        // Response harvest with multi player game
+        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(reqTilledLand.getAreaId()));
+        ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
+        DataSenderUtils.sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResTillLand(Proto.ResTillLand.newBuilder().addAllTillLands(reqTilledLand.getTillLandList()).setAreaId(reqTilledLand.getAreaId()).setMainUserId(reqTilledLand.getMainUserId())).build());
+    }
+
+    private void updateStatusTilledLands(List<Proto.TillLand> tillLandList) {
+        List<TillLandBean> tillLandBeans = new ArrayList<>();
+        tillLandList.forEach(tillLand -> {
+            TillLandBean tillLandBean = new TillLandBean();
+            tillLandBean.setId(tillLand.getId());
+            tillLandBean.setStatusTilled(true);
+            tillLandBeans.add(tillLandBean);
+        });
+        TillLandDAO.updateTillLands(tillLandBeans);
     }
 
     public void handleLoadCommonCrops(Session session) {
@@ -194,7 +208,10 @@ public class FarmService {
         });
 
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResSow(Proto.ResSow.newBuilder().setCrops(crops)).build());
-
+        // Response harvest with multi player game
+        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(reqSow.getAreaId()));
+        ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
+        DataSenderUtils.sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResSow(Proto.ResSow.newBuilder().setCrops(crops).setAreaId(reqSow.getAreaId()).setMainUserId(reqSow.getMainUserId())).build());
         return crops.build();
     }
 
@@ -572,6 +589,7 @@ public class FarmService {
             int propertyCropId = crop.getPropertyCrop().getId();
             int propertyItemID = crop.getPropertyGrowthItem().getId();
             deleteCrop(propertyCropId, propertyItemID);
+            updateStatusTilledLand(crop.getTillLand().getId());
             // Reward for user
             rewardExpQuantity.addAndGet(crop.getCommonGrowthItem().getExperienceReceive());
             String cropName = crop.getCommonGrowthItem().getName();
@@ -582,8 +600,9 @@ public class FarmService {
             }
         });
         int userId = SessionCache.me().getUserID(SessionID.of(session));
+        Proto.Area areaProto = this.getAreaByUserId(userId);
+
         Proto.ResHarvest.Builder resHarvest = Proto.ResHarvest.newBuilder();
-        Proto.Rewards.Builder rewards = Proto.Rewards.newBuilder();
         List<Proto.WarehouseItem> warehouseItemList = new ArrayList<>();
         // Update quantity item in warehouse => for type crop in mapQuantityOfTypeCrops
         mapQuantityOfTypeCrops.forEach((key, value) -> {
@@ -591,7 +610,7 @@ public class FarmService {
             Proto.Reward.Builder rewardSeedBag = Proto.Reward.newBuilder();
             rewardSeedBag.setName(ConstUtils.REWARDS.fromValue(key).getValue());
             rewardSeedBag.setQuantity(rewardExpQuantity.get());
-            rewards.addReward(rewardSeedBag);
+            resHarvest.addRewards(rewardSeedBag);
             // Harvested products
             NoGrowthItemBean noGrowthItemBean = NoGrowthItemDAO.getNoGrowthItemByName(key.toLowerCase());
             WarehouseItemBean warehouseItem = WarehouseDAO.getWarehouseItemUser(userId, noGrowthItemBean.getId());
@@ -620,17 +639,41 @@ public class FarmService {
 
         UserDAO.updateExperiencePoints(userId, rewardExpQuantity.get());
 
+        // Response reward
         Proto.Reward.Builder rewardExp = Proto.Reward.newBuilder();
         rewardExp.setName(ConstUtils.REWARDS.EXPERIENCE.getValue());
         rewardExp.setQuantity(rewardExpQuantity.get());
-        rewards.addReward(rewardExp);
 
-        resHarvest.setRewards(rewards);
-        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResHarvest(resHarvest).build());
+        resHarvest.addRewards(rewardExp);
 
+        resHarvest.setMainUserId(userId);
+        resHarvest.addAllCrops(cropList);
+        // Response harvest with multi player game
+        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(areaProto.getAreaId()));
+        ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
+        DataSenderUtils.sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResHarvest(resHarvest).build());
         Proto.ResAddProduct resAddProduct = Proto.ResAddProduct.newBuilder().addAllWarehouseItem(warehouseItemList).build();
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResAddProduct(resAddProduct).build());
+
         return mapQuantityOfTypeCrops;
+    }
+
+    public Proto.Area getAreaByUserId(int userId) {
+        Proto.Area areaProto = AreaCache.me().getAreaByUserId(userId);
+        if (areaProto == null) {
+            AreaBean areaBean = AreaDAO.loadAreaByUserId(userId);
+            if (areaBean == null) {
+                return null;
+            }
+            areaProto = Proto.Area.newBuilder()
+                    .setAreaId(areaBean.getId())
+                    .setUserId(areaBean.getUserId())
+                    .setTypeArea(areaBean.getTypeArea())
+                    .setStatus(areaBean.getStatus())
+                    .build();
+            AreaCache.me().add(areaProto);
+        }
+        return areaProto;
     }
 
     private void deleteCrop(int propertyCropId, int propertyItemID) {
@@ -638,7 +681,7 @@ public class FarmService {
         PropertyGrowthItemDAO.deletePropertyGrowthItem(propertyItemID);
     }
 
-    private void checkTask() {
-
+    private void updateStatusTilledLand(int tillLandId) {
+        TillLandDAO.updateTillLand(tillLandId, false);
     }
 }
