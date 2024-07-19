@@ -178,7 +178,7 @@ export default class DataSender {
     mainUserId: number
   ) {
     let reqTilledLand = new proto.ReqTilledLand();
-    reqTilledLand.tillLand = tilledLands;
+    reqTilledLand.tillLands = tilledLands;
     reqTilledLand.areaId = areaId;
     reqTilledLand.mainUserId = mainUserId;
     let packet = new proto.Packet();
@@ -343,6 +343,18 @@ export default class DataSender {
     let reqPong = new proto.ReqPong();
     let packet = new proto.Packet();
     packet.reqPong = reqPong;
+    WS.send(packet);
+  }
+
+  public static sendReqTillLandByMachine(
+    areaId: number,
+    plantingLandPosition: proto.Position
+  ) {
+    let reqTillLandByMachine = new proto.ReqTillLandByMachine();
+    reqTillLandByMachine.areaId = areaId;
+    reqTillLandByMachine.plantingLandPosition = plantingLandPosition;
+    let packet = new proto.Packet();
+    packet.reqTillLandByMachine = reqTillLandByMachine;
     WS.send(packet);
   }
 }

@@ -8,9 +8,10 @@ import {
   resources,
   TextAsset,
   UIOpacity,
+  Vec3,
 } from "cc";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
-import { BUTTON, REWARD_ICONS, TYPE_ITEM } from "../Utils/Const";
+import { REWARD_ICONS, TYPE_ITEM } from "../Utils/Const";
 import AbsScene from "../Scenes/AbsScene";
 import DataSender from "../Utils/DataSender";
 import { PlantingLand } from "../Prefabs/Lands/PlantingLand";
@@ -22,6 +23,7 @@ import { Crop } from "../Prefabs/Crop/Crop";
 import { Menu } from "../Prefabs/Menu/Menu";
 import { SeedInformation } from "../Prefabs/Crop/SeedInformation";
 import { t } from "../../../extensions/i18n/assets/LanguageData";
+import { Machine } from "../Prefabs/Machine/Machine";
 const { ccclass, property } = _decorator;
 
 @ccclass("FarmScene")
@@ -30,6 +32,10 @@ export class FarmScene extends AbsScene {
   public buildingSystemPrefab: Prefab = null;
   @property(Node)
   private seedMenuContent: Node = null;
+  @property(Prefab)
+  private bulldorzerPrefab: Prefab = null;
+  @property(Prefab)
+  private harvesterPrefab: Prefab = null;
   @property([Prefab])
   private buildingFarmPrefab: Prefab[] = [];
 
@@ -102,10 +108,22 @@ export class FarmScene extends AbsScene {
       if (packet.resTillLand) {
         this.handleResTillLand(packet.resTillLand);
       }
+      if (packet.resTillLandByMachine) {
+        this.handleResTillLandByMachine(packet.resTillLandByMachine);
+      }
     });
   }
 
   private handleResTillLand(resTillLand: proto.IResTillLand): void {
+    const rewards = resTillLand.rewards;
+    const areaId = resTillLand.areaId;
+    if (rewards && GlobalData.me().getMainArea().areaId != areaId) {
+      this.displayReward(rewards);
+      GlobalData.me().getMainUser().gold = resTillLand.gold;
+      GlobalData.me().getMainUser().experiencePoints = resTillLand.exp;
+      UICanvas.me().loadGold();
+      UICanvas.me().loadExp();
+    }
     if (resTillLand.mainUserId == GlobalData.me().getMainUser().userId) return;
     const tillLandResProtos = resTillLand.tillLands;
     const plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
@@ -163,6 +181,9 @@ export class FarmScene extends AbsScene {
       if (rewardProto.name == "Experience") {
         name = t("label_text.experience_point");
         typeReward = REWARD_ICONS.EXPERIENCE_POINT;
+      } else if (rewardProto.name == "Gold") {
+        name = rewardProto.name;
+        typeReward = REWARD_ICONS.GOLD;
       } else {
         typeReward = rewardProto.name.toLowerCase();
         name = t("label_text." + rewardProto.name.toLowerCase());
@@ -454,5 +475,43 @@ export class FarmScene extends AbsScene {
     childrenCanvas.forEach((child: Node) => {
       if (child.name !== "Camera") child.active = true;
     });
+  }
+
+  private getPlantingLandPanel(): Node {
+    return find("Canvas/BackgroundLayers/PlantingPanel");
+  }
+
+  private onClickTillByMachine() {
+    UICanvas.me().hidePopupMenuMechanical();
+    let plantingLandChosed = GlobalData.me().getPlantingLandChoosed();
+    let plantingLandPosition = new proto.Position();
+
+    plantingLandPosition.x = plantingLandChosed.getPosition().x;
+    plantingLandPosition.y = plantingLandChosed.getPosition().y;
+
+    DataSender.sendReqTillLandByMachine(
+      GlobalData.me().getArea().areaId,
+      plantingLandPosition
+    );
+  }
+
+  private handleResTillLandByMachine(
+    resTillLandByMachine: proto.IResTillLandByMachine
+  ) {
+    let plantingLandPosition = resTillLandByMachine.plantingLandPosition;
+    let machineNoGrowItem = resTillLandByMachine.noGrowthItem;
+    let propertyMachine = resTillLandByMachine.propertyMachine;
+    const machine = instantiate(this.bulldorzerPrefab);
+    machine.getComponent(Machine).init(machineNoGrowItem, propertyMachine);
+    this.setMachinePosition(
+      machine,
+      new Vec3(plantingLandPosition.x, plantingLandPosition.y, 0)
+    );
+  }
+
+  private setMachinePosition(machine: Node, position: Vec3) {
+    machine.setPosition(position.x, position.y + 100);
+    const midLayer = this.getPlayerLayer();
+    midLayer.addChild(machine);
   }
 }

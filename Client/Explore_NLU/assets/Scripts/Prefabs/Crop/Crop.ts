@@ -100,7 +100,8 @@ export class Crop extends Component {
 
   private showMenuTool(): void {
     if (GlobalData.me().getMainUser().character.code == "KSCK") {
-      
+      UICanvas.me().showPopupMenuMechanical(TYPE_TOOL.HARVEST);
+      GlobalData.me().setPlantingLandChoosed(this.plantingLand);
       return;
     }
     GlobalData.me().setHarvestStatus(true);

@@ -91,6 +91,8 @@ message Packet {
     ReqStopSupportFind reqStopSupportFind = 86;
     ResTillLand resTillLand = 87;
     ReqPong reqPong = 88;
+    ReqTillLandByMachine reqTillLandByMachine = 89;
+    ResTillLandByMachine resTillLandByMachine = 90;
   }
 }
 
@@ -174,11 +176,11 @@ message ShopItem {
     FARM_ITEM = 3;
   }
 }
+
 message Reward {
   string name = 1;
   int32 quantity = 2;
 }
-
 
 message CommonGrowthItem {
   int32 id = 1;
@@ -551,7 +553,7 @@ message ResAcceptFriend {
 message ReqTilledLand {
   int32 mainUserId = 1;
   int32 areaId = 2;
-  repeated TillLand tillLand = 3;
+  repeated TillLand tillLands = 3;
 }
 
 message Fertilized {
@@ -796,6 +798,20 @@ message ResTillLand{
   int32 mainUserId = 1;
   int32 areaId = 2;
   repeated TillLand tillLands = 3;
+  repeated Reward rewards = 4;
+  int32 gold = 5;
+  int32 exp = 6;
 }
 
 message ReqPong {}
+
+message ReqTillLandByMachine {
+  int32 areaId = 1;
+  Position plantingLandPosition = 2;
+}
+
+message ResTillLandByMachine {
+  NoGrowthItem noGrowthItem = 1;
+  PropertyMachine propertyMachine = 2;
+  Position plantingLandPosition = 3;
+}

@@ -65,6 +65,11 @@ export class TilledLand extends Component {
       let seedBag = otherCollider.node.getComponent(SeedInformation);
       this.handleSow(seedBag);
     }
+    if (otherCollider.node.name == "BulldozerMachine") {
+      if (this.isTilled) return;
+      this.handleTillLand();
+      GlobalData.me().setTilledStatus(true);
+    }
   }
 
   private handleSow(seedBag: SeedInformation): void {

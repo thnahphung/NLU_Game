@@ -1,10 +1,8 @@
 import {
   _decorator,
-  Animation,
   Button,
   Component,
   director,
-  EventHandler,
   instantiate,
   Label,
   Node,
@@ -18,7 +16,7 @@ import {
 import GlobalData from "../../Utils/GlobalData";
 import { PopupMessage } from "../Popup/PopupMessage";
 import { PopupComponent } from "../../Controller/PopupComponent";
-import { AUDIOS, BUTTON, POPUP, REWARD_ICONS, SCENES } from "../../Utils/Const";
+import { AUDIOS, POPUP, REWARD_ICONS, SCENES } from "../../Utils/Const";
 import { PopupOption } from "../Popup/PopupOption";
 import { TransitionScenePrefab } from "../TransitionScene/TransitionScenePrefab";
 import { Joystick } from "../Joystick/Joystick";
@@ -45,12 +43,12 @@ export class UICanvas extends Component {
   @property(Node) private popupMenuAnimalFood: Node = null;
   @property(Node) private popupMenuToolFarm: Node = null;
   @property(Node) private popupMenuSeedFarm: Node = null;
+  @property(Node) private popupMenuMechanical: Node = null;
   @property(Node) private popupFactory: Node = null;
   @property(Prefab) private prefabPopupMessage: Prefab;
   @property(Prefab) private prefabPopupOption: Prefab;
   @property(Prefab) private prefabPopupSetting: Prefab;
   @property(Prefab) private prefabTransitionScene: Prefab;
-  @property(Prefab) private buttonBuilding: Prefab = null;
   @property(Prefab) private prefabPopupConnectionNotify: Prefab = null;
   @property(Prefab) private prefabPopupFriend: Prefab = null;
   @property(Prefab) private prefabRewardEffect: Node = null;
@@ -67,7 +65,6 @@ export class UICanvas extends Component {
   protected static _instance: UICanvas;
   private _popupMessage: Node;
   private _popup: Node;
-  private _buttonBuilding: Node;
   public _popupConnectionNotify: Node;
   private _popupOption: Node;
   private _popupSetting: Node;
@@ -123,6 +120,12 @@ export class UICanvas extends Component {
     this.userGold.string = Util.formatNumber(mainUser.gold);
   }
 
+  loadExp() {
+    if (GlobalData.me().getMainUser() == null) return;
+    let mainUser = GlobalData.me().getMainUser();
+    this.userExp.progress = mainUser.experiencePoints / 100;
+  }
+
   showPopupMessage(message: string) {
     if (this.node.getChildByName("PopupLayer").getChildByName("PopupMessage")) {
       return;
@@ -169,15 +172,6 @@ export class UICanvas extends Component {
     this.node.getChildByName("PopupLayer").addChild(popupShopNode);
     popupShopNode.getComponent(PopupComponent).show();
     return popupShopNode;
-  }
-
-  getButton(buttonName: BUTTON): Node {
-    switch (buttonName) {
-      case BUTTON.UI_BUTTON_BUILDING:
-        return this._buttonBuilding;
-      default:
-        return;
-    }
   }
 
   closePopupMessage() {
@@ -301,6 +295,19 @@ export class UICanvas extends Component {
     if (this?.popupMenuToolFarm) {
       this.popupMenuToolFarm.active = true;
       this.popupMenuToolFarm.getComponent(Menu).showOneItemMenu(nameTool);
+    }
+  }
+
+  showPopupMenuMechanical(nameTool: string) {
+    if (this?.popupMenuMechanical) {
+      this.popupMenuMechanical.active = true;
+      this.popupMenuMechanical.getComponent(Menu).showOneItemMenu(nameTool);
+    }
+  }
+
+  hidePopupMenuMechanical() {
+    if (this?.popupMenuMechanical) {
+      this.popupMenuMechanical.active = false;
     }
   }
 

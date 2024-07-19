@@ -27,6 +27,7 @@ export default class GlobalData {
   private sowingInformations: proto.SowingInformation[] = null;
   private harvestingInformation: proto.HarvestingInformation = null;
   private seedBag: Component = null;
+  private plantingLandChoosed: Node = null;
   /* END AGRI */
 
   private positionCharacter: Vec3 = null;
@@ -309,6 +310,14 @@ export default class GlobalData {
 
   public getSeedBag() {
     return this.seedBag;
+  }
+
+  public setPlantingLandChoosed(plantingLand: Node) {
+    this.plantingLandChoosed = plantingLand;
+  }
+
+  public getPlantingLandChoosed() {
+    return this.plantingLandChoosed;
   }
   /* END Agricultural engineer */
 
