@@ -1,7 +1,9 @@
 import { _decorator, BlockInputEvents, Component, find, Node } from "cc";
-import { TYPE_TOOL } from "../../Utils/Const";
+import { AUDIOS, TYPE_TOOL } from "../../Utils/Const";
 import GlobalData from "../../Utils/GlobalData";
 import { UICanvas } from "../MainUI/UICanvas";
+import { t } from "../../../../extensions/i18n/assets/LanguageData";
+import { AudioManger } from "../../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("PlantingLand")
@@ -14,11 +16,24 @@ export class PlantingLand extends Component {
   }
 
   private handleGetMenuTool(): void {
-    if (GlobalData.me().getMainUser().character.code == "KSCK") {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
+    if (
+      GlobalData.me().getMainUser().character.code == "KSCK" &&
+      GlobalData.me().getIsSupporting()
+    ) {
       UICanvas.me().showPopupMenuMechanical(TYPE_TOOL.TILL);
       GlobalData.me().setPlantingLandChoosed(this.node);
       return;
     }
+
+    if (
+      GlobalData.me().getMainUser().character.code == "KSCK" &&
+      !GlobalData.me().getIsSupporting()
+    ) {
+      UICanvas.me().showPopupMessage(t("label_text.help_notify_status"));
+      return;
+    }
+
     if (this.node.getComponent(BlockInputEvents)) return;
     if (
       GlobalData.me().getMoveBuildingStatus() ||

@@ -114,7 +114,7 @@ export default class GlobalData {
   private mainUserNode: Node = null;
   private mainUserPosition: proto.IPosition = null;
   private mainUserFriends: proto.IFriend[] = [];
-
+  private isSupporting: boolean = false;
   public setMainUser(user: proto.IUser) {
     this.mainUser = user;
   }
@@ -144,6 +144,14 @@ export default class GlobalData {
 
   public getMainUserFriends() {
     return this.mainUserFriends;
+  }
+
+  public getIsSupporting() {
+    return this.isSupporting;
+  }
+
+  public setIsSupporting(isSupporting: boolean) {
+    this.isSupporting = isSupporting;
   }
   /*===== END MAIN USER =====*/
 

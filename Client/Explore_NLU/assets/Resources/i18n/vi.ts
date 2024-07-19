@@ -205,6 +205,8 @@ export const languages = {
     help_find: "Tìm kiếm",
     help_match_ok: "Kỹ sư đang đến...",
     help_agricultural: "Trợ giúp nông nghiệp",
+    help_notify_status: "Bạn đang thăm nhà không thể trợ giúp nông nghiệp",
+    help_move: "Đang di chuyển đến vị trí cần trợ giúp...",
     //Aid
     aid_title: "Nhờ hỗ trợ",
     aid_status: "Trạng thái",

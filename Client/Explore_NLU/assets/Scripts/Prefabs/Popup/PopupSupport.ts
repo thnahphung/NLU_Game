@@ -34,13 +34,11 @@ export class PopupSupport extends Component {
     this.spriteMainUser.spriteFrame = UICanvas.me().getMainUserAvatar();
     let code = GlobalData.me().getMainUser().character.code;
     if (code && code == CHARACTERS.KSCK) {
-      this.nameFindUserLabel.string = t(
-        "label_text." + "character_name_mechanical"
-      );
-      this.titleLabel.string = t("label_text." + "help_agricultural");
+      this.nameFindUserLabel.string = t("label_text.character_name_mechanical");
+      this.titleLabel.string = t("label_text.help_agricultural");
     } else {
       this.nameFindUserLabel.string = t(
-        "label_text." + "character_name_veterinarian"
+        "label_text.character_name_veterinarian"
       );
     }
   }
@@ -76,7 +74,14 @@ export class PopupSupport extends Component {
     this.okButton.node.active = true;
     this.findUserButton.interactable = false;
     this.findUserButton.node.active = false;
-    this.notifyLabel.string = t("label_text." + "help_match_ok");
+    this.notifyLabel.string = t("label_text.help_match_ok");
+    this.notifyLabel.node.active = true;
+  }
+
+  setMatchmakingNotify() {
+    this.findUserButton.interactable = false;
+    this.findUserButton.node.active = false;
+    this.notifyLabel.string = t("label_text.help_move");
     this.notifyLabel.node.active = true;
   }
 
