@@ -99,6 +99,10 @@ export class Crop extends Component {
   }
 
   private showMenuTool(): void {
+    if (GlobalData.me().getMainUser().character.code == "KSCK") {
+      
+      return;
+    }
     GlobalData.me().setHarvestStatus(true);
     // Hiển thị menu công cụ
     UICanvas.me().showPopupMenuToolFarm(TYPE_TOOL.SICKLE);

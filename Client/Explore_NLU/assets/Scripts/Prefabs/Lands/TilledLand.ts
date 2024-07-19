@@ -182,6 +182,7 @@ export class TilledLand extends Component {
 
   private handleTouchTilledLand(): void {
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);
+    if (!GlobalData.me().isMainArea()) return;
     this.showMenuSeedNode();
   }
 

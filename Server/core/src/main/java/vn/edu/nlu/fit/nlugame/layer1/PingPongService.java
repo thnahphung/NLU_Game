@@ -19,26 +19,27 @@ public class PingPongService {
     }
 
     public void pingPong() {
-        List<String> keyList = sessionManage.listSessionId();
-        for (String sessionId : keyList) {
-            Session session = sessionManage.get(sessionId);
-            try {
-                if (session != null && session.isOpen())
-                    session.getAsyncRemote().sendPing(ByteBuffer.wrap("ping".getBytes()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+//        List<String> keyList = sessionManage.listSessionId();
+//        for (String sessionId : keyList) {
+//            Session session = sessionManage.get(sessionId);
+//            try {
+//                if (session != null && session.isOpen())
+//                    session.getAsyncRemote().sendPing(ByteBuffer.wrap("ping".getBytes()));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
         List<Session> sessionRemoveList = sessionManage.getSessionRemoveList();
-        if(sessionRemoveList != null || !sessionRemoveList.isEmpty())for (Session session : sessionRemoveList) {
+        if(sessionRemoveList != null || !sessionRemoveList.isEmpty())
+        for (Session session : sessionRemoveList) {
             System.out.println("Close session: " + session.getId() + " Reason: " + "No Pong");
             AreaService.me().leaveArea(session);
             SessionService.me().onClose(session);
-            sessionManage.getSessionRemoveList().remove(session);
         }
+        sessionManage.clearRemoveList();
     }
 
     public void handleReqPong(Session session) {
-        SessionManage.me().get(SessionID.of(session.getId()).getSessionId());
+        SessionManage.me().getSessionAlive(SessionID.of(session.getId()).getSessionId());
     }
 }

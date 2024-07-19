@@ -14,6 +14,7 @@ export class PlantingLand extends Component {
     }
 
     private handleGetMenuTool(): void {
+        if(!GlobalData.me().isMainArea()) return;
         if(this.node.getComponent(BlockInputEvents)) return;
         if(GlobalData.me().getMoveBuildingStatus() || GlobalData.me().getSowStatus()) return;
         UICanvas.me().showPopupMenuToolFarm(TYPE_TOOL.PICKAXE);

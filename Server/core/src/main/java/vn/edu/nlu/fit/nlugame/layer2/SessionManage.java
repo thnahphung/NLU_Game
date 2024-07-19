@@ -19,18 +19,18 @@ import java.util.concurrent.TimeUnit;
 public class SessionManage {
     private static final SessionManage instance = new SessionManage();
     private static List<Session> sessionRemoveList = new ArrayList<>();
-    private static final Cache<String, Session> sessionMap = Caffeine.newBuilder().maximumSize(1000)
-            .expireAfterAccess(30, TimeUnit.SECONDS)
-            .removalListener(new RemovalListener<Object, Object>() {
-                @Override
-                public void onRemoval(@Nullable Object o, @Nullable Object o2, RemovalCause removalCause) {
-                    System.out.println("Session removed: " + o + " Reason: " + removalCause.toString());
-                    if(removalCause == RemovalCause.EXPLICIT || removalCause == RemovalCause.REPLACED) {
-                        return;
+    private static final Cache<String, Session> sessionMap = Caffeine.newBuilder().expireAfterAccess(60, TimeUnit.MINUTES).maximumSize(1000)
+            .build();
+
+    private static final Cache<String, Session> sessionMapAlive = Caffeine.newBuilder()
+            .maximumSize(1000)
+            .evictionListener(
+                    (String key, Session session, RemovalCause cause) -> {
+                        sessionRemoveList.add(session);
+                        System.out.println("Remove session alive: " + key);
                     }
-                    sessionRemoveList.add((Session) o2);
-                }
-            })
+            )
+            .expireAfterAccess(30, TimeUnit.SECONDS)
             .build();
 
     public static SessionManage me() {
@@ -71,5 +71,22 @@ public class SessionManage {
 
     public List<Session> getSessionRemoveList() {
         return sessionRemoveList;
+    }
+
+    public void addSessionAlive(Session session) {
+        String sessionId = SessionID.of(session.getId()).getSessionId();
+        sessionMapAlive.put(sessionId, session);
+    }
+
+    public Session getSessionAlive(String sessionId) {
+        return sessionMapAlive.getIfPresent(sessionId);
+    }
+
+    public void clearRemoveList() {
+        sessionRemoveList.clear();
+    }
+
+    public void onCloseSessionAlive(Session session) {
+        sessionMapAlive.invalidate(SessionID.of(session.getId()).getSessionId());
     }
 }
