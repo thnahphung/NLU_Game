@@ -41,6 +41,9 @@ public class FarmHandler implements Subscriber{
                 case REQTILLLANDBYMACHINE:
                     farmService.handleTillLandByMachine(session, packet.getReqTillLandByMachine());
                     break;
+                case REQHARVESTBYMACHINE:
+                    farmService.handleHarvestByMachine(session, packet.getReqHarvestByMachine());
+                    break;
             }
         });
     }

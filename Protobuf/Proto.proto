@@ -93,6 +93,8 @@ message Packet {
     ReqPong reqPong = 88;
     ReqTillLandByMachine reqTillLandByMachine = 89;
     ResTillLandByMachine resTillLandByMachine = 90;
+    ReqHarvestByMachine reqHarvestByMachine = 91;
+    ResHarvestByMachine resHarvestByMachine = 92;
   }
 }
 
@@ -609,14 +611,21 @@ message HarvestingInformation {
 }
 
 message ReqHarvest {
-   HarvestingInformation harvestingInformation = 1;
+  HarvestingInformation harvestingInformation = 1;
+  int32 mainUserId = 2;
+  int32 areaId = 3;
 }
 
 message ResHarvest {
    repeated Reward rewards = 1;
+   repeated Reward supportRewards = 8;
    int32 seedBagId = 2;
    int32 mainUserId = 3;
    repeated Crop crops = 4;
+   int32 supportExp = 5;
+   int32 supportGold = 6;
+   int32 exp = 7;
+   int32 supportUserId = 9;
 }
 
 message ReqLoadItemsOfWarehouse{
@@ -801,6 +810,7 @@ message ResTillLand{
   repeated Reward rewards = 4;
   int32 gold = 5;
   int32 exp = 6;
+  int32 supportUserId = 7;
 }
 
 message ReqPong {}
@@ -811,6 +821,17 @@ message ReqTillLandByMachine {
 }
 
 message ResTillLandByMachine {
+  NoGrowthItem noGrowthItem = 1;
+  PropertyMachine propertyMachine = 2;
+  Position plantingLandPosition = 3;
+}
+
+message ReqHarvestByMachine {
+  int32 areaId = 1;
+  Position plantingLandPosition = 2;
+}
+
+message ResHarvestByMachine {
   NoGrowthItem noGrowthItem = 1;
   PropertyMachine propertyMachine = 2;
   Position plantingLandPosition = 3;

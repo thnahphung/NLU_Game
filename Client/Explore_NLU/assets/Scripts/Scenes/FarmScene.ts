@@ -111,20 +111,26 @@ export class FarmScene extends AbsScene {
       if (packet.resTillLandByMachine) {
         this.handleResTillLandByMachine(packet.resTillLandByMachine);
       }
+      if (packet.resHarvestByMachine) {
+        this.handleResHarvestByMachine(packet.resHarvestByMachine);
+      }
     });
   }
 
   private handleResTillLand(resTillLand: proto.IResTillLand): void {
     const rewards = resTillLand.rewards;
     const areaId = resTillLand.areaId;
-    if (rewards && GlobalData.me().getMainArea().areaId != areaId) {
+    if (
+      rewards &&
+      GlobalData.me().getMainArea().areaId != areaId &&
+      GlobalData.me().getMainUser().userId == resTillLand.supportUserId
+    ) {
       this.displayReward(rewards);
       GlobalData.me().getMainUser().gold = resTillLand.gold;
       GlobalData.me().getMainUser().experiencePoints = resTillLand.exp;
       UICanvas.me().loadGold();
       UICanvas.me().loadExp();
     }
-    if (resTillLand.mainUserId == GlobalData.me().getMainUser().userId) return;
     const tillLandResProtos = resTillLand.tillLands;
     const plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
     const plantingLands = plantingLandPanel.children;
@@ -167,8 +173,20 @@ export class FarmScene extends AbsScene {
   private handleResHarvest(resHarvest: proto.IResHarvest): void {
     const crops = resHarvest.crops;
     const mainUserId = resHarvest.mainUserId;
+    if (
+      resHarvest.supportUserId &&
+      GlobalData.me().getMainUser().userId == resHarvest.supportUserId
+    ) {
+      this.displayReward(resHarvest.supportRewards);
+      GlobalData.me().getMainUser().gold = resHarvest.supportGold;
+      GlobalData.me().getMainUser().experiencePoints = resHarvest.supportExp;
+      UICanvas.me().loadGold();
+      UICanvas.me().loadExp();
+    }
     if (GlobalData.me().getMainUser().userId == mainUserId) {
       this.displayReward(resHarvest.rewards);
+      GlobalData.me().getMainUser().experiencePoints = resHarvest.exp;
+      UICanvas.me().loadExp();
     }
     this.deleteCropFromLand(crops);
   }
@@ -495,6 +513,20 @@ export class FarmScene extends AbsScene {
     );
   }
 
+  private onClickHarvestByMachine() {
+    UICanvas.me().hidePopupMenuMechanical();
+    let plantingLandChosed = GlobalData.me().getPlantingLandChoosed();
+    let plantingLandPosition = new proto.Position();
+
+    plantingLandPosition.x = plantingLandChosed.getPosition().x;
+    plantingLandPosition.y = plantingLandChosed.getPosition().y;
+
+    DataSender.sendReqHarvestByMachine(
+      GlobalData.me().getArea().areaId,
+      plantingLandPosition
+    );
+  }
+
   private handleResTillLandByMachine(
     resTillLandByMachine: proto.IResTillLandByMachine
   ) {
@@ -505,13 +537,32 @@ export class FarmScene extends AbsScene {
     machine.getComponent(Machine).init(machineNoGrowItem, propertyMachine);
     this.setMachinePosition(
       machine,
-      new Vec3(plantingLandPosition.x, plantingLandPosition.y, 0)
+      new Vec3(plantingLandPosition.x, plantingLandPosition.y + 100, 0)
     );
   }
 
   private setMachinePosition(machine: Node, position: Vec3) {
-    machine.setPosition(position.x, position.y + 100);
-    const midLayer = this.getPlayerLayer();
+    machine.setPosition(position.x, position.y, 0);
+    const midLayer = this.getTopLayer();
     midLayer.addChild(machine);
+  }
+
+  private handleResHarvestByMachine(
+    resHarvestByMachine: proto.IResHarvestByMachine
+  ) {
+    console.log(resHarvestByMachine);
+    let plantingLandPosition = resHarvestByMachine.plantingLandPosition;
+    let machineNoGrowItem = resHarvestByMachine.noGrowthItem;
+    let propertyMachine = resHarvestByMachine.propertyMachine;
+    const machine = instantiate(this.harvesterPrefab);
+    machine.getComponent(Machine).init(machineNoGrowItem, propertyMachine);
+    this.setMachinePosition(
+      machine,
+      new Vec3(plantingLandPosition.x + 180, plantingLandPosition.y, 0)
+    );
+  }
+
+  private getTopLayer(): Node {
+    return find("Canvas/ObjectLayers/TopLayer");
   }
 }

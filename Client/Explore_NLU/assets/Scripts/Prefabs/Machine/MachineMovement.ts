@@ -11,9 +11,7 @@ export class MachineMovement extends Component {
 
   start() {
     this.machine = this.node.getComponent(Machine);
-    this.movingToTarget(
-      new Vec3(this.node.getPosition().x, this.node.getPosition().y - 200, 0)
-    );
+    this.movingToTarget(this.getTargetMove());
   }
 
   public movingToTarget(target: Vec3) {
@@ -27,13 +25,15 @@ export class MachineMovement extends Component {
         },
       })
       .call(() => {
-        this.handleTilledLand();
+        this.node.name == "HarvesterMachine"
+          ? this.handleHarvest()
+          : this.handleTilledLand();
         this.node.destroy();
       })
       .start();
   }
 
-  handleTilledLand(): void {
+  private handleTilledLand(): void {
     if (
       GlobalData.me().getTilledLands() == null ||
       GlobalData.me().getTilledLands().length == 0
@@ -45,7 +45,39 @@ export class MachineMovement extends Component {
       GlobalData.me().getArea().areaId,
       GlobalData.me().getMainUser().userId
     );
-    console.log("Tilled lands: ", GlobalData.me().getTilledLands());
     GlobalData.me().setTilledLands(null);
+  }
+
+  private handleHarvest(): void {
+    if (
+      GlobalData.me().getHarvestingInformation() == null ||
+      GlobalData.me().getHarvestingInformation().crop.length == 0
+    ) {
+      return;
+    }
+    //send request harvest
+    DataSender.sendReqHarvest(
+      GlobalData.me().getHarvestingInformation(),
+      GlobalData.me().getArea().areaId,
+      GlobalData.me().getMainUser().userId
+    );
+    //clear data
+    GlobalData.me().setHarvestingInformation(null);
+  }
+
+  private getTargetMove(): Vec3 {
+    if (this.node.name == "HarvesterMachine") {
+      return new Vec3(
+        this.node.getPosition().x - 165,
+        this.node.getPosition().y,
+        0
+      );
+    } else {
+      return new Vec3(
+        this.node.getPosition().x,
+        this.node.getPosition().y - 200,
+        0
+      );
+    }
   }
 }

@@ -217,10 +217,14 @@ export default class DataSender {
   }
 
   public static sendReqHarvest(
-    harvestingInformation: proto.HarvestingInformation
+    harvestingInformation: proto.HarvestingInformation,
+    areaId: number,
+    mainUserId: number
   ) {
     let reqHarvest = new proto.ReqHarvest();
     reqHarvest.harvestingInformation = harvestingInformation;
+    reqHarvest.areaId = areaId;
+    reqHarvest.mainUserId = mainUserId;
     let packet = new proto.Packet();
     packet.reqHarvest = reqHarvest;
     WS.send(packet);
@@ -355,6 +359,18 @@ export default class DataSender {
     reqTillLandByMachine.plantingLandPosition = plantingLandPosition;
     let packet = new proto.Packet();
     packet.reqTillLandByMachine = reqTillLandByMachine;
+    WS.send(packet);
+  }
+
+  public static sendReqHarvestByMachine(
+    areaId: number,
+    plantingLandPosition: proto.Position
+  ) {
+    let reqHarvestByMachine = new proto.ReqHarvestByMachine();
+    reqHarvestByMachine.areaId = areaId;
+    reqHarvestByMachine.plantingLandPosition = plantingLandPosition;
+    let packet = new proto.Packet();
+    packet.reqHarvestByMachine = reqHarvestByMachine;
     WS.send(packet);
   }
 }

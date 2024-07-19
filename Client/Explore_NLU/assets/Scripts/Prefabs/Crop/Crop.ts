@@ -110,7 +110,10 @@ export class Crop extends Component {
   }
 
   private onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D) {
-    if (otherCollider.node.name === TYPE_TOOL.SICKLE) {
+    if (
+      otherCollider.node.name === TYPE_TOOL.SICKLE ||
+      otherCollider.node.name === "HarvesterMachine"
+    ) {
       this.handleHarvest();
     } else {
       return;

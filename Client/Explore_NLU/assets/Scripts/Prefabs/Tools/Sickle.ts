@@ -48,7 +48,11 @@ export class Sickle extends AbsMenuItem {
       return;
     }
     //send request harvest
-    DataSender.sendReqHarvest(GlobalData.me().getHarvestingInformation());
+    DataSender.sendReqHarvest(
+      GlobalData.me().getHarvestingInformation(),
+      GlobalData.me().getMainArea().areaId,
+      GlobalData.me().getMainUser().userId
+    );
     //clear data
     GlobalData.me().setHarvestingInformation(null);
   }

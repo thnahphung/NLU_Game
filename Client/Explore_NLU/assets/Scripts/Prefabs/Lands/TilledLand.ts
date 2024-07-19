@@ -54,7 +54,10 @@ export class TilledLand extends Component {
     otherCollider: Collider2D,
     contact: IPhysics2DContact | null
   ) {
-    if (otherCollider.node.name == "Pickaxe") {
+    if (
+      otherCollider.node.name == "Pickaxe" ||
+      otherCollider.node.name == "BulldozerMachine"
+    ) {
       if (this.isTilled) return;
       this.handleTillLand();
       GlobalData.me().setTilledStatus(true);
@@ -64,11 +67,6 @@ export class TilledLand extends Component {
         return;
       let seedBag = otherCollider.node.getComponent(SeedInformation);
       this.handleSow(seedBag);
-    }
-    if (otherCollider.node.name == "BulldozerMachine") {
-      if (this.isTilled) return;
-      this.handleTillLand();
-      GlobalData.me().setTilledStatus(true);
     }
   }
 
