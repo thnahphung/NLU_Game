@@ -68,5 +68,11 @@ export class Menu extends Component {
       addAnimalButton.targetOff("UICanvas");
       addAnimalButton.off(Button.EventType.CLICK);
     }
+
+    const healingButton = this.node?.getChildByName("HealingButton");
+    if (addAnimalButton) {
+      healingButton.targetOff("UICanvas");
+      healingButton.off(Button.EventType.CLICK);
+    }
   }
 }

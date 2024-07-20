@@ -31,6 +31,7 @@ export class PopupInformationAnimal extends AbsHandler {
       }
     });
   }
+
   onLoadDetailDiseaseHandler(packet: proto.IPacket) {
     let text = "";
     for (let sysptom of packet.resLoadDetailDisease.sysptoms) {

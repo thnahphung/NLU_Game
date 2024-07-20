@@ -35,6 +35,6 @@ export class ItemPopupShop extends Component {
 
   onClickBuyItem() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_1);
-    DataSender.sendReqBuyItemShop(this.shopItem.noGrowthItemId, 1);
+    DataSender.sendReqBuyItemShop(this.shopItem.id, 1);
   }
 }

@@ -3,7 +3,9 @@ import { Animal } from "./Animal";
 import { PopupComponent } from "../../Controller/PopupComponent";
 import { PopupInformationAnimal } from "../Popup/PopupInformationAnimal";
 import { AudioManger } from "../../Manager/AudioManger";
-import { AUDIOS } from "../../Utils/Const";
+import { AUDIOS, CHARACTERS } from "../../Utils/Const";
+import { UICanvas } from "../MainUI/UICanvas";
+import GlobalData from "../../Utils/GlobalData";
 const { ccclass, property } = _decorator;
 
 @ccclass("AnimalInformation")
@@ -30,6 +32,14 @@ export class AnimalInformation extends Component {
   }
 
   public onClickShowPopupInformation() {
+    if (
+      this.animalInfo.isDiseaseAnimal() &&
+      GlobalData.me().getMainUser().character.code == CHARACTERS.BSTY
+    ) {
+      UICanvas.me().showHealingButton(this.animalInfo.getAnimal());
+      return;
+    }
+
     if (this.animalInfo.getPopupInformationAnimal().active) {
       AudioManger.me().playOneShot(AUDIOS.CLICK_3);
       this.animalInfo

@@ -10,7 +10,9 @@ public class ConstUtils {
         PLANTING_LAND("PLANTING_LAND"),
         CROP("CROP"),
         SEED("SEED"),
-        CAGE("CAGE");
+        CAGE("CAGE"),
+        MEDICINE("MEDICINE"),
+        MEDICINE_FORMULA("MEDICINE_FORMULA");
 
         private final String value;
 
