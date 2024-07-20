@@ -21,6 +21,7 @@ import { Util } from "../../Utils/Util";
 import { AnimalAnimation } from "../Animal/AnimalAnimation";
 import DataSender from "../../Utils/DataSender";
 import { AudioManger } from "../../Manager/AudioManger";
+import GlobalData from "../../Utils/GlobalData";
 const { ccclass, property } = _decorator;
 
 @ccclass("Cage")
@@ -84,6 +85,7 @@ export class Cage extends Component {
   }
 
   private handleGetMenuFood(): void {
+    if (!GlobalData.me().isMainArea()) return;
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     UICanvas.me().showPopupMenuInfoAnimalFood(this.cageData, () => {
       DataSender.sendReqAddAnimalToCage(this.cageData.propertyBuilding.id);

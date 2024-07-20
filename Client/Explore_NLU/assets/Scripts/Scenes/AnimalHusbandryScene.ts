@@ -49,6 +49,7 @@ export class AnimalHusbandryScene extends AbsScene {
       }
     });
   }
+
   onSellAnimalHandler(packet: proto.IPacket) {
     if (packet.resSellAnimal.status == 400) {
       UICanvas.me().showPopupMessage(t("label_text.sell_animal_400"));

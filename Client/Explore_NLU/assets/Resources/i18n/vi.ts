@@ -125,7 +125,10 @@ export const languages = {
       "Bạn có chắc chắn muốn bán con vật này không?",
     sell_animal_400: "Con vật còn nhỏ, chưa thể bán.",
     sell_animal_402: "Con vật đang bị bệnh, không thể bán.",
-
+    please_choose_medicine: "Hãy chọn một loại thuốc.",
+    incorrect_formula: "Công thức không đúng!",
+    popup_question:
+      "Dưới đây là các triệu chứng bệnh, bạn hãy đưa ra dự đoán của mình:",
     //Area Name
     phuong_vi: "Phượng Vĩ",
     cam_tu: "Cẩm Tú",
@@ -144,6 +147,7 @@ export const languages = {
     //Shop Name
     crop_shop: "Cây Trồng",
     animal_shop: "Động vật",
+    medicine_shop: "Thuốc Thú Y",
     buy_cage: "Mua Chuồng",
     //Crop Name
     rice_seed_bag: "Túi Hạt Lúa",
@@ -161,6 +165,7 @@ export const languages = {
     chicken_blue_lv2: "Gà lớn",
     cow_yellow_lv1: "Bò con",
     cow_yellow_lv2: "Bò lớn",
+    healing: "Chữa bệnh",
     //Animal Food
     hay: "Rơm",
     paddy_grain: "Lúa",
@@ -231,6 +236,20 @@ export const languages = {
     // Building system
     building_land: "Đất trồng",
     building_housing: "Nhà",
+    // Medicine
+    medicine_pasteurellosis: "Thuốc trị tụ huyết trùng",
+    medicine_internal_parasites: "Thuốc trị nội kí sinh trùng",
+    medicine_cholera: "Thuốc trị bệnh tả",
+    formula_perilla_leaves: "Tinh chất lá Tía Tô",
+    formula_licorice_root: "Tinh chất rễ Cam Thảo",
+    formula_blumea_balsamifera: "Tinh chất cây Cúc Tần",
+    formula_honey: "Mật ong",
+    formula_pumpkin_seeds: "Tinh chất hạt Bí Ngô",
+    formula_garlic: "Tinh chất Tỏi",
+    formula_ginger: "Tinh chất Gừng",
+    formula_lemon_juice: "Tinh chất Chanh",
+    formula_sea_salt: "Nước muối biển",
+    formula_sugar: "Nước Đường",
   },
 };
 

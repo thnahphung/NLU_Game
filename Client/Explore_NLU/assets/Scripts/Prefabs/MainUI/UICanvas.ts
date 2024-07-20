@@ -30,6 +30,7 @@ import DataSender from "../../Utils/DataSender";
 import { PopupFactory } from "../Popup/PopupFactory";
 import { AudioManger } from "../../Manager/AudioManger";
 import { ResourceManager } from "../../Manager/ResourceManager";
+import { PopupDiagnosis } from "../Popup/PopupDiagnosis";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -45,6 +46,8 @@ export class UICanvas extends Component {
   @property(Node) private popupMenuSeedFarm: Node = null;
   @property(Node) private popupMenuMechanical: Node = null;
   @property(Node) private popupFactory: Node = null;
+  @property(Node) private healingPanel: Node = null;
+
   @property(Prefab) private prefabPopupMessage: Prefab;
   @property(Prefab) private prefabPopupOption: Prefab;
   @property(Prefab) private prefabPopupSetting: Prefab;
@@ -60,7 +63,8 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupHelp: Prefab;
   @property(Prefab) private prefabPopupFindTime: Prefab;
   @property(Prefab) private prefabPopupAid: Prefab;
-  @property(WebView) private webView: WebView;
+  @property(Prefab) private prefabPopupCraftingMedicines: Prefab;
+  @property(Prefab) private prefabPopupDiagnosis: Prefab;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -496,7 +500,29 @@ export class UICanvas extends Component {
     return this._popupHelp;
   }
 
-  getWebView(): WebView {
-    return this.webView;
+  showPopupCraftingMedicines() {
+    let popupCraftingMedicines = instantiate(this.prefabPopupCraftingMedicines);
+    this.node.getChildByName("PopupLayer").addChild(popupCraftingMedicines);
+    popupCraftingMedicines.getComponent(PopupComponent).show();
+  }
+
+  showHealingButton(animal: proto.IAnimal) {
+    this.healingPanel.active = true;
+    this.healingPanel.getChildByName("HealingButton").on(
+      Button.EventType.CLICK,
+      () => {
+        this.showPopupDiagnosis(animal);
+      },
+      this
+    );
+  }
+
+  showPopupDiagnosis(animal: proto.IAnimal) {
+    console.log("showPopupDiagnosis");
+    this.healingPanel.active = false;
+    let popupDiagnosis = instantiate(this.prefabPopupDiagnosis);
+    popupDiagnosis.getComponent(PopupDiagnosis).init(animal);
+    this.node.getChildByName("PopupLayer").addChild(popupDiagnosis);
+    popupDiagnosis.getComponent(PopupComponent).show();
   }
 }

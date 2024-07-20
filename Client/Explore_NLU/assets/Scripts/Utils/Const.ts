@@ -270,6 +270,7 @@ export enum TYPE_ITEM {
   ROOT = "ROOT",
   PLANTING_LAND = "PLANTING_LAND",
   SEED = "SEED",
+  FORMULA_MEDICINE = "FORMULA_MEDICINE",
 }
 
 export enum WEATHER {

@@ -83,6 +83,10 @@ message Packet {
     ReqLoginGoogle reqLoginGoogle = 73;
     ResLoginGoogle resLoginGoogle = 74;
     ResLoginGoogleSuccess resLoginGoogleSuccess = 75;
+    ReqLoadAllMedicine reqLoadAllMedicine = 76;
+    ResLoadAllMedicine resLoadAllMedicine = 77;
+    ReqLoadAllFormula reqLoadAllFormula = 78;
+    ResLoadAllFormula resLoadAllFormula = 79;
     ReqLoadMachines reqLoadMachines = 80;
     ResLoadMachines resLoadMachines = 81;
     ReqSupportFind ReqSupportFind = 83;
@@ -90,13 +94,17 @@ message Packet {
     ResMatchmaking resMatchmaking = 85;
     ReqStopSupportFind reqStopSupportFind = 86;
     ResTillLand resTillLand = 87;
-    ReqPong reqPong = 88;
-    ReqTillLandByMachine reqTillLandByMachine = 89;
-    ResTillLandByMachine resTillLandByMachine = 90;
-    ReqHarvestByMachine reqHarvestByMachine = 91;
-    ResHarvestByMachine resHarvestByMachine = 92;
-    ReqLoadPartsOfMachine reqLoadPartsOfMachine = 93;
-    ResLoadPartsOfMachine resLoadPartsOfMachine = 94;
+    ReqCraftingMedicine reqCraftingMedicine = 88;
+    ResCraftingMedicine resCraftingMedicine = 89;
+    ReqLoadQuestion reqLoadQuestion = 90;
+    ResLoadQuestion resLoadQuestion = 91;
+    ReqPong reqPong = 92;
+    ReqTillLandByMachine reqTillLandByMachine = 93;
+    ResTillLandByMachine resTillLandByMachine = 94;
+    ReqHarvestByMachine reqHarvestByMachine = 95;
+    ResHarvestByMachine resHarvestByMachine = 96;
+    ReqLoadPartsOfMachine reqLoadPartsOfMachine = 97;
+    ResLoadPartsOfMachine resLoadPartsOfMachine = 98;
   }
 }
 
@@ -178,6 +186,7 @@ message ShopItem {
     ANIMAL = 1;
     CAGE = 2;
     FARM_ITEM = 3;
+    MEDICINE = 4;
   }
 }
 
@@ -330,6 +339,12 @@ message Sysptom {
   int32 diseaseId = 3;
 }
 
+message Disease {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+}
+
 // Animal Husbandry end =======================================
 
 // Activities start =====================================
@@ -358,6 +373,18 @@ message ProgressActivity {
   int32 progress = 3;
   int32 status = 4;
 }
+message Medicine {
+  NoGrowthItem noGrowthItem = 1;
+  repeated Formula formulas = 2;
+}
+
+message Formula{
+  int32 noGrowthItemId = 1;
+  int32 noGrowthItemResultId = 2;
+  int32 quantity = 3;
+  NoGrowthItem noGrowthItem = 4;
+}
+
 // Activities end =======================================
 
 // Bean end ====================================================
@@ -809,6 +836,36 @@ message ResTillLand{
   int32 mainUserId = 1;
   int32 areaId = 2;
   repeated TillLand tillLands = 3;
+}
+
+message ReqLoadAllMedicine{}
+
+message ResLoadAllMedicine{
+  repeated Medicine medicines = 1;
+}
+
+message ReqLoadAllFormula{}
+
+message ResLoadAllFormula{
+  repeated NoGrowthItem noGrowthItems = 1;
+}
+
+message ReqCraftingMedicine{
+  repeated Formula formulas = 1;
+  int32 noGrowthItemResultId = 2;
+}
+
+message ResCraftingMedicine{
+  int32 status = 1;
+  repeated WarehouseItem warehouseItems = 2;
+}
+
+message ReqLoadQuestion{
+  int32 propertyGrowthItem = 1;
+}
+
+message ResLoadQuestion{
+  repeated Disease diseases = 1;
   repeated Reward rewards = 4;
   int32 gold = 5;
   int32 exp = 6;
