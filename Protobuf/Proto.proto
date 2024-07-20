@@ -98,6 +98,13 @@ message Packet {
     ResCraftingMedicine resCraftingMedicine = 89;
     ReqLoadQuestion reqLoadQuestion = 90;
     ResLoadQuestion resLoadQuestion = 91;
+    ReqPong reqPong = 92;
+    ReqTillLandByMachine reqTillLandByMachine = 93;
+    ResTillLandByMachine resTillLandByMachine = 94;
+    ReqHarvestByMachine reqHarvestByMachine = 95;
+    ResHarvestByMachine resHarvestByMachine = 96;
+    ReqLoadPartsOfMachine reqLoadPartsOfMachine = 97;
+    ResLoadPartsOfMachine resLoadPartsOfMachine = 98;
   }
 }
 
@@ -182,11 +189,11 @@ message ShopItem {
     MEDICINE = 4;
   }
 }
+
 message Reward {
   string name = 1;
   int32 quantity = 2;
 }
-
 
 message CommonGrowthItem {
   int32 id = 1;
@@ -577,7 +584,7 @@ message ResAcceptFriend {
 message ReqTilledLand {
   int32 mainUserId = 1;
   int32 areaId = 2;
-  repeated TillLand tillLand = 3;
+  repeated TillLand tillLands = 3;
 }
 
 message Fertilized {
@@ -633,14 +640,21 @@ message HarvestingInformation {
 }
 
 message ReqHarvest {
-   HarvestingInformation harvestingInformation = 1;
+  HarvestingInformation harvestingInformation = 1;
+  int32 mainUserId = 2;
+  int32 areaId = 3;
 }
 
 message ResHarvest {
    repeated Reward rewards = 1;
+   repeated Reward supportRewards = 8;
    int32 seedBagId = 2;
    int32 mainUserId = 3;
    repeated Crop crops = 4;
+   int32 supportExp = 5;
+   int32 supportGold = 6;
+   int32 exp = 7;
+   int32 supportUserId = 9;
 }
 
 message ReqLoadItemsOfWarehouse{
@@ -852,4 +866,40 @@ message ReqLoadQuestion{
 
 message ResLoadQuestion{
   repeated Disease diseases = 1;
+  repeated Reward rewards = 4;
+  int32 gold = 5;
+  int32 exp = 6;
+  int32 supportUserId = 7;
+}
+
+message ReqPong {}
+
+message ReqTillLandByMachine {
+  int32 areaId = 1;
+  Position plantingLandPosition = 2;
+}
+
+message ResTillLandByMachine {
+  NoGrowthItem noGrowthItem = 1;
+  PropertyMachine propertyMachine = 2;
+  Position plantingLandPosition = 3;
+}
+
+message ReqHarvestByMachine {
+  int32 areaId = 1;
+  Position plantingLandPosition = 2;
+}
+
+message ResHarvestByMachine {
+  NoGrowthItem noGrowthItem = 1;
+  PropertyMachine propertyMachine = 2;
+  Position plantingLandPosition = 3;
+}
+
+message ReqLoadPartsOfMachine {
+  NoGrowthItem noGrowthItem = 1;
+}
+
+message ResLoadPartsOfMachine {
+  repeated NoGrowthItem noGrowthItems = 1;
 }

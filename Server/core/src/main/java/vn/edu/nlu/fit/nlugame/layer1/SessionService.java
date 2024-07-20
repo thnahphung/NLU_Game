@@ -23,9 +23,10 @@ public class SessionService implements IService {
     public void onOpen(Session session, String... params) {
         //Save session in tomcat
         SessionManage.me().onOpen(session);
-        System.out.println("Session count: " + SessionManage.me().count());
         //Save session in cache
         SessionCache.me().addSession(SessionID.of(session));
+
+        SessionManage.me().addSessionAlive(session);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class SessionService implements IService {
         SessionCache.me().removeSession(SessionID.of(session));
         //Remove session in tomcat
         SessionManage.me().onClose(session);
-        System.out.println("Session count: " + SessionManage.me().count());
+        SessionManage.me().onCloseSessionAlive(session);
     }
 
     public boolean checkLogin(Session session) {

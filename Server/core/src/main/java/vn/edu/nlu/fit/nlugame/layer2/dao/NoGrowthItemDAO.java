@@ -64,6 +64,6 @@ public class NoGrowthItemDAO extends BaseDAO {
 
 
     public static void main(String[] args) {
-        System.out.println(getNoGrowthItemByName("planting-land"));
+        System.out.println(getNoGrowthItemByType("BULLDOZER_PART"));
     }
 }

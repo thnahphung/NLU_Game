@@ -283,6 +283,8 @@ export enum TYPE_TOOL {
   PICKAXE = "Pickaxe",
   HAMMER = "Hammer",
   SEED_BAG = "SeedBag",
+  TILL = "TillButton",
+  HARVEST = "HarvestButton",
 }
 
 export enum REWARD_ICONS {

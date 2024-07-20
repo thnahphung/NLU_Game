@@ -199,13 +199,16 @@ export class ResponseHandler extends AbsHandler {
     popupSupportComponent.showPopup();
     // Join area
     let code = GlobalData.me().getMainUser().character.code;
-    this.scheduleOnce(() => {
-      if (code == CHARACTERS.BSTY || code == CHARACTERS.KSCK) {
+    if (code == CHARACTERS.BSTY || code == CHARACTERS.KSCK) {
+      popupSupportComponent.setMatchmakingNotify();
+      this.scheduleOnce(() => {
         DataSender.sendReqPlayerJoinArea(matchmakedUser.userId);
-      }
-    }, 3);
+      }, 3);
+    }
     if (code == CHARACTERS.KSCN || code == CHARACTERS.KSNN) {
       popupSupportComponent.setMatchmakingOK();
     }
+    // Set status support
+    GlobalData.me().setIsSupporting(true);
   }
 }

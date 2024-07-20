@@ -178,7 +178,7 @@ export default class DataSender {
     mainUserId: number
   ) {
     let reqTilledLand = new proto.ReqTilledLand();
-    reqTilledLand.tillLand = tilledLands;
+    reqTilledLand.tillLands = tilledLands;
     reqTilledLand.areaId = areaId;
     reqTilledLand.mainUserId = mainUserId;
     let packet = new proto.Packet();
@@ -217,10 +217,14 @@ export default class DataSender {
   }
 
   public static sendReqHarvest(
-    harvestingInformation: proto.HarvestingInformation
+    harvestingInformation: proto.HarvestingInformation,
+    areaId: number,
+    mainUserId: number
   ) {
     let reqHarvest = new proto.ReqHarvest();
     reqHarvest.harvestingInformation = harvestingInformation;
+    reqHarvest.areaId = areaId;
+    reqHarvest.mainUserId = mainUserId;
     let packet = new proto.Packet();
     packet.reqHarvest = reqHarvest;
     WS.send(packet);
@@ -370,6 +374,43 @@ export default class DataSender {
     reqLoadQuestion.propertyGrowthItem = propertyGrowthItem;
     let packet = new proto.Packet();
     packet.reqLoadQuestion = reqLoadQuestion;
+  }
+  public static sendPong() {
+    let reqPong = new proto.ReqPong();
+    let packet = new proto.Packet();
+    packet.reqPong = reqPong;
+    WS.send(packet);
+  }
+
+  public static sendReqTillLandByMachine(
+    areaId: number,
+    plantingLandPosition: proto.Position
+  ) {
+    let reqTillLandByMachine = new proto.ReqTillLandByMachine();
+    reqTillLandByMachine.areaId = areaId;
+    reqTillLandByMachine.plantingLandPosition = plantingLandPosition;
+    let packet = new proto.Packet();
+    packet.reqTillLandByMachine = reqTillLandByMachine;
+    WS.send(packet);
+  }
+
+  public static sendReqHarvestByMachine(
+    areaId: number,
+    plantingLandPosition: proto.Position
+  ) {
+    let reqHarvestByMachine = new proto.ReqHarvestByMachine();
+    reqHarvestByMachine.areaId = areaId;
+    reqHarvestByMachine.plantingLandPosition = plantingLandPosition;
+    let packet = new proto.Packet();
+    packet.reqHarvestByMachine = reqHarvestByMachine;
+    WS.send(packet);
+  }
+
+  public static sendReqLoadPartOfMachine(noGrowthItem: proto.INoGrowthItem) {
+    let reqLoadPartsOfMachine = new proto.ReqLoadPartsOfMachine();
+    reqLoadPartsOfMachine.noGrowthItem = noGrowthItem;
+    let packet = new proto.Packet();
+    packet.reqLoadPartsOfMachine = reqLoadPartsOfMachine;
     WS.send(packet);
   }
 }

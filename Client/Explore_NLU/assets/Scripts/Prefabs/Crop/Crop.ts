@@ -17,6 +17,7 @@ import { AUDIOS, TYPE_TOOL } from "../../Utils/Const";
 import { TilledLand } from "../Lands/TilledLand";
 import { UICanvas } from "../MainUI/UICanvas";
 import { AudioManger } from "../../Manager/AudioManger";
+import { t } from "../../../../extensions/i18n/assets/LanguageData";
 const { ccclass, property } = _decorator;
 
 @ccclass("Crop")
@@ -99,13 +100,33 @@ export class Crop extends Component {
   }
 
   private showMenuTool(): void {
+    if (
+      GlobalData.me().getMainUser().character.code == "KSCK" &&
+      GlobalData.me().getIsSupporting()
+    ) {
+      UICanvas.me().showPopupMenuMechanical(TYPE_TOOL.HARVEST);
+      GlobalData.me().setPlantingLandChoosed(this.plantingLand);
+      return;
+    }
+
+    if (
+      GlobalData.me().getMainUser().character.code == "KSCK" &&
+      !GlobalData.me().getIsSupporting()
+    ) {
+      UICanvas.me().showPopupMessage(t("label_text.help_notify_status"));
+      return;
+    }
+
     GlobalData.me().setHarvestStatus(true);
     // Hiển thị menu công cụ
     UICanvas.me().showPopupMenuToolFarm(TYPE_TOOL.SICKLE);
   }
 
   private onBeginContact(selfCollider: Collider2D, otherCollider: Collider2D) {
-    if (otherCollider.node.name === TYPE_TOOL.SICKLE) {
+    if (
+      otherCollider.node.name === TYPE_TOOL.SICKLE ||
+      otherCollider.node.name === "HarvesterMachine"
+    ) {
       this.handleHarvest();
     } else {
       return;

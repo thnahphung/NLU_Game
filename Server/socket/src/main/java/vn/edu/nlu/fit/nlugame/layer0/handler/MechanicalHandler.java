@@ -18,6 +18,8 @@ public class MechanicalHandler implements Subscriber{
             switch (packet.getDataCase()) {
                 case REQLOADMACHINES:
                     mechanicalService.loadMachines(session, packet.getReqLoadMachines());
+                case REQLOADPARTSOFMACHINE:
+                    mechanicalService.loadPartsOfMachine(session, packet.getReqLoadPartsOfMachine());
             }
         });
     }

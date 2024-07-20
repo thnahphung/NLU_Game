@@ -64,4 +64,23 @@ public class PropertyMachineDAO extends BaseDAO{
             batch.execute();
         });
     }
+
+    public static PropertyMachineBean getPropertyMachine(int userId, int noGrowthItemId) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT id, speed, durable, power, number_star, level, value, no_growth_item_id, user_id " +
+                                "FROM " + TABLE_NAME + " WHERE user_id = :userId AND no_growth_item_id = :noGrowthItemId")
+                        .bind("userId", userId)
+                        .bind("noGrowthItemId", noGrowthItemId)
+                        .mapToBean(PropertyMachineBean.class)
+                        .findFirst()
+                        .orElse(null));
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getPropertyMachine(9, 14));
+    }
 }
