@@ -5,27 +5,44 @@ const { ccclass, property } = _decorator;
 export class PopupFactory extends Component {
   @property(Node)
   private popupUpgradeMachine: Node = null;
-
-  start() {
-    this.node.active = false;
-    this.popupUpgradeMachine.active = false;
-  }
+  @property(Node)
+  private popupManufactureMachine: Node = null;
+  start() {}
 
   public showPopupUpgradeMachine() {
     this.node.active = true;
     this.popupUpgradeMachine.active = true;
+    this.popupManufactureMachine.active = false;
+  }
+
+  public showPopupManufactureMachine() {
+    this.node.active = true;
+    this.popupManufactureMachine.active = true;
+    this.popupUpgradeMachine.active = false;
   }
 
   public closePopupUpgradeMachine() {
+    console.log("closePopupUpgradeMachine");
     this.popupUpgradeMachine.active = false;
   }
 
+  public closePopupManufactureMachine() {
+    console.log("closePopupManufactureMachine");
+    this.popupManufactureMachine.active = false;
+  }
+
   public closePopup() {
+    console.log("closePopup");
     this.node.active = false;
     this.popupUpgradeMachine.active = false;
+    this.popupManufactureMachine.active = false;
   }
 
   getPopupUpgradeMachine(): Node {
     return this.popupUpgradeMachine;
+  }
+
+  getPopupManufactureMachine(): Node {
+    return this.popupManufactureMachine;
   }
 }

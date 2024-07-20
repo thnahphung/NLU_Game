@@ -96,4 +96,47 @@ public class MechanicalService {
         PropertyMachineDAO.insertPropertyMachines(defaultMachines);
         return defaultMachines;
     }
+
+    public void loadPartsOfMachine(Session session, Proto.ReqLoadPartsOfMachine reqLoadPartsOfMachine) {
+        Proto.NoGrowthItem noGrowthItem = reqLoadPartsOfMachine.getNoGrowthItem();
+        String nameMachine = noGrowthItem.getName();
+        System.out.println("nameMachine: " + nameMachine);
+        String typePartMachine = getTypePartMachineByName(nameMachine);
+        List<Proto.NoGrowthItem> parts = NoGrowthItemCache.me().getNoGrowthItemByType(typePartMachine);
+        if(parts == null || parts.isEmpty()) {
+            List<NoGrowthItemBean> partBeans = NoGrowthItemDAO.getNoGrowthItemByType(typePartMachine);
+            if(partBeans != null && !partBeans.isEmpty()) {
+                partBeans.forEach(partBean -> {
+                    Proto.NoGrowthItem part = Proto.NoGrowthItem.newBuilder()
+                            .setId(partBean.getId())
+                            .setName(partBean.getName())
+                            .setPrice(partBean.getPrice())
+                            .setSalePrice(partBean.getSalePrice())
+                            .setExperienceReceive(partBean.getExperienceReceive())
+                            .setType(partBean.getType())
+                            .setDescription(partBean.getDescription())
+                            .setStatus(partBean.getStatus())
+                            .build();
+                    parts.add(part);
+                    NoGrowthItemCache.me().add(part);
+                });
+            }
+        }
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder()
+                .setResLoadPartsOfMachine(Proto.ResLoadPartsOfMachine.newBuilder()
+                        .addAllNoGrowthItems(parts)
+                        .build())
+                .build());
+    }
+
+    private String getTypePartMachineByName(String name) {
+        switch (name) {
+            case "bulldozer":
+                return "BULLDOZER_PART";
+            case "harvester":
+                return "HARVEST_PART";
+            default:
+                return "";
+        }
+    }
 }

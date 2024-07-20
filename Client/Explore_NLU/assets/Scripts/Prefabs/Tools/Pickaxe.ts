@@ -45,7 +45,6 @@ export class Pickaxe extends AbsMenuItem {
   handleTilledLand(): void {
     if (
       GlobalData.me().getTilledLands() == null ||
-      GlobalData.me().getTilledLands() == null ||
       GlobalData.me().getTilledLands().length == 0
     ) {
       return;

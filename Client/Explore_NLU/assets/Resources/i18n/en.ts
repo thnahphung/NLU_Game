@@ -193,10 +193,19 @@ export const languages = {
     harvester: "Harvester",
     fix: "Fix",
     up_level: "Up level",
+    mac_speed: "Speed",
+    mac_power: "Power",
+    mac_durability: "Durability",
+    mac_value: "Value",
+    mac_spec: "Specifications",
+    mac_manufacture: "Manufacture",
     // Help
     help_title: "Help",
     help_find: "Find",
     help_match_ok: "Engineer is coming...",
+    help_notify_status:
+      "You're visiting a friend's house so you can't help with agriculture",
+    help_move: "Moving to the location that needs assistance...",
     //Aid
     aid_title: "Aid",
     aid_status: "Status",

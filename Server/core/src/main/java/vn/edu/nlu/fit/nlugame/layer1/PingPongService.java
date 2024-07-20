@@ -1,6 +1,7 @@
 package vn.edu.nlu.fit.nlugame.layer1;
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer2.SessionManage;
+import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -18,19 +19,27 @@ public class PingPongService {
     }
 
     public void pingPong() {
-        List<String> keyList = sessionManage.listSessionId();
-        for (String sessionId : keyList) {
-            Session session = sessionManage.get(sessionId);
-            try {
-                if (session != null && session.isOpen())
-                    session.getAsyncRemote().sendPing(ByteBuffer.wrap("ping".getBytes()));
-                //System.out.println("pingPongJob:  " + sessionId);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//        List<String> keyList = sessionManage.listSessionId();
+//        for (String sessionId : keyList) {
+//            Session session = sessionManage.get(sessionId);
+//            try {
+//                if (session != null && session.isOpen())
+//                    session.getAsyncRemote().sendPing(ByteBuffer.wrap("ping".getBytes()));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+        List<Session> sessionRemoveList = sessionManage.getSessionRemoveList();
+        if(sessionRemoveList != null || !sessionRemoveList.isEmpty())
+        for (Session session : sessionRemoveList) {
+            System.out.println("Close session: " + session.getId() + " Reason: " + "No Pong");
+            AreaService.me().leaveArea(session);
+            SessionService.me().onClose(session);
         }
-//        remoweList.forEach(s -> sessionManage.addSessionIDToRemoveList(s));
-
+        sessionManage.clearRemoveList();
     }
 
+    public void handleReqPong(Session session) {
+        SessionManage.me().getSessionAlive(SessionID.of(session.getId()).getSessionId());
+    }
 }
