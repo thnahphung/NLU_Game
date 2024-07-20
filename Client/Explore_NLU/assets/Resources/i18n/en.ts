@@ -120,6 +120,9 @@ export const languages = {
       "You definitely want to sell this animal, right?",
     sell_animal_400: "This animal is still young, it cannot be sold yet",
     sell_animal_402: "The animal is disease, it cannot be sold",
+    please_choose_medicine: "Please choose a medicine!",
+    incorrect_formula: "Incorrect formula!",
+    popup_question: "Here are the symptoms, please provide your diagnosis:",
     //Area Name
     phuong_vi: "Phuong Vi",
     cam_tu: "Cam Tu",
@@ -135,7 +138,9 @@ export const languages = {
     //Shop Name
     crop_shop: "Crop Shop",
     animal_shop: "Animal Shop",
+    medicine_shop: "Veterinary Medicine",
     buy_cage: "Buy Cage",
+    healing: "Healing",
     //Crop Name
     rice_seed_bag: "Rice Seed Bag",
     cabbage_seed_bag: "Cabbage Seed Bag",
@@ -214,6 +219,20 @@ export const languages = {
     // Building system
     building_land: "Plating Land",
     building_housing: "Housing",
+    // Medicine
+    medicine_pasteurellosis: "Medicine for Pasteurellosis",
+    medicine_internal_parasites: "Medicine for Internal Parasites",
+    medicine_cholera: "Medicine for Cholera",
+    formula_perilla_leaves: "Perilla Leaf Extract",
+    formula_licorice_root: "Licorice Root Extract",
+    formula_blumea_balsamifera: "Blumea Balsamifera Extract",
+    formula_honey: "Honey",
+    formula_pumpkin_seeds: "Pumpkin Seed Extract",
+    formula_garlic: "Garlic Extract",
+    formula_ginger: "Ginger Extract",
+    formula_lemon_juice: "Lemon Juice Extract",
+    formula_sea_salt: "Sea Salt Water",
+    formula_sugar: "Sugar Water",
   },
 };
 

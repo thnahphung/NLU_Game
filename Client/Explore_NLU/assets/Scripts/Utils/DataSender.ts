@@ -338,4 +338,38 @@ export default class DataSender {
     packet.reqLoginGoogle = reqLoginGoogle;
     WS.send(packet);
   }
+
+  public static sendResLoadAllFormula() {
+    let reqLoadAllFormula = new proto.ReqLoadAllFormula();
+    let packet = new proto.Packet();
+    packet.reqLoadAllFormula = reqLoadAllFormula;
+    WS.send(packet);
+  }
+
+  public static sendResLoadAllMedicine() {
+    let reqLoadAllMedicine = new proto.ReqLoadAllMedicine();
+    let packet = new proto.Packet();
+    packet.reqLoadAllMedicine = reqLoadAllMedicine;
+    WS.send(packet);
+  }
+
+  public static sendReqCraftingMedicine(
+    formulas: proto.IFormula[],
+    noGrowthItemResultId: number
+  ) {
+    let reqCraftingMedicine = new proto.ReqCraftingMedicine();
+    reqCraftingMedicine.formulas = formulas;
+    reqCraftingMedicine.noGrowthItemResultId = noGrowthItemResultId;
+    let packet = new proto.Packet();
+    packet.reqCraftingMedicine = reqCraftingMedicine;
+    WS.send(packet);
+  }
+
+  public static sendReqLoadQuestion(propertyGrowthItem: number) {
+    let reqLoadQuestion = new proto.ReqLoadQuestion();
+    reqLoadQuestion.propertyGrowthItem = propertyGrowthItem;
+    let packet = new proto.Packet();
+    packet.reqLoadQuestion = reqLoadQuestion;
+    WS.send(packet);
+  }
 }
