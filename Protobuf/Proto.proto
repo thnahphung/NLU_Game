@@ -95,6 +95,8 @@ message Packet {
     ResTillLandByMachine resTillLandByMachine = 90;
     ReqHarvestByMachine reqHarvestByMachine = 91;
     ResHarvestByMachine resHarvestByMachine = 92;
+    ReqLoadPartsOfMachine reqLoadPartsOfMachine = 93;
+    ResLoadPartsOfMachine resLoadPartsOfMachine = 94;
   }
 }
 
@@ -835,4 +837,12 @@ message ResHarvestByMachine {
   NoGrowthItem noGrowthItem = 1;
   PropertyMachine propertyMachine = 2;
   Position plantingLandPosition = 3;
+}
+
+message ReqLoadPartsOfMachine {
+  NoGrowthItem noGrowthItem = 1;
+}
+
+message ResLoadPartsOfMachine {
+  repeated NoGrowthItem noGrowthItems = 1;
 }

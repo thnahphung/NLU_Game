@@ -373,4 +373,12 @@ export default class DataSender {
     packet.reqHarvestByMachine = reqHarvestByMachine;
     WS.send(packet);
   }
+
+  public static sendReqLoadPartOfMachine(noGrowthItem: proto.INoGrowthItem) {
+    let reqLoadPartsOfMachine = new proto.ReqLoadPartsOfMachine();
+    reqLoadPartsOfMachine.noGrowthItem = noGrowthItem;
+    let packet = new proto.Packet();
+    packet.reqLoadPartsOfMachine = reqLoadPartsOfMachine;
+    WS.send(packet);
+  }
 }

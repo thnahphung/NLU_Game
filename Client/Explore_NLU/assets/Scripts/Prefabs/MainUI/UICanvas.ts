@@ -391,7 +391,12 @@ export class UICanvas extends Component {
   }
 
   showPopupUpgradeMachine() {
+    console.log("showPopupUpgradeMachine");
     this.popupFactory.getComponent(PopupFactory).showPopupUpgradeMachine();
+  }
+
+  showPopupManufactureMachine() {
+    this.popupFactory.getComponent(PopupFactory).showPopupManufactureMachine();
   }
 
   getPopupFactory(): Node {

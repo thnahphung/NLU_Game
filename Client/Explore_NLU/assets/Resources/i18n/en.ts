@@ -193,6 +193,12 @@ export const languages = {
     harvester: "Harvester",
     fix: "Fix",
     up_level: "Up level",
+    mac_speed: "Speed",
+    mac_power: "Power",
+    mac_durability: "Durability",
+    mac_value: "Value",
+    mac_spec: "Specifications",
+    mac_manufacture: "Manufacture",
     // Help
     help_title: "Help",
     help_find: "Find",
