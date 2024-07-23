@@ -129,6 +129,20 @@ export const languages = {
     incorrect_formula: "Công thức không đúng!",
     popup_question:
       "Dưới đây là các triệu chứng bệnh, bạn hãy đưa ra dự đoán của mình:",
+    diagnosis_animal_400: "Bạn không còn đủ thuốc cho loại bệnh này",
+    diagnosis_animal_401:
+      "Bạn không đủ tiền để đền bù. Hãy làm nhiệm vụ để có thêm tiền.",
+    diagnosis_animal_402: "Chủ của con vật không đủ tiền để trả cho bạn.",
+    diagnosis_owner_of_animal_403:
+      "Bạn không còn đủ tiền để nhờ chữa bệnh. Hãy làm nhiệm vụ để có thêm tiền.",
+    diagnosis_owner_of_animal_404:
+      "Bác sĩ thú y đã chuẩn đoán sai bệnh. Bạn sẽ được nhận một khoản đền bù.",
+    diagnosis_animal_405:
+      "Bạn đã chọn sai loại bệnh. Bạn bị mất một bình thuốc và phải đền bù tiền.",
+    diagnosis_owner_of_animal_200:
+      "Một con vật đã được chữa bệnh thành công, bạn đã bị trừ tiền để trả cho Bác sĩ thú y.",
+    diagnosis_animal_200:
+      "Chữa bệnh thành công, bạn đã được nhận tiền từ chủ của con vật.",
     //Area Name
     phuong_vi: "Phượng Vĩ",
     cam_tu: "Cẩm Tú",
@@ -250,6 +264,10 @@ export const languages = {
     formula_lemon_juice: "Tinh chất Chanh",
     formula_sea_salt: "Nước muối biển",
     formula_sugar: "Nước Đường",
+    // Disease Name
+    disease_pasteurellosis: "Bệnh tụ huyết trùng",
+    disease_internal_parasites: "Bệnh nội kí sinh trùng",
+    disease_cholera: "Bệnh tả",
   },
 };
 

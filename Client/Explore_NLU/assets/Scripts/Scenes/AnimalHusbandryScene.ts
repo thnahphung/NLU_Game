@@ -47,7 +47,88 @@ export class AnimalHusbandryScene extends AbsScene {
       if (packet.resSellAnimal) {
         this.onSellAnimalHandler(packet);
       }
+      if (packet.resDiagnosisAnimal) {
+        this.onDiagnosisAnimalHandler(packet.resDiagnosisAnimal);
+      }
+      if (packet.resDiagnosisOwnerOfAnimal) {
+        this.onDiagnosisOwnerOfAnimalHandler(packet.resDiagnosisOwnerOfAnimal);
+      }
+      if (packet.resDiagnosisAnimalOtherPlayer) {
+        this.onDiagnosisAnimalOtherPlayerHandler(
+          packet.resDiagnosisAnimalOtherPlayer
+        );
+      }
     });
+  }
+  onDiagnosisAnimalOtherPlayerHandler(
+    packet: proto.IResDiagnosisAnimalOtherPlayer
+  ) {
+    console.log("onDiagnosisAnimalOtherPlayerHandler============", packet);
+    if (packet.status == 200) {
+      const animalNode = this.getAnimalNode(packet.animalId);
+      animalNode.getComponent(Animal).setIsDiseaseAnimal(false);
+    }
+  }
+
+  onDiagnosisOwnerOfAnimalHandler(packet: proto.IResDiagnosisOwnerOfAnimal) {
+    console.log("onDiagnosisOwnerOfAnimalHandler============", packet);
+    if (packet.status == 403) {
+      UICanvas.me().showPopupMessage(
+        t("label_text.diagnosis_owner_of_animal_403")
+      );
+      return;
+    }
+
+    GlobalData.me().getMainUser().gold = packet.gold;
+    UICanvas.me().loadGold();
+
+    if (packet.status == 404) {
+      UICanvas.me().showPopupMessage(
+        t("label_text.diagnosis_owner_of_animal_404")
+      );
+      return;
+    }
+
+    if (packet.status == 200) {
+      const animalNode = this.getAnimalNode(packet.animalId);
+      animalNode.getComponent(Animal).setIsDiseaseAnimal(false);
+      UICanvas.me().showPopupMessage(
+        t("label_text.diagnosis_owner_of_animal_200")
+      );
+      return;
+    }
+  }
+
+  onDiagnosisAnimalHandler(packet: proto.IResDiagnosisAnimal) {
+    console.log("onDiagnosisAnimalHandler============", packet);
+    if (packet.status == 400) {
+      UICanvas.me().showPopupMessage(t("label_text.diagnosis_animal_400"));
+      return;
+    }
+    if (packet.status == 401) {
+      UICanvas.me().showPopupMessage(t("label_text.diagnosis_animal_401"));
+      return;
+    }
+    if (packet.status == 402) {
+      UICanvas.me().showPopupMessage(t("label_text.diagnosis_animal_402"));
+      return;
+    }
+
+    GlobalData.me().addWarehouseItem(packet.warehouseItem);
+    GlobalData.me().getMainUser().gold = packet.gold;
+    UICanvas.me().loadGold();
+
+    if (packet.status == 405) {
+      UICanvas.me().showPopupMessage(t("label_text.diagnosis_animal_405"));
+      return;
+    }
+
+    if (packet.status == 200) {
+      UICanvas.me().showPopupMessage(t("label_text.diagnosis_animal_200"));
+      const animalNode = this.getAnimalNode(packet.animalId);
+      animalNode.getComponent(Animal).setIsDiseaseAnimal(false);
+      return;
+    }
   }
 
   onSellAnimalHandler(packet: proto.IPacket) {
@@ -195,5 +276,14 @@ export class AnimalHusbandryScene extends AbsScene {
       }
     }
     return false;
+  }
+
+  public getAnimalNode(animalId: number): Node {
+    for (let cageNode of this.cagesNode) {
+      const animalNode = cageNode.getComponent(Cage).getAnimalById(animalId);
+      if (animalNode) {
+        return animalNode;
+      }
+    }
   }
 }

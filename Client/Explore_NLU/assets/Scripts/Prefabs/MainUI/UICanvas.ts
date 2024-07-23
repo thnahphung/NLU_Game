@@ -518,7 +518,7 @@ export class UICanvas extends Component {
   }
 
   showPopupDiagnosis(animal: proto.IAnimal) {
-    console.log("showPopupDiagnosis");
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     this.healingPanel.active = false;
     let popupDiagnosis = instantiate(this.prefabPopupDiagnosis);
     popupDiagnosis.getComponent(PopupDiagnosis).init(animal);

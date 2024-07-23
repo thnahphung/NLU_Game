@@ -36,6 +36,7 @@ export class AnimalInformation extends Component {
       this.animalInfo.isDiseaseAnimal() &&
       GlobalData.me().getMainUser().character.code == CHARACTERS.BSTY
     ) {
+      AudioManger.me().playOneShot(AUDIOS.CLICK_2);
       UICanvas.me().showHealingButton(this.animalInfo.getAnimal());
       return;
     }

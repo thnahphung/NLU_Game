@@ -70,7 +70,7 @@ export class Menu extends Component {
     }
 
     const healingButton = this.node?.getChildByName("HealingButton");
-    if (addAnimalButton) {
+    if (healingButton) {
       healingButton.targetOff("UICanvas");
       healingButton.off(Button.EventType.CLICK);
     }

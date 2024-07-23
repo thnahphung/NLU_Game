@@ -1,4 +1,6 @@
 import { _decorator, Component, Label, Node } from "cc";
+import { t } from "../../../../../extensions/i18n/assets/LanguageData";
+import { Util } from "../../../Utils/Util";
 const { ccclass, property } = _decorator;
 
 @ccclass("ItemAnswer")
@@ -7,12 +9,16 @@ export class ItemAnswer extends Component {
   private _disease: proto.IDisease;
 
   start() {
-    this.answerLabel.string = this._disease.name;
+    this.answerLabel.string = t(
+      "label_text." + Util.convertDashToUnderscore(this._disease.name)
+    );
   }
 
   init(disease: proto.IDisease) {
     this._disease = disease;
   }
 
-  update(deltaTime: number) {}
+  public getDisease(): proto.IDisease {
+    return this._disease;
+  }
 }

@@ -105,6 +105,10 @@ message Packet {
     ResHarvestByMachine resHarvestByMachine = 96;
     ReqLoadPartsOfMachine reqLoadPartsOfMachine = 97;
     ResLoadPartsOfMachine resLoadPartsOfMachine = 98;
+    ReqDiagnosisAnimal reqDiagnosisAnimal = 99;
+    ResDiagnosisAnimal resDiagnosisAnimal = 100;
+    ResDiagnosisAnimalOtherPlayer resDiagnosisAnimalOtherPlayer = 101;
+    ResDiagnosisOwnerOfAnimal resDiagnosisOwnerOfAnimal = 102;
   }
 }
 
@@ -836,6 +840,10 @@ message ResTillLand{
   int32 mainUserId = 1;
   int32 areaId = 2;
   repeated TillLand tillLands = 3;
+  repeated Reward rewards = 4;
+  int32 gold = 5;
+  int32 exp = 6;
+  int32 supportUserId = 7;
 }
 
 message ReqLoadAllMedicine{}
@@ -902,4 +910,27 @@ message ReqLoadPartsOfMachine {
 
 message ResLoadPartsOfMachine {
   repeated NoGrowthItem noGrowthItems = 1;
+}
+
+message ReqDiagnosisAnimal{
+  int32 animalId = 1;
+  int32 diseaseId = 2;
+}
+
+message ResDiagnosisAnimalOtherPlayer{
+  int32 status = 1;
+  int32 animalId = 2;
+}
+
+message ResDiagnosisAnimal{
+  int32 status = 1;
+  int32 animalId = 2;
+  WarehouseItem warehouseItem = 3;
+  int32 gold = 4;
+}
+
+message ResDiagnosisOwnerOfAnimal{
+  int32 status = 1;
+  int32 animalId = 2;
+  int32 gold = 3;
 }

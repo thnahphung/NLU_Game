@@ -42,8 +42,8 @@ export class PopupCraftingMedicines extends AbsHandler {
   }
 
   start() {
-    DataSender.sendResLoadAllFormula();
-    DataSender.sendResLoadAllMedicine();
+    DataSender.sendReqLoadAllFormula();
+    DataSender.sendReqLoadAllMedicine();
   }
 
   onMessageHandler(packets: proto.IPacketWrapper) {
@@ -115,8 +115,6 @@ export class PopupCraftingMedicines extends AbsHandler {
       this.medicineBar.addChild(itemMedicine);
     }
   }
-
-  update(deltaTime: number) {}
 
   onClickExist() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_3);

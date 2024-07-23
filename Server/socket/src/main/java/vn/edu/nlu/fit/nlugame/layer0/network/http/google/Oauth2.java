@@ -33,8 +33,6 @@ public class Oauth2 extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String code = req.getParameter("code");
         String sessionId = req.getParameter("state");
-        System.out.println("code: " + code);
-        System.out.println("sessionId: " + sessionId);
         if (code != null) {
             String accessToken = getToken(code);
             GoogleDTO googleDTO = getUserInfo(accessToken);
