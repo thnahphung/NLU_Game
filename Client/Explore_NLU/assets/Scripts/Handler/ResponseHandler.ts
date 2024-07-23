@@ -11,7 +11,7 @@ import { t } from "../../../extensions/i18n/assets/LanguageData";
 import { PopupSupport } from "../Prefabs/Popup/PopupSupport";
 import { PopupFindTime } from "../Prefabs/Popup/PopupFindTime";
 import DataSender from "../Utils/DataSender";
-import { CHARACTERS } from "../Utils/Const";
+import { CHARACTERS, REWARD_ICONS } from "../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("ResponseHandler")
@@ -179,18 +179,32 @@ export class ResponseHandler extends AbsHandler {
   }
 
   onResCompleteTask(packet: proto.IPacket) {
+    const rewards = [];
     const gold = packet.resCompleteTask.gold;
     const exp = packet.resCompleteTask.exp;
     GlobalData.me().updateProgressTask(packet.resCompleteTask.progressActivity);
     if (gold) {
       GlobalData.me().getMainUser().gold = gold;
       UICanvas.me().loadGold();
+      rewards.push({
+        name: "Gold",
+        quantity: gold,
+        reward: REWARD_ICONS.GOLD,
+      });
     }
-    if (exp) GlobalData.me().getMainUser().level = exp;
+    if (exp) {
+      GlobalData.me().getMainUser().experiencePoints = exp;
+      UICanvas.me().loadExp();
+      rewards.push({
+        name: "Exp",
+        quantity: exp,
+        reward: REWARD_ICONS.EXPERIENCE_POINT,
+      });
+    }
+    UICanvas.me().showListRewardEffect(rewards);
   }
 
   onResMatchmaking(packet: proto.IPacket) {
-    console.log("onResMatchmaking", packet.resMatchmaking);
     let matchmakedUser = packet.resMatchmaking.matchmakedUser;
     let popupSupport = UICanvas.me().getPopupSupport();
     let popupSupportComponent = popupSupport.getComponent(PopupSupport);

@@ -364,7 +364,7 @@ message Activity {
   int32 startDate = 5;
   int32 endate = 6;
   int32 characterId = 7; 
-  RewardItem rewardItem = 8;
+  repeated RewardItem rewardItem = 8;
   int32 turn = 9;
 }
 

@@ -187,6 +187,13 @@ export const languages = {
     cage_cow_lv2: "Big Cow Barn",
     // Reward
     experience_point: "EXP",
+    reward_name_gold: "Gold",
+    reward_name_exp: "Exp",
+    reward_name_rice: "Rice",
+    reward_name_cabbage: "Cabbage",
+    reward_name_carrot: "Carrot",
+    reward_name_cucumber: "Cucumber",
+    reward_name_pumpkin: "Pumpkin",
     // Task
     task_title: "Task",
     btn_get_reward: "Get",

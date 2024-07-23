@@ -246,6 +246,7 @@ export class UICanvas extends Component {
       reward: REWARD_ICONS | string;
     }[]
   ) {
+    if (listReward.length == 0) return;
     listReward.forEach((reward, index) => {
       this.scheduleOnce(() => {
         this.showRewardEffect(reward.name, reward.quantity, reward.reward);

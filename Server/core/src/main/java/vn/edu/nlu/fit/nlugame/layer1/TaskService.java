@@ -5,10 +5,7 @@ import vn.edu.nlu.fit.nlugame.layer2.DataSenderUtils;
 import vn.edu.nlu.fit.nlugame.layer2.SessionManage;
 import vn.edu.nlu.fit.nlugame.layer2.ThreadManage;
 import vn.edu.nlu.fit.nlugame.layer2.dao.*;
-import vn.edu.nlu.fit.nlugame.layer2.dao.bean.ActivityBean;
-import vn.edu.nlu.fit.nlugame.layer2.dao.bean.NoGrowthItemBean;
-import vn.edu.nlu.fit.nlugame.layer2.dao.bean.ProgressActivityBean;
-import vn.edu.nlu.fit.nlugame.layer2.dao.bean.UserBean;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.*;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.ActivityCache;
@@ -17,11 +14,12 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.cache.SessionCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.UserCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 public class TaskService {
     private static TaskService instance = new TaskService();
@@ -36,25 +34,30 @@ public class TaskService {
             return;
         }
         Proto.User user = UserCache.me().getUserOnline(userId);
+        if(user.getCharacter() == null) return;
+        List<Proto.Activity> activityProtos = ActivityCache.me().getAllActivityByCharacterId(user.getCharacterId());
+
         // Load all task
-        List<ActivityBean> activityBeans = ActivityDAO.getTaskByCharacterId(user.getCharacterId());
-        List<Proto.Activity> activityProtos = setProtoActivities(activityBeans);
+        if(activityProtos == null || activityProtos.isEmpty()) {
+            List<ActivityBean> activityBeans = ActivityDAO.getTaskByCharacterId(user.getCharacterId());
+            activityProtos = setProtoActivities(activityBeans);
+        }
         // Add cache
         addActivitiesToCache(activityProtos);
         // Load all progress
         List<ProgressActivityBean> progressActivityBeans = ProgressActivityDAO.getProgressActivityByUserId(userId);
 
         if(progressActivityBeans == null || progressActivityBeans.isEmpty()){
-            for(ActivityBean activityBean : activityBeans) ProgressActivityDAO.insertProgressActivity(userId, activityBean.getId(), 0, 0);
+            for(Proto.Activity activity : activityProtos) ProgressActivityDAO.insertProgressActivity(userId, activity.getId(), 0, 0);
             progressActivityBeans = ProgressActivityDAO.getProgressActivityByUserId(userId);
         }
 
-        if(progressActivityBeans.size() != activityBeans.size()) {
+        if(progressActivityBeans.size() != activityProtos.size()) {
             //TODO: handle when miss progress
-            List<ActivityBean> activityBeansTemp = new ArrayList<>(activityBeans);
+            List<Proto.Activity> activityBeansTemp = new ArrayList<>(activityProtos);
             List<ProgressActivityBean> finalProgressActivityBeans = progressActivityBeans;
-            activityBeansTemp.removeIf(activityBean -> finalProgressActivityBeans.stream().anyMatch(progressActivityBean -> progressActivityBean.getActivityId() == activityBean.getId()));
-            for(ActivityBean activityBean : activityBeansTemp) ProgressActivityDAO.insertProgressActivity(userId, activityBean.getId(), 0, 0);
+            activityBeansTemp.removeIf(activity -> finalProgressActivityBeans.stream().anyMatch(progressActivityBean -> progressActivityBean.getActivityId() == activity.getId()));
+            for(Proto.Activity activityBean : activityBeansTemp) ProgressActivityDAO.insertProgressActivity(userId, activityBean.getId(), 0, 0);
         }
 
         List<Proto.ProgressActivity> progressActivityProtos = new ArrayList<>();
@@ -82,77 +85,83 @@ public class TaskService {
     }
 
     private Proto.Activity addActivityToCache(ActivityBean activityBean) {
-        Proto.NoGrowthItem noGrowthItem = NoGrowthItemCache.me().get(String.valueOf(activityBean.getNoGrowthItemId()));
-        if(noGrowthItem == null) {
-            NoGrowthItemBean noGrowthItemBean = NoGrowthItemDAO.getNoGrowthItemById(activityBean.getNoGrowthItemId());
-            Proto.NoGrowthItem.Builder noGrowthItemBuilder = Proto.NoGrowthItem.newBuilder()
-                    .setId(noGrowthItemBean.getId())
-                    .setName(noGrowthItemBean.getName())
-                    .setPrice(noGrowthItemBean.getPrice())
-                    .setSalePrice(noGrowthItemBean.getSalePrice())
-                    .setExperienceReceive(noGrowthItemBean.getExperienceReceive())
-                    .setStatus(noGrowthItemBean.getStatus())
-                    .setType(noGrowthItemBean.getType())
-                    .setDescription(noGrowthItemBean.getDescription());
-            NoGrowthItemCache.me().add(noGrowthItemBuilder.build());
-            noGrowthItem = noGrowthItemBuilder.build();
-        }
-        Proto.RewardItem rewardItem = Proto.RewardItem.newBuilder()
-                .setNoGrowthItemId(activityBean.getNoGrowthItemId())
-                .setQuantity(activityBean.getQuantity())
-                .setNoGrowthItem(noGrowthItem)
-                .build();
-        Proto.Activity activity = Proto.Activity.newBuilder()
-                .setId(activityBean.getId())
-                .setCode(activityBean.getCode())
-                .setType(activityBean.getType())
-                .setMinLevel(activityBean.getMinLevel())
-                .setCharacterId(activityBean.getCharacterId())
-                .setTurn(activityBean.getTurn())
-                .setRewardItem(rewardItem)
-                .build();
-        ThreadManage.me().execute(() -> ActivityCache.me().add(activity));
-        return activity;
+        List<RewardItemBean> rewardItemBeans = RewardDAO.getRewardsByActivityIds(List.of(activityBean.getId()));
+        Proto.Activity.Builder activity = Proto.Activity.newBuilder();
+        Proto.RewardItem.Builder rewardItem = Proto.RewardItem.newBuilder();
+        rewardItemBeans.forEach(rewardItemBean -> {
+            Proto.NoGrowthItem noGrowthItem = NoGrowthItemCache.me().get(String.valueOf(rewardItemBean.getNoGrowthItemId()));
+            if(noGrowthItem == null) {
+                NoGrowthItemBean noGrowthItemBean = NoGrowthItemDAO.getNoGrowthItemById(rewardItemBean.getNoGrowthItemId());
+                Proto.NoGrowthItem.Builder noGrowthItemBuilder = Proto.NoGrowthItem.newBuilder()
+                        .setId(noGrowthItemBean.getId())
+                        .setName(noGrowthItemBean.getName())
+                        .setPrice(noGrowthItemBean.getPrice())
+                        .setSalePrice(noGrowthItemBean.getSalePrice())
+                        .setExperienceReceive(noGrowthItemBean.getExperienceReceive())
+                        .setStatus(noGrowthItemBean.getStatus())
+                        .setType(noGrowthItemBean.getType())
+                        .setDescription(noGrowthItemBean.getDescription());
+                NoGrowthItemCache.me().add(noGrowthItemBuilder.build());
+                noGrowthItem = noGrowthItemBuilder.build();
+            }
+
+            rewardItem.setNoGrowthItemId(rewardItemBean.getNoGrowthItemId());
+            rewardItem.setQuantity(rewardItemBean.getQuantity());
+            rewardItem.setNoGrowthItem(noGrowthItem);
+            rewardItem.build();
+        });
+
+        activity.setId(activityBean.getId());
+        activity.setCode(activityBean.getCode());
+        activity.setType(activityBean.getType());
+        activity.setMinLevel(activityBean.getMinLevel());
+        activity.setCharacterId(activityBean.getCharacterId());
+        activity.setTurn(activityBean.getTurn());
+        activity.addRewardItem(rewardItem);
+        ThreadManage.me().execute(() -> ActivityCache.me().add(activity.build()));
+        return activity.build();
     }
 
     private List<Proto.Activity> setProtoActivities(List<ActivityBean> activityBeans) {
         List<Proto.Activity> activityProtos = new ArrayList<>();
+
+        List<RewardItemBean> rewardItemBeans = RewardDAO.getRewardsByActivityIds(activityBeans.stream().map(ActivityBean::getId).collect(Collectors.toList()));
+
         for(ActivityBean activityBean : activityBeans) {
-            Proto.NoGrowthItem noGrowthItem = NoGrowthItemCache.me().get(String.valueOf(activityBean.getNoGrowthItemId()));
-            if(noGrowthItem == null) {
-                List<NoGrowthItemBean> noGrowthItemBeans = NoGrowthItemDAO.getAllNoGrowthItems();
-                for(NoGrowthItemBean noGrowthItemBean : noGrowthItemBeans) {
-                    Proto.NoGrowthItem.Builder noGrowthItemBuilder = Proto.NoGrowthItem.newBuilder()
-                            .setId(noGrowthItemBean.getId())
-                            .setName(noGrowthItemBean.getName())
-                            .setPrice(noGrowthItemBean.getPrice())
-                            .setSalePrice(noGrowthItemBean.getSalePrice())
-                            .setExperienceReceive(noGrowthItemBean.getExperienceReceive())
-                            .setStatus(noGrowthItemBean.getStatus())
-                            .setType(noGrowthItemBean.getType())
-                            .setDescription(noGrowthItemBean.getDescription());
-                    NoGrowthItemCache.me().add(noGrowthItemBuilder.build());
-                    if(noGrowthItemBean.getId() == activityBean.getNoGrowthItemId()) {
-                        noGrowthItem = noGrowthItemBuilder.build();
-                    }
-                }
-            }
-            if(noGrowthItem == null) noGrowthItem = Proto.NoGrowthItem.newBuilder().build();
-            Proto.RewardItem rewardItem = Proto.RewardItem.newBuilder()
-                    .setNoGrowthItemId(activityBean.getNoGrowthItemId())
-                    .setQuantity(activityBean.getQuantity())
-                    .setNoGrowthItem(noGrowthItem)
-                    .build();
-            Proto.Activity activityProto = Proto.Activity.newBuilder()
+            List<Proto.RewardItem> rewardItems = rewardItemBeans.stream().filter(rewardItemBean -> rewardItemBean.getActivityId() == activityBean.getId())
+                    .map(rewardItemBean -> {
+                        Proto.NoGrowthItem noGrowthItem = NoGrowthItemCache.me().get(String.valueOf(rewardItemBean.getNoGrowthItemId()));
+                        if(noGrowthItem == null) {
+                            NoGrowthItemBean noGrowthItemBean = NoGrowthItemDAO.getNoGrowthItemById(rewardItemBean.getNoGrowthItemId());
+                            Proto.NoGrowthItem.Builder noGrowthItemBuilder = Proto.NoGrowthItem.newBuilder()
+                                    .setId(noGrowthItemBean.getId())
+                                    .setName(noGrowthItemBean.getName())
+                                    .setPrice(noGrowthItemBean.getPrice())
+                                    .setSalePrice(noGrowthItemBean.getSalePrice())
+                                    .setExperienceReceive(noGrowthItemBean.getExperienceReceive())
+                                    .setStatus(noGrowthItemBean.getStatus())
+                                    .setType(noGrowthItemBean.getType())
+                                    .setDescription(noGrowthItemBean.getDescription());
+                            NoGrowthItemCache.me().add(noGrowthItemBuilder.build());
+                            noGrowthItem = noGrowthItemBuilder.build();
+                        }
+
+                        Proto.RewardItem.Builder rewardItem = Proto.RewardItem.newBuilder()
+                                .setNoGrowthItemId(rewardItemBean.getNoGrowthItemId())
+                                .setQuantity(rewardItemBean.getQuantity())
+                                .setNoGrowthItem(noGrowthItem);
+                        return rewardItem.build();
+                    })
+                    .collect(Collectors.toList());
+            Proto.Activity.Builder activityBuilder = Proto.Activity.newBuilder()
                     .setId(activityBean.getId())
                     .setCode(activityBean.getCode())
                     .setType(activityBean.getType())
                     .setMinLevel(activityBean.getMinLevel())
                     .setCharacterId(activityBean.getCharacterId())
                     .setTurn(activityBean.getTurn())
-                    .setRewardItem(rewardItem)
-                    .build();
-            activityProtos.add(activityProto);
+                    .addAllRewardItem(rewardItems);
+            activityProtos.add(activityBuilder.build());
         }
         return activityProtos;
     }
@@ -215,22 +224,34 @@ public class TaskService {
         Proto.ProgressActivity progressActivityUpdate = setProtoProgressActivity(ProgressActivityDAO.getProgressActivityById(progressActivity.getUserId(), progressActivity.getActivityId()));
 
         // Update gold
-        long updateGold = 0;
-        if(activity.getRewardItem().getNoGrowthItem().getName().equals("gold")){
-            UserContext userContext = UserCache.me().get(String.valueOf(userId));
-            updateGold = userContext.getUser().getGold() + activity.getRewardItem().getNoGrowthItem().getPrice() * activity.getRewardItem().getQuantity();
-            UserDAO.updateGold(progressActivity.getUserId(), updateGold);
-            Proto.User newUserContext = userContext.getUser().toBuilder().setGold(updateGold).build();
-            userContext.setUser(newUserContext);
+        AtomicLong updateGold = new AtomicLong();
+        AtomicLong updateExp = new AtomicLong();
+        UserContext userContext = UserCache.me().get(String.valueOf(userId));
+        activity.getRewardItemList().forEach(rewardItem -> {
+            if(rewardItem.getNoGrowthItem().getName().equals("gold")){
+                updateGold.set(userContext.getUser().getGold() + rewardItem.getQuantity());
+                UserDAO.updateGold(userContext.getUser().getUserId(), updateGold.get());
+                Proto.User newUserContext = userContext.getUser().toBuilder().setGold(updateGold.get()).build();
+                userContext.setUser(newUserContext);
+
+            }
+            if(rewardItem.getNoGrowthItem().getName().equals("exp")){
+                updateExp.set(userContext.getUser().getExperiencePoints() + rewardItem.getQuantity());
+                UserDAO.updateExperiencePoints(userContext.getUser().getUserId(), (int) updateExp.get());
+                Proto.User newUserContext = userContext.getUser().toBuilder().setExperiencePoints((int)updateExp.get()).build();
+                userContext.setUser(newUserContext);
+            }
             UserCache.me().add(String.valueOf(userId), userContext);
-        }
+        });
         // Send response
+        Proto.ResCompleteTask.Builder resCompleteTask = Proto.ResCompleteTask.newBuilder();
+        if(updateGold.get() > 0) resCompleteTask.setGold(updateGold.get());
+        if(updateExp.get() > 0) resCompleteTask.setExp((int) updateExp.get());
+        resCompleteTask.setProgressActivity(progressActivityUpdate);
+
         if(statusUpdate == 200) {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder()
-                    .setResCompleteTask(Proto.ResCompleteTask.newBuilder()
-                            .setProgressActivity(progressActivityUpdate)
-                            .setGold(updateGold)
-                            .build())
+                    .setResCompleteTask(resCompleteTask)
                     .build());
         }
     }
@@ -296,6 +317,7 @@ public class TaskService {
         if(progressActivityBean == null || progressActivityBean.getStatus() == 1) return;
 
         Proto.Activity activity = ActivityCache.me().get(String.valueOf(progressActivityBean.getActivityId()));
+
         if(activity == null) {
             ActivityBean activityBean = ActivityDAO.getTaskById(progressActivityBean.getActivityId());
             activity = addActivityToCache(activityBean);

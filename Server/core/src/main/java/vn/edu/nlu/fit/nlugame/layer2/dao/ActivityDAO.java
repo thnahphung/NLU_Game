@@ -24,7 +24,8 @@ public class ActivityDAO extends BaseDAO{
         if (jdbi == null) {
             return null;
         }
-        return jdbi.withHandle(handle -> handle.createQuery("SELECT a.id, a.turn, a.code, a.type, a.min_level, a.start_date, a.end_date, a.character_id, r.no_growth_item_id, r.quantity FROM " + TABLE_NAME + " a left join reward_items r on a.id = r.activity_id WHERE a.type = 0 and a.character_id = :characterId and a.start_date <= now() and a.end_date >= now()")
+
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT a.id, a.turn, a.code, a.type, a.min_level, a.start_date, a.end_date, a.character_id FROM " + TABLE_NAME + " a WHERE a.type = 0 and a.character_id = :characterId and a.start_date <= now() and a.end_date >= now()")
                 .bind("characterId", characterId)
                 .mapToBean(ActivityBean.class)
                 .list());
