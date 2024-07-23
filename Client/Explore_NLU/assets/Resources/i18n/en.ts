@@ -135,6 +135,10 @@ export const languages = {
     summer: "Summer",
     autumn: "Autumn",
     winter: "Winter",
+    //Button common
+    btn_comfirm: "Confirm",
+    btn_cancel: "Cancel",
+    btn_continue: "Continue",
     //Shop Name
     crop_shop: "Crop Shop",
     animal_shop: "Animal Shop",

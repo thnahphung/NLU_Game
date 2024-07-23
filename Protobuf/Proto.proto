@@ -103,8 +103,12 @@ message Packet {
     ResTillLandByMachine resTillLandByMachine = 94;
     ReqHarvestByMachine reqHarvestByMachine = 95;
     ResHarvestByMachine resHarvestByMachine = 96;
-    ReqLoadPartsOfMachine reqLoadPartsOfMachine = 97;
-    ResLoadPartsOfMachine resLoadPartsOfMachine = 98;
+    ReqLoadFormulasOfMachine reqLoadFormulasOfMachine = 97;
+    ResLoadFormulasOfMachine resLoadFormulasOfMachine = 98;
+    ReqLoadAllMachineFormula reqLoadAllMachineFormula = 99;
+    ResLoadAllMachineFormula resLoadAllMachineFormula = 100;
+    ReqManufactureMachine reqManufactureMachine = 103;
+    ResManufactureMachine resManufactureMachine = 104;
   }
 }
 
@@ -836,6 +840,10 @@ message ResTillLand{
   int32 mainUserId = 1;
   int32 areaId = 2;
   repeated TillLand tillLands = 3;
+  repeated Reward rewards = 4;
+  int32 gold = 5;
+  int32 exp = 6;
+  int32 supportUserId = 7;
 }
 
 message ReqLoadAllMedicine{}
@@ -896,10 +904,38 @@ message ResHarvestByMachine {
   Position plantingLandPosition = 3;
 }
 
-message ReqLoadPartsOfMachine {
+message ReqLoadFormulasOfMachine {
   NoGrowthItem noGrowthItem = 1;
 }
 
-message ResLoadPartsOfMachine {
+message ResLoadFormulasOfMachine {
+  Machine Machine = 1;
+}
+
+message ReqLoadAllMachineFormula{}
+
+message ResLoadAllMachineFormula{
   repeated NoGrowthItem noGrowthItems = 1;
+}
+
+message ReqManufactureMachine{
+ Machine machine = 1;
+}
+
+message ResManufactureMachine{
+  PropertyMachine PropertyMachine = 1;
+  int32 status = 2;
+}
+
+message Machine {
+  NoGrowthItem noGrowthItem = 1;
+  repeated FormulaMachine FormulaMachines = 2;
+}
+
+message FormulaMachine{
+  int32 noGrowthItemId = 1;
+  int32 noGrowthItemResultId = 2;
+  int32 quantity = 3;
+  int32 userQuantity = 4;
+  NoGrowthItem noGrowthItem = 5;
 }
