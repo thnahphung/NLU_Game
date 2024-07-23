@@ -38,5 +38,8 @@ public class FormulaDAO extends BaseDAO {
         });
     }
 
+    public static void main(String[] args) {
+        System.out.println(FormulaDAO.getFormulasByNoGrowthItemResultId(14));;
+    }
 
 }

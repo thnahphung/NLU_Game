@@ -16,10 +16,18 @@ public class MechanicalHandler implements Subscriber{
     public void onMessage(Session session, Proto.PacketWrapper packetWrapper) {
         packetWrapper.getPacketList().forEach(packet -> {
             switch (packet.getDataCase()) {
+                case REQMANUFACTUREMACHINE:
+                    mechanicalService.manufactureMachine(session, packet.getReqManufactureMachine());
+                    break;
                 case REQLOADMACHINES:
                     mechanicalService.loadMachines(session, packet.getReqLoadMachines());
-                case REQLOADPARTSOFMACHINE:
-                    mechanicalService.loadPartsOfMachine(session, packet.getReqLoadPartsOfMachine());
+                    break;
+                case REQLOADFORMULASOFMACHINE:
+                    mechanicalService.loadFormulasOfMachine(session, packet.getReqLoadFormulasOfMachine());
+                    break;
+                case REQLOADALLMACHINEFORMULA:
+                    mechanicalService.loadAllMachineFormula(session, packet.getReqLoadAllMachineFormula());
+                    break;
             }
         });
     }
