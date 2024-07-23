@@ -70,14 +70,14 @@ public class PropertyGrowthItemDAO extends BaseDAO {
                 .mapToBean(PropertyGrowthItemBean.class).findOne().orElse(null));
     }
 
-    public static void updateDisease(int propertyGrowthItemId, int id, int startTimeDisease) {
+    public static void updateDisease(int propertyGrowthItemId, int currentDiseaseId, int startTimeDisease, boolean isDisease) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
             throw new RuntimeException("Cannot connect to database");
         }
         jdbi.useHandle(handle -> handle.createUpdate("UPDATE " + TABLE_PROPERTY_GROWTH_ITEM + " SET current_disease_id = :currentDiseaseId, is_disease = :isDisease, start_time_disease = :startTimeDisease WHERE id = :id")
-                .bind("currentDiseaseId", id)
-                .bind("isDisease", true)
+                .bind("currentDiseaseId", currentDiseaseId)
+                .bind("isDisease", isDisease)
                 .bind("startTimeDisease", startTimeDisease)
                 .bind("id", propertyGrowthItemId)
                 .execute());

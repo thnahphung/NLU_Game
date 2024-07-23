@@ -22,7 +22,16 @@ public class UserDAO extends BaseDAO {
         return jdbi.withHandle(h -> h.createQuery("select id,username,password,player_name,gender,gold,level,experience_points,email,active,relogin_token,character_id,has_character,is_new_account from " + TABLE_NAME + " where username = :username")
                 .bind("username", username)
                 .mapToBean(UserBean.class).stream().findFirst().orElse(null));
+    }
 
+    public static UserBean getUserById(int userId) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(h -> h.createQuery("select id,username,password,player_name,gender,gold,level,experience_points,email,active,relogin_token,character_id,has_character,is_new_account from " + TABLE_NAME + " where id = :userId")
+                .bind("userId", userId)
+                .mapToBean(UserBean.class).stream().findFirst().orElse(null));
     }
 
     public static UserBean getUserByEmail(String email) {
@@ -278,6 +287,28 @@ public class UserDAO extends BaseDAO {
                 .bind("gold", gold)
                 .bind("id", userId)
                 .execute());
+    }
+
+    public static void updateIncreaseGold(int userId, long goldIncrease) {
+        if (getJdbi() == null) return;
+
+        getJdbi().useHandle(handle -> {
+            handle.createUpdate("update " + TABLE_NAME + " set gold = gold + :goldIncrease where id = :id")
+                    .bind("goldIncrease", goldIncrease)
+                    .bind("id", userId)
+                    .execute();
+        });
+    }
+
+    public static void updateDecreaseGold(int userId, long goldDecrease) {
+        if (getJdbi() == null) return;
+
+        getJdbi().useHandle(handle -> {
+            handle.createUpdate("update " + TABLE_NAME + " set gold = gold - :goldDecrease where id = :id")
+                    .bind("goldDecrease", goldDecrease)
+                    .bind("id", userId)
+                    .execute();
+        });
     }
 
     public static void updateLevel(int userId, int level) {

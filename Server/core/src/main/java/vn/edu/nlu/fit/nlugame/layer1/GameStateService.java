@@ -116,7 +116,7 @@ public class GameStateService {
         for (Integer index : randomNumbers) {
             PropertyAnimalBean propertyAnimalBean = propertyAnimalBeansNotDisease.get(index);
             DiseaseBean diseaseBean = diseaseBeans.get(random.nextInt(diseaseBeans.size()));
-            PropertyGrowthItemDAO.updateDisease(propertyAnimalBean.getPropertyGrowthItemId(), diseaseBean.getId(), newGameStateBean.getCurrentDate());
+            PropertyGrowthItemDAO.updateDisease(propertyAnimalBean.getPropertyGrowthItemId(), diseaseBean.getId(), newGameStateBean.getCurrentDate(), true);
             if (animalCageMap.containsKey(propertyAnimalBean.getCageId())) {
                 animalCageMap.get(propertyAnimalBean.getCageId()).add(propertyAnimalBean);
             } else {

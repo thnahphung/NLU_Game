@@ -84,8 +84,16 @@ export class Animal extends Component {
   }
 
   public checkDisease() {
-    if (this.animal.propertyGrowthItem.isDisease) {
+    if (
+      this.animal.propertyGrowthItem.isDisease &&
+      this.animalSprite.color.toHEX() != "#83FFB5"
+    ) {
       this.animalSprite.color = new Color("#83FFB5");
+    } else if (
+      !this.animal.propertyGrowthItem.isDisease &&
+      this.animalSprite.color.toHEX() != "#ffffff"
+    ) {
+      this.animalSprite.color = new Color("#ffffff");
     }
   }
 

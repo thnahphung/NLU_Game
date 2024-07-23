@@ -103,12 +103,16 @@ message Packet {
     ResTillLandByMachine resTillLandByMachine = 94;
     ReqHarvestByMachine reqHarvestByMachine = 95;
     ResHarvestByMachine resHarvestByMachine = 96;
-    ReqLoadFormulasOfMachine reqLoadFormulasOfMachine = 97;
-    ResLoadFormulasOfMachine resLoadFormulasOfMachine = 98;
-    ReqLoadAllMachineFormula reqLoadAllMachineFormula = 99;
-    ResLoadAllMachineFormula resLoadAllMachineFormula = 100;
-    ReqManufactureMachine reqManufactureMachine = 103;
-    ResManufactureMachine resManufactureMachine = 104;
+    ReqDiagnosisAnimal reqDiagnosisAnimal = 99;
+    ResDiagnosisAnimal resDiagnosisAnimal = 100;
+    ResDiagnosisAnimalOtherPlayer resDiagnosisAnimalOtherPlayer = 101;
+    ResDiagnosisOwnerOfAnimal resDiagnosisOwnerOfAnimal = 102;
+    ReqLoadFormulasOfMachine reqLoadFormulasOfMachine = 103;
+    ResLoadFormulasOfMachine resLoadFormulasOfMachine = 104;
+    ReqLoadAllMachineFormula reqLoadAllMachineFormula = 105;
+    ResLoadAllMachineFormula resLoadAllMachineFormula = 106;
+    ReqManufactureMachine reqManufactureMachine = 107;
+    ResManufactureMachine resManufactureMachine = 108;
   }
 }
 
@@ -916,6 +920,29 @@ message ReqLoadAllMachineFormula{}
 
 message ResLoadAllMachineFormula{
   repeated NoGrowthItem noGrowthItems = 1;
+}
+
+message ReqDiagnosisAnimal{
+  int32 animalId = 1;
+  int32 diseaseId = 2;
+}
+
+message ResDiagnosisAnimalOtherPlayer{
+  int32 status = 1;
+  int32 animalId = 2;
+}
+
+message ResDiagnosisAnimal{
+  int32 status = 1;
+  int32 animalId = 2;
+  WarehouseItem warehouseItem = 3;
+  int32 gold = 4;
+}
+
+message ResDiagnosisOwnerOfAnimal{
+  int32 status = 1;
+  int32 animalId = 2;
+  int32 gold = 3;
 }
 
 message ReqManufactureMachine{
