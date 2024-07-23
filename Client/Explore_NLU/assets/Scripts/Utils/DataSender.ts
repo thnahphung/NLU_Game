@@ -343,14 +343,14 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendResLoadAllFormula() {
+  public static sendReqLoadAllFormula() {
     let reqLoadAllFormula = new proto.ReqLoadAllFormula();
     let packet = new proto.Packet();
     packet.reqLoadAllFormula = reqLoadAllFormula;
     WS.send(packet);
   }
 
-  public static sendResLoadAllMedicine() {
+  public static sendReqLoadAllMedicine() {
     let reqLoadAllMedicine = new proto.ReqLoadAllMedicine();
     let packet = new proto.Packet();
     packet.reqLoadAllMedicine = reqLoadAllMedicine;
@@ -374,7 +374,9 @@ export default class DataSender {
     reqLoadQuestion.propertyGrowthItem = propertyGrowthItem;
     let packet = new proto.Packet();
     packet.reqLoadQuestion = reqLoadQuestion;
+    WS.send(packet);
   }
+
   public static sendPong() {
     let reqPong = new proto.ReqPong();
     let packet = new proto.Packet();
@@ -429,6 +431,18 @@ export default class DataSender {
     reqManufactureMachine.machine = machine;
     let packet = new proto.Packet();
     packet.reqManufactureMachine = reqManufactureMachine;
+    WS.send(packet);
+  }
+
+  public static sendReqDiagnosisAnimal(
+    animalId: number,
+    diseaseDiagnosisId: number
+  ) {
+    let reqDiagnosisAnimal = new proto.ReqDiagnosisAnimal();
+    reqDiagnosisAnimal.animalId = animalId;
+    reqDiagnosisAnimal.diseaseId = diseaseDiagnosisId;
+    let packet = new proto.Packet();
+    packet.reqDiagnosisAnimal = reqDiagnosisAnimal;
     WS.send(packet);
   }
 }

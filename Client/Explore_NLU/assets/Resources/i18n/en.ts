@@ -123,6 +123,22 @@ export const languages = {
     please_choose_medicine: "Please choose a medicine!",
     incorrect_formula: "Incorrect formula!",
     popup_question: "Here are the symptoms, please provide your diagnosis:",
+    diagnosis_animal_400:
+      "You no longer have enough medicine for this type of disease.",
+    diagnosis_animal_401:
+      "You do not have enough money to compensate. Complete tasks to earn more money.",
+    diagnosis_animal_402:
+      "The owner of the animal does not have enough money to pay you.",
+    diagnosis_owner_of_animal_403:
+      "You no longer have enough money to seek treatment. Complete tasks to earn more money.",
+    diagnosis_owner_of_animal_404:
+      "The veterinarian misdiagnosed the disease. You will receive compensation.",
+    diagnosis_animal_405:
+      "You have chosen the wrong type of disease. You have lost a medicine and must compensate for it.",
+    diagnosis_owner_of_animal_200:
+      "An animal has been successfully treated, and you have been charged to pay the veterinarian.",
+    diagnosis_animal_200:
+      "Successful treatment, you have received money from the owner of the animal.",
     //Area Name
     phuong_vi: "Phuong Vi",
     cam_tu: "Cam Tu",
@@ -246,6 +262,10 @@ export const languages = {
     formula_lemon_juice: "Lemon Juice Extract",
     formula_sea_salt: "Sea Salt Water",
     formula_sugar: "Sugar Water",
+    // Disease Name
+    disease_pasteurellosis: "Pasteurellosis",
+    disease_internal_parasites: "Internal Parasites",
+    disease_cholera: "Cholera",
   },
 };
 

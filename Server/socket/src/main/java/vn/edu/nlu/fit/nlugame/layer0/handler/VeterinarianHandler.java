@@ -30,6 +30,9 @@ public class VeterinarianHandler implements Subscriber {
                 case REQLOADQUESTION:
                     veterinarianService.loadQuestion(session, packet.getReqLoadQuestion());
                     break;
+                case REQDIAGNOSISANIMAL:
+                    veterinarianService.diagnosisAnimal(session, packet.getReqDiagnosisAnimal());
+                    break;
             }
         });
 

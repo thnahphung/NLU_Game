@@ -1,5 +1,6 @@
 import {
   _decorator,
+  Button,
   Component,
   Input,
   instantiate,
@@ -27,13 +28,21 @@ export class PopupDiagnosis extends AbsHandler {
 
   private animal: proto.IAnimal;
 
+  protected onLoad(): void {
+    HandlerManager.me().registerHandler(this);
+  }
+
   start() {
     this.blackBackground.on(Input.EventType.TOUCH_START, this.hidePopup, this);
-    HandlerManager.me().registerHandler(this);
+
     DataSender.sendReqLoadDetailDisease(
       this.animal.propertyGrowthItem.currentDiseaseId
     );
-    DataSender.sendReqLoadQuestion(this.animal.propertyGrowthItem.id);
+    this.scheduleOnce(() => {
+      DataSender.sendReqLoadQuestion(
+        this.animal.propertyGrowthItem.currentDiseaseId
+      );
+    }, 0.1);
   }
 
   public init(animal: proto.IAnimal) {
@@ -55,6 +64,11 @@ export class PopupDiagnosis extends AbsHandler {
     for (let disease of packet.diseases) {
       let itemAnswer = instantiate(this.itemAnswerPrefab);
       itemAnswer.getComponent(ItemAnswer).init(disease);
+      itemAnswer.on(
+        Button.EventType.CLICK,
+        () => this.onClickItemAnswer(itemAnswer.getComponent(ItemAnswer)),
+        this
+      );
       this.answerPanel.addChild(itemAnswer);
     }
   }
@@ -69,12 +83,22 @@ export class PopupDiagnosis extends AbsHandler {
     }
     this.symptomsLabel.string = text;
   }
+
   protected onDestroy(): void {
     HandlerManager.me().unRegisterHandler(this);
   }
 
   public hidePopup() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_3);
+    this.node.getComponent(PopupComponent).hide();
+    this.scheduleOnce(() => {
+      this.node.destroy();
+    }, 0.3);
+  }
+
+  public onClickItemAnswer(item: ItemAnswer) {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
+    DataSender.sendReqDiagnosisAnimal(this.animal.id, item.getDisease().id);
     this.node.getComponent(PopupComponent).hide();
     this.scheduleOnce(() => {
       this.node.destroy();

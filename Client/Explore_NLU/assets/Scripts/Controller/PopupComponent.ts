@@ -15,7 +15,6 @@ export class PopupComponent extends Component {
   private originalScale: Vec3 = null;
   protected onLoad(): void {
     this.background = this.node.getChildByName("BlackBackground");
-    console.log(this.background);
     this.originalScale = this.background ? this.background.scale.clone() : null;
     this.node.scale = new Vec3(0, 0, 0);
   }
