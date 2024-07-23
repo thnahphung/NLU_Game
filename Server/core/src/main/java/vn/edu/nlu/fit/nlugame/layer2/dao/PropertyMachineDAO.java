@@ -80,6 +80,28 @@ public class PropertyMachineDAO extends BaseDAO{
                         .orElse(null));
     }
 
+    public static boolean updatePropertyMachine(PropertyMachineBean propertyMachineBean){
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return false;
+        }
+        int count = jdbi.withHandle(handle -> handle.createUpdate("UPDATE " + TABLE_NAME + " SET speed = :speed, durable = :durable, power = :power, number_star = :numberStar, level = :level, value = :value " +
+                "WHERE user_id = :userId AND id = :id")
+                .bind("speed", propertyMachineBean.getSpeed())
+                .bind("durable", propertyMachineBean.getDurable())
+                .bind("power", propertyMachineBean.getPower())
+                .bind("numberStar", propertyMachineBean.getNumberStar())
+                .bind("level", propertyMachineBean.getLevel())
+                .bind("value", propertyMachineBean.getValue())
+                .bind("userId", propertyMachineBean.getUserId())
+                .bind("id", propertyMachineBean.getId())
+                .execute());
+        if (count == 0) {
+            return false;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         System.out.println(getPropertyMachine(9, 14));
     }

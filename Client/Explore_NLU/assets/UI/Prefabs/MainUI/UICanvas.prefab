@@ -156,7 +156,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 447.43297587131366,
+    "_orthoHeight": 395.841935483871,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -8164,7 +8164,9 @@
     "popupMenuAnimalFood": null,
     "popupMenuToolFarm": null,
     "popupMenuSeedFarm": null,
+    "popupMenuMechanical": null,
     "popupFactory": null,
+    "healingPanel": null,
     "prefabPopupMessage": {
       "__uuid__": "a55639b8-331a-4818-a0e8-bbaea33e698f",
       "__expectedType__": "cc.Prefab"
@@ -8179,10 +8181,6 @@
     },
     "prefabTransitionScene": {
       "__uuid__": "63d99430-c7a5-4da3-a530-be4b57721953",
-      "__expectedType__": "cc.Prefab"
-    },
-    "buttonBuilding": {
-      "__uuid__": "b03ffe19-76d3-47de-b74d-84cc7b4249e9",
       "__expectedType__": "cc.Prefab"
     },
     "prefabPopupConnectionNotify": {
@@ -8223,6 +8221,10 @@
     },
     "prefabPopupFindTime": {
       "__uuid__": "458c39be-d6b4-4757-a457-e0f5a9b699e3",
+      "__expectedType__": "cc.Prefab"
+    },
+    "prefabPopupManufactureResult": {
+      "__uuid__": "4a307152-d95f-4132-bfd8-46baba92c34a",
       "__expectedType__": "cc.Prefab"
     },
     "_id": ""

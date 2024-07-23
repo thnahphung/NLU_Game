@@ -158,6 +158,7 @@ export const languages = {
     //Button common
     btn_comfirm: "Xác nhận",
     btn_cancel: "Hủy",
+    btn_continue: "Tiếp tục",
     //Shop Name
     crop_shop: "Cây Trồng",
     animal_shop: "Động vật",
@@ -227,6 +228,8 @@ export const languages = {
     mac_manufacture: "Chế tạo",
     mac_manufacture_success: "Chế tạo thành công",
     mac_manufacture_fail: "Chế tạo thất bại",
+    mac_manufacture_fail_400: "Không đủ nguyên liệu",
+     mac_manufacture_fail_401: "Máy đã đạt cấp tối đa",
     // Help
     help_title: "Trợ giúp",
     help_find: "Tìm kiếm",

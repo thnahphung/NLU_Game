@@ -1,15 +1,13 @@
 package vn.edu.nlu.fit.nlugame.layer2.dao.bean;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class FormulaBean {
     @ColumnName("no_growth_item_id")
     int noGrowthItemId;

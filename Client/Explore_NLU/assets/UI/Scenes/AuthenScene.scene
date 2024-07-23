@@ -8132,7 +8132,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 595.7775821596244,
+    "_orthoHeight": 395.841935483871,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -11437,7 +11437,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 595.7775821596244,
+    "_orthoHeight": 395.841935483871,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -11590,7 +11590,9 @@
     "popupMenuAnimalFood": null,
     "popupMenuToolFarm": null,
     "popupMenuSeedFarm": null,
+    "popupMenuMechanical": null,
     "popupFactory": null,
+    "healingPanel": null,
     "prefabPopupMessage": {
       "__uuid__": "a55639b8-331a-4818-a0e8-bbaea33e698f",
       "__expectedType__": "cc.Prefab"
@@ -11607,7 +11609,6 @@
       "__uuid__": "63d99430-c7a5-4da3-a530-be4b57721953",
       "__expectedType__": "cc.Prefab"
     },
-    "buttonBuilding": null,
     "prefabPopupConnectionNotify": {
       "__uuid__": "58ce0c6c-c417-4609-8556-a9296df3e448",
       "__expectedType__": "cc.Prefab"
@@ -11914,6 +11915,38 @@
       },
       {
         "__uuid__": "ab0369a3-cbe9-473b-a1e0-0ba692c61771@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "7b5873d1-b963-4796-8092-8881d8454ac2@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "80f69c44-2234-43b5-8158-62a724e65257@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "976c67e1-f89f-4472-8928-fe4f74e43947@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "350c574c-b0b9-416b-bba7-82ef9f431c36@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "a75e91ab-175c-4a2a-ac64-7f0a1d94dfad@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "ed0f4fc9-4b78-4cf2-a142-e4e3aadce157@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "baa31e78-875c-455e-847c-9f86739e75f3@f9941",
+        "__expectedType__": "cc.SpriteFrame"
+      },
+      {
+        "__uuid__": "c9c718b9-aea2-40a3-989c-4e89ffc7b7b1@f9941",
         "__expectedType__": "cc.SpriteFrame"
       }
     ],

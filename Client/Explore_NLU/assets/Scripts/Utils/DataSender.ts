@@ -408,11 +408,29 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqLoadPartOfMachine(noGrowthItem: proto.INoGrowthItem) {
-    let reqLoadPartsOfMachine = new proto.ReqLoadPartsOfMachine();
-    reqLoadPartsOfMachine.noGrowthItem = noGrowthItem;
+  public static sendReqLoadFormulaOfMachine(noGrowthItem: proto.INoGrowthItem) {
+    console.log("sendReqLoadFormulaOfMachine");
+    let reqLoadFormulasOfMachine = new proto.ReqLoadFormulasOfMachine();
+    reqLoadFormulasOfMachine.noGrowthItem = noGrowthItem;
     let packet = new proto.Packet();
-    packet.reqLoadPartsOfMachine = reqLoadPartsOfMachine;
+    packet.reqLoadFormulasOfMachine = reqLoadFormulasOfMachine;
+    WS.send(packet);
+  }
+
+  public static sendReqLoadAllMachineFormula() {
+    console.log("sendReqLoadAllMachineFormula");
+    let reqLoadAllMachineFormula = new proto.ReqLoadAllMachineFormula();
+    let packet = new proto.Packet();
+    packet.reqLoadAllMachineFormula = reqLoadAllMachineFormula;
+    WS.send(packet);
+  }
+
+  public static sendReqManufactureMachine(machine: proto.IMachine) {
+    console.log("sendReqManufactureMachine", machine);
+    let reqManufactureMachine = new proto.ReqManufactureMachine();
+    reqManufactureMachine.machine = machine;
+    let packet = new proto.Packet();
+    packet.reqManufactureMachine = reqManufactureMachine;
     WS.send(packet);
   }
 

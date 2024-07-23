@@ -31,6 +31,8 @@ import { PopupFactory } from "../Popup/PopupFactory";
 import { AudioManger } from "../../Manager/AudioManger";
 import { ResourceManager } from "../../Manager/ResourceManager";
 import { PopupDiagnosis } from "../Popup/PopupDiagnosis";
+import { PopupManufactureResult } from "../Popup/PopupManufactureResult";
+import { t } from "../../../../extensions/i18n/assets/LanguageData";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -65,6 +67,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupAid: Prefab;
   @property(Prefab) private prefabPopupCraftingMedicines: Prefab;
   @property(Prefab) private prefabPopupDiagnosis: Prefab;
+  @property(Prefab) private prefabPopupManufactureResult: Prefab;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -78,6 +81,7 @@ export class UICanvas extends Component {
   private _popupFindTime: Node;
   private _popupCageInformation: Node;
   private _popupAid: Node;
+  private _popupManufactureResult: Node;
 
   //Lock button
   private isLocked: boolean = false;
@@ -524,5 +528,41 @@ export class UICanvas extends Component {
     popupDiagnosis.getComponent(PopupDiagnosis).init(animal);
     this.node.getChildByName("PopupLayer").addChild(popupDiagnosis);
     popupDiagnosis.getComponent(PopupComponent).show();
+  }
+
+  showPopupManufactureResult(
+    speed: number,
+    power: number,
+    value: number,
+    durability: number,
+    machineSprite: string,
+    status: number
+  ) {
+    if (
+      this.node
+        .getChildByName("PopupLayer")
+        .getChildByName("PopupManufactureResult")
+    ) {
+      return;
+    }
+    let popupManufactureResult = instantiate(this.prefabPopupManufactureResult);
+    if (status == 201) {
+      popupManufactureResult
+        .getComponent(PopupManufactureResult)
+        .initSuccess(speed, power, value, durability, machineSprite);
+    } else {
+      popupManufactureResult
+        .getComponent(PopupManufactureResult)
+        .initFail(machineSprite);
+    }
+    this.node.getChildByName("PopupLayer").addChild(popupManufactureResult);
+    popupManufactureResult.getComponent(PopupComponent).show();
+  }
+
+  closePopupManufactureResult() {
+    if (this._popupManufactureResult) {
+      this._popupManufactureResult.destroy();
+      this._popupManufactureResult = null;
+    }
   }
 }
