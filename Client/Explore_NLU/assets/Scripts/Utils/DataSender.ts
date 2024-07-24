@@ -445,4 +445,18 @@ export default class DataSender {
     packet.reqDiagnosisAnimal = reqDiagnosisAnimal;
     WS.send(packet);
   }
+
+  public static sendReqAnimalMoving(
+    animalId: number,
+    areaId: number,
+    targetPosition: proto.Position
+  ) {
+    let reqAnimalMoving = new proto.ReqAnimalMoving();
+    reqAnimalMoving.animalId = animalId;
+    reqAnimalMoving.areaId = areaId;
+    reqAnimalMoving.targetPosition = targetPosition;
+    let packet = new proto.Packet();
+    packet.reqAnimalMoving = reqAnimalMoving;
+    WS.send(packet);
+  }
 }

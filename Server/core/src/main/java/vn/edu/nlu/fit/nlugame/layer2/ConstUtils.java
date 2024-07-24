@@ -35,16 +35,16 @@ public class ConstUtils {
     }
 
     public enum WEATHER {
-        RAIN("RAIN"),
-        SUNNY("SUNNY");
+        RAIN(1),
+        SUNNY(0);
 
-        private final String value;
+        private final int value;
 
-        WEATHER(String value) {
+        WEATHER(int value) {
             this.value = value;
         }
 
-        public String getValue() {
+        public int getValue() {
             return value;
         }
     }
@@ -117,4 +117,8 @@ public class ConstUtils {
     public static final String GOOGLE_GRANT_TYPE = "authorization_code";
     public static final String GOOGLE_LINK_GET_TOKEN = "https://accounts.google.com/o/oauth2/token";
     public static final String GOOGLE_LINK_GET_USER_INFO = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=";
+
+    public static final String WEATHER_API_KEY = "ca5c5dd26e0845b0b2070027242307";
+    public static final String WEATHER_API_URL = "https://api.weatherapi.com/v1/current.json";
+    public static final String WEATHER_API_QUERY = "10.8700,106.7901";
 }

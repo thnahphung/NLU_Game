@@ -1,6 +1,10 @@
 package vn.edu.nlu.fit.nlugame.layer1;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import jakarta.websocket.Session;
+import org.apache.http.client.fluent.Request;
+import vn.edu.nlu.fit.nlugame.layer2.ConstUtils;
 import vn.edu.nlu.fit.nlugame.layer2.DataSenderUtils;
 import vn.edu.nlu.fit.nlugame.layer2.dao.*;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.*;
@@ -9,15 +13,21 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.cache.AreaCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.UserCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class GameStateService {
     private static final GameStateService instance = new GameStateService();
-    private static final int TIME_INCREMENT = 1; // Increment time by 1 game hour
-    private static final int MINUTES_PER_DAY = 24;
-    private static final int TOTAL_DAYS_PER_SEASON = 120;
+    //    private static final int TIME_INCREMENT = 1; // Increment time by 1 game hour
+//    private static final int MINUTES_PER_DAY = 30;
+//    private static final int TOTAL_DAYS_PER_SEASON = 120;
     private static final int TOTAL_SEASON = 3;
     private static final float DISEASE_RATE = 0.1f;
+
+    private static final List<Integer> WEATHERS_SUNNY = Arrays.asList(1000, 1003, 1006, 1009, 1030, 1066, 1069, 1072, 1087, 1114, 1117, 1135, 1147, 1150, 1153, 1168, 1171, 1204, 1207, 1210, 1213, 1216, 1219, 1222, 1225, 1237, 1249, 1252, 1255, 1258, 1261, 1264, 1279, 1282);
+    private static final List<Integer> WEATHERS_RAIN = Arrays.asList(1063, 1180, 1183, 1186, 1189, 1192, 1195, 1198, 1201, 1240, 1243, 1246, 1273, 1276);
+    private static final String WEATHER_URL = ConstUtils.WEATHER_API_URL + "?key=" + ConstUtils.WEATHER_API_KEY + "&q=" + ConstUtils.WEATHER_API_QUERY;
 
     private GameStateService() {
     }
@@ -45,31 +55,22 @@ public class GameStateService {
 
     public void updateTimeGame() {
         GameStateBean lastGameState = GameStateDAO.getLastGameState();
-        int code = 0;
-        int timesOfDay = lastGameState.getTimesOfDay() + TIME_INCREMENT;
-        if (timesOfDay <= MINUTES_PER_DAY) {
-            code = GameStateDAO.updateTimeOfDay(lastGameState.getId(), timesOfDay);
-        } else {
-            GameStateBean newGameStateBean = createNewDate(lastGameState);
-            code = GameStateDAO.insertGameState(newGameStateBean);
-            // Update developed days of growth items
-            PropertyGrowthItemDAO.updateIncreateCropDevelopedDays();
-            PropertyGrowthItemDAO.updateIncreateAnimalDevelopedDays();
-            PropertyAnimalDAO.updateAllAnimalIsHungry();
-            randomAnimalDisease(newGameStateBean);
-        }
-        if (code == 200) {
-            GameStateBean newGameStateBean = GameStateDAO.getLastGameState();
-            Proto.GameState gameStateProto = Proto.GameState.newBuilder()
-                    .setId(newGameStateBean.getId())
-                    .setTimesOfDay(newGameStateBean.getTimesOfDay())
-                    .setCurrentDate(newGameStateBean.getCurrentDate())
-                    .setCurrentWeather(newGameStateBean.getCurrentWeather())
-                    .setCurrentSeason(newGameStateBean.getCurrentSeason())
-                    .setTimesOfSeason(newGameStateBean.getTimesOfSeason())
-                    .build();
-            sendNewDateToAllUser(gameStateProto);
-        }
+        GameStateBean newGameStateBean = createNewDate(lastGameState);
+        GameStateDAO.insertGameState(newGameStateBean);
+        // Update developed days of growth items
+        PropertyGrowthItemDAO.updateIncreateCropDevelopedDays();
+        PropertyGrowthItemDAO.updateIncreateAnimalDevelopedDays();
+        PropertyAnimalDAO.updateAllAnimalIsHungry();
+        randomAnimalDisease(newGameStateBean);
+        Proto.GameState gameStateProto = Proto.GameState.newBuilder()
+                .setId(newGameStateBean.getId())
+                .setTimesOfDay(newGameStateBean.getTimesOfDay())
+                .setCurrentDate(newGameStateBean.getCurrentDate())
+                .setCurrentWeather(newGameStateBean.getCurrentWeather())
+                .setCurrentSeason(newGameStateBean.getCurrentSeason())
+                .setTimesOfSeason(newGameStateBean.getTimesOfSeason())
+                .build();
+        sendNewDateToAllUser(gameStateProto);
     }
 
     private void sendNewDateToAllUser(Proto.GameState newGameStateProto) {
@@ -80,30 +81,32 @@ public class GameStateService {
     }
 
     private GameStateBean createNewDate(GameStateBean lastGameState) {
-        int timesOfDay = 1;
         int currentDate = lastGameState.getCurrentDate() + 1;
-        int currentSeason = lastGameState.getCurrentSeason();
-        int timesOfSeason = lastGameState.getTimesOfSeason() + 1;
-        if (timesOfSeason > TOTAL_DAYS_PER_SEASON) {
-            timesOfSeason = 1;
-            currentSeason += 1;
-            if (currentSeason > TOTAL_SEASON) {
-                currentSeason = 0;
-            }
-        }
+//        int weather = this.createWeather();
+        int weather = 0;
         return GameStateBean.builder()
                 .currentDate(currentDate)
-                .currentWeather(createWeather())
-                .currentSeason(currentSeason)
-                .timesOfDay(timesOfDay)
-                .timesOfSeason(timesOfSeason)
+                .currentWeather(weather)
+                .currentSeason(0)
+                .timesOfDay(LocalDateTime.now().getHour())
+                .timesOfSeason(0)
                 .build();
     }
 
     public int createWeather() {
-        Random random = new Random();
-        int weather = random.nextInt(2);
-        return weather;
+        String response = null;
+        try {
+            response = Request.Get(WEATHER_URL).execute().returnContent().asString();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        if (response == null) {
+            return ConstUtils.WEATHER.SUNNY.getValue();
+        }
+        JsonObject jObj = new Gson().fromJson(response, JsonObject.class);
+        JsonObject currentObject = jObj.get("current").getAsJsonObject();
+        int weatherCode = Integer.parseInt(currentObject.get("condition").getAsJsonObject().get("code").getAsString());
+        return WEATHERS_RAIN.contains(weatherCode) ? ConstUtils.WEATHER.RAIN.getValue() : ConstUtils.WEATHER.SUNNY.getValue();
     }
 
     public void randomAnimalDisease(GameStateBean newGameStateBean) {
