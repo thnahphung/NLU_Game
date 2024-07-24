@@ -97,4 +97,23 @@ public class ActivityCache extends RedisClusterHelper implements ICache<Proto.Ac
     private void removeAllActivityRedis() {
         getConnection().del(ACTIVITY_KEY.getBytes());
     }
+
+    public List<Proto.Activity> getAllActivityByCharacterId(int characterId) {
+        List<Proto.Activity> activities = new ArrayList<>();
+        activityMap.asMap().forEach((key, value) -> {
+            if (value.getCharacterId() == characterId) {
+                activities.add(value);
+            }
+        });
+        if(!activities.isEmpty()) {
+            return activities;
+        }
+        getConnection().hgetAll(ACTIVITY_KEY.getBytes()).forEach((key, value) -> {
+            Proto.Activity activity = CompressUtils.decompress(value, Proto.Activity.class);
+            if (activity.getCharacterId() == characterId) {
+                activities.add(activity);
+            }
+        });
+        return activities;
+    }
 }

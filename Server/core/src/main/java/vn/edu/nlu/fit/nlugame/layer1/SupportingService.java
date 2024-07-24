@@ -3,16 +3,16 @@ package vn.edu.nlu.fit.nlugame.layer1;
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer2.DataSenderUtils;
 import vn.edu.nlu.fit.nlugame.layer2.SessionManage;
+import vn.edu.nlu.fit.nlugame.layer2.dao.FriendshipDAO;
+import vn.edu.nlu.fit.nlugame.layer2.dao.UserDAO;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.UserBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.SessionCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.UserCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 public class SupportingService {
     private static SupportingService instance = new SupportingService();
@@ -149,5 +149,81 @@ public class SupportingService {
             return;
         }
         removeUserFromQueue(userContext);
+    }
+
+    public void handleReqLoadSupportFriends(Session session) {
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        UserContext userContext = UserCache.me().get(String.valueOf(userId));
+        if(userContext == null) {
+            return;
+        }
+        List<UserBean> userBeans = new ArrayList<>();
+        switch (userContext.getUser().getCharacter().getCode()) {
+            case "KSNN":
+                userBeans = FriendshipDAO.loadKSCKFriends(userId);
+                // Only get users who are online
+                userBeans.removeIf(userBean -> UserCache.me().getUserContextOnline(userBean.getId()) == null);
+                break;
+            case "KSCN":
+                userBeans = FriendshipDAO.loadBSTYFriends(userId);
+                // Only get users who are online
+                userBeans.removeIf(userBean -> UserCache.me().getUserContextOnline(userBean.getId()) == null);
+                break;
+        }
+        Proto.ResLoadSupportFriends.Builder resLoadSupportFriendsBuilder = Proto.ResLoadSupportFriends.newBuilder();
+        List<Proto.User> userProtos = new ArrayList<>();
+        for(UserBean userBean : userBeans) {
+            Proto.User.Builder userBuilder = Proto.User.newBuilder();
+            userBuilder.setUserId(userBean.getId());
+            userBuilder.setPlayerName(userBean.getPlayerName());
+            userBuilder.setLevel(userBean.getLevel());
+            userBuilder.setCharacter(userContext.getUser().getCharacter());
+            userProtos.add(userBuilder.build());
+        }
+        resLoadSupportFriendsBuilder.addAllUsers(userProtos);
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadSupportFriends(resLoadSupportFriendsBuilder.build()).build());
+    }
+
+    public void handleReqInviteSupport(Session session, Proto.ReqInviteSupport reqInviteSupport) {
+        Proto.ResInviteSupport.Builder resInviteSupportForSessionUser = Proto.ResInviteSupport.newBuilder();
+        Proto.ResInviteSupport.Builder resInviteSupportForSupportUser = Proto.ResInviteSupport.newBuilder();
+        int status;
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        UserContext userContext = UserCache.me().get(String.valueOf(userId));
+        if(userContext == null) {
+            return;
+        }
+
+        UserContext userContextReceive = UserCache.me().getUserContextOnline(reqInviteSupport.getUserId());
+        if(userContextReceive == null) {
+            return;
+        }
+        String codeCharacter = userContextReceive.getUser().getCharacter().getCode();
+        if(codeCharacter.equals("KSCK") && mechanicalEngineers.contains(userContextReceive)){
+            status = Proto.User.STATUS.BUSY_VALUE;
+            resInviteSupportForSessionUser.setStatus(status);
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResInviteSupport(resInviteSupportForSessionUser).build());
+            return;
+        }
+        if(codeCharacter.equals("BSTY") && veterinarians.contains(userContextReceive)){
+            status = Proto.User.STATUS.BUSY_VALUE;
+            resInviteSupportForSessionUser.setStatus(status);
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResInviteSupport(resInviteSupportForSessionUser).build());
+            return;
+        }
+        Session sessionUserReceive = SessionManage.me().get(userContextReceive.getSessionID());
+        if(sessionUserReceive == null || !sessionUserReceive.isOpen()) {
+            status = Proto.User.STATUS.OFFLINE_VALUE;
+            resInviteSupportForSessionUser.setStatus(status);
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResInviteSupport(resInviteSupportForSessionUser).build());
+            return;
+        }
+
+        resInviteSupportForSessionUser.setStatus(Proto.User.STATUS.WAITING_VALUE);
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResInviteSupport(resInviteSupportForSessionUser).build());
+
+        Proto.User user = userContext.getUser();
+        resInviteSupportForSupportUser.setUser(user);
+        DataSenderUtils.sendResponse(sessionUserReceive, Proto.Packet.newBuilder().setResInviteSupport(resInviteSupportForSupportUser).build());
     }
 }

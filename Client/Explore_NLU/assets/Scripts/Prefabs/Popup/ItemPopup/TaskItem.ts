@@ -25,8 +25,18 @@ export class TaskItem extends Component {
   }
 
   private setUpInfoWarehouseItem() {
+    let rewardString = "";
     this.taskName.string = t("label_text." + this.task.code);
-    this.taskReward.string = this.task.rewardItem.quantity + "G";
+    this.task.rewardItem.forEach((reward) => {
+      if (reward.quantity == 0 || !reward || !reward.noGrowthItem) return;
+      rewardString +=
+        reward.quantity +
+        " " +
+        t("label_text.reward_name_" + reward.noGrowthItem.name) +
+        ", ";
+    });
+    rewardString = rewardString.substring(0, rewardString.length - 2);
+    this.taskReward.string = rewardString;
     this.setProgress();
   }
 

@@ -9,6 +9,7 @@ import {
   Vec3,
 } from "cc";
 import { REWARD_ICONS } from "../../Utils/Const";
+import { ResourceManager } from "../../Manager/ResourceManager";
 const { ccclass, property } = _decorator;
 
 @ccclass("RewardEffect")
@@ -19,8 +20,6 @@ export class RewardEffect extends Component {
   private rewardNameLabel: Label = null;
   @property(Label)
   private rewardQuantityLabel: Label = null;
-  @property(SpriteFrame)
-  private rewardSprites: SpriteFrame[] = [];
   start() {
     tween(this.node)
       .by(0.8, { position: new Vec3(0, 100, 0) })
@@ -47,11 +46,7 @@ export class RewardEffect extends Component {
     quantity: number,
     type: REWARD_ICONS | string
   ): void {
-    this.rewardSprites.forEach((spriteFrame) => {
-      if (spriteFrame.name == type) {
-        this.setRewardSpriteFrame(spriteFrame);
-      }
-    });
+    this.setRewardSpriteFrame(ResourceManager.me().getSpriteFrame(type));
     this.setRewardName(name);
     this.setRewardQuantity(quantity);
   }

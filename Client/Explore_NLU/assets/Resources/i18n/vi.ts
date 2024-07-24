@@ -191,6 +191,13 @@ export const languages = {
     cage_cow_lv2: "Chuồng Bò Lớn",
     // Reward
     experience_point: "Kinh nghiệm",
+    reward_name_gold: "Vàng",
+    reward_name_exp: "KN",
+    reward_name_rice: "Lúa",
+    reward_name_cabbage: "Bắp Cải",
+    reward_name_carrot: "Cà Rốt",
+    reward_name_cucumber: "Dưa Chuột",
+    reward_name_pumpkin: "Bí Ngô",
     // Task
     task_title: "Nhiệm vụ",
     btn_get_reward: "Nhận",
@@ -229,7 +236,7 @@ export const languages = {
     mac_manufacture_success: "Chế tạo thành công",
     mac_manufacture_fail: "Chế tạo thất bại",
     mac_manufacture_fail_400: "Không đủ nguyên liệu",
-     mac_manufacture_fail_401: "Máy đã đạt cấp tối đa",
+    mac_manufacture_fail_401: "Máy đã đạt cấp tối đa",
     // Help
     help_title: "Trợ giúp",
     help_find: "Tìm kiếm",
@@ -240,8 +247,14 @@ export const languages = {
     //Aid
     aid_title: "Nhờ hỗ trợ",
     aid_status: "Trạng thái",
+    aid_status_finding: "Đang tìm kiếm",
+    aid_status_waiting: "Đang chờ đồng ý...",
+    aid_max_time_waiting: "Thời gian chờ tối đa: 1 phút",
     aid_invite_random: "Mời ngẫu nhiên",
     aid_invite_friend: "Mời bạn bè",
+    aid_invite: "Mời",
+    aid_status_invite_busy: "Người chơi này đang bận!",
+    aid_status_invite_offline: "Người chơi này đã offline!",
     //Sysptom
     sysptoms_high_fever: "Sốt cao",
     sysptoms_difficulty_breathing: "Khó thở",

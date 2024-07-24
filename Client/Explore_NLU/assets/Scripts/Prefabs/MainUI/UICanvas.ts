@@ -64,6 +64,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupCageInformation: Prefab;
   @property(Prefab) private prefabPopupHelp: Prefab;
   @property(Prefab) private prefabPopupFindTime: Prefab;
+  @property(Prefab) private prefabPopupWaiting: Prefab;
   @property(Prefab) private prefabPopupAid: Prefab;
   @property(Prefab) private prefabPopupCraftingMedicines: Prefab;
   @property(Prefab) private prefabPopupDiagnosis: Prefab;
@@ -79,6 +80,7 @@ export class UICanvas extends Component {
   private _popupTask: Node;
   private _popupHelp: Node;
   private _popupFindTime: Node;
+  private _popupWaiting: Node;
   private _popupCageInformation: Node;
   private _popupAid: Node;
   private _popupManufactureResult: Node;
@@ -246,6 +248,7 @@ export class UICanvas extends Component {
       reward: REWARD_ICONS | string;
     }[]
   ) {
+    if (listReward.length == 0) return;
     listReward.forEach((reward, index) => {
       this.scheduleOnce(() => {
         this.showRewardEffect(reward.name, reward.quantity, reward.reward);
@@ -467,7 +470,7 @@ export class UICanvas extends Component {
   }
 
   showPopupFindTime() {
-    if (this.node.getChildByName("TopMid").getChildByName("TopMid")) {
+    if (this.node.getChildByName("TopMid").getChildByName("PopupFindTime")) {
       return;
     }
     this.onLocked1s();
@@ -475,10 +478,26 @@ export class UICanvas extends Component {
     this.node.getChildByName("TopMid").addChild(this._popupFindTime);
   }
 
+  showPopupWaiting() {
+    if (this.node.getChildByName("TopMid").getChildByName("PopupWaiting")) {
+      return;
+    }
+    this.onLocked1s();
+    this._popupWaiting = instantiate(this.prefabPopupWaiting);
+    this.node.getChildByName("TopMid").addChild(this._popupWaiting);
+  }
+
   closePopupFindTime() {
     if (this._popupFindTime) {
       this._popupFindTime.destroy();
       this._popupFindTime = null;
+    }
+  }
+
+  closePopupWaiting() {
+    if (this._popupWaiting) {
+      this._popupWaiting.destroy();
+      this._popupWaiting = null;
     }
   }
 
@@ -489,6 +508,7 @@ export class UICanvas extends Component {
   showPopupAid() {
     if (this.node.getChildByName("PopupLayer").getChildByName("PopupAid")) {
       if (this._popupFindTime && this._popupFindTime.active) return;
+      if (this._popupWaiting && this._popupWaiting.active) return;
       if (this._popupAid) {
         this._popupAid.active = true;
       }
