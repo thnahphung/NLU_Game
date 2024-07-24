@@ -29,17 +29,4 @@ public class CharacterDAO extends BaseDAO{
                 .mapToBean(CharacterBean.class).findFirst().orElse(null)
         );
     }
-
-    public static Proto.Character loadCharacterProtoById(int id) {
-        CharacterBean characterBean = loadCharacterById(id);
-        if (characterBean == null) {
-            return null;
-        }
-        return Proto.Character.newBuilder()
-                .setId(characterBean.getId())
-                .setName(characterBean.getName())
-                .setCode(characterBean.getCode())
-                .setDescription(characterBean.getDescription())
-                .build();
-    }
 }

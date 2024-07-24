@@ -156,7 +156,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 502.6209677419355,
+    "_orthoHeight": 395.841935483871,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -8267,6 +8267,14 @@
     },
     "prefabPopupFindTime": {
       "__uuid__": "458c39be-d6b4-4757-a457-e0f5a9b699e3",
+      "__expectedType__": "cc.Prefab"
+    },
+    "prefabPopupWaiting": {
+      "__uuid__": "2e43b45a-e431-4283-8366-e145f3d54734",
+      "__expectedType__": "cc.Prefab"
+    },
+    "prefabPopupAid": {
+      "__uuid__": "edc7ba56-ac9d-4f8e-972d-404873d50567",
       "__expectedType__": "cc.Prefab"
     },
     "prefabPopupManufactureResult": {

@@ -186,11 +186,13 @@ export class PopupFriend extends AbsHandler {
   ) {
     const friendDetailNodeComponent =
       this.friendDetailNode.getComponent(FriendDetailItem);
-    friendDetailNodeComponent.setFriendName(name);
-    friendDetailNodeComponent.setFriendCareer(career.name);
-    friendDetailNodeComponent.setFriendLevel(level.toString());
-    friendDetailNodeComponent.setFriendId(id.toString());
-    friendDetailNodeComponent.setFriendCharacterProto(career);
+    friendDetailNodeComponent.init(
+      name,
+      career.name,
+      level.toString(),
+      id.toString(),
+      career
+    );
     friendDetailNodeComponent.getModalNode().active = true;
     friendDetailNodeComponent.getAddFriendButton().active = true;
     this.friendDetailNode.active = true;
@@ -230,12 +232,13 @@ export class PopupFriend extends AbsHandler {
       if (status == 2) {
         const friendItem = instantiate(this.friendItemPrefab);
         const friendComponent = friendItem.getComponent(FriendListItem);
-        friendComponent.setFriendName(friend.name);
-        friendComponent.setFriendCareer(career);
-        friendComponent.setFriendLevel(friend.level.toString());
-        friendComponent.setFriendId(friend.id.toString());
-        friendComponent.setFriendCharacterProto(friend.character);
-        friendComponent.setFriendDetailNode(this.friendDetailNode);
+        friendComponent.init(
+          friend.name,
+          career,
+          friend.level.toString(),
+          friend.id.toString(),
+          friend.character
+        );
         this.scrollViewListFriend.addChild(friendItem);
         this.scrollViewListFriend.parent.parent
           .getComponent(ScrollView)
@@ -254,12 +257,13 @@ export class PopupFriend extends AbsHandler {
         friendItem.getComponent(ReqAddFriendItem).scrollListFriend =
           this.scrollViewListFriend;
         const friendComponent = friendItem.getComponent(ReqAddFriendItem);
-        friendComponent.setFriendName(friend.name);
-        friendComponent.setFriendCareer(career);
-        friendComponent.setFriendLevel(friend.level.toString());
-        friendComponent.setFriendId(friend.id.toString());
-        friendComponent.setFriendCharacterProto(friend.character);
-        friendComponent.setFriendDetailNode(this.friendDetailNode);
+        friendComponent.init(
+          friend.name,
+          career,
+          friend.level.toString(),
+          friend.id.toString(),
+          friend.character
+        );
         this.scrollViewRequestFriend.addChild(friendItem);
         this.scrollViewRequestFriend.parent.parent
           .getComponent(ScrollView)
@@ -269,11 +273,13 @@ export class PopupFriend extends AbsHandler {
       if (status == 4) {
         const addFriendItem = instantiate(this.addFriendItemPrefab);
         const addFriendComponent = addFriendItem.getComponent(AddFriendItem);
-        addFriendComponent.setFriendName(friend.name);
-        addFriendComponent.setFriendCareer(career);
-        addFriendComponent.setFriendLevel(friend.level.toString());
-        addFriendComponent.setFriendId(friend.id.toString());
-        addFriendComponent.setFriendCharacterProto(friend.character);
+        addFriendComponent.init(
+          friend.name,
+          career,
+          friend.level.toString(),
+          friend.id.toString(),
+          friend.character
+        );
         this.scrollViewSuggestFriend.addChild(addFriendItem);
         this.scrollViewSuggestFriend.parent.parent
           .getComponent(ScrollView)
@@ -286,11 +292,13 @@ export class PopupFriend extends AbsHandler {
     const friend = resAcceptFriend.receiver;
     const friendItem = instantiate(this.friendItemPrefab);
     const friendComponent = friendItem.getComponent(FriendListItem);
-    friendComponent.setFriendName(friend.name);
-    friendComponent.setFriendCareer(friend.character.name);
-    friendComponent.setFriendLevel(friend.level.toString());
-    friendComponent.setFriendId(friend.id.toString());
-    friendComponent.setFriendCharacterProto(friend.character);
+    friendComponent.init(
+      friend.name,
+      friend.character.name,
+      friend.level.toString(),
+      friend.id.toString(),
+      friend.character
+    );
     friendComponent.setFriendDetailNode(this.friendDetailNode);
     this.scrollViewListFriend.addChild(friendItem);
     GlobalData.me().getMainUserFriends().push(friend);
@@ -302,11 +310,13 @@ export class PopupFriend extends AbsHandler {
     friendItem.getComponent(ReqAddFriendItem).scrollListFriend =
       this.scrollViewListFriend;
     const friendComponent = friendItem.getComponent(ReqAddFriendItem);
-    friendComponent.setFriendName(sender.name);
-    friendComponent.setFriendCareer(sender.character.name);
-    friendComponent.setFriendLevel(sender.level.toString());
-    friendComponent.setFriendId(sender.id.toString());
-    friendComponent.setFriendCharacterProto(sender.character);
+    friendComponent.init(
+      sender.name,
+      sender.character.name,
+      sender.level.toString(),
+      sender.id.toString(),
+      sender.character
+    );
     this.scrollViewRequestFriend.addChild(friendItem);
     this.addFriendNotify.node.active = true;
   }

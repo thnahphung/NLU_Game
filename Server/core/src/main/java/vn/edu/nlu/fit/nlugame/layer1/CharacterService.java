@@ -56,17 +56,20 @@ public class CharacterService {
         int userId = SessionCache.me().getUserID(sessionID);
         // Check user login
         if (userId < 1) {
-            System.out.println("Error: User not login");
             sendResponse(session, Proto.Packet.newBuilder().setResPickCharacter(Proto.ResPickCharacter.newBuilder().setStatus(500)).build());
             return null;
         }
         if (characterId < 1 || playerName.trim().equals("")) {
-            System.out.println("Error: Invalid character id or player name");
             sendResponse(session, Proto.Packet.newBuilder().setResPickCharacter(Proto.ResPickCharacter.newBuilder().setStatus(500)).build());
             return null;
         }
 
-        Proto.Character character = CharacterDAO.loadCharacterProtoById(characterId);
+        CharacterBean characterBean = CharacterDAO.loadCharacterById(characterId);
+        Proto.Character.Builder character = Proto.Character.newBuilder();
+        character.setId(characterBean.getId());
+        character.setName(characterBean.getName());
+        character.setCode(characterBean.getCode());
+        character.setDescription(characterBean.getDescription());
 
         switch (character.getCode()) {
             case "BSTY":
@@ -106,7 +109,6 @@ public class CharacterService {
                 .setCharacter(character);
 
         int resultInsert = AreaDAO.insertArea(userId, typeArea);
-        System.out.println("userLoginBean pick: " + userLoginBean);
         if (resultInsert == 200) {
             sendResponse(session, Proto.Packet.newBuilder().setResPickCharacter(Proto.ResPickCharacter.newBuilder().setStatus(resultInsert).setUser(userProto)).build());
         }
