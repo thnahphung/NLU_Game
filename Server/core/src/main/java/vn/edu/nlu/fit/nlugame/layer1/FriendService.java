@@ -15,6 +15,7 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.cache.SessionCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.UserCache;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FriendService {
@@ -35,13 +36,42 @@ public class FriendService {
             return;
         }
         if(status == 4) {
-            List<Proto.Friend> friends = FriendshipDAO.loadSuggestFriendList(userId);
-            Proto.ResLoadFriendList resLoadFriendList = Proto.ResLoadFriendList.newBuilder().addAllFriends(friends).setStatus(status).build();
+            List<UserBean> friends = FriendshipDAO.loadSuggestFriendList(userId);
+            List<Proto.Friend> friendProtos = new ArrayList<>();
+            for(UserBean friend : friends) {
+                Proto.Friend.Builder friendBuilder = Proto.Friend.newBuilder();
+                friendBuilder.setId(friend.getId());
+                friendBuilder.setName(friend.getPlayerName());
+                friendBuilder.setLevel(friend.getLevel());
+                CharacterBean characterBean = CharacterDAO.loadCharacterById(friend.getCharacterId());
+                if(characterBean != null) {
+                    friendBuilder.setCharacter(Proto.Character.newBuilder().setName(characterBean.getName()).build());
+                } else {
+                    friendBuilder.setCharacter(Proto.Character.newBuilder().setName("The user has not selected a character").build());
+                }
+                friendProtos.add(friendBuilder.build());
+            }
+
+            Proto.ResLoadFriendList resLoadFriendList = Proto.ResLoadFriendList.newBuilder().addAllFriends(friendProtos).setStatus(status).build();
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadFriendList(resLoadFriendList).build());
             return;
         }
-        List<Proto.Friend> friends = FriendshipDAO.loadFriendList(userId, status);
-        Proto.ResLoadFriendList resLoadFriendList = Proto.ResLoadFriendList.newBuilder().addAllFriends(friends).setStatus(status).build();
+        List<UserBean> friends = FriendshipDAO.loadFriendList(userId, status);
+        List<Proto.Friend> friendProtos = new ArrayList<>();
+        for(UserBean friend : friends) {
+            Proto.Friend.Builder friendBuilder = Proto.Friend.newBuilder();
+            friendBuilder.setId(friend.getId());
+            friendBuilder.setName(friend.getPlayerName());
+            friendBuilder.setLevel(friend.getLevel());
+            CharacterBean characterBean = CharacterDAO.loadCharacterById(friend.getCharacterId());
+            if(characterBean != null) {
+                friendBuilder.setCharacter(Proto.Character.newBuilder().setName(characterBean.getName()).build());
+            } else {
+                friendBuilder.setCharacter(Proto.Character.newBuilder().setName("The user has not selected a character").build());
+            }
+            friendProtos.add(friendBuilder.build());
+        }
+        Proto.ResLoadFriendList resLoadFriendList = Proto.ResLoadFriendList.newBuilder().addAllFriends(friendProtos).setStatus(status).build();
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadFriendList(resLoadFriendList).build());
     }
 

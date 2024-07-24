@@ -29,10 +29,6 @@ public class ActivityBean {
     private LocalDateTime endDate;
     @ColumnName("character_id")
     private int characterId;
-    @ColumnName("no_grow_item_id")
-    private int noGrowthItemId;
-    @ColumnName("quantity")
-    private int quantity;
     @ColumnName("repeat_time")
     private int repeatTime;
 }

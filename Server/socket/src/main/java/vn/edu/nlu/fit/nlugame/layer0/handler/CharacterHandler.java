@@ -4,12 +4,14 @@ import jakarta.websocket.CloseReason;
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer1.AreaService;
 import vn.edu.nlu.fit.nlugame.layer1.CharacterService;
+import vn.edu.nlu.fit.nlugame.layer1.TaskService;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.UserBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 public class CharacterHandler implements Subscriber{
     CharacterService characterService = CharacterService.me();
     private final AreaService areaService = AreaService.me();
+    private final TaskService taskService = TaskService.me();
     @Override
     public void onOpen(Session session, String... params) {
 
@@ -33,6 +35,7 @@ public class CharacterHandler implements Subscriber{
         UserBean userLoginBean = characterService.pickCharacter(session, packet.getReqPickCharacter());
         if (userLoginBean == null || userLoginBean.getHasCharacter() == 0) return;
         areaService.joinAreaLogin(userLoginBean.getId(), session);
+        taskService.loadTask(session);
     }
 
     @Override

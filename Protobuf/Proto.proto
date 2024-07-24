@@ -116,6 +116,10 @@ message Packet {
     ResFirstJUserInArea resFirstJUserInArea = 109;
     ReqAnimalMoving reqAnimalMoving = 110;
     ResAnimalMoving resAnimalMoving = 111;
+    ReqLoadSupportFriends reqLoadSupportFriends = 112;
+    ResLoadSupportFriends resLoadSupportFriends = 113;
+    ReqInviteSupport reqInviteSupport = 114;
+    ResInviteSupport resInviteSupport = 115;
   }
 }
 
@@ -133,6 +137,13 @@ message User {
   int32 characterId = 12;
   int32 isNewAccount = 14;
   Character character = 16;
+  int32 status = 17;
+
+  enum STATUS {
+    WAITING = 0;
+    BUSY = 1;
+    OFFLINE = 2;
+  }
 }
 
 message Character {
@@ -367,7 +378,7 @@ message Activity {
   int32 startDate = 5;
   int32 endate = 6;
   int32 characterId = 7; 
-  RewardItem rewardItem = 8;
+  repeated RewardItem rewardItem = 8;
   int32 turn = 9;
 }
 
@@ -982,3 +993,19 @@ message FormulaMachine{
   int32 userQuantity = 4;
   NoGrowthItem noGrowthItem = 5;
 }
+
+message ReqLoadSupportFriends{}
+
+message ResLoadSupportFriends{
+  repeated User users = 1;
+}
+
+message ReqInviteSupport {
+  int32 userId = 1;
+}
+
+message ResInviteSupport {
+  int32 status = 1;
+  User user = 2;
+}
+

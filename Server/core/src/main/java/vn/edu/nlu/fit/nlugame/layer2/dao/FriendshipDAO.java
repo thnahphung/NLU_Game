@@ -1,6 +1,7 @@
 package vn.edu.nlu.fit.nlugame.layer2.dao;
 
 import org.jdbi.v3.core.Jdbi;
+import vn.edu.nlu.fit.nlugame.layer2.dao.bean.UserBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 import java.util.List;
@@ -64,7 +65,7 @@ public class FriendshipDAO {
         );
     }
 
-    public static List<Proto.Friend> loadFriendList(int userId, int status) {
+    public static List<UserBean> loadFriendList(int userId, int status) {
         Jdbi jdbi = BaseDAO.getJdbi();
         if (jdbi == null) {
             return null;
@@ -79,40 +80,60 @@ public class FriendshipDAO {
         return jdbi.withHandle(handle -> handle.createQuery(query)
                 .bind("userId", userId)
                 .bind("status", status)
-                .map((rs, ctx) -> {
-                    Proto.Character character = CharacterDAO.loadCharacterProtoById(rs.getInt("character_id"));
-                    if(character ==  null){
-                        character = Proto.Character.newBuilder().setName("The user has not selected a character").build();
-                    }
-                    return Proto.Friend.newBuilder()
-                            .setId(rs.getInt("id"))
-                            .setName(rs.getString("player_name"))
-                            .setLevel(rs.getInt("level"))
-                            .setCharacter(character)
-                            .build();
-                })
+                .map((rs, ctx) -> UserBean.builder()
+                        .id(rs.getInt("id"))
+                        .playerName(rs.getString("player_name"))
+                        .level(rs.getInt("level"))
+                        .characterId(rs.getInt("character_id"))
+                        .build())
                 .list());
     }
 
-    public static List<Proto.Friend> loadSuggestFriendList(int userId) {
+    public static List<UserBean> loadSuggestFriendList(int userId) {
         Jdbi jdbi = BaseDAO.getJdbi();
         if (jdbi == null) {
             return null;
         }
         return jdbi.withHandle(handle -> handle.createQuery("SELECT U.id, U.player_name, U.level, U.character_id FROM Users U WHERE U.id != :userId AND U.id NOT IN (SELECT F.friend_id FROM Friendships F WHERE F.user_id  = :userId UNION SELECT F.user_id FROM Friendships F WHERE F.friend_id = :userId) ORDER BY RAND() LIMIT 10")
                 .bind("userId", userId)
-                .map((rs, ctx) -> {
-                    Proto.Character character = CharacterDAO.loadCharacterProtoById(rs.getInt("character_id"));
-                    if(character ==  null){
-                        character = Proto.Character.newBuilder().setName("The user has not selected a character").build();
-                    }
-                    return Proto.Friend.newBuilder()
-                            .setId(rs.getInt("id"))
-                            .setName(rs.getString("player_name"))
-                            .setLevel(rs.getInt("level"))
-                            .setCharacter(character)
-                            .build();
-                })
+                .map((rs, ctx) -> UserBean.builder()
+                        .id(rs.getInt("id"))
+                        .playerName(rs.getString("player_name"))
+                        .level(rs.getInt("level"))
+                        .characterId(rs.getInt("character_id"))
+                        .build())
+                .list());
+    }
+
+    public static List<UserBean> loadKSCKFriends(int userId) {
+        Jdbi jdbi = BaseDAO.getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT U.id, U.player_name, U.level, U.character_id, U.active FROM Users U JOIN Friendships F ON (U.id = F.friend_id OR U.id = F.user_id) WHERE (F.user_id = :userId OR F.friend_id = :userId) AND U.id != :userId AND F.status = 2 AND U.character_id = 3")
+                .bind("userId", userId)
+                .map((rs, ctx) -> UserBean.builder()
+                        .id(rs.getInt("id"))
+                        .playerName(rs.getString("player_name"))
+                        .level(rs.getInt("level"))
+                        .characterId(rs.getInt("character_id"))
+                        .build())
+                .list());
+    }
+
+    public static List<UserBean> loadBSTYFriends(int userId) {
+        Jdbi jdbi = BaseDAO.getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT U.id, U.player_name, U.level, U.character_id, U.active FROM Users U JOIN Friendships F ON (U.id = F.friend_id OR U.id = F.user_id) WHERE (F.user_id = :userId OR F.friend_id = :userId) AND U.id != :userId AND F.status = 2 AND U.character_id = 4")
+                .bind("userId", userId)
+                .map((rs, ctx) -> UserBean.builder()
+                        .id(rs.getInt("id"))
+                        .playerName(rs.getString("player_name"))
+                        .level(rs.getInt("level"))
+                        .characterId(rs.getInt("character_id"))
+                        .build())
                 .list());
     }
 

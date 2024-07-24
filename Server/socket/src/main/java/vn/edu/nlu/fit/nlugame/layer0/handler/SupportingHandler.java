@@ -22,6 +22,12 @@ public class SupportingHandler implements Subscriber{
                 case REQSTOPSUPPORTFIND:
                     supportingService.handleReqStopSupportFind(session, packet.getReqStopSupportFind());
                     break;
+                case REQLOADSUPPORTFRIENDS:
+                    supportingService.handleReqLoadSupportFriends(session);
+                    break;
+                case REQINVITESUPPORT:
+                    supportingService.handleReqInviteSupport(session, packet.getReqInviteSupport());
+                    break;
             }
         });
     }
