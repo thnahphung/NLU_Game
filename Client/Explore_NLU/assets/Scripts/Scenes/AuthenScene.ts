@@ -47,7 +47,7 @@ export class AuthenScene extends AbsScene {
     let username = StorageManager.me().getItem(LOCAL_STORAGE.USERNAME);
     let token = StorageManager.me().getItem(LOCAL_STORAGE.TOKEN);
     let autoLogin = StorageManager.me().getItem(LOCAL_STORAGE.AUTO_LOGIN);
-    if (autoLogin == "true" && username && token) {
+    if (autoLogin == "true" && token) {
       this.popupGeneral.active = false;
       DataSender.sendReqRelogin(username, token);
       this.popupLoadingNode.active = true;
@@ -81,11 +81,7 @@ export class AuthenScene extends AbsScene {
   }
 
   onLoginGoogleHandler(resLoginGoogle: proto.IResLoginGoogle) {
-    console.log(resLoginGoogle);
-    // open(resLoginGoogle.url);
     sys.openURL(resLoginGoogle.url);
-    // UICanvas.me().getWebView().node.active = true;
-    // UICanvas.me().getWebView().url = resLoginGoogle.url;
   }
 
   onLoginMsgHandler(resLogin: proto.IResLogin) {
@@ -123,7 +119,6 @@ export class AuthenScene extends AbsScene {
         LOCAL_STORAGE.AUTO_LOGIN,
         this.rememberMe.isChecked
       );
-      // UICanvas.me().getWebView().node.active = false;
       StorageManager.me().saveItem(LOCAL_STORAGE.TOKEN, resLogin.token);
       GlobalData.me().setMainUser(resLogin.user);
       GlobalData.me().setIsUserOffline(false);

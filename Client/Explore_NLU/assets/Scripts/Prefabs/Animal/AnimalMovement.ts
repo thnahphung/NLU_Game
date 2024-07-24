@@ -25,11 +25,14 @@ export class AnimalMovement extends Component {
     this.interval = Util.randomInRange(this.minDelay, this.maxDelay);
 
     this.moving();
-    this.schedule(this.movingCallBack, this.interval);
+    if (this.animalInfo.getIsRandomTarget()) {
+      this.schedule(this.movingCallBack, this.interval);
+    }
   }
 
   public moving() {
     this.target = this.randomTarget();
+    //  const targetProto: proto.Position = Util.convertCocosPosToProtoPos(this.target);
     if (this.node === null) {
       this.unschedule(this.movingCallBack);
     }

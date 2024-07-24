@@ -2,6 +2,7 @@ package vn.edu.nlu.fit.nlugame.layer1;
 
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer2.ConstUtils;
+import vn.edu.nlu.fit.nlugame.layer2.DataSenderUtils;
 import vn.edu.nlu.fit.nlugame.layer2.SessionManage;
 import vn.edu.nlu.fit.nlugame.layer2.ThreadManage;
 import vn.edu.nlu.fit.nlugame.layer2.dao.AreaDAO;
@@ -14,6 +15,7 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.*;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.CommonBuildingContext;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.PropertyBuildingContext;
+import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -74,8 +76,14 @@ public class AreaService {
                     .build();
         }
         sendResponse(session, Proto.Packet.newBuilder().setResPlayerJoinArea(resPlayerJoinArea).build());
-        AreaCache.me().addUserToArea(String.valueOf(areaProto.getAreaId()), String.valueOf(userId), Proto.Position.newBuilder().setX(0).setY(0).build());
+        boolean isFirstUser = AreaCache.me().countUserInArea(String.valueOf(areaProto.getAreaId())) == 0;
+        AreaCache.me().addUserToArea(String.valueOf(areaProto.getAreaId()), String.valueOf(userId), isFirstUser);
+        if (isFirstUser) {
+            System.out.println("userFirstId JOINNNNNN:==================== " + userId);
 
+            Proto.ResFirstJUserInArea resFirstUserJoinArea = Proto.ResFirstJUserInArea.newBuilder().build();
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResFirstJUserInArea(resFirstUserJoinArea).build());
+        }
         //gui cho player cu
         if (listSessionInArea.size() > 0) {
             Proto.ResOtherPlayerJoinArea resOtherPlayerJoinArea = Proto.ResOtherPlayerJoinArea.newBuilder()
@@ -144,7 +152,20 @@ public class AreaService {
         }
         List<Proto.Area> areas = AreaCache.me().getAllAreaRedis();
         for (Proto.Area area : areas) {
-            if (AreaCache.me().removeUserFromArea(String.valueOf(area.getAreaId()), String.valueOf(userId)) > 0) {
+            if (AreaCache.me().isContainUserInArea(String.valueOf(area.getAreaId()), String.valueOf(userId))) {
+                boolean isFirstUserInArea = AreaCache.me().getIsFirstUserInArea(String.valueOf(area.getAreaId()), String.valueOf(userId));
+
+                AreaCache.me().removeUserFromArea(String.valueOf(area.getAreaId()), String.valueOf(userId));
+                if (isFirstUserInArea) {
+                    int userFirstId = AreaCache.me().randomFirstUserInArea(String.valueOf(area.getAreaId()));
+                    if (userFirstId != -1) {
+                        System.out.println("userFirstId:==================== " + userFirstId);
+                        UserContext userContext = UserCache.me().get(String.valueOf(userFirstId));
+                        Session sessionFirstUser = SessionManage.me().get(userContext.getSessionID());
+                        Proto.ResFirstJUserInArea resFirstUserJoinArea = Proto.ResFirstJUserInArea.newBuilder().build();
+                        DataSenderUtils.sendResponse(sessionFirstUser, Proto.Packet.newBuilder().setResFirstJUserInArea(resFirstUserJoinArea).build());
+                    }
+                }
                 ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(area.getAreaId()));
                 ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
                 listSessionInArea.removeIf(s -> s.equals(SessionID.of(session).getSessionId()));
@@ -165,7 +186,7 @@ public class AreaService {
     }
 
     private void sendResponseManySession(ArrayList<String> listSessionId, Proto.Packet packet) {
-        if(listSessionId.size() == 0) return;
+        if (listSessionId.size() == 0) return;
         for (String sessionId : listSessionId) {
             Session sessionInArea = SessionManage.me().get(sessionId);
             sendResponse(sessionInArea, packet);

@@ -17,6 +17,7 @@ public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area> 
     private static final Cache<String, Proto.Area> areaPlayersMap = Caffeine.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.MINUTES).build();
     private static final String PLAYERS_AREA_KEY = "area:";
     private static final String AREA_KEY = "areas";
+//    private static final String AREA_USER_RANDOM_KEY = "area_user_random:";
 
     private AreaCache() {
     }
@@ -64,8 +65,8 @@ public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area> 
         if (key == null) return null;
         Proto.Area areaRemoved = removeArea(key);
         if (areaRemoved == null) return null;
-        if (areaPlayersMap.getIfPresent(key) != null) {
-            areaPlayersMap.invalidate(key);
+        if (areaMap.getIfPresent(key) != null) {
+            areaMap.invalidate(key);
         }
         return areaRemoved;
     }
@@ -97,7 +98,7 @@ public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area> 
 
     public Proto.Area getArea(String key) {
         byte[] area = getConnection().hget(AREA_KEY.getBytes(), String.valueOf(key).getBytes());
-        if(area == null) return null;
+        if (area == null) return null;
         return CompressUtils.decompress(area, Proto.Area.class);
     }
 
@@ -113,8 +114,28 @@ public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area> 
         return result;
     }
 
-    public void addUserToArea(String areaId, String userId, Proto.Position position) {
-        getConnection().hset((PLAYERS_AREA_KEY + areaId).getBytes(), String.valueOf(userId).getBytes(), String.valueOf(position).getBytes());
+    public void addUserToArea(String areaId, String userId, boolean isFirstUser) {
+        getConnection().hset((PLAYERS_AREA_KEY + areaId).getBytes(), String.valueOf(userId).getBytes(), String.valueOf(isFirstUser).getBytes());
+    }
+
+    public boolean isContainFirstUserInArea(String areaId) {
+        Set<byte[]> usersIdBytes = getConnection().hkeys((PLAYERS_AREA_KEY + areaId).getBytes());
+        for (byte[] userIdByte : usersIdBytes) {
+            byte[] isFirstUser = getConnection().hget((PLAYERS_AREA_KEY + areaId).getBytes(), userIdByte);
+            if (isFirstUser != null && Boolean.parseBoolean(new String(isFirstUser))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int randomFirstUserInArea(String areaId) {
+        Set<byte[]> usersIdBytes = getConnection().hkeys((PLAYERS_AREA_KEY + areaId).getBytes());
+        if (usersIdBytes.size() == 0) return -1;
+        String firstUser = new String(usersIdBytes.iterator().next());
+        System.out.println("firstUser: " + firstUser);
+        getConnection().hset((PLAYERS_AREA_KEY + areaId).getBytes(), firstUser.getBytes(), String.valueOf(true).getBytes());
+        return Integer.parseInt(firstUser);
     }
 
     public long removeUserFromAreaRedis(String areaId, String userId) {
@@ -132,6 +153,16 @@ public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area> 
                 areaPlayersMap.invalidate(areaId);
         }
         return result;
+    }
+
+    public boolean getIsFirstUserInArea(String areaId, String userId) {
+        byte[] isFirstUser = getConnection().hget((PLAYERS_AREA_KEY + areaId).getBytes(), String.valueOf(userId).getBytes());
+        return isFirstUser != null && Boolean.parseBoolean(new String(isFirstUser));
+    }
+
+    public boolean isContainUserInArea(String areaId, String userId) {
+        byte[] user = getConnection().hget((PLAYERS_AREA_KEY + areaId).getBytes(), String.valueOf(userId).getBytes());
+        return user != null;
     }
 
     public ArrayList<String> getListUserIdInArea(String areaId) {
@@ -172,6 +203,10 @@ public class AreaCache extends RedisClusterHelper implements ICache<Proto.Area> 
             }
         }
         return null;
+    }
+
+    public long countUserInArea(String areaId) {
+        return getConnection().hlen((PLAYERS_AREA_KEY + areaId).getBytes());
     }
 
 

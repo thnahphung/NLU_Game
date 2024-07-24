@@ -14,6 +14,7 @@ import { AnimalAnimation } from "./AnimalAnimation";
 import { AnimalMovement } from "./AnimalMovement";
 import { ANIMAL, ANIMAL_STATE } from "../../Utils/Const";
 import { Cage } from "../Cage/Cage";
+import { AnimalHusbandryScene } from "../../Scenes/AnimalHusbandryScene";
 const { ccclass, property } = _decorator;
 
 @ccclass("Animal")
@@ -43,6 +44,8 @@ export class Animal extends Component {
   private emoteLayer: Node;
   private animalInformationLayer: Node;
 
+  private isRandomTarget: boolean = false;
+
   protected start(): void {
     this.animalAnimation = this.node.getComponent(AnimalAnimation);
     this.animalMovement = this.node.getComponent(AnimalMovement);
@@ -59,6 +62,7 @@ export class Animal extends Component {
 
     this.addPopupToLayer();
     this.createMaxMovingDistance();
+    this.isRandomTarget = this.getAnimalHusbandryScene().getIsFirstUser();
   }
 
   init(animal: proto.IAnimal) {
@@ -210,5 +214,15 @@ export class Animal extends Component {
 
   public setStage(stage: number) {
     this.stage = stage;
+  }
+
+  public getIsRandomTarget() {
+    return this.isRandomTarget;
+  }
+
+  public getAnimalHusbandryScene(): AnimalHusbandryScene {
+    return find("Canvas/SceneLayer/AnimalHusbandryScene").getComponent(
+      AnimalHusbandryScene
+    );
   }
 }
