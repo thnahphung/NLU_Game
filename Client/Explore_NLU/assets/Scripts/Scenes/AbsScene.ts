@@ -8,6 +8,7 @@ const { ccclass, property } = _decorator;
 @ccclass("AbsScene")
 export default class AbsScene extends Component {
   @property(Node) protected playerLayer: Node = null;
+  protected isFirstUser: boolean = false;
 
   protected onLoad(): void {
     if (sys.isMobile === true || sys.isNative === true) {
@@ -17,6 +18,7 @@ export default class AbsScene extends Component {
   }
 
   protected start(): void {
+    console.log("AbsScene start");
     if (GlobalData.me().getMainUser() != null) {
       this.createMainPlayer();
     }
@@ -24,7 +26,16 @@ export default class AbsScene extends Component {
   }
 
   onMessageHandler(packets: proto.IPacketWrapper) {
-    //TODO: xử lý chung như thông báo...
+    packets.packet.forEach((packet) => {
+      if (packet.resFirstJUserInArea) {
+        this.onFirstUserInAreaHandler(packet.resFirstJUserInArea);
+      }
+    });
+  }
+
+  onFirstUserInAreaHandler(packet: proto.IResFirstJUserInArea) {
+    console.log("onFirstUserInAreaHandler", packet);
+    this.isFirstUser = true;
   }
 
   createMainPlayer() {
@@ -58,5 +69,9 @@ export default class AbsScene extends Component {
 
   getPlayerLayer() {
     return this.playerLayer;
+  }
+
+  getIsFirstUser() {
+    return this.isFirstUser;
   }
 }

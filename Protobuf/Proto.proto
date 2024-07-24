@@ -113,10 +113,13 @@ message Packet {
     ResLoadAllMachineFormula resLoadAllMachineFormula = 106;
     ReqManufactureMachine reqManufactureMachine = 107;
     ResManufactureMachine resManufactureMachine = 108;
-    ReqLoadSupportFriends reqLoadSupportFriends = 109;
-    ResLoadSupportFriends resLoadSupportFriends = 110;
-    ReqInviteSupport reqInviteSupport = 111;
-    ResInviteSupport resInviteSupport = 112;
+    ResFirstJUserInArea resFirstJUserInArea = 109;
+    ReqAnimalMoving reqAnimalMoving = 110;
+    ResAnimalMoving resAnimalMoving = 111;
+    ReqLoadSupportFriends reqLoadSupportFriends = 112;
+    ResLoadSupportFriends resLoadSupportFriends = 113;
+    ReqInviteSupport reqInviteSupport = 114;
+    ResInviteSupport resInviteSupport = 115;
   }
 }
 
@@ -508,6 +511,8 @@ message ResOtherPlayerLeaveArea{
   int32 userId = 1;
 }
 
+message ResFirstJUserInArea{}
+
 message ReqMoving{
   int32 areaId = 1;
   Position position = 2;
@@ -518,6 +523,17 @@ message ResMoving{
   int32 userId = 1;
   Position position = 2;
   string currentState = 3;
+}
+
+message ReqAnimalMoving{
+  int32 animalId = 1;
+  int32 areaId = 2;
+  Position targetPosition = 3;
+}
+
+message ResAnimalMoving{
+  int32 animalId = 1;
+  Position targetPosition = 2;
 }
 
 message ReqLoadItemsOfFarm {
