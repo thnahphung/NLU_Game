@@ -65,6 +65,9 @@ export class ResponseHandler extends AbsHandler {
       if (packet.resMatchmaking) {
         this.onResMatchmaking(packet);
       }
+      if (packet.resInviteSupport) {
+        this.onResInviteSupport(packet);
+      }
     });
   }
 
@@ -224,5 +227,22 @@ export class ResponseHandler extends AbsHandler {
     }
     // Set status support
     GlobalData.me().setIsSupporting(true);
+  }
+
+  onResInviteSupport(packet: proto.IPacket) {
+    const inviteSupport = packet.resInviteSupport;
+    const status = inviteSupport.status;
+    if (status == 1) {
+      UICanvas.me().showPopupMessage(t("label_text.aid_status_invite_busy"));
+      return;
+    }
+    if (status == 2) {
+      UICanvas.me().showPopupMessage(t("label_text.aid_status_invite_offline"));
+      return;
+    }
+    if (status == 0) {
+      UICanvas.me().showPopupWaiting();
+      return;
+    }
   }
 }

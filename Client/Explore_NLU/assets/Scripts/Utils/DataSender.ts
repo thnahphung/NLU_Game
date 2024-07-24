@@ -318,6 +318,7 @@ export default class DataSender {
     let reqStopSupportFind = new proto.ReqStopSupportFind();
     let packet = new proto.Packet();
     packet.reqStopSupportFind = reqStopSupportFind;
+    WS.send(packet);
   }
 
   public static sendReqLoadDetailDisease(diseaseId: number) {
@@ -443,6 +444,21 @@ export default class DataSender {
     reqDiagnosisAnimal.diseaseId = diseaseDiagnosisId;
     let packet = new proto.Packet();
     packet.reqDiagnosisAnimal = reqDiagnosisAnimal;
+    WS.send(packet);
+  }
+
+  public static sendReqLoadSupportFriends() {
+    let reqLoadSupportFriends = new proto.ReqLoadSupportFriends();
+    let packet = new proto.Packet();
+    packet.reqLoadSupportFriends = reqLoadSupportFriends;
+    WS.send(packet);
+  }
+
+  public static sendReqInviteSupport(friendId: number) {
+    let reqInviteSupport = new proto.ReqInviteSupport();
+    reqInviteSupport.userId = friendId;
+    let packet = new proto.Packet();
+    packet.reqInviteSupport = reqInviteSupport;
     WS.send(packet);
   }
 }

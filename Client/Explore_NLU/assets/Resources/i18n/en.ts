@@ -241,9 +241,15 @@ export const languages = {
     //Aid
     aid_title: "Aid",
     aid_status: "Status",
+    aid_status_finding: "Looking for...",
+    aid_status_waiting: "Waiting for acceptance...",
+    aid_max_time_waiting: "Maximum waiting time: 1 minutes",
     aid_invite_random: "Invite random",
     aid_invite_friend: "Invite friend",
     help_agricultural: "Agricultural help",
+    aid_invite: "Invite",
+    aid_status_invite_busy: "This player is busy!",
+    aid_status_invite_offline: "This player is offline!",
     //Sysptom
     sysptoms_high_fever: "High fever",
     sysptoms_difficulty_breathing: "Difficulty breathing",
