@@ -4,6 +4,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer2.DataSenderUtils;
+import vn.edu.nlu.fit.nlugame.layer2.SessionManage;
 import vn.edu.nlu.fit.nlugame.layer2.dao.*;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.*;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
@@ -11,6 +12,7 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.*;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
+import javax.xml.crypto.Data;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -718,5 +720,19 @@ public class AnimalHusbandService {
                 .build();
     }
 
+
+    public void animalMoving(Session session, Proto.ReqAnimalMoving reqAnimalMoving) {
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        if (userId == -1) return;
+
+        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(reqAnimalMoving.getAreaId()));
+        ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
+        listSessionInArea.removeIf(s -> s.equals(SessionID.of(session).getSessionId()));
+        Proto.ResAnimalMoving resAnimalMoving = Proto.ResAnimalMoving.newBuilder()
+                .setAnimalId(reqAnimalMoving.getAnimalId())
+                .setTargetPosition(reqAnimalMoving.getTargetPosition())
+                .build();
+        DataSenderUtils.sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResAnimalMoving(resAnimalMoving).build());
+    }
 
 }

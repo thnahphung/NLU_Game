@@ -3,6 +3,8 @@ import { Animal } from "./Animal";
 import { Util } from "../../Utils/Util";
 import { ANIMAL, ANIMAL_STATE, AUDIOS } from "../../Utils/Const";
 import { AudioManger } from "../../Manager/AudioManger";
+import DataSender from "../../Utils/DataSender";
+import GlobalData from "../../Utils/GlobalData";
 const { ccclass, property } = _decorator;
 
 @ccclass("AnimalMovement")
@@ -12,6 +14,7 @@ export class AnimalMovement extends Component {
   @property private interval;
   @property private minDelay = 0;
   @property private maxDelay = 0;
+  private isRandomTarget = false;
 
   movingCallBack = function () {
     this.moving();
@@ -22,17 +25,46 @@ export class AnimalMovement extends Component {
     this.animalInfo = this.node.getComponent(Animal);
 
     this.node.setPosition(this.randomTarget());
-    this.interval = Util.randomInRange(this.minDelay, this.maxDelay);
 
-    this.moving();
-    if (this.animalInfo.getIsRandomTarget()) {
+    this.isRandomTarget = GlobalData.me().getIsFirstUser();
+    if (this.isRandomTarget) {
+      this.interval = Util.randomInRange(this.minDelay, this.maxDelay);
       this.schedule(this.movingCallBack, this.interval);
+    }
+  }
+
+  protected update(dt: number): void {
+    if (GlobalData.me().getIsFirstUser() != this.isRandomTarget) {
+      this.isRandomTarget = GlobalData.me().getIsFirstUser();
+      if (this.isRandomTarget) {
+        this.interval = Util.randomInRange(this.minDelay, this.maxDelay);
+        this.schedule(this.movingCallBack, this.interval);
+      } else {
+        this.unschedule(this.movingCallBack);
+      }
     }
   }
 
   public moving() {
     this.target = this.randomTarget();
-    //  const targetProto: proto.Position = Util.convertCocosPosToProtoPos(this.target);
+    const targetProto: proto.IPosition = Util.convertCocosPosToProtoPos(
+      this.target
+    );
+    console.log("moving", this.target);
+    if (!this.animalInfo.getIsLockedUp()) {
+      DataSender.sendReqAnimalMoving(
+        this.animalInfo.getFakeId(),
+        GlobalData.me().getArea().areaId,
+        targetProto
+      );
+    } else {
+      DataSender.sendReqAnimalMoving(
+        this.animalInfo.getAnimal().id,
+        GlobalData.me().getArea().areaId,
+        targetProto
+      );
+    }
+
     if (this.node === null) {
       this.unschedule(this.movingCallBack);
     }
@@ -55,7 +87,7 @@ export class AnimalMovement extends Component {
     let distance = this.node.position.clone().subtract(target).length();
     this.duration = distance / this.animalInfo.getSpeed();
     tween(this.node.position)
-      .call(() => this.changeCurrentStateWalk())
+      .call(() => this.changeCurrentStateWalk(target))
       .to(this.duration, target, {
         onUpdate: (target: Vec3, ratio: number) => {
           if (this.node === null) return;
@@ -66,8 +98,8 @@ export class AnimalMovement extends Component {
       .start();
   }
 
-  public changeCurrentStateWalk() {
-    if (this.target.x < this.node.position.x) {
+  public changeCurrentStateWalk(target: Vec3) {
+    if (target.x < this.node.position.x) {
       this.animalInfo.setCurrentState(ANIMAL_STATE.WALK_LEFT);
     } else {
       this.animalInfo.setCurrentState(ANIMAL_STATE.WALK_RIGHT);

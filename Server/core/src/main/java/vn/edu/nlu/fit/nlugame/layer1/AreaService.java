@@ -33,8 +33,9 @@ public class AreaService {
     }
 
     public void joinOtherArea(Session session, Proto.ReqPlayerJoinArea reqJoinArea) {
-        Proto.Area areaLeaved = leaveArea(session);
         int userId = SessionCache.me().getUserID(SessionID.of(session));
+        if (userId == -1) return;
+        Proto.Area areaLeaved = leaveArea(session);
         Proto.Area areaProto = getAreaByUserId(reqJoinArea.getUserTargetId());
         if (areaProto == null) return;
         String typeArea = areaLeaved == null ? "" : areaLeaved.getTypeArea();
@@ -48,8 +49,9 @@ public class AreaService {
     }
 
     public Proto.Area joinAreaCommon(Session session, Proto.ReqPlayerJoinAreaCommon reqPlayerJoinAreaCommon) {
-        Proto.Area areaLeaved = leaveArea(session);
         int userId = SessionCache.me().getUserID(SessionID.of(session));
+        if (userId == -1) return null;
+        Proto.Area areaLeaved = leaveArea(session);
         Proto.Area areaProto = getAreaByAreaId(reqPlayerJoinAreaCommon.getAreaCommonId());
         if (areaProto == null) return null;
         String typeArea = areaLeaved == null ? "" : areaLeaved.getTypeArea();
@@ -79,8 +81,6 @@ public class AreaService {
         boolean isFirstUser = AreaCache.me().countUserInArea(String.valueOf(areaProto.getAreaId())) == 0;
         AreaCache.me().addUserToArea(String.valueOf(areaProto.getAreaId()), String.valueOf(userId), isFirstUser);
         if (isFirstUser) {
-            System.out.println("userFirstId JOINNNNNN:==================== " + userId);
-
             Proto.ResFirstJUserInArea resFirstUserJoinArea = Proto.ResFirstJUserInArea.newBuilder().build();
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResFirstJUserInArea(resFirstUserJoinArea).build());
         }
@@ -159,7 +159,6 @@ public class AreaService {
                 if (isFirstUserInArea) {
                     int userFirstId = AreaCache.me().randomFirstUserInArea(String.valueOf(area.getAreaId()));
                     if (userFirstId != -1) {
-                        System.out.println("userFirstId:==================== " + userFirstId);
                         UserContext userContext = UserCache.me().get(String.valueOf(userFirstId));
                         Session sessionFirstUser = SessionManage.me().get(userContext.getSessionID());
                         Proto.ResFirstJUserInArea resFirstUserJoinArea = Proto.ResFirstJUserInArea.newBuilder().build();
