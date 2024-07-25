@@ -120,6 +120,9 @@ message Packet {
     ResLoadSupportFriends resLoadSupportFriends = 113;
     ReqInviteSupport reqInviteSupport = 114;
     ResInviteSupport resInviteSupport = 115;
+    ReqRejectInviteSupport reqRejectInviteSupport = 116;
+    ReqAcceptInviteSupport reqAcceptInviteSupport = 117;
+    ResRejectInviteSupport resRejectInviteSupport = 118;
   }
 }
 
@@ -1009,3 +1012,14 @@ message ResInviteSupport {
   User user = 2;
 }
 
+message ReqRejectInviteSupport {
+  int32 inviteUserId = 1;
+}
+
+message ResRejectInviteSupport {
+  User user = 1;
+}
+
+message ReqAcceptInviteSupport {
+  int32 inviteUserId = 1;
+}

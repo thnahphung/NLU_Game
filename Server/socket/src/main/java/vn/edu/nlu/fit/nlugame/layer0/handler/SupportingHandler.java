@@ -28,6 +28,12 @@ public class SupportingHandler implements Subscriber{
                 case REQINVITESUPPORT:
                     supportingService.handleReqInviteSupport(session, packet.getReqInviteSupport());
                     break;
+                case REQACCEPTINVITESUPPORT:
+                    supportingService.handleReqAcceptInviteSupport(session, packet.getReqAcceptInviteSupport());
+                    break;
+                case REQREJECTINVITESUPPORT:
+                    supportingService.handleReqRejectInviteSupport(session, packet.getReqRejectInviteSupport());
+                    break;
             }
         });
     }

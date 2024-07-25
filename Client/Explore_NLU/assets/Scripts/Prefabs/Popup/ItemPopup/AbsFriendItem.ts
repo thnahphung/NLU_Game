@@ -20,13 +20,26 @@ export class AbsFriendItem extends Component {
   @property(Sprite)
   protected avatarSprite: Sprite = null;
 
-  protected start() {
+  init(
+    name: string,
+    career: string,
+    level: string,
+    id: string,
+    characterProto: proto.ICharacter
+  ) {
     this.friendName = this.nameLabel?.string;
     this.friendCareer = this.careerLabel?.string;
     this.friendLevel = this.levelLabel?.string;
     this.friendId = this.idLabel?.string;
+    this.friendCharacterProto = characterProto;
+    this.setFriendName(name);
+    this.setFriendCareer(career);
+    this.setFriendLevel(level);
+    this.setFriendId(id);
     this.setCharacterSprite();
   }
+
+  protected start() {}
 
   protected setCharacterSprite() {
     this.avatarSprite.spriteFrame = ResourceManager.me().getChacracterFrame(

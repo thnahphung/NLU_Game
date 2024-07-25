@@ -13,13 +13,23 @@ export class FriendDetailItem extends AbsFriendItem {
   private modalNode: Node = null;
   @property(Node)
   private addFriendButton: Node = null;
+
+  init(
+    name: string,
+    career: string,
+    level: string,
+    id: string,
+    characterProto: proto.ICharacter
+  ): void {
+    super.init(name, career, level, id, characterProto);
+  }
+
   start() {
     this.modalNode.on(
       Node.EventType.TOUCH_END,
       this.onCloseFriendDetailModal,
       this
     );
-    this.setCharacterSprite();
   }
 
   setCharacterSprite() {
