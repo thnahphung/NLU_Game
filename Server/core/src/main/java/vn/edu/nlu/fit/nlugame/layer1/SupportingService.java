@@ -44,6 +44,7 @@ public class SupportingService {
     }
 
     private boolean matchMechanicalWithAgricultural() {
+        //TODO: if status of user is invited or busy, do not match, and pool user
         UserContext userContextMechanical = mechanicalEngineers.peek();
         UserContext userContextAgricultural = agriculturalEngineers.peek();
         if(userContextMechanical == null || userContextAgricultural == null) {
@@ -200,7 +201,6 @@ public class SupportingService {
         }
         String codeCharacter = userContextReceive.getUser().getCharacter().getCode();
         if(codeCharacter.equals("KSCK") && mechanicalEngineers.contains(userContextReceive)){
-            System.out.println("Mechanical engineer is busy");
             status = Proto.User.STATUS.BUSY_VALUE;
             resInviteSupportForSessionUser.setStatus(status);
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResInviteSupport(resInviteSupportForSessionUser).build());
@@ -214,7 +214,6 @@ public class SupportingService {
         }
         Session sessionUserReceive = SessionManage.me().get(userContextReceive.getSessionID());
         if(sessionUserReceive == null || !sessionUserReceive.isOpen()) {
-            System.out.println("Session is closed");
             status = Proto.User.STATUS.OFFLINE_VALUE;
             resInviteSupportForSessionUser.setStatus(status);
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResInviteSupport(resInviteSupportForSessionUser).build());
@@ -229,7 +228,6 @@ public class SupportingService {
         resInviteSupportForSupportUser.setUser(user);
         resInviteSupportForSupportUser.setStatus(status);
         DataSenderUtils.sendResponse(sessionUserReceive, Proto.Packet.newBuilder().setResInviteSupport(resInviteSupportForSupportUser).build());
-        System.out.println("Invite support successfully" + status);
     }
 
     public void handleReqAcceptInviteSupport(Session session, Proto.ReqAcceptInviteSupport reqAcceptInviteSupport) {
@@ -268,7 +266,6 @@ public class SupportingService {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResMatchmaking(resMatchmakingForMechanical).build());
             DataSenderUtils.sendResponse(sessionUserReceive, Proto.Packet.newBuilder().setResMatchmaking(resMatchmakingForAgricultural).build());
         }
-        System.out.println("Accept invite support successfully");
     }
 
     public void handleReqRejectInviteSupport(Session session, Proto.ReqRejectInviteSupport reqRejectInviteSupport) {
