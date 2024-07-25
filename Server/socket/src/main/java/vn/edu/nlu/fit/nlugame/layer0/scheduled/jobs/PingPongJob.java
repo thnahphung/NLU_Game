@@ -12,7 +12,7 @@ public class PingPongJob implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         try {
-            PingPongService.me().pingPong();
+//            PingPongService.me().pingPong();
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -77,6 +77,7 @@ export default class DataSender {
   }
 
   public static sendReqPlayerJoinArea(userIdTarget: number) {
+    GlobalData.me().setIsFirstUser(false);
     let reqPlayerJoinArea = new proto.ReqPlayerJoinArea();
     reqPlayerJoinArea.userTargetId = userIdTarget;
     let packet = new proto.Packet();
@@ -85,6 +86,7 @@ export default class DataSender {
   }
 
   public static sendReqPlayerJoinAreaCommon(areaId: number) {
+    GlobalData.me().setIsFirstUser(false);
     let reqPlayerJoinArea = new proto.ReqPlayerJoinAreaCommon();
     reqPlayerJoinArea.areaCommonId = areaId;
     let packet = new proto.Packet();
@@ -450,7 +452,7 @@ export default class DataSender {
   public static sendReqAnimalMoving(
     animalId: number,
     areaId: number,
-    targetPosition: proto.Position
+    targetPosition: proto.IPosition
   ) {
     let reqAnimalMoving = new proto.ReqAnimalMoving();
     reqAnimalMoving.animalId = animalId;

@@ -14,7 +14,6 @@ import { AnimalAnimation } from "./AnimalAnimation";
 import { AnimalMovement } from "./AnimalMovement";
 import { ANIMAL, ANIMAL_STATE } from "../../Utils/Const";
 import { Cage } from "../Cage/Cage";
-import { AnimalHusbandryScene } from "../../Scenes/AnimalHusbandryScene";
 const { ccclass, property } = _decorator;
 
 @ccclass("Animal")
@@ -22,9 +21,11 @@ export class Animal extends Component {
   @property private type: ANIMAL = ANIMAL.COW;
   @property private currentState: ANIMAL_STATE = ANIMAL_STATE.IDLE_RIGHT;
   @property private speed: number = 100;
+  @property private fakeId: number = 0;
   private maxStage: number = 2;
   private stage: number = 1;
 
+  @property isLockedUp: boolean = true;
   @property maxMovingDistanceX: Vec2 = new Vec2(0, 0);
   @property maxMovingDistanceY: Vec2 = new Vec2(0, 0);
 
@@ -44,32 +45,30 @@ export class Animal extends Component {
   private emoteLayer: Node;
   private animalInformationLayer: Node;
 
-  private isRandomTarget: boolean = false;
-
   protected start(): void {
     this.animalAnimation = this.node.getComponent(AnimalAnimation);
     this.animalMovement = this.node.getComponent(AnimalMovement);
     this.animation = this.node.getComponent(Animation);
+    this.animalSprite = this.node.getComponent(Sprite);
+    this.blockInputPanel = this.node.getChildByName("BlockInputPanel");
+
+    if (!this.isLockedUp) return;
+    this.collider = this.node.getComponent(Collider2D);
     this.emoteAnimation = this.node
       .getChildByName("Emote")
       .getComponent(Animation);
-    this.collider = this.node.getComponent(Collider2D);
-    this.animalSprite = this.node.getComponent(Sprite);
     this.popupInformationAnimal = this.node.getChildByName(
       "PopupInformationAnimal"
     );
-    this.blockInputPanel = this.node.getChildByName("BlockInputPanel");
-
     this.addPopupToLayer();
-    this.createMaxMovingDistance();
-    this.isRandomTarget = this.getAnimalHusbandryScene().getIsFirstUser();
+    this.createMaxMovingDistanceByParent();
   }
 
   init(animal: proto.IAnimal) {
     this.animal = animal;
   }
 
-  public createMaxMovingDistance() {
+  public createMaxMovingDistanceByParent() {
     this.maxMovingDistanceX.x =
       -this.node.getParent().getComponent(UITransform).contentSize.width / 2;
     this.maxMovingDistanceX.y =
@@ -81,6 +80,7 @@ export class Animal extends Component {
   }
 
   protected update(dt: number): void {
+    if (!this.isLockedUp) return;
     this.checkDisease();
     if (this.canUpdateLevel()) {
       this.updateLevel();
@@ -216,13 +216,11 @@ export class Animal extends Component {
     this.stage = stage;
   }
 
-  public getIsRandomTarget() {
-    return this.isRandomTarget;
+  public getIsLockedUp() {
+    return this.isLockedUp;
   }
 
-  public getAnimalHusbandryScene(): AnimalHusbandryScene {
-    return find("Canvas/SceneLayer/AnimalHusbandryScene").getComponent(
-      AnimalHusbandryScene
-    );
+  public getFakeId() {
+    return this.fakeId;
   }
 }

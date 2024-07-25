@@ -9,6 +9,7 @@ import { t } from "../../../extensions/i18n/assets/LanguageData";
 import { Animal } from "../Prefabs/Animal/Animal";
 import { AudioManger } from "../Manager/AudioManger";
 import { AUDIOS } from "../Utils/Const";
+import { AnimalMovement } from "../Prefabs/Animal/AnimalMovement";
 const { ccclass, property } = _decorator;
 
 @ccclass("AnimalHusbandryScene")
@@ -58,12 +59,24 @@ export class AnimalHusbandryScene extends AbsScene {
           packet.resDiagnosisAnimalOtherPlayer
         );
       }
+      if (packet.resAnimalMoving) {
+        this.onAnimalMovingHandler(packet.resAnimalMoving);
+      }
     });
   }
+
+  onAnimalMovingHandler(packet: proto.IResAnimalMoving) {
+    const animalNode = this.getAnimalNode(packet.animalId);
+    if (animalNode) {
+      animalNode
+        .getComponent(AnimalMovement)
+        .movingToTarget(Util.convertProtoPosToCocosPos(packet.targetPosition));
+    }
+  }
+
   onDiagnosisAnimalOtherPlayerHandler(
     packet: proto.IResDiagnosisAnimalOtherPlayer
   ) {
-    console.log("onDiagnosisAnimalOtherPlayerHandler============", packet);
     if (packet.status == 200) {
       const animalNode = this.getAnimalNode(packet.animalId);
       animalNode.getComponent(Animal).setIsDiseaseAnimal(false);
@@ -71,7 +84,6 @@ export class AnimalHusbandryScene extends AbsScene {
   }
 
   onDiagnosisOwnerOfAnimalHandler(packet: proto.IResDiagnosisOwnerOfAnimal) {
-    console.log("onDiagnosisOwnerOfAnimalHandler============", packet);
     if (packet.status == 403) {
       UICanvas.me().showPopupMessage(
         t("label_text.diagnosis_owner_of_animal_403")
@@ -100,7 +112,6 @@ export class AnimalHusbandryScene extends AbsScene {
   }
 
   onDiagnosisAnimalHandler(packet: proto.IResDiagnosisAnimal) {
-    console.log("onDiagnosisAnimalHandler============", packet);
     if (packet.status == 400) {
       UICanvas.me().showPopupMessage(t("label_text.diagnosis_animal_400"));
       return;

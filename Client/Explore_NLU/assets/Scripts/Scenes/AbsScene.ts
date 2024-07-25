@@ -3,12 +3,15 @@ import GlobalData from "../Utils/GlobalData";
 import { PlayerManager } from "../Manager/PlayerManager";
 import { CHARACTERS } from "../Utils/Const";
 import { Character } from "../Prefabs/Character/Character";
+import { Animal } from "../Prefabs/Animal/Animal";
+import { AnimalMovement } from "../Prefabs/Animal/AnimalMovement";
+import { Util } from "../Utils/Util";
 const { ccclass, property } = _decorator;
 
 @ccclass("AbsScene")
 export default class AbsScene extends Component {
   @property(Node) protected playerLayer: Node = null;
-  protected isFirstUser: boolean = false;
+  @property([Node]) protected listAnimalNode: Node[] = [];
 
   protected onLoad(): void {
     if (sys.isMobile === true || sys.isNative === true) {
@@ -18,11 +21,11 @@ export default class AbsScene extends Component {
   }
 
   protected start(): void {
-    console.log("AbsScene start");
     if (GlobalData.me().getMainUser() != null) {
       this.createMainPlayer();
     }
     this.createOtherPlayer();
+    this.getAllAnimalInScene();
   }
 
   onMessageHandler(packets: proto.IPacketWrapper) {
@@ -30,12 +33,40 @@ export default class AbsScene extends Component {
       if (packet.resFirstJUserInArea) {
         this.onFirstUserInAreaHandler(packet.resFirstJUserInArea);
       }
+      if (packet.resAnimalMoving) {
+        this.onAnimalMovingHandlerAbsScene(packet.resAnimalMoving);
+      }
     });
   }
 
+  onAnimalMovingHandlerAbsScene(packet: proto.IResAnimalMoving) {
+    const animalNode = this.getAnimalNodeInScene(packet.animalId);
+    if (animalNode) {
+      animalNode
+        .getComponent(AnimalMovement)
+        .movingToTarget(Util.convertProtoPosToCocosPos(packet.targetPosition));
+    }
+  }
+
+  public getAllAnimalInScene() {
+    if (!this.playerLayer) return;
+    for (const child of this.playerLayer.children) {
+      if (child.getComponent(Animal)) {
+        this.listAnimalNode.push(child);
+      }
+    }
+  }
+
+  public getAnimalNodeInScene(animalId: number): Node {
+    for (const animal of this.listAnimalNode) {
+      if (animal.getComponent(Animal).getFakeId() == animalId) {
+        return animal;
+      }
+    }
+  }
+
   onFirstUserInAreaHandler(packet: proto.IResFirstJUserInArea) {
-    console.log("onFirstUserInAreaHandler", packet);
-    this.isFirstUser = true;
+    GlobalData.me().setIsFirstUser(true);
   }
 
   createMainPlayer() {
@@ -69,9 +100,5 @@ export default class AbsScene extends Component {
 
   getPlayerLayer() {
     return this.playerLayer;
-  }
-
-  getIsFirstUser() {
-    return this.isFirstUser;
   }
 }

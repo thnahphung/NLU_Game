@@ -11,6 +11,7 @@ export class AnimalAnimation extends Component {
   private animationCount = 0;
   start() {
     this.animalInfo = this.node.getComponent(Animal);
+    if (!this.animalInfo.getIsLockedUp()) return;
     this.schedule(function () {
       this.showEmote();
     }, this.interval);
@@ -18,6 +19,8 @@ export class AnimalAnimation extends Component {
 
   update(deltaTime: number) {
     this.changeAnimation(this.animalInfo.getCurrentState());
+    if (!this.animalInfo.getIsLockedUp()) return;
+
     const position = this.animalInfo
       .getEmoteLayer()
       .getComponent(UITransform)
