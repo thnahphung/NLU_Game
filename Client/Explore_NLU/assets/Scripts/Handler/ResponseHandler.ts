@@ -149,7 +149,6 @@ export class ResponseHandler extends AbsHandler {
     if (otherUserNode == null || otherUserNode == undefined) return;
     GlobalData.me().removeOtherUser(packet.resOtherPlayerLeaveArea.userId);
     GlobalData.me().removeOtherUsersNode(packet.resOtherPlayerLeaveArea.userId);
-    // playerNode.destroy();
   }
 
   onGameStateHandler(packet: proto.IPacket) {

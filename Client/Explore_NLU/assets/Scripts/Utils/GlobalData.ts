@@ -211,6 +211,7 @@ export default class GlobalData {
   /*===== AREA =====*/
   private area: proto.IArea = null;
   private mainArea: proto.IArea = null;
+  private isFirstUser: boolean = false;
 
   public setArea(area: proto.IArea) {
     this.area = area;
@@ -230,6 +231,14 @@ export default class GlobalData {
 
   public isMainArea() {
     return this.area.areaId == this.mainArea.areaId;
+  }
+
+  public setIsFirstUser(isFirstUser: boolean) {
+    this.isFirstUser = isFirstUser;
+  }
+
+  public getIsFirstUser() {
+    return this.isFirstUser;
   }
   /*===== END AREA =====*/
 
@@ -369,7 +378,6 @@ export default class GlobalData {
   public setCages(cages: proto.ICage[]) {
     this.cages = cages;
   }
-
   /* END ANIMAL HUSBAND */
 
   /* SUPPORTING */

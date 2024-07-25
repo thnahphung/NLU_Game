@@ -46,7 +46,7 @@ export class Util {
   }
 
   public static randomInRange(min: number, max: number): number {
-    return math.random() * (max - min + 1) + min;
+    return Math.floor(math.random() * (max - min + 1) + min);
   }
 
   public static typeItemfromValue(value: string): TYPE_ITEM {

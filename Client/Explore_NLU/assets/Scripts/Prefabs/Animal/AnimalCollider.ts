@@ -14,16 +14,14 @@ const { ccclass, property } = _decorator;
 
 @ccclass("AnimalCollider")
 export class AnimalCollider extends Component {
-  private animalInfo: Animal;
-  start() {
-    this.animalInfo = this.node.getComponent(Animal);
-
-    let collider = this.animalInfo.getCollider();
-    if (collider !== null) {
-      // collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
-    }
-  }
-
+  // private animalInfo: Animal;
+  // start() {
+  //   this.animalInfo = this.node.getComponent(Animal);
+  //   let collider = this.animalInfo.getCollider();
+  //   if (collider !== null) {
+  //     // collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
+  //   }
+  // }
   // onBeginContact(
   //   selfCollider: Collider2D,
   //   otherCollider: Collider2D,
@@ -44,18 +42,16 @@ export class AnimalCollider extends Component {
   //     this.animalInfo.setCurrentState(ANIMAL_STATE.EAT_LEFT);
   //   }
   // }
-
-  private isCowFood(otherCollider: Node) {
-    return (
-      this.node.getComponent(Animal).getType() === ANIMAL.COW &&
-      otherCollider.name === ANIMAL_FOOD.HAY
-    );
-  }
-
-  private isChickenFood(otherCollider: Node) {
-    return (
-      this.node.getComponent(Animal).getType() === ANIMAL.CHICKEN &&
-      otherCollider.name === ANIMAL_FOOD.PADDY_GRAIN
-    );
-  }
+  // private isCowFood(otherCollider: Node) {
+  //   return (
+  //     this.node.getComponent(Animal).getType() === ANIMAL.COW &&
+  //     otherCollider.name === ANIMAL_FOOD.HAY
+  //   );
+  // }
+  // private isChickenFood(otherCollider: Node) {
+  //   return (
+  //     this.node.getComponent(Animal).getType() === ANIMAL.CHICKEN &&
+  //     otherCollider.name === ANIMAL_FOOD.PADDY_GRAIN
+  //   );
+  // }
 }
