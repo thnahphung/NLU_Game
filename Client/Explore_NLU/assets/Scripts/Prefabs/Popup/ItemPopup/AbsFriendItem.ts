@@ -32,7 +32,6 @@ export class AbsFriendItem extends Component {
     this.friendLevel = this.levelLabel?.string;
     this.friendId = this.idLabel?.string;
     this.friendCharacterProto = characterProto;
-    console.log("init", this.friendCharacterProto.code, characterProto);
     this.setFriendName(name);
     this.setFriendCareer(career);
     this.setFriendLevel(level);

@@ -33,6 +33,8 @@ import { ResourceManager } from "../../Manager/ResourceManager";
 import { PopupDiagnosis } from "../Popup/PopupDiagnosis";
 import { PopupManufactureResult } from "../Popup/PopupManufactureResult";
 import { t } from "../../../../extensions/i18n/assets/LanguageData";
+import { PopupAcceptSupport } from "../Popup/PopupAcceptSupport";
+import { PopupWaiting } from "../Popup/PopupWaiting";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -65,6 +67,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupHelp: Prefab;
   @property(Prefab) private prefabPopupFindTime: Prefab;
   @property(Prefab) private prefabPopupWaiting: Prefab;
+  @property(Prefab) private prefabPopupAcceptSupport: Prefab;
   @property(Prefab) private prefabPopupAid: Prefab;
   @property(Prefab) private prefabPopupCraftingMedicines: Prefab;
   @property(Prefab) private prefabPopupDiagnosis: Prefab;
@@ -81,6 +84,7 @@ export class UICanvas extends Component {
   private _popupHelp: Node;
   private _popupFindTime: Node;
   private _popupWaiting: Node;
+  private _popupAcceptSupport: Node;
   private _popupCageInformation: Node;
   private _popupAid: Node;
   private _popupManufactureResult: Node;
@@ -469,6 +473,12 @@ export class UICanvas extends Component {
     }
   }
 
+  hidePopupAid() {
+    if (this._popupAid) {
+      this._popupAid.active = false;
+    }
+  }
+
   showPopupFindTime() {
     if (this.node.getChildByName("TopMid").getChildByName("PopupFindTime")) {
       return;
@@ -485,6 +495,14 @@ export class UICanvas extends Component {
     this.onLocked1s();
     this._popupWaiting = instantiate(this.prefabPopupWaiting);
     this.node.getChildByName("TopMid").addChild(this._popupWaiting);
+  }
+
+  showPopupAcceptSupport(userInvite: proto.IUser) {
+    this._popupAcceptSupport = instantiate(this.prefabPopupAcceptSupport);
+    this._popupAcceptSupport.getComponent(PopupAcceptSupport).init(userInvite);
+    this._popupAcceptSupport.setPosition(200, -160);
+    this.node.getChildByName("MidRight").addChild(this._popupAcceptSupport);
+    this._popupAcceptSupport.getComponent(PopupComponent).showSlideIn();
   }
 
   closePopupFindTime() {
@@ -520,7 +538,20 @@ export class UICanvas extends Component {
     this._popupAid.getComponent(PopupComponent).show();
   }
 
+  getPopupAid(): Node {
+    return this._popupAid;
+  }
+
   getPopupSupport(): Node {
+    return this._popupHelp;
+  }
+
+  createNewPopupSupport() {
+    if (this.node.getChildByName("PopupLayer").getChildByName("PopupHelp")) {
+      return;
+    }
+    this._popupHelp = instantiate(this.prefabPopupHelp);
+    this.node.getChildByName("PopupLayer").addChild(this._popupHelp);
     return this._popupHelp;
   }
 

@@ -8273,6 +8273,10 @@
       "__uuid__": "2e43b45a-e431-4283-8366-e145f3d54734",
       "__expectedType__": "cc.Prefab"
     },
+    "prefabPopupAcceptSupport": {
+      "__uuid__": "89da3728-e82a-4809-a97d-92654d5bdeea",
+      "__expectedType__": "cc.Prefab"
+    },
     "prefabPopupAid": {
       "__uuid__": "edc7ba56-ac9d-4f8e-972d-404873d50567",
       "__expectedType__": "cc.Prefab"

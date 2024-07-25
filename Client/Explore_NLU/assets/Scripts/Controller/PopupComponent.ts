@@ -41,6 +41,17 @@ export class PopupComponent extends Component {
       .start();
   }
 
+  showSlideIn() {
+    const uiTransform = this.node.getComponent(UITransform);
+    tween(this.node)
+      .call(() => {
+        this.node.scale = new Vec3(1, 1, 1);
+        this.node.active = true;
+      })
+      .to(0.5, { position: new Vec3(-300, -160, 0) }, { easing: "backOut" })
+      .start();
+  }
+
   update(deltaTime: number) {
     if (!this.background) return;
     const nodeScale = this.node.scale;

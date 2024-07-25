@@ -238,6 +238,7 @@ export const languages = {
     help_notify_status:
       "You're visiting a friend's house so you can't help with agriculture",
     help_move: "Moving to the location that needs assistance...",
+    help_notify_invite: "is asking for your help!",
     //Aid
     aid_title: "Aid",
     aid_status: "Status",
@@ -250,6 +251,8 @@ export const languages = {
     aid_invite: "Invite",
     aid_status_invite_busy: "This player is busy!",
     aid_status_invite_offline: "This player is offline!",
+    aid_status_invite_reject: "is not ready to support you!",
+    aid_btn_invited: "Invited",
     //Sysptom
     sysptoms_high_fever: "High fever",
     sysptoms_difficulty_breathing: "Difficulty breathing",

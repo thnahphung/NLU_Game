@@ -187,7 +187,7 @@ public class SupportingService {
     public void handleReqInviteSupport(Session session, Proto.ReqInviteSupport reqInviteSupport) {
         Proto.ResInviteSupport.Builder resInviteSupportForSessionUser = Proto.ResInviteSupport.newBuilder();
         Proto.ResInviteSupport.Builder resInviteSupportForSupportUser = Proto.ResInviteSupport.newBuilder();
-        int status;
+        int status = 0;
         int userId = SessionCache.me().getUserID(SessionID.of(session));
         UserContext userContext = UserCache.me().get(String.valueOf(userId));
         if(userContext == null) {
@@ -200,6 +200,7 @@ public class SupportingService {
         }
         String codeCharacter = userContextReceive.getUser().getCharacter().getCode();
         if(codeCharacter.equals("KSCK") && mechanicalEngineers.contains(userContextReceive)){
+            System.out.println("Mechanical engineer is busy");
             status = Proto.User.STATUS.BUSY_VALUE;
             resInviteSupportForSessionUser.setStatus(status);
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResInviteSupport(resInviteSupportForSessionUser).build());
@@ -213,17 +214,79 @@ public class SupportingService {
         }
         Session sessionUserReceive = SessionManage.me().get(userContextReceive.getSessionID());
         if(sessionUserReceive == null || !sessionUserReceive.isOpen()) {
+            System.out.println("Session is closed");
             status = Proto.User.STATUS.OFFLINE_VALUE;
             resInviteSupportForSessionUser.setStatus(status);
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResInviteSupport(resInviteSupportForSessionUser).build());
             return;
         }
-
-        resInviteSupportForSessionUser.setStatus(Proto.User.STATUS.WAITING_VALUE);
+        status = Proto.User.STATUS.WAITING_VALUE;
+        resInviteSupportForSessionUser.setStatus(status);
+        resInviteSupportForSessionUser.setUser(userContextReceive.getUser());
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResInviteSupport(resInviteSupportForSessionUser).build());
 
         Proto.User user = userContext.getUser();
         resInviteSupportForSupportUser.setUser(user);
+        resInviteSupportForSupportUser.setStatus(status);
         DataSenderUtils.sendResponse(sessionUserReceive, Proto.Packet.newBuilder().setResInviteSupport(resInviteSupportForSupportUser).build());
+        System.out.println("Invite support successfully" + status);
+    }
+
+    public void handleReqAcceptInviteSupport(Session session, Proto.ReqAcceptInviteSupport reqAcceptInviteSupport) {
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        UserContext userContext = UserCache.me().get(String.valueOf(userId));
+        if(userContext == null) {
+            return;
+        }
+        UserContext userContextReceive = UserCache.me().getUserContextOnline(reqAcceptInviteSupport.getInviteUserId());
+        System.out.println(userContextReceive);
+        if(userContextReceive == null) {
+            return;
+        }
+        Session sessionUserReceive = SessionManage.me().get(userContextReceive.getSessionID());
+        if(sessionUserReceive == null || !sessionUserReceive.isOpen()) {
+            return;
+        }
+
+        if(userContext.getUser().getCharacter().getCode().equals("BSTY")){
+            Proto.ResMatchmaking resMatchmakingForVeterinarian = Proto.ResMatchmaking.newBuilder()
+                    .setMatchmakedUser(userContextReceive.getUser())
+                    .build();
+            Proto.ResMatchmaking resMatchmakingForLivestockEngineer = Proto.ResMatchmaking.newBuilder()
+                    .setMatchmakedUser(userContext.getUser())
+                    .build();
+
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResMatchmaking(resMatchmakingForVeterinarian).build());
+            DataSenderUtils.sendResponse(sessionUserReceive, Proto.Packet.newBuilder().setResMatchmaking(resMatchmakingForLivestockEngineer).build());
+        }else{
+            Proto.ResMatchmaking resMatchmakingForMechanical = Proto.ResMatchmaking.newBuilder()
+                    .setMatchmakedUser(userContextReceive.getUser())
+                    .build();
+            Proto.ResMatchmaking resMatchmakingForAgricultural = Proto.ResMatchmaking.newBuilder()
+                    .setMatchmakedUser(userContext.getUser())
+                    .build();
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResMatchmaking(resMatchmakingForMechanical).build());
+            DataSenderUtils.sendResponse(sessionUserReceive, Proto.Packet.newBuilder().setResMatchmaking(resMatchmakingForAgricultural).build());
+        }
+        System.out.println("Accept invite support successfully");
+    }
+
+    public void handleReqRejectInviteSupport(Session session, Proto.ReqRejectInviteSupport reqRejectInviteSupport) {
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        UserContext userContext = UserCache.me().get(String.valueOf(userId));
+        if(userContext == null) {
+            return;
+        }
+        UserContext userContextReceive = UserCache.me().getUserContextOnline(reqRejectInviteSupport.getInviteUserId());
+        if(userContextReceive == null) {
+            return;
+        }
+        Session sessionUserReceive = SessionManage.me().get(userContextReceive.getSessionID());
+        if(sessionUserReceive == null || !sessionUserReceive.isOpen()) {
+            return;
+        }
+        Proto.ResRejectInviteSupport resRejectInviteSupport = Proto.ResRejectInviteSupport.newBuilder()
+                        .setUser(userContext.getUser()).build();
+        DataSenderUtils.sendResponse(sessionUserReceive, Proto.Packet.newBuilder().setResRejectInviteSupport(resRejectInviteSupport).build());
     }
 }

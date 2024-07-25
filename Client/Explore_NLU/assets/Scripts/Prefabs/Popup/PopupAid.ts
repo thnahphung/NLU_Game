@@ -16,6 +16,7 @@ export class PopupAid extends AbsHandler {
   private prefabAidItem: Prefab;
   @property(Node)
   private scrollView: Node = null;
+
   onLoad() {
     HandlerManager.me().registerHandler(this);
     this.onLoadListFriend();
@@ -39,11 +40,13 @@ export class PopupAid extends AbsHandler {
     listFriend.forEach((friend) => {
       const popupAidItem = instantiate(this.prefabAidItem);
       const friendComponent = popupAidItem.getComponent(ItemPopupAid);
-      friendComponent.setFriendName(friend.playerName);
-      friendComponent.setFriendCareer(friend.character.name);
-      friendComponent.setFriendLevel(friend.level.toString());
-      friendComponent.setFriendId(friend.userId.toString());
-      friendComponent.setFriendCharacterProto(friend.character);
+      friendComponent.init(
+        friend.playerName,
+        friend.character.name,
+        friend.level.toString(),
+        friend.userId.toString(),
+        friend.character
+      );
       friendComponent.setFriendStatus("Chờ mời");
       this.scrollView.addChild(popupAidItem);
     });
