@@ -2023,11 +2023,11 @@
     "_string": "Mời",
     "_horizontalAlign": 1,
     "_verticalAlign": 1,
-    "_actualFontSize": 40,
+    "_actualFontSize": 38,
     "_fontSize": 40,
     "_fontFamily": "Arial",
     "_lineHeight": 42,
-    "_overflow": 1,
+    "_overflow": 2,
     "_enableWrapText": false,
     "_font": {
       "__uuid__": "2128c535-bc67-4037-921f-4bf62496f249",
@@ -2448,6 +2448,9 @@
     },
     "statusLabel": {
       "__id__": 62
+    },
+    "inviteButton": {
+      "__id__": 96
     },
     "_id": ""
   },

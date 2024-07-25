@@ -8,6 +8,17 @@ const { ccclass, property } = _decorator;
 @ccclass("FriendListItem")
 export class FriendListItem extends AbsFriendItem {
   private friendDetailNode: Node = null;
+
+  init(
+    name: string,
+    career: string,
+    level: string,
+    id: string,
+    characterProto: proto.ICharacter
+  ) {
+    super.init(name, career, level, id, characterProto);
+  }
+
   start() {
     super.start();
     this.node.on(

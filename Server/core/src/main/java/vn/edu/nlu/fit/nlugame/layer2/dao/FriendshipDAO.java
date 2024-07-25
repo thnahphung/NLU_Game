@@ -136,9 +136,4 @@ public class FriendshipDAO {
                         .build())
                 .list());
     }
-
-    public static void main(String[] args) {
-        FriendshipDAO friendshipDAO = new FriendshipDAO();
-        System.out.println(loadFriendList(1, 1));
-    }
 }

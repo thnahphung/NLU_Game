@@ -379,4 +379,15 @@ export default class GlobalData {
     this.cages = cages;
   }
   /* END ANIMAL HUSBAND */
+
+  /* SUPPORTING */
+  private invitedSupportingUserIds: number[] = [];
+
+  public addInvitedSupportingUserId(userId: number) {
+    this.invitedSupportingUserIds.push(userId);
+  }
+
+  public containsInvitedSupportingUserId(userId: number) {
+    return this.invitedSupportingUserIds.includes(userId);
+  }
 }

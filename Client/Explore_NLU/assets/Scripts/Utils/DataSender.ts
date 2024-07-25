@@ -477,4 +477,24 @@ export default class DataSender {
     packet.reqInviteSupport = reqInviteSupport;
     WS.send(packet);
   }
+
+  public static sendReqAcceptInviteSupport(friendId: number) {
+    let reqAcceptInviteSupport = new proto.ReqAcceptInviteSupport();
+    reqAcceptInviteSupport.inviteUserId = friendId;
+    let packet = new proto.Packet();
+    packet.reqAcceptInviteSupport = reqAcceptInviteSupport;
+    WS.send(packet);
+  }
+
+  public static sendReqRejectInviteSupport(friendId: number) {
+    let reqRejectInviteSupport = new proto.ReqRejectInviteSupport();
+    reqRejectInviteSupport.inviteUserId = friendId;
+    let packet = new proto.Packet();
+    packet.reqRejectInviteSupport = reqRejectInviteSupport;
+    WS.send(packet);
+  }
+
+  public static sendReqTimeUpWaiting(user: proto.IUser) {
+    
+  }
 }

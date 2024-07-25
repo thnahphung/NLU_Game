@@ -45,7 +45,7 @@ public class FriendService {
                 friendBuilder.setLevel(friend.getLevel());
                 CharacterBean characterBean = CharacterDAO.loadCharacterById(friend.getCharacterId());
                 if(characterBean != null) {
-                    friendBuilder.setCharacter(Proto.Character.newBuilder().setName(characterBean.getName()).build());
+                    friendBuilder.setCharacter(Proto.Character.newBuilder().setName(characterBean.getName()).setCode(characterBean.getCode()).setId(characterBean.getId()).build());
                 } else {
                     friendBuilder.setCharacter(Proto.Character.newBuilder().setName("The user has not selected a character").build());
                 }
@@ -65,7 +65,7 @@ public class FriendService {
             friendBuilder.setLevel(friend.getLevel());
             CharacterBean characterBean = CharacterDAO.loadCharacterById(friend.getCharacterId());
             if(characterBean != null) {
-                friendBuilder.setCharacter(Proto.Character.newBuilder().setName(characterBean.getName()).build());
+                friendBuilder.setCharacter(Proto.Character.newBuilder().setName(characterBean.getName()).setCode(characterBean.getCode()).setId(characterBean.getId()).build());
             } else {
                 friendBuilder.setCharacter(Proto.Character.newBuilder().setName("The user has not selected a character").build());
             }
@@ -84,7 +84,12 @@ public class FriendService {
         Proto.ResFindFriend.Builder resFindFriendBuilder = Proto.ResFindFriend.newBuilder();
         Proto.Friend.Builder friendBuilder = Proto.Friend.newBuilder();
         friendBuilder.setId(userBean.getId());
-        Proto.Character characterProto = CharacterDAO.loadCharacterProtoById(userBean.getCharacterId());
+        CharacterBean characterBean = CharacterDAO.loadCharacterById(userBean.getCharacterId());
+        Proto.Character.Builder characterProto = Proto.Character.newBuilder();
+        characterProto.setId(characterBean.getId());
+        characterProto.setName(characterBean.getName());
+        characterProto.setCode(characterBean.getCode());
+        characterProto.setDescription(characterBean.getDescription());
 
         if(characterProto != null) {
             friendBuilder.setCharacter(characterProto);
@@ -125,7 +130,13 @@ public class FriendService {
             UserBean userBean = UserDAO.selectUser(senderId);
             if(userBean != null) {
                 senderBuilder.setName(userBean.getPlayerName());
-                Proto.Character characterProto = CharacterDAO.loadCharacterProtoById(userBean.getCharacterId());
+                CharacterBean characterBean = CharacterDAO.loadCharacterById(userBean.getCharacterId());
+                Proto.Character.Builder characterProto = Proto.Character.newBuilder();
+                characterProto.setId(characterBean.getId());
+                characterProto.setName(characterBean.getName());
+                characterProto.setCode(characterBean.getCode());
+                characterProto.setDescription(characterBean.getDescription());
+
                 if(characterProto != null) {
                     senderBuilder.setCharacter(characterProto);
                 } else {
@@ -146,11 +157,18 @@ public class FriendService {
         FriendshipDAO.acceptFriendRequest(senderId, receiverId);
         UserBean receiverBean = UserDAO.selectUser(receiverId);
 
+        CharacterBean characterBean = CharacterDAO.loadCharacterById(receiverBean.getCharacterId());
+        Proto.Character.Builder character = Proto.Character.newBuilder();
+        character.setId(characterBean.getId());
+        character.setName(characterBean.getName());
+        character.setCode(characterBean.getCode());
+        character.setDescription(characterBean.getDescription());
+
         Proto.Friend receiver = Proto.Friend.newBuilder()
                 .setId(receiverId)
                 .setName(receiverBean.getPlayerName())
                 .setLevel(receiverBean.getLevel())
-                .setCharacter(CharacterDAO.loadCharacterProtoById(receiverBean.getCharacterId()))
+                .setCharacter(character)
                 .build();
 
         UserContext userContextSender = UserCache.me().getUserContextOnline(senderId);

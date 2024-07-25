@@ -68,6 +68,9 @@ export class ResponseHandler extends AbsHandler {
       if (packet.resInviteSupport) {
         this.onResInviteSupport(packet);
       }
+      if (packet.resRejectInviteSupport) {
+        this.onResRejectInviteSupport(packet);
+      }
     });
   }
 
@@ -209,6 +212,8 @@ export class ResponseHandler extends AbsHandler {
   onResMatchmaking(packet: proto.IPacket) {
     let matchmakedUser = packet.resMatchmaking.matchmakedUser;
     let popupSupport = UICanvas.me().getPopupSupport();
+    if (popupSupport == null)
+      popupSupport = UICanvas.me().createNewPopupSupport();
     let popupSupportComponent = popupSupport.getComponent(PopupSupport);
     popupSupportComponent.setMatchmakedUser(matchmakedUser);
     UICanvas.me().closePopupFindTime();
@@ -223,6 +228,7 @@ export class ResponseHandler extends AbsHandler {
     }
     if (code == CHARACTERS.KSCN || code == CHARACTERS.KSNN) {
       popupSupportComponent.setMatchmakingOK();
+      UICanvas.me().closePopupWaiting();
     }
     // Set status support
     GlobalData.me().setIsSupporting(true);
@@ -240,7 +246,27 @@ export class ResponseHandler extends AbsHandler {
       return;
     }
     if (status == 0) {
-      UICanvas.me().showPopupWaiting();
+      if (
+        GlobalData.me().getMainUser().character.code == CHARACTERS.KSNN ||
+        GlobalData.me().getMainUser().character.code == CHARACTERS.KSCN
+      ) {
+        UICanvas.me().showPopupWaiting();
+        UICanvas.me().hidePopupAid();
+      } else {
+        UICanvas.me().showPopupAcceptSupport(inviteSupport.user);
+      }
+    }
+  }
+
+  onResRejectInviteSupport(packet: proto.IPacket) {
+    const rejectInviteSupport = packet.resRejectInviteSupport;
+    const user = rejectInviteSupport.user;
+    if (user) {
+      UICanvas.me().closePopupWaiting();
+      UICanvas.me().showPopupMessage(
+        `${user.playerName} ${t("label_text.aid_status_invite_reject")}`
+      );
+      UICanvas.me().showPopupAid();
       return;
     }
   }
