@@ -123,6 +123,12 @@ message Packet {
     ReqRejectInviteSupport reqRejectInviteSupport = 116;
     ReqAcceptInviteSupport reqAcceptInviteSupport = 117;
     ResRejectInviteSupport resRejectInviteSupport = 118;
+    ReqLoadAidFriends reqLoadAidFriends = 119;
+    ResLoadAidFriends resLoadAidFriends = 120;
+    ReqSupportFriend reqSupportFriend = 121;
+    ResSupportFriend resSupportFriend = 122;
+    ReqStopSupport reqStopSupport = 123;
+    ResStopSupport resStopSupport = 124;
   }
 }
 
@@ -143,9 +149,10 @@ message User {
   int32 status = 17;
 
   enum STATUS {
-    WAITING = 0;
-    BUSY = 1;
-    OFFLINE = 2;
+    ONLINE = 0;
+    OFFLINE = 1;
+    WAITING = 2;
+    BUSY = 3;
   }
 }
 
@@ -1022,4 +1029,27 @@ message ResRejectInviteSupport {
 
 message ReqAcceptInviteSupport {
   int32 inviteUserId = 1;
+}
+
+message ReqLoadAidFriends {}
+
+message ResLoadAidFriends {
+  repeated User users = 1;
+}
+
+message ReqSupportFriend {
+  int32 userId = 1;
+}
+
+message ResSupportFriend {
+  User user = 2;
+}
+
+message ReqStopSupport {
+  int32 supportUserId = 1;
+  int32 aidUserId = 2;
+}
+
+message ResStopSupport {
+  int32 status = 1;
 }

@@ -8,10 +8,9 @@ import AbsScene from "../Scenes/AbsScene";
 import { PlayerManager } from "../Manager/PlayerManager";
 import { Character } from "../Prefabs/Character/Character";
 import { t } from "../../../extensions/i18n/assets/LanguageData";
-import { PopupSupport } from "../Prefabs/Popup/PopupSupport";
-import { PopupFindTime } from "../Prefabs/Popup/PopupFindTime";
 import DataSender from "../Utils/DataSender";
 import { CHARACTERS, REWARD_ICONS } from "../Utils/Const";
+import { PopupMatchMaking } from "../Prefabs/Popup/PopupMatchMaking";
 const { ccclass, property } = _decorator;
 
 @ccclass("ResponseHandler")
@@ -70,6 +69,12 @@ export class ResponseHandler extends AbsHandler {
       }
       if (packet.resRejectInviteSupport) {
         this.onResRejectInviteSupport(packet);
+      }
+      if (packet.resSupportFriend) {
+        this.onResSupportFriend(packet);
+      }
+      if (packet.resStopSupport) {
+        this.onResStopSupport(packet);
       }
     });
   }
@@ -211,10 +216,10 @@ export class ResponseHandler extends AbsHandler {
 
   onResMatchmaking(packet: proto.IPacket) {
     let matchmakedUser = packet.resMatchmaking.matchmakedUser;
-    let popupSupport = UICanvas.me().getPopupSupport();
-    if (popupSupport == null)
-      popupSupport = UICanvas.me().createNewPopupSupport();
-    let popupSupportComponent = popupSupport.getComponent(PopupSupport);
+    let popupSupport = UICanvas.me().getPopupMatchMaking();
+    if (!popupSupport) popupSupport = UICanvas.me().createNewPopupMatchMaking();
+    if (!popupSupport) return;
+    let popupSupportComponent = popupSupport.getComponent(PopupMatchMaking);
     popupSupportComponent.setMatchmakedUser(matchmakedUser);
     UICanvas.me().closePopupFindTime();
     popupSupportComponent.showPopup();
@@ -222,13 +227,18 @@ export class ResponseHandler extends AbsHandler {
     let code = GlobalData.me().getMainUser().character.code;
     if (code == CHARACTERS.BSTY || code == CHARACTERS.KSCK) {
       popupSupportComponent.setMatchmakingNotify();
+      GlobalData.me().setSupportUser(GlobalData.me().getMainUser());
+      GlobalData.me().setAidUser(matchmakedUser);
       this.scheduleOnce(() => {
         DataSender.sendReqPlayerJoinArea(matchmakedUser.userId);
       }, 3);
     }
     if (code == CHARACTERS.KSCN || code == CHARACTERS.KSNN) {
       popupSupportComponent.setMatchmakingOK();
+      GlobalData.me().setSupportUser(matchmakedUser);
+      GlobalData.me().setAidUser(GlobalData.me().getMainUser());
       UICanvas.me().closePopupWaiting();
+      UICanvas.me().setupSupportStatus(true);
     }
     // Set status support
     GlobalData.me().setIsSupporting(true);
@@ -237,15 +247,15 @@ export class ResponseHandler extends AbsHandler {
   onResInviteSupport(packet: proto.IPacket) {
     const inviteSupport = packet.resInviteSupport;
     const status = inviteSupport.status;
-    if (status == 1) {
+    if (status == proto.User.STATUS.BUSY) {
       UICanvas.me().showPopupMessage(t("label_text.aid_status_invite_busy"));
       return;
     }
-    if (status == 2) {
+    if (status == proto.User.STATUS.OFFLINE) {
       UICanvas.me().showPopupMessage(t("label_text.aid_status_invite_offline"));
       return;
     }
-    if (status == 0) {
+    if (status == proto.User.STATUS.ONLINE) {
       if (
         GlobalData.me().getMainUser().character.code == CHARACTERS.KSNN ||
         GlobalData.me().getMainUser().character.code == CHARACTERS.KSCN
@@ -269,5 +279,40 @@ export class ResponseHandler extends AbsHandler {
       UICanvas.me().showPopupAid();
       return;
     }
+  }
+
+  onResSupportFriend(packet: proto.IPacket) {
+    const supportFriend = packet.resSupportFriend;
+    UICanvas.me().showPopupMessage(
+      `${supportFriend.user.playerName} ${t(
+        "label_text.support_fail_supported"
+      )}`
+    );
+  }
+
+  onResStopSupport(packet: proto.IPacket) {
+    const stopSupport = packet.resStopSupport;
+    const status = stopSupport.status;
+    if (status == 500) {
+      return;
+    }
+    if (
+      GlobalData.me().getMainUser().character.code == CHARACTERS.KSNN ||
+      GlobalData.me().getMainUser().character.code == CHARACTERS.KSCN
+    ) {
+      if (status == 200) {
+        UICanvas.me().showPopupMatchMaking(200);
+      }
+    } else {
+      if (status == 200) {
+        DataSender.sendReqPlayerJoinArea(GlobalData.me().getMainUser().userId);
+      } else {
+        UICanvas.me().showPopupMatchMaking(201);
+      }
+    }
+    GlobalData.me().setIsSupporting(false);
+    GlobalData.me().setSupportUser(null);
+    GlobalData.me().setAidUser(null);
+    UICanvas.me().setupSupportStatus(false);
   }
 }

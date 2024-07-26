@@ -161,6 +161,7 @@ export const languages = {
     btn_continue: "Tiếp tục",
     btn_reject: "Từ chối",
     btn_accept: "Chấp nhận",
+    btn_back_home: "Về nhà",
     //Shop Name
     crop_shop: "Cây Trồng",
     animal_shop: "Động vật",
@@ -242,7 +243,8 @@ export const languages = {
     // Help
     help_title: "Trợ giúp",
     help_find: "Tìm kiếm",
-    help_match_ok: "Kỹ sư đang đến...",
+    help_match_KSCK_ok: "Kỹ sư cơ khí đang đến...",
+    help_match_BSTY_ok: "Bác sĩ thú y đang đến...",
     help_agricultural: "Trợ giúp nông nghiệp",
     help_notify_status: "Bạn đang thăm nhà không thể trợ giúp nông nghiệp",
     help_move: "Đang di chuyển đến vị trí cần trợ giúp...",
@@ -260,6 +262,13 @@ export const languages = {
     aid_status_invite_offline: "Người chơi này đã offline!",
     aid_status_invite_reject: "hiện chưa sẵn sàng giúp đỡ!",
     aid_btn_invited: "Đã mời",
+    //Support
+    support_title: "Hỗ trợ",
+    support_fail_supported: "đã được hỗ trợ!",
+    support_stop_support_finish: "Đã dừng việc hỗ trợ!",
+    support_stop_support_require: "Bạn đã được yêu cầu dừng việc hỗ trợ!",
+    support_action_fail:
+      "Bạn đang ở chế độ được hỗ trợ, không thể thực hiện hành động này!",
     //Sysptom
     sysptoms_high_fever: "Sốt cao",
     sysptoms_difficulty_breathing: "Khó thở",

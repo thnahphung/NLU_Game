@@ -68,12 +68,9 @@ export class PopupAid extends AbsHandler {
 
   private onClickInviteRandom() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_3);
-    UICanvas.me().showPopupHelp();
+    DataSender.sedReqSupportFind();
+    UICanvas.me().showPopupFindTime();
     this.node.active = false;
-  }
-
-  private onClickInviteFriend() {
-    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
   }
 
   protected onDestroy(): void {

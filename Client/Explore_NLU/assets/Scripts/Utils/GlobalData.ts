@@ -383,11 +383,30 @@ export default class GlobalData {
   /* SUPPORTING */
   private invitedSupportingUserIds: number[] = [];
 
+  private supportUser: proto.IUser = null;
+  private aidUser: proto.IUser = null;
+
   public addInvitedSupportingUserId(userId: number) {
     this.invitedSupportingUserIds.push(userId);
   }
 
   public containsInvitedSupportingUserId(userId: number) {
     return this.invitedSupportingUserIds.includes(userId);
+  }
+
+  getSupportUser() {
+    return this.supportUser;
+  }
+
+  setSupportUser(user: proto.IUser) {
+    this.supportUser = user;
+  }
+
+  getAidUser() {
+    return this.aidUser;
+  }
+
+  setAidUser(user: proto.IUser) {
+    this.aidUser = user;
   }
 }

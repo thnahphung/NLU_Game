@@ -46,7 +46,28 @@ public class SupportingService {
     private boolean matchMechanicalWithAgricultural() {
         //TODO: if status of user is invited or busy, do not match, and pool user
         UserContext userContextMechanical = mechanicalEngineers.peek();
+        //Repeat until an engineer is not busy else pool the user
+        while(mechanicalEngineers.size() > 0 && userContextMechanical.getUser().getStatus() == Proto.User.STATUS.BUSY_VALUE) {
+            if(userContextMechanical.getUser().getStatus() == Proto.User.STATUS.BUSY_VALUE){
+                mechanicalEngineers.poll();
+                userContextMechanical = mechanicalEngineers.peek();
+            }else {
+                userContextMechanical = mechanicalEngineers.peek();
+                break;
+            }
+        }
+
         UserContext userContextAgricultural = agriculturalEngineers.peek();
+        while(agriculturalEngineers.size() > 0) {
+            if(userContextAgricultural.getUser().getStatus() == Proto.User.STATUS.BUSY_VALUE){
+                agriculturalEngineers.poll();
+                userContextAgricultural = agriculturalEngineers.peek();
+            }else {
+                userContextAgricultural = agriculturalEngineers.peek();
+                break;
+            }
+        }
+
         if(userContextMechanical == null || userContextAgricultural == null) {
             return false;
         }
@@ -56,6 +77,15 @@ public class SupportingService {
         if(sessionMechanical == null || !sessionMechanical.isOpen() || sessionAgricultural == null || !sessionAgricultural.isOpen()) {
             return false;
         }
+
+        Proto.User newUserContextMechanical = userContextMechanical.getUser().toBuilder().setStatus(Proto.User.STATUS.BUSY_VALUE).build();
+        userContextMechanical.setUser(newUserContextMechanical);
+        UserCache.me().add(String.valueOf(userContextMechanical.getUser().getUserId()), userContextMechanical);
+
+        Proto.User newUserContextAgricultural = userContextAgricultural.getUser().toBuilder().setStatus(Proto.User.STATUS.BUSY_VALUE).build();
+        userContextAgricultural.setUser(newUserContextAgricultural);
+        UserCache.me().add(String.valueOf(userContextAgricultural.getUser().getUserId()), userContextAgricultural);
+
 
         Proto.ResMatchmaking resMatchmakingForMechanical = Proto.ResMatchmaking.newBuilder()
                 .setMatchmakedUser(userContextAgricultural.getUser())
@@ -72,7 +102,28 @@ public class SupportingService {
 
     private boolean matchVeterinarianWithLivestockEngineer() {
         UserContext userContextVeterinarian = veterinarians.peek();
+        while(veterinarians.size() > 0) {
+            if(userContextVeterinarian.getUser().getStatus() == Proto.User.STATUS.BUSY_VALUE){
+                veterinarians.poll();
+                userContextVeterinarian = veterinarians.peek();
+            }else{
+                userContextVeterinarian = veterinarians.peek();
+                break;
+            }
+        }
+
         UserContext userContextLivestockEngineer = livestockEngineers.peek();
+
+        while(livestockEngineers.size() > 0) {
+            if(userContextLivestockEngineer.getUser().getStatus() == Proto.User.STATUS.BUSY_VALUE){
+                livestockEngineers.poll();
+                userContextLivestockEngineer = livestockEngineers.peek();
+            }else{
+                userContextLivestockEngineer = livestockEngineers.peek();
+                break;
+            }
+        }
+
         if(userContextVeterinarian == null || userContextLivestockEngineer == null) {
             return false;
         }
@@ -82,6 +133,14 @@ public class SupportingService {
         if(sessionVeterinarian == null || !sessionVeterinarian.isOpen() || sessionLivestockEngineer == null || !sessionLivestockEngineer.isOpen()) {
             return false;
         }
+
+        Proto.User newUserContextVeterinarian = userContextVeterinarian.getUser().toBuilder().setStatus(Proto.User.STATUS.BUSY_VALUE).build();
+        userContextVeterinarian.setUser(newUserContextVeterinarian);
+        UserCache.me().add(String.valueOf(userContextVeterinarian.getUser().getUserId()), userContextVeterinarian);
+
+        Proto.User newUserContextLivestockEngineer = userContextLivestockEngineer.getUser().toBuilder().setStatus(Proto.User.STATUS.BUSY_VALUE).build();
+        userContextLivestockEngineer.setUser(newUserContextLivestockEngineer);
+        UserCache.me().add(String.valueOf(userContextLivestockEngineer.getUser().getUserId()), userContextLivestockEngineer);
 
         Proto.ResMatchmaking resMatchmakingForVeterinarian = Proto.ResMatchmaking.newBuilder()
                 .setMatchmakedUser(userContextLivestockEngineer.getUser())
@@ -97,6 +156,9 @@ public class SupportingService {
     }
 
     public void addUserToQueue(UserContext userContext) {
+        Proto.User newUserContext = userContext.getUser().toBuilder().setStatus(Proto.User.STATUS.WAITING_VALUE).build();
+        userContext.setUser(newUserContext);
+        UserCache.me().add(String.valueOf(userContext.getUser().getUserId()), userContext);
         switch (userContext.getUser().getCharacter().getCode()) {
             case "KSCK":
                 mechanicalEngineers.add(userContext);
@@ -219,7 +281,7 @@ public class SupportingService {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResInviteSupport(resInviteSupportForSessionUser).build());
             return;
         }
-        status = Proto.User.STATUS.WAITING_VALUE;
+        status = Proto.User.STATUS.ONLINE_VALUE;
         resInviteSupportForSessionUser.setStatus(status);
         resInviteSupportForSessionUser.setUser(userContextReceive.getUser());
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResInviteSupport(resInviteSupportForSessionUser).build());
@@ -237,7 +299,6 @@ public class SupportingService {
             return;
         }
         UserContext userContextReceive = UserCache.me().getUserContextOnline(reqAcceptInviteSupport.getInviteUserId());
-        System.out.println(userContextReceive);
         if(userContextReceive == null) {
             return;
         }
@@ -245,6 +306,15 @@ public class SupportingService {
         if(sessionUserReceive == null || !sessionUserReceive.isOpen()) {
             return;
         }
+
+        Proto.User newUserContext = userContext.getUser().toBuilder().setStatus(Proto.User.STATUS.BUSY_VALUE).build();
+        userContext.setUser(newUserContext);
+        UserCache.me().add(String.valueOf(userContext.getUser().getUserId()), userContext);
+
+        Proto.User newUserContextReceive = userContextReceive.getUser().toBuilder().setStatus(Proto.User.STATUS.BUSY_VALUE).build();
+        userContextReceive.setUser(newUserContextReceive);
+        UserCache.me().add(String.valueOf(userContextReceive.getUser().getUserId()), userContextReceive);
+
 
         if(userContext.getUser().getCharacter().getCode().equals("BSTY")){
             Proto.ResMatchmaking resMatchmakingForVeterinarian = Proto.ResMatchmaking.newBuilder()
@@ -285,5 +355,115 @@ public class SupportingService {
         Proto.ResRejectInviteSupport resRejectInviteSupport = Proto.ResRejectInviteSupport.newBuilder()
                         .setUser(userContext.getUser()).build();
         DataSenderUtils.sendResponse(sessionUserReceive, Proto.Packet.newBuilder().setResRejectInviteSupport(resRejectInviteSupport).build());
+    }
+
+    public void handleReqLoadAidFriends(Session session) {
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        UserContext userContext = UserCache.me().get(String.valueOf(userId));
+        if(userContext == null) {
+            return;
+        }
+        switch (userContext.getUser().getCharacter().getCode()) {
+            case "KSCK":
+                List<Proto.User> userAgriBeans = new ArrayList<>();
+                agriculturalEngineers.forEach(userContext1 -> userAgriBeans.add(userContext1.getUser()));
+                DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadAidFriends(Proto.ResLoadAidFriends.newBuilder().addAllUsers(userAgriBeans).build()).build());
+                break;
+            case "BSTY":
+                List<Proto.User> userLivBeans = new ArrayList<>();
+                livestockEngineers.forEach(userContext1 -> userLivBeans.add(userContext1.getUser()));
+                DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLoadAidFriends(Proto.ResLoadAidFriends.newBuilder().addAllUsers(userLivBeans).build()).build());
+                break;
+        }
+    }
+
+    public void handleReqSupportFriend(Session session, Proto.ReqSupportFriend reqSupportFriend) {
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        UserContext userContext = UserCache.me().get(String.valueOf(userId));
+        if(userContext == null) {
+            return;
+        }
+        UserContext userContextReceive = UserCache.me().getUserContextOnline(reqSupportFriend.getUserId());
+        if(userContextReceive == null) {
+            return;
+        }
+        Session sessionUserReceive = SessionManage.me().get(userContextReceive.getSessionID());
+        if(sessionUserReceive == null || !sessionUserReceive.isOpen()) {
+            return;
+        }
+        System.out.println("User: " + userContextReceive.getUser());
+        System.out.println("User status: " + userContextReceive.getUser().getStatus());
+        if(userContextReceive.getUser().getStatus() == Proto.User.STATUS.BUSY_VALUE){
+            Proto.ResSupportFriend resSupportFriend = Proto.ResSupportFriend.newBuilder()
+                    .setUser(userContextReceive.getUser())
+                    .build();
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResSupportFriend(resSupportFriend).build());
+            return;
+        }
+
+        removeUserFromQueue(userContextReceive);
+
+        Proto.User newUserContext = userContext.getUser().toBuilder().setStatus(Proto.User.STATUS.BUSY_VALUE).build();
+        userContext.setUser(newUserContext);
+        UserCache.me().add(String.valueOf(userContext.getUser().getUserId()), userContext);
+
+        Proto.User newUserContextReceive = userContextReceive.getUser().toBuilder().setStatus(Proto.User.STATUS.BUSY_VALUE).build();
+        userContextReceive.setUser(newUserContextReceive);
+        UserCache.me().add(String.valueOf(userContextReceive.getUser().getUserId()), userContextReceive);
+
+        if(userContext.getUser().getCharacter().getCode().equals("BSTY")){
+            Proto.ResMatchmaking resMatchmakingForVeterinarian = Proto.ResMatchmaking.newBuilder()
+                    .setMatchmakedUser(userContextReceive.getUser())
+                    .build();
+            Proto.ResMatchmaking resMatchmakingForLivestockEngineer = Proto.ResMatchmaking.newBuilder()
+                    .setMatchmakedUser(userContext.getUser())
+                    .build();
+
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResMatchmaking(resMatchmakingForVeterinarian).build());
+            DataSenderUtils.sendResponse(sessionUserReceive, Proto.Packet.newBuilder().setResMatchmaking(resMatchmakingForLivestockEngineer).build());
+        }else{
+            Proto.ResMatchmaking resMatchmakingForMechanical = Proto.ResMatchmaking.newBuilder()
+                    .setMatchmakedUser(userContextReceive.getUser())
+                    .build();
+            Proto.ResMatchmaking resMatchmakingForAgricultural = Proto.ResMatchmaking.newBuilder()
+                    .setMatchmakedUser(userContext.getUser())
+                    .build();
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResMatchmaking(resMatchmakingForMechanical).build());
+            DataSenderUtils.sendResponse(sessionUserReceive, Proto.Packet.newBuilder().setResMatchmaking(resMatchmakingForAgricultural).build());
+        }
+    }
+
+    public void handleReqStopSupport(Session session, Proto.ReqStopSupport reqStopSupport) {
+        int status = 500;
+        int mainUserId = SessionCache.me().getUserID(SessionID.of(session));
+        UserContext mainUserContext = UserCache.me().get(String.valueOf(mainUserId));
+        // KSCK && BSTY
+        Proto.ResStopSupport.Builder resStopSupportForSupport = Proto.ResStopSupport.newBuilder();
+        UserContext supportUserContext = UserCache.me().get(String.valueOf(reqStopSupport.getSupportUserId()));
+        if(supportUserContext != null) {
+            Proto.User newUserContext = supportUserContext.getUser().toBuilder().setStatus(Proto.User.STATUS.ONLINE_VALUE).build();
+            supportUserContext.setUser(newUserContext);
+            UserCache.me().add(String.valueOf(supportUserContext.getUser().getUserId()), supportUserContext);
+            if(mainUserContext.getUser().getUserId() == supportUserContext.getUser().getUserId()) {
+                status = 200;
+            }else{
+                status = 201;
+            }
+            Session sessionSupport = SessionManage.me().get(supportUserContext.getSessionID());
+            resStopSupportForSupport.setStatus(status);
+            DataSenderUtils.sendResponse(sessionSupport, Proto.Packet.newBuilder().setResStopSupport(resStopSupportForSupport).build());
+        }
+        // KSNN && KSCN
+        Proto.ResStopSupport.Builder resStopSupportForAid = Proto.ResStopSupport.newBuilder();
+        UserContext aidUserContext = UserCache.me().get(String.valueOf(reqStopSupport.getAidUserId()));
+        if(aidUserContext != null) {
+            Proto.User newUserContextAid = aidUserContext.getUser().toBuilder().setStatus(Proto.User.STATUS.ONLINE_VALUE).build();
+            aidUserContext.setUser(newUserContextAid);
+            UserCache.me().add(String.valueOf(aidUserContext.getUser().getUserId()), aidUserContext);
+            resStopSupportForAid.setStatus(status);
+            Session sessionAid = SessionManage.me().get(aidUserContext.getSessionID());
+            DataSenderUtils.sendResponse(sessionAid, Proto.Packet.newBuilder().setResStopSupport(resStopSupportForAid).build());
+        }
+        System.out.println("status: " + status);
     }
 }

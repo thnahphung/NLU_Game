@@ -11,6 +11,8 @@ import { AbsFriendItem } from "./AbsFriendItem";
 import DataSender from "../../../Utils/DataSender";
 import GlobalData from "../../../Utils/GlobalData";
 import { t } from "../../../../../extensions/i18n/assets/LanguageData";
+import { AudioManger } from "../../../Manager/AudioManger";
+import { AUDIOS } from "../../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("ItemPopupAid")
@@ -73,7 +75,7 @@ export class ItemPopupAid extends AbsFriendItem {
   }
 
   private onClickInvite() {
-    console.log("onClickInvite");
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.interactableInviteButton();
     DataSender.sendReqInviteSupport(Number.parseInt(this.friendId));
     GlobalData.me().addInvitedSupportingUserId(Number.parseInt(this.friendId));
