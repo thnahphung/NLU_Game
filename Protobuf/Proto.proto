@@ -800,6 +800,7 @@ message ResCompleteTask {
   NoGrowthItem noGrowthItem = 2;
   int64 gold = 3;
   int32 exp = 4;
+  Activity activity = 5;
 }
 
 message ResAnimalDisease{

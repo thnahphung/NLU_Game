@@ -192,13 +192,24 @@ export class ResponseHandler extends AbsHandler {
     const rewards = [];
     const gold = packet.resCompleteTask.gold;
     const exp = packet.resCompleteTask.exp;
+    const activity = packet.resCompleteTask.activity;
     GlobalData.me().updateProgressTask(packet.resCompleteTask.progressActivity);
+    let goldReward = 0;
+    let expReward = 0;
+    activity.rewardItem.forEach((reward) => {
+      if (reward.noGrowthItem.name.toLocaleLowerCase() == "gold") {
+        goldReward += reward.quantity;
+      }
+      if (reward.noGrowthItem.name.toLocaleLowerCase() == "exp") {
+        expReward += reward.quantity;
+      }
+    });
     if (gold) {
       GlobalData.me().getMainUser().gold = gold;
       UICanvas.me().loadGold();
       rewards.push({
         name: "Gold",
-        quantity: gold,
+        quantity: goldReward,
         reward: REWARD_ICONS.GOLD,
       });
     }
@@ -207,7 +218,7 @@ export class ResponseHandler extends AbsHandler {
       UICanvas.me().loadExp();
       rewards.push({
         name: "Exp",
-        quantity: exp,
+        quantity: expReward,
         reward: REWARD_ICONS.EXPERIENCE_POINT,
       });
     }
