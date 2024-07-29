@@ -9777,7 +9777,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": -67,
+      "x": -247,
       "y": 0,
       "z": 0
     },
@@ -10035,7 +10035,7 @@
     },
     "component": "",
     "_componentId": "82312WaBSxOyKHUectK/OMK",
-    "handler": "showPopupHelp",
+    "handler": "showPopupSupport",
     "customEventData": ""
   },
   {

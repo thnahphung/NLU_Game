@@ -3,6 +3,7 @@ import {
   Button,
   Component,
   director,
+  find,
   instantiate,
   Label,
   Node,
@@ -32,10 +33,11 @@ import { AudioManger } from "../../Manager/AudioManger";
 import { ResourceManager } from "../../Manager/ResourceManager";
 import { PopupDiagnosis } from "../Popup/PopupDiagnosis";
 import { PopupManufactureResult } from "../Popup/PopupManufactureResult";
-import { t } from "../../../../extensions/i18n/assets/LanguageData";
 import { PopupAcceptSupport } from "../Popup/PopupAcceptSupport";
 import { PopupWaiting } from "../Popup/PopupWaiting";
 import { PopupInformationAmphitheater } from "../Popup/PopupInformationAmphitheater";
+import { PopupMatchMaking } from "../Popup/PopupMatchMaking";
+import { InformationEffect } from "../Reward/InformationEffect";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -65,7 +67,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupCageBuilding: Prefab;
   @property(Prefab) private prefabPopupTask: Prefab;
   @property(Prefab) private prefabPopupCageInformation: Prefab;
-  @property(Prefab) private prefabPopupHelp: Prefab;
+  @property(Prefab) private prefabPopupMatchMaking: Prefab;
   @property(Prefab) private prefabPopupFindTime: Prefab;
   @property(Prefab) private prefabPopupWaiting: Prefab;
   @property(Prefab) private prefabPopupAcceptSupport: Prefab;
@@ -74,6 +76,8 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupDiagnosis: Prefab;
   @property(Prefab) private prefabPopupManufactureResult: Prefab;
   @property(Prefab) private prefabPopupInformationAmphitheater: Prefab;
+  @property(Prefab) private prefabPopupSupport: Prefab;
+  @property(Prefab) private informationEffectPrefab: Prefab = null;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -83,13 +87,14 @@ export class UICanvas extends Component {
   private _popupSetting: Node;
   private _popupFriend: Node;
   private _popupTask: Node;
-  private _popupHelp: Node;
+  private _popupMatchMaking: Node;
   private _popupFindTime: Node;
   private _popupWaiting: Node;
   private _popupAcceptSupport: Node;
   private _popupCageInformation: Node;
   private _popupAid: Node;
   private _popupManufactureResult: Node;
+  private _popupSupport: Node;
 
   //Lock button
   private isLocked: boolean = false;
@@ -408,7 +413,6 @@ export class UICanvas extends Component {
   }
 
   showPopupUpgradeMachine() {
-    console.log("showPopupUpgradeMachine");
     this.popupFactory.getComponent(PopupFactory).showPopupUpgradeMachine();
   }
 
@@ -448,30 +452,44 @@ export class UICanvas extends Component {
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     this.showPopupCageBuilding();
   }
-  showPopupHelp() {
-    if (this.node.getChildByName("PopupLayer").getChildByName("PopupHelp")) {
+
+  showPopupMatchMaking(status?: number) {
+    if (
+      this.node.getChildByName("PopupLayer").getChildByName("PopupMatchMaking")
+    ) {
       if (this._popupFindTime && this._popupFindTime.active) return;
-      if (this._popupHelp) {
-        this._popupHelp.active = true;
+      if (this._popupMatchMaking) {
+        if (status) {
+          this._popupMatchMaking
+            .getComponent(PopupMatchMaking)
+            .setStatus(status);
+        } else {
+          this._popupMatchMaking.getComponent(PopupMatchMaking).init();
+        }
+        this._popupMatchMaking.active = true;
       }
       return;
     }
-    this.onLocked1s();
-    this._popupHelp = instantiate(this.prefabPopupHelp);
-    this.node.getChildByName("PopupLayer").addChild(this._popupHelp);
-    this._popupHelp.getComponent(PopupComponent).show();
+    this._popupMatchMaking = instantiate(this.prefabPopupMatchMaking);
+    if (status) {
+      this._popupMatchMaking.getComponent(PopupMatchMaking).setStatus(status);
+    } else {
+      this._popupMatchMaking.getComponent(PopupMatchMaking).init();
+    }
+    this.node.getChildByName("PopupLayer").addChild(this._popupMatchMaking);
+    this._popupMatchMaking.getComponent(PopupComponent).show();
   }
 
-  closePopupHelp() {
-    if (this._popupHelp) {
-      this._popupHelp.destroy();
-      this._popupHelp = null;
+  closePopupMatchMaking() {
+    if (this._popupMatchMaking) {
+      this._popupMatchMaking.destroy();
+      this._popupMatchMaking = null;
     }
   }
 
-  hidePopupHelp() {
-    if (this._popupHelp) {
-      this._popupHelp.active = false;
+  hidePopupMatchMaking() {
+    if (this._popupMatchMaking) {
+      this._popupMatchMaking.active = false;
     }
   }
 
@@ -544,17 +562,22 @@ export class UICanvas extends Component {
     return this._popupAid;
   }
 
-  getPopupSupport(): Node {
-    return this._popupHelp;
+  getPopupMatchMaking(): Node {
+    return this._popupMatchMaking;
   }
 
-  createNewPopupSupport() {
-    if (this.node.getChildByName("PopupLayer").getChildByName("PopupHelp")) {
+  createNewPopupMatchMaking() {
+    if (
+      this.node.getChildByName("PopupLayer").getChildByName("PopupMatchMaking")
+    ) {
+      if (this._popupMatchMaking) {
+        this._popupMatchMaking.active = true;
+      }
       return;
     }
-    this._popupHelp = instantiate(this.prefabPopupHelp);
-    this.node.getChildByName("PopupLayer").addChild(this._popupHelp);
-    return this._popupHelp;
+    this._popupMatchMaking = instantiate(this.prefabPopupMatchMaking);
+    this.node.getChildByName("PopupLayer").addChild(this._popupMatchMaking);
+    return this._popupMatchMaking;
   }
 
   showPopupCraftingMedicines() {
@@ -584,11 +607,8 @@ export class UICanvas extends Component {
   }
 
   showPopupManufactureResult(
-    speed: number,
-    power: number,
-    value: number,
-    durability: number,
-    machineSprite: string,
+    noGrowthItem: proto.INoGrowthItem,
+    propertyMachine: proto.IPropertyMachine,
     status: number
   ) {
     if (
@@ -599,14 +619,21 @@ export class UICanvas extends Component {
       return;
     }
     let popupManufactureResult = instantiate(this.prefabPopupManufactureResult);
-    if (status == 201) {
+    if (status == 200) {
       popupManufactureResult
         .getComponent(PopupManufactureResult)
-        .initSuccess(speed, power, value, durability, machineSprite);
+        .initSuccess(
+          propertyMachine.speed,
+          propertyMachine.power,
+          propertyMachine.value,
+          propertyMachine.durable,
+          noGrowthItem.name,
+          propertyMachine.numberStar
+        );
     } else {
       popupManufactureResult
         .getComponent(PopupManufactureResult)
-        .initFail(machineSprite);
+        .initFail(noGrowthItem.name);
     }
     this.node.getChildByName("PopupLayer").addChild(popupManufactureResult);
     popupManufactureResult.getComponent(PopupComponent).show();
@@ -630,5 +657,66 @@ export class UICanvas extends Component {
       .getComponent(PopupInformationAmphitheater)
       .init(amphitheaterName);
     popupInformationAmphitheater.getComponent(PopupComponent).show();
+  }
+  showPopupSupport() {
+    if (this.node.getChildByName("PopupLayer").getChildByName("PopupSupport")) {
+      if (this._popupFindTime && this._popupFindTime.active) return;
+      if (this._popupWaiting && this._popupWaiting.active) return;
+      if (this._popupSupport) {
+        this._popupSupport.active = true;
+      }
+      return;
+    }
+    this.onLocked1s();
+    this._popupSupport = instantiate(this.prefabPopupSupport);
+    this.node.getChildByName("PopupLayer").addChild(this._popupSupport);
+    this._popupSupport.getComponent(PopupComponent).show();
+  }
+
+  getPopupSupport(): Node {
+    return this._popupSupport;
+  }
+
+  hidePopupSupport() {
+    if (this._popupSupport) {
+      this._popupSupport.active = false;
+    }
+  }
+
+  setupSupportStatus(status: boolean) {
+    const component = this.node.getChildByName("BotRight").children;
+    if (status) {
+      component.forEach((element) => {
+        if (element.name == "StopSupportButton") {
+          element.active = true;
+        } else {
+          element.active = false;
+        }
+      });
+      find("Canvas/BackGroundLayer/TransitScenePanel").active = false;
+    } else {
+      component.forEach((element) => {
+        if (element.name == "StopSupportButton") {
+          element.active = false;
+        } else {
+          element.active = true;
+        }
+      });
+      find("Canvas/BackGroundLayer/TransitScenePanel").active = true;
+    }
+  }
+
+  onClickStopSupport() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
+    DataSender.sendReqStopSupport(
+      GlobalData.me().getAidUser().userId,
+      GlobalData.me().getSupportUser().userId
+    );
+  }
+
+  showInformationEffect(name: string, value1: string, value2: string) {
+    let effect = instantiate(this.informationEffectPrefab);
+    effect.getComponent(InformationEffect).setInformation(name, value1, value2);
+    this.node.addChild(effect);
   }
 }

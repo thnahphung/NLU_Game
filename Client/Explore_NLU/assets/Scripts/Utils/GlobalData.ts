@@ -383,11 +383,61 @@ export default class GlobalData {
   /* SUPPORTING */
   private invitedSupportingUserIds: number[] = [];
 
+  private supportUser: proto.IUser = null;
+  private aidUser: proto.IUser = null;
+
   public addInvitedSupportingUserId(userId: number) {
     this.invitedSupportingUserIds.push(userId);
   }
 
   public containsInvitedSupportingUserId(userId: number) {
     return this.invitedSupportingUserIds.includes(userId);
+  }
+
+  getSupportUser() {
+    return this.supportUser;
+  }
+
+  setSupportUser(user: proto.IUser) {
+    this.supportUser = user;
+  }
+
+  getAidUser() {
+    return this.aidUser;
+  }
+
+  setAidUser(user: proto.IUser) {
+    this.aidUser = user;
+  }
+
+  /* END SUPPORTING */
+
+  /* START MECHANICAL */
+  private machines: proto.IMachine[] = null;
+
+  public getMachines() {
+    return this.machines;
+  }
+
+  public addMachine(machine: proto.IMachine) {
+    if (this.machines == null) {
+      this.machines = [];
+    }
+    this.machines.push(machine);
+  }
+
+  public updateMachine(machine: proto.IMachine) {
+    for (let i = 0; i < this.machines.length; i++) {
+      if (this.machines[i].noGrowthItem.id === machine.noGrowthItem.id) {
+        this.machines[i] = machine;
+        return;
+      }
+    }
+  }
+
+  public getMachine(noGrowthItemId: number) {
+    return this.machines.find(
+      (machine) => machine.noGrowthItem.id === noGrowthItemId
+    );
   }
 }

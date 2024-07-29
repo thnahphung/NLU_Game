@@ -61,8 +61,6 @@ public class NoGrowthItemDAO extends BaseDAO {
                         .list());
     }
 
-
-
     public static void main(String[] args) {
         System.out.println(getNoGrowthItemByType("BULLDOZER_PART"));
     }

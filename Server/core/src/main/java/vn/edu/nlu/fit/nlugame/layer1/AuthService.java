@@ -89,6 +89,7 @@ public class AuthService {
                 .setHasCharacter(userLoginBean.getHasCharacter())
                 .setCharacterId(userLoginBean.getCharacterId())
                 .setIsNewAccount(userLoginBean.getIsNewAccount())
+                .setStatus(Proto.User.STATUS.ONLINE_VALUE)
                 .build();
         if (checkLoginOtherDevice(userProto, session)) {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(403)).build());

@@ -28,6 +28,12 @@ public class MechanicalHandler implements Subscriber{
                 case REQLOADALLMACHINEFORMULA:
                     mechanicalService.loadAllMachineFormula(session, packet.getReqLoadAllMachineFormula());
                     break;
+                case REQFIXMACHINE:
+                    mechanicalService.fixMachine(session, packet.getReqFixMachine());
+                    break;
+                case REQINCREASERATEMACHINE:
+                    mechanicalService.increaseRateMachine(session, packet.getReqIncreaseRateMachine());
+                    break;
             }
         });
     }

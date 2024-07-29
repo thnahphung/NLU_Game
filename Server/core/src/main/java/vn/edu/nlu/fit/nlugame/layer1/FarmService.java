@@ -112,7 +112,6 @@ public class FarmService {
     }
     public void handleTilledLand(Session session, Proto.ReqTilledLand reqTilledLand) {
         Proto.ResTillLand.Builder resTillLand = Proto.ResTillLand.newBuilder();
-        System.out.println(reqTilledLand.getTillLandsList());
         List<Proto.TillLand> tillLandList = reqTilledLand.getTillLandsList();
         int areaId = reqTilledLand.getAreaId();
         int userTillId = SessionCache.me().getUserID(SessionID.of(session));

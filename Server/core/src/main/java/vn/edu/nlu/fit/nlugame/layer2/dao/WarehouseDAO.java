@@ -1,12 +1,14 @@
 package vn.edu.nlu.fit.nlugame.layer2.dao;
 
 import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.core.statement.PreparedBatch;
 import vn.edu.nlu.fit.nlugame.layer2.ConstUtils;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.NoGrowthItemBean;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.WarehouseItemBean;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 import java.util.List;
+import java.util.Map;
 
 public class WarehouseDAO extends BaseDAO {
     private static final String TABLE_NAME = "warehouse_items";
@@ -152,7 +154,28 @@ public class WarehouseDAO extends BaseDAO {
         });
     }
 
-
+    public static int updateReducedQuantityItems(int userId, Map<Integer, Integer> reduceQuantityMap) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return 500;
+        }
+        try {
+            jdbi.useHandle(handle -> {
+                PreparedBatch batch = handle.prepareBatch("update warehouse_items set quantity = case when quantity - :quantityReduce < 0 then 0 else quantity - :quantityReduce end where user_id = :userId and no_growth_item_id = :noGrowItemId");
+                for (Map.Entry<Integer, Integer> entry : reduceQuantityMap.entrySet()) {
+                    batch.bind("quantityReduce", entry.getValue())
+                            .bind("userId", userId)
+                            .bind("noGrowItemId", entry.getKey())
+                            .add();
+                }
+                batch.execute();
+            });
+        }catch (Exception e) {
+            System.out.println("Error updateReducedQuantityItems: " + e.getMessage());
+            return 500;
+        }
+        return 200;
+    }
 
     public static int updateIncreaseQuantityItem(int userId, int noGrowItemId, int quantityIncrease) {
         Jdbi jdbi = getJdbi();

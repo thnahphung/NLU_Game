@@ -4,62 +4,80 @@ import { UICanvas } from "../../MainUI/UICanvas";
 import { PopupFactory } from "../PopupFactory";
 import { PopupUpgradeMachine } from "../PopupUpgradeMachine";
 import { PopupManufactureMachine } from "../PopupManufactureMachine";
+import GlobalData from "../../../Utils/GlobalData";
+import { AudioManger } from "../../../Manager/AudioManger";
+import { AUDIOS } from "../../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("ItemMachine")
 export class ItemMachine extends Component {
   @property(Sprite) private sprite: Sprite;
+  @property(Node) private focusSprite: Node;
   @property(Node) private stars: Node[] = [];
 
-  private noGrowthItem: proto.INoGrowthItem;
-  private propertyupMachine: proto.IPropertyMachine;
-  private typeItem: number;
-  public init(
-    noGrowthItem: proto.INoGrowthItem,
-    propertyMachine: proto.IPropertyMachine,
-    typeItem: number
-  ) {
-    this.noGrowthItem = noGrowthItem;
-    this.propertyupMachine = propertyMachine;
-    this.typeItem = typeItem;
-  }
+  private machineItemId: number = -1;
+  private typeItem: number = 0;
   start() {
     this.setUpMachine();
     this.node.on(Node.EventType.TOUCH_START, this.handleOnTouchStart, this);
   }
 
   private handleOnTouchStart() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_1);
     let pupopFactoryComponent = UICanvas.me()
       .getPopupFactory()
       .getComponent(PopupFactory);
-    console.log(this.typeItem);
+    const machine = GlobalData.me().getMachine(this.machineItemId);
     if (this.typeItem == 0) {
-      console.log("click showPopupUpgradeMachine");
       let popupUpgradeMachineComponent = pupopFactoryComponent
         .getPopupUpgradeMachine()
         .getComponent(PopupUpgradeMachine);
-      popupUpgradeMachineComponent.init(
-        this.noGrowthItem,
-        this.propertyupMachine
-      );
+      popupUpgradeMachineComponent.init(machine.noGrowthItem.id);
+      popupUpgradeMachineComponent
+        .getScrollViewUpgradeMachine()
+        .children.forEach((child) => {
+          child.getComponent(ItemMachine).setFocus(false);
+        });
     } else {
       let popupManufactureMachineComponent = pupopFactoryComponent
         .getPopupManufactureMachine()
         .getComponent(PopupManufactureMachine);
-      popupManufactureMachineComponent.init(
-        this.noGrowthItem,
-        this.propertyupMachine
+      popupManufactureMachineComponent.init(this.machineItemId);
+      popupManufactureMachineComponent
+        .getScrollViewMachineManufactureMachine()
+        .children.forEach((child) => {
+          child.getComponent(ItemMachine).setFocus(false);
+        });
+    }
+    this.setFocus(true);
+  }
+
+  public setUpMachine() {
+    const machine = GlobalData.me().getMachine(this.machineItemId);
+    if (machine) {
+      this.sprite.spriteFrame = ResourceManager.me().getSpriteFrame(
+        machine.noGrowthItem.name
       );
+      const starCount = machine.propertyMachine.numberStar;
+      this.stars.forEach((star, index) => {
+        star.active = index < starCount;
+      });
     }
   }
 
-  private setUpMachine() {
-    this.sprite.spriteFrame = ResourceManager.me().getSpriteFrame(
-      this.noGrowthItem.name
-    );
-    const starCount = this.propertyupMachine.numberStar;
-    this.stars.forEach((star, index) => {
-      star.active = index < starCount;
-    });
+  public setMachineItemId(machineItemId: number) {
+    this.machineItemId = machineItemId;
+  }
+
+  public getMachineItemId() {
+    return this.machineItemId;
+  }
+
+  public setTypeItem(typeItem: number) {
+    this.typeItem = typeItem;
+  }
+
+  setFocus(isFocus: boolean) {
+    this.focusSprite.active = isFocus;
   }
 }

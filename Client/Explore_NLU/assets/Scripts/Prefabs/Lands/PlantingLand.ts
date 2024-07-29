@@ -35,6 +35,12 @@ export class PlantingLand extends Component {
     }
 
     if (this.node.getComponent(BlockInputEvents)) return;
+
+    if (GlobalData.me().getIsSupporting()) {
+      UICanvas.me().showPopupMessage(t("label_text.support_action_fail"));
+      return;
+    }
+
     if (
       GlobalData.me().getMoveBuildingStatus() ||
       GlobalData.me().getSowStatus()

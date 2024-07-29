@@ -117,6 +117,11 @@ export class Crop extends Component {
       return;
     }
 
+    if (GlobalData.me().getIsSupporting()) {
+      UICanvas.me().showPopupMessage(t("label_text.support_action_fail"));
+      return;
+    }
+
     GlobalData.me().setHarvestStatus(true);
     // Hiển thị menu công cụ
     UICanvas.me().showPopupMenuToolFarm(TYPE_TOOL.SICKLE);

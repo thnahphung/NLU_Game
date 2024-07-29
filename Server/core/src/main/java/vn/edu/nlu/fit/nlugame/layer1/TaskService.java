@@ -248,7 +248,7 @@ public class TaskService {
         if(updateGold.get() > 0) resCompleteTask.setGold(updateGold.get());
         if(updateExp.get() > 0) resCompleteTask.setExp((int) updateExp.get());
         resCompleteTask.setProgressActivity(progressActivityUpdate);
-
+        resCompleteTask.setActivity(activity);
         if(statusUpdate == 200) {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder()
                     .setResCompleteTask(resCompleteTask)

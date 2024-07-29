@@ -132,7 +132,7 @@ export class FarmScene extends AbsScene {
       UICanvas.me().loadExp();
     }
     const tillLandResProtos = resTillLand.tillLands;
-    const plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
+    const plantingLandPanel = find("Canvas/BackGroundLayer/PlantingPanel");
     const plantingLands = plantingLandPanel.children;
     // Chỉ lấy những mảnh đất trồng cần xử lý
     let filteredPlantingLands: Node[] = plantingLands.filter((plantingLand) =>
@@ -216,7 +216,7 @@ export class FarmScene extends AbsScene {
   }
 
   private deleteCropFromLand(crops: proto.ICrop[]): void {
-    const plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
+    const plantingLandPanel = find("Canvas/BackGroundLayer/PlantingPanel");
     const plantingLands = plantingLandPanel.children;
     // Chỉ lấy những mảnh đất trồng có cây trồng cần xóa
     let filteredPlantingLands: Node[] = plantingLands.filter((plantingLand) =>
@@ -248,7 +248,7 @@ export class FarmScene extends AbsScene {
   onLoadItemsOfFarmMsgHandler(
     resLoadItemsOfFarm: proto.IResLoadItemsOfFarm
   ): void {
-    let plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
+    let plantingLandPanel = find("Canvas/BackGroundLayer/PlantingPanel");
     plantingLandPanel.removeAllChildren();
     // Load tất cả các item cần hiển thị trên trang trại
     resLoadItemsOfFarm.buildingItems.building.forEach((building) => {
@@ -264,7 +264,7 @@ export class FarmScene extends AbsScene {
     if (resBuyBuilding.status == 400) {
       UICanvas.me().showPopupMessage("Không đủ tiền mua đất trồng!");
     }
-    let plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
+    let plantingLandPanel = find("Canvas/BackGroundLayer/PlantingPanel");
     let plantingLands = plantingLandPanel.children;
     for (let plantingLand of plantingLands) {
       if (plantingLand.uuid == resBuyBuilding.uuid) {
@@ -297,7 +297,7 @@ export class FarmScene extends AbsScene {
   }
 
   private handleResSow(resSow: proto.IResSow): void {
-    let plantingLandPanel = find("Canvas/BackgroundLayers/PlantingPanel");
+    let plantingLandPanel = find("Canvas/BackGroundLayer/PlantingPanel");
     let plantingLands = plantingLandPanel.children;
     // Lấy ra tất cả mảnh đất trồng
     plantingLands.forEach((plantingLand: Node) => {
@@ -394,7 +394,7 @@ export class FarmScene extends AbsScene {
   private loadBasicItemsToUI(): void {
     // Lấy ra các layer cần hiển thị item
     const midLayer = this.getPlayerLayer();
-    const plantingLayer = find("Canvas/BackgroundLayers/PlantingPanel");
+    const plantingLayer = find("Canvas/BackGroundLayer/PlantingPanel");
     if (this.buildingProtos.length === 0 || !this.buildingProtos) {
       return;
     }
@@ -496,7 +496,7 @@ export class FarmScene extends AbsScene {
   }
 
   private getPlantingLandPanel(): Node {
-    return find("Canvas/BackgroundLayers/PlantingPanel");
+    return find("Canvas/BackGroundLayer/PlantingPanel");
   }
 
   private onClickTillByMachine() {

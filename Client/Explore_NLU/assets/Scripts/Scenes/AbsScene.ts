@@ -6,6 +6,7 @@ import { Character } from "../Prefabs/Character/Character";
 import { Animal } from "../Prefabs/Animal/Animal";
 import { AnimalMovement } from "../Prefabs/Animal/AnimalMovement";
 import { Util } from "../Utils/Util";
+import { UICanvas } from "../Prefabs/MainUI/UICanvas";
 const { ccclass, property } = _decorator;
 
 @ccclass("AbsScene")
@@ -26,6 +27,14 @@ export default class AbsScene extends Component {
     }
     this.createOtherPlayer();
     this.getAllAnimalInScene();
+    this.setupStatusGame();
+  }
+
+  setupStatusGame() {
+    if (GlobalData.me().getMainUser() == null) {
+      return;
+    }
+    UICanvas.me().setupSupportStatus(GlobalData.me().getIsSupporting());
   }
 
   onMessageHandler(packets: proto.IPacketWrapper) {
