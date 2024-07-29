@@ -38,6 +38,9 @@ public class AnimalHusbandHandler implements Subscriber {
                 case REQANIMALMOVING:
                     animalHusbandService.animalMoving(session, packet.getReqAnimalMoving());
                     break;
+                case REQUPGRADECAGE:
+                    animalHusbandService.upgradeCage(session, packet.getReqUpgradeCage());
+                    break;
             }
         });
     }

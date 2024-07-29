@@ -139,6 +139,7 @@ export const languages = {
       "An animal has been successfully treated, and you have been charged to pay the veterinarian.",
     diagnosis_animal_200:
       "Successful treatment, you have received money from the owner of the animal.",
+    upgrade_cage_400: "Not enough gold!",
     //Area Name
     phuong_vi: "Phuong Vi",
     cam_tu: "Cam Tu",
@@ -282,6 +283,33 @@ export const languages = {
     disease_pasteurellosis: "Pasteurellosis",
     disease_internal_parasites: "Internal Parasites",
     disease_cholera: "Cholera",
+    // Amphitheater Name
+    nlu_360_note: "*Note: Rotate the photo to see a 360-degree panorama",
+    nlu_360_title_cam_tu: "Cam Tu Amphitheater",
+    nlu_360_title_cat_tuong: "Cat Tuong Amphitheater",
+    nlu_360_title_huong_duong: "Huong Duong Amphitheater",
+    nlu_360_title_tuong_vy: "Tuong Vy Amphitheater",
+    nlu_360_title_phuong_vy: "Phuong Vy Amphitheater",
+    nlu_360_title_rang_dong: "Rang Dong Amphitheater",
+    nlu_360_title_khoa_cntt: "Faculty of Information Technology",
+    nlu_360_title_thu_vien: "Library",
+    nlu_360_title_thien_ly: "Thien Ly Building",
+    nlu_360_title_cong_vien: "Park",
+    nlu_360_title_cong_vien_nguyen_thai_binh: "Nguyen Thai Binh Park",
+    nlu_360_title_trai_thuc_nghiem_nong_hoc: "Agricultural Experiment Station",
+    nlu_360_title_trai_thuc_khoa_chan_nuoi:
+      "Animal Husbandry Experiment Station",
+    nlu_360_title_khoa_thu_y: "Faculty of Veterinary Medicine",
+    nlu_360_title_cong_truong: "School gate",
+    nlu_360_title_duong_vao_tam_giang: "Tam Giang entrance",
+    nlu_360_title_cong_cu_xa: "Dormitory",
+    nlu_360_title_duong_vao_phuong_vy: "Phuong Vy entrance",
+    nlu_360_title_bai_giu_xe: "Parking lot",
+    nlu_360_title_khoa_co_khi: "Faculty of Engineering and Technology",
+    nlu_360_title_ben_xe_buyt: "Bus station",
+    nlu_360_title_cong_nha_khach: "Guest house gate",
+    nlu_360_title_khoa_cnhh_va_tp:
+      "Faculty of Chemical Engineering and Food Technology",
   },
 };
 

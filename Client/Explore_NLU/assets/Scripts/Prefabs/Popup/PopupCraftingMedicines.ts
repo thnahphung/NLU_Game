@@ -61,8 +61,6 @@ export class PopupCraftingMedicines extends AbsHandler {
   }
 
   onCraftingMedicineHandler(packet: proto.IResCraftingMedicine) {
-    console.log(packet);
-
     if (packet.status == 400) {
       AudioManger.me().playOneShot(AUDIOS.WRONG);
       UICanvas.me().showPopupMessage(t("label_text.incorrect_formula"));

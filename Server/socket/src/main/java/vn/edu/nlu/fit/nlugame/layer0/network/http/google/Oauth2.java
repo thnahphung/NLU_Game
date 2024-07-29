@@ -52,6 +52,9 @@ public class Oauth2 extends HttpServlet {
         } else {
             resp.getWriter().write("No code found");
         }
+
+        req.getRequestDispatcher("oauth2callback.jsp").forward(req, resp);
+
     }
 
     public static String getToken(String code) throws ClientProtocolException, IOException {
@@ -63,16 +66,13 @@ public class Oauth2 extends HttpServlet {
                 .execute().returnContent().asString();
 
         JsonObject jobj = new Gson().fromJson(response, JsonObject.class);
-        String accessToken = jobj.get("access_token").toString().replaceAll("\"", "");
-        return accessToken;
+        return jobj.get("access_token").toString().replaceAll("\"", "");
     }
 
     public static GoogleDTO getUserInfo(final String accessToken) throws ClientProtocolException, IOException {
         String link = ConstUtils.GOOGLE_LINK_GET_USER_INFO + accessToken;
         String response = Request.Get(link).execute().returnContent().asString();
-        GoogleDTO googleDTO = new Gson().fromJson(response, GoogleDTO.class);
-        System.out.println(googleDTO);
-        return googleDTO;
+        return new Gson().fromJson(response, GoogleDTO.class);
 
     }
 }

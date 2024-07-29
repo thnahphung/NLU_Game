@@ -35,6 +35,7 @@ import { PopupManufactureResult } from "../Popup/PopupManufactureResult";
 import { t } from "../../../../extensions/i18n/assets/LanguageData";
 import { PopupAcceptSupport } from "../Popup/PopupAcceptSupport";
 import { PopupWaiting } from "../Popup/PopupWaiting";
+import { PopupInformationAmphitheater } from "../Popup/PopupInformationAmphitheater";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -72,6 +73,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupCraftingMedicines: Prefab;
   @property(Prefab) private prefabPopupDiagnosis: Prefab;
   @property(Prefab) private prefabPopupManufactureResult: Prefab;
+  @property(Prefab) private prefabPopupInformationAmphitheater: Prefab;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -615,5 +617,18 @@ export class UICanvas extends Component {
       this._popupManufactureResult.destroy();
       this._popupManufactureResult = null;
     }
+  }
+
+  showPopupInformationAmphitheater(amphitheaterName: string) {
+    let popupInformationAmphitheater = instantiate(
+      this.prefabPopupInformationAmphitheater
+    );
+    this.node
+      .getChildByName("PopupLayer")
+      .addChild(popupInformationAmphitheater);
+    popupInformationAmphitheater
+      .getComponent(PopupInformationAmphitheater)
+      .init(amphitheaterName);
+    popupInformationAmphitheater.getComponent(PopupComponent).show();
   }
 }

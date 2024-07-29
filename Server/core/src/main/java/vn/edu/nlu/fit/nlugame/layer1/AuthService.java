@@ -128,13 +128,24 @@ public class AuthService {
 
     public UserBean checkReLogin(Session session, Proto.ReqRelogin reqRelogin) {
         boolean result = true;
-        UserBean userLoginBean = UserDAO.getUserLogin(reqRelogin.getUsername());
-        //Check null param
-        if (userLoginBean == null || reqRelogin.getToken() == null) {
-            result = false;
+        UserBean userLoginBean = null;
+        // neu relogin bang google
+        if (reqRelogin.getUsername().isBlank()) {
+            userLoginBean = UserDAO.getUserByReLoginToken(reqRelogin.getToken());
+            if (userLoginBean == null) {
+                result = false;
+            }
         }
-        if (!reqRelogin.getToken().equals(userLoginBean.getReLoginToken())) {
-            result = false;
+        // neu relogin bang username password
+        else {
+            userLoginBean = UserDAO.getUserLogin(reqRelogin.getUsername());
+            //Check null param
+            if (userLoginBean == null || reqRelogin.getToken() == null || userLoginBean.getReLoginToken() == null) {
+                result = false;
+            }
+            if (!reqRelogin.getToken().equals(userLoginBean.getReLoginToken())) {
+                result = false;
+            }
         }
         //Check login other device
         Proto.User userProto = Proto.User.newBuilder()

@@ -123,6 +123,8 @@ message Packet {
     ReqRejectInviteSupport reqRejectInviteSupport = 116;
     ReqAcceptInviteSupport reqAcceptInviteSupport = 117;
     ResRejectInviteSupport resRejectInviteSupport = 118;
+    ReqUpgradeCage reqUpgradeCage = 119;
+    ResUpgradeCage resUpgradeCage = 120;
   }
 }
 
@@ -356,6 +358,7 @@ message Cage {
   PropertyBuilding propertyBuilding = 2;
   Upgrade upgrade = 3;
   repeated Animal animals = 4;
+  Upgrade nextUpgrade = 5;
 }
 
 message Sysptom {
@@ -1022,4 +1025,14 @@ message ResRejectInviteSupport {
 
 message ReqAcceptInviteSupport {
   int32 inviteUserId = 1;
+}
+
+message ReqUpgradeCage {
+  int32 cageId = 1;
+}
+
+message ResUpgradeCage {
+  int32 status = 1;
+  int32 gold = 2;
+  Cage cage = 3;
 }

@@ -203,7 +203,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 440.6818181818182,
+    "_orthoHeight": 470.6236141906873,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -6204,6 +6204,7 @@
     "playerLayer": {
       "__id__": 62
     },
+    "listAnimalNode": [],
     "cagesPrefab": [
       {
         "__uuid__": "b3742c0a-6c5a-449c-a950-c8694a85b917",

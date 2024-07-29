@@ -28,6 +28,7 @@ export class PopupCageInformation extends Component {
   @property(SpriteFrame) private listImageAnimal: SpriteFrame[] = [];
   @property(Prefab) private itemPopupAnimal: Prefab;
   @property(Prefab) private popupYesNo: Prefab;
+  @property(Label) private goldOfNextLevelLabel: Label;
 
   private cageInfo: proto.ICage;
   start() {
@@ -62,6 +63,12 @@ export class PopupCageInformation extends Component {
       "/" +
       this.cageInfo.upgrade.capacity.toString();
     this.levelLabel.string = this.cageInfo.upgrade.level.toString();
+    if (this.cageInfo.nextUpgrade.price == 0) {
+      this.goldOfNextLevelLabel.node.parent.active = false;
+    } else {
+      this.goldOfNextLevelLabel.string =
+        this.cageInfo.nextUpgrade.price.toString();
+    }
   }
 
   public setListAnimal() {
@@ -91,7 +98,12 @@ export class PopupCageInformation extends Component {
   }
 
   public onClickUpgrade() {
-    console.log("Upgrade cage");
+    AudioManger.me().playOneShot(AUDIOS.CLICK_1);
+    DataSender.sendReqUpgradeCage(this.cageInfo.propertyBuilding.id);
+    this.node.getComponent(PopupComponent).hide();
+    this.scheduleOnce(() => {
+      this.node.destroy();
+    }, 0.3);
   }
 
   public onClickSell(animalData: proto.IAnimal) {

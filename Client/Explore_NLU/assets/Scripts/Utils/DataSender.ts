@@ -494,7 +494,13 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqTimeUpWaiting(user: proto.IUser) {
-    
+  public static sendReqTimeUpWaiting(user: proto.IUser) {}
+
+  public static sendReqUpgradeCage(cageId: number) {
+    let reqUpgradeCage = new proto.ReqUpgradeCage();
+    reqUpgradeCage.cageId = cageId;
+    let packet = new proto.Packet();
+    packet.reqUpgradeCage = reqUpgradeCage;
+    WS.send(packet);
   }
 }

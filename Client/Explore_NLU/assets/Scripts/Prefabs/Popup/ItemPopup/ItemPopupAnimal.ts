@@ -38,22 +38,23 @@ export class ItemPopupAnimal extends Component {
           this.animal.propertyGrowthItem.stage
       )
     );
+
+    const stage =
+      this.animal.propertyGrowthItem.developedDays >=
+      this.animal.commonRisingTimes.sort((a, b) => a.stage - b.stage)[0].time
+        ? 2
+        : 1;
+
     this.setAnimalType(
       t(
         "label_text." +
           Util.convertDashToUnderscore(
-            this.animal.commonGrowthItem.name +
-              "-lv" +
-              this.animal.propertyGrowthItem.stage
+            this.animal.commonGrowthItem.name + "-lv" + stage
           )
       )
     );
-    this.setAnimalAge(
-      (
-        GlobalData.me().getGameState().currentDate -
-        this.animal.propertyGrowthItem.startDate
-      ).toString()
-    );
+
+    this.setAnimalAge(this.animal.propertyGrowthItem.developedDays.toString());
     this.setAnimalDisease(this.animal.propertyGrowthItem.isDisease);
     this.setAnimalPregnant(this.animal.isPregnant > 0);
   }
