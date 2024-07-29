@@ -249,4 +249,16 @@ public class BuildingDAO extends BaseDAO {
                 .mapTo(Integer.class)
                 .findFirst().orElse(-1));
     }
+
+    public static int upgradeBuilding(int id, int idNextLevel, int level) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            throw new RuntimeException("Cannot connect to database");
+        }
+        return jdbi.withHandle(handle -> handle.createUpdate("update " + TABLE_PROPERTY_NAME + " set current_level = :level, upgrade_id = :idNextLevel where id = :id")
+                .bind("id", id)
+                .bind("idNextLevel", idNextLevel)
+                .bind("level", level)
+                .execute());
+    }
 }

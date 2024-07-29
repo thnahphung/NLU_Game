@@ -143,6 +143,7 @@ export const languages = {
       "Một con vật đã được chữa bệnh thành công, bạn đã bị trừ tiền để trả cho Bác sĩ thú y.",
     diagnosis_animal_200:
       "Chữa bệnh thành công, bạn đã được nhận tiền từ chủ của con vật.",
+    upgrade_cage_400: "Không đủ vàng để nâng cấp chuồng!",
     //Area Name
     phuong_vi: "Phượng Vĩ",
     cam_tu: "Cẩm Tú",
@@ -307,6 +308,32 @@ export const languages = {
     disease_pasteurellosis: "Bệnh tụ huyết trùng",
     disease_internal_parasites: "Bệnh nội kí sinh trùng",
     disease_cholera: "Bệnh tả",
+    // NLU 360
+    nlu_360_note: "*Lưu ý: Xoay ảnh để xem toàn cảnh 360 độ",
+    nlu_360_title_cam_tu: "Giảng Đường Cẩm Tú",
+    nlu_360_title_cat_tuong: "Giảng Đường Cát Tường",
+    nlu_360_title_huong_duong: "Giảng Đường Hướng Dương",
+    nlu_360_title_tuong_vy: "Giảng Đường Tường Vy",
+    nlu_360_title_phuong_vy: "Giảng đường Phượng Vỹ",
+    nlu_360_title_rang_dong: "Giảng Đường Rạng Đông",
+    nlu_360_title_khoa_cntt: "Khoa Công Nghệ Thông Tin",
+    nlu_360_title_thu_vien: "Thư Viện",
+    nlu_360_title_thien_ly: "Tòa nhà Thiên Lý",
+    nlu_360_title_cong_vien: "Công Viên",
+    nlu_360_title_cong_vien_nguyen_thai_binh: "Công Viên Nguyễn Thái Bình",
+    nlu_360_title_trai_thuc_nghiem_nong_hoc: "Trại thực nghiệm Khoa Nông Học",
+    nlu_360_title_trai_thuc_khoa_chan_nuoi: "Trại thực nghiệm Khoa Chăn Nuôi",
+    nlu_360_title_khoa_thu_y: "Khoa Thú Y",
+    nlu_360_title_cong_truong: "Cổng trường",
+    nlu_360_title_duong_vao_tam_giang: "Đường vào Tám Giang",
+    nlu_360_title_cong_cu_xa: "Cổng Cư Xá",
+    nlu_360_title_duong_vao_phuong_vy: "Đường vào Phượng Vỹ",
+    nlu_360_title_bai_giu_xe: "Bãi giữ xe",
+    nlu_360_title_khoa_co_khi: "Khoa Cơ Khí - Công Nghệ",
+    nlu_360_title_ben_xe_buyt: "Bến xe buýt",
+    nlu_360_title_cong_nha_khach: "Cổng nhà khách",
+    nlu_360_title_khoa_cnhh_va_tp: "Khoa Công Nghệ Hóa Học và Thực Phẩm",
+    // Amphitheater Content
   },
 };
 

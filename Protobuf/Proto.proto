@@ -133,6 +133,8 @@ message Packet {
     ResFixMachine resFixMachine = 126;
     ReqIncreaseRateMachine reqIncreaseRateMachine = 127;
     ResIncreaseRateMachine resIncreaseRateMachine = 128;
+    ReqUpgradeCage reqUpgradeCage = 129;
+    ResUpgradeCage resUpgradeCage = 130;
   }
 }
 
@@ -367,6 +369,7 @@ message Cage {
   PropertyBuilding propertyBuilding = 2;
   Upgrade upgrade = 3;
   repeated Animal animals = 4;
+  Upgrade nextUpgrade = 5;
 }
 
 message Sysptom {
@@ -1038,6 +1041,15 @@ message ReqAcceptInviteSupport {
   int32 inviteUserId = 1;
 }
 
+message ReqUpgradeCage {
+  int32 cageId = 1;
+}
+
+message ResUpgradeCage {
+  int32 status = 1;
+  int32 gold = 2;
+  Cage cage = 3;
+}
 message ReqLoadAidFriends {}
 
 message ResLoadAidFriends {

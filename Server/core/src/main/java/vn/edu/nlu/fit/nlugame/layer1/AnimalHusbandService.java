@@ -174,6 +174,7 @@ public class AnimalHusbandService {
         for (PropertyBuildingBean propertyBuildingBean : propertyBuildingBeans) {
             Proto.BuildingBase commonBuildingBaseProto = getCommonBuildingById(propertyBuildingBean.getCommonBuildingId());
             UpgradeBean upgradeBean = UpgradeDAO.getById(propertyBuildingBean.getUpgradeId());
+            UpgradeBean nextUpgradeBean = UpgradeDAO.getByBuildingIdAndLevel(upgradeBean.getBuildingId(), upgradeBean.getLevel() + 1);
             Proto.Upgrade upgradeProto = Proto.Upgrade.newBuilder()
                     .setId(upgradeBean.getId())
                     .setName(upgradeBean.getName())
@@ -182,6 +183,21 @@ public class AnimalHusbandService {
                     .setPrice(upgradeBean.getPrice())
                     .setBuildingId(upgradeBean.getBuildingId())
                     .build();
+
+            Proto.Upgrade nextUpgradeProto = null;
+            if (nextUpgradeBean != null) {
+                nextUpgradeProto = Proto.Upgrade.newBuilder()
+                        .setId(nextUpgradeBean.getId())
+                        .setName(nextUpgradeBean.getName())
+                        .setLevel(nextUpgradeBean.getLevel())
+                        .setCapacity(nextUpgradeBean.getCapacity())
+                        .setPrice(nextUpgradeBean.getPrice())
+                        .setBuildingId(nextUpgradeBean.getBuildingId())
+                        .build();
+            } else {
+                nextUpgradeProto = Proto.Upgrade.newBuilder().setPrice(0).build();
+            }
+
             Proto.PropertyBuilding propertyBuildingProto = Proto.PropertyBuilding.newBuilder()
                     .setId(propertyBuildingBean.getId())
                     .setPositionX(propertyBuildingBean.getPositionX())
@@ -193,9 +209,11 @@ public class AnimalHusbandService {
                     .build();
 
             List<Proto.Animal> animalsProto = this.getListAnimalByCageId(propertyBuildingBean.getId());
+
             Proto.Cage cage = Proto.Cage.newBuilder()
                     .setBuildingBase(commonBuildingBaseProto)
                     .setUpgrade(upgradeProto)
+                    .setNextUpgrade(nextUpgradeProto)
                     .setPropertyBuilding(propertyBuildingProto)
                     .addAllAnimals(animalsProto)
                     .build();
@@ -735,4 +753,85 @@ public class AnimalHusbandService {
         DataSenderUtils.sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResAnimalMoving(resAnimalMoving).build());
     }
 
+    public void upgradeCage(Session session, Proto.ReqUpgradeCage reqUpgradeCage) {
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        if (userId == -1) return;
+
+        PropertyBuildingBean propertyBuildingBean = BuildingDAO.getPropertyBuildingById(reqUpgradeCage.getCageId());
+
+        Proto.BuildingBase commonBuildingBaseProto = getCommonBuildingById(propertyBuildingBean.getCommonBuildingId());
+        UpgradeBean currentUpgradeBean = UpgradeDAO.getById(propertyBuildingBean.getUpgradeId());
+
+        UpgradeBean nextUpgradeBean = UpgradeDAO.getByBuildingIdAndLevel(currentUpgradeBean.getBuildingId(), currentUpgradeBean.getLevel() + 1);
+        if (nextUpgradeBean == null) return;
+
+        UserContext userContext = UserCache.me().get(String.valueOf(userId));
+        if (userContext.getUser().getGold() < nextUpgradeBean.getPrice()) {
+            Proto.ResUpgradeCage resUpgradeCage = Proto.ResUpgradeCage.newBuilder()
+                    .setStatus(400)
+                    .build();
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResUpgradeCage(resUpgradeCage).build());
+            return;
+        }
+
+        BuildingDAO.upgradeBuilding(reqUpgradeCage.getCageId(), nextUpgradeBean.getId(), nextUpgradeBean.getLevel());
+
+        //update user gold
+        long newGold = userContext.getUser().getGold() - nextUpgradeBean.getPrice();
+        UserDAO.updateGold(userContext.getUser().getUserId(), newGold);
+        Proto.User newUserContext = userContext.getUser().toBuilder().setGold(newGold).build();
+        userContext.setUser(newUserContext);
+        UserCache.me().add(String.valueOf(userContext.getUser().getUserId()), userContext);
+
+        UpgradeBean nextOfNextUpgradeBean = UpgradeDAO.getByBuildingIdAndLevel(nextUpgradeBean.getBuildingId(), nextUpgradeBean.getLevel() + 1);
+        Proto.Upgrade nextOfNextUpgradeProto;
+        if (nextOfNextUpgradeBean != null) {
+            nextOfNextUpgradeProto = Proto.Upgrade.newBuilder()
+                    .setId(nextOfNextUpgradeBean.getId())
+                    .setName(nextOfNextUpgradeBean.getName())
+                    .setLevel(nextOfNextUpgradeBean.getLevel())
+                    .setCapacity(nextOfNextUpgradeBean.getCapacity())
+                    .setPrice(nextOfNextUpgradeBean.getPrice())
+                    .setBuildingId(nextOfNextUpgradeBean.getBuildingId())
+                    .build();
+        } else {
+            nextOfNextUpgradeProto = Proto.Upgrade.newBuilder().setPrice(0).build();
+        }
+
+        Proto.Upgrade nextUpgradeProto = Proto.Upgrade.newBuilder()
+                .setId(nextUpgradeBean.getId())
+                .setName(nextUpgradeBean.getName())
+                .setLevel(nextUpgradeBean.getLevel())
+                .setCapacity(nextUpgradeBean.getCapacity())
+                .setPrice(nextUpgradeBean.getPrice())
+                .setBuildingId(nextUpgradeBean.getBuildingId())
+                .build();
+
+        Proto.PropertyBuilding propertyBuildingProto = Proto.PropertyBuilding.newBuilder()
+                .setId(propertyBuildingBean.getId())
+                .setPositionX(propertyBuildingBean.getPositionX())
+                .setPositionY(propertyBuildingBean.getPositionY())
+                .setUpgradeId(propertyBuildingBean.getUpgradeId())
+                .setAreaId(propertyBuildingBean.getAreaId())
+                .setCommonBuildingId(propertyBuildingBean.getCommonBuildingId())
+                .setCurrentLevel(propertyBuildingBean.getCurrentLevel())
+                .build();
+
+        Proto.Cage cage = Proto.Cage.newBuilder()
+                .setBuildingBase(commonBuildingBaseProto)
+                .setUpgrade(nextUpgradeProto)
+                .setNextUpgrade(nextOfNextUpgradeProto)
+                .setPropertyBuilding(propertyBuildingProto)
+                .build();
+
+        int areaId = propertyBuildingBean.getAreaId();
+        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(areaId));
+        ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
+        Proto.ResUpgradeCage resUpgradeCage = Proto.ResUpgradeCage.newBuilder()
+                .setStatus(200)
+                .setCage(cage)
+                .setGold((int) newGold)
+                .build();
+        DataSenderUtils.sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResUpgradeCage(resUpgradeCage).build());
+    }
 }

@@ -50,7 +50,6 @@ export class AnimalMovement extends Component {
     const targetProto: proto.IPosition = Util.convertCocosPosToProtoPos(
       this.target
     );
-    console.log("moving", this.target);
     if (!this.animalInfo.getIsLockedUp()) {
       DataSender.sendReqAnimalMoving(
         this.animalInfo.getFakeId(),

@@ -30,6 +30,7 @@ export class Cage extends Component {
   @property(Node) private animalPanel: Node;
   private menuNode: Node;
   private cageData: proto.ICage;
+  private isLoadAnimal = false;
 
   private interval = 0;
 
@@ -39,15 +40,18 @@ export class Cage extends Component {
 
     this.menuNode = this.getCageInformation();
     this.node.on(Node.EventType.TOUCH_START, this.handleGetMenuFood, this);
-    this.loadAnimals();
+    if (this.isLoadAnimal) {
+      this.loadAnimals();
+    }
   }
 
   protected onDestroy(): void {
     this.unschedule(this.playAnimalSound);
   }
 
-  init(cage: proto.ICage) {
+  init(cage: proto.ICage, isLoadAnimal = true) {
     this.cageData = cage;
+    this.isLoadAnimal = isLoadAnimal;
   }
 
   loadAnimals() {
@@ -155,6 +159,10 @@ export class Cage extends Component {
 
   public getAnimalsData() {
     return this.cageData.animals;
+  }
+
+  public getAnimalPanel() {
+    return this.animalPanel;
   }
 
   public addAnimalData(animal: proto.IAnimal) {
