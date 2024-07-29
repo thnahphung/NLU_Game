@@ -33,11 +33,9 @@ import { AudioManger } from "../../Manager/AudioManger";
 import { ResourceManager } from "../../Manager/ResourceManager";
 import { PopupDiagnosis } from "../Popup/PopupDiagnosis";
 import { PopupManufactureResult } from "../Popup/PopupManufactureResult";
-import { t } from "../../../../extensions/i18n/assets/LanguageData";
 import { PopupAcceptSupport } from "../Popup/PopupAcceptSupport";
-import { PopupWaiting } from "../Popup/PopupWaiting";
-import { PopupFindTime } from "../Popup/PopupFindTime";
 import { PopupMatchMaking } from "../Popup/PopupMatchMaking";
+import { InformationEffect } from "../Reward/InformationEffect";
 const { ccclass, property } = _decorator;
 
 @ccclass("UICanvas")
@@ -76,6 +74,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupDiagnosis: Prefab;
   @property(Prefab) private prefabPopupManufactureResult: Prefab;
   @property(Prefab) private prefabPopupSupport: Prefab;
+  @property(Prefab) private informationEffectPrefab: Prefab = null;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -411,7 +410,6 @@ export class UICanvas extends Component {
   }
 
   showPopupUpgradeMachine() {
-    console.log("showPopupUpgradeMachine");
     this.popupFactory.getComponent(PopupFactory).showPopupUpgradeMachine();
   }
 
@@ -606,11 +604,8 @@ export class UICanvas extends Component {
   }
 
   showPopupManufactureResult(
-    speed: number,
-    power: number,
-    value: number,
-    durability: number,
-    machineSprite: string,
+    noGrowthItem: proto.INoGrowthItem,
+    propertyMachine: proto.IPropertyMachine,
     status: number
   ) {
     if (
@@ -621,14 +616,21 @@ export class UICanvas extends Component {
       return;
     }
     let popupManufactureResult = instantiate(this.prefabPopupManufactureResult);
-    if (status == 201) {
+    if (status == 200) {
       popupManufactureResult
         .getComponent(PopupManufactureResult)
-        .initSuccess(speed, power, value, durability, machineSprite);
+        .initSuccess(
+          propertyMachine.speed,
+          propertyMachine.power,
+          propertyMachine.value,
+          propertyMachine.durable,
+          noGrowthItem.name,
+          propertyMachine.numberStar
+        );
     } else {
       popupManufactureResult
         .getComponent(PopupManufactureResult)
-        .initFail(machineSprite);
+        .initFail(noGrowthItem.name);
     }
     this.node.getChildByName("PopupLayer").addChild(popupManufactureResult);
     popupManufactureResult.getComponent(PopupComponent).show();
@@ -695,5 +697,11 @@ export class UICanvas extends Component {
       GlobalData.me().getAidUser().userId,
       GlobalData.me().getSupportUser().userId
     );
+  }
+
+  showInformationEffect(name: string, value1: string, value2: string) {
+    let effect = instantiate(this.informationEffectPrefab);
+    effect.getComponent(InformationEffect).setInformation(name, value1, value2);
+    this.node.addChild(effect);
   }
 }

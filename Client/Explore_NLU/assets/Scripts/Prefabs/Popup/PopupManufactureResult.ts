@@ -17,22 +17,33 @@ export class PopupManufactureResult extends Component {
   private durabilityLabel: Label = null;
   @property(Node)
   private machineSprite: Node = null;
+  @property(Node)
+  private machineStar: Node = null;
+  @property(Node)
+  private stars: Node[] = [];
   initSuccess(
     speed: number,
     power: number,
     value: number,
     durability: number,
-    machineSprite: string
+    machineSprite: string,
+    numberStar: number
   ) {
+    this.title.string = t("label_text.mac_manufacture_success");
     this.speedLabel.string = speed.toString();
     this.powerLabel.string = power.toString();
     this.valueLabel.string = value.toString();
     this.durabilityLabel.string = durability.toString();
     this.machineSprite.getComponent(Sprite).spriteFrame =
       ResourceManager.me().getSpriteFrame(machineSprite);
+    this.stars.forEach((star, index) => {
+      star.active = index < numberStar;
+    });
+    this.machineStar.active = true;
   }
 
   initFail(machineSprite: string) {
+    this.setUpFail();
     this.machineSprite.getComponent(Sprite).spriteFrame =
       ResourceManager.me().getSpriteFrame(machineSprite);
   }
@@ -41,11 +52,12 @@ export class PopupManufactureResult extends Component {
 
   setUpFail() {
     this.title.string = t("label_text.mac_manufacture_fail");
-    this.speedLabel.node.active = false;
-    this.powerLabel.node.active = false;
-    this.valueLabel.node.active = false;
-    this.durabilityLabel.node.active = false;
+    this.speedLabel.string = "+0";
+    this.powerLabel.string = "+0";
+    this.valueLabel.string = "+0";
+    this.durabilityLabel.string = "+0";
     this.machineSprite.getComponent(Sprite).grayscale = true;
+    this.machineStar.active = false;
   }
 
   onClickContinue() {

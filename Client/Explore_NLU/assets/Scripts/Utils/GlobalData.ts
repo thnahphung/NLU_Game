@@ -409,4 +409,35 @@ export default class GlobalData {
   setAidUser(user: proto.IUser) {
     this.aidUser = user;
   }
+
+  /* END SUPPORTING */
+
+  /* START MECHANICAL */
+  private machines: proto.IMachine[] = null;
+
+  public getMachines() {
+    return this.machines;
+  }
+
+  public addMachine(machine: proto.IMachine) {
+    if (this.machines == null) {
+      this.machines = [];
+    }
+    this.machines.push(machine);
+  }
+
+  public updateMachine(machine: proto.IMachine) {
+    for (let i = 0; i < this.machines.length; i++) {
+      if (this.machines[i].noGrowthItem.id === machine.noGrowthItem.id) {
+        this.machines[i] = machine;
+        return;
+      }
+    }
+  }
+
+  public getMachine(noGrowthItemId: number) {
+    return this.machines.find(
+      (machine) => machine.noGrowthItem.id === noGrowthItemId
+    );
+  }
 }

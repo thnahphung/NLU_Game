@@ -1,38 +1,15 @@
-import {
-  _decorator,
-  Collider2D,
-  Component,
-  Contact2DType,
-  IPhysics2DContact,
-  Node,
-} from "cc";
-import { Character } from "../Character/Character";
+import { _decorator, Component, Node } from "cc";
 import { UICanvas } from "../MainUI/UICanvas";
-const { ccclass, property } = _decorator;
+import GlobalData from "../../Utils/GlobalData";
+const { ccclass } = _decorator;
 
 @ccclass("MechanicFactory")
 export class MechanicFactory extends Component {
   start() {
-    let collider = this.node.getComponent(Collider2D);
-    if (collider) {
-      collider.enabled = true;
-      collider.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
-    }
+    this.node.on(Node.EventType.TOUCH_START, this.handleOpenPopup, this);
   }
 
-  onBeginContact(
-    selfCollider: Collider2D,
-    otherCollider: Collider2D,
-    contact: IPhysics2DContact | null
-  ) {
-    const playerComponent = otherCollider.node.getComponent(Character);
-    if (playerComponent) {
-      if (playerComponent.getIsMainPlayer()) {
-        UICanvas.me().showPopupUpgradeMachine();
-        console.log("Main character is in MechanicFactory");
-      } else {
-        console.log("Other character is in MechanicFactory");
-      }
-    }
+  private handleOpenPopup() {
+    if (GlobalData.me().isMainArea()) UICanvas.me().showPopupUpgradeMachine();
   }
 }

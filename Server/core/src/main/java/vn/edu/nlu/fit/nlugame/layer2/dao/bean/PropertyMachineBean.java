@@ -28,4 +28,6 @@ public class PropertyMachineBean {
     private int noGrowthItemId;
     @ColumnName("user_id")
     private int userId;
+    @ColumnName("rate")
+    private int rate;
 }

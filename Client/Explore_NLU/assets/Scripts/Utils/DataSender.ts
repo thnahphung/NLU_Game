@@ -517,4 +517,20 @@ export default class DataSender {
     packet.reqStopSupport = reqStopSupport;
     WS.send(packet);
   }
+
+  public static sendReqFixMachine(machineId: number) {
+    let reqFixMachine = new proto.ReqFixMachine();
+    reqFixMachine.machineId = machineId;
+    let packet = new proto.Packet();
+    packet.reqFixMachine = reqFixMachine;
+    WS.send(packet);
+  }
+
+  public static sendReqIncreaseRateMachine(machineId: number) {
+    let reqIncreaseRateMachine = new proto.ReqIncreaseRateMachine();
+    reqIncreaseRateMachine.machineId = machineId;
+    let packet = new proto.Packet();
+    packet.reqIncreaseRateMachine = reqIncreaseRateMachine;
+    WS.send(packet);
+  }
 }

@@ -8640,6 +8640,10 @@
       "__uuid__": "c3e53db9-a87d-46ed-a4b9-6811111bbce1",
       "__expectedType__": "cc.Prefab"
     },
+    "informationEffectPrefab": {
+      "__uuid__": "9fb8e4dc-b695-4985-9cfe-333016ad7f3d",
+      "__expectedType__": "cc.Prefab"
+    },
     "_id": ""
   },
   {
