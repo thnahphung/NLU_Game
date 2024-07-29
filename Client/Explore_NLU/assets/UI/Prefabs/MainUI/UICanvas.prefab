@@ -156,7 +156,7 @@
     "_priority": 0,
     "_fov": 45,
     "_fovAxis": 0,
-    "_orthoHeight": 395.841935483871,
+    "_orthoHeight": 470.6236141906873,
     "_near": 0,
     "_far": 1000,
     "_color": {
@@ -8636,6 +8636,10 @@
       "__uuid__": "4a307152-d95f-4132-bfd8-46baba92c34a",
       "__expectedType__": "cc.Prefab"
     },
+    "prefabPopupInformationAmphitheater": {
+      "__uuid__": "f996994b-5280-4ad8-9dc5-c095b356bb77",
+      "__expectedType__": "cc.Prefab"
+    }
     "prefabPopupSupport": {
       "__uuid__": "c3e53db9-a87d-46ed-a4b9-6811111bbce1",
       "__expectedType__": "cc.Prefab"

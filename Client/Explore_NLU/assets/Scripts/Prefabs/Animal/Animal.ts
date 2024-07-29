@@ -14,6 +14,7 @@ import { AnimalAnimation } from "./AnimalAnimation";
 import { AnimalMovement } from "./AnimalMovement";
 import { ANIMAL, ANIMAL_STATE } from "../../Utils/Const";
 import { Cage } from "../Cage/Cage";
+import GlobalData from "../../Utils/GlobalData";
 const { ccclass, property } = _decorator;
 
 @ccclass("Animal")
@@ -44,6 +45,7 @@ export class Animal extends Component {
 
   private emoteLayer: Node;
   private animalInformationLayer: Node;
+  private currentDate: number = 0;
 
   protected start(): void {
     this.animalAnimation = this.node.getComponent(AnimalAnimation);
@@ -51,6 +53,7 @@ export class Animal extends Component {
     this.animation = this.node.getComponent(Animation);
     this.animalSprite = this.node.getComponent(Sprite);
     this.blockInputPanel = this.node.getChildByName("BlockInputPanel");
+    this.currentDate = GlobalData.me().getGameState().currentDate;
 
     if (!this.isLockedUp) return;
     this.collider = this.node.getComponent(Collider2D);
@@ -81,6 +84,11 @@ export class Animal extends Component {
 
   protected update(dt: number): void {
     if (!this.isLockedUp) return;
+    if (this.currentDate == GlobalData.me().getGameState().currentDate) return;
+    this.changeNewDay();
+  }
+
+  public changeNewDay() {
     this.checkDisease();
     if (this.canUpdateLevel()) {
       this.updateLevel();
@@ -197,11 +205,7 @@ export class Animal extends Component {
     return this.animal.propertyGrowthItem.developedDays;
   }
   public getAnimalName() {
-    return (
-      this.animal.commonGrowthItem.name +
-      "-lv" +
-      this.animal.propertyGrowthItem.stage
-    );
+    return this.animal.commonGrowthItem.name + "-lv" + this.stage;
   }
 
   public getAnimal() {

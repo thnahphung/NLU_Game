@@ -24,6 +24,19 @@ public class UserDAO extends BaseDAO {
                 .mapToBean(UserBean.class).stream().findFirst().orElse(null));
     }
 
+    public static UserBean getUserByReLoginToken(String reloginToken) {
+        if (reloginToken == null || reloginToken.isEmpty()) {
+            return null;
+        }
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(h -> h.createQuery("select id,username,password,player_name,gender,gold,level,experience_points,email,active,relogin_token,character_id,has_character,is_new_account from " + TABLE_NAME + " where relogin_token = :reloginToken")
+                .bind("reloginToken", reloginToken)
+                .mapToBean(UserBean.class).stream().findFirst().orElse(null));
+    }
+
     public static UserBean getUserById(int userId) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {

@@ -62,7 +62,37 @@ export class AnimalHusbandryScene extends AbsScene {
       if (packet.resAnimalMoving) {
         this.onAnimalMovingHandler(packet.resAnimalMoving);
       }
+      if (packet.resUpgradeCage) {
+        this.onUpgradeCageHandler(packet.resUpgradeCage);
+      }
     });
+  }
+
+  onUpgradeCageHandler(packet: proto.IResUpgradeCage) {
+    if (packet.status == 400) {
+      AudioManger.me().playOneShot(AUDIOS.WRONG);
+      UICanvas.me().showPopupMessage(t("label_text.upgrade_cage_400"));
+      return;
+    }
+
+    AudioManger.me().playOneShot(AUDIOS.LEVEL_UP);
+    const cageProto = packet.cage;
+    const oldCageNode = this.getCageNodeById(packet.cage.propertyBuilding.id);
+    cageProto.animals = oldCageNode.getComponent(Cage).getCage().animals;
+    oldCageNode.destroy();
+    this.cagesNode = this.cagesNode.filter(
+      (cageNode) =>
+        cageNode.getComponent(Cage).getCage().propertyBuilding.id !=
+        oldCageNode.getComponent(Cage).getCage().propertyBuilding.id
+    );
+
+    const newCageNode = this.createCageNode(packet.cage);
+    this.playerLayer.addChild(newCageNode);
+    this.cagesNode.push(newCageNode);
+    if (GlobalData.me().isMainArea()) {
+      GlobalData.me().getMainUser().gold = packet.gold;
+      UICanvas.me().loadGold();
+    }
   }
 
   onAnimalMovingHandler(packet: proto.IResAnimalMoving) {
@@ -153,15 +183,16 @@ export class AnimalHusbandryScene extends AbsScene {
       return;
     }
 
-    GlobalData.me().getMainUser().gold = packet.resSellAnimal.gold;
-    UICanvas.me().loadGold();
-
     const cageNode = this.cagesNode.find(
       (cage) =>
         cage.getComponent(Cage).getCage().propertyBuilding.id ==
         packet.resSellAnimal.cageId
     );
     cageNode.getComponent(Cage).deleteAnimalById(packet.resSellAnimal.animalId);
+    if (GlobalData.me().isMainArea()) {
+      GlobalData.me().getMainUser().gold = packet.resSellAnimal.gold;
+      UICanvas.me().loadGold();
+    }
   }
 
   onAnimalDiseaseHandle(packet: proto.IPacket) {
@@ -196,7 +227,6 @@ export class AnimalHusbandryScene extends AbsScene {
       );
       return;
     }
-    GlobalData.me().addWarehouseItem(packet.resAddAnimalToCage.warehouseItem);
     for (let cageNode of this.cagesNode) {
       if (
         cageNode.getComponent(Cage).getCage().propertyBuilding.id ==
@@ -207,6 +237,9 @@ export class AnimalHusbandryScene extends AbsScene {
           .addAnimalData(packet.resAddAnimalToCage.animal);
         cageNode.getComponent(Cage).addAnimal(packet.resAddAnimalToCage.animal);
       }
+    }
+    if (GlobalData.me().isMainArea()) {
+      GlobalData.me().addWarehouseItem(packet.resAddAnimalToCage.warehouseItem);
     }
   }
 
@@ -220,8 +253,10 @@ export class AnimalHusbandryScene extends AbsScene {
     const cageNode = this.createCageNode(packet.resBuyCage.cage);
     this.playerLayer.addChild(cageNode);
     this.cagesNode.push(cageNode);
-    GlobalData.me().getMainUser().gold = packet.resBuyCage.gold;
-    UICanvas.me().loadGold();
+    if (GlobalData.me().isMainArea()) {
+      GlobalData.me().getMainUser().gold = packet.resBuyCage.gold;
+      UICanvas.me().loadGold();
+    }
   }
 
   onLoadCagesHandler(packet: proto.IPacket) {
@@ -236,11 +271,13 @@ export class AnimalHusbandryScene extends AbsScene {
       );
       return;
     }
-    GlobalData.me().addWarehouseItem(packet.resAnimalEat.warehouseItem);
     let animalId = packet.resAnimalEat.propertyAnimalId;
     this.cagesNode.forEach((cageNode) => {
       cageNode.getComponent(Cage).animalEat(animalId);
     });
+    if (GlobalData.me().isMainArea()) {
+      GlobalData.me().addWarehouseItem(packet.resAnimalEat.warehouseItem);
+    }
   }
 
   createCages() {
@@ -294,6 +331,14 @@ export class AnimalHusbandryScene extends AbsScene {
       const animalNode = cageNode.getComponent(Cage).getAnimalById(animalId);
       if (animalNode) {
         return animalNode;
+      }
+    }
+  }
+
+  public getCageNodeById(cageId: number): Node {
+    for (let cageNode of this.cagesNode) {
+      if (cageNode.getComponent(Cage).getCage().propertyBuilding.id == cageId) {
+        return cageNode;
       }
     }
   }
