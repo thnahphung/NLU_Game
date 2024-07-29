@@ -106,7 +106,8 @@ public class CharacterService {
                 .setEmail(userLoginBean.getEmail())
                 .setPlayerName(userLoginBean.getPlayerName())
                 .setGold(userLoginBean.getGold())
-                .setCharacter(character);
+                .setCharacter(character)
+                .setStatus(Proto.User.STATUS.ONLINE_VALUE);
 
         int resultInsert = AreaDAO.insertArea(userId, typeArea);
         if (resultInsert == 200) {

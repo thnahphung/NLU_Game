@@ -494,7 +494,43 @@ export default class DataSender {
     WS.send(packet);
   }
 
-  public static sendReqTimeUpWaiting(user: proto.IUser) {
-    
+  public static sendReqLoadAidFriends() {
+    let reqLoadAidFriends = new proto.ReqLoadAidFriends();
+    let packet = new proto.Packet();
+    packet.reqLoadAidFriends = reqLoadAidFriends;
+    WS.send(packet);
+  }
+
+  public static sendReqSupportFriend(friendId: number) {
+    let reqSupportFriend = new proto.ReqSupportFriend();
+    reqSupportFriend.userId = friendId;
+    let packet = new proto.Packet();
+    packet.reqSupportFriend = reqSupportFriend;
+    WS.send(packet);
+  }
+
+  public static sendReqStopSupport(aidUserId: number, supportUserId: number) {
+    let reqStopSupport = new proto.ReqStopSupport();
+    reqStopSupport.aidUserId = aidUserId;
+    reqStopSupport.supportUserId = supportUserId;
+    let packet = new proto.Packet();
+    packet.reqStopSupport = reqStopSupport;
+    WS.send(packet);
+  }
+
+  public static sendReqFixMachine(machineId: number) {
+    let reqFixMachine = new proto.ReqFixMachine();
+    reqFixMachine.machineId = machineId;
+    let packet = new proto.Packet();
+    packet.reqFixMachine = reqFixMachine;
+    WS.send(packet);
+  }
+
+  public static sendReqIncreaseRateMachine(machineId: number) {
+    let reqIncreaseRateMachine = new proto.ReqIncreaseRateMachine();
+    reqIncreaseRateMachine.machineId = machineId;
+    let packet = new proto.Packet();
+    packet.reqIncreaseRateMachine = reqIncreaseRateMachine;
+    WS.send(packet);
   }
 }

@@ -155,6 +155,7 @@ export const languages = {
     btn_comfirm: "Confirm",
     btn_cancel: "Cancel",
     btn_continue: "Continue",
+    btn_back_home: "Back home",
     //Shop Name
     crop_shop: "Crop Shop",
     animal_shop: "Animal Shop",
@@ -231,10 +232,20 @@ export const languages = {
     mac_value: "Value",
     mac_spec: "Specifications",
     mac_manufacture: "Manufacture",
+    mac_fix_status_max: "The machine is in the best condition!",
+    mac_fix_status_enough_gold: "Not enough gold to fix the machine!",
+    mac_fix_status_error: "Error fixing machine!",
+    mac_fix_status_fail: "Failed to fix the machine!",
+    mac_energy: "Energy",
+    mac_description: "Description",
+    mac_increase_rate_fail_401: "The maximum increase rate is 90%!",
+    mac_increase_rate_fail_402: "Not enough gold to increase rate!",
+    mac_rate: "Rate",
     // Help
     help_title: "Help",
     help_find: "Find",
-    help_match_ok: "Engineer is coming...",
+    help_match_KSCK_ok: "Engineer is coming...",
+    help_match_BSTY_ok: "Veterinarian is coming...",
     help_notify_status:
       "You're visiting a friend's house so you can't help with agriculture",
     help_move: "Moving to the location that needs assistance...",
@@ -253,6 +264,14 @@ export const languages = {
     aid_status_invite_offline: "This player is offline!",
     aid_status_invite_reject: "is not ready to support you!",
     aid_btn_invited: "Invited",
+    //Support
+    support_title: "Support",
+    support_fail_supported: "has received support from others!",
+    support_stop_support_finish: "The support is done!",
+    support_stop_support_require:
+      "You have been asked to stop providing support!",
+    support_action_fail:
+      "You are in support mode, this action cannot be performed!",
     //Sysptom
     sysptoms_high_fever: "High fever",
     sysptoms_difficulty_breathing: "Difficulty breathing",

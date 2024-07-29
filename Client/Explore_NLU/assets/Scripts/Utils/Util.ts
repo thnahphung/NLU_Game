@@ -71,4 +71,21 @@ export class Util {
   public static formatAmount(n: number): string {
     return n > 99 ? "99+" : n.toString();
   }
+
+  public static setColorString(value: number, text: string): string {
+    console.log("value", value);
+    if (value == 1) {
+      return "<color=#FFFFFF>" + text + "</color>";
+    } else if (value == 2) {
+      return "<color=#17FF02>" + text + "</color>";
+    } else if (value == 3) {
+      return "<color=#3B8CFF>" + text + "</color>";
+    } else if (value == 4) {
+      return "<color=#E4F000>" + text + "</color>";
+    } else if (value == 5) {
+      return "<color=#E60000>" + text + "</color>";
+    } else {
+      return text;
+    }
+  }
 }

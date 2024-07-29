@@ -123,6 +123,16 @@ message Packet {
     ReqRejectInviteSupport reqRejectInviteSupport = 116;
     ReqAcceptInviteSupport reqAcceptInviteSupport = 117;
     ResRejectInviteSupport resRejectInviteSupport = 118;
+    ReqLoadAidFriends reqLoadAidFriends = 119;
+    ResLoadAidFriends resLoadAidFriends = 120;
+    ReqSupportFriend reqSupportFriend = 121;
+    ResSupportFriend resSupportFriend = 122;
+    ReqStopSupport reqStopSupport = 123;
+    ResStopSupport resStopSupport = 124;
+    ReqFixMachine reqFixMachine = 125;
+    ResFixMachine resFixMachine = 126;
+    ReqIncreaseRateMachine reqIncreaseRateMachine = 127;
+    ResIncreaseRateMachine resIncreaseRateMachine = 128;
   }
 }
 
@@ -143,9 +153,10 @@ message User {
   int32 status = 17;
 
   enum STATUS {
-    WAITING = 0;
-    BUSY = 1;
-    OFFLINE = 2;
+    ONLINE = 0;
+    OFFLINE = 1;
+    WAITING = 2;
+    BUSY = 3;
   }
 }
 
@@ -793,6 +804,7 @@ message ResCompleteTask {
   NoGrowthItem noGrowthItem = 2;
   int64 gold = 3;
   int32 exp = 4;
+  Activity activity = 5;
 }
 
 message ResAnimalDisease{
@@ -807,8 +819,9 @@ message PropertyMachine {
   int32 numberStar = 5;
   int32 level = 6;
   int32 value = 7;
-  int32 noGrowthItemId = 8;
-  int32 userId = 9;
+  int32 rate = 8;
+  int32 noGrowthItemId = 9;
+  int32 userId = 10;
 }
 
 message ReqLoadMachines {
@@ -980,13 +993,14 @@ message ReqManufactureMachine{
 }
 
 message ResManufactureMachine{
-  PropertyMachine PropertyMachine = 1;
+  Machine machine = 1;
   int32 status = 2;
 }
 
 message Machine {
   NoGrowthItem noGrowthItem = 1;
-  repeated FormulaMachine FormulaMachines = 2;
+  repeated FormulaMachine formulaMachines = 2;
+  PropertyMachine propertyMachine = 3;
 }
 
 message FormulaMachine{
@@ -1022,4 +1036,49 @@ message ResRejectInviteSupport {
 
 message ReqAcceptInviteSupport {
   int32 inviteUserId = 1;
+}
+
+message ReqLoadAidFriends {}
+
+message ResLoadAidFriends {
+  repeated User users = 1;
+}
+
+message ReqSupportFriend {
+  int32 userId = 1;
+}
+
+message ResSupportFriend {
+  User user = 2;
+}
+
+message ReqStopSupport {
+  int32 supportUserId = 1;
+  int32 aidUserId = 2;
+}
+
+message ResStopSupport {
+  int32 status = 1;
+}
+
+message ReqFixMachine {
+  int32 machineId = 1;
+}
+
+message ResFixMachine {
+  int32 status = 1;
+  int32 machineId = 2;
+  int32 gold = 3;
+  int32 level = 4;
+}
+
+message ReqIncreaseRateMachine {
+  int32 machineId = 1;
+}
+
+message ResIncreaseRateMachine {
+  int32 status = 1;
+  int32 machineId = 2;
+  int32 gold = 3;
+  int32 rate = 4;
 }

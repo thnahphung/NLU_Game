@@ -2,12 +2,12 @@
   "ver": "1.1.43",
   "importer": "prefab",
   "imported": true,
-  "uuid": "c3e53db9-a87d-46ed-a4b9-6811111bbce1",
+  "uuid": "9fb8e4dc-b695-4985-9cfe-333016ad7f3d",
   "files": [
     ".json"
   ],
   "subMetas": {},
   "userData": {
-    "syncNodeName": "PopupSupport"
+    "syncNodeName": "InformationEffect"
   }
 }

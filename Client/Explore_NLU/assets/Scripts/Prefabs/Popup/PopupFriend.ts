@@ -239,6 +239,7 @@ export class PopupFriend extends AbsHandler {
           friend.id.toString(),
           friend.character
         );
+        friendComponent.setFriendDetailNode(this.friendDetailNode);
         this.scrollViewListFriend.addChild(friendItem);
         this.scrollViewListFriend.parent.parent
           .getComponent(ScrollView)

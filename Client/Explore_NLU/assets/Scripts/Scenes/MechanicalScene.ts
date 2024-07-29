@@ -12,12 +12,33 @@ const { ccclass, property } = _decorator;
 @ccclass("MehanicalScene")
 export class MehanicalScene extends AbsScene {
   @property(Prefab) private itemMachine: Prefab = null;
+
+  private popupManufactureMachineComponent: PopupManufactureMachine = null;
+  private popupUpgradeMachineComponent: PopupUpgradeMachine = null;
+  private scrollViewManufactureMachines: Node = null;
+  private scrollViewUpgradeMachine: Node = null;
   protected onLoad(): void {
     super.onLoad();
-    this.loadMachines();
   }
 
-  start() {
+  protected start(): void {
+    let popupFactory = UICanvas.me().getPopupFactory();
+    let popupUpgradeMachine = popupFactory
+      .getComponent(PopupFactory)
+      .getPopupUpgradeMachine();
+    let popupManufactureMachine = popupFactory
+      .getComponent(PopupFactory)
+      .getPopupManufactureMachine();
+    this.popupManufactureMachineComponent =
+      popupManufactureMachine.getComponent(PopupManufactureMachine);
+    this.popupUpgradeMachineComponent =
+      popupUpgradeMachine.getComponent(PopupUpgradeMachine);
+
+    this.scrollViewManufactureMachines =
+      this.popupManufactureMachineComponent.getScrollViewMachineManufactureMachine();
+    this.scrollViewUpgradeMachine =
+      this.popupUpgradeMachineComponent.getScrollViewUpgradeMachine();
+    this.loadMachines();
     super.start();
   }
 
@@ -30,54 +51,58 @@ export class MehanicalScene extends AbsScene {
   }
 
   onLoadMachine(resLoadMachines: proto.IResLoadMachines) {
-    console.log("Load machines: ", resLoadMachines);
-    let popupFactory = UICanvas.me().getPopupFactory();
-    let popupUpgradeMachine = popupFactory
-      .getComponent(PopupFactory)
-      .getPopupUpgradeMachine();
-    let popupManufactureMachine = popupFactory
-      .getComponent(PopupFactory)
-      .getPopupManufactureMachine();
-
-    let scrollViewMachines = popupUpgradeMachine
-      .getComponent(PopupUpgradeMachine)
-      .getScrollViewUpgradeMachine();
-    let scrollViewManufactureMachines = popupManufactureMachine
-      .getComponent(PopupManufactureMachine)
-      .getScrollViewMachineManufactureMachine();
-
-    scrollViewMachines.removeAllChildren();
-    scrollViewManufactureMachines.removeAllChildren();
+    this.scrollViewUpgradeMachine.removeAllChildren();
+    this.scrollViewManufactureMachines.removeAllChildren();
 
     const noGrowthItem0 = resLoadMachines.noGrowthItem[0];
-    let propertyMachine0 = null;
     const propertyMachines = resLoadMachines.propertyMachines;
     resLoadMachines.noGrowthItem.forEach((noGrowthItem) => {
-      const machine = propertyMachines.find(
+      const propertyMachine = propertyMachines.find(
         (propertyMachine) => propertyMachine.noGrowthItemId === noGrowthItem.id
       );
-      if (machine) {
-        let itemMachine1 = instantiate(this.itemMachine);
-        itemMachine1.getComponent(ItemMachine).init(noGrowthItem, machine, 0);
-        scrollViewMachines.addChild(itemMachine1);
+      if (propertyMachine) {
+        let itemMachineUpgrade = instantiate(this.itemMachine);
+        let itemMachineUpgradeComponent =
+          itemMachineUpgrade.getComponent(ItemMachine);
+        itemMachineUpgradeComponent.setMachineItemId(noGrowthItem.id);
+        itemMachineUpgradeComponent.setTypeItem(0);
+        this.scrollViewUpgradeMachine.addChild(itemMachineUpgrade);
 
-        let itemMachine2 = instantiate(this.itemMachine);
-        itemMachine2.getComponent(ItemMachine).init(noGrowthItem, machine, 1);
-        scrollViewManufactureMachines.addChild(itemMachine2);
-      }
-      if (noGrowthItem.id === noGrowthItem0.id) {
-        propertyMachine0 = machine;
+        let itemMachineManufacture = instantiate(this.itemMachine);
+        let itemMachineManufactureComponent =
+          itemMachineManufacture.getComponent(ItemMachine);
+        itemMachineManufactureComponent.setMachineItemId(noGrowthItem.id);
+        itemMachineManufactureComponent.setTypeItem(1);
+        this.scrollViewManufactureMachines.addChild(itemMachineManufacture);
+
+        const machine = new proto.Machine();
+        machine.noGrowthItem = noGrowthItem;
+        machine.propertyMachine = propertyMachine;
+        GlobalData.me().addMachine(machine);
       }
     });
-    popupUpgradeMachine
-      .getComponent(PopupUpgradeMachine)
-      .init(noGrowthItem0, propertyMachine0);
-    popupManufactureMachine
-      .getComponent(PopupManufactureMachine)
-      .init(noGrowthItem0, propertyMachine0);
+    this.setupFirstMachine(noGrowthItem0.id);
   }
 
   private loadMachines() {
     DataSender.sendLoadMachines(GlobalData.me().getArea().areaId);
+  }
+
+  private setupFirstMachine(noGrowthItemId: number) {
+    this.popupUpgradeMachineComponent.init(noGrowthItemId);
+    this.popupUpgradeMachineComponent.setMachine(
+      GlobalData.me().getMachine(noGrowthItemId)
+    );
+    this.scrollViewUpgradeMachine.children[0]
+      .getComponent(ItemMachine)
+      .setFocus(true);
+
+    this.popupManufactureMachineComponent.setNoGothItemId(noGrowthItemId);
+    this.popupManufactureMachineComponent.setMachine(
+      GlobalData.me().getMachine(noGrowthItemId)
+    );
+    this.scrollViewManufactureMachines.children[0]
+      .getComponent(ItemMachine)
+      .setFocus(true);
   }
 }

@@ -19,6 +19,7 @@ import { UICanvas } from "../MainUI/UICanvas";
 import { SeedInformation } from "../Crop/SeedInformation";
 import { Menu } from "../Menu/Menu";
 import { AudioManger } from "../../Manager/AudioManger";
+import { t } from "../../../../extensions/i18n/assets/LanguageData";
 const { ccclass, property } = _decorator;
 
 @ccclass("TilledLand")
@@ -185,6 +186,10 @@ export class TilledLand extends Component {
 
   private handleTouchTilledLand(): void {
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);
+    if (GlobalData.me().getIsSupporting()) {
+      UICanvas.me().showPopupMessage(t("label_text.support_action_fail"));
+      return;
+    }
     if (!GlobalData.me().isMainArea()) return;
     this.showMenuSeedNode();
   }
