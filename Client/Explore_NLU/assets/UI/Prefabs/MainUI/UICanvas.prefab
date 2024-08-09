@@ -8639,7 +8639,7 @@
     "prefabPopupInformationAmphitheater": {
       "__uuid__": "f996994b-5280-4ad8-9dc5-c095b356bb77",
       "__expectedType__": "cc.Prefab"
-    }
+    },
     "prefabPopupSupport": {
       "__uuid__": "c3e53db9-a87d-46ed-a4b9-6811111bbce1",
       "__expectedType__": "cc.Prefab"
