@@ -67,6 +67,7 @@ export const AUDIOS = {
   CHICKEN: "Audios/Animal/chicken-sound",
   RAIN: "Audios/rain-sound",
   HARVEST_CROP: "Audios/harvest-crop",
+  MACHINE: "Audios/machine-audio",
 };
 
 export const SETTING_AREA = [
@@ -283,8 +284,8 @@ export enum TYPE_TOOL {
   PICKAXE = "Pickaxe",
   HAMMER = "Hammer",
   SEED_BAG = "SeedBag",
-  TILL = "TillButton",
-  HARVEST = "HarvestButton",
+  TILL = "bulldozer",
+  HARVEST = "harvester",
 }
 
 export enum REWARD_ICONS {

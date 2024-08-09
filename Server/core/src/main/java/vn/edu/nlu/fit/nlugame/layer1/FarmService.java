@@ -17,10 +17,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class FarmService {
@@ -110,14 +107,14 @@ public class FarmService {
         UserCache.me().add(String.valueOf(userContext.getUser().getUserId()), userContext);
         return newGold;
     }
-    public void handleTilledLand(Session session, Proto.ReqTilledLand reqTilledLand) {
+    public int handleTilledLand(Session session, Proto.ReqTilledLand reqTilledLand) {
         Proto.ResTillLand.Builder resTillLand = Proto.ResTillLand.newBuilder();
         List<Proto.TillLand> tillLandList = reqTilledLand.getTillLandsList();
         int areaId = reqTilledLand.getAreaId();
         int userTillId = SessionCache.me().getUserID(SessionID.of(session));
         UserContext userTillContext = UserCache.me().get(String.valueOf(userTillId));
         String code = userTillContext.getUser().getCharacter().getCode();
-        if (userTillId == -1) return;
+        if (userTillId == -1) return 500;
         int areaUserTillId = this.getAreaByUserId(userTillId).getAreaId();
         int quantity = tillLandList.size();
         if (areaId != areaUserTillId && code.equals("KSCK")) {
@@ -143,13 +140,12 @@ public class FarmService {
             resTillLand.setGold((int) newGold);
             resTillLand.setExp(newEpx);
             resTillLand.setSupportUserId(userTillId);
-            resTillLand.setSupportUserId(userTillId);
         }else{
             int mainUserID = this.getAreaById(areaId).getUserId();
             resTillLand.setMainUserId(mainUserID);
         }
-        if (reqTilledLand.getTillLandsList() == null || reqTilledLand.getTillLandsList() == null || reqTilledLand.getTillLandsList().size() == 0)
-            return;
+        if (reqTilledLand.getTillLandsList().isEmpty())
+            return 500;
         updateStatusTilledLands(tillLandList);
 
         resTillLand.addAllTillLands(tillLandList);
@@ -159,6 +155,7 @@ public class FarmService {
         ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(reqTilledLand.getAreaId()));
         ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
         DataSenderUtils.sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResTillLand(resTillLand).build());
+        return 200;
     }
 
     private void updateStatusTilledLands(List<Proto.TillLand> tillLandList) {
@@ -174,7 +171,7 @@ public class FarmService {
 
     public void handleLoadCommonCrops(Session session) {
         Proto.ResLoadCommonCrops.Builder resLoadCommonCrops = Proto.ResLoadCommonCrops.newBuilder();
-        List<Proto.CommonGrowthItem> commonGrowthItems = null;
+        List<Proto.CommonGrowthItem> commonGrowthItems;
         commonGrowthItems = CommonGrowthItemCache.me().getCommonGrowthItemsByType(ConstUtils.TYPE_ITEM.CROP.getValue());
         if (commonGrowthItems == null || commonGrowthItems.isEmpty()) {
             List<CommonGrowthItemBean> commonGrowthItemBeams = CommonGrowthItemDAO.getListCommonGrowthItemByType(ConstUtils.TYPE_ITEM.CROP.getValue());
@@ -195,12 +192,10 @@ public class FarmService {
                 commonGrowthItems.add(commonGrowthItem);
             }
             List<Proto.CommonGrowthItem> finalCommonGrowthItems = commonGrowthItems;
-            ThreadManage.me().execute(() -> {
-                finalCommonGrowthItems.forEach(commonGrowthItem -> {
-                    CommonGrowthItemCache.me().add(commonGrowthItem);
-                    CommonGrowthItemCache.me().addCommonGrowthItemToRedis(String.valueOf(commonGrowthItem.getId()), commonGrowthItem);
-                });
-            });
+            if(finalCommonGrowthItems != null) ThreadManage.me().execute(() -> finalCommonGrowthItems.forEach(commonGrowthItem -> {
+                CommonGrowthItemCache.me().add(commonGrowthItem);
+                CommonGrowthItemCache.me().addCommonGrowthItemToRedis(String.valueOf(commonGrowthItem.getId()), commonGrowthItem);
+            }));
         }
         resLoadCommonCrops.addAllCommonGrowthItem(commonGrowthItems);
         Proto.Packet packet = Proto.Packet.newBuilder().setResLoadCommonCrops(resLoadCommonCrops).build();
@@ -680,7 +675,7 @@ public class FarmService {
             }
             // Harvested products
             NoGrowthItemBean noGrowthItemBean = NoGrowthItemDAO.getNoGrowthItemByName(key.toLowerCase());
-            WarehouseItemBean warehouseItem = WarehouseDAO.getWarehouseItemUser(userId, noGrowthItemBean.getId());
+            WarehouseItemBean warehouseItem = WarehouseDAO.getWarehouseItemUser(harvestUserId, noGrowthItemBean.getId());
             if (warehouseItem == null) {
                 WarehouseDAO.insertWarehouseItem(harvestUserId, noGrowthItemBean.getId(), value);
             } else {
@@ -798,7 +793,7 @@ public class FarmService {
                 .setDurable(propertyMachineBean.getDurable())
                 .setPower(propertyMachineBean.getPower())
                 .setNumberStar(propertyMachineBean.getNumberStar())
-                .setLevel(propertyMachineBean.getLevel())
+                .setEnergy(propertyMachineBean.getEnergy())
                 .setValue(propertyMachineBean.getValue())
                 .setNoGrowthItemId(propertyMachineBean.getNoGrowthItemId())
                 .setUserId(propertyMachineBean.getUserId())
@@ -838,7 +833,7 @@ public class FarmService {
                 .setDurable(propertyMachineBean.getDurable())
                 .setPower(propertyMachineBean.getPower())
                 .setNumberStar(propertyMachineBean.getNumberStar())
-                .setLevel(propertyMachineBean.getLevel())
+                .setEnergy(propertyMachineBean.getEnergy())
                 .setValue(propertyMachineBean.getValue())
                 .setNoGrowthItemId(propertyMachineBean.getNoGrowthItemId())
                 .setUserId(propertyMachineBean.getUserId())

@@ -118,8 +118,8 @@ export class PopupUpgradeMachine extends AbsHandler {
     this.speedLabel.string = machine.propertyMachine.speed.toString();
     this.powerLabel.string = machine.propertyMachine.power.toString();
     this.valueLabel.string = machine.propertyMachine.value.toString();
-    this.progressBar.progress = machine.propertyMachine.level / 100;
-    this.progressLabel.string = `${machine.propertyMachine.level}/100`;
+    this.progressBar.progress = machine.propertyMachine.energy / 100;
+    this.progressLabel.string = `${machine.propertyMachine.energy}/100`;
   }
 
   onClickFixButton() {
@@ -135,7 +135,7 @@ export class PopupUpgradeMachine extends AbsHandler {
       return;
     }
 
-    if (this.machine.propertyMachine.level >= 100) {
+    if (this.machine.propertyMachine.energy >= 100) {
       UICanvas.me().showPopupMessage(t("label_text.mac_fix_status_max"));
       return;
     }
@@ -181,7 +181,7 @@ export class PopupUpgradeMachine extends AbsHandler {
     }
 
     let machine = GlobalData.me().getMachine(this.noGrowthItemId);
-    machine.propertyMachine.level = resFixMachine.level;
+    machine.propertyMachine.energy = resFixMachine.energy;
     GlobalData.me().updateMachine(machine);
     this.setupMachine(this.noGrowthItemId);
 
@@ -191,7 +191,7 @@ export class PopupUpgradeMachine extends AbsHandler {
 
     UICanvas.me().showInformationEffect(
       t("label_text.mac_energy"),
-      `${resFixMachine.level}`,
+      `${resFixMachine.energy}`,
       `+20`
     );
   }

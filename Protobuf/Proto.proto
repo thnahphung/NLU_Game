@@ -135,6 +135,7 @@ message Packet {
     ResIncreaseRateMachine resIncreaseRateMachine = 128;
     ReqUpgradeCage reqUpgradeCage = 129;
     ResUpgradeCage resUpgradeCage = 130;
+    ResBrokenMachine resBrokenMachine = 131;
   }
 }
 
@@ -225,6 +226,7 @@ message ShopItem {
     CAGE = 2;
     FARM_ITEM = 3;
     MEDICINE = 4;
+    MACHINE = 5;
   }
 }
 
@@ -820,7 +822,7 @@ message PropertyMachine {
   int32 durable = 3;
   int32 power = 4;
   int32 numberStar = 5;
-  int32 level = 6;
+  int32 energy = 6;
   int32 value = 7;
   int32 rate = 8;
   int32 noGrowthItemId = 9;
@@ -1081,7 +1083,7 @@ message ResFixMachine {
   int32 status = 1;
   int32 machineId = 2;
   int32 gold = 3;
-  int32 level = 4;
+  int32 energy = 4;
 }
 
 message ReqIncreaseRateMachine {
@@ -1093,4 +1095,9 @@ message ResIncreaseRateMachine {
   int32 machineId = 2;
   int32 gold = 3;
   int32 rate = 4;
+}
+
+message ResBrokenMachine {
+  string machineName = 1;
+  int32 machineEnergy = 2;
 }

@@ -302,6 +302,7 @@ export default class DataSender {
   }
 
   public static sendLoadMachines(areaId: number) {
+    console.log("sendLoadMachines");
     let reqLoadMachines = new proto.ReqLoadMachines();
     reqLoadMachines.areaId = areaId;
     let packet = new proto.Packet();

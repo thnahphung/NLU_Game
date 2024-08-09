@@ -359,6 +359,10 @@ export class UICanvas extends Component {
     return this.popupMenuToolFarm;
   }
 
+  getMenuMechanical(): Node {
+    return this.popupMenuMechanical;
+  }
+
   showPopupOption(handleNode?: Node, lable?: string) {
     if (this.node.getChildByName("BotMid").getChildByName("PopupOption"))
       return;
@@ -687,22 +691,26 @@ export class UICanvas extends Component {
     const component = this.node.getChildByName("BotRight").children;
     if (status) {
       component.forEach((element) => {
+        if (!element) return;
         if (element.name == "StopSupportButton") {
           element.active = true;
         } else {
           element.active = false;
         }
       });
-      find("Canvas/BackGroundLayer/TransitScenePanel").active = false;
+      if (find("Canvas/BackGroundLayer/TransitScenePanel"))
+        find("Canvas/BackGroundLayer/TransitScenePanel").active = false;
     } else {
       component.forEach((element) => {
+        if (!element) return;
         if (element.name == "StopSupportButton") {
           element.active = false;
         } else {
           element.active = true;
         }
       });
-      find("Canvas/BackGroundLayer/TransitScenePanel").active = true;
+      if (find("Canvas/BackGroundLayer/TransitScenePanel"))
+        find("Canvas/BackGroundLayer/TransitScenePanel").active = true;
     }
   }
 

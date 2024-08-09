@@ -11,7 +11,7 @@ import {
   Vec3,
 } from "cc";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
-import { REWARD_ICONS, TYPE_ITEM } from "../Utils/Const";
+import { AUDIOS, REWARD_ICONS, TYPE_ITEM } from "../Utils/Const";
 import AbsScene from "../Scenes/AbsScene";
 import DataSender from "../Utils/DataSender";
 import { PlantingLand } from "../Prefabs/Lands/PlantingLand";
@@ -24,6 +24,9 @@ import { Menu } from "../Prefabs/Menu/Menu";
 import { SeedInformation } from "../Prefabs/Crop/SeedInformation";
 import { t } from "../../../extensions/i18n/assets/LanguageData";
 import { Machine } from "../Prefabs/Machine/Machine";
+import { MachineInformation } from "../Prefabs/Machine/MachineInformation";
+import { Util } from "../Utils/Util";
+import { AudioManger } from "../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("FarmScene")
@@ -46,6 +49,16 @@ export class FarmScene extends AbsScene {
   protected onLoad(): void {
     // Load information of farm
     this.loadFarm();
+
+    // Load information of machines if user is supporting
+    console.log("character.code", GlobalData.me().getMainUser().character.code);
+    console.log("getIsSupporting", GlobalData.me().getIsSupporting());
+    if (
+      GlobalData.me().getMainUser().character.code == "KSCK" &&
+      GlobalData.me().getIsSupporting()
+    ) {
+      this.loadMachines();
+    }
   }
 
   protected start(): void {
@@ -88,6 +101,10 @@ export class FarmScene extends AbsScene {
       });
   }
 
+  private loadMachines(): void {
+    DataSender.sendLoadMachines(GlobalData.me().getMainArea().areaId);
+  }
+
   onMessageHandler(packets: proto.IPacketWrapper): void {
     packets.packet.forEach((packet) => {
       if (packet.resLoadItemsOfFarm) {
@@ -114,7 +131,64 @@ export class FarmScene extends AbsScene {
       if (packet.resHarvestByMachine) {
         this.handleResHarvestByMachine(packet.resHarvestByMachine);
       }
+      if (packet.resLoadMachines) {
+        this.onLoadMachine(packet.resLoadMachines);
+      }
+      if (packet.resBrokenMachine) {
+        this.handleResBrokenMachine(packet.resBrokenMachine);
+      }
     });
+  }
+
+  private handleResBrokenMachine(
+    resBrokenMachine: proto.IResBrokenMachine
+  ): void {
+    console.log(resBrokenMachine);
+    const machineName = resBrokenMachine.machineName;
+    const energyMachine = resBrokenMachine.machineEnergy;
+    this.setupMachineTool(machineName, energyMachine);
+    UICanvas.me().showPopupMessage(t("label_text.mac_reduce_energy"));
+  }
+
+  private onLoadMachine(resLoadMachines: proto.IResLoadMachines): void {
+    console.log(resLoadMachines);
+    const propertyMachines = resLoadMachines.propertyMachines;
+    resLoadMachines.noGrowthItem.forEach((noGrowthItem) => {
+      const propertyMachine = propertyMachines.find(
+        (propertyMachine) => propertyMachine.noGrowthItemId === noGrowthItem.id
+      );
+      if (propertyMachine) {
+        this.setupMachineTool(
+          noGrowthItem.name,
+          propertyMachine.energy,
+          propertyMachine.speed,
+          propertyMachine.power
+        );
+      }
+    });
+  }
+
+  private setupMachineTool(
+    machineName: string,
+    energyMachine: number,
+    speedMachine?: number,
+    powerMachine?: number
+  ): void {
+    const menuMachineComponent = UICanvas.me()
+      .getMenuMechanical()
+      .getComponent(Menu);
+    let machineNode = menuMachineComponent.getMenuItemNode(machineName);
+    if (!machineNode) return;
+    let machineInformation = machineNode.getComponent(MachineInformation);
+    if (!speedMachine || !powerMachine) {
+      console.log("only set energyMachine", energyMachine);
+      machineInformation.setEnergy(Util.setColorEnergy(energyMachine));
+    } else {
+      let energy = Util.setColorEnergy(energyMachine);
+      let power = powerMachine.toString();
+      let speed = speedMachine.toString();
+      machineInformation.init(speed, power, energy);
+    }
   }
 
   private handleResTillLand(resTillLand: proto.IResTillLand): void {
@@ -500,6 +574,7 @@ export class FarmScene extends AbsScene {
   }
 
   private onClickTillByMachine() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     UICanvas.me().hidePopupMenuMechanical();
     let plantingLandChosed = GlobalData.me().getPlantingLandChoosed();
     let plantingLandPosition = new proto.Position();
@@ -514,6 +589,7 @@ export class FarmScene extends AbsScene {
   }
 
   private onClickHarvestByMachine() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     UICanvas.me().hidePopupMenuMechanical();
     let plantingLandChosed = GlobalData.me().getPlantingLandChoosed();
     let plantingLandPosition = new proto.Position();
@@ -530,15 +606,23 @@ export class FarmScene extends AbsScene {
   private handleResTillLandByMachine(
     resTillLandByMachine: proto.IResTillLandByMachine
   ) {
-    let plantingLandPosition = resTillLandByMachine.plantingLandPosition;
-    let machineNoGrowItem = resTillLandByMachine.noGrowthItem;
-    let propertyMachine = resTillLandByMachine.propertyMachine;
-    const machine = instantiate(this.bulldorzerPrefab);
-    machine.getComponent(Machine).init(machineNoGrowItem, propertyMachine);
-    this.setMachinePosition(
-      machine,
-      new Vec3(plantingLandPosition.x, plantingLandPosition.y + 100, 0)
-    );
+    if (GlobalData.me().getMainUser().character.code == "KSCK") {
+      let plantingLandPosition = resTillLandByMachine.plantingLandPosition;
+      let machineNoGrowItem = resTillLandByMachine.noGrowthItem;
+      let propertyMachine = resTillLandByMachine.propertyMachine;
+      if (!propertyMachine) return;
+      if (propertyMachine.energy <= 0) {
+        UICanvas.me().showPopupMessage(t("label_text.mac_not_enough_energy"));
+
+        return;
+      }
+      const machine = instantiate(this.bulldorzerPrefab);
+      machine.getComponent(Machine).init(machineNoGrowItem, propertyMachine);
+      this.setMachinePosition(
+        machine,
+        new Vec3(plantingLandPosition.x, plantingLandPosition.y + 100, 0)
+      );
+    }
   }
 
   private setMachinePosition(machine: Node, position: Vec3) {
@@ -550,16 +634,22 @@ export class FarmScene extends AbsScene {
   private handleResHarvestByMachine(
     resHarvestByMachine: proto.IResHarvestByMachine
   ) {
-    console.log(resHarvestByMachine);
-    let plantingLandPosition = resHarvestByMachine.plantingLandPosition;
-    let machineNoGrowItem = resHarvestByMachine.noGrowthItem;
-    let propertyMachine = resHarvestByMachine.propertyMachine;
-    const machine = instantiate(this.harvesterPrefab);
-    machine.getComponent(Machine).init(machineNoGrowItem, propertyMachine);
-    this.setMachinePosition(
-      machine,
-      new Vec3(plantingLandPosition.x + 180, plantingLandPosition.y, 0)
-    );
+    if (GlobalData.me().getMainUser().character.code == "KSCK") {
+      let plantingLandPosition = resHarvestByMachine.plantingLandPosition;
+      let machineNoGrowItem = resHarvestByMachine.noGrowthItem;
+      let propertyMachine = resHarvestByMachine.propertyMachine;
+      if (!propertyMachine) return;
+      if (propertyMachine.energy <= 0) {
+        UICanvas.me().showPopupMessage(t("label_text.mac_not_enough_energy"));
+        return;
+      }
+      const machine = instantiate(this.harvesterPrefab);
+      machine.getComponent(Machine).init(machineNoGrowItem, propertyMachine);
+      this.setMachinePosition(
+        machine,
+        new Vec3(plantingLandPosition.x + 180, plantingLandPosition.y, 0)
+      );
+    }
   }
 
   private getTopLayer(): Node {

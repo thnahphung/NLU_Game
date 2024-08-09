@@ -19,6 +19,11 @@ export class MehanicalScene extends AbsScene {
   private scrollViewUpgradeMachine: Node = null;
   protected onLoad(): void {
     super.onLoad();
+    this.node.on(Node.EventType.ACTIVE_IN_HIERARCHY_CHANGED, () => {
+      if (this.node.active) {
+        this.loadMachines();
+      }
+    });
   }
 
   protected start(): void {

@@ -163,6 +163,7 @@ export const languages = {
     medicine_shop: "Veterinary Medicine",
     buy_cage: "Buy Cage",
     healing: "Healing",
+    mechanical_shop: "Machines",
     //Crop Name
     rice_seed_bag: "Rice Seed Bag",
     cabbage_seed_bag: "Cabbage Seed Bag",
@@ -242,6 +243,12 @@ export const languages = {
     mac_increase_rate_fail_401: "The maximum increase rate is 90%!",
     mac_increase_rate_fail_402: "Not enough gold to increase rate!",
     mac_rate: "Rate",
+    mac_number_energy: "Energy:",
+    mac_number_speed: "Speed:",
+    mac_number_power: "Power:",
+    mac_not_enough_energy: "Machine is out of energy!",
+    mac_reduce_energy:
+      "The machine's energy has decreased due to some components failing after work!",
     // Help
     help_title: "Help",
     help_find: "Find",
@@ -273,6 +280,8 @@ export const languages = {
       "You have been asked to stop providing support!",
     support_action_fail:
       "You are in support mode, this action cannot be performed!",
+    support_till: "Till",
+    support_harvest: "Harvest",
     //Sysptom
     sysptoms_high_fever: "High fever",
     sysptoms_difficulty_breathing: "Difficulty breathing",

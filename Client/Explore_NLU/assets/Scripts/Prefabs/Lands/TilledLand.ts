@@ -187,7 +187,6 @@ export class TilledLand extends Component {
   private handleTouchTilledLand(): void {
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     if (GlobalData.me().getIsSupporting()) {
-      UICanvas.me().showPopupMessage(t("label_text.support_action_fail"));
       return;
     }
     if (!GlobalData.me().isMainArea()) return;

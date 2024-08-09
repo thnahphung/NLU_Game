@@ -88,4 +88,14 @@ export class Util {
       return text;
     }
   }
+
+  public static setColorEnergy(value: number): string {
+    if (value <= 20) {
+      return "<color=#FF0000>" + value + "</color>";
+    } else if (value > 20) {
+      return "<color=#0FC000>" + value + "</color>";
+    } else {
+      return value.toString();
+    }
+  }
 }

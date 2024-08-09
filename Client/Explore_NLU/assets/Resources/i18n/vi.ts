@@ -168,6 +168,7 @@ export const languages = {
     animal_shop: "Động vật",
     medicine_shop: "Thuốc Thú Y",
     buy_cage: "Mua Chuồng",
+    mechanical_shop: "Cơ Khí",
     //Crop Name
     rice_seed_bag: "Túi Hạt Lúa",
     cabbage_seed_bag: "Túi Hạt Bắp Cải",
@@ -250,6 +251,12 @@ export const languages = {
     mac_increase_rate_fail_401: "Tỉ lệ được nâng tối đa là 90%!",
     mac_increase_rate_fail_402: "Không đủ tiền để tăng tỉ lệ!",
     mac_rate: "Tỉ lệ",
+    mac_number_energy: "Năng lượng:",
+    mac_number_speed: "Tốc độ:",
+    mac_number_power: "Sức mạnh:",
+    mac_not_enough_energy: "Máy không đủ năng lượng!",
+    mac_reduce_energy:
+      "Máy đã bị giảm năng lượng do một số linh kiện bị hỏng sau khi làm việc!",
     // Help
     help_title: "Trợ giúp",
     help_find: "Tìm kiếm",
@@ -279,6 +286,8 @@ export const languages = {
     support_stop_support_require: "Bạn đã được yêu cầu dừng việc hỗ trợ!",
     support_action_fail:
       "Bạn đang ở chế độ được hỗ trợ, không thể thực hiện hành động này!",
+    support_till: "Xới đất",
+    support_harvest: "Thu hoạch",
     //Sysptom
     sysptoms_high_fever: "Sốt cao",
     sysptoms_difficulty_breathing: "Khó thở",
