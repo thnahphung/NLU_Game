@@ -51,8 +51,6 @@ export class FarmScene extends AbsScene {
     this.loadFarm();
 
     // Load information of machines if user is supporting
-    console.log("character.code", GlobalData.me().getMainUser().character.code);
-    console.log("getIsSupporting", GlobalData.me().getIsSupporting());
     if (
       GlobalData.me().getMainUser().character.code == "KSCK" &&
       GlobalData.me().getIsSupporting()
@@ -143,7 +141,6 @@ export class FarmScene extends AbsScene {
   private handleResBrokenMachine(
     resBrokenMachine: proto.IResBrokenMachine
   ): void {
-    console.log(resBrokenMachine);
     const machineName = resBrokenMachine.machineName;
     const energyMachine = resBrokenMachine.machineEnergy;
     this.setupMachineTool(machineName, energyMachine);
@@ -151,7 +148,6 @@ export class FarmScene extends AbsScene {
   }
 
   private onLoadMachine(resLoadMachines: proto.IResLoadMachines): void {
-    console.log(resLoadMachines);
     const propertyMachines = resLoadMachines.propertyMachines;
     resLoadMachines.noGrowthItem.forEach((noGrowthItem) => {
       const propertyMachine = propertyMachines.find(
@@ -181,7 +177,6 @@ export class FarmScene extends AbsScene {
     if (!machineNode) return;
     let machineInformation = machineNode.getComponent(MachineInformation);
     if (!speedMachine || !powerMachine) {
-      console.log("only set energyMachine", energyMachine);
       machineInformation.setEnergy(Util.setColorEnergy(energyMachine));
     } else {
       let energy = Util.setColorEnergy(energyMachine);

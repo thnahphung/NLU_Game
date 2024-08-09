@@ -302,7 +302,6 @@ export default class DataSender {
   }
 
   public static sendLoadMachines(areaId: number) {
-    console.log("sendLoadMachines");
     let reqLoadMachines = new proto.ReqLoadMachines();
     reqLoadMachines.areaId = areaId;
     let packet = new proto.Packet();
@@ -413,7 +412,6 @@ export default class DataSender {
   }
 
   public static sendReqLoadFormulaOfMachine(noGrowthItem: proto.INoGrowthItem) {
-    console.log("sendReqLoadFormulaOfMachine");
     let reqLoadFormulasOfMachine = new proto.ReqLoadFormulasOfMachine();
     reqLoadFormulasOfMachine.noGrowthItem = noGrowthItem;
     let packet = new proto.Packet();
@@ -422,7 +420,6 @@ export default class DataSender {
   }
 
   public static sendReqLoadAllMachineFormula() {
-    console.log("sendReqLoadAllMachineFormula");
     let reqLoadAllMachineFormula = new proto.ReqLoadAllMachineFormula();
     let packet = new proto.Packet();
     packet.reqLoadAllMachineFormula = reqLoadAllMachineFormula;
@@ -430,7 +427,6 @@ export default class DataSender {
   }
 
   public static sendReqManufactureMachine(machine: proto.IMachine) {
-    console.log("sendReqManufactureMachine", machine);
     let reqManufactureMachine = new proto.ReqManufactureMachine();
     reqManufactureMachine.machine = machine;
     let packet = new proto.Packet();

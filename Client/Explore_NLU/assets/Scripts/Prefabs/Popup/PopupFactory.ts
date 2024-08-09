@@ -22,17 +22,14 @@ export class PopupFactory extends Component {
   }
 
   public closePopupUpgradeMachine() {
-    console.log("closePopupUpgradeMachine");
     this.popupUpgradeMachine.active = false;
   }
 
   public closePopupManufactureMachine() {
-    console.log("closePopupManufactureMachine");
     this.popupManufactureMachine.active = false;
   }
 
   public closePopup() {
-    console.log("closePopup");
     this.node.active = false;
     this.popupUpgradeMachine.active = false;
     this.popupManufactureMachine.active = false;

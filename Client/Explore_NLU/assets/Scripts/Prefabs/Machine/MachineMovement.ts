@@ -30,7 +30,7 @@ export class MachineMovement extends Component {
         },
       })
       .call(() => {
-        AudioManger.me().stop();
+        AudioManger.me().getAudioSound().stop();
         this.node.name == "HarvesterMachine"
           ? this.handleHarvest()
           : this.handleTilledLand();

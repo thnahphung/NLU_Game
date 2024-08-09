@@ -76,6 +76,13 @@ export class TilledLand extends Component {
     if (!nameSeed) return;
     //Trừ hạt giống và kiểm tra số lượng hạt giống còn lại
     if (seedBag.getQuantity() == 0) return;
+    if (
+      GlobalData.me().getSowingInformations() &&
+      GlobalData.me().getSowingInformations().length >= 50
+    ) {
+      UICanvas.me().showPopupMessage(t("label_text.sow_fail_too_many_seeds"));
+      return;
+    }
     seedBag.setQuantity(seedBag.getQuantity() - 1);
     const menuSeedComponent = UICanvas.me()
       .getMenuSeedFarm()
