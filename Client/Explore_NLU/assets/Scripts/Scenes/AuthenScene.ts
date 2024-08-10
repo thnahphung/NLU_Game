@@ -6,7 +6,7 @@ import { StorageManager } from "../Manager/StorageManger";
 import GlobalData from "../Utils/GlobalData";
 import { AUDIOS, LOCAL_STORAGE, POPUP, SCENES } from "../Utils/Const";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
-import { t } from "../../../extensions/i18n/assets/LanguageData";
+import { init, t } from "../../../extensions/i18n/assets/LanguageData";
 import { AudioManger } from "../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
@@ -55,6 +55,7 @@ export class AuthenScene extends AbsScene {
   }
 
   protected start(): void {
+    init(StorageManager.me().getItem("LANGUAGE") || "vi");
     AudioManger.me().play(AUDIOS.BACKGROUND, true);
   }
 
