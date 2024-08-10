@@ -525,7 +525,7 @@ export class UICanvas extends Component {
     this._popupAcceptSupport = instantiate(this.prefabPopupAcceptSupport);
     this._popupAcceptSupport.getComponent(PopupAcceptSupport).init(userInvite);
     this._popupAcceptSupport.setPosition(200, -160);
-    this.node.getChildByName("MidRight").addChild(this._popupAcceptSupport);
+    this.node.getChildByName("PopupLayer").addChild(this._popupAcceptSupport);
     this._popupAcceptSupport.getComponent(PopupComponent).showSlideIn();
   }
 

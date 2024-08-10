@@ -148,8 +148,8 @@ export class TilledLand extends Component {
   }
 
   public deleteCrop(): void {
-    if (this.seedNode) this.seedNode.destroy();
     this.resetTillLand();
+    if (this.seedNode) this.seedNode.destroy();
   }
 
   public resetTillLand(): void {

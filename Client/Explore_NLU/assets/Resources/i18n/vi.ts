@@ -258,6 +258,15 @@ export const languages = {
     mac_not_enough_energy: "Máy không đủ năng lượng!",
     mac_reduce_energy:
       "Máy đã bị giảm năng lượng do một số linh kiện bị hỏng sau khi làm việc!",
+    mac_no_active: "Chưa mở",
+    bulldozer_part_1: "Mảnh nâng cấp xe ủi đất 1",
+    bulldozer_part_2: "Mảnh nâng cấp xe ủi đất 2",
+    bulldozer_part_3: "Mảnh nâng cấp xe ủi đất 3",
+    bulldozer_part_4: "Mảnh nâng cấp xe ủi đất 4",
+    harvester_part_1: "Mảnh nâng cấp máy thu hoạch 1",
+    harvester_part_2: "Mảnh nâng cấp máy thu hoạch 2",
+    harvester_part_3: "Mảnh nâng cấp máy thu hoạch 3",
+    harvester_part_4: "Mảnh nâng cấp máy thu hoạch 4",
     // Help
     help_title: "Trợ giúp",
     help_find: "Tìm kiếm",

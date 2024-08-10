@@ -1,7 +1,6 @@
 package vn.edu.nlu.fit.nlugame.layer1;
 
 import jakarta.websocket.Session;
-import vn.edu.nlu.fit.nlugame.layer2.ConstUtils;
 import vn.edu.nlu.fit.nlugame.layer2.DataSenderUtils;
 import vn.edu.nlu.fit.nlugame.layer2.SessionManage;
 import vn.edu.nlu.fit.nlugame.layer2.dao.CharacterDAO;
@@ -38,7 +37,7 @@ public class FriendService {
         if(status == 4) {
             List<UserBean> friends = FriendshipDAO.loadSuggestFriendList(userId);
             List<Proto.Friend> friendProtos = new ArrayList<>();
-            for(UserBean friend : friends) {
+            if(friends != null) for(UserBean friend : friends) {
                 Proto.Friend.Builder friendBuilder = Proto.Friend.newBuilder();
                 friendBuilder.setId(friend.getId());
                 friendBuilder.setName(friend.getPlayerName());
@@ -58,7 +57,7 @@ public class FriendService {
         }
         List<UserBean> friends = FriendshipDAO.loadFriendList(userId, status);
         List<Proto.Friend> friendProtos = new ArrayList<>();
-        for(UserBean friend : friends) {
+        if(friends != null) for(UserBean friend : friends) {
             Proto.Friend.Builder friendBuilder = Proto.Friend.newBuilder();
             friendBuilder.setId(friend.getId());
             friendBuilder.setName(friend.getPlayerName());
@@ -86,6 +85,7 @@ public class FriendService {
         friendBuilder.setId(userBean.getId());
         CharacterBean characterBean = CharacterDAO.loadCharacterById(userBean.getCharacterId());
         Proto.Character.Builder characterProto = Proto.Character.newBuilder();
+        assert characterBean != null;
         characterProto.setId(characterBean.getId());
         characterProto.setName(characterBean.getName());
         characterProto.setCode(characterBean.getCode());

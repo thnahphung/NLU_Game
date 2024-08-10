@@ -250,6 +250,7 @@ export const languages = {
     mac_not_enough_energy: "Machine is out of energy!",
     mac_reduce_energy:
       "The machine's energy has decreased due to some components failing after work!",
+    mac_no_active: "Upcoming",
     // Help
     help_title: "Help",
     help_find: "Find",

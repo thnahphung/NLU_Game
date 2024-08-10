@@ -391,8 +391,6 @@ public class SupportingService {
         if(sessionUserReceive == null || !sessionUserReceive.isOpen()) {
             return;
         }
-        System.out.println("User: " + userContextReceive.getUser());
-        System.out.println("User status: " + userContextReceive.getUser().getStatus());
         if(userContextReceive.getUser().getStatus() == Proto.User.STATUS.BUSY_VALUE){
             Proto.ResSupportFriend resSupportFriend = Proto.ResSupportFriend.newBuilder()
                     .setUser(userContextReceive.getUser())
@@ -464,6 +462,5 @@ public class SupportingService {
             Session sessionAid = SessionManage.me().get(aidUserContext.getSessionID());
             DataSenderUtils.sendResponse(sessionAid, Proto.Packet.newBuilder().setResStopSupport(resStopSupportForAid).build());
         }
-        System.out.println("status: " + status);
     }
 }

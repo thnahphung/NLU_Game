@@ -59,8 +59,13 @@ export class MehanicalScene extends AbsScene {
     this.scrollViewUpgradeMachine.removeAllChildren();
     this.scrollViewManufactureMachines.removeAllChildren();
 
-    const noGrowthItem0 = resLoadMachines.noGrowthItem[0];
+    const noGrowthItem0 =
+      resLoadMachines.noGrowthItem[0].name == "saw_machine"
+        ? resLoadMachines.noGrowthItem[1]
+        : resLoadMachines.noGrowthItem[0];
     const propertyMachines = resLoadMachines.propertyMachines;
+    let machineNoActive1 = null;
+    let machineNoActive2 = null;
     resLoadMachines.noGrowthItem.forEach((noGrowthItem) => {
       const propertyMachine = propertyMachines.find(
         (propertyMachine) => propertyMachine.noGrowthItemId === noGrowthItem.id
@@ -71,21 +76,33 @@ export class MehanicalScene extends AbsScene {
           itemMachineUpgrade.getComponent(ItemMachine);
         itemMachineUpgradeComponent.setMachineItemId(noGrowthItem.id);
         itemMachineUpgradeComponent.setTypeItem(0);
-        this.scrollViewUpgradeMachine.addChild(itemMachineUpgrade);
-
+        if (noGrowthItem.name != "saw_machine") {
+          this.scrollViewUpgradeMachine.addChild(itemMachineUpgrade);
+        } else {
+          machineNoActive1 = itemMachineUpgrade;
+        }
         let itemMachineManufacture = instantiate(this.itemMachine);
         let itemMachineManufactureComponent =
           itemMachineManufacture.getComponent(ItemMachine);
         itemMachineManufactureComponent.setMachineItemId(noGrowthItem.id);
         itemMachineManufactureComponent.setTypeItem(1);
-        this.scrollViewManufactureMachines.addChild(itemMachineManufacture);
-
+        if (noGrowthItem.name != "saw_machine") {
+          this.scrollViewManufactureMachines.addChild(itemMachineManufacture);
+        } else {
+          machineNoActive2 = itemMachineManufacture;
+        }
         const machine = new proto.Machine();
         machine.noGrowthItem = noGrowthItem;
         machine.propertyMachine = propertyMachine;
         GlobalData.me().addMachine(machine);
       }
     });
+    if (machineNoActive1) {
+      this.scrollViewUpgradeMachine.addChild(machineNoActive1);
+    }
+    if (machineNoActive2) {
+      this.scrollViewManufactureMachines.addChild(machineNoActive2);
+    }
     this.setupFirstMachine(noGrowthItem0.id);
   }
 

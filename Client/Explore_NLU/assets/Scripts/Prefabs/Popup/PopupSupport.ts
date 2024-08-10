@@ -26,7 +26,6 @@ export class PopupSupport extends AbsHandler {
   onMessageHandler(packetWrapper: proto.IPacketWrapper): void {
     packetWrapper.packet.forEach((packet) => {
       if (packet.resLoadAidFriends) {
-        console.log(packet.resLoadSupportFriends);
         this.onLoadAidFriends(packet.resLoadAidFriends);
       }
     });

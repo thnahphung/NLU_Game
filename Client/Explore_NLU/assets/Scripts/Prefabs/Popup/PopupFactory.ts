@@ -1,4 +1,4 @@
-import { _decorator, Component, Node } from "cc";
+import { _decorator, Component, find, Node } from "cc";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupFactory")
@@ -7,7 +7,11 @@ export class PopupFactory extends Component {
   private popupUpgradeMachine: Node = null;
   @property(Node)
   private popupManufactureMachine: Node = null;
-  start() {}
+  start() {
+    find("UICanvas").children.forEach((child) => {
+      if (child.name === "TopRight") child.setSiblingIndex(20);
+    });
+  }
 
   public showPopupUpgradeMachine() {
     this.node.active = true;

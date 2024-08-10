@@ -120,13 +120,33 @@ public class FarmService {
         int quantity = tillLandList.size();
         if (areaId != areaUserTillId && code.equals("KSCK")) {
             // Response reward
+            //Exp
             Proto.Reward.Builder rewardExp = Proto.Reward.newBuilder();
             rewardExp.setName(ConstUtils.REWARDS.EXPERIENCE.getValue());
             rewardExp.setQuantity(quantity);
-
+            //Gold
             Proto.Reward.Builder rewardGold = Proto.Reward.newBuilder();
             rewardGold.setName(ConstUtils.REWARDS.GOLD.getValue());
             rewardGold.setQuantity(quantity);
+            //Part
+            Random random = new Random();
+            int value = random.nextInt(7) + 1;
+            int status = 200;
+            if(value < 5 && value > 0){
+                String namePart = "bulldozer-part-" + value;
+                Proto.Reward.Builder rewardPart = Proto.Reward.newBuilder();
+                rewardPart.setName(namePart);
+                rewardPart.setQuantity(1);
+                resTillLand.addRewards(rewardPart);
+                Proto.NoGrowthItem noGrowthItem = this.getNoGrowthItem(namePart);
+                WarehouseItemBean warehouseItem = WarehouseDAO.getWarehouseItemUser(userTillId, noGrowthItem.getId());
+                if (warehouseItem == null) {
+                    status = WarehouseDAO.insertWarehouseItem(userTillId, noGrowthItem.getId(), 1);
+                } else {
+                    status = WarehouseDAO.updateIncreaseQuantityItem(userTillId, noGrowthItem.getId(), 1);
+                }
+            }
+            if(status == 500 || status == 402) return 500;
             resTillLand.addRewards(rewardExp);
             resTillLand.addRewards(rewardGold);
             // Update experience points and gold
@@ -135,6 +155,7 @@ public class FarmService {
             long gold = userTillContext.getUser().getGold();
             long newGold = gold + quantity;
             UserDAO.updateUserExpAndGold(userTillId, newEpx, (int) newGold);
+
             Proto.User newUserContext = userTillContext.getUser().toBuilder().setExperiencePoints(newEpx).setGold(newGold).build();
             userTillContext.setUser(newUserContext);
             UserCache.me().add(String.valueOf(userTillId), userTillContext);
@@ -157,6 +178,28 @@ public class FarmService {
         ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
         DataSenderUtils.sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResTillLand(resTillLand).build());
         return 200;
+    }
+
+    public Proto.NoGrowthItem getNoGrowthItem(String name) {
+        //get no growth item cache
+        Proto.NoGrowthItem noGrowthItemProto = NoGrowthItemCache.me().getNoGrowthItemByName(name);
+        if (noGrowthItemProto == null) {
+            //get no growth item db
+            NoGrowthItemBean noGrowthItemBean = NoGrowthItemDAO.getNoGrowthItemByName(name);
+            if (noGrowthItemBean == null) return null;
+
+            noGrowthItemProto = Proto.NoGrowthItem.newBuilder()
+                    .setId(noGrowthItemBean.getId())
+                    .setName(noGrowthItemBean.getName())
+                    .setPrice(noGrowthItemBean.getPrice())
+                    .setSalePrice(noGrowthItemBean.getSalePrice())
+                    .setType(noGrowthItemBean.getType())
+                    .setStatus(noGrowthItemBean.getStatus())
+                    .setDescription(noGrowthItemBean.getDescription())
+                    .build();
+            NoGrowthItemCache.me().add(noGrowthItemProto);
+        }
+        return noGrowthItemProto;
     }
 
     private void updateStatusTilledLands(List<Proto.TillLand> tillLandList) {
@@ -637,28 +680,6 @@ public class FarmService {
             rewardSeedBag.setName(Objects.requireNonNull(ConstUtils.REWARDS.fromValue(key)).getValue());
             rewardSeedBag.setQuantity(rewardExpQuantity.get());
             resHarvest.addRewards(rewardSeedBag);
-            //supporting
-            if(userId != harvestUserId && userContext.getUser().getCharacter().getCode().equals("KSCK")) {
-                Proto.Reward.Builder rewardGold = Proto.Reward.newBuilder();
-                rewardGold.setName(ConstUtils.REWARDS.GOLD.getValue());
-                rewardGold.setQuantity(rewardExpQuantity.get());
-                resHarvest.addSupportRewards(rewardGold);
-                Proto.Reward.Builder rewardSupportExp = Proto.Reward.newBuilder();
-                rewardSupportExp.setName(ConstUtils.REWARDS.EXPERIENCE.getValue());
-                rewardSupportExp.setQuantity(rewardExpQuantity.get());
-                resHarvest.addSupportRewards(rewardSupportExp);
-                int exp = userContext.getUser().getExperiencePoints();
-                int newEpx = exp + rewardExpQuantity.get();
-                long gold = userContext.getUser().getGold();
-                long newGold = gold + rewardExpQuantity.get();
-                UserDAO.updateUserExpAndGold(userId, newEpx, (int) newGold);
-                Proto.User newUserContext = userContext.getUser().toBuilder().setExperiencePoints(newEpx).setGold(newGold).build();
-                userContext.setUser(newUserContext);
-                UserCache.me().add(String.valueOf(userId), userContext);
-                resHarvest.setSupportGold((int) newGold);
-                resHarvest.setSupportExp(newEpx);
-                resHarvest.setSupportUserId(userId);
-            }
             // Harvested products
             NoGrowthItemBean noGrowthItemBean = NoGrowthItemDAO.getNoGrowthItemByName(key.toLowerCase());
             assert noGrowthItemBean != null;
@@ -685,6 +706,51 @@ public class FarmService {
                             .build());
             warehouseItemList.add(warehouseItemProto.build());
         });
+        //supporting
+        if(userId != harvestUserId && userContext.getUser().getCharacter().getCode().equals("KSCK")) {
+            //Part
+            Random random = new Random();
+            int value = random.nextInt(7) + 1;
+            int status = 200;
+            System.out.println("value: " + value);
+            if(value < 5 && value > 0){
+                String namePart = "harvester-part-" + value;
+                Proto.Reward.Builder rewardPart = Proto.Reward.newBuilder();
+                rewardPart.setName(namePart);
+                rewardPart.setQuantity(1);
+                resHarvest.addSupportRewards(rewardPart);
+                Proto.NoGrowthItem noGrowthItem = this.getNoGrowthItem(namePart);
+                if(noGrowthItem != null) {
+                    WarehouseItemBean warehouseItem = WarehouseDAO.getWarehouseItemUser(userId, noGrowthItem.getId());
+                    if (warehouseItem == null) {
+                        status = WarehouseDAO.insertWarehouseItem(userId, noGrowthItem.getId(), 1);
+                    } else {
+                        status = WarehouseDAO.updateIncreaseQuantityItem(userId, noGrowthItem.getId(), 1);
+                    }
+                }
+            }
+            if(status == 500 || status == 402) return null;
+
+            Proto.Reward.Builder rewardGold = Proto.Reward.newBuilder();
+            rewardGold.setName(ConstUtils.REWARDS.GOLD.getValue());
+            rewardGold.setQuantity(rewardExpQuantity.get());
+            resHarvest.addSupportRewards(rewardGold);
+            Proto.Reward.Builder rewardSupportExp = Proto.Reward.newBuilder();
+            rewardSupportExp.setName(ConstUtils.REWARDS.EXPERIENCE.getValue());
+            rewardSupportExp.setQuantity(rewardExpQuantity.get());
+            resHarvest.addSupportRewards(rewardSupportExp);
+            int exp = userContext.getUser().getExperiencePoints();
+            int newEpx = exp + rewardExpQuantity.get();
+            long gold = userContext.getUser().getGold();
+            long newGold = gold + rewardExpQuantity.get();
+            UserDAO.updateUserExpAndGold(userId, newEpx, (int) newGold);
+            Proto.User newUserContext = userContext.getUser().toBuilder().setExperiencePoints(newEpx).setGold(newGold).build();
+            userContext.setUser(newUserContext);
+            UserCache.me().add(String.valueOf(userId), userContext);
+            resHarvest.setSupportGold((int) newGold);
+            resHarvest.setSupportExp(newEpx);
+            resHarvest.setSupportUserId(userId);
+        }
         // Update experience points
         UserContext userHarvestContext = UserCache.me().get(String.valueOf(harvestUserId));
         int exp = userHarvestContext.getUser().getExperiencePoints();
@@ -693,7 +759,6 @@ public class FarmService {
         Proto.User newUserContext = userHarvestContext.getUser().toBuilder().setExperiencePoints(newEpx).build();
         userHarvestContext.setUser(newUserContext);
         UserCache.me().add(String.valueOf(harvestUserId), userHarvestContext);
-
         // Response reward
         Proto.Reward.Builder rewardExp = Proto.Reward.newBuilder();
         rewardExp.setName(ConstUtils.REWARDS.EXPERIENCE.getValue());
