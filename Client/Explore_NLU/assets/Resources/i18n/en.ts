@@ -140,7 +140,9 @@ export const languages = {
     diagnosis_animal_200:
       "Successful treatment, you have received money from the owner of the animal.",
     upgrade_cage_400: "Not enough gold!",
-    sow_fail_too_many_seeds: "You are planting too many seeds at once",
+    sow_fail_too_many_seeds: "You are planting too many seeds at once!",
+    till_fail_too_many_times: "You have tilled too much soil at once!",
+    harvest_fail_too_many_times: "You have harvested too many crops at once!",
     //Area Name
     phuong_vi: "Phuong Vi",
     cam_tu: "Cam Tu",

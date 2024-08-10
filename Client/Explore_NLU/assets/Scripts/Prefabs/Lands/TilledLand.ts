@@ -162,6 +162,13 @@ export class TilledLand extends Component {
   }
 
   public handleTillLand(): void {
+    if (
+      GlobalData.me().getTilledLands() &&
+      GlobalData.me().getTilledLands().length >= 50
+    ) {
+      UICanvas.me().showPopupMessage(t("label_text.till_fail_too_many_times"));
+      return;
+    }
     this.isTilled = true;
     this.node.getComponent(Sprite).enabled = true;
     this.node.getComponent(BlockInputEvents).enabled = true;

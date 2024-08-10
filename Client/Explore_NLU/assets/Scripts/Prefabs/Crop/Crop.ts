@@ -5,7 +5,9 @@ import {
   Component,
   Contact2DType,
   find,
+  instantiate,
   Node,
+  Prefab,
   RigidBody2D,
   Sprite,
   SpriteFrame,
@@ -18,6 +20,8 @@ import { TilledLand } from "../Lands/TilledLand";
 import { UICanvas } from "../MainUI/UICanvas";
 import { AudioManger } from "../../Manager/AudioManger";
 import { t } from "../../../../extensions/i18n/assets/LanguageData";
+import { PopupInformationCrop } from "../Popup/PopupInformationCrop";
+import { PopupComponent } from "../../Controller/PopupComponent";
 const { ccclass, property } = _decorator;
 
 @ccclass("Crop")
@@ -56,6 +60,8 @@ export class Crop extends Component {
   public harvestSprite: SpriteFrame;
   @property(Sprite)
   public sprite: Sprite = null;
+  @property(Prefab)
+  public popupInformationCrop: Prefab = null;
 
   protected onLoad(): void {
     this.setSpriteFrame(this.seedSprite);
@@ -96,6 +102,15 @@ export class Crop extends Component {
       spriteStatus == "pumpkin-level4-v1"
     ) {
       this.showMenuTool();
+    } else {
+      console.log("Show information crop");
+      const popupInformationCrop = instantiate(this.popupInformationCrop);
+      let progress = this.currentStage / 3;
+      popupInformationCrop
+        .getComponent(PopupInformationCrop)
+        .init(this.cropProto.CommonGrowthItem.name, progress);
+      this.node.addChild(popupInformationCrop);
+      popupInformationCrop.getComponent(PopupComponent).show();
     }
   }
 
@@ -139,6 +154,15 @@ export class Crop extends Component {
   }
 
   private handleHarvest(): void {
+    if (
+      GlobalData.me().getHarvestingInformation() &&
+      GlobalData.me().getHarvestingInformation().crop.length >= 50
+    ) {
+      UICanvas.me().showPopupMessage(
+        t("label_text.harvest_fail_too_many_times")
+      );
+      return;
+    }
     AudioManger.me().playOneShot(AUDIOS.HARVEST_CROP);
     // Xử lý khi người dùng thu hoạch cây
     this.node.off(Node.EventType.TOUCH_END, this.handleTouchCrop, this);

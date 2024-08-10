@@ -145,6 +145,9 @@ export const languages = {
       "Chữa bệnh thành công, bạn đã được nhận tiền từ chủ của con vật.",
     upgrade_cage_400: "Không đủ vàng để nâng cấp chuồng!",
     sow_fail_too_many_seeds: "Bạn đang gieo quá nhiều hạt giống trong một lần!",
+    till_fail_too_many_times: "Bạn đã xới quá nhiều đất trong một lần!",
+    harvest_fail_too_many_times:
+      "Bạn đã thu hoạch quá nhiều cây trồng trong một lần!",
     //Area Name
     phuong_vi: "Phượng Vĩ",
     cam_tu: "Cẩm Tú",
