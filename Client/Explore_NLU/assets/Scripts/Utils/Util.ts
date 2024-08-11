@@ -98,4 +98,18 @@ export class Util {
       return value.toString();
     }
   }
+
+  public static formatPrice(price: number): string {
+    let priceStr = "";
+    if (price >= 1000000000) {
+      priceStr = (price / 1000000000).toFixed(1) + "B";
+    } else if (price >= 1000000) {
+      priceStr = (price / 1000000).toFixed(1) + "M";
+    } else if (price >= 1000) {
+      priceStr = (price / 1000).toFixed(1) + "K";
+    } else {
+      priceStr = this.formatNumber(price);
+    }
+    return priceStr;
+  }
 }

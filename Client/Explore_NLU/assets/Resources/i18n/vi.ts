@@ -148,6 +148,7 @@ export const languages = {
     till_fail_too_many_times: "Bạn đã xới quá nhiều đất trong một lần!",
     harvest_fail_too_many_times:
       "Bạn đã thu hoạch quá nhiều cây trồng trong một lần!",
+    sell_item_400: "Không đủ số lượng để bán!",
     //Area Name
     phuong_vi: "Phượng Vĩ",
     cam_tu: "Cẩm Tú",
@@ -167,6 +168,7 @@ export const languages = {
     btn_reject: "Từ chối",
     btn_accept: "Chấp nhận",
     btn_back_home: "Về nhà",
+    btn_sell: "Bán",
     //Shop Name
     crop_shop: "Cây Trồng",
     animal_shop: "Động vật",

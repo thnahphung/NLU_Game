@@ -68,6 +68,8 @@ export const AUDIOS = {
   RAIN: "Audios/rain-sound",
   HARVEST_CROP: "Audios/harvest-crop",
   MACHINE: "Audios/machine-audio",
+  TILL_LAND: "Audios/till-land",
+  SOW_SEED: "Audios/sow-seed",
 };
 
 export const SETTING_AREA = [

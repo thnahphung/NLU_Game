@@ -539,4 +539,16 @@ export default class DataSender {
     packet.reqIncreaseRateMachine = reqIncreaseRateMachine;
     WS.send(packet);
   }
+
+  public static sendReqSellItemWarehouse(
+    warehouseItem: proto.IWarehouseItem,
+    quantity: number
+  ) {
+    let reqSellItemWarehouse = new proto.ReqSellItemWarehouse();
+    reqSellItemWarehouse.warehouseItem = warehouseItem;
+    reqSellItemWarehouse.quantity = quantity;
+    let packet = new proto.Packet();
+    packet.reqSellItemWarehouse = reqSellItemWarehouse;
+    WS.send(packet);
+  }
 }

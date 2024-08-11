@@ -136,6 +136,8 @@ message Packet {
     ReqUpgradeCage reqUpgradeCage = 129;
     ResUpgradeCage resUpgradeCage = 130;
     ResBrokenMachine resBrokenMachine = 131;
+    ReqSellItemWarehouse reqSellItemWarehouse = 132;
+    ResSellItemWarehouse resSellItemWarehouse = 133;
   }
 }
 
@@ -1100,4 +1102,15 @@ message ResIncreaseRateMachine {
 message ResBrokenMachine {
   string machineName = 1;
   int32 machineEnergy = 2;
+}
+
+message ReqSellItemWarehouse {
+  WarehouseItem warehouseItem = 1;
+  int32 quantity = 2;
+}
+
+message ResSellItemWarehouse {
+  int32 status = 1;
+  int32 gold = 2;
+  WarehouseItem warehouseItem = 3;
 }

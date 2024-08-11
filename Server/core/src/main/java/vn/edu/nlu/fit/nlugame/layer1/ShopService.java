@@ -163,6 +163,37 @@ public class ShopService {
         }
         return shopItemsProto;
     }
-
-
+    public void sellItemWarehouse(Session session, Proto.ReqSellItemWarehouse reqSellItemWarehouse) {
+        int quantityItem = reqSellItemWarehouse.getQuantity();
+        int noGrowthItemId = reqSellItemWarehouse.getWarehouseItem().getNoGrowthItemId();
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        if (userId == -1) return;
+        UserContext userContext = UserCache.me().get(String.valueOf(userId));
+        WarehouseItemBean warehouseItemBean = WarehouseDAO.getWarehouseItemUser(userId, noGrowthItemId);
+        if (warehouseItemBean == null || warehouseItemBean.getQuantity() < quantityItem) {
+            Proto.ResSellItemWarehouse resSellItemWarehouse = Proto.ResSellItemWarehouse.newBuilder().setStatus(400).build();
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResSellItemWarehouse(resSellItemWarehouse).build());
+            return;
+        }
+        Proto.NoGrowthItem noGrowthItem = this.getNoGrowthItem(noGrowthItemId);
+        long newGold = userContext.getUser().getGold() + (long) noGrowthItem.getSalePrice() * quantityItem;
+        UserDAO.updateGold(userId, newGold);
+        Proto.User newUserContext = userContext.getUser().toBuilder().setGold(newGold).build();
+        userContext.setUser(newUserContext);
+        UserCache.me().add(String.valueOf(userContext.getUser().getUserId()), userContext);
+        int updateQuantity = WarehouseDAO.updateReducedQuantityItem(userId, noGrowthItemId, quantityItem);
+        if(updateQuantity == -1) {
+            Proto.ResSellItemWarehouse resSellItemWarehouse = Proto.ResSellItemWarehouse.newBuilder().setStatus(400).build();
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResSellItemWarehouse(resSellItemWarehouse).build());
+            return;
+        }
+        warehouseItemBean.setQuantity(warehouseItemBean.getQuantity() - quantityItem);
+        Proto.WarehouseItem warehouseItemProto = Proto.WarehouseItem.newBuilder()
+                .setUserId(warehouseItemBean.getUserId())
+                .setQuantity(warehouseItemBean.getQuantity())
+                .setNoGrowthItemId(warehouseItemBean.getNoGrowthItemId())
+                .setNoGrowthItem(noGrowthItem).build();
+        Proto.ResSellItemWarehouse resSellItemWarehouse = Proto.ResSellItemWarehouse.newBuilder().setStatus(200).setWarehouseItem(warehouseItemProto).setGold((int) newGold).build();
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResSellItemWarehouse(resSellItemWarehouse).build());
+    }
 }

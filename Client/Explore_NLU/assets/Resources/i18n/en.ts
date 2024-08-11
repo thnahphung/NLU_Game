@@ -143,6 +143,7 @@ export const languages = {
     sow_fail_too_many_seeds: "You are planting too many seeds at once!",
     till_fail_too_many_times: "You have tilled too much soil at once!",
     harvest_fail_too_many_times: "You have harvested too many crops at once!",
+    sell_item_400: "Not enough item to sell!",
     //Area Name
     phuong_vi: "Phuong Vi",
     cam_tu: "Cam Tu",
@@ -160,6 +161,7 @@ export const languages = {
     btn_cancel: "Cancel",
     btn_continue: "Continue",
     btn_back_home: "Back home",
+    btn_sell: "Sell",
     //Shop Name
     crop_shop: "Crop Shop",
     animal_shop: "Animal Shop",

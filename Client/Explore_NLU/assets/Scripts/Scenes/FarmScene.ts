@@ -289,6 +289,7 @@ export class FarmScene extends AbsScene {
         reward: typeReward,
       });
     });
+    AudioManger.me().playOneShot(AUDIOS.LEVEL_UP);
     UICanvas.me().showListRewardEffect(rewards);
   }
 

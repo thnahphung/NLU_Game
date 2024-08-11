@@ -83,6 +83,7 @@ export class TilledLand extends Component {
       UICanvas.me().showPopupMessage(t("label_text.sow_fail_too_many_seeds"));
       return;
     }
+    AudioManger.me().playOneShot(AUDIOS.SOW_SEED);
     seedBag.setQuantity(seedBag.getQuantity() - 1);
     const menuSeedComponent = UICanvas.me()
       .getMenuSeedFarm()
@@ -169,6 +170,9 @@ export class TilledLand extends Component {
       UICanvas.me().showPopupMessage(t("label_text.till_fail_too_many_times"));
       return;
     }
+    if(!GlobalData.me().getIsSupporting()) {
+      AudioManger.me().playOneShot(AUDIOS.TILL_LAND);
+    };
     this.isTilled = true;
     this.node.getComponent(Sprite).enabled = true;
     this.node.getComponent(BlockInputEvents).enabled = true;

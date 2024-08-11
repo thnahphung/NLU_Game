@@ -1,4 +1,12 @@
-import { _decorator, Component, director, instantiate, Node, Prefab } from "cc";
+import {
+  _decorator,
+  Component,
+  director,
+  find,
+  instantiate,
+  Node,
+  Prefab,
+} from "cc";
 import { AbsHandler } from "./AbsHandler";
 import GlobalData from "../Utils/GlobalData";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
@@ -9,8 +17,10 @@ import { PlayerManager } from "../Manager/PlayerManager";
 import { Character } from "../Prefabs/Character/Character";
 import { t } from "../../../extensions/i18n/assets/LanguageData";
 import DataSender from "../Utils/DataSender";
-import { CHARACTERS, REWARD_ICONS } from "../Utils/Const";
+import { AUDIOS, CHARACTERS, REWARD_ICONS } from "../Utils/Const";
 import { PopupMatchMaking } from "../Prefabs/Popup/PopupMatchMaking";
+import { PopupWarehouse } from "../Prefabs/Popup/PopupWarehouse";
+import { AudioManger } from "../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("ResponseHandler")
@@ -76,7 +86,37 @@ export class ResponseHandler extends AbsHandler {
       if (packet.resStopSupport) {
         this.onResStopSupport(packet);
       }
+      if (packet.resSellItemWarehouse) {
+        this.onResSellItemWarehouse(packet);
+      }
     });
+  }
+
+  onResSellItemWarehouse(packet: proto.IPacket) {
+    if (packet.resSellItemWarehouse.status == 400) {
+      UICanvas.me().showPopupMessage(t("label_text.sell_item_400"));
+      return;
+    }
+    AudioManger.me().playOneShot(AUDIOS.LEVEL_UP);
+    //Warehouse
+    GlobalData.me().addWarehouseItem(packet.resSellItemWarehouse.warehouseItem);
+    let popupWarehouse = find(
+      "UICanvas/PopupLayer/PopupWarehouse"
+    ).getComponent(PopupWarehouse);
+    popupWarehouse.resetQuantityOfItem(
+      packet.resSellItemWarehouse.warehouseItem
+    );
+    popupWarehouse.closePopupInformationWarehouse();
+    //Gold
+    let mainUser = GlobalData.me().getMainUser();
+    let currentGold = mainUser.gold;
+    GlobalData.me().getMainUser().gold = packet.resSellItemWarehouse.gold;
+    UICanvas.me().loadGold();
+    UICanvas.me().showRewardEffect(
+      "Gold",
+      packet.resSellItemWarehouse.gold - currentGold,
+      REWARD_ICONS.GOLD
+    );
   }
 
   onClosed(): void {
