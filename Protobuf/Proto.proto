@@ -575,7 +575,6 @@ message ReqBuyBuilding {
   int32 positionX = 2;
   int32 positionY = 3;
   int32 currentLevel = 4;
-  int32 areaId = 5;
   string uuid = 6;
 }
 

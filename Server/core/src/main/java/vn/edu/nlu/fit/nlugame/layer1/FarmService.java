@@ -98,7 +98,10 @@ public class FarmService {
         resBuyBuilding.setGold((int) newGold);
         resBuyBuilding.setUuid(reqBuyBuilding.getUuid());
         resBuyBuilding.setBuilding(buildingResponse);
-        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResBuyBuilding(resBuyBuilding).build());
+        // Response harvest with multi player game
+        ArrayList<String> listUserIdInArea = AreaCache.me().getListUserIdInArea(String.valueOf(areaBean.getId()));
+        ArrayList<String> listSessionInArea = UserCache.me().getListSessionId(listUserIdInArea);
+        DataSenderUtils.sendResponseManySession(listSessionInArea, Proto.Packet.newBuilder().setResBuyBuilding(resBuyBuilding).build());
     }
     public long updateUserGoldBuyItem(UserContext userContext, Proto.NoGrowthItem noGrowthItem, int quantity) {
         long newGold = userContext.getUser().getGold() - (long) noGrowthItem.getPrice() * quantity;

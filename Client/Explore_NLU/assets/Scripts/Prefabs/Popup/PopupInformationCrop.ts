@@ -14,6 +14,6 @@ export class PopupInformationCrop extends Component {
   start() {
     this.scheduleOnce(() => {
       this.node.destroy();
-    }, 5);
+    }, 3);
   }
 }

@@ -137,6 +137,8 @@ export class Crop extends Component {
       return;
     }
 
+    if (!GlobalData.me().isMainArea()) return;
+
     GlobalData.me().setHarvestStatus(true);
     // Hiển thị menu công cụ
     UICanvas.me().showPopupMenuToolFarm(TYPE_TOOL.SICKLE);
@@ -163,6 +165,7 @@ export class Crop extends Component {
       );
       return;
     }
+
     AudioManger.me().playOneShot(AUDIOS.HARVEST_CROP);
     // Xử lý khi người dùng thu hoạch cây
     this.node.off(Node.EventType.TOUCH_END, this.handleTouchCrop, this);

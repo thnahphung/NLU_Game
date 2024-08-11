@@ -107,7 +107,7 @@ export default class DataSender {
     type: string,
     positionX: number,
     positionY: number,
-    currentLevel: number
+    currentLevel: number,
   ) {
     let reqBuyBuilding = new proto.ReqBuyBuilding();
     reqBuyBuilding.uuid = uuid;

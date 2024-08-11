@@ -339,38 +339,67 @@ export class FarmScene extends AbsScene {
   }
 
   private handleResBuyBuilding(resBuyBuilding: proto.IResBuyBuilding): void {
-    if (resBuyBuilding.status == 400) {
-      UICanvas.me().showPopupMessage("Không đủ tiền mua đất trồng!");
-    }
-    let plantingLandPanel = find("Canvas/BackGroundLayer/PlantingPanel");
-    let plantingLands = plantingLandPanel.children;
-    for (let plantingLand of plantingLands) {
-      if (plantingLand.uuid == resBuyBuilding.uuid) {
-        if (resBuyBuilding.status == 400) {
-          plantingLand.destroy();
-          return;
-        }
-        let plantingLandComponent = plantingLand.getComponent(PlantingLand);
-        plantingLandComponent.plantingLandProto =
-          resBuyBuilding.building.plantingLandBuilding;
-
-        let tillLands = plantingLandComponent.getTilledLandPanel().children;
-        tillLands.forEach((tillLand: Node, index: number) => {
-          let tillLandProto =
-            resBuyBuilding.building.plantingLandBuilding.tillLands[index];
-          tillLand.getComponent(TilledLand).setTillLandProto(tillLandProto);
-        });
-        if (plantingLand.getComponent(UIOpacity))
-          plantingLand.removeComponent(UIOpacity);
-        if (plantingLand.getComponent(BlockInputEvents))
-          plantingLand.removeComponent(BlockInputEvents);
-        break;
+    if (GlobalData.me().isMainArea()) {
+      if (resBuyBuilding.status == 400) {
+        UICanvas.me().showPopupMessage("Không đủ tiền mua đất trồng!");
+        return;
       }
-    }
-    const gold = resBuyBuilding.gold;
-    if (gold) {
-      GlobalData.me().getMainUser().gold = gold;
-      UICanvas.me().loadGold();
+      const gold = resBuyBuilding.gold;
+      if (gold) {
+        GlobalData.me().getMainUser().gold = gold;
+        UICanvas.me().loadGold();
+      }
+      let plantingLandPanel = find("Canvas/BackGroundLayer/PlantingPanel");
+      let plantingLands = plantingLandPanel.children;
+      for (let plantingLand of plantingLands) {
+        if (plantingLand.uuid == resBuyBuilding.uuid) {
+          if (resBuyBuilding.status == 400) {
+            plantingLand.destroy();
+            return;
+          }
+          let plantingLandComponent = plantingLand.getComponent(PlantingLand);
+          plantingLandComponent.plantingLandProto =
+            resBuyBuilding.building.plantingLandBuilding;
+
+          let tillLands = plantingLandComponent.getTilledLandPanel().children;
+          tillLands.forEach((tillLand: Node, index: number) => {
+            let tillLandProto =
+              resBuyBuilding.building.plantingLandBuilding.tillLands[index];
+            tillLand.getComponent(TilledLand).setTillLandProto(tillLandProto);
+          });
+          if (plantingLand.getComponent(UIOpacity))
+            plantingLand.removeComponent(UIOpacity);
+          if (plantingLand.getComponent(BlockInputEvents))
+            plantingLand.removeComponent(BlockInputEvents);
+          break;
+        }
+      }
+    } else {
+      for (let prefab of this.buildingFarmPrefab) {
+        if (
+          resBuyBuilding.building.plantingLandBuilding.base.name.toUpperCase() ==
+          prefab.name.toUpperCase()
+        ) {
+          const plantingLand = instantiate(prefab);
+          plantingLand.setPosition(
+            resBuyBuilding.building.plantingLandBuilding.propertyBuilding
+              .positionX,
+            resBuyBuilding.building.plantingLandBuilding.propertyBuilding
+              .positionY
+          );
+          let component = plantingLand.getComponent(PlantingLand);
+          component.setPlantingLandProto(
+            resBuyBuilding.building.plantingLandBuilding
+          );
+          let tillLands = component.getTilledLandPanel().children;
+          tillLands.forEach((tillLand: Node, index: number) => {
+            let tillLandProto =
+              resBuyBuilding.building.plantingLandBuilding.tillLands[index];
+            tillLand.getComponent(TilledLand).setTillLandProto(tillLandProto);
+          });
+          this.getPlantingLandPanel().addChild(plantingLand);
+        }
+      }
     }
   }
 
