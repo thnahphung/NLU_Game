@@ -20,6 +20,8 @@ import DataSender from "../../Utils/DataSender";
 import { AbsHandler } from "../../Handler/AbsHandler";
 import { HandlerManager } from "../../Manager/HandlerManager";
 import { InformationEffect } from "../Reward/InformationEffect";
+import { AudioManger } from "../../Manager/AudioManger";
+import { AUDIOS } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupUpgradeMachine")
@@ -126,6 +128,7 @@ export class PopupUpgradeMachine extends AbsHandler {
     if (this.isLocked) {
       return;
     }
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.isLocked = true;
     this.scheduleOnce(() => {
       this.isLocked = false;
@@ -194,6 +197,7 @@ export class PopupUpgradeMachine extends AbsHandler {
       `${resFixMachine.energy}`,
       `+20`
     );
+    AudioManger.me().playOneShot(AUDIOS.LEVEL_UP);
   }
 
   protected onDestroy(): void {

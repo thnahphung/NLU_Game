@@ -179,7 +179,7 @@ public class MechanicalService {
         List<FormulaBean> formulasBean = FormulaDAO.getFormulasByNoGrowthItemResultId(machine.getNoGrowthItem().getId());
         List<Proto.FormulaMachine> formulaMachinesProto = new ArrayList<>();
 
-        formulasBean.forEach(formulaBean -> {
+        for(FormulaBean formulaBean : formulasBean) {
             WarehouseItemBean warehouseItemBean = WarehouseDAO.getWarehouseItemBean(userId, formulaBean.getNoGrowthItemId());
             int quantity = 0;
             if(warehouseItemBean != null) {
@@ -213,8 +213,10 @@ public class MechanicalService {
 
             if(quantity < formulaBean.getQuantity()) {
                 DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResManufactureMachine(Proto.ResManufactureMachine.newBuilder().setStatus(400).build()).build());
+            return;
             }
-        });
+        }
+
         NoGrowthItemBean machineBeans = NoGrowthItemDAO.getNoGrowthItemById(machine.getNoGrowthItem().getId());
 
         if(machineBeans == null){

@@ -23,7 +23,7 @@ export const languages = {
     //setting
     setting_title: "CÀI ĐẶT",
     setting_music: "Nhạc nền",
-    setting_sound: "Âm thanh",
+    setting_sound: "Hiệu ứng",
     setting_notify: "Thông báo",
     setting_language: "Ngôn ngữ",
     setting_language_current: "Tiếng Việt",
@@ -243,9 +243,9 @@ export const languages = {
     mac_durability: "Độ bền",
     mac_value: "Giá trị",
     mac_spec: "Thông số",
-    mac_manufacture: "Chế tạo",
-    mac_manufacture_success: "Chế tạo thành công",
-    mac_manufacture_fail: "Chế tạo thất bại!",
+    mac_manufacture: "Nâng cấp",
+    mac_manufacture_success: "Nâng cấp thành công",
+    mac_manufacture_fail: "Nâng cấp thất bại!",
     mac_manufacture_fail_400: "Không đủ nguyên liệu!",
     mac_manufacture_fail_401: "Máy đã đạt cấp tối đa!",
     mac_fix_status_max: "Máy đang trong trạng thái tốt nhất!",
@@ -272,6 +272,8 @@ export const languages = {
     harvester_part_2: "Mảnh nâng cấp máy thu hoạch 2",
     harvester_part_3: "Mảnh nâng cấp máy thu hoạch 3",
     harvester_part_4: "Mảnh nâng cấp máy thu hoạch 4",
+    mac_title_factory1: "Nhà máy sửa chữa",
+    mac_title_factory2: "Nhà máy nâng cấp",
     // Help
     help_title: "Trợ giúp",
     help_find: "Tìm kiếm",
@@ -294,6 +296,8 @@ export const languages = {
     aid_status_invite_offline: "Người chơi này đã offline!",
     aid_status_invite_reject: "hiện chưa sẵn sàng giúp đỡ!",
     aid_btn_invited: "Đã mời",
+    aid_list_supporting: "Danh sách nguời hỗ trợ",
+
     //Support
     support_title: "Hỗ trợ",
     support_fail_supported: "đã được hỗ trợ!",
@@ -303,6 +307,7 @@ export const languages = {
       "Bạn đang ở chế độ được hỗ trợ, không thể thực hiện hành động này!",
     support_till: "Xới đất",
     support_harvest: "Thu hoạch",
+    support_list_aid: "Danh sách người chơi cần hỗ trợ",
     //Sysptom
     sysptoms_high_fever: "Sốt cao",
     sysptoms_difficulty_breathing: "Khó thở",

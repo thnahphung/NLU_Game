@@ -644,7 +644,8 @@ export class FarmScene extends AbsScene {
     let propertyMachine = resTillLandByMachine.propertyMachine;
     if (!propertyMachine) return;
     if (propertyMachine.energy <= 0) {
-      UICanvas.me().showPopupMessage(t("label_text.mac_not_enough_energy"));
+      if (GlobalData.me().isSupportingUser())
+        UICanvas.me().showPopupMessage(t("label_text.mac_not_enough_energy"));
       return;
     }
     const machine = instantiate(this.bulldorzerPrefab);
@@ -670,7 +671,8 @@ export class FarmScene extends AbsScene {
     let propertyMachine = resHarvestByMachine.propertyMachine;
     if (!propertyMachine) return;
     if (propertyMachine.energy <= 0) {
-      UICanvas.me().showPopupMessage(t("label_text.mac_not_enough_energy"));
+      if (GlobalData.me().isSupportingUser())
+        UICanvas.me().showPopupMessage(t("label_text.mac_not_enough_energy"));
       return;
     }
     const machine = instantiate(this.harvesterPrefab);

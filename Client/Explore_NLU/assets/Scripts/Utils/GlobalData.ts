@@ -410,6 +410,11 @@ export default class GlobalData {
     this.aidUser = user;
   }
 
+  isSupportingUser() {
+    if (this.supportUser == null) return false;
+    return this.supportUser.userId === this.mainUser.userId;
+  }
+
   /* END SUPPORTING */
 
   /* START MECHANICAL */

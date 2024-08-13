@@ -8,6 +8,7 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import jakarta.websocket.Session;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import vn.edu.nlu.fit.nlugame.layer2.ConstUtils;
 import vn.edu.nlu.fit.nlugame.layer2.DataSenderUtils;
 import vn.edu.nlu.fit.nlugame.layer2.RandomUtils;
@@ -53,8 +54,10 @@ public class AuthService {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResRegister(Proto.ResRegister.newBuilder().setStatus(checkResult)).build());
             return;
         }
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(reqRegister.getPassword());
         //Insert user
-        int statusInsertUser = UserDAO.insertRegisterUser(reqRegister.getUsername(), reqRegister.getPassword(), reqRegister.getEmail());
+        int statusInsertUser = UserDAO.insertRegisterUser(reqRegister.getUsername(), hashedPassword, reqRegister.getEmail());
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResRegister(Proto.ResRegister.newBuilder().setStatus(statusInsertUser)).build());
     }
 
@@ -73,7 +76,10 @@ public class AuthService {
             return null;
         }
         // Check username and password
-        if (!reqLogin.getUsername().equals(userLoginBean.getUsername()) || !reqLogin.getPassword().equals(userLoginBean.getPassword())) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(reqLogin.getPassword());
+        boolean isPasswordMatch = passwordEncoder.matches(reqLogin.getPassword(), encodedPassword);
+        if (!reqLogin.getUsername().equals(userLoginBean.getUsername()) || !isPasswordMatch) {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(400)).build());
             return null;
         }
@@ -194,7 +200,9 @@ public class AuthService {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResRecoverPassword(Proto.ResRecoverPassword.newBuilder().setStatus(status)).build());
             return;
         }
-        UserDAO.updatePassword(reqForgotPassword.getEmail(), reqForgotPassword.getPassword());
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(reqForgotPassword.getPassword());
+        UserDAO.updatePassword(reqForgotPassword.getEmail(), hashedPassword);
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResRecoverPassword(Proto.ResRecoverPassword.newBuilder().setStatus(200)).build());
     }
 

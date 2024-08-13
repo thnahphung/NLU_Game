@@ -176,6 +176,7 @@ public class SupportingService {
     }
 
     public void removeUserFromQueue(UserContext userContext) {
+        if(userContext == null || userContext.getUser() == null ) return;
         switch (userContext.getUser().getCharacter().getCode()) {
             case "KSCK":
                 mechanicalEngineers.remove(userContext);
