@@ -78,6 +78,7 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupInformationAmphitheater: Prefab;
   @property(Prefab) private prefabPopupSupport: Prefab;
   @property(Prefab) private informationEffectPrefab: Prefab = null;
+  @property(Prefab) private popupLevelUp: Prefab = null;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -144,7 +145,17 @@ export class UICanvas extends Component {
   loadExp() {
     if (GlobalData.me().getMainUser() == null) return;
     let mainUser = GlobalData.me().getMainUser();
-    this.userExp.progress = mainUser.experiencePoints / 100;
+    if (mainUser.experiencePoints >= 100) {
+      DataSender.sendReqLevelUp();
+    } else {
+      this.userExp.progress = mainUser.experiencePoints / 100;
+    }
+  }
+
+  loadLevel() {
+    if (GlobalData.me().getMainUser() == null) return;
+    let mainUser = GlobalData.me().getMainUser();
+    this.userLevel.string = "Lv " + mainUser.level.toString() + ": ";
   }
 
   showPopupMessage(message: string) {
@@ -720,11 +731,22 @@ export class UICanvas extends Component {
       GlobalData.me().getAidUser().userId,
       GlobalData.me().getSupportUser().userId
     );
+    console.log(
+      "Stop support",
+      GlobalData.me().getAidUser(),
+      GlobalData.me().getSupportUser()
+    );
   }
 
   showInformationEffect(name: string, value1: string, value2: string) {
     let effect = instantiate(this.informationEffectPrefab);
     effect.getComponent(InformationEffect).setInformation(name, value1, value2);
     this.node.addChild(effect);
+  }
+
+  showPopupLevelUp() {
+    let popupLevelUp = instantiate(this.popupLevelUp);
+    this.node.getChildByName("PopupLayer").addChild(popupLevelUp);
+    popupLevelUp.getComponent(PopupComponent).show();
   }
 }

@@ -89,7 +89,21 @@ export class ResponseHandler extends AbsHandler {
       if (packet.resSellItemWarehouse) {
         this.onResSellItemWarehouse(packet);
       }
+      if (packet.resLevelUp) {
+        this.onResLevelUp(packet);
+      }
     });
+  }
+
+  onResLevelUp(packet: proto.IPacket) {
+    if (packet.resLevelUp.status == 500) {
+      return;
+    }
+    GlobalData.me().getMainUser().level = packet.resLevelUp.level;
+    GlobalData.me().getMainUser().experiencePoints = packet.resLevelUp.exp;
+    UICanvas.me().loadLevel();
+    UICanvas.me().loadExp();
+    UICanvas.me().showPopupLevelUp();
   }
 
   onResSellItemWarehouse(packet: proto.IPacket) {

@@ -1,4 +1,6 @@
 import { _decorator, Component, find, Node } from "cc";
+import { AudioManger } from "../../Manager/AudioManger";
+import { AUDIOS } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupFactory")
@@ -14,22 +16,26 @@ export class PopupFactory extends Component {
   }
 
   public showPopupUpgradeMachine() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.node.active = true;
     this.popupUpgradeMachine.active = true;
     this.popupManufactureMachine.active = false;
   }
 
   public showPopupManufactureMachine() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.node.active = true;
     this.popupManufactureMachine.active = true;
     this.popupUpgradeMachine.active = false;
   }
 
   public closePopupUpgradeMachine() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.popupUpgradeMachine.active = false;
   }
 
   public closePopupManufactureMachine() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.popupManufactureMachine.active = false;
   }
 

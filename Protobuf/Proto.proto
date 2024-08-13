@@ -138,6 +138,8 @@ message Packet {
     ResBrokenMachine resBrokenMachine = 131;
     ReqSellItemWarehouse reqSellItemWarehouse = 132;
     ResSellItemWarehouse resSellItemWarehouse = 133;
+    ReqLevelUp reqLevelUp = 134;
+    ResLevelUp resLevelUp = 135;
   }
 }
 
@@ -1112,4 +1114,12 @@ message ResSellItemWarehouse {
   int32 status = 1;
   int32 gold = 2;
   WarehouseItem warehouseItem = 3;
+}
+
+message ReqLevelUp {}
+
+message ResLevelUp {
+  int32 status = 1;
+  int32 level = 3;
+  int32 exp = 4;
 }

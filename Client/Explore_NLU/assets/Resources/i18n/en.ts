@@ -144,6 +144,7 @@ export const languages = {
     till_fail_too_many_times: "You have tilled too much soil at once!",
     harvest_fail_too_many_times: "You have harvested too many crops at once!",
     sell_item_400: "Not enough item to sell!",
+    level_up: "LEVEL UP!",
     //Area Name
     phuong_vi: "Phuong Vi",
     cam_tu: "Cam Tu",

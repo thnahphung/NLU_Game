@@ -67,6 +67,11 @@ export class PopupAid extends AbsHandler {
   }
 
   private onClickInviteRandom() {
+    console.log(
+      "onClickInviteRandom support in PopupAid.ts",
+      GlobalData.me().getAidUser(),
+      GlobalData.me().getSupportUser()
+    );
     AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     DataSender.sedReqSupportFind();
     UICanvas.me().showPopupFindTime();

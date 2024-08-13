@@ -149,6 +149,7 @@ export const languages = {
     harvest_fail_too_many_times:
       "Bạn đã thu hoạch quá nhiều cây trồng trong một lần!",
     sell_item_400: "Không đủ số lượng để bán!",
+    level_up: "LÊN CẤP!",
     //Area Name
     phuong_vi: "Phượng Vĩ",
     cam_tu: "Cẩm Tú",

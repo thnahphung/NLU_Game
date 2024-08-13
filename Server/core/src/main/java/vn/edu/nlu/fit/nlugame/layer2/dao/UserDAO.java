@@ -346,6 +346,18 @@ public class UserDAO extends BaseDAO {
                 .execute());
     }
 
+    public static int updateExpAndLevel(int userId, int experiencePoints, int level) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return 500;
+        }
+        return jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set experience_points = :experiencePoints, level = :level where id = :id")
+                .bind("experiencePoints", experiencePoints)
+                .bind("level", level)
+                .bind("id", userId)
+                .execute());
+    }
+
     public static void updateUserExpAndGold(int userId, int experiencePoints, int gold) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
