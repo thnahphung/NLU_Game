@@ -48,6 +48,7 @@ export const languages = {
     btn_quest: "Nhiệm vụ",
     btn_friend: "Bạn bè",
     btn_warehouse: "Kho đồ",
+    btn_guide: "Hướng dẫn",
     //UI Animal
     animal_type: "Giống:",
     animal_age: "Tuổi:",
@@ -298,7 +299,6 @@ export const languages = {
     aid_status_invite_reject: "hiện chưa sẵn sàng giúp đỡ!",
     aid_btn_invited: "Đã mời",
     aid_list_supporting: "Danh sách nguời hỗ trợ",
-
     //Support
     support_title: "Hỗ trợ",
     support_fail_supported: "đã được hỗ trợ!",
@@ -364,6 +364,83 @@ export const languages = {
     nlu_360_title_cong_nha_khach: "Cổng nhà khách",
     nlu_360_title_khoa_cnhh_va_tp: "Khoa Công Nghệ Hóa Học và Thực Phẩm",
     // Amphitheater Content
+    // Rank
+    rank_title: "Xếp hạng",
+    rank_btn_CK: "Cơ khí",
+    rank_btn_TY: "Thú y",
+    rank_btn_NN: "Nông nghiệp",
+    rank_btn_CN: "Chăn nuôi",
+    rank_label_property: "Tài sản",
+    //Guidance
+    guidance_title: "Hướng dẫn",
+    guidance_note: "*Lưu ý: Kéo lên để xem thêm",
+    guidance_title_overview:
+      "Game khám phá Đại Học Nông Lâm Thành Phố Hồ Chí Minh",
+    guidance_KSNN_text_overview:
+      "Đối với nhân vật kỹ sư nông nghiệp, bạn sẽ được trải nghiệm quy trình trồng trọt, chăm sóc cây trồng và thu hoạch sản phẩm. Bạn sẽ được hướng dẫn cách mua đất, mua hạt giống, xới đất, gieo hạt giống, thu hoạch và bán sản phẩm.",
+    guidance_KSCN_text_overview:
+      "Đối với nhân vật kỹ sư chăn nuôi, bạn sẽ được trải nghiệm quy trình chăm sóc vật nuôi. Bạn sẽ được hướng dẫn cách mua chuồng, mua vật nuôi, thêm vật nuôi vào chuồng, cho ăn và bán vật nuôi.",
+    guidance_KSCK_text_overview:
+      "Đối với nhân vật kỹ sư cơ khí, bạn sẽ được trải nghiệm quy trình sửa chữa và nâng cấp máy móc sau đó bạn có thể sử dụng máy móc của bạn để hỗ trợ những người chơi kỹ sư nông nghiệp một số hoạt động như xới đất, thu hoạch cây trồng. Bạn sẽ được hướng dẫn cách mua mảnh nâng cấp máy móc, sửa máy móc, nâng cấp máy móc và sử dụng máy móc để hỗ trợ nông nghiệp.",
+    guidance_BSTY_text_overview:
+      "Đối với nhân vật bác sĩ thú y, bạn sẽ được trải nghiệm quy trình chế tạo thuốc và chữa bệnh cho vật nuôi. Bạn sẽ được hướng dẫn cách mua thuốc và hỗ trợ những người chơi kỹ sư chăn nuôi chữa bệnh cho vật nuôi của họ.",
+    guidance_KSNN_title_buyland: "Mua đất",
+    guidance_KSNN_title_buyseed: "Mua hạt giống",
+    guidance_KSNN_text_buyseed:
+      "Di chuyển nhân vật tới cửa hàng hạt giống ở khu Kiot. Nhấn vào cửa hàng và chọn hạt giống cần mua.",
+    guidance_KSNN_text_buyland:
+      "Nhấn vào            để mở hệ thống xây dựng. Chọn đất trồng để mua đất.",
+    guidance_KSNN_title_till: "Xới đất",
+    guidance_KSNN_text_till:
+      "Nhấn vào đất trồng cần xới, nhấn và kéo dụng cụ đến vị trí mãnh đất cần xới.",
+    guidance_KSNN_title_sow: "Gieo hạt giống",
+    guidance_KSNN_text_sow:
+      "Nhấn vào mãnh đất cần gieo hạt giống, chọn hạt giống cần gieo và kéo đến mãnh đất cần gieo.",
+    guidance_KSNN_title_harvest: "Thu hoạch",
+    guidance_KSNN_text_harvest:
+      "Nhấn vào cây trồng đã phát triển hoàn thiện, nhấn và kéo dụng cụ thu hoạch đến những cây trồng cần thu hoạch.",
+    guidance_KSNN_title_sell: "Bán sản phẩm",
+    guidance_KSNN_text_sell:
+      "Nhấn nút [Kho đồ] phía bên trái giao diện, chọn sản phẩm cần bán, số lượng và nhấn nút [Bán] để bán sản phẩm.",
+    guidance_KSCN_title_buycage: "Mua chuồng",
+    guidance_KSCN_text_buycage:
+      "Nhấn vào          để mở hệ thống xây dựng. Chọn loại chuồng sau đó chọn vị trí cần đặt chuồng.",
+    guidance_KSCN_title_buyanimal: "Mua động vật",
+    guidance_KSCN_text_buyanimal:
+      "Di chuyển nhân vật tới cửa hàng động vật ở khu Kiot. Nhấn vào cửa hàng và chọn động vật cần mua.",
+    guidance_KSCN_title_addanimal: "Thêm động vật vào chuồng",
+    guidance_KSCN_text_addanimal:
+      "Nhấn vào chuồng cần thêm động vật, nhấn vào nút                 để thêm động vật đã mua vào chuồng.",
+    guidance_KSCN_title_feed: "Cho ăn",
+    guidance_KSCN_text_feed:
+      "Nhấn vào chuồng, nhấn chọn loại thức và kéo đến những vật nuôi cần cho ăn.",
+    guidance_KSCN_title_sell: "Bán vật nuôi",
+    guidance_KSCN_text_sell:
+      "Nhấn vào chuồng, nhấn vào nút               để xem danh sách vật nuôi trong chuồng. Chọn vật nuôi cần bán và nhấn nút [Đồng ý] để xác nhận bán.",
+    guidance_KSCN_KSNN_title_aid: "Nhờ hỗ trợ",
+    guidance_KSCN_KSNN_text_aid:
+      "Nhấn vào nút                 để mở cửa sổ nhờ hỗ trợ, nhấn nút [Mời] trên danh sách bạn bè có thể hỗ trợ hoặc nhấn nút [Mời ngẫu nhiên] để mời người chơi khác hỗ trợ. Khi ghép cặp hỗ trợ thành công, người hỗ trợ sẽ di chuyển đến khu vực của bạn.",
+    guidance_KSCK_title_buy: "Mua mảnh nâng cấp máy móc",
+    guidance_KSCK_text_buy:
+      "Di chuyển nhân vật tới cửa hàng cơ khí ở khu Kiot. Nhấn vào cửa hàng và chọn mảnh cần mua.",
+    guidance_KSCK_title_fix: "Sửa máy móc",
+    guidance_KSCK_text_fix:
+      "Nhấn vào nhà máy sửa chữa máy móc. Nhấn chọn máy móc cần sửa chữa và nhấn nút [Sửa] để sửa máy.",
+    guidance_KSCK_title_upgrade: "Nâng cấp máy móc",
+    guidance_KSCK_text_upgrade:
+      "Nhấn vào nhà máy nâng cấp máy móc. Nhấn chọn máy móc cần nâng cấp và nhấn nút [Nâng cấp] để nâng cấp máy. Người chơi có thể nhấn nút [+Tỉ lệ] để tăng tỉ lệ nâng cấp máy.",
+    guidance_KSCK_BSTY_title_support: "Hỗ trợ người chơi khác",
+    guidance_KSCK_BSTY_text_support:
+      "Nhấn vào nút                để mở cửa sổ hỗ trợ. Nhấn nút [Hỗ trợ] trên danh sách những người chơi cần hỗ trợ hoặc nhấn nút [Mời ngẫu nhiên] để hỗ trợ người chơi khác. Khi ghép cặp hỗ trợ thành công, người chơi sẽ được chuyển đến vị trí cần hỗ trợ.",
+    guidance_KSCK_title_use: "Sử dụng máy móc",
+    guidance_KSCK_text_use:
+      "Khi đang ở khu vực người chơi cần hỗ trợ (ở chế độ đang hỗ trợ). Nhấn vào đất trồng chưa được xới để sử dụng máy xới đất. Nhấn vào cây trồng chưa được thu hoạch để sử dụng máy thu hoạch. Lưu ý: Máy móc sẽ có tỉ lệ hư hỏng khi sử dụng, nếu máy hỏng hãy sửa máy tại nhà máy sửa chữa máy móc.",
+    guidance_BSTY_title_crafting: "Chế tạo thuốc",
+    guidance_BSTY_text_crafting:
+      "Nhấn vào nhà máy chế tạo thuốc. Chọn loại thuốc cần chế tạo, màn hình sẽ hiển thị công thức chế tạo loại thuốc đó. Nhấn chọn các nguyên liệu theo công thức và nhấn nút [Chế tạo] để chế tạo thuốc.",
+    guidance_BSTY_title_diagnosis: "Chẩn đoán và trị bệnh",
+    guidance_BSTY_text_diagnosis:
+      "Khi đang ở khu vực người chơi cần hỗ trợ (ở chế độ đang hỗ trợ). Nhấn vào động vật có dấu hiệu bị bệnh sau đó nhấn nút [Chữa bệnh], màn hình sẽ hiển thị các triệu chứng bệnh. Người chơi cần chọn loại bệnh dựa trên triệu chứng để tiêm thuốc chữa bệnh cho động vật.",
   },
 };
 
