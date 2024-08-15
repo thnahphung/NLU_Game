@@ -1,4 +1,14 @@
-import { _decorator, Component, EditBox, find, Prefab } from "cc";
+import {
+  _decorator,
+  Component,
+  EditBox,
+  EventKeyboard,
+  find,
+  input,
+  Input,
+  KeyCode,
+  Prefab,
+} from "cc";
 import DataSender from "../../Utils/DataSender";
 import { UICanvas } from "../MainUI/UICanvas";
 import { t } from "../../../../extensions/i18n/assets/LanguageData";
@@ -19,7 +29,15 @@ export class PopupSignIn extends Component {
   @property(Prefab)
   public popupNotifySimple: Prefab = null!;
 
-  start() {}
+  start() {
+    this.passwordLogin.node.on(
+      "editing-did-ended",
+      () => {
+        input.on(Input.EventType.KEY_DOWN, this.onEnterLogin, this);
+      },
+      this
+    );
+  }
 
   onClickLoginReq() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);
@@ -42,5 +60,13 @@ export class PopupSignIn extends Component {
   onClickSignInGoogle() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     DataSender.sendReqLoginGoogle();
+  }
+
+  // lắng nghe nhấn nút enter trên bàn phím
+  onEnterLogin(event: EventKeyboard) {
+    console.log("onEnterLogin", event.keyCode);
+    if (event.keyCode === KeyCode.ENTER) {
+      this.onClickLoginReq();
+    }
   }
 }

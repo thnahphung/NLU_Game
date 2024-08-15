@@ -558,4 +558,12 @@ export default class DataSender {
     packet.reqLevelUp = reqLevelUp;
     WS.send(packet);
   }
+
+  public static sendReqLoadRank(code: string) {
+    let reqLoadRank = new proto.ReqLoadRank();
+    reqLoadRank.characterCode = code;
+    let packet = new proto.Packet();
+    packet.reqLoadRank = reqLoadRank;
+    WS.send(packet);
+  }
 }

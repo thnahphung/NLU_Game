@@ -11616,6 +11616,9 @@
     },
     "prefabPopupFriend": null,
     "prefabRewardEffect": null,
+    "informationEffectPrefab": null,
+    "popupLevelUp": null,
+    "popupRank": null,
     "_id": "adVFzWEsVNZ5VEjfhy0O66"
   },
   {

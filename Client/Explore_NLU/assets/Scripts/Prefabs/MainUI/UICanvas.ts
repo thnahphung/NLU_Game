@@ -77,8 +77,10 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupManufactureResult: Prefab;
   @property(Prefab) private prefabPopupInformationAmphitheater: Prefab;
   @property(Prefab) private prefabPopupSupport: Prefab;
-  @property(Prefab) private informationEffectPrefab: Prefab = null;
-  @property(Prefab) private popupLevelUp: Prefab = null;
+  @property(Prefab) private prefabInformationEffect: Prefab = null;
+  @property(Prefab) private prefabPopupLevelUp: Prefab = null;
+  @property(Prefab) private prefabPopupRank: Prefab = null;
+  @property(Prefab) private prefabPopupGuidance: Prefab = null;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -739,14 +741,36 @@ export class UICanvas extends Component {
   }
 
   showInformationEffect(name: string, value1: string, value2: string) {
-    let effect = instantiate(this.informationEffectPrefab);
+    let effect = instantiate(this.prefabInformationEffect);
     effect.getComponent(InformationEffect).setInformation(name, value1, value2);
     this.node.addChild(effect);
   }
 
   showPopupLevelUp() {
-    let popupLevelUp = instantiate(this.popupLevelUp);
+    let popupLevelUp = instantiate(this.prefabPopupLevelUp);
     this.node.getChildByName("PopupLayer").addChild(popupLevelUp);
     popupLevelUp.getComponent(PopupComponent).show();
+  }
+
+  showPopupRank() {
+    if (this.node.getChildByName("PopupLayer").getChildByName("PopupRank")) {
+      return;
+    }
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
+    let popupRank = instantiate(this.prefabPopupRank);
+    this.node.getChildByName("PopupLayer").addChild(popupRank);
+    popupRank.getComponent(PopupComponent).show();
+  }
+
+  showPopupGuidance() {
+    if (
+      this.node.getChildByName("PopupLayer").getChildByName("PopupGuidance")
+    ) {
+      return;
+    }
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
+    let popupGuidance = instantiate(this.prefabPopupGuidance);
+    this.node.getChildByName("PopupLayer").addChild(popupGuidance);
+    popupGuidance.getComponent(PopupComponent).show();
   }
 }

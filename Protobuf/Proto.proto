@@ -140,6 +140,8 @@ message Packet {
     ResSellItemWarehouse resSellItemWarehouse = 133;
     ReqLevelUp reqLevelUp = 134;
     ResLevelUp resLevelUp = 135;
+    ReqLoadRank reqLoadRank = 136;
+    ResLoadRank resLoadRank = 137;
   }
 }
 
@@ -1122,4 +1124,17 @@ message ResLevelUp {
   int32 status = 1;
   int32 level = 3;
   int32 exp = 4;
+}
+
+message ReqLoadRank{
+  string characterCode = 1;
+}
+
+message UserRank{
+  User user = 1;
+  int32 rank = 2;
+}
+
+message ResLoadRank{
+  repeated UserRank userRanks = 1;
 }

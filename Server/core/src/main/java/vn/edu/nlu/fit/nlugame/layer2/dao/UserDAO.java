@@ -369,4 +369,14 @@ public class UserDAO extends BaseDAO {
                 .bind("id", userId)
                 .execute());
     }
+
+    public static List<UserBean> getRankUsers(String characterCode) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(h -> h.createQuery("select u.id, u.player_name, u.level, u.gold, u.character_id from " + TABLE_NAME + " u join characters c on u.character_id = c.id WHERE c.`code` = :code ORDER BY u.`level` desc, u.gold desc")
+                .bind("code", characterCode)
+                .mapToBean(UserBean.class).stream().collect(Collectors.toList()));
+    }
 }

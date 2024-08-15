@@ -28,6 +28,7 @@ public class ServerEndpoint {
         ServerEndpoint.subscribe(new MechanicalHandler());
         ServerEndpoint.subscribe(new SupportingHandler());
         ServerEndpoint.subscribe(new VeterinarianHandler());
+        ServerEndpoint.subscribe(new RankHandle());
         TaskService.me().repeatTask();
     }
 
