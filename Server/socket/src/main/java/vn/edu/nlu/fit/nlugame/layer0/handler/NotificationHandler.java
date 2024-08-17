@@ -19,6 +19,9 @@ public class NotificationHandler implements Subscriber {
             switch (packet.getDataCase()) {
                 case REQLEVELUP:
                     NotificationService.me().levelUp(session, packet.getReqLevelUp());
+                break;
+                case REQUPDATENEWACCOUNT:
+                    NotificationService.me().updateNewAccount(session);
             }
         });
     }

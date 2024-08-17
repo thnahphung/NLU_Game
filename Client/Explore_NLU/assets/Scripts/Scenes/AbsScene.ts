@@ -7,6 +7,7 @@ import { Animal } from "../Prefabs/Animal/Animal";
 import { AnimalMovement } from "../Prefabs/Animal/AnimalMovement";
 import { Util } from "../Utils/Util";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
+import DataSender from "../Utils/DataSender";
 const { ccclass, property } = _decorator;
 
 @ccclass("AbsScene")
@@ -28,6 +29,10 @@ export default class AbsScene extends Component {
     this.createOtherPlayer();
     this.getAllAnimalInScene();
     this.setupStatusGame();
+    if (GlobalData.me().getMainUser().isNewAccount === 1) {
+      UICanvas.me().showPopupGuidance();
+      DataSender.sendReqUpdateNewAccount();
+    }
   }
 
   setupStatusGame() {

@@ -102,11 +102,11 @@ public class AuthService {
             return null;
         }
         //When login success
-        loginSuccess(session, userProto);
+        loginSuccess(session, userProto, 200);
         return userLoginBean;
     }
 
-    private void loginSuccess(Session session, Proto.User user) {
+    private void loginSuccess(Session session, Proto.User user, int status) {
         if (user.getHasCharacter() > 0) {
             CharacterBean character = CharacterDAO.loadCharacterById(user.getCharacterId());
             Proto.Character characterProto = Proto.Character.newBuilder()
@@ -128,7 +128,7 @@ public class AuthService {
         Proto.ResLogin resLogin = Proto.ResLogin.newBuilder()
                 .setUser(user)
                 .setToken(reloginToken)
-                .setStatus(200)
+                .setStatus(status)
                 .build();
         DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLogin(resLogin).build());
     }
@@ -174,7 +174,7 @@ public class AuthService {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResLogin(Proto.ResLogin.newBuilder().setStatus(401).build()).build());
             return null;
         }
-        loginSuccess(session, userProto);
+        loginSuccess(session, userProto, 201);
         return userLoginBean;
     }
 
@@ -272,7 +272,7 @@ public class AuthService {
                 .setCharacterId(userLoginBean.getCharacterId())
                 .setIsNewAccount(userLoginBean.getIsNewAccount())
                 .build();
-        this.loginSuccess(session, userProto);
+        this.loginSuccess(session, userProto, 200);
         return userLoginBean;
     }
 }

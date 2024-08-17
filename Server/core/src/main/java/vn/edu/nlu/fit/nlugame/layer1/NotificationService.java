@@ -38,6 +38,21 @@ public class NotificationService {
         }
     }
 
+    public void updateNewAccount(Session session) {
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        if (userId <= 0) {
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResUpdateNewAccount(Proto.ResUpdateNewAccount.newBuilder().setStatus(500)).build());
+            return;
+        }
+        UserDAO.updateIsNewAccount(userId, false);
+        UserContext userContext = UserCache.me().get(String.valueOf(userId));
+        Proto.User user = userContext.getUser();
+        Proto.User newUserContext = user.toBuilder().setIsNewAccount(0).build();
+        userContext.setUser(newUserContext);
+        UserCache.me().add(String.valueOf(userContext.getUser().getUserId()), userContext);
+        DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResUpdateNewAccount(Proto.ResUpdateNewAccount.newBuilder().setStatus(200)).build());
+    }
+
     public void sendNotification(Session session, Proto.Packet packet) {
 //        SessionContext ssctx = SessionCache.me().get(SessionManage.me().getSessionID(session));
     }

@@ -566,4 +566,11 @@ export default class DataSender {
     packet.reqLoadRank = reqLoadRank;
     WS.send(packet);
   }
+
+  public static sendReqUpdateNewAccount() {
+    let reqUpdateNewAccount = new proto.ReqUpdateNewAccount();
+    let packet = new proto.Packet();
+    packet.reqUpdateNewAccount = reqUpdateNewAccount;
+    WS.send(packet);
+  }
 }

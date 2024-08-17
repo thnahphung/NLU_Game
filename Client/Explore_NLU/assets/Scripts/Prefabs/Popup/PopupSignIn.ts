@@ -2,11 +2,9 @@ import {
   _decorator,
   Component,
   EditBox,
-  EventKeyboard,
+  EventTouch,
   find,
-  input,
-  Input,
-  KeyCode,
+  Node,
   Prefab,
 } from "cc";
 import DataSender from "../../Utils/DataSender";
@@ -28,16 +26,6 @@ export class PopupSignIn extends Component {
   // Khai bao popupNotify
   @property(Prefab)
   public popupNotifySimple: Prefab = null!;
-
-  start() {
-    this.passwordLogin.node.on(
-      "editing-did-ended",
-      () => {
-        input.on(Input.EventType.KEY_DOWN, this.onEnterLogin, this);
-      },
-      this
-    );
-  }
 
   onClickLoginReq() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);
@@ -62,11 +50,4 @@ export class PopupSignIn extends Component {
     DataSender.sendReqLoginGoogle();
   }
 
-  // lắng nghe nhấn nút enter trên bàn phím
-  onEnterLogin(event: EventKeyboard) {
-    console.log("onEnterLogin", event.keyCode);
-    if (event.keyCode === KeyCode.ENTER) {
-      this.onClickLoginReq();
-    }
-  }
 }

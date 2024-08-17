@@ -19,6 +19,7 @@ export const languages = {
     authen_forget_email: "Your email",
     authen_forget_token: "Token",
     authen_change_password: "CHANGE PASSWORD",
+    authen_play: "PLAY",
     //setting
     setting_title: "SETTING",
     setting_music: "Music ",

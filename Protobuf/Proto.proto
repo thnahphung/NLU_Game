@@ -142,6 +142,8 @@ message Packet {
     ResLevelUp resLevelUp = 135;
     ReqLoadRank reqLoadRank = 136;
     ResLoadRank resLoadRank = 137;
+    ReqUpdateNewAccount reqUpdateNewAccount = 138;
+    ResUpdateNewAccount resUpdateNewAccount = 139;
   }
 }
 
@@ -1137,4 +1139,10 @@ message UserRank{
 
 message ResLoadRank{
   repeated UserRank userRanks = 1;
+}
+
+message ReqUpdateNewAccount{}
+
+message ResUpdateNewAccount{
+  int32 status = 1;
 }

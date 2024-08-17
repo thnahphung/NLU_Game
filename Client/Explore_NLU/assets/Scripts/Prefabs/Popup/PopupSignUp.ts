@@ -34,10 +34,6 @@ export class PopupSignUp extends Component {
   @property(Prefab)
   public popupNotifySimple: Prefab = null!;
 
-  start() {
-    input.on(Input.EventType.KEY_DOWN, this.onEnterRegister, this);
-  }
-
   onClickRegisterReq() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     //Check không để trống username hoặc password
@@ -81,13 +77,6 @@ export class PopupSignUp extends Component {
       popupLoadingNode.active = true;
     }
     DataSender.sendReqSignUp(username, password, email);
-  }
-
-  // lắng nghe nhấn nút enter trên bàn phím
-  onEnterRegister(event: EventKeyboard) {
-    if (event.keyCode === KeyCode.ENTER) {
-      this.onClickRegisterReq();
-    }
   }
 
   isEmail(search: string): boolean {

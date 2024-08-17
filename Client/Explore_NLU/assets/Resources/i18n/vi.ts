@@ -19,7 +19,7 @@ export const languages = {
     authen_forget_email: "Email của bạn",
     authen_forget_token: "Mã xác nhận",
     authen_change_password: "ĐỔI MẬT KHẨU",
-
+    authen_play: "VÀO GAME",
     //setting
     setting_title: "CÀI ĐẶT",
     setting_music: "Nhạc nền",
