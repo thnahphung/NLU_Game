@@ -92,9 +92,15 @@ export class ResponseHandler extends AbsHandler {
       if (packet.resLevelUp) {
         this.onResLevelUp(packet);
       }
+      if (packet.resUpdateNewAccount) {
+        this.onResUpdateNewAccount(packet);
+      }
     });
   }
-
+  onResUpdateNewAccount(packet: proto.IPacket) {
+    if (packet.resUpdateNewAccount.status == 500) return;
+    GlobalData.me().getMainUser().isNewAccount = 0;
+  }
   onResLevelUp(packet: proto.IPacket) {
     if (packet.resLevelUp.status == 500) {
       return;
