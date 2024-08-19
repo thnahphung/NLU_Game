@@ -38,7 +38,7 @@ public class SessionService implements IService {
     public void onClose(Session session) {
         //Logout user in cache
         int userID = SessionCache.me().getUserID(SessionID.of(session));
-        SupportingService.me().removeUserFromQueue( UserCache.me().get(String.valueOf(userID)));
+        SupportingService.me().removeUserFromQueue(UserCache.me().get(String.valueOf(userID)));
         UserCache.me().logoutUser(userID);
         //Remove session in cache
         SessionCache.me().removeSession(SessionID.of(session));

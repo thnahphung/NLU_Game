@@ -26,7 +26,6 @@ export class PopupSupport extends AbsHandler {
   onMessageHandler(packetWrapper: proto.IPacketWrapper): void {
     packetWrapper.packet.forEach((packet) => {
       if (packet.resLoadAidFriends) {
-        console.log(packet.resLoadSupportFriends);
         this.onLoadAidFriends(packet.resLoadAidFriends);
       }
     });
@@ -55,6 +54,11 @@ export class PopupSupport extends AbsHandler {
   }
 
   private onClickInviteRandom() {
+    console.log(
+      "onClickInviteRandom support in popupSupport.ts",
+      GlobalData.me().getAidUser(),
+      GlobalData.me().getSupportUser()
+    );
     AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     DataSender.sedReqSupportFind();
     UICanvas.me().showPopupFindTime();
@@ -64,10 +68,9 @@ export class PopupSupport extends AbsHandler {
   private onClickExitPopup() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.node.getComponent(PopupComponent).hide();
-    let timeoutDestroy = setTimeout(() => {
+    this.scheduleOnce(() => {
       this.node.destroy();
-      clearTimeout(timeoutDestroy);
-    }, 300);
+    }, 0.3);
   }
 
   protected onDestroy(): void {

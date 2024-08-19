@@ -346,6 +346,18 @@ public class UserDAO extends BaseDAO {
                 .execute());
     }
 
+    public static int updateExpAndLevel(int userId, int experiencePoints, int level) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return 500;
+        }
+        return jdbi.withHandle(h -> h.createUpdate("update " + TABLE_NAME + " set experience_points = :experiencePoints, level = :level where id = :id")
+                .bind("experiencePoints", experiencePoints)
+                .bind("level", level)
+                .bind("id", userId)
+                .execute());
+    }
+
     public static void updateUserExpAndGold(int userId, int experiencePoints, int gold) {
         Jdbi jdbi = getJdbi();
         if (jdbi == null) {
@@ -356,5 +368,15 @@ public class UserDAO extends BaseDAO {
                 .bind("gold", gold)
                 .bind("id", userId)
                 .execute());
+    }
+
+    public static List<UserBean> getRankUsers(String characterCode) {
+        Jdbi jdbi = getJdbi();
+        if (jdbi == null) {
+            return null;
+        }
+        return jdbi.withHandle(h -> h.createQuery("select u.id, u.player_name, u.level, u.gold, u.character_id from " + TABLE_NAME + " u join characters c on u.character_id = c.id WHERE c.`code` = :code ORDER BY u.`level` desc, u.gold desc")
+                .bind("code", characterCode)
+                .mapToBean(UserBean.class).stream().collect(Collectors.toList()));
     }
 }

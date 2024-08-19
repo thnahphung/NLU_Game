@@ -15,7 +15,7 @@ public class PropertyMachineDAO extends BaseDAO{
             return null;
         }
         return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT id, speed, durable, power, number_star, level, value, rate, no_growth_item_id, user_id " +
+                handle.createQuery("SELECT id, speed, durable, power, number_star, energy, value, rate, no_growth_item_id, user_id " +
                                 "FROM " + TABLE_NAME + " WHERE user_id = :userId")
                         .bind("userId", userId)
                         .mapToBean(PropertyMachineBean.class)
@@ -28,13 +28,13 @@ public class PropertyMachineDAO extends BaseDAO{
             return;
         }
         jdbi.useHandle(handle -> {
-            handle.createUpdate("INSERT INTO " + TABLE_NAME + " (speed, durable, power, number_star, level, value, no_growth_item_id, user_id, rate) " +
-                    "VALUES (:speed, :durable, :power, :numberStar, :level, :value, :noGrowthItemId, :userId: rate)")
+            handle.createUpdate("INSERT INTO " + TABLE_NAME + " (speed, durable, power, number_star, energy, value, no_growth_item_id, user_id, rate) " +
+                    "VALUES (:speed, :durable, :power, :numberStar, :energy, :value, :noGrowthItemId, :userId: rate)")
                     .bind("speed", propertyMachineBean.getSpeed())
                     .bind("durable", propertyMachineBean.getDurable())
                     .bind("power", propertyMachineBean.getPower())
                     .bind("numberStar", propertyMachineBean.getNumberStar())
-                    .bind("level", propertyMachineBean.getLevel())
+                    .bind("energy", propertyMachineBean.getEnergy())
                     .bind("value", propertyMachineBean.getValue())
                     .bind("noGrowthItemId", propertyMachineBean.getNoGrowthItemId())
                     .bind("userId", propertyMachineBean.getUserId())
@@ -49,14 +49,14 @@ public class PropertyMachineDAO extends BaseDAO{
             return;
         }
         jdbi.useHandle(handle -> {
-            PreparedBatch batch = handle.prepareBatch("INSERT INTO " + TABLE_NAME + " (speed, durable, power, number_star, level, value, no_growth_item_id, user_id, rate) " +
-                    "VALUES (:speed, :durable, :power, :numberStar, :level, :value, :noGrowthItemId, :userId, :rate)");
+            PreparedBatch batch = handle.prepareBatch("INSERT INTO " + TABLE_NAME + " (speed, durable, power, number_star, energy, value, no_growth_item_id, user_id, rate) " +
+                    "VALUES (:speed, :durable, :power, :numberStar, :energy, :value, :noGrowthItemId, :userId, :rate)");
             for (PropertyMachineBean propertyMachineBean : propertyMachineBeans) {
                 batch.bind("speed", propertyMachineBean.getSpeed())
                         .bind("durable", propertyMachineBean.getDurable())
                         .bind("power", propertyMachineBean.getPower())
                         .bind("numberStar", propertyMachineBean.getNumberStar())
-                        .bind("level", propertyMachineBean.getLevel())
+                        .bind("energy", propertyMachineBean.getEnergy())
                         .bind("value", propertyMachineBean.getValue())
                         .bind("noGrowthItemId", propertyMachineBean.getNoGrowthItemId())
                         .bind("userId", propertyMachineBean.getUserId())
@@ -73,7 +73,7 @@ public class PropertyMachineDAO extends BaseDAO{
             return null;
         }
         return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT id, speed, durable, power, number_star, level, value, rate, no_growth_item_id, user_id " +
+                handle.createQuery("SELECT id, speed, durable, power, number_star, energy, value, rate, no_growth_item_id, user_id " +
                                 "FROM " + TABLE_NAME + " WHERE user_id = :userId AND no_growth_item_id = :noGrowthItemId")
                         .bind("userId", userId)
                         .bind("noGrowthItemId", noGrowthItemId)
@@ -87,13 +87,13 @@ public class PropertyMachineDAO extends BaseDAO{
         if (jdbi == null) {
             return false;
         }
-        int count = jdbi.withHandle(handle -> handle.createUpdate("UPDATE " + TABLE_NAME + " SET speed = :speed, durable = :durable, power = :power, number_star = :numberStar, level = :level, value = :value, rate = :rate " +
+        int count = jdbi.withHandle(handle -> handle.createUpdate("UPDATE " + TABLE_NAME + " SET speed = :speed, durable = :durable, power = :power, number_star = :numberStar, energy = :energy, value = :value, rate = :rate " +
                 "WHERE user_id = :userId AND id = :id")
                 .bind("speed", propertyMachineBean.getSpeed())
                 .bind("durable", propertyMachineBean.getDurable())
                 .bind("power", propertyMachineBean.getPower())
                 .bind("numberStar", propertyMachineBean.getNumberStar())
-                .bind("level", propertyMachineBean.getLevel())
+                .bind("energy", propertyMachineBean.getEnergy())
                 .bind("value", propertyMachineBean.getValue())
                 .bind("rate", propertyMachineBean.getRate())
                 .bind("userId", propertyMachineBean.getUserId())

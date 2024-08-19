@@ -2,6 +2,8 @@ import { _decorator, Component, Node, tween, Vec3 } from "cc";
 import { Machine } from "./Machine";
 import GlobalData from "../../Utils/GlobalData";
 import DataSender from "../../Utils/DataSender";
+import { AudioManger } from "../../Manager/AudioManger";
+import { AUDIOS } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("MachineMovement")
@@ -18,6 +20,9 @@ export class MachineMovement extends Component {
     let distance = this.node.position.clone().subtract(target).length();
     this.duration = distance / this.machine.getSpeed();
     tween(this.node.position)
+      .call(() => {
+        AudioManger.me().playOneShot(AUDIOS.MACHINE);
+      })
       .to(this.duration, target, {
         onUpdate: (target: Vec3, ratio: number) => {
           if (this.node === null) return;
@@ -25,6 +30,7 @@ export class MachineMovement extends Component {
         },
       })
       .call(() => {
+        AudioManger.me().getAudioSound().stop();
         this.node.name == "HarvesterMachine"
           ? this.handleHarvest()
           : this.handleTilledLand();

@@ -11,7 +11,7 @@ import {
   Vec3,
 } from "cc";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
-import { REWARD_ICONS, TYPE_ITEM } from "../Utils/Const";
+import { AUDIOS, REWARD_ICONS, TYPE_ITEM } from "../Utils/Const";
 import AbsScene from "../Scenes/AbsScene";
 import DataSender from "../Utils/DataSender";
 import { PlantingLand } from "../Prefabs/Lands/PlantingLand";
@@ -24,6 +24,9 @@ import { Menu } from "../Prefabs/Menu/Menu";
 import { SeedInformation } from "../Prefabs/Crop/SeedInformation";
 import { t } from "../../../extensions/i18n/assets/LanguageData";
 import { Machine } from "../Prefabs/Machine/Machine";
+import { MachineInformation } from "../Prefabs/Machine/MachineInformation";
+import { Util } from "../Utils/Util";
+import { AudioManger } from "../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
 @ccclass("FarmScene")
@@ -46,6 +49,14 @@ export class FarmScene extends AbsScene {
   protected onLoad(): void {
     // Load information of farm
     this.loadFarm();
+
+    // Load information of machines if user is supporting
+    if (
+      GlobalData.me().getMainUser().character.code == "KSCK" &&
+      GlobalData.me().getIsSupporting()
+    ) {
+      this.loadMachines();
+    }
   }
 
   protected start(): void {
@@ -88,6 +99,10 @@ export class FarmScene extends AbsScene {
       });
   }
 
+  private loadMachines(): void {
+    DataSender.sendLoadMachines(GlobalData.me().getMainArea().areaId);
+  }
+
   onMessageHandler(packets: proto.IPacketWrapper): void {
     packets.packet.forEach((packet) => {
       if (packet.resLoadItemsOfFarm) {
@@ -114,7 +129,61 @@ export class FarmScene extends AbsScene {
       if (packet.resHarvestByMachine) {
         this.handleResHarvestByMachine(packet.resHarvestByMachine);
       }
+      if (packet.resLoadMachines) {
+        this.onLoadMachine(packet.resLoadMachines);
+      }
+      if (packet.resBrokenMachine) {
+        this.handleResBrokenMachine(packet.resBrokenMachine);
+      }
     });
+  }
+
+  private handleResBrokenMachine(
+    resBrokenMachine: proto.IResBrokenMachine
+  ): void {
+    const machineName = resBrokenMachine.machineName;
+    const energyMachine = resBrokenMachine.machineEnergy;
+    this.setupMachineTool(machineName, energyMachine);
+    UICanvas.me().showPopupMessage(t("label_text.mac_reduce_energy"));
+  }
+
+  private onLoadMachine(resLoadMachines: proto.IResLoadMachines): void {
+    const propertyMachines = resLoadMachines.propertyMachines;
+    resLoadMachines.noGrowthItem.forEach((noGrowthItem) => {
+      const propertyMachine = propertyMachines.find(
+        (propertyMachine) => propertyMachine.noGrowthItemId === noGrowthItem.id
+      );
+      if (propertyMachine) {
+        this.setupMachineTool(
+          noGrowthItem.name,
+          propertyMachine.energy,
+          propertyMachine.speed,
+          propertyMachine.power
+        );
+      }
+    });
+  }
+
+  private setupMachineTool(
+    machineName: string,
+    energyMachine: number,
+    speedMachine?: number,
+    powerMachine?: number
+  ): void {
+    const menuMachineComponent = UICanvas.me()
+      .getMenuMechanical()
+      .getComponent(Menu);
+    let machineNode = menuMachineComponent.getMenuItemNode(machineName);
+    if (!machineNode) return;
+    let machineInformation = machineNode.getComponent(MachineInformation);
+    if (!speedMachine || !powerMachine) {
+      machineInformation.setEnergy(Util.setColorEnergy(energyMachine));
+    } else {
+      let energy = Util.setColorEnergy(energyMachine);
+      let power = powerMachine.toString();
+      let speed = speedMachine.toString();
+      machineInformation.init(speed, power, energy);
+    }
   }
 
   private handleResTillLand(resTillLand: proto.IResTillLand): void {
@@ -204,7 +273,15 @@ export class FarmScene extends AbsScene {
         typeReward = REWARD_ICONS.GOLD;
       } else {
         typeReward = rewardProto.name.toLowerCase();
-        name = t("label_text." + rewardProto.name.toLowerCase());
+        console.log(
+          "typeReward: ",
+          typeReward,
+          Util.convertDashToUnderscore(rewardProto.name.toLowerCase())
+        );
+        name = t(
+          "label_text." +
+            Util.convertDashToUnderscore(rewardProto.name.toLowerCase())
+        );
       }
       rewards.push({
         name: name,
@@ -212,6 +289,7 @@ export class FarmScene extends AbsScene {
         reward: typeReward,
       });
     });
+    AudioManger.me().playOneShot(AUDIOS.LEVEL_UP);
     UICanvas.me().showListRewardEffect(rewards);
   }
 
@@ -261,38 +339,67 @@ export class FarmScene extends AbsScene {
   }
 
   private handleResBuyBuilding(resBuyBuilding: proto.IResBuyBuilding): void {
-    if (resBuyBuilding.status == 400) {
-      UICanvas.me().showPopupMessage("Không đủ tiền mua đất trồng!");
-    }
-    let plantingLandPanel = find("Canvas/BackGroundLayer/PlantingPanel");
-    let plantingLands = plantingLandPanel.children;
-    for (let plantingLand of plantingLands) {
-      if (plantingLand.uuid == resBuyBuilding.uuid) {
-        if (resBuyBuilding.status == 400) {
-          plantingLand.destroy();
-          return;
-        }
-        let plantingLandComponent = plantingLand.getComponent(PlantingLand);
-        plantingLandComponent.plantingLandProto =
-          resBuyBuilding.building.plantingLandBuilding;
-
-        let tillLands = plantingLandComponent.getTilledLandPanel().children;
-        tillLands.forEach((tillLand: Node, index: number) => {
-          let tillLandProto =
-            resBuyBuilding.building.plantingLandBuilding.tillLands[index];
-          tillLand.getComponent(TilledLand).setTillLandProto(tillLandProto);
-        });
-        if (plantingLand.getComponent(UIOpacity))
-          plantingLand.removeComponent(UIOpacity);
-        if (plantingLand.getComponent(BlockInputEvents))
-          plantingLand.removeComponent(BlockInputEvents);
-        break;
+    if (GlobalData.me().isMainArea()) {
+      if (resBuyBuilding.status == 400) {
+        UICanvas.me().showPopupMessage("Không đủ tiền mua đất trồng!");
+        return;
       }
-    }
-    const gold = resBuyBuilding.gold;
-    if (gold) {
-      GlobalData.me().getMainUser().gold = gold;
-      UICanvas.me().loadGold();
+      const gold = resBuyBuilding.gold;
+      if (gold) {
+        GlobalData.me().getMainUser().gold = gold;
+        UICanvas.me().loadGold();
+      }
+      let plantingLandPanel = find("Canvas/BackGroundLayer/PlantingPanel");
+      let plantingLands = plantingLandPanel.children;
+      for (let plantingLand of plantingLands) {
+        if (plantingLand.uuid == resBuyBuilding.uuid) {
+          if (resBuyBuilding.status == 400) {
+            plantingLand.destroy();
+            return;
+          }
+          let plantingLandComponent = plantingLand.getComponent(PlantingLand);
+          plantingLandComponent.plantingLandProto =
+            resBuyBuilding.building.plantingLandBuilding;
+
+          let tillLands = plantingLandComponent.getTilledLandPanel().children;
+          tillLands.forEach((tillLand: Node, index: number) => {
+            let tillLandProto =
+              resBuyBuilding.building.plantingLandBuilding.tillLands[index];
+            tillLand.getComponent(TilledLand).setTillLandProto(tillLandProto);
+          });
+          if (plantingLand.getComponent(UIOpacity))
+            plantingLand.removeComponent(UIOpacity);
+          if (plantingLand.getComponent(BlockInputEvents))
+            plantingLand.removeComponent(BlockInputEvents);
+          break;
+        }
+      }
+    } else {
+      for (let prefab of this.buildingFarmPrefab) {
+        if (
+          resBuyBuilding.building.plantingLandBuilding.base.name.toUpperCase() ==
+          prefab.name.toUpperCase()
+        ) {
+          const plantingLand = instantiate(prefab);
+          plantingLand.setPosition(
+            resBuyBuilding.building.plantingLandBuilding.propertyBuilding
+              .positionX,
+            resBuyBuilding.building.plantingLandBuilding.propertyBuilding
+              .positionY
+          );
+          let component = plantingLand.getComponent(PlantingLand);
+          component.setPlantingLandProto(
+            resBuyBuilding.building.plantingLandBuilding
+          );
+          let tillLands = component.getTilledLandPanel().children;
+          tillLands.forEach((tillLand: Node, index: number) => {
+            let tillLandProto =
+              resBuyBuilding.building.plantingLandBuilding.tillLands[index];
+            tillLand.getComponent(TilledLand).setTillLandProto(tillLandProto);
+          });
+          this.getPlantingLandPanel().addChild(plantingLand);
+        }
+      }
     }
   }
 
@@ -500,6 +607,7 @@ export class FarmScene extends AbsScene {
   }
 
   private onClickTillByMachine() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     UICanvas.me().hidePopupMenuMechanical();
     let plantingLandChosed = GlobalData.me().getPlantingLandChoosed();
     let plantingLandPosition = new proto.Position();
@@ -514,6 +622,7 @@ export class FarmScene extends AbsScene {
   }
 
   private onClickHarvestByMachine() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     UICanvas.me().hidePopupMenuMechanical();
     let plantingLandChosed = GlobalData.me().getPlantingLandChoosed();
     let plantingLandPosition = new proto.Position();
@@ -533,6 +642,12 @@ export class FarmScene extends AbsScene {
     let plantingLandPosition = resTillLandByMachine.plantingLandPosition;
     let machineNoGrowItem = resTillLandByMachine.noGrowthItem;
     let propertyMachine = resTillLandByMachine.propertyMachine;
+    if (!propertyMachine) return;
+    if (propertyMachine.energy <= 0) {
+      if (GlobalData.me().isSupportingUser())
+        UICanvas.me().showPopupMessage(t("label_text.mac_not_enough_energy"));
+      return;
+    }
     const machine = instantiate(this.bulldorzerPrefab);
     machine.getComponent(Machine).init(machineNoGrowItem, propertyMachine);
     this.setMachinePosition(
@@ -542,6 +657,7 @@ export class FarmScene extends AbsScene {
   }
 
   private setMachinePosition(machine: Node, position: Vec3) {
+    console.log("machine start: ", machine);
     machine.setPosition(position.x, position.y, 0);
     const midLayer = this.getTopLayer();
     midLayer.addChild(machine);
@@ -550,10 +666,15 @@ export class FarmScene extends AbsScene {
   private handleResHarvestByMachine(
     resHarvestByMachine: proto.IResHarvestByMachine
   ) {
-    console.log(resHarvestByMachine);
     let plantingLandPosition = resHarvestByMachine.plantingLandPosition;
     let machineNoGrowItem = resHarvestByMachine.noGrowthItem;
     let propertyMachine = resHarvestByMachine.propertyMachine;
+    if (!propertyMachine) return;
+    if (propertyMachine.energy <= 0) {
+      if (GlobalData.me().isSupportingUser())
+        UICanvas.me().showPopupMessage(t("label_text.mac_not_enough_energy"));
+      return;
+    }
     const machine = instantiate(this.harvesterPrefab);
     machine.getComponent(Machine).init(machineNoGrowItem, propertyMachine);
     this.setMachinePosition(

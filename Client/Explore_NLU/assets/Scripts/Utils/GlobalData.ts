@@ -410,6 +410,11 @@ export default class GlobalData {
     this.aidUser = user;
   }
 
+  isSupportingUser() {
+    if (this.supportUser == null) return false;
+    return this.supportUser.userId === this.mainUser.userId;
+  }
+
   /* END SUPPORTING */
 
   /* START MECHANICAL */
@@ -423,10 +428,18 @@ export default class GlobalData {
     if (this.machines == null) {
       this.machines = [];
     }
+    let currentMachine = this.getMachine(machine.noGrowthItem.id);
+    if (currentMachine) {
+      // Remove current machine
+      this.machines = this.machines.filter(
+        (machine) => machine.noGrowthItem.id !== currentMachine.noGrowthItem.id
+      );
+    }
     this.machines.push(machine);
   }
 
   public updateMachine(machine: proto.IMachine) {
+    if (!this.machines) return;
     for (let i = 0; i < this.machines.length; i++) {
       if (this.machines[i].noGrowthItem.id === machine.noGrowthItem.id) {
         this.machines[i] = machine;
@@ -436,6 +449,7 @@ export default class GlobalData {
   }
 
   public getMachine(noGrowthItemId: number) {
+    if (this.machines == null) return null;
     return this.machines.find(
       (machine) => machine.noGrowthItem.id === noGrowthItemId
     );

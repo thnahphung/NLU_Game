@@ -14,10 +14,16 @@ public class NotificationHandler implements Subscriber {
     }
 
     @Override
-    public void onMessage(Session session, Proto.PacketWrapper message) {
-        for (Proto.Packet packet : message.getPacketList()) {
-            onMessage(session, packet);
-        }
+    public void onMessage(Session session, Proto.PacketWrapper packetWrapper) {
+        packetWrapper.getPacketList().forEach(packet -> {
+            switch (packet.getDataCase()) {
+                case REQLEVELUP:
+                    NotificationService.me().levelUp(session, packet.getReqLevelUp());
+                break;
+                case REQUPDATENEWACCOUNT:
+                    NotificationService.me().updateNewAccount(session);
+            }
+        });
     }
 
     private void onMessage(Session session, Proto.Packet packet) {

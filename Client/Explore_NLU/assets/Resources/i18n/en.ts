@@ -19,6 +19,7 @@ export const languages = {
     authen_forget_email: "Your email",
     authen_forget_token: "Token",
     authen_change_password: "CHANGE PASSWORD",
+    authen_play: "PLAY",
     //setting
     setting_title: "SETTING",
     setting_music: "Music ",
@@ -47,6 +48,7 @@ export const languages = {
     btn_quest: "Quest",
     btn_friend: "Friend",
     btn_warehouse: "Warehouse",
+    btn_guide: "Guide",
     //UI Animal
     animal_type: "Type:",
     animal_age: "Age:",
@@ -140,6 +142,11 @@ export const languages = {
     diagnosis_animal_200:
       "Successful treatment, you have received money from the owner of the animal.",
     upgrade_cage_400: "Not enough gold!",
+    sow_fail_too_many_seeds: "You are planting too many seeds at once!",
+    till_fail_too_many_times: "You have tilled too much soil at once!",
+    harvest_fail_too_many_times: "You have harvested too many crops at once!",
+    sell_item_400: "Not enough item to sell!",
+    level_up: "LEVEL UP!",
     //Area Name
     phuong_vi: "Phuong Vi",
     cam_tu: "Cam Tu",
@@ -157,12 +164,14 @@ export const languages = {
     btn_cancel: "Cancel",
     btn_continue: "Continue",
     btn_back_home: "Back home",
+    btn_sell: "Sell",
     //Shop Name
     crop_shop: "Crop Shop",
     animal_shop: "Animal Shop",
     medicine_shop: "Veterinary Medicine",
     buy_cage: "Buy Cage",
     healing: "Healing",
+    mechanical_shop: "Machines",
     //Crop Name
     rice_seed_bag: "Rice Seed Bag",
     cabbage_seed_bag: "Cabbage Seed Bag",
@@ -232,7 +241,11 @@ export const languages = {
     mac_durability: "Durability",
     mac_value: "Value",
     mac_spec: "Specifications",
-    mac_manufacture: "Manufacture",
+    mac_manufacture: "Upgrade",
+    mac_manufacture_success: "Upgrade successful!",
+    mac_manufacture_fail: "Upgrade failed!",
+    mac_manufacture_fail_400: "Not enough gold to upgrade!",
+    mac_manufacture_fail_401: "The machine is at the highest level!",
     mac_fix_status_max: "The machine is in the best condition!",
     mac_fix_status_enough_gold: "Not enough gold to fix the machine!",
     mac_fix_status_error: "Error fixing machine!",
@@ -242,6 +255,23 @@ export const languages = {
     mac_increase_rate_fail_401: "The maximum increase rate is 90%!",
     mac_increase_rate_fail_402: "Not enough gold to increase rate!",
     mac_rate: "Rate",
+    mac_number_energy: "Energy:",
+    mac_number_speed: "Speed:",
+    mac_number_power: "Power:",
+    mac_not_enough_energy: "Machine is out of energy!",
+    mac_reduce_energy:
+      "The machine's energy has decreased due to some components failing after work!",
+    mac_no_active: "Upcoming",
+    bulldozer_part_1: "Bulldozer Part 1",
+    bulldozer_part_2: "Bulldozer Part 2",
+    bulldozer_part_3: "Bulldozer Part 3",
+    bulldozer_part_4: "Bulldozer Part 4",
+    harvester_part_1: "Harvester Part 1",
+    harvester_part_2: "Harvester Part 2",
+    harvester_part_3: "Harvester Part 3",
+    harvester_part_4: "Harvester Part 4",
+    mac_title_factory1: "Repair factory",
+    mac_title_factory2: "Upgrade factory",
     // Help
     help_title: "Help",
     help_find: "Find",
@@ -265,6 +295,7 @@ export const languages = {
     aid_status_invite_offline: "This player is offline!",
     aid_status_invite_reject: "is not ready to support you!",
     aid_btn_invited: "Invited",
+    aid_list_supporting: "Helper list",
     //Support
     support_title: "Support",
     support_fail_supported: "has received support from others!",
@@ -273,6 +304,9 @@ export const languages = {
       "You have been asked to stop providing support!",
     support_action_fail:
       "You are in support mode, this action cannot be performed!",
+    support_till: "Till",
+    support_harvest: "Harvest",
+    support_list_aid: "The list of players who need support",
     //Sysptom
     sysptoms_high_fever: "High fever",
     sysptoms_difficulty_breathing: "Difficulty breathing",
@@ -329,6 +363,83 @@ export const languages = {
     nlu_360_title_cong_nha_khach: "Guest house gate",
     nlu_360_title_khoa_cnhh_va_tp:
       "Faculty of Chemical Engineering and Food Technology",
+    // Rank
+    rank_title: "Rank",
+    rank_btn_CK: "Mechanics",
+    rank_btn_TY: "Veterinarian",
+    rank_btn_NN: "Agriculture",
+    rank_btn_CN: "Animal husbandry",
+    rank_label_property: "Tài sản",
+    //Guidance
+    guidance_title: "Guidance",
+    guidance_note: "*Note: Scroll up for more",
+    guidance_title_overview:
+      "Game Exploring Đại Học Nông Lâm Thành Phố Hồ Chí Minh",
+    guidance_KSNN_text_overview:
+      "As an agricultural engineer character, you will experience the process of planting, tending, and harvesting crops. You will be guided on how to buy land, purchase seeds, till the soil, sow seeds, harvest, and sell your products.",
+    guidance_KSCN_text_overview:
+      "As a livestock engineer character, you will experience the process of taking care of livestock. You will be guided on how to buy pens, purchase livestock, add animals to pens, feed them, and sell the livestock.",
+    guidance_KSCK_text_overview:
+      "As a mechanical engineer character, you will experience the process of repairing and upgrading machinery, which you can then use to assist agricultural engineer players with activities such as tilling the soil and harvesting crops. You will be guided on how to buy machinery upgrade parts, repair machinery, upgrade machinery, and use the machinery to support agricultural activities.",
+    guidance_BSTY_text_overview:
+      "As a veterinary doctor character, you will experience the process of crafting medicine and treating animal diseases. You will be guided on how to purchase medicine and assist livestock engineer players in treating their livestock.",
+    guidance_KSNN_title_buyland: "Buy Land",
+    guidance_KSNN_title_buyseed: "Buy Seeds",
+    guidance_KSNN_text_buyseed:
+      "Move the character to the seed shop in the Kiot area. Click on the shop and select the seeds you want to buy.",
+    guidance_KSNN_text_buyland:
+      "Click on                to open the construction system. Select arable land to buy land.",
+    guidance_KSNN_title_till: "Till the Soil",
+    guidance_KSNN_text_till:
+      "Click on the farmland that needs tilling, then click and drag the tool to the position of the land that needs to be tilled.",
+    guidance_KSNN_title_sow: "Sow Seeds",
+    guidance_KSNN_text_sow:
+      "Click on the piece of land where you want to sow seeds, select the seeds you want to sow, and drag them to the piece of land where you want to sow them.",
+    guidance_KSNN_title_harvest: "Harvest",
+    guidance_KSNN_text_harvest:
+      "Click on the fully grown crops, then click and drag the harvesting tool to the crops that need to be harvested.",
+    guidance_KSNN_title_sell: "Sell Products",
+    guidance_KSNN_text_sell:
+      "Click the [Inventory] button on the left side of the interface, select the products you want to sell, specify the quantity, and click the [Sell] button to sell the products.",
+    guidance_KSCN_title_buycage: "Buy Cage",
+    guidance_KSCN_text_buycage:
+      "Click on              to open the construction system. Choose the type of pen and select the location where you want to place the cage.",
+    guidance_KSCN_title_buyanimal: "Buy Animals",
+    guidance_KSCN_text_buyanimal:
+      "Move the character to the animal shop in the Kiot area. Click on the shop and select the animals you want to buy.",
+    guidance_KSCN_title_addanimal: "Add Animals to Cage",
+    guidance_KSCN_text_addanimal:
+      "Click on the pen where you want to add animals, click         to add the purchased animals to the cage.",
+    guidance_KSCN_title_feed: "Feed",
+    guidance_KSCN_text_feed:
+      "Click on the pen, select the type of feed, and drag it to the animals that need to be fed.",
+    guidance_KSCN_title_sell: "Sell Livestock",
+    guidance_KSCN_text_sell:
+      "Click on the pen, press the button          to view the list of animals in the pen. Select the animals you want to sell and click the [Confirm] button to sell them.",
+    guidance_KSCN_KSNN_title_aid: "Request Assistance",
+    guidance_KSCN_KSNN_text_aid:
+      "Click the button          to open the assistance window, then click the [Invite] button on the list of friends who can assist or press the [Invite Randomly] button to invite other players to help. Once the assistance pairing is successful, the helper will move to your area.",
+    guidance_KSCK_title_buy: "Buy Machinery Upgrade Parts",
+    guidance_KSCK_text_buy:
+      "Move the character to the mechanical shop in the Kiot area. Click on the shop and select the parts you want to buy.",
+    guidance_KSCK_title_fix: "Repair Machinery",
+    guidance_KSCK_text_fix:
+      "Click on the machinery repair factory. Select the machinery you want to repair and press the [Repair] button to fix it.",
+    guidance_KSCK_title_upgrade: "Upgrade Machinery",
+    guidance_KSCK_text_upgrade:
+      "Click on the machinery upgrade factory. Select the machinery you want to upgrade and press the [Upgrade] button to enhance it. Players can press the [+Rate] button to increase the upgrade success rate.",
+    guidance_KSCK_BSTY_title_support: "Assist Other Players",
+    guidance_KSCK_BSTY_text_support:
+      "Click the button        to open the assistance window. Click the [Support] button on the list of players who need assistance or press the [Invite Randomly] button to help other players. Once the assistance pairing is successful, the player will be moved to the required support location.",
+    guidance_KSCK_title_use: "Use Machinery",
+    guidance_KSCK_text_use:
+      "When in the area of the player needing assistance (in support mode), click on the untitled farmland to use the tilling machine. Click on the unharvested crops to use the harvesting machine. Note: Machinery will have a damage rate during use. If the machine breaks down, repair it at the machinery repair factory.",
+    guidance_BSTY_title_crafting: "Crafting Medicine",
+    guidance_BSTY_text_crafting:
+      "Click on the medicine crafting factory. Select the type of medicine to be crafted; the screen will display the crafting formula for that medicine. Select the ingredients according to the formula and press the [Craft] button to create the medicine.",
+    guidance_BSTY_title_diagnosis: "Diagnosis and Treatment",
+    guidance_BSTY_text_diagnosis:
+      "When in the area of the player needing assistance (in support mode), click on the animals showing signs of illness, then press the [Treat] button. The screen will display the symptoms. Players need to select the disease based on the symptoms to inject the correct medicine for treatment.",
   },
 };
 

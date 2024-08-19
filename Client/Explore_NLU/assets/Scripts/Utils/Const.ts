@@ -62,11 +62,17 @@ export const AUDIOS = {
   CLICK_2: "Audios/Click/click-music-2",
   CLICK_3: "Audios/Click/click-music-3",
   LEVEL_UP: "Audios/cute-level-up-music",
+  LEVEL_UP_EFFECT: "Audios/level-up-effect",
+  SUCCESS_EFFECT: "Audios/success-effect",
+  FAIL_EFFECT: "Audios/fail-effect",
   WRONG: "Audios/wrong-music",
   COW: "Audios/Animal/cow-sound",
   CHICKEN: "Audios/Animal/chicken-sound",
   RAIN: "Audios/rain-sound",
   HARVEST_CROP: "Audios/harvest-crop",
+  MACHINE: "Audios/machine-audio",
+  TILL_LAND: "Audios/till-land",
+  SOW_SEED: "Audios/sow-seed",
 };
 
 export const SETTING_AREA = [
@@ -283,8 +289,8 @@ export enum TYPE_TOOL {
   PICKAXE = "Pickaxe",
   HAMMER = "Hammer",
   SEED_BAG = "SeedBag",
-  TILL = "TillButton",
-  HARVEST = "HarvestButton",
+  TILL = "bulldozer",
+  HARVEST = "harvester",
 }
 
 export enum REWARD_ICONS {

@@ -41,6 +41,8 @@ export class PlantingLand extends Component {
       return;
     }
 
+    if (!GlobalData.me().isMainArea()) return;
+
     if (
       GlobalData.me().getMoveBuildingStatus() ||
       GlobalData.me().getSowStatus()

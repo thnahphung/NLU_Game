@@ -9,6 +9,7 @@ import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class WarehouseDAO extends BaseDAO {
     private static final String TABLE_NAME = "warehouse_items";
@@ -214,5 +215,19 @@ public class WarehouseDAO extends BaseDAO {
                 .bind("name", name)
                 .mapToBean(NoGrowthItemBean.class)
                 .stream().findFirst().orElse(null));
+    }
+
+    public static void main(String[] args) {
+        Random random = new Random();
+        int value = random.nextInt(8);
+        System.out.println(value);
+        int value2 = random.nextInt(8);
+        System.out.println(value2);
+        int value3 = random.nextInt(8);
+        System.out.println(value3);
+        int value4 = random.nextInt(8);
+        System.out.println(value4);
+        int value5 = random.nextInt(8);
+        System.out.println(value5);
     }
 }

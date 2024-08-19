@@ -3,6 +3,7 @@ package vn.edu.nlu.fit.nlugame.layer0.handler;
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer1.FarmService;
+import vn.edu.nlu.fit.nlugame.layer1.MechanicalService;
 import vn.edu.nlu.fit.nlugame.layer1.TaskService;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
@@ -24,7 +25,7 @@ public class FarmHandler implements Subscriber{
                     farmService.handleBuyBuilding(session, packet.getReqBuyBuilding());
                     break;
                 case REQTILLEDLAND:
-                    farmService.handleTilledLand(session, packet.getReqTilledLand());
+                    handleTillLand(session, packet.getReqTilledLand());
                     break;
                 case REQLOADCOMMONCROPS:
                     farmService.handleLoadCommonCrops(session);
@@ -66,10 +67,20 @@ public class FarmHandler implements Subscriber{
     private void handleHarvest(Session session, Proto.ReqHarvest reqHarvest) {
         Map<String, Integer> mapSeed = farmService.handleHarvest(session, reqHarvest);
         taskService.checkTaskHarvestCrop(session, mapSeed);
+        if(mapSeed != null && mapSeed.size() > 0){
+            MechanicalService.me().handleRandomFailureRate(session, "harvester");
+        }
     }
 
     private void handleSow(Session session, Proto.ReqSow reqSow) {
         Proto.Crops crops = farmService.handleSow(session, reqSow);
         taskService.checkTaskSow(session, crops);
+    }
+
+    private void handleTillLand(Session session, Proto.ReqTilledLand reqTilledLand) {
+       int statusTillLand = farmService.handleTilledLand(session, reqTilledLand);
+       if(statusTillLand == 200){
+           MechanicalService.me().handleRandomFailureRate(session, "bulldozer");
+       }
     }
 }

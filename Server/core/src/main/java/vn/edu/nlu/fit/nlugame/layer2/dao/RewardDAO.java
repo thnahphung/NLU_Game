@@ -2,6 +2,7 @@ package vn.edu.nlu.fit.nlugame.layer2.dao;
 
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.RewardItemBean;
 
+import java.util.Collections;
 import java.util.List;
 
 public class RewardDAO extends BaseDAO{
@@ -20,6 +21,10 @@ public class RewardDAO extends BaseDAO{
     public static List<RewardItemBean> getRewardsByActivityIds(List<Integer> activityIds) {
         if (getJdbi() == null) {
             return null;
+        }
+        if (activityIds == null || activityIds.isEmpty()) {
+            // Trả về danh sách rỗng hoặc xử lý lỗi tùy thuộc vào yêu cầu
+            return Collections.emptyList();
         }
         String query = "SELECT activity_id, no_growth_item_id, quantity FROM " + TABLE_NAME + " WHERE activity_id IN (<activityIds>)";
         return getJdbi().withHandle(handle ->

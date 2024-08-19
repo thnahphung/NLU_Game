@@ -4,6 +4,7 @@ import jakarta.websocket.CloseReason;
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer1.ShopService;
 import vn.edu.nlu.fit.nlugame.layer1.TaskService;
+import vn.edu.nlu.fit.nlugame.layer1.WarehouseService;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
 public class ShopHandler implements Subscriber {
@@ -24,6 +25,9 @@ public class ShopHandler implements Subscriber {
                     break;
                 case REQBUYITEMSHOP:
                     buyItemShop(session, packet.getReqBuyItemShop());
+                    break;
+                case REQSELLITEMWAREHOUSE:
+                    sellItemShop(session, packet.getReqSellItemWarehouse());
                     break;
             }
         });
@@ -48,5 +52,9 @@ public class ShopHandler implements Subscriber {
     private void buyItemShop(Session session, Proto.ReqBuyItemShop reqBuyItemShop) {
        int quantityItem = shopService.buyItemShop(session, reqBuyItemShop);
        taskService.checkBuyItemTask(session, quantityItem);
+    }
+
+    private void sellItemShop(Session session, Proto.ReqSellItemWarehouse reqSellItemWarehouse) {
+        shopService.sellItemWarehouse(session, reqSellItemWarehouse);
     }
 }

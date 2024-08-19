@@ -1,6 +1,8 @@
 import { _decorator, Component, Label, Node, Sprite } from "cc";
 import { ResourceManager } from "../../Manager/ResourceManager";
 import { t } from "../../../../extensions/i18n/assets/LanguageData";
+import { AudioManger } from "../../Manager/AudioManger";
+import { AUDIOS } from "../../Utils/Const";
 const { ccclass, property } = _decorator;
 
 @ccclass("PopupManufactureResult")
@@ -40,12 +42,14 @@ export class PopupManufactureResult extends Component {
       star.active = index < numberStar;
     });
     this.machineStar.active = true;
+    AudioManger.me().playOneShot(AUDIOS.SUCCESS_EFFECT);
   }
 
   initFail(machineSprite: string) {
     this.setUpFail();
     this.machineSprite.getComponent(Sprite).spriteFrame =
       ResourceManager.me().getSpriteFrame(machineSprite);
+    AudioManger.me().playOneShot(AUDIOS.FAIL_EFFECT);
   }
 
   start() {}
