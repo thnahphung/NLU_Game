@@ -20,8 +20,8 @@ public class PropertyMachineBean {
     private int power;
     @ColumnName("number_star")
     private int numberStar;
-    @ColumnName("level")
-    private int level;
+    @ColumnName("energy")
+    private int energy;
     @ColumnName("value")
     private int value;
     @ColumnName("no_growth_item_id")

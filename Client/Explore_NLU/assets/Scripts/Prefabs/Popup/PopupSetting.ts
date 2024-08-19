@@ -113,6 +113,7 @@ export class PopupSetting extends AbsHandler {
         let nameLanguageEN = t("label_text.setting_language_english");
         this.lableLanguage.string = nameLanguageEN;
         this.dropdownLanguage.active = !this.dropdownLanguage.active;
+        StorageManager.me().saveItem("LANGUAGE", "en");
         break;
       case "ButtonVI":
         init("vi");
@@ -120,6 +121,7 @@ export class PopupSetting extends AbsHandler {
         let nameLanguageVI = t("label_text.setting_language_vietnamese");
         this.lableLanguage.string = nameLanguageVI;
         this.dropdownLanguage.active = !this.dropdownLanguage.active;
+        StorageManager.me().saveItem("LANGUAGE", "vi");
         break;
     }
   }
@@ -127,10 +129,9 @@ export class PopupSetting extends AbsHandler {
   onClickExitSetting() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.node.getComponent(PopupComponent).hide();
-    let timeoutDestroy = setTimeout(() => {
+    this.scheduleOnce(() => {
       this.node.destroy();
-      clearTimeout(timeoutDestroy);
-    }, 300);
+    }, 0.3);
   }
 
   onLogout() {

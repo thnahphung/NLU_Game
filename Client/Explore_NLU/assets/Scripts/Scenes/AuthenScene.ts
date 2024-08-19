@@ -6,7 +6,7 @@ import { StorageManager } from "../Manager/StorageManger";
 import GlobalData from "../Utils/GlobalData";
 import { AUDIOS, LOCAL_STORAGE, POPUP, SCENES } from "../Utils/Const";
 import { UICanvas } from "../Prefabs/MainUI/UICanvas";
-import { t } from "../../../extensions/i18n/assets/LanguageData";
+import { init, t } from "../../../extensions/i18n/assets/LanguageData";
 import { AudioManger } from "../Manager/AudioManger";
 const { ccclass, property } = _decorator;
 
@@ -35,6 +35,9 @@ export class AuthenScene extends AbsScene {
   // Khai bao forget password
   @property(Node)
   public popupForgetPassword: Node = null;
+  // Khai bao playBtn
+  @property(Node)
+  public reLoginNode: Node = null;
 
   public popupLoadingNode: Node = null;
 
@@ -55,6 +58,7 @@ export class AuthenScene extends AbsScene {
   }
 
   protected start(): void {
+    init(StorageManager.me().getItem("LANGUAGE") || "vi");
     AudioManger.me().play(AUDIOS.BACKGROUND, true);
   }
 
@@ -109,7 +113,7 @@ export class AuthenScene extends AbsScene {
       UICanvas.me().showPopupMessage(t("label_text.login_failed_500"));
       return;
     }
-    if (resLogin.status === 200) {
+    if (resLogin.status === 200 || resLogin.status === 201) {
       //RememberLogin
       StorageManager.me().saveItem(
         LOCAL_STORAGE.USERNAME,
@@ -124,7 +128,14 @@ export class AuthenScene extends AbsScene {
       GlobalData.me().setIsUserOffline(false);
       const userProto = resLogin.user;
       const hasCharacter = userProto.hasCharacter;
-      if (hasCharacter == 0) UICanvas.me().transitScene(SCENES.PICK_CHARACTER);
+      if (hasCharacter == 0) {
+        UICanvas.me().transitScene(SCENES.PICK_CHARACTER);
+        return;
+      }
+      if (resLogin.status === 201) {
+        this.reLoginNode.active = true;
+        this.popupGeneral.active = false;
+      }
     }
   }
 
@@ -214,5 +225,11 @@ export class AuthenScene extends AbsScene {
     AudioManger.me().playOneShot(AUDIOS.CLICK_3);
     this.popupForgetPassword.getComponent(PopupComponent).hide();
     this.popupSignIn.getComponent(PopupComponent).show();
+  }
+
+  onClickPlay() {
+    AudioManger.me().playOneShot(AUDIOS.CLICK_2);
+    if (!GlobalData.me().getMainUser()) return;
+    DataSender.sendReqPlayerJoinArea(GlobalData.me().getMainUser().userId);
   }
 }

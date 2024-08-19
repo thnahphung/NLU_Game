@@ -68,7 +68,7 @@ public class MechanicalService {
                     .setDurable(propertyMachineBean.getDurable())
                     .setPower(propertyMachineBean.getPower())
                     .setNumberStar(propertyMachineBean.getNumberStar())
-                    .setLevel(propertyMachineBean.getLevel())
+                    .setEnergy(propertyMachineBean.getEnergy())
                     .setValue(propertyMachineBean.getValue())
                     .setRate(propertyMachineBean.getRate())
                     .setNoGrowthItemId(propertyMachineBean.getNoGrowthItemId())
@@ -92,7 +92,7 @@ public class MechanicalService {
             propertyMachineBean.setDurable(20);
             propertyMachineBean.setPower(100);
             propertyMachineBean.setNumberStar(1);
-            propertyMachineBean.setLevel(20);
+            propertyMachineBean.setEnergy(20);
             propertyMachineBean.setValue(1000);
             propertyMachineBean.setNoGrowthItemId(machine.getId());
             propertyMachineBean.setUserId(userId);
@@ -179,7 +179,7 @@ public class MechanicalService {
         List<FormulaBean> formulasBean = FormulaDAO.getFormulasByNoGrowthItemResultId(machine.getNoGrowthItem().getId());
         List<Proto.FormulaMachine> formulaMachinesProto = new ArrayList<>();
 
-        formulasBean.forEach(formulaBean -> {
+        for(FormulaBean formulaBean : formulasBean) {
             WarehouseItemBean warehouseItemBean = WarehouseDAO.getWarehouseItemBean(userId, formulaBean.getNoGrowthItemId());
             int quantity = 0;
             if(warehouseItemBean != null) {
@@ -213,8 +213,10 @@ public class MechanicalService {
 
             if(quantity < formulaBean.getQuantity()) {
                 DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResManufactureMachine(Proto.ResManufactureMachine.newBuilder().setStatus(400).build()).build());
+            return;
             }
-        });
+        }
+
         NoGrowthItemBean machineBeans = NoGrowthItemDAO.getNoGrowthItemById(machine.getNoGrowthItem().getId());
 
         if(machineBeans == null){
@@ -261,7 +263,7 @@ public class MechanicalService {
             propertyMachineBean.setDurable(propertyMachineBean.getDurable() + 20);
             propertyMachineBean.setPower(propertyMachineBean.getPower() + 20);
             propertyMachineBean.setSpeed(propertyMachineBean.getSpeed() + 20);
-            propertyMachineBean.setLevel(propertyMachineBean.getLevel());
+            propertyMachineBean.setEnergy(propertyMachineBean.getEnergy());
             propertyMachineBean.setRate(30);
             boolean statusUpdate = PropertyMachineDAO.updatePropertyMachine(propertyMachineBean);
             if(statusUpdate) {
@@ -271,7 +273,7 @@ public class MechanicalService {
                         .setDurable(propertyMachineBean.getDurable())
                         .setPower(propertyMachineBean.getPower())
                         .setNumberStar(propertyMachineBean.getNumberStar())
-                        .setLevel(propertyMachineBean.getLevel())
+                        .setEnergy(propertyMachineBean.getEnergy())
                         .setValue(propertyMachineBean.getValue())
                         .setNoGrowthItemId(propertyMachineBean.getNoGrowthItemId())
                         .setRate(propertyMachineBean.getRate())
@@ -298,7 +300,7 @@ public class MechanicalService {
                     .setDurable(propertyMachineBean.getDurable())
                     .setPower(propertyMachineBean.getPower())
                     .setNumberStar(propertyMachineBean.getNumberStar())
-                    .setLevel(propertyMachineBean.getLevel())
+                    .setEnergy(propertyMachineBean.getEnergy())
                     .setValue(propertyMachineBean.getValue())
                     .setNoGrowthItemId(propertyMachineBean.getNoGrowthItemId())
                     .setRate(newRate)
@@ -327,7 +329,7 @@ public class MechanicalService {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResFixMachine(Proto.ResFixMachine.newBuilder().setMachineId(reqFixMachine.getMachineId()).setStatus(400).build()).build());
             return;
         }
-        if(propertyMachineBean.getLevel() >= 100) {
+        if(propertyMachineBean.getEnergy() >= 100) {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResFixMachine(Proto.ResFixMachine.newBuilder().setMachineId(reqFixMachine.getMachineId()).setStatus(401).build()).build());
             return;
         }
@@ -343,11 +345,11 @@ public class MechanicalService {
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResFixMachine(Proto.ResFixMachine.newBuilder().setMachineId(reqFixMachine.getMachineId()).setStatus(402).build()).build());
             return;
         }
-        int newLevel = propertyMachineBean.getLevel() + 20;
+        int newLevel = propertyMachineBean.getEnergy() + 20;
         if(newLevel > 100) {
             newLevel = 100;
         }
-        propertyMachineBean.setLevel(newLevel);
+        propertyMachineBean.setEnergy(newLevel);
         boolean statusUpdate = PropertyMachineDAO.updatePropertyMachine(propertyMachineBean);
         if(statusUpdate) {
             long newGold = user.getGold() - 100;
@@ -355,7 +357,7 @@ public class MechanicalService {
             UserDAO.updateGold(userContext.getUser().getUserId(), newGold);
             userContext.setUser(newUserContext);
             UserCache.me().add(String.valueOf(userContext.getUser().getUserId()), userContext);
-            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResFixMachine(Proto.ResFixMachine.newBuilder().setMachineId(reqFixMachine.getMachineId()).setGold((int) newGold).setStatus(200).setLevel(newLevel).build()).build());
+            DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResFixMachine(Proto.ResFixMachine.newBuilder().setMachineId(reqFixMachine.getMachineId()).setGold((int) newGold).setStatus(200).setEnergy(newLevel).build()).build());
         }else{
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResFixMachine(Proto.ResFixMachine.newBuilder().setMachineId(reqFixMachine.getMachineId()).setStatus(403).build()).build());
         }
@@ -401,6 +403,53 @@ public class MechanicalService {
             userContext.setUser(newUserContext);
             UserCache.me().add(String.valueOf(userContext.getUser().getUserId()), userContext);
             DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResIncreaseRateMachine(Proto.ResIncreaseRateMachine.newBuilder().setMachineId(reqIncreaseRateMachine.getMachineId()).setGold((int) newGold).setStatus(200).setRate(newRate).build()).build());
+        }
+    }
+
+    public void handleRandomFailureRate(Session session, String nameMachine){
+        int userId = SessionCache.me().getUserID(SessionID.of(session));
+        int rate = 60;
+        if(userId == -1) {
+            return;
+        }
+        // Get the machine of the user
+        Proto.NoGrowthItem machine = NoGrowthItemCache.me().getNoGrowthItemByName(nameMachine);
+        if(machine == null) {
+            NoGrowthItemBean noGrowthItemBean = NoGrowthItemDAO.getNoGrowthItemByName(nameMachine);
+            machine = Proto.NoGrowthItem.newBuilder()
+                    .setId(noGrowthItemBean.getId())
+                    .setName(noGrowthItemBean.getName())
+                    .setPrice(noGrowthItemBean.getPrice())
+                    .setSalePrice(noGrowthItemBean.getSalePrice())
+                    .setExperienceReceive(noGrowthItemBean.getExperienceReceive())
+                    .setType(noGrowthItemBean.getType())
+                    .setDescription(noGrowthItemBean.getDescription())
+                    .build();
+        }
+        PropertyMachineBean propertyMachineBean = PropertyMachineDAO.getPropertyMachine(userId, machine.getId());
+
+        if(propertyMachineBean == null) return;
+
+        if(propertyMachineBean.getDurable() >= 60) {
+            rate = propertyMachineBean.getDurable();
+        }
+
+        if(propertyMachineBean.getDurable() >= 100) {
+            rate = 90;
+        }
+
+        Random random = new Random();
+        int value = random.nextInt(100);
+        if(value > rate) {
+            if(propertyMachineBean.getEnergy() - 20 <= 0) {
+                propertyMachineBean.setEnergy(0);
+            }else{
+                propertyMachineBean.setEnergy(propertyMachineBean.getEnergy() - 20);
+            }
+            boolean statusUpdate = PropertyMachineDAO.updatePropertyMachine(propertyMachineBean);
+            if(statusUpdate) {
+                DataSenderUtils.sendResponse(session, Proto.Packet.newBuilder().setResBrokenMachine(Proto.ResBrokenMachine.newBuilder().setMachineName(machine.getName()).setMachineEnergy(propertyMachineBean.getEnergy()).build()).build());
+            }
         }
     }
 }

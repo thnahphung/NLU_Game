@@ -135,6 +135,15 @@ message Packet {
     ResIncreaseRateMachine resIncreaseRateMachine = 128;
     ReqUpgradeCage reqUpgradeCage = 129;
     ResUpgradeCage resUpgradeCage = 130;
+    ResBrokenMachine resBrokenMachine = 131;
+    ReqSellItemWarehouse reqSellItemWarehouse = 132;
+    ResSellItemWarehouse resSellItemWarehouse = 133;
+    ReqLevelUp reqLevelUp = 134;
+    ResLevelUp resLevelUp = 135;
+    ReqLoadRank reqLoadRank = 136;
+    ResLoadRank resLoadRank = 137;
+    ReqUpdateNewAccount reqUpdateNewAccount = 138;
+    ResUpdateNewAccount resUpdateNewAccount = 139;
   }
 }
 
@@ -225,6 +234,7 @@ message ShopItem {
     CAGE = 2;
     FARM_ITEM = 3;
     MEDICINE = 4;
+    MACHINE = 5;
   }
 }
 
@@ -571,7 +581,6 @@ message ReqBuyBuilding {
   int32 positionX = 2;
   int32 positionY = 3;
   int32 currentLevel = 4;
-  int32 areaId = 5;
   string uuid = 6;
 }
 
@@ -820,7 +829,7 @@ message PropertyMachine {
   int32 durable = 3;
   int32 power = 4;
   int32 numberStar = 5;
-  int32 level = 6;
+  int32 energy = 6;
   int32 value = 7;
   int32 rate = 8;
   int32 noGrowthItemId = 9;
@@ -1081,7 +1090,7 @@ message ResFixMachine {
   int32 status = 1;
   int32 machineId = 2;
   int32 gold = 3;
-  int32 level = 4;
+  int32 energy = 4;
 }
 
 message ReqIncreaseRateMachine {
@@ -1093,4 +1102,47 @@ message ResIncreaseRateMachine {
   int32 machineId = 2;
   int32 gold = 3;
   int32 rate = 4;
+}
+
+message ResBrokenMachine {
+  string machineName = 1;
+  int32 machineEnergy = 2;
+}
+
+message ReqSellItemWarehouse {
+  WarehouseItem warehouseItem = 1;
+  int32 quantity = 2;
+}
+
+message ResSellItemWarehouse {
+  int32 status = 1;
+  int32 gold = 2;
+  WarehouseItem warehouseItem = 3;
+}
+
+message ReqLevelUp {}
+
+message ResLevelUp {
+  int32 status = 1;
+  int32 level = 3;
+  int32 exp = 4;
+}
+
+message ReqLoadRank{
+  string characterCode = 1;
+}
+
+message UserRank{
+  User user = 1;
+  int32 rank = 2;
+}
+
+message ResLoadRank{
+  repeated UserRank userRanks = 1;
+}
+
+message ReqUpdateNewAccount{}
+
+message ResUpdateNewAccount{
+  int32 status = 1;
 }

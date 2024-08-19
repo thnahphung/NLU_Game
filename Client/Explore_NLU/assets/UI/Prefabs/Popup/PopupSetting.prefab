@@ -5475,13 +5475,16 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 271
+        "__id__": 268
       },
       {
-        "__id__": 273
+        "__id__": 270
       },
       {
-        "__id__": 275
+        "__id__": 272
+      },
+      {
+        "__id__": 274
       }
     ],
     "_prefab": {
@@ -5805,13 +5808,10 @@
       },
       {
         "__id__": 265
-      },
-      {
-        "__id__": 267
       }
     ],
     "_prefab": {
-      "__id__": 270
+      "__id__": 267
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -6047,83 +6047,6 @@
     "fileId": "1c+UCDTS1KFLQTKY2hWPyQ"
   },
   {
-    "__type__": "cc.Button",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 256
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 268
-    },
-    "clickEvents": [
-      {
-        "__id__": 269
-      }
-    ],
-    "_interactable": true,
-    "_transition": 2,
-    "_normalColor": {
-      "__type__": "cc.Color",
-      "r": 214,
-      "g": 214,
-      "b": 214,
-      "a": 255
-    },
-    "_hoverColor": {
-      "__type__": "cc.Color",
-      "r": 211,
-      "g": 211,
-      "b": 211,
-      "a": 255
-    },
-    "_pressedColor": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_disabledColor": {
-      "__type__": "cc.Color",
-      "r": 124,
-      "g": 124,
-      "b": 124,
-      "a": 255
-    },
-    "_normalSprite": {
-      "__uuid__": "2532f528-db75-42e2-a57f-2342f7e2d7d1@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
-    "_hoverSprite": null,
-    "_pressedSprite": null,
-    "_disabledSprite": {
-      "__uuid__": "951249e0-9f16-456d-8b85-a6ca954da16b@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
-    "_duration": 0.1,
-    "_zoomScale": 1.2,
-    "_target": {
-      "__id__": 256
-    },
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "977hIzYdVJ06LIaLDJRmsw"
-  },
-  {
-    "__type__": "cc.ClickEvent",
-    "target": {
-      "__id__": 1
-    },
-    "component": "",
-    "_componentId": "fecf3kcouFHIKeYY0lMA0ff",
-    "handler": "onChangeLanguage",
-    "customEventData": ""
-  },
-  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -6145,7 +6068,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 272
+      "__id__": 269
     },
     "_contentSize": {
       "__type__": "cc.Size",
@@ -6172,7 +6095,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 274
+      "__id__": 271
     },
     "_resizeMode": 0,
     "_layoutType": 1,
@@ -6209,7 +6132,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 276
+      "__id__": 273
     },
     "_alignFlags": 33,
     "_target": null,
@@ -6234,6 +6157,75 @@
   {
     "__type__": "cc.CompPrefabInfo",
     "fileId": "b4VZhUC/NBvJw6VOo/BtfL"
+  },
+  {
+    "__type__": "cc.Button",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 243
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 275
+    },
+    "clickEvents": [
+      {
+        "__id__": 276
+      }
+    ],
+    "_interactable": true,
+    "_transition": 0,
+    "_normalColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_hoverColor": {
+      "__type__": "cc.Color",
+      "r": 211,
+      "g": 211,
+      "b": 211,
+      "a": 255
+    },
+    "_pressedColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_disabledColor": {
+      "__type__": "cc.Color",
+      "r": 124,
+      "g": 124,
+      "b": 124,
+      "a": 255
+    },
+    "_normalSprite": null,
+    "_hoverSprite": null,
+    "_pressedSprite": null,
+    "_disabledSprite": null,
+    "_duration": 0.1,
+    "_zoomScale": 1.2,
+    "_target": null,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "57IRYebXpA+aUqQ8FzjqeV"
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "",
+    "_componentId": "fecf3kcouFHIKeYY0lMA0ff",
+    "handler": "onChangeLanguage",
+    "customEventData": ""
   },
   {
     "__type__": "cc.PrefabInfo",

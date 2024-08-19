@@ -81,8 +81,6 @@ public class AuthHandler implements Subscriber {
         gameStateService.sendGameStateLogin(session);
         warehouseService.loadWarehouse(session);
         taskService.loadTask(session);
-        if (userRelogin.getHasCharacter() == 0) return;
-        areaService.joinAreaLogin(userRelogin.getId(), session);
     }
 
     public void logout(Session session, Proto.Packet packet) {

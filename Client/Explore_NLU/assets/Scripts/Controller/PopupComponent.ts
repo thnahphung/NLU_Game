@@ -47,8 +47,9 @@ export class PopupComponent extends Component {
       .call(() => {
         this.node.scale = new Vec3(1, 1, 1);
         this.node.active = true;
+        this.node.position = new Vec3(1000, -150, 0);
       })
-      .to(0.5, { position: new Vec3(-300, -160, 0) }, { easing: "backOut" })
+      .to(0.5, { position: new Vec3(360, -150, 0) }, { easing: "backOut" })
       .start();
   }
 

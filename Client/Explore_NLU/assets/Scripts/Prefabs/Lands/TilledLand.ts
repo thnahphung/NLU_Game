@@ -76,6 +76,14 @@ export class TilledLand extends Component {
     if (!nameSeed) return;
     //Trừ hạt giống và kiểm tra số lượng hạt giống còn lại
     if (seedBag.getQuantity() == 0) return;
+    if (
+      GlobalData.me().getSowingInformations() &&
+      GlobalData.me().getSowingInformations().length >= 50
+    ) {
+      UICanvas.me().showPopupMessage(t("label_text.sow_fail_too_many_seeds"));
+      return;
+    }
+    AudioManger.me().playOneShot(AUDIOS.SOW_SEED);
     seedBag.setQuantity(seedBag.getQuantity() - 1);
     const menuSeedComponent = UICanvas.me()
       .getMenuSeedFarm()
@@ -141,8 +149,8 @@ export class TilledLand extends Component {
   }
 
   public deleteCrop(): void {
-    if (this.seedNode) this.seedNode.destroy();
     this.resetTillLand();
+    if (this.seedNode) this.seedNode.destroy();
   }
 
   public resetTillLand(): void {
@@ -155,6 +163,16 @@ export class TilledLand extends Component {
   }
 
   public handleTillLand(): void {
+    if (
+      GlobalData.me().getTilledLands() &&
+      GlobalData.me().getTilledLands().length >= 50
+    ) {
+      UICanvas.me().showPopupMessage(t("label_text.till_fail_too_many_times"));
+      return;
+    }
+    if(!GlobalData.me().getIsSupporting()) {
+      AudioManger.me().playOneShot(AUDIOS.TILL_LAND);
+    };
     this.isTilled = true;
     this.node.getComponent(Sprite).enabled = true;
     this.node.getComponent(BlockInputEvents).enabled = true;
@@ -187,7 +205,6 @@ export class TilledLand extends Component {
   private handleTouchTilledLand(): void {
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);
     if (GlobalData.me().getIsSupporting()) {
-      UICanvas.me().showPopupMessage(t("label_text.support_action_fail"));
       return;
     }
     if (!GlobalData.me().isMainArea()) return;

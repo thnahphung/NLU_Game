@@ -89,7 +89,7 @@ export class PopupBuildingSystem extends AbsHandler {
   private handlePlantingBuilding(event: Event, customEventData: string) {
     if (!GlobalData.me().isMainArea()) return;
     const plantingLand = instantiate(this.plantingLandPrefab);
-    const plantingPanel = find("Canvas/BackgroundLayers/PlantingPanel");
+    const plantingPanel = find("Canvas/BackGroundLayer/PlantingPanel");
 
     let length = plantingPanel.children.length;
 
@@ -151,7 +151,7 @@ export class PopupBuildingSystem extends AbsHandler {
   private handleClickComplete(event: CustomEvent): void {
     this.hidePopupOption();
     this.node.destroy();
-    let plantingPanel = find("Canvas/BackgroundLayers/PlantingPanel");
+    let plantingPanel = find("Canvas/BackGroundLayer/PlantingPanel");
     let length = plantingPanel.children.length;
     if (length > 10) {
       this.handleNode.destroy();

@@ -77,7 +77,10 @@ export class UICanvas extends Component {
   @property(Prefab) private prefabPopupManufactureResult: Prefab;
   @property(Prefab) private prefabPopupInformationAmphitheater: Prefab;
   @property(Prefab) private prefabPopupSupport: Prefab;
-  @property(Prefab) private informationEffectPrefab: Prefab = null;
+  @property(Prefab) private prefabInformationEffect: Prefab = null;
+  @property(Prefab) private prefabPopupLevelUp: Prefab = null;
+  @property(Prefab) private prefabPopupRank: Prefab = null;
+  @property(Prefab) private prefabPopupGuidance: Prefab = null;
 
   protected static _instance: UICanvas;
   private _popupMessage: Node;
@@ -144,7 +147,17 @@ export class UICanvas extends Component {
   loadExp() {
     if (GlobalData.me().getMainUser() == null) return;
     let mainUser = GlobalData.me().getMainUser();
-    this.userExp.progress = mainUser.experiencePoints / 100;
+    if (mainUser.experiencePoints >= 100) {
+      DataSender.sendReqLevelUp();
+    } else {
+      this.userExp.progress = mainUser.experiencePoints / 100;
+    }
+  }
+
+  loadLevel() {
+    if (GlobalData.me().getMainUser() == null) return;
+    let mainUser = GlobalData.me().getMainUser();
+    this.userLevel.string = "Lv " + mainUser.level.toString() + ": ";
   }
 
   showPopupMessage(message: string) {
@@ -359,6 +372,10 @@ export class UICanvas extends Component {
     return this.popupMenuToolFarm;
   }
 
+  getMenuMechanical(): Node {
+    return this.popupMenuMechanical;
+  }
+
   showPopupOption(handleNode?: Node, lable?: string) {
     if (this.node.getChildByName("BotMid").getChildByName("PopupOption"))
       return;
@@ -521,7 +538,7 @@ export class UICanvas extends Component {
     this._popupAcceptSupport = instantiate(this.prefabPopupAcceptSupport);
     this._popupAcceptSupport.getComponent(PopupAcceptSupport).init(userInvite);
     this._popupAcceptSupport.setPosition(200, -160);
-    this.node.getChildByName("MidRight").addChild(this._popupAcceptSupport);
+    this.node.getChildByName("PopupLayer").addChild(this._popupAcceptSupport);
     this._popupAcceptSupport.getComponent(PopupComponent).showSlideIn();
   }
 
@@ -687,22 +704,26 @@ export class UICanvas extends Component {
     const component = this.node.getChildByName("BotRight").children;
     if (status) {
       component.forEach((element) => {
+        if (!element) return;
         if (element.name == "StopSupportButton") {
           element.active = true;
         } else {
           element.active = false;
         }
       });
-      find("Canvas/BackGroundLayer/TransitScenePanel").active = false;
+      if (find("Canvas/BackGroundLayer/TransitScenePanel"))
+        find("Canvas/BackGroundLayer/TransitScenePanel").active = false;
     } else {
       component.forEach((element) => {
+        if (!element) return;
         if (element.name == "StopSupportButton") {
           element.active = false;
         } else {
           element.active = true;
         }
       });
-      find("Canvas/BackGroundLayer/TransitScenePanel").active = true;
+      if (find("Canvas/BackGroundLayer/TransitScenePanel"))
+        find("Canvas/BackGroundLayer/TransitScenePanel").active = true;
     }
   }
 
@@ -712,11 +733,44 @@ export class UICanvas extends Component {
       GlobalData.me().getAidUser().userId,
       GlobalData.me().getSupportUser().userId
     );
+    console.log(
+      "Stop support",
+      GlobalData.me().getAidUser(),
+      GlobalData.me().getSupportUser()
+    );
   }
 
   showInformationEffect(name: string, value1: string, value2: string) {
-    let effect = instantiate(this.informationEffectPrefab);
+    let effect = instantiate(this.prefabInformationEffect);
     effect.getComponent(InformationEffect).setInformation(name, value1, value2);
     this.node.addChild(effect);
+  }
+
+  showPopupLevelUp() {
+    let popupLevelUp = instantiate(this.prefabPopupLevelUp);
+    this.node.getChildByName("PopupLayer").addChild(popupLevelUp);
+    popupLevelUp.getComponent(PopupComponent).show();
+  }
+
+  showPopupRank() {
+    if (this.node.getChildByName("PopupLayer").getChildByName("PopupRank")) {
+      return;
+    }
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
+    let popupRank = instantiate(this.prefabPopupRank);
+    this.node.getChildByName("PopupLayer").addChild(popupRank);
+    popupRank.getComponent(PopupComponent).show();
+  }
+
+  showPopupGuidance() {
+    if (
+      this.node.getChildByName("PopupLayer").getChildByName("PopupGuidance")
+    ) {
+      return;
+    }
+    AudioManger.me().playOneShot(AUDIOS.CLICK_3);
+    let popupGuidance = instantiate(this.prefabPopupGuidance);
+    this.node.getChildByName("PopupLayer").addChild(popupGuidance);
+    popupGuidance.getComponent(PopupComponent).show();
   }
 }

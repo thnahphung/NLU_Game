@@ -1,4 +1,14 @@
-import { _decorator, Component, EditBox, find, Prefab } from "cc";
+import {
+  _decorator,
+  Component,
+  EditBox,
+  EventKeyboard,
+  find,
+  Input,
+  input,
+  KeyCode,
+  Prefab,
+} from "cc";
 import DataSender from "../../Utils/DataSender";
 import { UICanvas } from "../MainUI/UICanvas";
 import { t } from "../../../../extensions/i18n/assets/LanguageData";
@@ -23,8 +33,6 @@ export class PopupSignUp extends Component {
   // Khai bao popupNotify
   @property(Prefab)
   public popupNotifySimple: Prefab = null!;
-
-  start() {}
 
   onClickRegisterReq() {
     AudioManger.me().playOneShot(AUDIOS.CLICK_2);

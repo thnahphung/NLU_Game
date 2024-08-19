@@ -412,7 +412,6 @@ export default class DataSender {
   }
 
   public static sendReqLoadFormulaOfMachine(noGrowthItem: proto.INoGrowthItem) {
-    console.log("sendReqLoadFormulaOfMachine");
     let reqLoadFormulasOfMachine = new proto.ReqLoadFormulasOfMachine();
     reqLoadFormulasOfMachine.noGrowthItem = noGrowthItem;
     let packet = new proto.Packet();
@@ -421,7 +420,6 @@ export default class DataSender {
   }
 
   public static sendReqLoadAllMachineFormula() {
-    console.log("sendReqLoadAllMachineFormula");
     let reqLoadAllMachineFormula = new proto.ReqLoadAllMachineFormula();
     let packet = new proto.Packet();
     packet.reqLoadAllMachineFormula = reqLoadAllMachineFormula;
@@ -429,7 +427,6 @@ export default class DataSender {
   }
 
   public static sendReqManufactureMachine(machine: proto.IMachine) {
-    console.log("sendReqManufactureMachine", machine);
     let reqManufactureMachine = new proto.ReqManufactureMachine();
     reqManufactureMachine.machine = machine;
     let packet = new proto.Packet();
@@ -540,6 +537,40 @@ export default class DataSender {
     reqIncreaseRateMachine.machineId = machineId;
     let packet = new proto.Packet();
     packet.reqIncreaseRateMachine = reqIncreaseRateMachine;
+    WS.send(packet);
+  }
+
+  public static sendReqSellItemWarehouse(
+    warehouseItem: proto.IWarehouseItem,
+    quantity: number
+  ) {
+    let reqSellItemWarehouse = new proto.ReqSellItemWarehouse();
+    reqSellItemWarehouse.warehouseItem = warehouseItem;
+    reqSellItemWarehouse.quantity = quantity;
+    let packet = new proto.Packet();
+    packet.reqSellItemWarehouse = reqSellItemWarehouse;
+    WS.send(packet);
+  }
+
+  public static sendReqLevelUp() {
+    let reqLevelUp = new proto.ReqLevelUp();
+    let packet = new proto.Packet();
+    packet.reqLevelUp = reqLevelUp;
+    WS.send(packet);
+  }
+
+  public static sendReqLoadRank(code: string) {
+    let reqLoadRank = new proto.ReqLoadRank();
+    reqLoadRank.characterCode = code;
+    let packet = new proto.Packet();
+    packet.reqLoadRank = reqLoadRank;
+    WS.send(packet);
+  }
+
+  public static sendReqUpdateNewAccount() {
+    let reqUpdateNewAccount = new proto.ReqUpdateNewAccount();
+    let packet = new proto.Packet();
+    packet.reqUpdateNewAccount = reqUpdateNewAccount;
     WS.send(packet);
   }
 }

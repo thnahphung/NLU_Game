@@ -24,9 +24,6 @@ export class PopupFindTime extends Component {
       GlobalData.me().getMainUser().character.code == "KSCN"
     ) {
       UICanvas.me().showPopupAid();
-    } else {
-      console.log("showPopupHelp");
-      UICanvas.me().showPopupMatchMaking();
     }
     this.node.destroy();
   }
@@ -37,6 +34,7 @@ export class PopupFindTime extends Component {
       time++;
       if (time >= 300) {
         this.unscheduleAllCallbacks();
+        DataSender.sendReqStopSupportFind();
         UICanvas.me().closePopupMatchMaking();
       }
       let minutes = Math.floor(time / 60);
