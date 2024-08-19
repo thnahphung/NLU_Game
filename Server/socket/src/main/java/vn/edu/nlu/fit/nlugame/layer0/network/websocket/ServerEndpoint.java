@@ -23,7 +23,7 @@ public class ServerEndpoint {
         ServerEndpoint.subscribe(new FarmHandler());
         ServerEndpoint.subscribe(new FriendHandler());
         ServerEndpoint.subscribe(new ShopHandler());
-        ServerEndpoint.subscribe(new AnimalHusbandHandler());
+        ServerEndpoint.subscribe(new AnimalHusbandryHandler());
         ServerEndpoint.subscribe(new ActivityHandler());
         ServerEndpoint.subscribe(new MechanicalHandler());
         ServerEndpoint.subscribe(new SupportingHandler());
