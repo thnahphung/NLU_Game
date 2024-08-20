@@ -1,10 +1,7 @@
 package vn.edu.nlu.fit.nlugame.layer1;
 
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
 import jakarta.websocket.Session;
 import vn.edu.nlu.fit.nlugame.layer2.DataSenderUtils;
-import vn.edu.nlu.fit.nlugame.layer2.SessionManage;
 import vn.edu.nlu.fit.nlugame.layer2.dao.*;
 import vn.edu.nlu.fit.nlugame.layer2.dao.bean.*;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
@@ -12,18 +9,17 @@ import vn.edu.nlu.fit.nlugame.layer2.redis.SessionID;
 import vn.edu.nlu.fit.nlugame.layer2.redis.cache.*;
 import vn.edu.nlu.fit.nlugame.layer2.redis.context.UserContext;
 
-import javax.xml.crypto.Data;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnimalHusbandService {
-    private static final AnimalHusbandService instance = new AnimalHusbandService();
+public class AnimalHusbandryService {
+    private static final AnimalHusbandryService instance = new AnimalHusbandryService();
 
-    private AnimalHusbandService() {
+    private AnimalHusbandryService() {
     }
 
-    public static AnimalHusbandService me() {
+    public static AnimalHusbandryService me() {
         return instance;
     }
 
@@ -125,7 +121,7 @@ public class AnimalHusbandService {
 
         PropertyGrowthItemBean propertyGrowthItemBean = PropertyGrowthItemDAO.getPropertyGrowthItemById(propertyAnimalBean.getPropertyGrowthItemId());
         Proto.CommonGrowthItem commonGrowthItemProto = CommonGrowthItemCache.me().get(String.valueOf(propertyGrowthItemBean.getGrowthItemId()));
-        int newQuantity;
+
         WarehouseItemBean warehouseItemBean;
         if (commonGrowthItemProto == null) {
             CommonGrowthItemBean commonGrowthItemBean = CommonGrowthItemDAO.getCommonGrowthItemById(propertyGrowthItemBean.getGrowthItemId());
