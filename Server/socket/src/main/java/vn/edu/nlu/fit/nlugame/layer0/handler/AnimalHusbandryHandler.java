@@ -2,11 +2,11 @@ package vn.edu.nlu.fit.nlugame.layer0.handler;
 
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.Session;
-import vn.edu.nlu.fit.nlugame.layer1.AnimalHusbandService;
+import vn.edu.nlu.fit.nlugame.layer1.AnimalHusbandryService;
 import vn.edu.nlu.fit.nlugame.layer2.proto.Proto;
 
-public class AnimalHusbandHandler implements Subscriber {
-    AnimalHusbandService animalHusbandService = AnimalHusbandService.me();
+public class AnimalHusbandryHandler implements Subscriber {
+    AnimalHusbandryService animalHusbandService = AnimalHusbandryService.me();
 
     @Override
     public void onOpen(Session session, String... params) {

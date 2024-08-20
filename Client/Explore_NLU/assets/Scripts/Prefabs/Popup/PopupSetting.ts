@@ -95,6 +95,7 @@ export class PopupSetting extends AbsHandler {
     progress = math.clamp(progress, 0.000001, 1);
     this.progressBarSound.progress = progress;
     StorageManager.me().saveItem("SOUND", progress);
+    AudioManger.me().getAudioSound().volume = progress;
   }
 
   onChangeLanguage() {
